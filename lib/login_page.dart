@@ -65,30 +65,38 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (formKey.currentState!.validate()) {
-                      // CheckValidate().showToast();
-                      logIn(LogIn(email: emailInputController.text, password: passwordInputController.text));
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FriendListPage()),);
-                    } else {
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white, backgroundColor: Color(0xff0100FF), // Text Color (Foreground color)
-                  ),
-                  child: Text(
-                    '로그인',
-                    style: TextStyle(fontSize: 16),
-                  ),
+                  // Validate returns true if the form is valid, or false otherwise.
+                  if (formKey.currentState!.validate()) {
+                    // CheckValidate().showToast();
+                    logIn(LogIn(
+                        email: emailInputController.text,
+                        password: passwordInputController.text));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FriendListPage()),
+                    );
+                  } else {}
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor:
+                      Color(0xff0100FF), // Text Color (Foreground color)
+                ),
+                child: Text(
+                  '로그인',
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
               ElevatedButton(
-                onPressed: () {
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Color(0xff2F9D27), // Text Color (Foreground color)
+                  foregroundColor: Colors.white,
+                  backgroundColor:
+                      Color(0xff2F9D27), // Text Color (Foreground color)
                 ),
                 child: Text(
                   'NAVER로 로그인',
@@ -100,78 +108,75 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Text(
                 '가입은 개인정보 이용을 동의하는 것으로 간주 합니다.',
-                style: TextStyle(color:Colors.grey),
+                style: TextStyle(color: Colors.grey),
               ),
               SizedBox(
                 height: 10,
               ),
               Row(
                 children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpEmailPage()),
-                              );
-                            },
-                            child: const Text(
-                              '회원가입',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ],
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignUpEmailPage()),
+                      );
+                    },
+                    child: const Text(
+                      '회원가입',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                        decoration: TextDecoration.underline,
                       ),
-                    ],
+                    ),
                   ),
-                  SizedBox(
-                    width: 230,
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const FindUserEmail1Page()),
-                              );
-                            },
-                            child: const Text(
-                              'ID찾기',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                                decoration: TextDecoration.underline,
-                              ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const FindUserEmail1Page()),
+                            );
+                          },
+                          child: const Text(
+                            'ID찾기',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const FindUserPassword1Page()),
-                              );
-                            },
-                            child: const Text(
-                              '비밀번호찾기',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                                decoration: TextDecoration.underline,
-                              ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const FindUserPassword1Page()),
+                            );
+                          },
+                          child: const Text(
+                            '비밀번호찾기',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -181,7 +186,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-
-
 }
