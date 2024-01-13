@@ -16,9 +16,13 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
-      home: LoginPage()
-    );
+        theme: ThemeData(
+            appBarTheme: AppBarTheme(
+                color: Colors.white,
+                centerTitle: true,
+                iconTheme: IconThemeData(color: Colors.black),
+                titleTextStyle: TextStyle(color: Colors.black))),
+        home: LoginPage());
   }
 }
