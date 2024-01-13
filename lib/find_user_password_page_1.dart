@@ -14,6 +14,9 @@ class _FindUserPassword1PageState extends State<FindUserPassword1Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('비밀번호 찾기'),
+      ),
       body: Container(
         padding: EdgeInsets.all(16),
         child: Form(
@@ -39,12 +42,17 @@ class _FindUserPassword1PageState extends State<FindUserPassword1Page> {
               ElevatedButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FindUserPassword2Page()),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FindUserPassword2Page()),
                     );
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Color(0xff0100FF), // Text Color (Foreground color)
+                  foregroundColor: Colors.white,
+                  backgroundColor:
+                      Color(0xff0100FF), // Text Color (Foreground color)
                 ),
                 child: Text(
                   '인증번호 발송',
@@ -57,7 +65,4 @@ class _FindUserPassword1PageState extends State<FindUserPassword1Page> {
       ),
     );
   }
-
-
-
 }

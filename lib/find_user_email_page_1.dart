@@ -19,51 +19,59 @@ class _FindUserEmail1PageState extends State<FindUserEmail1Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.all(16),
-        child: Form(
-          key: formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              SizedBox(
-                height: 100,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: '핸드폰 번호'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return '핸드폰 번호를 입력해주세요.';
-                  }
-                  return null;
-                },
-                onSaved: (value) => _email = value!,
-              ),
-              SizedBox(
-                height: 250,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FindUserEmail2Page()),
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Color(0xff0100FF), // Text Color (Foreground color)
+      appBar: AppBar(
+        title: Text('ID 찾기'),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(
+                  height: 100,
                 ),
-                child: Text(
-                  '인증번호 발송',
-                  style: TextStyle(fontSize: 16),
+                TextFormField(
+                  decoration: InputDecoration(labelText: '핸드폰 번호'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '핸드폰 번호를 입력해주세요.';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) => _email = value!,
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 250,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FindUserEmail2Page()),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor:
+                        Color(0xff0100FF), // Text Color (Foreground color)
+                  ),
+                  child: Text(
+                    '인증번호 발송',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-
-
-
 }
