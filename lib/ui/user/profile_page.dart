@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/account/signup/view/signup_password_page.dart';
-import 'package:sottie_with_besties/utils/validate.dart';
+
+import '../../core/utils/validate.dart';
+import '../account/signup/signup_password_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

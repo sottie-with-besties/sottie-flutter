@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/utils/validate.dart';
 
 
-class AddFriend1Page extends StatefulWidget {
-  const AddFriend1Page({super.key});
+class FindFriendPage extends StatefulWidget {
+  const FindFriendPage({super.key});
 
   @override
-  _AddFriend1PageState createState() => _AddFriend1PageState();
+  _FindFriendPageState createState() => _FindFriendPageState();
 }
 
-class _AddFriend1PageState extends State<AddFriend1Page> {
+class _FindFriendPageState extends State<FindFriendPage> {
 
   final formKey = GlobalKey<FormState>();
 
-  TextEditingController phoneNumberInputController = TextEditingController();
+  TextEditingController nickNameInputController = TextEditingController();
 
-  FocusNode _phoneNumberFocus = new FocusNode();
+  FocusNode _nickNameFocus = new FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +30,10 @@ class _AddFriend1PageState extends State<AddFriend1Page> {
                 height: 100,
               ),
               TextFormField(
-                controller: phoneNumberInputController,
-                focusNode: _phoneNumberFocus,
+                controller: nickNameInputController,
+                focusNode: _nickNameFocus,
                 keyboardType: TextInputType.visiblePassword,
-                decoration: InputDecoration(labelText: '핸드폰번호'),
-                validator: (value) => CheckValidate().validatePhoneNumber(_phoneNumberFocus, value!),
+                decoration: InputDecoration(labelText: '닉네임'),
               ),
               SizedBox(
                 height: 250,
@@ -50,7 +48,7 @@ class _AddFriend1PageState extends State<AddFriend1Page> {
                   foregroundColor: Colors.white, backgroundColor: Color(0xff0100FF), // Text Color (Foreground color)
                 ),
                 child: Text(
-                  '친구 찾기',
+                  '친구 검색',
                   style: TextStyle(fontSize: 16),
                 ),
               ),

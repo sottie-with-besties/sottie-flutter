@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-
-import 'account/signin/view/login_page.dart';
+import 'package:sottie_with_besties/ui/account/signin/login_page.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -10,10 +7,10 @@ void main() {
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
-  runApp(MyApp());
+  runApp(Sottie());
 }
 
-class MyApp extends StatelessWidget {
+class Sottie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

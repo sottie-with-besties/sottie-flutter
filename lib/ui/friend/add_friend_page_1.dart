@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/utils/validate.dart';
+
+import '../../core/utils/validate.dart';
 
 
-class FindFriendPage extends StatefulWidget {
-  const FindFriendPage({super.key});
+class AddFriend1Page extends StatefulWidget {
+  const AddFriend1Page({super.key});
 
   @override
-  _FindFriendPageState createState() => _FindFriendPageState();
+  _AddFriend1PageState createState() => _AddFriend1PageState();
 }
 
-class _FindFriendPageState extends State<FindFriendPage> {
+class _AddFriend1PageState extends State<AddFriend1Page> {
 
   final formKey = GlobalKey<FormState>();
 
-  TextEditingController nickNameInputController = TextEditingController();
+  TextEditingController phoneNumberInputController = TextEditingController();
 
-  FocusNode _nickNameFocus = new FocusNode();
+  FocusNode _phoneNumberFocus = new FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,11 @@ class _FindFriendPageState extends State<FindFriendPage> {
                 height: 100,
               ),
               TextFormField(
-                controller: nickNameInputController,
-                focusNode: _nickNameFocus,
+                controller: phoneNumberInputController,
+                focusNode: _phoneNumberFocus,
                 keyboardType: TextInputType.visiblePassword,
-                decoration: InputDecoration(labelText: '닉네임'),
+                decoration: InputDecoration(labelText: '핸드폰번호'),
+                validator: (value) => CheckValidate().validatePhoneNumber(_phoneNumberFocus, value!),
               ),
               SizedBox(
                 height: 250,
@@ -49,7 +51,7 @@ class _FindFriendPageState extends State<FindFriendPage> {
                   foregroundColor: Colors.white, backgroundColor: Color(0xff0100FF), // Text Color (Foreground color)
                 ),
                 child: Text(
-                  '친구 검색',
+                  '친구 찾기',
                   style: TextStyle(fontSize: 16),
                 ),
               ),

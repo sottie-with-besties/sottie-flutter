@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/account/signup/view/signup_password_page.dart';
+import 'package:sottie_with_besties/ui/account/signup/signup_password_page.dart';
 
-import 'find_user_email_page_2.dart';
+import '../../../core/utils/validate.dart';
 
-class FindUserEmail1Page extends StatefulWidget {
-  const FindUserEmail1Page({super.key});
+class SignUpEmailPage extends StatefulWidget {
+  const SignUpEmailPage({super.key});
 
   @override
-  _FindUserEmail1PageState createState() => _FindUserEmail1PageState();
+  _SignUpEmailPageState createState() => _SignUpEmailPageState();
 }
 
-class _FindUserEmail1PageState extends State<FindUserEmail1Page> {
+class _SignUpEmailPageState extends State<SignUpEmailPage> {
   final formKey = GlobalKey<FormState>();
 
   late String _email;
   late String _password;
 
+  FocusNode _emailFocus = new FocusNode();
+
+  TextEditingController emailInputController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ID 찾기'),
-        centerTitle: true,
+        title: Text('이메일 회원가입'),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -35,13 +38,12 @@ class _FindUserEmail1PageState extends State<FindUserEmail1Page> {
                   height: 100,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: '핸드폰 번호'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return '핸드폰 번호를 입력해주세요.';
-                    }
-                    return null;
-                  },
+                  controller: emailInputController,
+                  keyboardType: TextInputType.emailAddress,
+                  focusNode: _emailFocus,
+                  decoration: InputDecoration(labelText: '이메일'),
+                  validator: (value) =>
+                      CheckValidate().validateEmail(_emailFocus, value!),
                   onSaved: (value) => _email = value!,
                 ),
                 SizedBox(
@@ -53,7 +55,8 @@ class _FindUserEmail1PageState extends State<FindUserEmail1Page> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const FindUserEmail2Page()),
+                            builder: (context) =>
+                                SignUpPasswordPage(emailInputController.text)),
                       );
                     }
                   },
@@ -63,7 +66,7 @@ class _FindUserEmail1PageState extends State<FindUserEmail1Page> {
                         Color(0xff0100FF), // Text Color (Foreground color)
                   ),
                   child: Text(
-                    '인증번호 발송',
+                    '다음',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),

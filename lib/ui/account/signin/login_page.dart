@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/account/signup/view/signup_email_page.dart';
+import 'package:sottie_with_besties/data/datasource/account_data_source.dart';
 
-import '../../../friend_list.dart';
-import '../../find/view/email/find_user_email_page_1.dart';
-import '../../find/view/password/find_user_password_page_1.dart';
-import '../model/login_model.dart';
-import '../service/login_service.dart';
+import '../../../data/model/login_model.dart';
+import '../../friend/friend_list.dart';
+import '../find/email/find_user_email_page_1.dart';
+import '../find/password/find_user_password_page_1.dart';
+import '../signup/signup_email_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (formKey.currentState!.validate()) {
                       // CheckValidate().showToast();
-                      logIn(LogIn(
+                      AccountDataSource().logIn(LogIn(
                           email: emailInputController.text,
                           password: passwordInputController.text));
                       Navigator.push(

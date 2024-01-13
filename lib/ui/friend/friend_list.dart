@@ -2,9 +2,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/add_friend_page_1.dart';
-import 'package:sottie_with_besties/find_friend_page.dart';
-import 'package:sottie_with_besties/profile_page.dart';
+import 'package:sottie_with_besties/ui/friend/add_friend_page_1.dart';
+import 'package:sottie_with_besties/ui/friend/find_friend_page.dart';
+import 'package:sottie_with_besties/ui/user/profile_page.dart';
 
 import 'friend_tile.dart';
 

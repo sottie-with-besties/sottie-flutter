@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/account/signin/view/login_page.dart';
-import 'package:sottie_with_besties/account/signup/model/signup_model.dart';
-import 'package:sottie_with_besties/account/signup/service/signup_service.dart';
-import 'package:sottie_with_besties/utils/validate.dart';
+import 'package:sottie_with_besties/data/datasource/account_data_source.dart';
+
+import '../../../core/utils/validate.dart';
+import '../../../data/model/signup_model.dart';
+import '../signin/login_page.dart';
 
 class SignUpPasswordPage extends StatefulWidget {
   final String email;
@@ -70,8 +71,8 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       // CheckValidate().showToast();
-                      signUp(SignUp(
-                          email: '${widget.email}',
+                      AccountDataSource().signUp(SignUp(
+                          email: widget.email,
                           password: confirmPasswordInputController.text));
                       Navigator.push(
                         context,
