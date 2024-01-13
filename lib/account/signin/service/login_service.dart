@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:sottie_with_besties/login_model.dart';
+import 'package:sottie_with_besties/account/signin/model/login_model.dart';
 
-import 'package:sottie_with_besties/signup_model.dart';
+import 'package:sottie_with_besties/account/signup/model/signup_model.dart';
 
 
 Future<void> logIn(LogIn logIn) async {

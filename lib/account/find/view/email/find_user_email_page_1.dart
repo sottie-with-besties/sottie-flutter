@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/signup_password_page.dart';
+import 'package:sottie_with_besties/account/signup/view/signup_password_page.dart';
 
 import 'find_user_email_page_2.dart';
 

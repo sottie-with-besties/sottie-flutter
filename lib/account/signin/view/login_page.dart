@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/signup_email_page.dart';
+import 'package:sottie_with_besties/account/signup/view/signup_email_page.dart';
 
-import 'find_user_email_page_1.dart';
-import 'find_user_password_page_1.dart';
-import 'friend_list.dart';
-import 'login_model.dart';
-import 'login_service.dart';
+import '../../../friend_list.dart';
+import '../../find/view/email/find_user_email_page_1.dart';
+import '../../find/view/password/find_user_password_page_1.dart';
+import '../model/login_model.dart';
+import '../service/login_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

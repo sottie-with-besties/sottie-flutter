@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:sottie_with_besties/signup_model.dart';
+import 'package:sottie_with_besties/account/signup/model/signup_model.dart';
 
 
 Future<void> signUp(SignUp signUp) async {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/validate.dart';
+import 'package:sottie_with_besties/utils/validate.dart';
 
 
 class AddFriend1Page extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_with_besties/login_page.dart';
-import 'package:sottie_with_besties/signup_model.dart';
-import 'package:sottie_with_besties/signup_service.dart';
-import 'package:sottie_with_besties/validate.dart';
+import 'package:sottie_with_besties/account/signin/view/login_page.dart';
+import 'package:sottie_with_besties/account/signup/model/signup_model.dart';
+import 'package:sottie_with_besties/account/signup/service/signup_service.dart';
+import 'package:sottie_with_besties/utils/validate.dart';
 
 class SignUpPasswordPage extends StatefulWidget {
   final String email;
