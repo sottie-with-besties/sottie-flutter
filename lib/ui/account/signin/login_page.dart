@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_with_besties/core/utils/router_util.dart';
 import 'package:sottie_with_besties/data/datasource/account_data_source.dart';
 
 import '../../../data/model/login_model.dart';
@@ -16,176 +17,114 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
+  final RouterUtil _routerUtil = RouterUtil();
+  final TextEditingController emailInputController = TextEditingController();
+  final TextEditingController passwordInputController = TextEditingController();
 
-  TextEditingController emailInputController = TextEditingController();
-  TextEditingController passwordInputController = TextEditingController();
-
-  FocusNode _emailFocus = new FocusNode();
-  FocusNode _passwordFocus = new FocusNode();
+  final FocusNode _emailFocus = FocusNode();
+  final FocusNode _passwordFocus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                SizedBox(
-                  height: 200,
-                ),
-                TextFormField(
-                  controller: emailInputController,
-                  obscureText: false,
-                  focusNode: _emailFocus,
-                  decoration: InputDecoration(labelText: '이메일'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return '이메일을 입력해주세요.';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: passwordInputController,
-                  obscureText: true,
-                  focusNode: _passwordFocus,
-                  decoration: InputDecoration(labelText: '비밀번호'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return '비밀번호를 입력해주세요.';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (formKey.currentState!.validate()) {
-                      // CheckValidate().showToast();
-                      AccountDataSource().logIn(LogIn(
-                          email: emailInputController.text,
-                          password: passwordInputController.text));
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FriendListPage()),
-                      );
-                    } else {}
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor:
-                        Color(0xff0100FF), // Text Color (Foreground color)
-                  ),
-                  child: Text(
-                    '로그인',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor:
-                        Color(0xff2F9D27), // Text Color (Foreground color)
-                  ),
-                  child: Text(
-                    'NAVER로 로그인',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-                SizedBox(
-                  height: 2,
-                ),
-                Text(
-                  '가입은 개인정보 이용을 동의하는 것으로 간주 합니다.',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(size.width * 0.02),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUpEmailPage()),
-                        );
+                    TextFormField(
+                      controller: emailInputController,
+                      focusNode: _emailFocus,
+                      decoration: InputDecoration(labelText: '이메일'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return '이메일을 입력해주세요.';
+                        }
+                        return null;
                       },
-                      child: const Text(
-                        '회원가입',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
                     ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const FindUserEmail1Page()),
-                              );
-                            },
-                            child: const Text(
-                              'ID찾기',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
+                    TextFormField(
+                      controller: passwordInputController,
+                      obscureText: true,
+                      focusNode: _passwordFocus,
+                      decoration: InputDecoration(labelText: '비밀번호'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return '비밀번호를 입력해주세요.';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: size.height * 0.05),
+                    loginButtonWidget('로그인', Color(0xff0100FF), () {
+                      if (formKey.currentState!.validate()) {
+                        AccountDataSource().logIn(LogIn(
+                            email: emailInputController.text,
+                            password: passwordInputController.text));
+                        _routerUtil.navigateWithoutData(
+                            context: context, pageTo: FriendListPage());
+                      } else {}
+                    }),
+                    SizedBox(height: size.height * 0.002),
+                    loginButtonWidget('NAVER로 로그인', Color(0xff2F9D27), () {}),
+                    SizedBox(height: size.height * 0.01),
+                    Text(
+                      '가입은 개인정보 이용을 동의하는 것으로 간주 합니다.',
+                      style: TextStyle(color: Colors.grey),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: size.height * 0.02),
+                    Row(
+                      children: [
+                        bottomButtonWidget('회원가입', SignUpEmailPage()),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              bottomButtonWidget('ID찾기', FindUserEmail1Page()),
+                              SizedBox(width: size.width * 0.015),
+                              bottomButtonWidget(
+                                  '비밀번호찾기', FindUserPassword1Page())
+                            ],
                           ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const FindUserPassword1Page()),
-                              );
-                            },
-                            child: const Text(
-                              '비밀번호찾기',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  Widget loginButtonWidget(
+      String title, Color backgroundColor, void Function() onPressed) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white, backgroundColor: backgroundColor),
+      child: Text(title, style: TextStyle(fontSize: 16)),
+    );
+  }
+
+  Widget bottomButtonWidget(String title, Widget pageTo) {
+    return InkWell(
+        onTap: () =>
+            _routerUtil.navigateWithoutData(context: context, pageTo: pageTo),
+        child: Text(title,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+                decoration: TextDecoration.underline)));
   }
 }
