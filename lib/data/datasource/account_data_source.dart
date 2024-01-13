@@ -1,4 +1,4 @@
-import 'package:sottie_with_besties/core/utils/ApiUtils.dart';
+import 'package:sottie_with_besties/core/utils/api_util.dart';
 import 'package:sottie_with_besties/data/model/signup_model.dart';
 
 import '../model/login_model.dart';
