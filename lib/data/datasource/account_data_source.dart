@@ -15,7 +15,7 @@ class AccountDataSource {
         },
         body: jsonEncode(logIn.toJson()));
 
-    if (response.statusCode != 201) {
+    if (response.statusCode != 200) {
       throw Exception("Failed to send data");
     }
   }
