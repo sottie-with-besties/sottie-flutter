@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:sottie_with_besties/core/utils/api_util.dart';
 import 'package:sottie_with_besties/data/model/signup_model.dart';
 
@@ -11,7 +13,7 @@ class AccountDataSource {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8'
         },
-        body: logIn.toJson());
+        body: jsonEncode(logIn.toJson()));
 
     if (response.statusCode != 201) {
       throw Exception("Failed to send data");
@@ -24,7 +26,7 @@ class AccountDataSource {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8'
         },
-        body: signUp.toJson());
+        body: jsonEncode(signUp.toJson()));
 
     if (response.statusCode != 201) {
       throw Exception("Failed to send data");
