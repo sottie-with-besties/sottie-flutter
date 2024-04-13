@@ -22,7 +22,7 @@ class AccountDataSource {
 
   Future<void> signUp(SignUp signUp) async {
     final response = await http.post(
-        Uri.parse("${ApiUtil.BASE_URL}/sottie/signup/users"),
+        Uri.parse("${ApiUtil.BASE_URL}/sottie/users/signup"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8'
         },
