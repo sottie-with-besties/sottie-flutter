@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_with_besties/data/datasource/account_data_source.dart';
+import 'package:sottie_with_besties/ui/account/certification/certification.dart';
+import 'package:sottie_with_besties/ui/account/certification/certification_test.dart';
 
 import '../../../core/utils/validate.dart';
 import '../../../data/model/signup_model.dart';
@@ -77,8 +79,9 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const LoginPage()),
+                            builder: (context) => CertificationTest()),
                       );
+
                     } else {}
                   },
                   style: ElevatedButton.styleFrom(
