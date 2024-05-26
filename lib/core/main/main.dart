@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 
 void main() {
   runApp(const Sottie());
@@ -10,13 +11,9 @@ class Sottie extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
       title: 'Sottie',
-      home: Scaffold(
-        body: Center(
-          child: Text("Sottie"),
-        ),
-      ),
+      routerConfig: CustomRouter.router,
     );
   }
 }
