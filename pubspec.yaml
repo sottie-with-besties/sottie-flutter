@@ -41,12 +41,15 @@ dependencies:
   font_awesome_flutter: # 아이콘
   google_fonts: # 구글 폰트
 
-  # Network
-  dio:
-
   # Riverpod
   flutter_riverpod:
   riverpod_annotation:
+
+  # Network
+  dio:
+
+  # Router
+  go_router:
 
   # 포트원 본인인증
   iamport_flutter:
