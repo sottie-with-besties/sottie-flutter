@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sottie_flutter/core/constant/custom_theme.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class Sottie extends StatelessWidget {
         return MaterialApp.router(
           title: 'Sottie',
           routerConfig: CustomRouter.router,
+          theme: customTheme,
         );
       },
     );

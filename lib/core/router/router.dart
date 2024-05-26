@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:sottie_flutter/ui/auth/oauth_screen.dart';
+import 'package:sottie_flutter/ui/auth/screen/oauth_screen.dart';
 
 sealed class CustomRouter {
   static final router = GoRouter(
