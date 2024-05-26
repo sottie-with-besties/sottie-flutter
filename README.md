@@ -1,6 +1,6 @@
-# sottie_with_besties
+# sottie_flutter
 
-A new Flutter project.
+Sottie - Planning to Meeting
 
 ## Getting Started
 
