@@ -36,6 +36,29 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
 
+  # UI
+  flutter_screenutil: # 해상도에 따른 반응형 UI
+  font_awesome_flutter: # 아이콘
+  google_fonts: # 구글 폰트
+
+  # Network
+  dio:
+
+  # Riverpod
+  flutter_riverpod:
+  riverpod_annotation:
+
+  # 포트원 본인인증
+  iamport_flutter:
+
+  # OAuth
+  google_sign_in: # 구글
+  sign_in_with_apple: # 애플
+  kakao_flutter_sdk: # 카카오
+  flutter_naver_login: # 네이버
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -46,6 +69,12 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+
+  # Build Runner
+  build_runner:
+
+  # Riverpod
+  riverpod_generator:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
