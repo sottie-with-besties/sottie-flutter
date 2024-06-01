@@ -57,9 +57,7 @@ dependencies:
   # OAuth
   google_sign_in: # 구글
   sign_in_with_apple: # 애플
-  kakao_flutter_sdk: # 카카오
-  flutter_naver_login: # 네이버
-
+  kakao_flutter_sdk_user: # 카카오
 
 
 dev_dependencies:
@@ -95,7 +93,6 @@ flutter:
      - assets/login_button/apple_login.png
      - assets/login_button/google_login.png
      - assets/login_button/kakao_login.png
-     - assets/login_button/naver_login.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

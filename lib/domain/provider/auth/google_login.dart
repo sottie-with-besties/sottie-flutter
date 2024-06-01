@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:google_sign_in/google_sign_in.dart';
-
 Future<GoogleSignInAuthentication?> signInWithGoogle() async {
   // Trigger the authentication flow
   try {

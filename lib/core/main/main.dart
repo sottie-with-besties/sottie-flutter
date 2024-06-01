@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sottie_flutter/core/constant/custom_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 
 void main() {
@@ -13,6 +13,10 @@ class Sottie extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final customTheme = ThemeData(
+      textTheme: GoogleFonts.juaTextTheme(),
+    );
+
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       builder: (_, __) {
