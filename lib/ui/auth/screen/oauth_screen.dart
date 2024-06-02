@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
+import 'package:sottie_flutter/domain/provider/auth/kakao_login.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
 
 class OAuthScreen extends StatelessWidget {
@@ -42,12 +43,13 @@ class OAuthScreen extends StatelessWidget {
               OAuthButton(
                   imgPath: AssetPath.appleLogin,
                   onPressed: () {
-                    log("apple login button");
+                    signOutKakao();
                   }),
               OAuthButton(
                   imgPath: AssetPath.kakaoLogin,
-                  onPressed: () {
+                  onPressed: () async {
                     log("kakao login button");
+                    await signInWithKakao();
                   }),
             ],
           ),

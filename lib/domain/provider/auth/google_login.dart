@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:google_sign_in/google_sign_in.dart';
 
-Future<GoogleSignInAuthentication?> signInWithGoogle() async {
+Future<bool> signInWithGoogle() async {
   // Trigger the authentication flow
   try {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -12,10 +12,12 @@ Future<GoogleSignInAuthentication?> signInWithGoogle() async {
         await googleUser?.authentication;
 
     log("No Error");
-    return googleAuth;
+
+    return true;
   } on Exception catch (_) {
     log("Error");
-    return null;
+
+    return false;
   }
 }
 

@@ -6,9 +6,6 @@ PODS:
   - AppAuth/ExternalUserAgent (1.7.5):
     - AppAuth/Core
   - Flutter (1.0.0)
-  - flutter_naver_login (0.0.1):
-    - Flutter
-    - naveridlogin-sdk-ios (~> 4.1.0)
   - google_sign_in_ios (0.0.1):
     - AppAuth (>= 1.7.4)
     - Flutter
@@ -33,7 +30,6 @@ PODS:
     - Flutter
   - kakao_flutter_sdk_common (1.9.2):
     - Flutter
-  - naveridlogin-sdk-ios (4.1.6)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -46,12 +42,9 @@ PODS:
     - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
-  - webview_flutter_wkwebview (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - flutter_naver_login (from `.symlinks/plugins/flutter_naver_login/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
   - iamport_flutter (from `.symlinks/plugins/iamport_flutter/ios`)
   - iamport_webview_flutter (from `.symlinks/plugins/iamport_webview_flutter/ios`)
@@ -61,7 +54,6 @@ DEPENDENCIES:
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - uni_links (from `.symlinks/plugins/uni_links/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
-  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   trunk:
@@ -69,13 +61,10 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
-    - naveridlogin-sdk-ios
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  flutter_naver_login:
-    :path: ".symlinks/plugins/flutter_naver_login/ios"
   google_sign_in_ios:
     :path: ".symlinks/plugins/google_sign_in_ios/darwin"
   iamport_flutter:
@@ -94,13 +83,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/uni_links/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
-  webview_flutter_wkwebview:
-    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_naver_login: 1dbf6d21aae5235cdf76a28ac79cf6871899282f
   google_sign_in_ios: 07375bfbf2620bc93a602c0e27160d6afc6ead38
   GoogleSignIn: d4281ab6cf21542b1cfaff85c191f230b399d2db
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
@@ -108,13 +94,11 @@ SPEC CHECKSUMS:
   iamport_flutter: f698983444b7c0f83e356407631cfeec77a776bf
   iamport_webview_flutter: 70dbc31045e4cf7a0c829b76c6f8319dc94b299e
   kakao_flutter_sdk_common: 049c9341e325da17ac75751a35646dbbcfa06891
-  naveridlogin-sdk-ios: cdd34e3585a3d5aaf37c1d84c1f41faba4a25d1a
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   uni_links: d97da20c7701486ba192624d99bffaaffcfc298a
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
-  webview_flutter_wkwebview: be0f0d33777f1bfd0c9fdcb594786704dbf65f36
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 

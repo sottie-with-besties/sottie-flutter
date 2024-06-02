@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/domain/provider/auth/auth_init.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // 카카오
+  authInit();
+
   runApp(const Sottie());
 }
 
