@@ -12,7 +12,20 @@
           "package_name": "com.sottie.sottie_flutter"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "477385401612-c1uh2h4lcjv56dssnd2n3d3ofgh69tm3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sottie.sottie_flutter",
+            "certificate_hash": "3603df53097586c95fbb476b05bbbb8e2296d036"
+          }
+        },
+        {
+          "client_id": "477385401612-7i6v9a6ko0e2omo03sbsbem5i2vf3682.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC2TIDDB8mNtBhhBo3_cdydlOVxxR3--rI"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477385401612-7i6v9a6ko0e2omo03sbsbem5i2vf3682.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "477385401612-96k3j2fj8bfak27fbngelkq188qohcsh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sottie.sottieFlutter"
+              }
+            }
+          ]
         }
       }
     }

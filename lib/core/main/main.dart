@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+import 'package:sottie_flutter/core/Firebase/firebase_options.dart';
 import 'package:sottie_flutter/core/constant/native_key.dart';
-import 'package:sottie_flutter/core/environment/firebase_options.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 
 void main() async {

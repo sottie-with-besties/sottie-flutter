@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
+import 'package:sottie_flutter/domain/provider/auth/google_login.dart';
 import 'package:sottie_flutter/domain/provider/auth/kakao_login.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
 
@@ -36,20 +37,20 @@ class OAuthScreen extends StatelessWidget {
                 ),
               ),
               OAuthButton(
-                  imgPath: AssetPath.googleLogin,
-                  onPressed: () async {
-                    log("google login button");
-                  }),
-              OAuthButton(
-                  imgPath: AssetPath.appleLogin,
-                  onPressed: () {
-                    signOutKakao();
-                  }),
-              OAuthButton(
                   imgPath: AssetPath.kakaoLogin,
                   onPressed: () async {
                     log("kakao login button");
                     await signInWithKakao();
+                  }),
+              OAuthButton(
+                  imgPath: AssetPath.googleLogin,
+                  onPressed: () async {
+                    await signInWithGoogle();
+                  }),
+              OAuthButton(
+                  imgPath: AssetPath.appleLogin,
+                  onPressed: () async {
+                    await signOutGoogle();
                   }),
             ],
           ),
