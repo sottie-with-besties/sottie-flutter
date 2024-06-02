@@ -59,6 +59,8 @@ dependencies:
   sign_in_with_apple: # 애플
   kakao_flutter_sdk_user: # 카카오
 
+  # 파이어베이스
+  firebase_core:
 
 dev_dependencies:
   flutter_test:

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "477385401612",
+    "project_id": "sottie-45d95",
+    "storage_bucket": "sottie-45d95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477385401612:android:d027eb35803b79e6931529",
+        "android_client_info": {
+          "package_name": "com.sottie.sottie_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2TIDDB8mNtBhhBo3_cdydlOVxxR3--rI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
