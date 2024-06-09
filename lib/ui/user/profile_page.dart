@@ -17,9 +17,17 @@ class _ProfilePageState extends State<ProfilePage> {
 
   TextEditingController nickNameInputController = TextEditingController();
 
+  final String title = "프로필";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        title: Text(title),
+      ),
       body: Container(
         padding: EdgeInsets.all(16),
         child: Form(
@@ -28,15 +36,25 @@ class _ProfilePageState extends State<ProfilePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               SizedBox(
-                height: 140,
+                height: 100,
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(300),
-                child: Image.network(
+              // ClipRRect(
+              //   borderRadius: BorderRadius.circular(300),
+              //   child: Image.network(
+              //     'https://arc-cms-prod.imgix.net/content/2023-08/Tile1_32_Crop_0.png?auto=format%2Ccompress%2Cenhance&fit=crop&crop=focalpoint&q=75&ixlib=react-9.7.0&w=1946amp;w=3038',
+              //     width: 400,
+              //     height: 400,
+              //   ),
+              // ),
+              CircleAvatar(
+                // radius: 300,
+                radius: 100,
+                backgroundImage: NetworkImage(
                   'https://arc-cms-prod.imgix.net/content/2023-08/Tile1_32_Crop_0.png?auto=format%2Ccompress%2Cenhance&fit=crop&crop=focalpoint&q=75&ixlib=react-9.7.0&w=1946amp;w=3038',
-                  width: 400,
-                  height: 400,
                 ),
+              ),
+              SizedBox(
+                height: 30,
               ),
               TextFormField(
                 controller: nickNameInputController,

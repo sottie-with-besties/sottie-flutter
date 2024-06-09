@@ -28,6 +28,31 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () {
+          },
+        ),
+        title: Text("title"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+            },
+          ),
+          SizedBox(width: 6),
+          IconButton(
+            icon: const Icon(Icons.person_add_alt),
+            onPressed: () {
+            },
+          ),
+          SizedBox(width: 6),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(size.width * 0.02),
