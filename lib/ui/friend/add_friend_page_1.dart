@@ -21,6 +21,12 @@ class _AddFriend1PageState extends State<AddFriend1Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        title: Text("친구 찾기"),
+      ),
       body: Container(
         padding: EdgeInsets.all(16),
         child: Form(

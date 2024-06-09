@@ -19,6 +19,12 @@ class _FindFriendPageState extends State<FindFriendPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        title: Text("친구 검색"),
+      ),
       body: Container(
         padding: EdgeInsets.all(16),
         child: Form(

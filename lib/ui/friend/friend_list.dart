@@ -2,6 +2,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:sottie_with_besties/data/datasource/friend_data_source.dart';
+import 'package:sottie_with_besties/data/model/friend_model.dart';
 import 'package:sottie_with_besties/ui/friend/add_friend_page_1.dart';
 import 'package:sottie_with_besties/ui/friend/find_friend_page.dart';
 import 'package:sottie_with_besties/ui/user/profile_page.dart';
@@ -15,12 +19,12 @@ class FriendListPage extends StatefulWidget {
   _FriendListPageState createState() => _FriendListPageState();
 }
 
-class _FriendListPageState extends State<FriendListPage> {
+class _FriendListPageState extends State<FriendListPage> with SingleTickerProviderStateMixin{
 
   final formKey = GlobalKey<FormState>();
 
   // TODO 나중에 레파지토리 친구리스트 조회값으로 변경해야함
-  late List<FriendTile> friendTiles = [];
+  final List<FriendTile> friendTiles = [];
 
   void _toProfilePage() {
     setState(() {
@@ -29,22 +33,46 @@ class _FriendListPageState extends State<FriendListPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    FriendDataSource().friend(Friend(null,null,null,userId: 8,alias: "")).then((friendList) =>
+        setState(() {
+          print('friendList $friendList');
+          if (friendTiles.isNotEmpty) {
+            friendTiles.clear();
+          }
+          for (var i=0; i < 4; i++) {
+            for (Friend friend in friendList!) {
+              print("friend : $friend");
+              friendTiles.add(
+                  FriendTile(
+                    userId: friend.userId!,
+                    nickName: friend.alias!,
+                    moodStatus: friend.moodStatus!,
+                    introPhrase: friend.introPhrase!,
+                    imgUrl: 'https://picsum.photos/45/45',
 
-    // TODO 나중에 레파지토리 친구리스트 조회값으로 변경해야함
-    if(friendTiles.isNotEmpty) {
-      friendTiles.clear();
-    }
-    for (int x = 1; x <= 5; x++) {
-      friendTiles.add(
-          FriendTile(
-            nickName: '이한솔',
-            moodStatus: '',
-            introPhrase: '이한솔이다',
-            imgUrl: 'https://picsum.photos/45/45',
-          )
-      );
-    }
+                  )
+              );
+            }
+          }
+          print("friendTiles $friendTiles");
+        })
+    );
+  }
+
+  deleteAction(BuildContext context, int? userId) {
+    print("deleteAction ::: context : $context friendUserId : $userId");
+    // setState(() {
+      // friendTiles!.removeWhere((item) => item.userId == userId);
+    // });
+  }
+
+  editAction(BuildContext context, int? userId) {
+    print("editAction ::: context : $context friendUserId : $userId");
+  }
+
+  @override
+  Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
@@ -132,8 +160,44 @@ class _FriendListPageState extends State<FriendListPage> {
           ),
           //친구 리스트 뷰
           Expanded(
-            child: ListView(
-              children: friendTiles,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: friendTiles.length,
+              itemBuilder: (context, index) {
+                final FriendTile friendTile = friendTiles[index];
+                return Slidable(
+                  startActionPane: ActionPane(
+                    // A motion is a widget used to control how the pane animates.
+                    motion: const ScrollMotion(),
+
+                    // A pane can dismiss the Slidable.
+                    dismissible: null, //DismissiblePane(onDismissed: () {}),
+
+                    // All actions are defined in the children parameter.
+                    children: [
+                      SlidableAction(
+                        onPressed: (BuildContext context) {
+                          deleteAction(context, friendTile.userId);
+                        },
+                        backgroundColor: Color(0xFFFE4A49),
+                        foregroundColor: Colors.white,
+                        icon: Icons.delete,
+                        label: 'Delete',
+                      ),
+                      SlidableAction(
+                        onPressed: (BuildContext context) {
+                          editAction(context, friendTile.userId);
+                        },
+                        backgroundColor: Color(0xFF21B7CA),
+                        foregroundColor: Colors.white,
+                        icon: Icons.edit,
+                        label: 'Edit',
+                      ),
+                    ],
+                  ),
+                  child: friendTile,
+                );
+              },
             ),
           )
         ],
