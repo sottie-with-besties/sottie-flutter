@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:sottie_flutter/core/Firebase/firebase_options.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/constant/native_key.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 
@@ -22,12 +23,21 @@ class Sottie extends StatelessWidget {
   Widget build(BuildContext context) {
     final customTheme = ThemeData(
       textTheme: GoogleFonts.juaTextTheme(),
+      scaffoldBackgroundColor: Colors.white,
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        // type: BottomNavigationBarType.fixed,
+        backgroundColor: mainSilverColor,
+        selectedItemColor: mainBrownColor,
+        unselectedItemColor: mainBrownColor,
+        showUnselectedLabels: true,
+      ),
     );
 
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       builder: (_, __) {
         return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           title: 'Sottie',
           routerConfig: CustomRouter.router,
           theme: customTheme,
