@@ -38,7 +38,11 @@ class OAuthScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
               child: Text(
                 "로그인을 진행해주세요",
-                style: TextStyle(fontSize: 16.sp, color: mainSilverColor),
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  color: mainSilverColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             OAuthButton(
