@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sottie_flutter/core/constant/custom_colors.dart';
 
 class NavigationScreen extends StatelessWidget {
   const NavigationScreen({
@@ -14,7 +13,7 @@ class NavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ColoredBox(color: backgroundColor, child: shell),
+      body: ColoredBox(color: const Color(0xdda0522d), child: shell),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: shell.currentIndex,
         onTap: (index) => shell.goBranch(index),
