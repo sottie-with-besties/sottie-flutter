@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/provider/auth/google_login.dart';
@@ -73,8 +74,8 @@ class OAuthScreen extends StatelessWidget {
                 }),
             OAuthButton(
                 imgPath: AssetPath.appleLogin,
-                onPressed: () async {
-                  await signOutGoogle();
+                onPressed: () {
+                  context.go('/home');
                 }),
           ],
         ),

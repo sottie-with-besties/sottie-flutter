@@ -22,13 +22,14 @@ class Sottie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final customTheme = ThemeData(
-      textTheme: GoogleFonts.juaTextTheme(),
+      textTheme: GoogleFonts.nanumGothicTextTheme(),
       scaffoldBackgroundColor: Colors.white,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         // type: BottomNavigationBarType.fixed,
         backgroundColor: mainSilverColor,
         selectedItemColor: mainBrownColor,
-        unselectedItemColor: mainBrownColor,
+        unselectedItemColor: Colors.black45,
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         showUnselectedLabels: true,
       ),
     );

@@ -8,7 +8,7 @@ import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
 
 sealed class CustomRouter {
   static final router = GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/oauth',
     routes: _routes,
   );
 
