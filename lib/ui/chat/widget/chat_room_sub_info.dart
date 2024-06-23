@@ -18,7 +18,7 @@ class ChatRoomSubInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ts1 = TextStyle(
-      fontSize: 11.sp,
+      fontSize: 10.sp,
       color: const Color(0x64000000),
       fontWeight: FontWeight.bold,
     );
@@ -66,7 +66,7 @@ class ChatRoomSubInfo extends StatelessWidget {
                   color: Colors.redAccent.withOpacity(0.8),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                width: 45.w,
+                width: 50.w,
                 height: 20.h,
                 child: Center(
                   child: Text(
