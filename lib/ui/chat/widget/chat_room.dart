@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
+import 'package:sottie_flutter/ui/chat/widget/chat_room_sub_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/profiles.dart';
 
 class ChatRoom extends StatelessWidget {
@@ -19,6 +20,8 @@ class ChatRoom extends StatelessWidget {
     final chatTitle = roomInfo['chatTitle'];
     final latestMsg = roomInfo['latestMsg'];
     final numOfMember = roomInfo['numOfMember'];
+    final latestTime = roomInfo['latestTime'];
+    final notReadMsg = roomInfo['notReadMsg'];
 
     final profileSize = numOfMember < 2 ? 60.r : 40.r;
     final profileCount = numOfMember > 4 ? 4 : numOfMember;
@@ -45,6 +48,11 @@ class ChatRoom extends StatelessWidget {
                 chatTitle: chatTitle,
                 latestMsg: latestMsg,
                 numOfMember: numOfMember,
+              ),
+              ChatRoomSubInfo(
+                numOfMember: numOfMember,
+                latestTime: latestTime,
+                notReadMsg: notReadMsg,
               )
             ],
           ),

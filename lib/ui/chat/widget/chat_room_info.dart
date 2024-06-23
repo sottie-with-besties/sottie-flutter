@@ -19,14 +19,8 @@ class ChatRoomInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ts1 = TextStyle(
-      fontSize: 11.sp,
-      color: const Color(0x64000000),
-      fontWeight: FontWeight.bold,
-    );
-
     return SizedBox(
-      width: 210.w,
+      width: 150.w,
       height: 100.h,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -49,24 +43,6 @@ class ChatRoomInfo extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        numOfMember.toString(),
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        ' 명',
-                        style: ts1,
-                      ),
-                      SizedBox(
-                        width: 20.w,
-                      )
-                    ],
-                  ),
                 ],
               ),
               const SizedBox(
@@ -87,17 +63,6 @@ class ChatRoomInfo extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        "11:00",
-                        style: ts1,
-                      ),
-                      SizedBox(
-                        width: 20.w,
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ],
@@ -110,6 +75,7 @@ class ChatRoomInfo extends StatelessWidget {
                 child: Text(
                   overflow: TextOverflow.ellipsis,
                   date,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
@@ -117,6 +83,7 @@ class ChatRoomInfo extends StatelessWidget {
                 child: Text(
                   overflow: TextOverflow.ellipsis,
                   location,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             ],

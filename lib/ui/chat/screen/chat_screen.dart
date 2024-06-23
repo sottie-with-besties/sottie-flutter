@@ -38,7 +38,7 @@ Widget _chatScreenTitle() {
   return Padding(
     padding: EdgeInsets.only(
       left: 30.w,
-      top: 50.h,
+      top: 40.h,
     ),
     child: Text(
       '채팅',
@@ -58,6 +58,8 @@ const _dummy = [
     'chatTitle': '카페에서 커피한잔~',
     'latestMsg': '지금 출발하겠습니다 ㅎㅎ',
     'numOfMember': 3,
+    'latestTime': '오전 11:00',
+    'notReadMsg': 256,
   },
   {
     'date': '2024년 6월 13일 10:30',
@@ -65,6 +67,8 @@ const _dummy = [
     'chatTitle': '아침 모임',
     'latestMsg': '다들 시간 맞추기 어려우시죠?',
     'numOfMember': 5,
+    'latestTime': '5월 27일',
+    'notReadMsg': 1024,
   },
   {
     'date': '2024년 6월 14일 18:00',
@@ -72,6 +76,8 @@ const _dummy = [
     'chatTitle': '저녁 모임',
     'latestMsg': '저녁 뭐 먹을까요?',
     'numOfMember': 4,
+    'latestTime': '5월 6일',
+    'notReadMsg': 0,
   },
   {
     'date': '2024년 6월 15일 12:00',
@@ -79,6 +85,8 @@ const _dummy = [
     'chatTitle': '점심 모임',
     'latestMsg': '점심 추천 메뉴 있어요?',
     'numOfMember': 1,
+    'latestTime': '07:00',
+    'notReadMsg': 23,
   },
   {
     'date': '2024년 6월 16일 09:00',
@@ -86,6 +94,8 @@ const _dummy = [
     'chatTitle': '조찬 모임',
     'latestMsg': '아침 메뉴가 고민되네요.',
     'numOfMember': 2,
+    'latestTime': '오후 03:27',
+    'notReadMsg': 0,
   },
   {
     'date': '2024년 6월 17일 15:00',
@@ -93,6 +103,8 @@ const _dummy = [
     'chatTitle': '오후 커피 타임',
     'latestMsg': '오후 3시 어떠세요?',
     'numOfMember': 3,
+    'latestTime': '1년 전',
+    'notReadMsg': 999,
   },
   {
     'date': '2024년 6월 18일 20:00',
@@ -100,5 +112,7 @@ const _dummy = [
     'chatTitle': '야간 모임',
     'latestMsg': '밤 늦게도 좋을까요?',
     'numOfMember': 4,
+    'latestTime': '2년 전',
+    'notReadMsg': 875,
   },
 ];

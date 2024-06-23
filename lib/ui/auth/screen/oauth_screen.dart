@@ -14,7 +14,10 @@ class OAuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const dividerStyle = TextStyle(color: mainSilverColor);
+    const dividerStyle = TextStyle(
+      color: mainSilverColor,
+      fontWeight: FontWeight.bold,
+    );
 
     return Scaffold(
         body: ColoredBox(
@@ -31,6 +34,7 @@ class OAuthScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 100.sp,
                 color: mainSilverColor,
+                fontWeight: FontWeight.bold,
               ),
             )),
             SizedBox(height: 85.h),
