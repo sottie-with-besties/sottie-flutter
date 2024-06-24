@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/provider/auth/google_login.dart';
-import 'package:sottie_flutter/domain/provider/auth/kakao_login.dart';
+import 'package:sottie_flutter/domain/auth/provider/google_login.dart';
+import 'package:sottie_flutter/domain/auth/provider/kakao_login.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
 
 class OAuthScreen extends StatelessWidget {
