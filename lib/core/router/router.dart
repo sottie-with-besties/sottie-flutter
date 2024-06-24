@@ -12,17 +12,16 @@ sealed class CustomRouter {
     routes: _routes,
   );
 
-  static const oAuthName = "oAuthScreen";
-  static const homeName = "homeScreen";
-  static const searchName = "searchScreen";
-  static const chatName = "chatScreen";
-  static const moreName = "moreScreen";
+  static const oAuthPath = "/oauth";
+  static const homePath = "/home";
+  static const searchPath = "/search";
+  static const chatPath = "/chat";
+  static const morePath = "/more";
 }
 
 final _routes = [
   GoRoute(
-    path: '/oauth',
-    name: CustomRouter.oAuthName,
+    path: CustomRouter.oAuthPath,
     builder: (context, state) => const OAuthScreen(),
   ),
   StatefulShellRoute.indexedStack(
@@ -33,8 +32,7 @@ final _routes = [
         StatefulShellBranch(
           routes: <GoRoute>[
             GoRoute(
-              path: '/home',
-              name: CustomRouter.homeName,
+              path: CustomRouter.homePath,
               builder: (context, state) => const HomeScreen(),
             )
           ],
@@ -42,8 +40,7 @@ final _routes = [
         StatefulShellBranch(
           routes: <GoRoute>[
             GoRoute(
-              path: '/search',
-              name: CustomRouter.searchName,
+              path: CustomRouter.searchPath,
               builder: (context, state) => const SearchScreen(),
             )
           ],
@@ -51,8 +48,7 @@ final _routes = [
         StatefulShellBranch(
           routes: <GoRoute>[
             GoRoute(
-              path: '/chat',
-              name: CustomRouter.chatName,
+              path: CustomRouter.chatPath,
               builder: (context, state) => const ChatScreen(),
             )
           ],
@@ -60,8 +56,7 @@ final _routes = [
         StatefulShellBranch(
           routes: <GoRoute>[
             GoRoute(
-              path: '/more',
-              name: CustomRouter.moreName,
+              path: CustomRouter.morePath,
               builder: (context, state) => const MoreScreen(),
             )
           ],
