@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:sottie_flutter/ui/auth/screen/oauth_screen.dart';
+import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/navigation_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
