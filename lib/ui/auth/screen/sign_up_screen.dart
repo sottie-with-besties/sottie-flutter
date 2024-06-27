@@ -119,6 +119,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   Pinput(
                     length: 6,
+                    obscureText: true,
                     validator: (val) {
                       return "코드가 일치하지 않습니다.";
 
