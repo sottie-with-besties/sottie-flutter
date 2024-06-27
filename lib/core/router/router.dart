@@ -1,5 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
+import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
+import 'package:sottie_flutter/ui/auth/screen/find_id_screen.dart';
+import 'package:sottie_flutter/ui/auth/screen/find_password.dart';
+import 'package:sottie_flutter/ui/auth/screen/sign_up_screen.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/navigation_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
@@ -8,11 +12,18 @@ import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
 
 sealed class CustomRouter {
   static final router = GoRouter(
-    initialLocation: '/oauth',
+    initialLocation: CustomRouter.authPath,
     routes: _routes,
   );
 
-  static const oAuthPath = "/oauth";
+  // Login Screens
+  static const authPath = "/auth";
+  static const signUpPath = "signUp";
+  static const certificationPath = "certification";
+  static const findIdPath = "findId";
+  static const findPasswordPath = "findPassword";
+
+  // Main Screens
   static const homePath = "/home";
   static const searchPath = "/search";
   static const chatPath = "/chat";
@@ -21,9 +32,26 @@ sealed class CustomRouter {
 
 final _routes = [
   GoRoute(
-    path: CustomRouter.oAuthPath,
-    builder: (context, state) => const OAuthScreen(),
-  ),
+      path: CustomRouter.authPath,
+      builder: (context, state) => const OAuthScreen(),
+      routes: <GoRoute>[
+        GoRoute(
+          path: CustomRouter.signUpPath,
+          builder: (context, state) => const SignUpScreen(),
+        ),
+        GoRoute(
+          path: CustomRouter.findIdPath,
+          builder: (context, state) => const FindIdScreen(),
+        ),
+        GoRoute(
+          path: CustomRouter.findPasswordPath,
+          builder: (context, state) => const FindPasswordScreen(),
+        ),
+        GoRoute(
+          path: CustomRouter.certificationPath,
+          builder: (context, state) => const CertificationScreen(),
+        ),
+      ]),
   StatefulShellRoute.indexedStack(
       builder: (context, state, shell) => NavigationScreen(
             shell: shell,

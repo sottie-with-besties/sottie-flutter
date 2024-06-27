@@ -41,6 +41,7 @@ dependencies:
   font_awesome_flutter: # 아이콘
   google_fonts: # 구글 폰트
   random_avatar:
+  pinput: # 이메일, 전화번호 인증
 
   # Riverpod
   flutter_riverpod:
@@ -52,7 +53,7 @@ dependencies:
   # Router
   go_router:
 
-  # 포트원 본인인증 - 공식 지원 안하는듯?
+  # 포트원 본인인증
   iamport_flutter:
 
   # OAuth

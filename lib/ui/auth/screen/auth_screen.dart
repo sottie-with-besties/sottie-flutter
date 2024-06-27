@@ -64,7 +64,7 @@ class OAuthScreen extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white60,
+                    color: Colors.white70.withOpacity(0.8),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: const EdgeInsets.all(8),
@@ -134,12 +134,21 @@ class OAuthScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              _authUtilButton('회원가입', () {}),
+                              _authUtilButton('회원가입', () async {
+                                await context
+                                    .push('/auth/${CustomRouter.signUpPath}');
+                              }),
                               Row(
                                 children: [
-                                  _authUtilButton('ID 찾기', () {}),
+                                  _authUtilButton('ID 찾기', () async {
+                                    await context.push(
+                                        '/auth/${CustomRouter.findIdPath}');
+                                  }),
                                   const SizedBox(width: 10),
-                                  _authUtilButton('비밀번호 찾기', () {}),
+                                  _authUtilButton('비밀번호 찾기', () async {
+                                    await context.push(
+                                        '/auth/${CustomRouter.findPasswordPath}');
+                                  }),
                                 ],
                               )
                             ],
@@ -156,7 +165,7 @@ class OAuthScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        "----------------------",
+                        "------------------------",
                         style: _dividerStyle,
                       ),
                       Text(
@@ -164,7 +173,7 @@ class OAuthScreen extends StatelessWidget {
                         style: _dividerStyle,
                       ),
                       Text(
-                        "-----------------------",
+                        "-------------------------",
                         style: _dividerStyle,
                       ),
                     ],
