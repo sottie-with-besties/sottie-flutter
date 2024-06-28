@@ -8,14 +8,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
       pinned: true,
-      appBarHeight: 125,
-      collapsedHeight: 60,
       appBarChild: Center(
-        child: Column(
-          children: [
-            Text("Sottie1"),
-          ],
-        ),
+        child: Text("Sottie1"),
       ),
       shellChild: Center(
         child: Text("Home Screen"),

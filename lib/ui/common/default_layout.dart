@@ -5,15 +5,11 @@ class DefaultLayout extends StatelessWidget {
   const DefaultLayout({
     super.key,
     this.pinned = false,
-    this.appBarHeight = 100,
-    this.collapsedHeight,
     required this.appBarChild,
     required this.shellChild,
   });
 
   final bool pinned;
-  final double appBarHeight;
-  final double? collapsedHeight;
 
   final Widget appBarChild;
   final Widget shellChild;
@@ -26,10 +22,18 @@ class DefaultLayout extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         slivers: [
           SliverAppBar(
+            toolbarHeight: 30,
+            backgroundColor: mainBrownColor,
+            pinned: false,
+            floating: true,
+            flexibleSpace: SafeArea(
+              child: appBarChild,
+            ),
+          ),
+          SliverAppBar(
+            toolbarHeight: 30,
             backgroundColor: mainBrownColor,
             pinned: pinned,
-            expandedHeight: appBarHeight,
-            collapsedHeight: collapsedHeight,
             flexibleSpace: SafeArea(
               child: appBarChild,
             ),

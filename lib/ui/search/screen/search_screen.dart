@@ -8,8 +8,6 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
         pinned: true,
-        appBarHeight: 120,
-        collapsedHeight: 60,
         appBarChild: Text("Search"),
         shellChild: Text("Search Screen"));
   }
