@@ -13,7 +13,7 @@ class NavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ColoredBox(color: const Color(0xdda0522d), child: shell),
+      body: shell,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: shell.currentIndex,
         onTap: (index) => shell.goBranch(index),
