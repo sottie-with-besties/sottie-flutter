@@ -5,6 +5,8 @@ PODS:
   - AppAuth/Core (1.7.5)
   - AppAuth/ExternalUserAgent (1.7.5):
     - AppAuth/Core
+  - auth_button_kit (0.0.1):
+    - Flutter
   - Firebase/CoreOnly (10.25.0):
     - FirebaseCore (= 10.25.0)
   - firebase_core (2.32.0):
@@ -65,6 +67,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - auth_button_kit (from `.symlinks/plugins/auth_button_kit/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
@@ -90,6 +93,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  auth_button_kit:
+    :path: ".symlinks/plugins/auth_button_kit/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
@@ -115,6 +120,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
+  auth_button_kit: 07d27f4a5d8a20b7aed1625a52d36ad3b1cc0312
   Firebase: 0312a2352584f782ea56f66d91606891d4607f06
   firebase_core: a626d00494efa398e7c54f25f1454a64c8abf197
   FirebaseCore: 7ec4d0484817f12c3373955bc87762d96842d483

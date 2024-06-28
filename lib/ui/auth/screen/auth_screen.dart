@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:auth_button_kit/auth_button_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -12,6 +13,7 @@ import 'package:sottie_flutter/domain/auth/provider/kakao_login.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
+import 'package:sottie_flutter/ui/common/app_logo.dart';
 
 class OAuthScreen extends StatelessWidget {
   const OAuthScreen({super.key});
@@ -35,18 +37,7 @@ class OAuthScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Row(
                     children: [
-                      Container(
-                        color: Colors.white70,
-                        width: 40,
-                        height: 40,
-                        child: const Center(
-                            child: Text(
-                          "로고",
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        )),
-                      ),
+                      const AppLogo(),
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
@@ -64,7 +55,7 @@ class OAuthScreen extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white70.withOpacity(0.8),
+                    color: Colors.white.withOpacity(0.8),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: const EdgeInsets.all(8),
@@ -74,7 +65,8 @@ class OAuthScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                           child: Text(
                             "로그인을 진행해주세요!",
                             style: TextStyle(
@@ -185,16 +177,27 @@ class OAuthScreen extends StatelessWidget {
                       log("kakao login button");
                       await signInWithKakao();
                     }),
-                OAuthButton(
-                    imgPath: AssetPath.googleLogin,
-                    onPressed: () async {
-                      await signInWithGoogle();
-                    }),
-                OAuthButton(
-                  imgPath: AssetPath.appleLogin,
-                  onPressed: () {
+                AuthButton(
+                  onPressed: (_) async {
+                    await signInWithGoogle();
+                  },
+                  brand: Method.google,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  fontWeight: FontWeight.bold,
+                ),
+                AuthButton(
+                  onPressed: (_) {
+                    log("Continue with Apple");
                     context.go(CustomRouter.homePath);
                   },
+                  brand: Method.apple,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  backgroundColor: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ],
             ),

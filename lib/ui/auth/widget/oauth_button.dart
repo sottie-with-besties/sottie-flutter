@@ -15,7 +15,7 @@ class OAuthButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: SizedBox(
           child: Image.asset(
             imgPath,
