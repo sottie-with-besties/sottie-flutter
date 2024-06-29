@@ -14,6 +14,8 @@ class AppLogo extends StatelessWidget {
           "로고",
           style: TextStyle(
             color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 12,
           ),
         ),
       ),
