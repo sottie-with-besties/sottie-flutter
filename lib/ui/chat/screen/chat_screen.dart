@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_content_screen.dart';
-import 'package:sottie_flutter/ui/common/app_bar_title.dart';
-import 'package:sottie_flutter/ui/common/default_layout.dart';
-import 'package:sottie_flutter/ui/common/local_text_field.dart';
+import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
+import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
+import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});

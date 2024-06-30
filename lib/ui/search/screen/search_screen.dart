@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/ui/common/local_text_field.dart';
+import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

@@ -13,7 +13,7 @@ import 'package:sottie_flutter/domain/auth/provider/kakao_login.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
-import 'package:sottie_flutter/ui/common/app_logo.dart';
+import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
 
 class OAuthScreen extends StatelessWidget {
   const OAuthScreen({super.key});

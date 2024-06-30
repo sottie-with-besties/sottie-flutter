@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/ui/common/app_bar_title.dart';
-import 'package:sottie_flutter/ui/common/default_layout.dart';
-import 'package:sottie_flutter/ui/common/local_text_field.dart';
+import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
+import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
+import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_content_screen.dart';
 
 class DmScreen extends StatelessWidget {
