@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
@@ -37,11 +38,13 @@ class Sottie extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       builder: (_, __) {
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: 'Sottie',
-          routerConfig: CustomRouter.router,
-          theme: customTheme,
+        return ProviderScope(
+          child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            title: 'Sottie',
+            routerConfig: CustomRouter.router,
+            theme: customTheme,
+          ),
         );
       },
     );

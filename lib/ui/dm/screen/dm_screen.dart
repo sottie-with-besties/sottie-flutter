@@ -15,7 +15,11 @@ class DmScreen extends StatelessWidget {
           title: 'DM',
         ),
       ),
-      contentChild: Text("DM Screen"),
+      contentChild: Column(
+        children: [
+          Text("DM Screen"),
+        ],
+      ),
     );
   }
 }
