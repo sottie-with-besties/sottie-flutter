@@ -6,12 +6,11 @@ class ChatContentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (_, index) {
-        return ChatRoom(roomInfo: _dummy[index]);
-      },
-      itemCount: _dummy.length,
-    );
+    final chatList = _dummy.map((Map<String, Object> data) {
+      return ChatRoom(roomInfo: data);
+    }).toList();
+
+    return Column(children: chatList);
   }
 }
 
