@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/ui/common/app_bar_title.dart';
 import 'package:sottie_flutter/ui/common/default_layout.dart';
 import 'package:sottie_flutter/ui/common/local_text_field.dart';
+import 'package:sottie_flutter/ui/dm/screen/dm_content_screen.dart';
 
 class DmScreen extends StatelessWidget {
   const DmScreen({super.key});
@@ -24,11 +25,7 @@ class DmScreen extends StatelessWidget {
           hint: '유저 이름, 내용...',
           focusNode: focusNode,
         ),
-        contentChild: Column(
-          children: [
-            Text("DM Screen"),
-          ],
-        ),
+        contentChild: DmContentScreen(),
       ),
     );
   }

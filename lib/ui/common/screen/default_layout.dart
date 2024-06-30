@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/ui/alarm/screen/alarm_screen.dart';
+import 'package:sottie_flutter/ui/common/show_actions_sheet.dart';
+import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
 
 class DefaultLayout extends StatelessWidget {
   const DefaultLayout({
@@ -21,7 +24,7 @@ class DefaultLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _renderAppbar(title),
+      appBar: _renderAppbar(title, context),
       body: ColoredBox(
         color: mainBrownColor,
         child: CustomScrollView(
@@ -54,7 +57,7 @@ class DefaultLayout extends StatelessWidget {
   }
 }
 
-AppBar? _renderAppbar(Widget? title) {
+AppBar? _renderAppbar(Widget? title, BuildContext context) {
   if (title == null) {
     return null;
   }
@@ -71,7 +74,12 @@ AppBar? _renderAppbar(Widget? title) {
           children: [
             InkWell(
               borderRadius: BorderRadius.circular(5),
-              onTap: () {},
+              onTap: () {
+                searchSheet(
+                  context,
+                  const SearchScreen(),
+                );
+              },
               child: const FaIcon(
                 FontAwesomeIcons.magnifyingGlass,
                 color: mainSilverColor,
@@ -83,7 +91,12 @@ AppBar? _renderAppbar(Widget? title) {
             ),
             InkWell(
               borderRadius: BorderRadius.circular(5),
-              onTap: () {},
+              onTap: () {
+                searchSheet(
+                  context,
+                  const AlarmScreen(),
+                );
+              },
               child: const FaIcon(
                 FontAwesomeIcons.bell,
                 color: mainSilverColor,
