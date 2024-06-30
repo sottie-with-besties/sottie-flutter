@@ -6,9 +6,9 @@ import 'package:sottie_flutter/ui/auth/screen/find_password.dart';
 import 'package:sottie_flutter/ui/auth/screen/sign_up_screen.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/navigation_screen.dart';
+import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
-import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
 
 sealed class CustomRouter {
   static final router = GoRouter(
@@ -25,8 +25,8 @@ sealed class CustomRouter {
 
   // Main Screens
   static const homePath = "/home";
-  static const searchPath = "/search";
   static const chatPath = "/chat";
+  static const dmPath = "/dm";
   static const morePath = "/more";
 }
 
@@ -68,16 +68,16 @@ final _routes = [
         StatefulShellBranch(
           routes: <GoRoute>[
             GoRoute(
-              path: CustomRouter.searchPath,
-              builder: (context, state) => const SearchScreen(),
+              path: CustomRouter.chatPath,
+              builder: (context, state) => const ChatScreen(),
             )
           ],
         ),
         StatefulShellBranch(
           routes: <GoRoute>[
             GoRoute(
-              path: CustomRouter.chatPath,
-              builder: (context, state) => const ChatScreen(),
+              path: CustomRouter.dmPath,
+              builder: (context, state) => const DmScreen(),
             )
           ],
         ),

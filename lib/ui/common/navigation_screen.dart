@@ -21,9 +21,9 @@ class NavigationScreen extends StatelessWidget {
           BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.houseCircleXmark), label: "Home"),
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.magnifyingGlass), label: "Search"),
-          BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.commentDots), label: "Chat"),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.message), label: "DM"),
           BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.ellipsis), label: "More"),
         ],

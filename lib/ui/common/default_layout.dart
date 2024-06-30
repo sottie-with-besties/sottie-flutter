@@ -8,12 +8,15 @@ class DefaultLayout extends StatelessWidget {
     required this.contentChild,
     this.title,
     this.header,
+    required this.hasScrollBody,
   });
 
   final Widget contentChild;
 
   final Widget? title;
   final Widget? header;
+
+  final bool hasScrollBody;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +32,11 @@ class DefaultLayout extends StatelessWidget {
                 toolbarHeight: 70,
                 backgroundColor: mainBrownColor,
                 floating: true,
+                snap: true,
                 flexibleSpace: header,
               ),
             SliverFillRemaining(
-              hasScrollBody: false,
+              hasScrollBody: hasScrollBody,
               child: Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.vertical(
@@ -62,7 +66,7 @@ AppBar? _renderAppbar(Widget? title) {
     title: title,
     actions: [
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           children: [
             InkWell(
