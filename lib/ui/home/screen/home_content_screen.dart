@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/ui/common/widget/find_feed.dart';
+import 'package:sottie_flutter/ui/home/widget/event_page.dart';
 
 class HomeContentScreen extends StatelessWidget {
   const HomeContentScreen({super.key});
@@ -10,80 +12,11 @@ class HomeContentScreen extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        Container(
-          height: 150,
-          width: 400,
-          decoration: BoxDecoration(border: Border.all()),
-          child: Center(
-            child: Text("모집글"),
-          ),
-        ),
+        EventPage(),
         const SizedBox(
-          height: 20,
+          height: 30,
         ),
-        Container(
-          height: 150,
-          width: 400,
-          decoration: BoxDecoration(border: Border.all()),
-          child: Center(
-            child: Text("모집글"),
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Container(
-          height: 150,
-          width: 400,
-          decoration: BoxDecoration(border: Border.all()),
-          child: Center(
-            child: Text("모집글"),
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Container(
-          height: 150,
-          width: 400,
-          decoration: BoxDecoration(border: Border.all()),
-          child: Center(
-            child: Text("모집글"),
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Container(
-          height: 150,
-          width: 400,
-          decoration: BoxDecoration(border: Border.all()),
-          child: Center(
-            child: Text("모집글"),
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Container(
-          height: 150,
-          width: 400,
-          decoration: BoxDecoration(border: Border.all()),
-          child: Center(
-            child: Text("모집글"),
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Container(
-          height: 150,
-          width: 400,
-          decoration: BoxDecoration(border: Border.all()),
-          child: Center(
-            child: Text("모집글"),
-          ),
-        ),
+        FindFeed(),
       ],
     );
   }
