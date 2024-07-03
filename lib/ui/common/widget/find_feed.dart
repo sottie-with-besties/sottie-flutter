@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FindFeed extends StatelessWidget {
   const FindFeed({super.key});
@@ -8,11 +9,15 @@ class FindFeed extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 150,
-          width: 400,
+          height: 120.h,
+          width: 320.w,
           decoration: BoxDecoration(border: Border.all()),
-          child: Center(
-            child: Text("모집글"),
+          child: Column(
+            children: [
+              Row(
+                children: [],
+              ),
+            ],
           ),
         ),
         const SizedBox(

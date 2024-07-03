@@ -1,6 +1,4 @@
-import 'dart:async';
-
-import 'package:easy_debounce/easy_throttle.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -16,16 +14,14 @@ class _EventPageState extends State<EventPage> {
   final controller = PageController();
 
   void autoPageChange() {
-    Future.delayed(const Duration(seconds: 5), () {
-      // 쓰로틀을 거는 이유
-      // => 페이지가 자동으로 넘어가는 도중 유저가 페이지를 직접 손으로 밀어 넘길 경우
-      // 함수가 반복 호출 되는 것을 방지하기 위해서
-      EasyThrottle.throttle("autoPageChange", const Duration(seconds: 5), () {
-        controller.nextPage(
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeOutCubic,
-        );
-      });
+    // 디바운스를 거는 이유
+    // => 페이지가 자동으로 넘어가는 도중 유저가 페이지를 직접 손으로 밀어 넘길 경우
+    // 함수가 반복 호출 되는 것을 방지하기 위해서
+    EasyDebounce.debounce("autoPageChange", const Duration(seconds: 5), () {
+      controller.nextPage(
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOutCubic,
+      );
     });
   }
 
