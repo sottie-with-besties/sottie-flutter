@@ -25,6 +25,7 @@ class _EventPageState extends State<EventPage> {
     });
   }
 
+  // 더미
   final events = List.generate(
       6,
       (index) => Container(
