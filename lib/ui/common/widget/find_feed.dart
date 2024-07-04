@@ -76,7 +76,7 @@ class FindFeed extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: 160.w,
+                          width: 190.w,
                           height: 70.h,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
