@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:random_avatar/random_avatar.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/data/dm/model/dm_model.dart';
 
 class DmChatRoom extends StatelessWidget {
   const DmChatRoom({
     super.key,
-    required this.name,
-    required this.latestMsg,
+    required this.model,
   });
 
-  final String name;
-  final String latestMsg;
+  final DmModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +40,14 @@ class DmChatRoom extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            name,
+                            model.name,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(latestMsg),
+                          Text(model.latestMsg),
                         ],
                       ),
                     )
