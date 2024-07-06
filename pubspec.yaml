@@ -66,6 +66,10 @@ dependencies:
   # 파이어베이스
   firebase_core:
 
+  # Json Serialization
+  freezed_annotation:
+  json_annotation:
+
   # 기타 유틸리티
   easy_debounce:
 
@@ -85,6 +89,10 @@ dev_dependencies:
 
   # Riverpod
   riverpod_generator:
+
+  # Json Serialization
+  freezed:
+  json_serializable:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
