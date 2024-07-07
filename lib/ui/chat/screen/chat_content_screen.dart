@@ -38,8 +38,11 @@ class _ChatContentScreenState extends State<ChatContentScreen> {
         } else if (snapshot.hasData) {
           final chatRooms =
               snapshot.data!.map((e) => ChatRoom(model: e)).toList();
-          return Column(
-            children: chatRooms,
+          return Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: Column(
+              children: chatRooms,
+            ),
           );
         } else {
           return const Center(

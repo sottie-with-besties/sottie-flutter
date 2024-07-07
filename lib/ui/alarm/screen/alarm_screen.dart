@@ -8,29 +8,29 @@ class AlarmScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Container(
             height: 100,
             width: 400,
             decoration: BoxDecoration(border: Border.all()),
-            child: Center(
+            child: const Center(
               child: Text("알람"),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
             height: 100,
             width: 400,
             decoration: BoxDecoration(border: Border.all()),
-            child: Center(
+            child: const Center(
               child: Text("알람"),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(

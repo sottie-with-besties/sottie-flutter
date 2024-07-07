@@ -38,8 +38,11 @@ class _DmContentScreenState extends State<DmContentScreen> {
         } else if (snapshot.hasData) {
           final chatRooms =
               snapshot.data!.map((e) => DmChatRoom(model: e)).toList();
-          return Column(
-            children: chatRooms,
+          return Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: Column(
+              children: chatRooms,
+            ),
           );
         } else {
           return const Center(

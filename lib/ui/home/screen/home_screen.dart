@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
 import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
-import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/home/screen/home_content_screen.dart';
 import 'package:sottie_flutter/ui/home/widget/home_header.dart';
 
@@ -10,14 +10,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultLayout(
+    return const DefaultLayout(
       hasScrollBody: false,
       title: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: EdgeInsets.symmetric(horizontal: 8),
         child: Row(
           children: [
-            const AppLogo(),
-            const SizedBox(
+            AppLogo(),
+            SizedBox(
               width: 15,
             ),
             AppBarTitle(title: 'Sottie'),

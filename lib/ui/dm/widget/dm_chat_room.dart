@@ -78,7 +78,7 @@ class DmChatRoom extends StatelessWidget {
                           child: Center(
                             child: Text(
                               model.notReadMsg.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: mainSilverColor,
                               ),
                             ),
