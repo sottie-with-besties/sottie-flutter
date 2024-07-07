@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/alarm/screen/alarm_screen.dart';
 import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
 import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
@@ -108,7 +110,9 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
             ),
             InkWell(
               borderRadius: BorderRadius.circular(5),
-              onTap: () {},
+              onTap: () async {
+                await context.push(CustomRouter.makeFindFeedPath);
+              },
               child: const FaIcon(
                 FontAwesomeIcons.plus,
                 color: mainSilverColor,

@@ -9,6 +9,7 @@ import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
 import 'package:sottie_flutter/ui/find/screen/find_detail_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
+import 'package:sottie_flutter/ui/make_find_feed/screen/make_find_feed.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
 
 sealed class CustomRouter {
@@ -29,6 +30,9 @@ sealed class CustomRouter {
   static const chatPath = "/chat";
   static const dmPath = "/dm";
   static const morePath = "/more";
+
+  // Make Find Feed Screen
+  static const makeFindFeedPath = "/makeFindFeed";
 
   // Find Detail Screen
   static const findDetailPath = "/findDetail";
@@ -95,6 +99,10 @@ final _routes = [
         ],
       ),
     ],
+  ),
+  GoRoute(
+    path: CustomRouter.makeFindFeedPath,
+    builder: (context, state) => const MakeFindFeed(),
   ),
   GoRoute(
     path: CustomRouter.findDetailPath,
