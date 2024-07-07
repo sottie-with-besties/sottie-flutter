@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 
-void searchSheet(BuildContext context, Widget screen) {
+void bottomSheet(BuildContext context, Widget screen) {
   showModalBottomSheet(
     context: context,
     clipBehavior: Clip.hardEdge,

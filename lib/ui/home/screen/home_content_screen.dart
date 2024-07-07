@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sottie_flutter/data/category.dart';
-import 'package:sottie_flutter/ui/common/widget/find_feed.dart';
+import 'package:sottie_flutter/ui/find/widget/find_feed.dart';
 import 'package:sottie_flutter/ui/home/widget/event_page.dart';
 
 class HomeContentScreen extends StatelessWidget {

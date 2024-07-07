@@ -75,7 +75,7 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
             InkWell(
               borderRadius: BorderRadius.circular(5),
               onTap: () {
-                searchSheet(
+                bottomSheet(
                   context,
                   const SearchScreen(),
                 );
@@ -92,7 +92,7 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
             InkWell(
               borderRadius: BorderRadius.circular(5),
               onTap: () {
-                searchSheet(
+                bottomSheet(
                   context,
                   const AlarmScreen(),
                 );

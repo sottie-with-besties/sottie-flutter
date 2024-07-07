@@ -5,9 +5,9 @@ import 'package:sottie_flutter/ui/auth/screen/find_id_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/find_password.dart';
 import 'package:sottie_flutter/ui/auth/screen/sign_up_screen.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
-import 'package:sottie_flutter/ui/common/screen/find_detail_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
+import 'package:sottie_flutter/ui/find/screen/find_detail_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
 
