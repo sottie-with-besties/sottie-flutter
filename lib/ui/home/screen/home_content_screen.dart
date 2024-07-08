@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sottie_flutter/data/filter/model/category.dart';
+import 'package:sottie_flutter/data/find/model/find_feed_model.dart';
 import 'package:sottie_flutter/ui/find/widget/find_feed.dart';
 import 'package:sottie_flutter/ui/home/widget/event_page.dart';
 
@@ -9,6 +10,16 @@ class HomeContentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = FindFeedModel(
+      id: '123123',
+      detailId: '3452623456',
+      category: Category.study.name,
+      currentMemberCount: 2,
+      maxMemberCount: 5,
+      title: "플러터 스터디 모집",
+      location: "수원시 성균관대역",
+      date: "2024년 7월 3일",
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,85 +32,35 @@ class HomeContentScreen extends StatelessWidget {
         ),
         _subTitle("# 인기 TOP 5"),
         FindFeed(
-          category: Category.study.name,
-          currentMemberCount: 2,
-          maxMemberCount: 5,
-          title: "플러터 스터디 모집",
-          date: "2024년 7월 3일",
-          location: "수원시 성균관대역",
+          model: model,
         ),
         FindFeed(
-          category: Category.study.name,
-          currentMemberCount: 2,
-          maxMemberCount: 5,
-          title: "플러터 스터디 모집",
-          date: "2024년 7월 3일",
-          location: "수원시 성균관대역",
+          model: model,
         ),
         FindFeed(
-          category: Category.study.name,
-          currentMemberCount: 2,
-          maxMemberCount: 5,
-          title: "플러터 스터디 모집",
-          date: "2024년 7월 3일",
-          location: "수원시 성균관대역",
+          model: model,
         ),
         FindFeed(
-          category: Category.study.name,
-          currentMemberCount: 2,
-          maxMemberCount: 5,
-          title: "플러터 스터디 모집",
-          date: "2024년 7월 3일",
-          location: "수원시 성균관대역",
+          model: model,
         ),
         FindFeed(
-          category: Category.study.name,
-          currentMemberCount: 2,
-          maxMemberCount: 5,
-          title: "플러터 스터디 모집",
-          date: "2024년 7월 3일",
-          location: "수원시 성균관대역",
+          model: model,
         ),
         _subTitle("# 추천합니다"),
         FindFeed(
-          category: Category.study.name,
-          currentMemberCount: 2,
-          maxMemberCount: 5,
-          title: "플러터 스터디 모집",
-          date: "2024년 7월 3일",
-          location: "수원시 성균관대역",
+          model: model,
         ),
         FindFeed(
-          category: Category.study.name,
-          currentMemberCount: 2,
-          maxMemberCount: 5,
-          title: "플러터 스터디 모집",
-          date: "2024년 7월 3일",
-          location: "수원시 성균관대역",
+          model: model,
         ),
         FindFeed(
-          category: Category.study.name,
-          currentMemberCount: 2,
-          maxMemberCount: 5,
-          title: "플러터 스터디 모집",
-          date: "2024년 7월 3일",
-          location: "수원시 성균관대역",
+          model: model,
         ),
         FindFeed(
-          category: Category.study.name,
-          currentMemberCount: 2,
-          maxMemberCount: 5,
-          title: "플러터 스터디 모집",
-          date: "2024년 7월 3일",
-          location: "수원시 성균관대역",
+          model: model,
         ),
         FindFeed(
-          category: Category.study.name,
-          currentMemberCount: 2,
-          maxMemberCount: 5,
-          title: "플러터 스터디 모집",
-          date: "2024년 7월 3일",
-          location: "수원시 성균관대역",
+          model: model,
         ),
       ],
     );

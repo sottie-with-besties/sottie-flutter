@@ -5,24 +5,15 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/filter/model/category.dart';
+import 'package:sottie_flutter/data/find/model/find_feed_model.dart';
 
 class FindFeed extends StatelessWidget {
   const FindFeed({
     super.key,
-    required this.category,
-    required this.currentMemberCount,
-    required this.maxMemberCount,
-    required this.title,
-    required this.location,
-    required this.date,
+    required this.model,
   });
 
-  final String category;
-  final int currentMemberCount;
-  final int maxMemberCount;
-  final String title;
-  final String location;
-  final String date;
+  final FindFeedModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +46,8 @@ class FindFeed extends StatelessWidget {
                             Text(Category.study.name),
                           ],
                         ),
-                        Text("$currentMemberCount/$maxMemberCount"),
+                        Text(
+                            "${model.currentMemberCount}/${model.maxMemberCount}"),
                       ],
                     ),
                     const SizedBox(
@@ -82,7 +74,7 @@ class FindFeed extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                title,
+                                model.title,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -94,11 +86,11 @@ class FindFeed extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                location,
+                                model.location,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                date,
+                                model.date,
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ],
