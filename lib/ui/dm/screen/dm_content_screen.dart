@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/dm/model/dm_model.dart';
 import 'package:sottie_flutter/domain/dm/dm_provider.dart';
+import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 import 'package:sottie_flutter/ui/dm/widget/dm_chat_room.dart';
 
 class DmContentScreen extends StatefulWidget {
@@ -26,11 +26,7 @@ class _DmContentScreenState extends State<DmContentScreen> {
       future: dmList,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: mainBrownColor,
-            ),
-          );
+          return const LoadingSkeleton();
         } else if (!snapshot.hasData) {
           return const Center(
             child: Text("모임에 참여하세요!"),

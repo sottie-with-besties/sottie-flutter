@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/domain/chat/chat_provider.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room.dart';
+import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 
 class ChatContentScreen extends StatefulWidget {
   const ChatContentScreen({super.key});
@@ -26,11 +26,7 @@ class _ChatContentScreenState extends State<ChatContentScreen> {
       future: chatList,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: mainBrownColor,
-            ),
-          );
+          return const LoadingSkeleton();
         } else if (!snapshot.hasData) {
           return const Center(
             child: Text("모임에 참여하세요!"),
