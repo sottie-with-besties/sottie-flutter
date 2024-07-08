@@ -24,7 +24,7 @@ class LoadingSkeleton extends StatelessWidget {
 }
 
 class _RenderBone extends StatelessWidget {
-  const _RenderBone({super.key});
+  const _RenderBone();
 
   @override
   Widget build(BuildContext context) {
