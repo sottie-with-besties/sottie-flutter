@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sottie_flutter/data/category.dart';
+import 'package:sottie_flutter/data/filter/model/category.dart';
 
 part 'home_header_controller.g.dart';
 

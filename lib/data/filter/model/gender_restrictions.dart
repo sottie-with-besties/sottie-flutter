@@ -1,0 +1,4 @@
+enum GenderRestrictions {
+  manOnly,
+  womanOnly,
+}
