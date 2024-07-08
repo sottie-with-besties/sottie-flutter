@@ -45,6 +45,7 @@ dependencies:
   pinput: # 이메일, 전화번호 인증
   smooth_page_indicator: # 홈 스크린 이벤트
   skeletonizer: # 로딩 스켈레톤
+  multi_dropdown: # 카테고리 여러개 선택
 
   # Riverpod
   flutter_riverpod:

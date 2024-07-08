@@ -4,18 +4,18 @@ import 'package:sottie_flutter/data/classification/model/gender_restrictions.dar
 import 'package:sottie_flutter/data/classification/model/location.dart';
 
 class Classification {
-  final Category? category;
-  final DateTime? date;
-  final TimeOfDay? time;
-  final Location? location;
-  final GenderRestrictions? gender;
-  final int? numOfMember;
-  final int? minAge;
-  final int? maxAge;
-  final double? manner;
+  List<Category>? category;
+  DateTime? date;
+  TimeOfDay? time;
+  Location? location;
+  GenderRestrictions? gender;
+  int? numOfMember;
+  int? minAge;
+  int? maxAge;
+  double? manner;
 
   Classification({
-    this.category = Category.others,
+    this.category,
     this.date,
     this.time,
     this.location,
