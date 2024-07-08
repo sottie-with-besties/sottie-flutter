@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/filter/model/category.dart';
+import 'package:sottie_flutter/data/classification/model/category.dart';
 import 'package:sottie_flutter/data/find/model/find_feed_model.dart';
 
 class FindFeed extends StatelessWidget {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/data/filter/model/category.dart';
-import 'package:sottie_flutter/data/filter/model/gender_restrictions.dart';
-import 'package:sottie_flutter/data/filter/model/location.dart';
+import 'package:sottie_flutter/data/classification/model/category.dart';
+import 'package:sottie_flutter/data/classification/model/gender_restrictions.dart';
+import 'package:sottie_flutter/data/classification/model/location.dart';
 
-class Filtering {
-  final Category category;
+class Classification {
+  final Category? category;
   final DateTime? date;
   final TimeOfDay? time;
   final Location? location;
@@ -14,8 +14,8 @@ class Filtering {
   final int? maxAge;
   final double? manner;
 
-  Filtering({
-    required this.category,
+  Classification({
+    this.category = Category.others,
     this.date,
     this.time,
     this.location,
