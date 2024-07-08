@@ -8,8 +8,8 @@ import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
 import 'package:sottie_flutter/ui/find/screen/find_detail_screen.dart';
+import 'package:sottie_flutter/ui/find/screen/make_find_feed.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
-import 'package:sottie_flutter/ui/make_find_feed/screen/make_find_feed.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
 
 sealed class CustomRouter {

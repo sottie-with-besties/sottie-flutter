@@ -33,6 +33,8 @@ class Sottie extends StatelessWidget {
         selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         showUnselectedLabels: true,
       ),
+      timePickerTheme: const TimePickerThemeData(),
+      datePickerTheme: const DatePickerThemeData(),
     );
 
     return ScreenUtilInit(
