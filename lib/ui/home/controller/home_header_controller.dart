@@ -8,7 +8,7 @@ final class HomeHeaderController extends _$HomeHeaderController {
   @override
   List<bool> build() {
     return List<bool>.generate(
-      Category.lengthOfCategory(),
+      Category.values.length,
       (index) => index == 0 ? true : false,
     );
   }

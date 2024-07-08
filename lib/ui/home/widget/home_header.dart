@@ -22,14 +22,14 @@ class HomeHeader extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: Category.lengthOfCategory(),
+        itemCount: Category.values.length,
         itemBuilder: (_, index) {
           return ChoiceChip(
             onSelected: (check) {
               onSelected(index, check);
             },
             label: Text(
-              Category.getByIndex(index).name,
+              Category.values[index].name,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),

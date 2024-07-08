@@ -31,44 +31,12 @@ class CategoryClass extends StatelessWidget {
           child: MultiSelectDropDown<int>(
             onOptionSelected: (selectedOptions) {
               classification.category = selectedOptions
-                  .map((val) => Category.getByIndex(val.value!))
+                  .map((val) => Category.values[val.value!])
                   .toList();
             },
-            options: <ValueItem<int>>[
-              ValueItem(
-                label: Category.date.name,
-                value: 1,
-              ),
-              ValueItem(
-                label: Category.drinking.name,
-                value: 2,
-              ),
-              ValueItem(
-                label: Category.study.name,
-                value: 3,
-              ),
-              ValueItem(
-                label: Category.hiring.name,
-                value: 4,
-              ),
-              ValueItem(label: Category.travel.name, value: 5),
-              ValueItem(
-                label: Category.game.name,
-                value: 6,
-              ),
-              ValueItem(
-                label: Category.party.name,
-                value: 7,
-              ),
-              ValueItem(
-                label: Category.exercise.name,
-                value: 8,
-              ),
-              ValueItem(
-                label: Category.others.name,
-                value: 9,
-              ),
-            ],
+            options: Category.values.where((val) => val.index != 0).map((val) {
+              return ValueItem(label: val.name, value: val.index);
+            }).toList(),
             chipConfig: const ChipConfig(
               wrapType: WrapType.wrap,
               backgroundColor: mainBrownColor,
