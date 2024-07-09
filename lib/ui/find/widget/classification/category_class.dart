@@ -29,6 +29,12 @@ class CategoryClass extends StatelessWidget {
         ),
         Expanded(
           child: MultiSelectDropDown<int>(
+            borderColor: Colors.black,
+            borderWidth: 0.5,
+            borderRadius: 5,
+            hint: "Category",
+            optionsBackgroundColor: mainSilverColor,
+            hintColor: Colors.black,
             onOptionSelected: (selectedOptions) {
               classification.category = selectedOptions
                   .map((val) => Category.values[val.value!])

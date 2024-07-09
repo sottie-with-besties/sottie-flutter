@@ -33,6 +33,13 @@ class Sottie extends StatelessWidget {
         selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         showUnselectedLabels: true,
       ),
+      dropdownMenuTheme: DropdownMenuThemeData(
+        menuStyle: MenuStyle(
+          backgroundColor: WidgetStateProperty.resolveWith((state) {
+            return mainSilverColor;
+          }),
+        ),
+      ),
       timePickerTheme: const TimePickerThemeData(),
       datePickerTheme: const DatePickerThemeData(),
     );

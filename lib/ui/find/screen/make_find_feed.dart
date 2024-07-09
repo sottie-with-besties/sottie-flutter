@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/classification/model/classification.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/category_class.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/location_class.dart';
 
 class MakeFindFeed extends StatefulWidget {
   const MakeFindFeed({super.key});
@@ -26,23 +27,28 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CategoryClass(
-              classification: classification,
+            CategoryClass(classification: classification),
+            const SizedBox(
+              height: 15,
             ),
+            LocationClass(classification: classification),
             const SizedBox(
               height: 15,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: mainBrownColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  )),
+                backgroundColor: mainBrownColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                minimumSize: const Size(10, 55),
+              ),
               onPressed: () {
                 log(classification.category.toString());
+                log(classification.location.toString());
               },
               child: const Text(
-                "만들기",
+                "모집글 생성",
                 style: TextStyle(
                   color: mainSilverColor,
                   fontWeight: FontWeight.bold,
