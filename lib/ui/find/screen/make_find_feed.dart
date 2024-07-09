@@ -6,6 +6,7 @@ import 'package:sottie_flutter/data/classification/model/classification.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/category_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/date_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/location_class.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/time_class.dart';
 
 class MakeFindFeed extends StatefulWidget {
   const MakeFindFeed({super.key});
@@ -33,6 +34,8 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
             LocationClass(classification: classification),
             const SizedBox(height: 15),
             DateClass(classification: classification),
+            const SizedBox(height: 15),
+            TimeClass(classification: classification),
             const SizedBox(height: 15),
             ElevatedButton(
               onPressed: () {

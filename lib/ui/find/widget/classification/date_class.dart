@@ -15,7 +15,7 @@ class DateClass extends StatefulWidget {
 
 class _DateClassState extends State<DateClass> {
   String dateString = '날짜 선택';
-  DateTime? date = DateTime.now();
+  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +35,26 @@ class _DateClassState extends State<DateClass> {
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
-              date = await showDatePicker(
+              late DateTime? tempDate;
+
+              tempDate = await showDatePicker(
                 context: context,
                 firstDate: DateTime.now(),
                 lastDate: DateTime(DateTime.now().year + 10),
-                initialDate: date,
-                currentDate: date,
+                initialDate: selectedDate,
+                currentDate: selectedDate,
                 initialEntryMode: DatePickerEntryMode.calendarOnly,
+                barrierDismissible: false,
               );
 
-              if (date == null) return;
+              if (tempDate == null) return;
+
+              selectedDate = tempDate;
 
               dateString =
-                  "${date!.year}년 ${date!.month}월 ${date!.day}일 ${_intToWeekday(date!.weekday)}";
+                  "${tempDate.year}년 ${tempDate.month}월 ${tempDate.day}일 ${_intToWeekday(tempDate.weekday)}";
 
-              widget.classification.date = date;
+              widget.classification.date = selectedDate.copyWith();
 
               setState(() {});
             },

@@ -64,7 +64,9 @@ class Sottie extends StatelessWidget {
         // 하이라이트된 날짜의 색을 바꾸는 것이나 코드 동작 안됨. 현재 보라색.
         dayOverlayColor: WidgetStateProperty.resolveWith((_) => mainBrownColor),
       ),
-      timePickerTheme: const TimePickerThemeData(),
+      timePickerTheme: const TimePickerThemeData(
+        backgroundColor: mainSilverColor,
+      ),
     );
 
     return ScreenUtilInit(

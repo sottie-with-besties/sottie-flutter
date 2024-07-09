@@ -3,9 +3,9 @@ import 'package:sottie_flutter/data/classification/model/gender_restrictions.dar
 import 'package:sottie_flutter/data/classification/model/location.dart';
 
 class Classification {
-  List<Category>? category;
+  List<Category> category;
   DateTime? date; // 시간도 포함
-  Location? location;
+  Location location;
   GenderRestrictions? gender;
   int? numOfMember;
   int? minAge;

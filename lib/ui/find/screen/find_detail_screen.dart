@@ -89,7 +89,7 @@ class _FindDetailScreenState extends State<FindDetailScreen> {
                   fontSize: 14.sp,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 180,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

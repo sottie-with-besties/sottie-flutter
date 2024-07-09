@@ -27,8 +27,8 @@ class LocationClass extends StatelessWidget {
         ),
         Expanded(
           child: DropdownMenu(
-              initialSelection: Location.seoul,
-              onSelected: (location) => classification.location = location,
+              initialSelection: classification.location,
+              onSelected: (location) => classification.location = location!,
               dropdownMenuEntries: Location.values.map((location) {
                 return DropdownMenuEntry(value: location, label: location.name);
               }).toList()),

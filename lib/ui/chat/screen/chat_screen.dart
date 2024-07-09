@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_content_screen.dart';
-import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
+import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -15,8 +15,8 @@ class ChatScreen extends StatelessWidget {
       onTap: () => focusNode.unfocus(),
       child: DefaultLayout(
         hasScrollBody: false,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+        title: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12),
           child: AppBarTitle(
             title: '채팅',
           ),
@@ -25,7 +25,7 @@ class ChatScreen extends StatelessWidget {
           hint: "제목, 날짜, 장소...",
           focusNode: focusNode,
         ),
-        contentChild: ChatContentScreen(),
+        contentChild: const ChatContentScreen(),
       ),
     );
   }
