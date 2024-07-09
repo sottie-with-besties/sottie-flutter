@@ -97,9 +97,6 @@ class OAuthScreen extends StatelessWidget {
                                 horizontal: 12,
                               ),
                               child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: mainBrownColor,
-                                ),
                                 onPressed: () {
                                   if (formKey.currentState!.validate()) {
                                     /*

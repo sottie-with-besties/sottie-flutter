@@ -33,6 +33,23 @@ class Sottie extends StatelessWidget {
         selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         showUnselectedLabels: true,
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: mainBrownColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          minimumSize: const Size(10, 55),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          minimumSize: const Size(10, 50),
+        ),
+      ),
       dropdownMenuTheme: DropdownMenuThemeData(
         menuStyle: MenuStyle(
           backgroundColor: WidgetStateProperty.resolveWith((state) {
@@ -40,8 +57,14 @@ class Sottie extends StatelessWidget {
           }),
         ),
       ),
+      datePickerTheme: DatePickerThemeData(
+        backgroundColor: mainSilverColor,
+        dayShape: WidgetStateProperty.resolveWith((_) =>
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+        // 하이라이트된 날짜의 색을 바꾸는 것이나 코드 동작 안됨. 현재 보라색.
+        dayOverlayColor: WidgetStateProperty.resolveWith((_) => mainBrownColor),
+      ),
       timePickerTheme: const TimePickerThemeData(),
-      datePickerTheme: const DatePickerThemeData(),
     );
 
     return ScreenUtilInit(
