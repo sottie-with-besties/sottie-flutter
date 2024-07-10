@@ -32,7 +32,7 @@ class CategoryClass extends StatelessWidget {
             borderColor: Colors.black,
             borderWidth: 0.5,
             borderRadius: 5,
-            hint: "Category",
+            hint: "기타",
             optionsBackgroundColor: mainSilverColor,
             hintColor: Colors.black,
             onOptionSelected: (selectedOptions) {

@@ -5,6 +5,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/classification/model/classification.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/category_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/date_class.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/gender_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/location_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/time_class.dart';
 
@@ -37,11 +38,14 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
             const SizedBox(height: 15),
             TimeClass(classification: classification),
             const SizedBox(height: 15),
+            GenderClass(classification: classification),
+            const SizedBox(height: 15),
             ElevatedButton(
               onPressed: () {
                 log(classification.category.toString());
                 log(classification.location.toString());
                 log(classification.date.toString());
+                log(classification.gender.toString());
               },
               child: const Text(
                 "모집글 생성",
