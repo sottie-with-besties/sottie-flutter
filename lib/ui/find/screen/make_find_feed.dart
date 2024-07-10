@@ -7,6 +7,7 @@ import 'package:sottie_flutter/ui/find/widget/classification/category_class.dart
 import 'package:sottie_flutter/ui/find/widget/classification/date_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/gender_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/location_class.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/num_of_member_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/time_class.dart';
 
 class MakeFindFeed extends StatefulWidget {
@@ -22,6 +23,7 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.white,
       ),
@@ -40,12 +42,16 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
             const SizedBox(height: 15),
             GenderClass(classification: classification),
             const SizedBox(height: 15),
+            NumOfMemberClass(classification: classification),
+            const SizedBox(height: 15),
             ElevatedButton(
               onPressed: () {
                 log(classification.category.toString());
                 log(classification.location.toString());
                 log(classification.date.toString());
                 log(classification.gender.toString());
+                log(classification.minNumOfMember.toString());
+                log(classification.maxNumOfMember.toString());
               },
               child: const Text(
                 "모집글 생성",

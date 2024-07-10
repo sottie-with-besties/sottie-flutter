@@ -2,7 +2,7 @@ import 'package:sottie_flutter/data/classification/model/category.dart';
 import 'package:sottie_flutter/data/classification/model/gender_restrictions.dart';
 import 'package:sottie_flutter/data/classification/model/location.dart';
 
-class Classification {
+final class Classification {
   List<Category> category; // 분류
   DateTime? date; // 시간도 포함, non-null 타입으로 안됨
   Location location; // 지역
