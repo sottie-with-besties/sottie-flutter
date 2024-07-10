@@ -104,8 +104,8 @@ class _NumOfMemberSelectState extends State<_NumOfMemberSelect> {
             initialSelection: 0,
             menuHeight: 200,
             controller: controller,
-            requestFocusOnTap: false,
             focusNode: focusNode,
+            requestFocusOnTap: false,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             dropdownMenuEntries: entries
                 .map((val) => DropdownMenuEntry(
