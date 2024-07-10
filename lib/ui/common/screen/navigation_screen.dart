@@ -25,6 +25,8 @@ class NavigationScreen extends StatelessWidget {
           BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.message), label: "DM"),
           BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.userGroup), label: "Friends"),
+          BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.ellipsis), label: "More"),
         ],
       ),

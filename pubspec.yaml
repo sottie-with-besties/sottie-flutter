@@ -43,6 +43,7 @@ dependencies:
   random_avatar:
   auth_button_kit:
   pinput: # 이메일, 전화번호 인증
+  flutter_slidable:
 
   # Riverpod
   flutter_riverpod:
@@ -56,6 +57,8 @@ dependencies:
 
   # 포트원 본인인증
   iamport_flutter:
+
+
 
   # OAuth
   google_sign_in: # 구글
