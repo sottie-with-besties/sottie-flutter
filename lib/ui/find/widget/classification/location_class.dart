@@ -25,14 +25,12 @@ class LocationClass extends StatelessWidget {
         const SizedBox(
           width: 20,
         ),
-        Expanded(
-          child: DropdownMenu(
-              initialSelection: classification.location,
-              onSelected: (location) => classification.location = location!,
-              dropdownMenuEntries: Location.values.map((location) {
-                return DropdownMenuEntry(value: location, label: location.name);
-              }).toList()),
-        ),
+        DropdownMenu(
+            initialSelection: classification.location,
+            onSelected: (location) => classification.location = location!,
+            dropdownMenuEntries: Location.values.map((location) {
+              return DropdownMenuEntry(value: location, label: location.name);
+            }).toList()),
       ],
     );
   }

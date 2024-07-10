@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sottie_flutter/data/classification/model/classification.dart';
 
-class NumOfMemberClass extends StatelessWidget {
-  const NumOfMemberClass({
+class AgeClass extends StatelessWidget {
+  const AgeClass({
     super.key,
     required this.classification,
   });
@@ -14,15 +14,15 @@ class NumOfMemberClass extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _NumOfMemberSelect(
-          tag: "최소 인원 수",
+        _AgeSelect(
+          tag: "최소 나이",
           classification: classification,
         ),
         const SizedBox(
           height: 20,
         ),
-        _NumOfMemberSelect(
-          tag: "최대 인원 수",
+        _AgeSelect(
+          tag: "최대 나이",
           classification: classification,
         ),
       ],
@@ -30,8 +30,8 @@ class NumOfMemberClass extends StatelessWidget {
   }
 }
 
-class _NumOfMemberSelect extends StatefulWidget {
-  const _NumOfMemberSelect({
+class _AgeSelect extends StatefulWidget {
+  const _AgeSelect({
     required this.tag,
     required this.classification,
   });
@@ -40,47 +40,23 @@ class _NumOfMemberSelect extends StatefulWidget {
   final Classification classification;
 
   @override
-  State<_NumOfMemberSelect> createState() => _NumOfMemberSelectState();
+  State<_AgeSelect> createState() => _AgeSelectState();
 }
 
-class _NumOfMemberSelectState extends State<_NumOfMemberSelect> {
-  final entries = List.generate(12, (index) {
+class _AgeSelectState extends State<_AgeSelect> {
+  final entries = List.generate(101, (index) {
     if (index == 0) {
       return "제한 없음";
-    } else if (index == 11) {
-      return "직접 입력";
     } else {
       return index;
     }
   });
 
   final controller = TextEditingController();
-  final focusNode = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-    controller.addListener(() {
-      int num = 0;
-      if (controller.text == "제한 없음" ||
-          controller.text == "직접 입력" ||
-          controller.text == "") {
-        num = 0;
-      } else {
-        num = int.parse(controller.text);
-      }
-      if (widget.tag == "최소 인원 수") {
-        widget.classification.minNumOfMember = num;
-      } else {
-        widget.classification.maxNumOfMember = num;
-      }
-    });
-  }
 
   @override
   void dispose() {
     controller.dispose();
-    focusNode.dispose();
     super.dispose();
   }
 
@@ -100,7 +76,6 @@ class _NumOfMemberSelectState extends State<_NumOfMemberSelect> {
           initialSelection: 0,
           menuHeight: 200,
           controller: controller,
-          focusNode: focusNode,
           requestFocusOnTap: false,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           dropdownMenuEntries: entries
@@ -108,11 +83,10 @@ class _NumOfMemberSelectState extends State<_NumOfMemberSelect> {
                   value: val == "제한 없음" ? 0 : val, label: val.toString()))
               .toList(),
           onSelected: (val) {
-            if (val == "직접 입력") {
-              controller.clear();
-              focusNode.requestFocus();
+            if (widget.tag == "최소 나이") {
+              widget.classification.minAge = int.parse(val.toString());
             } else {
-              focusNode.unfocus();
+              widget.classification.maxAge = int.parse(val.toString());
             }
           },
         ),
