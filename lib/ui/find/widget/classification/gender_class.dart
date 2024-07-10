@@ -3,7 +3,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/classification/model/classification.dart';
 import 'package:sottie_flutter/data/classification/model/gender_restrictions.dart';
 
-class GenderClass extends StatefulWidget {
+class GenderClass extends StatelessWidget {
   const GenderClass({
     super.key,
     required this.classification,
@@ -11,11 +11,6 @@ class GenderClass extends StatefulWidget {
 
   final Classification classification;
 
-  @override
-  State<GenderClass> createState() => _GenderClassState();
-}
-
-class _GenderClassState extends State<GenderClass> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -39,24 +34,21 @@ class _GenderClassState extends State<GenderClass> {
                 _GenderButton(
                   gender: "남자",
                   classificationCallback: () {
-                    switch (widget.classification.gender) {
+                    switch (classification.gender) {
                       case GenderRestrictions.all:
-                        widget.classification.gender =
-                            GenderRestrictions.womanOnly;
+                        classification.gender = GenderRestrictions.womanOnly;
                         break;
                       case GenderRestrictions.manOnly:
-                        widget.classification.gender =
-                            GenderRestrictions.nobody;
+                        classification.gender = GenderRestrictions.nobody;
                         break;
                       case GenderRestrictions.womanOnly:
-                        widget.classification.gender = GenderRestrictions.all;
+                        classification.gender = GenderRestrictions.all;
                         break;
                       case GenderRestrictions.nobody:
-                        widget.classification.gender =
-                            GenderRestrictions.manOnly;
+                        classification.gender = GenderRestrictions.manOnly;
                         break;
                       default:
-                        widget.classification.gender = GenderRestrictions.all;
+                        classification.gender = GenderRestrictions.all;
                         break;
                     }
                   },
@@ -67,24 +59,21 @@ class _GenderClassState extends State<GenderClass> {
                 _GenderButton(
                   gender: "여자",
                   classificationCallback: () {
-                    switch (widget.classification.gender) {
+                    switch (classification.gender) {
                       case GenderRestrictions.all:
-                        widget.classification.gender =
-                            GenderRestrictions.manOnly;
+                        classification.gender = GenderRestrictions.manOnly;
                         break;
                       case GenderRestrictions.manOnly:
-                        widget.classification.gender = GenderRestrictions.all;
+                        classification.gender = GenderRestrictions.all;
                         break;
                       case GenderRestrictions.womanOnly:
-                        widget.classification.gender =
-                            GenderRestrictions.nobody;
+                        classification.gender = GenderRestrictions.nobody;
                         break;
                       case GenderRestrictions.nobody:
-                        widget.classification.gender =
-                            GenderRestrictions.womanOnly;
+                        classification.gender = GenderRestrictions.womanOnly;
                         break;
                       default:
-                        widget.classification.gender = GenderRestrictions.all;
+                        classification.gender = GenderRestrictions.all;
                         break;
                     }
                   },
