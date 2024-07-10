@@ -7,10 +7,12 @@ class LocalTextField extends StatelessWidget {
     super.key,
     required this.hint,
     required this.focusNode,
+    this.callback,
   });
 
   final String hint;
   final FocusNode focusNode;
+  final Function? callback;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,9 @@ class LocalTextField extends StatelessWidget {
             ),
           ),
         ),
+        onChanged: (value) {
+          callback!(value);
+        },
       ),
     );
   }
