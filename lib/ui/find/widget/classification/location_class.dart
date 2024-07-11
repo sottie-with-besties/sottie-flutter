@@ -22,9 +22,6 @@ class LocationClass extends StatelessWidget {
             fontSize: 18,
           ),
         ),
-        const SizedBox(
-          width: 20,
-        ),
         DropdownMenu(
             initialSelection: classification.location,
             onSelected: (location) => classification.location = location!,

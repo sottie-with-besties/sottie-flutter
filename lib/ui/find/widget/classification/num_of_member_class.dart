@@ -14,14 +14,14 @@ class NumOfMemberClass extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _NumOfMemberSelect(
+        _NumOfMemberSelector(
           tag: "최소 인원 수",
           classification: classification,
         ),
         const SizedBox(
           height: 20,
         ),
-        _NumOfMemberSelect(
+        _NumOfMemberSelector(
           tag: "최대 인원 수",
           classification: classification,
         ),
@@ -30,8 +30,8 @@ class NumOfMemberClass extends StatelessWidget {
   }
 }
 
-class _NumOfMemberSelect extends StatefulWidget {
-  const _NumOfMemberSelect({
+class _NumOfMemberSelector extends StatefulWidget {
+  const _NumOfMemberSelector({
     required this.tag,
     required this.classification,
   });
@@ -40,10 +40,10 @@ class _NumOfMemberSelect extends StatefulWidget {
   final Classification classification;
 
   @override
-  State<_NumOfMemberSelect> createState() => _NumOfMemberSelectState();
+  State<_NumOfMemberSelector> createState() => _NumOfMemberSelectorState();
 }
 
-class _NumOfMemberSelectState extends State<_NumOfMemberSelect> {
+class _NumOfMemberSelectorState extends State<_NumOfMemberSelector> {
   final entries = List.generate(12, (index) {
     if (index == 0) {
       return "제한 없음";

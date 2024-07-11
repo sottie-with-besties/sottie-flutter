@@ -14,14 +14,14 @@ class AgeClass extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _AgeSelect(
+        _AgeSelector(
           tag: "최소 나이",
           classification: classification,
         ),
         const SizedBox(
           height: 20,
         ),
-        _AgeSelect(
+        _AgeSelector(
           tag: "최대 나이",
           classification: classification,
         ),
@@ -30,8 +30,8 @@ class AgeClass extends StatelessWidget {
   }
 }
 
-class _AgeSelect extends StatefulWidget {
-  const _AgeSelect({
+class _AgeSelector extends StatefulWidget {
+  const _AgeSelector({
     required this.tag,
     required this.classification,
   });
@@ -40,10 +40,10 @@ class _AgeSelect extends StatefulWidget {
   final Classification classification;
 
   @override
-  State<_AgeSelect> createState() => _AgeSelectState();
+  State<_AgeSelector> createState() => _AgeSelectorState();
 }
 
-class _AgeSelectState extends State<_AgeSelect> {
+class _AgeSelectorState extends State<_AgeSelector> {
   final entries = List.generate(101, (index) {
     if (index == 0) {
       return "제한 없음";
