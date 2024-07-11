@@ -15,6 +15,7 @@ final class Classification {
   bool startSameTime; // 인원이 한번에 모였을 때 시작?
   int startNumOfMember; // 몇명이 모였을 때 시작할 것인지? minAge <= n <= maxAge, startSameTime이 true일 때만.
   bool openParticipation; // 채팅방이 생성된 후에도 도중에 누군가 들어올 수 있음.
+  bool onlyMyFriends; // 내 친구만 들어올 수 있음
 
   Classification({
     this.category = const [Category.others],
@@ -29,5 +30,6 @@ final class Classification {
     this.startSameTime = false,
     this.startNumOfMember = 0, // 0 => startSameTime false일때, 기본값은 maxAge
     this.openParticipation = false,
+    this.onlyMyFriends = false,
   });
 }
