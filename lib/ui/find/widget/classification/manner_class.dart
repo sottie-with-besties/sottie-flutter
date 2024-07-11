@@ -86,56 +86,64 @@ class _MannerClassState extends State<MannerClass> {
           ],
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Transform.translate(
-              offset: const Offset(0, -12),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      mannerPoint =
-                          ((mannerPoint - 0.1) * 10).roundToDouble() / 10;
-                      if (mannerPoint < 0) {
-                        mannerPoint = 0;
-                      }
-                      textController.text = mannerPoint.toString();
-                      setState(() {});
-                    },
-                    child: const FaIcon(FontAwesomeIcons.minus),
-                  ),
-                  const SizedBox(width: 25),
-                  InkWell(
-                    onTap: () {
-                      mannerPoint =
-                          ((mannerPoint + 0.1) * 10).roundToDouble() / 10;
+                offset: const Offset(0, -12), child: const Text("0: 매너 제한 없음")),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Transform.translate(
+                  offset: const Offset(0, -12),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          mannerPoint =
+                              ((mannerPoint - 0.1) * 10).roundToDouble() / 10;
+                          if (mannerPoint < 0) {
+                            mannerPoint = 0;
+                          }
+                          textController.text = mannerPoint.toString();
+                          setState(() {});
+                        },
+                        child: const FaIcon(FontAwesomeIcons.minus),
+                      ),
+                      const SizedBox(width: 25),
+                      InkWell(
+                        onTap: () {
+                          mannerPoint =
+                              ((mannerPoint + 0.1) * 10).roundToDouble() / 10;
 
-                      if (mannerPoint > 100) {
-                        mannerPoint = 100;
-                      }
+                          if (mannerPoint > 100) {
+                            mannerPoint = 100;
+                          }
 
-                      textController.text = mannerPoint.toString();
-                      setState(() {});
-                    },
-                    child: const FaIcon(FontAwesomeIcons.plus),
+                          textController.text = mannerPoint.toString();
+                          setState(() {});
+                        },
+                        child: const FaIcon(FontAwesomeIcons.plus),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 10),
-            SizedBox(
-              width: 110,
-              height: 100,
-              child: LocalTextField(
-                focusNode: focusNode,
-                controller: textController,
-                prefixIcon: false,
-                inputFormatter: <TextInputFormatter>[
-                  // ChatGPT가 알려준 숫자와 소숫점 첫째 자리까지 double 타입의 인풋만 입력 받을 수 있는 정규 표현식
-                  FilteringTextInputFormatter.allow(RegExp(r'^\d{0,2}\.?\d?'))
-                ],
-              ),
+                ),
+                const SizedBox(width: 10),
+                SizedBox(
+                  width: 110,
+                  height: 100,
+                  child: LocalTextField(
+                    focusNode: focusNode,
+                    controller: textController,
+                    prefixIcon: false,
+                    inputFormatter: <TextInputFormatter>[
+                      // ChatGPT가 알려준 숫자와 소숫점 첫째 자리까지 double 타입의 인풋만 입력 받을 수 있는 정규 표현식
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'^\d{0,2}\.?\d?'))
+                    ],
+                  ),
+                ),
+              ],
             ),
           ],
         ),
