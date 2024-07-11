@@ -10,6 +10,7 @@ import 'package:sottie_flutter/ui/find/widget/classification/gender_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/location_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/manner_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/num_of_member_class.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/start_same_time_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/time_class.dart';
 
 class MakeFindFeed extends StatefulWidget {
@@ -51,18 +52,26 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
               AgeClass(classification: classification),
               const SizedBox(height: 15),
               MannerClass(classification: classification),
+              const SizedBox(height: 15),
+              StartSameTimeClass(classification: classification),
               const SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () {
-                  log(classification.category.toString());
-                  log(classification.location.toString());
-                  log(classification.date.toString());
-                  log(classification.gender.toString());
-                  log(classification.minNumOfMember.toString());
-                  log(classification.maxNumOfMember.toString());
-                  log(classification.minAge.toString());
-                  log(classification.maxAge.toString());
-                  log(classification.manner.toString());
+                  log(classification.category.toString(), name: "분류");
+                  log(classification.location.toString(), name: "장소");
+                  log(classification.date.toString(), name: "날짜 및 시간");
+                  log(classification.gender.toString(), name: "성별");
+                  log(classification.minNumOfMember.toString(),
+                      name: "최소 인원 수");
+                  log(classification.maxNumOfMember.toString(),
+                      name: "최대 인원 수");
+                  log(classification.minAge.toString(), name: "최소 나이");
+                  log(classification.maxAge.toString(), name: "최대 나이");
+                  log(classification.manner.toString(), name: "매너 온도");
+                  log(classification.startSameTime.toString(),
+                      name: "동시 채팅 시작");
+                  log(classification.startNumOfMember.toString(),
+                      name: "동시 몇명 시작");
                 },
                 child: const Text(
                   "모집글 생성",
