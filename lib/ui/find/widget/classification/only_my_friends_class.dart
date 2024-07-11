@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/classification/model/classification.dart';
 
-class OpenParticipationClass extends StatefulWidget {
-  const OpenParticipationClass({
+class OnlyMyFriendsClass extends StatefulWidget {
+  const OnlyMyFriendsClass({
     super.key,
     required this.classification,
   });
@@ -11,11 +11,11 @@ class OpenParticipationClass extends StatefulWidget {
   final Classification classification;
 
   @override
-  State<OpenParticipationClass> createState() => _OpenParticipationClassState();
+  State<OnlyMyFriendsClass> createState() => _OnlyMyFriendsClassState();
 }
 
-class _OpenParticipationClassState extends State<OpenParticipationClass> {
-  bool openParticipation = false;
+class _OnlyMyFriendsClassState extends State<OnlyMyFriendsClass> {
+  bool onlyMyFriends = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _OpenParticipationClassState extends State<OpenParticipationClass> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text(
-              "오픈 채팅",
+              "내 친구만 입장",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
@@ -34,18 +34,17 @@ class _OpenParticipationClassState extends State<OpenParticipationClass> {
             ),
             Switch(
               activeColor: mainBrownColor,
-              value: openParticipation,
+              value: onlyMyFriends,
               onChanged: (val) {
-                openParticipation = val;
-                widget.classification.openParticipation = openParticipation;
+                onlyMyFriends = val;
+                widget.classification.onlyMyFriends = onlyMyFriends;
                 setState(() {});
               },
             ),
           ],
         ),
         const SizedBox(height: 10),
-        const Text(
-            "오픈 채팅방으로 설정하여 입장 조건에 부합하는 유저가 상시 입장할 수 있습니다. 퇴장에 패널티를 부여하지 않습니다."),
+        const Text("입장 조건에 부합하는 내 친구만 채팅방에 입장할 수 있습니다."),
       ],
     );
   }

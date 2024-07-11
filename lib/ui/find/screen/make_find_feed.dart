@@ -10,6 +10,7 @@ import 'package:sottie_flutter/ui/find/widget/classification/gender_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/location_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/manner_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/num_of_member_class.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/only_my_friends_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/open_participation_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/start_same_time_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/time_class.dart';
@@ -58,7 +59,7 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
               const SizedBox(height: 15),
               OpenParticipationClass(classification: classification),
               const SizedBox(height: 15),
-              StartSameTimeClass(classification: classification),
+              OnlyMyFriendsClass(classification: classification),
               const SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () {
