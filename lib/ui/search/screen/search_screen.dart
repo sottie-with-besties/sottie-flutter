@@ -27,6 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
         LocalTextField(
           hint: "날짜, 장소, 제목, 내용...",
           focusNode: focusNode,
+          suffixIcon: true,
         ),
       ],
     );

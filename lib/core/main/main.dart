@@ -67,6 +67,11 @@ class Sottie extends StatelessWidget {
       timePickerTheme: const TimePickerThemeData(
         backgroundColor: mainSilverColor,
       ),
+      sliderTheme: const SliderThemeData(
+        activeTrackColor: Colors.grey,
+        inactiveTrackColor: Colors.grey,
+        thumbColor: mainBrownColor,
+      ),
     );
 
     return ScreenUtilInit(

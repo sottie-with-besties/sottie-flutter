@@ -8,6 +8,7 @@ import 'package:sottie_flutter/ui/find/widget/classification/category_class.dart
 import 'package:sottie_flutter/ui/find/widget/classification/date_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/gender_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/location_class.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/manner_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/num_of_member_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/time_class.dart';
 
@@ -48,6 +49,8 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
               const SizedBox(height: 15),
               const Text("나이는 만 나이 기준입니다."),
               AgeClass(classification: classification),
+              const SizedBox(height: 15),
+              MannerClass(classification: classification),
               const SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () {
@@ -59,6 +62,7 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                   log(classification.maxNumOfMember.toString());
                   log(classification.minAge.toString());
                   log(classification.maxAge.toString());
+                  log(classification.manner.toString());
                 },
                 child: const Text(
                   "모집글 생성",
