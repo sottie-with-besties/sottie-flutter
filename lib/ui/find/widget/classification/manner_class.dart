@@ -129,19 +129,30 @@ class _MannerClassState extends State<MannerClass> {
                   ),
                 ),
                 const SizedBox(width: 10),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: LocalTextField(
-                    focusNode: focusNode,
-                    controller: textController,
-                    prefixIcon: false,
-                    inputFormatter: <TextInputFormatter>[
-                      // ChatGPT가 알려준 숫자와 소숫점 첫째 자리까지 double 타입의 인풋만 입력 받을 수 있는 정규 표현식
-                      FilteringTextInputFormatter.allow(
-                          RegExp(r'^\d{0,2}\.?\d?'))
-                    ],
-                  ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 110,
+                      height: 100,
+                      child: LocalTextField(
+                        focusNode: focusNode,
+                        controller: textController,
+                        prefixIcon: false,
+                        inputFormatter: <TextInputFormatter>[
+                          // ChatGPT가 알려준 숫자와 소숫점 첫째 자리까지 double 타입의 인풋만 입력 받을 수 있는 정규 표현식
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'^\d{0,2}\.?\d?'))
+                        ],
+                      ),
+                    ),
+                    Transform.translate(
+                      offset: const Offset(0, -12),
+                      child: const Text(
+                        "이상",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
