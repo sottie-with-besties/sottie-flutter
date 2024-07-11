@@ -10,6 +10,7 @@ import 'package:sottie_flutter/ui/find/widget/classification/gender_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/location_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/manner_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/num_of_member_class.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/open_participation_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/start_same_time_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/time_class.dart';
 
@@ -54,6 +55,10 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
               MannerClass(classification: classification),
               const SizedBox(height: 15),
               StartSameTimeClass(classification: classification),
+              const SizedBox(height: 15),
+              OpenParticipationClass(classification: classification),
+              const SizedBox(height: 15),
+              StartSameTimeClass(classification: classification),
               const SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () {
@@ -72,6 +77,9 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                       name: "동시 채팅 시작");
                   log(classification.startNumOfMember.toString(),
                       name: "동시 몇명 시작");
+                  log(classification.openParticipation.toString(),
+                      name: "오픈 채팅");
+                  log(classification.onlyMyFriends.toString(), name: "내 친구만");
                 },
                 child: const Text(
                   "모집글 생성",

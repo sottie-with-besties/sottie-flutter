@@ -68,7 +68,7 @@ class _StartSameTimeClassState extends State<StartSameTimeClass> {
                 widget.classification.startSameTime = startSameTime;
                 setState(() {});
               },
-            )
+            ),
           ],
         ),
         Row(
