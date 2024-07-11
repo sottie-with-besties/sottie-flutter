@@ -60,15 +60,15 @@ class _StartSameTimeClassState extends State<StartSameTimeClass> {
                 fontSize: 18,
               ),
             ),
-            Checkbox(
+            Switch(
               activeColor: mainBrownColor,
               value: startSameTime,
               onChanged: (val) {
-                startSameTime = val!;
+                startSameTime = val;
                 widget.classification.startSameTime = startSameTime;
                 setState(() {});
               },
-            ),
+            )
           ],
         ),
         Row(
