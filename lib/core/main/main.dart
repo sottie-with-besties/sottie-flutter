@@ -72,6 +72,7 @@ class Sottie extends StatelessWidget {
         inactiveTrackColor: Colors.grey,
         thumbColor: mainBrownColor,
       ),
+      dialogBackgroundColor: mainSilverColor,
     );
 
     return ScreenUtilInit(

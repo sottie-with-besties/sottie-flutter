@@ -81,6 +81,53 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                   log(classification.openParticipation.toString(),
                       name: "오픈 채팅");
                   log(classification.onlyMyFriends.toString(), name: "내 친구만");
+
+                  showGeneralDialog(
+                    context: context,
+                    pageBuilder: (context, a1, a2) => Container(),
+                    transitionDuration: const Duration(milliseconds: 200),
+                    transitionBuilder: (context, a1, a2, child) {
+                      return ScaleTransition(
+                        scale: a1,
+                        child: AlertDialog(
+                          content: SizedBox(
+                            width: 350,
+                            height: 500,
+                            child: Center(
+                              child: Text(
+                                  "에러 요소가 있으면 에러를 띄우고 확인 버튼 안보이게, 에러 없으면 최종 작성 글내용 보여주기"),
+                            ),
+                          ),
+                          actions: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.grey,
+                                minimumSize: Size(100, 50),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text(
+                                "취소",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: mainSilverColor),
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "생성",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: mainSilverColor),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
                 },
                 child: const Text(
                   "모집글 생성",
