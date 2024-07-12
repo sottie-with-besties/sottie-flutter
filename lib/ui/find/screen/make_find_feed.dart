@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/classification/model/classification.dart';
+import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/age_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/category_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/date_class.dart';
@@ -24,6 +25,16 @@ class MakeFindFeed extends StatefulWidget {
 
 class _MakeFindFeedState extends State<MakeFindFeed> {
   Classification classification = Classification();
+
+  final titleController = TextEditingController();
+  final contentController = TextEditingController();
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    contentController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +71,19 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
               OpenParticipationClass(classification: classification),
               const SizedBox(height: 15),
               OnlyMyFriendsClass(classification: classification),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
+              LocalTextField(
+                hint: "제목",
+                prefixIcon: false,
+                controller: titleController,
+              ),
+              LocalTextField(
+                prefixIcon: false,
+                hint: "내용을 입력하세요.",
+                lines: 12,
+                controller: contentController,
+              ),
+              const SizedBox(height: 80),
               ElevatedButton(
                 onPressed: () {
                   log(classification.category.toString(), name: "분류");
@@ -93,9 +116,13 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                           content: SizedBox(
                             width: 350,
                             height: 500,
-                            child: Center(
-                              child: Text(
-                                  "에러 요소가 있으면 에러를 띄우고 확인 버튼 안보이게, 에러 없으면 최종 작성 글내용 보여주기"),
+                            child: Column(
+                              children: [
+                                Text(
+                                    "에러 요소가 있으면 에러를 띄우고 확인 버튼 안보이게, 에러 없으면 최종 작성 글내용 보여주기"),
+                                Text(titleController.text),
+                                Text(contentController.text),
+                              ],
                             ),
                           ),
                           actions: [

@@ -7,25 +7,29 @@ class LocalTextField extends StatelessWidget {
   const LocalTextField({
     super.key,
     this.hint,
-    required this.focusNode,
+    this.focusNode,
     this.prefixIcon = true,
     this.suffixIcon = false,
     this.controller,
     this.inputFormatter,
+    this.lines = 1,
   });
 
   final String? hint;
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
   final bool prefixIcon;
   final bool suffixIcon;
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormatter;
+  final int? lines;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: TextFormField(
+        minLines: lines,
+        maxLines: lines,
         controller: controller,
         focusNode: focusNode,
         inputFormatters: inputFormatter,
