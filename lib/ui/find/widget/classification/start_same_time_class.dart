@@ -32,10 +32,7 @@ class _StartSameTimeClassState extends State<StartSameTimeClass> {
         } catch (e) {
           startNumber = 0;
         }
-
-        if (formKey.currentState!.validate()) {
-          widget.classification.startNumOfMember = startNumber;
-        }
+        widget.classification.startNumOfMember = startNumber;
       },
     );
   }
@@ -77,6 +74,7 @@ class _StartSameTimeClassState extends State<StartSameTimeClass> {
             SizedBox(
               width: 100,
               child: Form(
+                autovalidateMode: AutovalidateMode.always,
                 key: formKey,
                 child: TextFormField(
                   controller: textController,

@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/classification/model/classification.dart';
+import 'package:sottie_flutter/data/classification/model/gender_restrictions.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/age_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/category_class.dart';
@@ -28,6 +30,38 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
 
   final titleController = TextEditingController();
   final contentController = TextEditingController();
+
+  // 설정이 이상 없는 지 확인, 에러 내용을 String으로 담아둠
+  List<String> checkList = <String>[];
+
+  // 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
+  void checkIfSettingHasError() {
+    if (classification.minNumOfMember > classification.maxNumOfMember &&
+        classification.maxNumOfMember != 0) {
+      checkList.add("최소 인원 수는 최대 인원 수 이하로 설정해주세요.");
+    }
+
+    if (classification.minAge > classification.maxAge &&
+        classification.maxAge != 0) {
+      checkList.add("최소 나이는 최대 나이 이하로 설정해주세요.");
+    }
+
+    if (classification.date == null) {
+      checkList.add("날짜 및 시간을 설정해주세요.");
+    }
+
+    // startSameTime이 True일 때, maxNumOfMember가 제한이 있으면서 인원 수가 최대보다 크면 / 최소보다 작으면
+    if (classification.startSameTime &&
+        (classification.startNumOfMember < classification.minNumOfMember ||
+            (classification.startNumOfMember > classification.maxNumOfMember &&
+                classification.maxNumOfMember != 0))) {
+      checkList.add("채팅을 동시에 시작하기 위한 인원을 최소 인원 수 이상, 최대 인원 수 이하로 설정해주세요.");
+    }
+
+    if (classification.gender == GenderRestrictions.nobody) {
+      checkList.add("성별을 최소 하나 이상 설정해주세요.");
+    }
+  }
 
   @override
   void dispose() {
@@ -105,6 +139,10 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                       name: "오픈 채팅");
                   log(classification.onlyMyFriends.toString(), name: "내 친구만");
 
+                  checkList.clear();
+                  checkIfSettingHasError();
+                  log(checkList.toString());
+
                   showGeneralDialog(
                     context: context,
                     pageBuilder: (context, a1, a2) => Container(),
@@ -113,23 +151,41 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                       return ScaleTransition(
                         scale: a1,
                         child: AlertDialog(
+                          scrollable: true,
                           content: SizedBox(
-                            width: 350,
-                            height: 500,
-                            child: Column(
-                              children: [
-                                Text(
-                                    "에러 요소가 있으면 에러를 띄우고 확인 버튼 안보이게, 에러 없으면 최종 작성 글내용 보여주기"),
-                                Text(titleController.text),
-                                Text(contentController.text),
-                              ],
-                            ),
+                            width: 300.w,
+                            height: 400.h,
+                            child: checkList.isEmpty
+                                ? const Center(
+                                    child: Text("에러가 없으므로 모집글 완성본 미리보여주기"),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(top: 32),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "설정을 다시 확인해주세요",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20.sp,
+                                          ),
+                                        ),
+                                        ...checkList.map((errorString) {
+                                          return Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 32, horizontal: 16),
+                                            child: Text(errorString),
+                                          );
+                                        }),
+                                      ],
+                                    ),
+                                  ),
                           ),
                           actions: [
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.grey,
-                                minimumSize: Size(100, 50),
+                                minimumSize: const Size(100, 50),
                               ),
                               onPressed: () {
                                 Navigator.pop(context);
@@ -142,6 +198,9 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                               ),
                             ),
                             ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(100, 50),
+                              ),
                               onPressed: () {},
                               child: const Text(
                                 "생성",
