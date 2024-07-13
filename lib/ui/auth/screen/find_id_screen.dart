@@ -52,6 +52,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Stepper(
           elevation: 1,

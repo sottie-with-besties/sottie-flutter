@@ -23,6 +23,7 @@ class OAuthScreen extends StatelessWidget {
     final formKey = GlobalKey<FormState>();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: ColoredBox(
         color: const Color(0xdda0522d),
         child: Padding(

@@ -25,7 +25,7 @@ class CertificationScreen extends StatelessWidget {
         /* [필수입력] 가맹점 식별코드 */
         userCode: 'iamport',
         /* [필수입력] 본인인증 데이터 */
-        data: CertificationData(pg: 'danal'),
+        data: CertificationData(pg: "danal"),
         /* [필수입력] 콜백 함수 */
         callback: (Map<String, String> result) {
           log(result.toString(), name: "Callback Argument");
