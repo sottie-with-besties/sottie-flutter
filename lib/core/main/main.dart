@@ -7,6 +7,7 @@ import 'package:sottie_flutter/core/Firebase/firebase_options.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/constant/native_key.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,6 +74,8 @@ class Sottie extends StatelessWidget {
       ),
       dialogBackgroundColor: mainSilverColor,
     );
+
+    ScreenSize.initSize(context);
 
     return ProviderScope(
       child: MaterialApp.router(

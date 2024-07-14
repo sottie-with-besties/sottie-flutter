@@ -65,7 +65,7 @@ dependencies:
   kakao_flutter_sdk_user: # 카카오
 
   # 파이어베이스
-  firebase_core:
+  firebase_core: ^3.2.0
 
   # Json Serialization
   freezed_annotation:
