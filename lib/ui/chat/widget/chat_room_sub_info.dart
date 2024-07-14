@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/constant/custom_colors.dart';
 
@@ -17,8 +16,8 @@ class ChatRoomSubInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ts1 = TextStyle(
-      fontSize: 10.sp,
+    final ts1 = const TextStyle(
+      fontSize: 10,
       color: const Color(0x64000000),
       fontWeight: FontWeight.bold,
     );
@@ -26,19 +25,19 @@ class ChatRoomSubInfo extends StatelessWidget {
     final numOfMsg = notReadMsg > 999 ? '+999' : notReadMsg.toString();
 
     return SizedBox(
-      width: 60.w,
+      width: 60,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 15.h,
+          const SizedBox(
+            height: 15,
           ),
           Row(
             children: [
               Text(
                 numOfMember.toString(),
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -48,15 +47,15 @@ class ChatRoomSubInfo extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: 3.h,
+          const SizedBox(
+            height: 3,
           ),
           Text(
             latestTime,
             style: ts1,
           ),
-          SizedBox(
-            height: 3.h,
+          const SizedBox(
+            height: 3,
           ),
           if (notReadMsg != 0)
             Transform.translate(
@@ -66,15 +65,15 @@ class ChatRoomSubInfo extends StatelessWidget {
                   color: Colors.redAccent.withOpacity(0.8),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                width: 50.w,
-                height: 20.h,
+                width: 50,
+                height: 20,
                 child: Center(
                   child: Text(
                     numOfMsg,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: mainSilverColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 11.sp,
+                      fontSize: 11,
                     ),
                   ),
                 ),

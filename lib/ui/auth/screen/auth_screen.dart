@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:auth_button_kit/auth_button_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
@@ -44,7 +43,7 @@ class OAuthScreen extends StatelessWidget {
                         child: Text(
                           "Sottie",
                           style: GoogleFonts.jua(
-                            fontSize: 30.sp,
+                            fontSize: 30,
                             color: mainSilverColor,
                             fontWeight: FontWeight.bold,
                           ),
@@ -53,7 +52,7 @@ class OAuthScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.8),
@@ -148,7 +147,7 @@ class OAuthScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 15.h),
+                SizedBox(height: 15),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Row(

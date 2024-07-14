@@ -37,7 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.6
 
   # UI
-  flutter_screenutil: # 해상도에 따른 반응형 UI
   font_awesome_flutter: # 아이콘
   google_fonts: # 구글 폰트
   random_avatar:

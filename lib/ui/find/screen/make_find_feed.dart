@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/classification/model/classification.dart';
 import 'package:sottie_flutter/data/classification/model/gender_restrictions.dart';
@@ -153,8 +152,8 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                         child: AlertDialog(
                           scrollable: true,
                           content: SizedBox(
-                            width: 300.w,
-                            height: 400.h,
+                            width: 300,
+                            height: 400,
                             child: checkList.isEmpty
                                 ? const Center(
                                     child: Text("에러가 없으므로 모집글 완성본 미리보여주기"),
@@ -167,7 +166,7 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                                           "설정을 다시 확인해주세요",
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 20.sp,
+                                            fontSize: 20,
                                           ),
                                         ),
                                         ...checkList.map((errorString) {

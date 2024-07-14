@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatRoomInfo extends StatelessWidget {
   const ChatRoomInfo({
@@ -20,8 +19,8 @@ class ChatRoomInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150.w,
-      height: 100.h,
+      width: 150,
+      height: 100,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,13 +32,13 @@ class ChatRoomInfo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: 150.w,
+                    width: 150,
                     child: Text(
                       overflow: TextOverflow.ellipsis,
                       chatTitle,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18.sp,
+                        fontSize: 18,
                       ),
                     ),
                   ),
@@ -52,14 +51,14 @@ class ChatRoomInfo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: 150.w,
+                    width: 150,
                     child: Text(
                       overflow: TextOverflow.ellipsis,
                       latestMsg,
-                      style: TextStyle(
-                        fontSize: 12.sp,
+                      style: const TextStyle(
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0x84000000),
+                        color: Color(0x84000000),
                       ),
                     ),
                   ),
@@ -71,7 +70,7 @@ class ChatRoomInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: 180.w,
+                width: 180,
                 child: Text(
                   overflow: TextOverflow.ellipsis,
                   date,
@@ -79,7 +78,7 @@ class ChatRoomInfo extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 180.w,
+                width: 180,
                 child: Text(
                   overflow: TextOverflow.ellipsis,
                   location,

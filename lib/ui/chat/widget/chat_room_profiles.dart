@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:random_avatar/random_avatar.dart';
 
 class ChatRoomProfiles extends StatelessWidget {
@@ -15,8 +14,8 @@ class ChatRoomProfiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100.h,
-      width: 100.w,
+      height: 100,
+      width: 100,
       child: Wrap(
         spacing: 5,
         runSpacing: 5,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 
@@ -45,13 +44,13 @@ class _FindDetailScreenState extends State<FindDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "플러터 스터디 모집",
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20.sp,
+                  fontSize: 20,
                 ),
               ),
               const SizedBox(
@@ -60,7 +59,7 @@ class _FindDetailScreenState extends State<FindDetailScreen> {
               Column(
                 children: [
                   SizedBox(
-                    height: 300.h,
+                    height: 300,
                     child: PageView.builder(
                       controller: controller,
                       itemBuilder: (_, index) {
@@ -83,10 +82,10 @@ class _FindDetailScreenState extends State<FindDetailScreen> {
               const SizedBox(
                 height: 30,
               ),
-              Text(
+              const Text(
                 "앱 개발 최고의 프레임워크, 플러터를 공부하실 분들을 모집합니다! 저희는 매우 편안하고 친절한 분위기를 유지하고 목표달성을 위해 열심히 정진합니다!",
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 14,
                 ),
               ),
               const SizedBox(
@@ -117,10 +116,10 @@ class _FindDetailScreenState extends State<FindDetailScreen> {
                         minimumSize: const Size(100, 65),
                       ),
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         "참여하기",
                         style: TextStyle(
-                          fontSize: 22.sp,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                           color: mainSilverColor,
                         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:random_avatar/random_avatar.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/dm/model/dm_model.dart';
@@ -30,8 +29,8 @@ class DmChatRoom extends StatelessWidget {
                   children: [
                     RandomAvatar(
                       DateTime.now().toIso8601String(),
-                      width: 50.h,
-                      height: 50.h,
+                      width: 50,
+                      height: 50,
                     ),
                     const SizedBox(
                       width: 30,
@@ -44,7 +43,7 @@ class DmChatRoom extends StatelessWidget {
                           model.name,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: 16.sp,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -55,7 +54,7 @@ class DmChatRoom extends StatelessWidget {
                 ),
                 IntrinsicHeight(
                   child: SizedBox(
-                    width: 65.w,
+                    width: 65,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -69,8 +68,8 @@ class DmChatRoom extends StatelessWidget {
                           height: 10,
                         ),
                         Container(
-                          width: 50.w,
-                          height: 20.h,
+                          width: 50,
+                          height: 20,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             color: Colors.redAccent.withOpacity(0.8),

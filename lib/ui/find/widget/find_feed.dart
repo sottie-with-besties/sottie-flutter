@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -26,7 +25,7 @@ class FindFeed extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Container(
-                height: 140.h,
+                height: 140,
                 padding: const EdgeInsets.all(12.0),
                 decoration: BoxDecoration(
                   border: Border.all(),
@@ -61,15 +60,15 @@ class FindFeed extends StatelessWidget {
                             border: Border.all(),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          width: 110.w,
-                          height: 70.h,
+                          width: 110,
+                          height: 70,
                           child: const Center(
                             child: Text("썸네일"),
                           ),
                         ),
                         SizedBox(
-                          width: 190.w,
-                          height: 80.h,
+                          width: 190,
+                          height: 80,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -79,7 +78,7 @@ class FindFeed extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16.sp,
+                                  fontSize: 16,
                                 ),
                               ),
                               const SizedBox(

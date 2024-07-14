@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sottie_flutter/data/classification/model/category.dart';
 import 'package:sottie_flutter/data/find/model/find_feed_model.dart';
 import 'package:sottie_flutter/ui/find/widget/find_feed.dart';
@@ -72,9 +71,9 @@ Widget _subTitle(String title) {
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     child: Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 16.sp,
+        fontSize: 16,
       ),
     ),
   );

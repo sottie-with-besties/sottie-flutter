@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -200,12 +199,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onPressed: () {
                       context.push('/auth/${CustomRouter.certificationPath}');
                     },
-                    child: Text(
+                    child: const Text(
                       "본인인증 하기",
                       style: TextStyle(
                         color: mainSilverColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: 20.sp,
+                        fontSize: 20,
                       ),
                     ),
                   ),
