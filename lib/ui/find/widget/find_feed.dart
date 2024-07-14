@@ -26,7 +26,7 @@ class FindFeed extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Container(
-                height: 120.h,
+                height: 140.h,
                 padding: const EdgeInsets.all(12.0),
                 decoration: BoxDecoration(
                   border: Border.all(),
@@ -69,7 +69,7 @@ class FindFeed extends StatelessWidget {
                         ),
                         SizedBox(
                           width: 190.w,
-                          height: 70.h,
+                          height: 80.h,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

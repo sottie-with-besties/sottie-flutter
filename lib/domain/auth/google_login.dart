@@ -14,6 +14,7 @@ Future<bool> signInWithGoogle() async {
     log("No Error");
     log(googleAuth!.idToken!, name: "ID Token");
     log(googleAuth.accessToken!, name: "Access Token");
+    log(googleUser!.toString(), name: "User Info");
 
     return true;
   } on Exception catch (_) {
