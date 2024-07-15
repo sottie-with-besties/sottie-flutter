@@ -42,7 +42,7 @@ class DmChatRoom extends StatelessWidget {
                         Text(
                           model.name,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -54,7 +54,7 @@ class DmChatRoom extends StatelessWidget {
                 ),
                 IntrinsicHeight(
                   child: SizedBox(
-                    width: 65,
+                    width: 85,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -65,11 +65,11 @@ class DmChatRoom extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         Container(
                           width: 50,
-                          height: 20,
+                          height: 30,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             color: Colors.redAccent.withOpacity(0.8),

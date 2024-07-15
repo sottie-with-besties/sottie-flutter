@@ -43,7 +43,7 @@ class OAuthScreen extends StatelessWidget {
                         child: Text(
                           "Sottie",
                           style: GoogleFonts.jua(
-                            fontSize: 30,
+                            fontSize: 46,
                             color: mainSilverColor,
                             fontWeight: FontWeight.bold,
                           ),
@@ -52,7 +52,7 @@ class OAuthScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.8),
@@ -147,7 +147,7 @@ class OAuthScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Row(

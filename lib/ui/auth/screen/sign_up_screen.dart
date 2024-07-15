@@ -186,7 +186,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 25,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -204,7 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: TextStyle(
                         color: mainSilverColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 30,
                       ),
                     ),
                   ),

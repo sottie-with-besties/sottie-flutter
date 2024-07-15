@@ -5,6 +5,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/classification/model/category.dart';
 import 'package:sottie_flutter/data/find/model/find_feed_model.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class FindFeed extends StatelessWidget {
   const FindFeed({
@@ -16,6 +17,9 @@ class FindFeed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = ScreenSize.width;
+    final height = ScreenSize.height;
+
     return Material(
       color: mainSilverColor,
       child: InkWell(
@@ -25,7 +29,7 @@ class FindFeed extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Container(
-                height: 140,
+                height: 150,
                 padding: const EdgeInsets.all(12.0),
                 decoration: BoxDecoration(
                   border: Border.all(),
@@ -60,8 +64,8 @@ class FindFeed extends StatelessWidget {
                             border: Border.all(),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          width: 110,
-                          height: 70,
+                          width: 130,
+                          height: 80,
                           child: const Center(
                             child: Text("썸네일"),
                           ),
@@ -76,7 +80,7 @@ class FindFeed extends StatelessWidget {
                                 model.title,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
                                 ),

@@ -16,9 +16,9 @@ class ChatRoomSubInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ts1 = const TextStyle(
+    const ts1 = TextStyle(
       fontSize: 10,
-      color: const Color(0x64000000),
+      color: Color(0x64000000),
       fontWeight: FontWeight.bold,
     );
 
@@ -36,12 +36,12 @@ class ChatRoomSubInfo extends StatelessWidget {
             children: [
               Text(
                 numOfMember.toString(),
-                style: TextStyle(
-                  fontSize: 14,
+                style: const TextStyle(
+                  fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 ' 명',
                 style: ts1,
               ),

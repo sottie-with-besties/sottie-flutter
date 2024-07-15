@@ -19,7 +19,7 @@ class ChatRoomInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150,
+      width: 200,
       height: 100,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
