@@ -65,7 +65,8 @@ dependencies:
   kakao_flutter_sdk_user: # 카카오
 
   # 파이어베이스
-  firebase_core: ^3.2.0
+  firebase_core:
+  firebase_auth: # 이메일 인증, 핸드폰 번호 인증용
 
   # Json Serialization
   freezed_annotation:

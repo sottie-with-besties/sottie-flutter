@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
@@ -33,12 +32,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void onStepContinue() {
     if (currentStep == 0) {
       emailKey.currentState!.validate() ? currentStep += 1 : null;
-      // Todo: 서버에서 이메일 인증코드 보내야함
     } else if (currentStep == 1) {
-      currentStep += 1;
-      // Todo: 서버에서 보낸 인증코드와 비교하여 분기 처리
-    } else if (currentStep == 2) {
       passwordKey.currentState!.validate() ? currentStep += 1 : null;
+      // Todo: 파이어베이스에 이메일 및 비밀번호 등록
+    } else if (currentStep == 2) {
+      // if user.emailVerification == true
+      currentStep += 1;
     }
     setState(() {});
   }
@@ -95,47 +94,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             Step(
               title: Container(),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "이메일을 확인하세요!",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "인증코드를 발송하였습니다",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Pinput(
-                    length: 6,
-                    obscureText: true,
-                    validator: (val) {
-                      return "코드가 일치하지 않습니다.";
-
-                      // Todo: 서버에서 보낸 인증코드와 비교
-                    },
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                ],
-              ),
-              isActive: currentStep > 1,
-              state: setStepState(1),
-            ),
-            Step(
-              title: Container(),
               content: Form(
                 key: passwordKey,
                 child: Column(
@@ -169,6 +127,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ],
                 ),
+              ),
+              isActive: currentStep > 1,
+              state: setStepState(1),
+            ),
+            Step(
+              title: Container(),
+              content: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "이메일을 확인하세요!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "인증코드를 발송하였습니다. 이메일을 인증 하신 후 다음 버튼을 눌러주세요.",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                ],
               ),
               isActive: currentStep > 2,
               state: setStepState(2),
