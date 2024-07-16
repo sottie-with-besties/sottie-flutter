@@ -14,14 +14,12 @@ Future<String?> signInWithPhoneNumber(String number) async {
     phoneNumber: "+82 $number",
     verificationCompleted: (PhoneAuthCredential credential) {
       log("credential :: $credential");
-      errorCode = null;
     },
     verificationFailed: (FirebaseAuthException exception) {
       errorCode = "에러가 발생했습니다. Error Code: ${exception.code}";
     },
     codeSent: (String verificationId, int? resendToken) {
       _verificationId = verificationId;
-      errorCode = '문자를 발송하였습니다.';
     },
     codeAutoRetrievalTimeout: (String verificationId) {
       errorCode = "시간 경과로 인해 실패하였습니다.";
@@ -52,13 +50,6 @@ Future<String?> signInWithSmsCode(String code) async {
 }
 
 // 핸드폰 인증만 하면 되기 때문에 유저를 파이어베이스에 저장하지 않고 삭제한다.
-Future<String?> deletePhoneUser(String code) async {
-  // 한번 더 로그인을 진행해주어야 삭제 가능.
-  final errorCode = await signInWithSmsCode(code);
-  if (errorCode != null) {
-    return errorCode;
-  } else {
-    await _auth.currentUser!.delete();
-    return errorCode;
-  }
+Future<void> deletePhoneUser(String code) async {
+  await _auth.currentUser!.delete();
 }
