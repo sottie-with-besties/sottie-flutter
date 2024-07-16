@@ -185,7 +185,7 @@ class OAuthScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
                 AuthButton(
-                  onPressed: (_) {
+                  onPressed: (_) async {
                     log("Continue with Apple");
                     context.go(CustomRouter.homePath);
                   },

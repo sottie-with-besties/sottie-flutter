@@ -73,6 +73,13 @@ class Sottie extends StatelessWidget {
         thumbColor: mainBrownColor,
       ),
       dialogBackgroundColor: mainSilverColor,
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: mainBrownColor,
+        contentTextStyle: TextStyle(
+          color: mainSilverColor,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
 
     ScreenSize.initSize(context);
