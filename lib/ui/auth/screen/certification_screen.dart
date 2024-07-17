@@ -12,7 +12,12 @@ import 'package:sottie_flutter/core/constant/server_ip.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 
 class CertificationScreen extends StatelessWidget {
-  const CertificationScreen({super.key});
+  const CertificationScreen({
+    super.key,
+    required this.isEmailLogin,
+  });
+
+  final bool isEmailLogin;
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +53,12 @@ class CertificationScreen extends StatelessWidget {
           );
 
           log(res.toString(), name: "Response");
+
+          // isEmailLogin ? await deleteEmailUser(email, password) : null;
+
           if (context.mounted) {
-            context.go(CustomRouter.homePath);
+            // Todo: 로그인 창 말고 회원가입 성공 화면 뜨게 하기
+            context.go(CustomRouter.authPath);
           }
         },
       ),

@@ -247,7 +247,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       minimumSize: const Size(100, 80),
                     ),
                     onPressed: () {
-                      context.push('/auth/${CustomRouter.certificationPath}');
+                      context.push('/auth/${CustomRouter.certificationPath}',
+                          extra: {'isEmailLogin': true});
                     },
                     child: const Text(
                       "본인인증 하기",

@@ -174,7 +174,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                       final errorCode =
                           await signInWithPhoneNumber(phoneNumber!);
                       if (errorCode != null) {
-                        if (mounted) showSnackBar(context, errorCode);
+                        if (context.mounted) showSnackBar(context, errorCode);
                       }
                     },
                     child: const Text("인증코드 재전송"),

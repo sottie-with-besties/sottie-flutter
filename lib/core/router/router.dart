@@ -57,7 +57,11 @@ final _routes = [
       ),
       GoRoute(
         path: CustomRouter.certificationPath,
-        builder: (context, state) => const CertificationScreen(),
+        builder: (context, state) {
+          final isEmailJson = state.extra as Map<String, bool>;
+          final isEmail = isEmailJson['isEmailLogin'] ?? false;
+          return CertificationScreen(isEmailLogin: isEmail);
+        },
       ),
     ],
   ),

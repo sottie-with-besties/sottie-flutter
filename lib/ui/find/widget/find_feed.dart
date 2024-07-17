@@ -5,7 +5,6 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/classification/model/category.dart';
 import 'package:sottie_flutter/data/find/model/find_feed_model.dart';
-import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class FindFeed extends StatelessWidget {
   const FindFeed({
@@ -17,9 +16,6 @@ class FindFeed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = ScreenSize.width;
-    final height = ScreenSize.height;
-
     return Material(
       color: mainSilverColor,
       child: InkWell(

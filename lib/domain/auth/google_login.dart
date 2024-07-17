@@ -1,8 +1,9 @@
 import 'dart:developer';
 
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sottie_flutter/domain/auth/auth_entity.dart';
 
-Future<bool> signInWithGoogle() async {
+Future<String?> signInWithGoogle() async {
   // Trigger the authentication flow
   try {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -11,28 +12,16 @@ Future<bool> signInWithGoogle() async {
     final GoogleSignInAuthentication? googleAuth =
         await googleUser?.authentication;
 
+    // 백엔드에 전송해야 할 것
     log("No Error");
     log(googleAuth!.idToken!, name: "ID Token");
     log(googleAuth.accessToken!, name: "Access Token");
-    log(googleUser!.toString(), name: "User Info");
+    log(googleUser!.email, name: "User Email");
 
-    return true;
-  } on Exception catch (_) {
-    // Todo: 에러 처리
-    log("Error");
-    return false;
-  }
-}
+    authEntity = AuthEntity.google;
 
-Future<bool> signOutGoogle() async {
-  try {
-    await GoogleSignIn().disconnect();
-    await GoogleSignIn().signOut();
-    log('sign out google');
-    return true;
+    return null;
   } on Exception catch (_) {
-    // Todo: 에러 처리
-    log('sign out google failed');
-    return false;
+    return "구글 로그인 도중 에러가 발생했습니다.";
   }
 }

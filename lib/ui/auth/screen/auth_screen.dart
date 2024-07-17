@@ -21,6 +21,9 @@ class OAuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
 
+    String? email;
+    String? password;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: ColoredBox(
@@ -78,6 +81,7 @@ class OAuthScreen extends StatelessWidget {
                         AuthTextField(
                           hint: "이메일 입력",
                           validator: (val) {
+                            email = val;
                             return validateEmail(val!);
                           },
                         ),
@@ -85,6 +89,7 @@ class OAuthScreen extends StatelessWidget {
                           obsecure: true,
                           hint: "비밀번호 입력",
                           validator: (val) {
+                            password = val;
                             return validatePassword(val!);
                           },
                         ),
@@ -172,11 +177,15 @@ class OAuthScreen extends StatelessWidget {
                     imgPath: AssetPath.kakaoLogin,
                     onPressed: () async {
                       log("kakao login button");
-                      await signInWithKakao();
+                      final errorCode = await signInWithKakao();
+                      // Todo: OAuth는 백엔드에 먼저 ID 토큰과 같은 정보를 보낸 후 본인인증이 안되어 있으면
+                      // Todo: 본인 인증 페이지로 넘어가게 하는 작업
                     }),
                 AuthButton(
                   onPressed: (_) async {
-                    await signInWithGoogle();
+                    final errorCode = await signInWithGoogle();
+                    // Todo: OAuth는 백엔드에 먼저 ID 토큰과 같은 정보를 보낸 후 본인인증이 안되어 있으면
+                    // Todo: 본인 인증 페이지로 넘어가게 하는 작업
                   },
                   brand: Method.google,
                   shape: RoundedRectangleBorder(
@@ -186,7 +195,9 @@ class OAuthScreen extends StatelessWidget {
                 ),
                 AuthButton(
                   onPressed: (_) async {
-                    log("Continue with Apple");
+                    // log("Continue with Apple");
+                    // final errorCode = await signOut();
+                    // log(errorCode.toString());
                     context.go(CustomRouter.homePath);
                   },
                   brand: Method.apple,
