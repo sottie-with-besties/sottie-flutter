@@ -2,22 +2,22 @@ import 'dart:developer';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
-import 'package:sottie_flutter/domain/auth/auth_entity.dart';
+import 'package:sottie_flutter/domain/auth/auth_type.dart';
 
 Future<String?> signOut() async {
   String? errorCode;
 
   switch (authEntity) {
-    case AuthEntity.email:
+    case AuthType.email:
       errorCode = await _signOutEmail();
       break;
-    case AuthEntity.kakao:
+    case AuthType.kakao:
       errorCode = await _signOutKakao();
       break;
-    case AuthEntity.google:
+    case AuthType.google:
       errorCode = await _signOutGoogle();
       break;
-    case AuthEntity.apple:
+    case AuthType.apple:
       errorCode = await _signOutApple();
       break;
     default:

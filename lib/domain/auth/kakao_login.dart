@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/services.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
-import 'package:sottie_flutter/domain/auth/auth_entity.dart';
+import 'package:sottie_flutter/domain/auth/auth_type.dart';
 
 Future<String?> signInWithKakao() async {
   // 카카오톡 실행이 가능하면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
@@ -16,7 +16,7 @@ Future<String?> signInWithKakao() async {
       final user = await UserApi.instance.me();
       log(user.toString(), name: 'User Info');
 
-      authEntity = AuthEntity.kakao;
+      authEntity = AuthType.kakao;
       return null;
     } catch (error) {
       log('카카오톡으로 로그인 실패 $error');
@@ -34,7 +34,7 @@ Future<String?> signInWithKakao() async {
         final user = await UserApi.instance.me();
         log(user.toString(), name: 'User Info');
 
-        authEntity = AuthEntity.kakao;
+        authEntity = AuthType.kakao;
         return null;
       } catch (error) {
         log('카카오계정으로 로그인 실패 $error');
@@ -50,7 +50,7 @@ Future<String?> signInWithKakao() async {
       final user = await UserApi.instance.me();
       log(user.toString(), name: 'User Info');
 
-      authEntity = AuthEntity.kakao;
+      authEntity = AuthType.kakao;
       return null;
     } catch (error) {
       log('카카오계정으로 로그인 실패 $error');

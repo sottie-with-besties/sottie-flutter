@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sottie_flutter/domain/auth/auth_entity.dart';
+import 'package:sottie_flutter/domain/auth/auth_type.dart';
 
 Future<String?> signInWithGoogle() async {
   // Trigger the authentication flow
@@ -18,7 +18,7 @@ Future<String?> signInWithGoogle() async {
     log(googleAuth.accessToken!, name: "Access Token");
     log(googleUser!.email, name: "User Email");
 
-    authEntity = AuthEntity.google;
+    authEntity = AuthType.google;
 
     return null;
   } on Exception catch (_) {
