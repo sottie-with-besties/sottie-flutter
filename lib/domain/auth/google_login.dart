@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sottie_flutter/domain/auth/auth_type.dart';
+import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';
 
 Future<String?> signInWithGoogle() async {
   // Trigger the authentication flow
@@ -19,6 +20,7 @@ Future<String?> signInWithGoogle() async {
     log(googleUser!.email, name: "User Email");
 
     authType = AuthType.google;
+    signUpEntity.email = googleUser.email;
 
     return null;
   } on Exception catch (_) {

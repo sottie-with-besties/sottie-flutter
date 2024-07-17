@@ -4,6 +4,7 @@ import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/find_id_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/find_password.dart';
 import 'package:sottie_flutter/ui/auth/screen/sign_up_screen.dart';
+import 'package:sottie_flutter/ui/auth/screen/verification_complete_screen.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
@@ -18,12 +19,13 @@ sealed class CustomRouter {
     routes: _routes,
   );
 
-  // Login Screens
+  // Auth Screens
   static const authPath = "/auth";
   static const signUpPath = "signUp";
   static const certificationPath = "certification";
   static const findIdPath = "findId";
   static const findPasswordPath = "findPassword";
+  static const verificationCompletePath = "verificationComplete";
 
   // Main Layout Screens
   static const homePath = "/home";
@@ -62,6 +64,10 @@ final _routes = [
           final isEmail = isEmailJson['isEmailLogin'] ?? false;
           return CertificationScreen(isEmailLogin: isEmail);
         },
+      ),
+      GoRoute(
+        path: CustomRouter.verificationCompletePath,
+        builder: (context, state) => const VerificationCompleteScreen(),
       ),
     ],
   ),

@@ -17,6 +17,9 @@ Future<String?> signInWithKakao() async {
       log(user.toString(), name: 'User Info');
 
       authType = AuthType.kakao;
+
+      // Todo: 카카오 이메일 파라미터 받으면 signUpEntity에 넣기
+
       return null;
     } catch (error) {
       log('카카오톡으로 로그인 실패 $error');

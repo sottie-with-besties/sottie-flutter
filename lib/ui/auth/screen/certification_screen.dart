@@ -10,6 +10,8 @@ import 'package:iamport_flutter/iamport_certification.dart';
 import 'package:iamport_flutter/model/certification_data.dart';
 import 'package:sottie_flutter/core/constant/server_ip.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/domain/auth/email_verification.dart';
+import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';
 
 class CertificationScreen extends StatelessWidget {
   const CertificationScreen({
@@ -41,6 +43,8 @@ class CertificationScreen extends StatelessWidget {
         /* [필수입력] 콜백 함수 */
         callback: (Map<String, String> result) async {
           log(result.toString(), name: "Callback Argument");
+
+          // result를 그대로 백엔드로 보내 response를 전달받는다.
           final res = await Dio().post(
             "$serverIp/sottie/certifications",
             data: jsonEncode(result),
@@ -54,11 +58,24 @@ class CertificationScreen extends StatelessWidget {
 
           log(res.toString(), name: "Response");
 
-          // isEmailLogin ? await deleteEmailUser(email, password) : null;
+          // 값 주입
+          signUpEntity.name = res.data['name'];
+          // signUpEntity.gender = Gender.values.byName(res.data['gender']);
+          signUpEntity.phoneNumber = res.data['phoneNumber'];
+          signUpEntity.identifier = res.data['identifier'];
+          signUpEntity.birthYear = res.data['birthYear'];
+          signUpEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
+
+          // 이메일로 회원가입 했다면 파이어베이스 이메일 내역을 삭제한다.
+          isEmailLogin
+              ? await deleteEmailUser(
+                  signUpEntity.email!,
+                  signUpEntity.password!,
+                )
+              : null;
 
           if (context.mounted) {
-            // Todo: 로그인 창 말고 회원가입 성공 화면 뜨게 하기
-            context.go(CustomRouter.authPath);
+            context.go(CustomRouter.verificationCompletePath);
           }
         },
       ),
