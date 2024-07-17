@@ -7,7 +7,7 @@ import 'package:sottie_flutter/domain/auth/auth_type.dart';
 Future<String?> signOut() async {
   String? errorCode;
 
-  switch (authEntity) {
+  switch (authType) {
     case AuthType.email:
       errorCode = await _signOutEmail();
       break;
@@ -30,7 +30,7 @@ Future<String?> signOut() async {
 
 Future<String?> _signOutEmail() async {
   // Todo: 백엔드로 이메일 유저 로그아웃
-  authEntity = null;
+  authType = null;
   return null;
 }
 
@@ -43,7 +43,7 @@ Future<String?> _signOutKakao() async {
     await UserApi.instance.unlink();
     log('카카오 로그아웃 성공, SDK에서 토큰 삭제');
 
-    authEntity = null;
+    authType = null;
     return null;
   } catch (_) {
     log('로그아웃 실패, SDK에서 토큰 삭제(?)');
@@ -57,7 +57,7 @@ Future<String?> _signOutGoogle() async {
     await GoogleSignIn().signOut();
     log('sign out google');
 
-    authEntity = null;
+    authType = null;
     return null;
   } on Exception catch (_) {
     log('sign out google failed');
@@ -68,6 +68,6 @@ Future<String?> _signOutGoogle() async {
 Future<String?> _signOutApple() async {
   // Todo: 애플 로그인 로그아웃 하는 코드
 
-  authEntity = null;
+  authType = null;
   return null;
 }

@@ -16,7 +16,7 @@ Future<String?> signInWithKakao() async {
       final user = await UserApi.instance.me();
       log(user.toString(), name: 'User Info');
 
-      authEntity = AuthType.kakao;
+      authType = AuthType.kakao;
       return null;
     } catch (error) {
       log('카카오톡으로 로그인 실패 $error');
@@ -34,7 +34,7 @@ Future<String?> signInWithKakao() async {
         final user = await UserApi.instance.me();
         log(user.toString(), name: 'User Info');
 
-        authEntity = AuthType.kakao;
+        authType = AuthType.kakao;
         return null;
       } catch (error) {
         log('카카오계정으로 로그인 실패 $error');
@@ -50,7 +50,7 @@ Future<String?> signInWithKakao() async {
       final user = await UserApi.instance.me();
       log(user.toString(), name: 'User Info');
 
-      authEntity = AuthType.kakao;
+      authType = AuthType.kakao;
       return null;
     } catch (error) {
       log('카카오계정으로 로그인 실패 $error');

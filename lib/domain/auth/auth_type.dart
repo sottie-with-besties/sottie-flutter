@@ -5,4 +5,4 @@ enum AuthType {
   apple,
 }
 
-AuthType? authEntity;
+AuthType? authType;

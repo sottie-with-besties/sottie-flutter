@@ -18,7 +18,7 @@ Future<String?> signInWithGoogle() async {
     log(googleAuth.accessToken!, name: "Access Token");
     log(googleUser!.email, name: "User Email");
 
-    authEntity = AuthType.google;
+    authType = AuthType.google;
 
     return null;
   } on Exception catch (_) {
