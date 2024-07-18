@@ -1,6 +1,6 @@
-import 'package:sottie_flutter/domain/find/classification_entity/model/category.dart';
-import 'package:sottie_flutter/domain/find/classification_entity/model/gender_restrictions.dart';
-import 'package:sottie_flutter/domain/find/classification_entity/model/location.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/category.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/gender_restrictions.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/location.dart';
 
 final class Classification {
   List<Category> category; // 분류

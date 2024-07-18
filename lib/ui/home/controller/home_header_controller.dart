@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sottie_flutter/domain/find/classification_entity/model/category.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/category.dart';
 
 part 'home_header_controller.g.dart';
 
