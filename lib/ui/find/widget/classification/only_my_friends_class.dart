@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/classification/model/classification.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/classification.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
 
 class OnlyMyFriendsClass extends StatefulWidget {
   const OnlyMyFriendsClass({
@@ -25,13 +26,7 @@ class _OnlyMyFriendsClassState extends State<OnlyMyFriendsClass> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              "내 친구만 입장",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
+            const ClassificationTitle(title: "내 친구만 입장"),
             Switch(
               activeColor: mainBrownColor,
               value: onlyMyFriends,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/data/classification/model/classification.dart';
-import 'package:sottie_flutter/data/classification/model/location.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/classification.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/location.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
 
 class LocationClass extends StatelessWidget {
   const LocationClass({
@@ -15,13 +16,7 @@ class LocationClass extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          "장소",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
+        const ClassificationTitle(title: "장소"),
         DropdownMenu(
             initialSelection: classification.location,
             onSelected: (location) => classification.location = location!,

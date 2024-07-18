@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sottie_flutter/data/classification/model/classification.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/classification.dart';
 
 class NumOfMemberClass extends StatelessWidget {
   const NumOfMemberClass({

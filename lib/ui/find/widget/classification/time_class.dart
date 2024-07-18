@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/data/classification/model/classification.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/classification.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
 
 class TimeClass extends StatefulWidget {
   const TimeClass({
@@ -22,13 +23,7 @@ class _TimeClassState extends State<TimeClass> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          "시간",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
+        const ClassificationTitle(title: "시간"),
         const SizedBox(
           width: 20,
         ),

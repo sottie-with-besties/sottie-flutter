@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/classification/model/classification.dart';
-import 'package:sottie_flutter/data/classification/model/gender_restrictions.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/classification.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/gender_restrictions.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/age_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/category_class.dart';

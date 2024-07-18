@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/data/classification/model/classification.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/classification.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
 
 class DateClass extends StatefulWidget {
   const DateClass({
@@ -22,13 +23,7 @@ class _DateClassState extends State<DateClass> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          "날짜",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
+        const ClassificationTitle(title: "날짜"),
         const SizedBox(
           width: 20,
         ),

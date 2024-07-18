@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:multi_dropdown/multiselect_dropdown.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/classification/model/category.dart';
-import 'package:sottie_flutter/data/classification/model/classification.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/category.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/classification.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
 
 class CategoryClass extends StatelessWidget {
   const CategoryClass({
@@ -17,13 +18,7 @@ class CategoryClass extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          "분류",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        const ClassificationTitle(title: "분류"),
         const SizedBox(
           width: 20,
         ),

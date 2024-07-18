@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/data/classification/model/category.dart';
 import 'package:sottie_flutter/data/find/model/find_feed_model.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/category.dart';
 import 'package:sottie_flutter/ui/find/widget/find_feed.dart';
 import 'package:sottie_flutter/ui/home/widget/event_page.dart';
 

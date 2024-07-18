@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/classification/model/classification.dart';
-import 'package:sottie_flutter/data/classification/model/gender_restrictions.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/classification.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/gender_restrictions.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
 
 class GenderClass extends StatelessWidget {
   const GenderClass({
@@ -16,13 +17,7 @@ class GenderClass extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          "성별",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
+        const ClassificationTitle(title: "성별"),
         const SizedBox(
           width: 20,
         ),

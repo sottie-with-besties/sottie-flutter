@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/classification/model/category.dart';
+import 'package:sottie_flutter/domain/find/classification_entity/model/category.dart';
 import 'package:sottie_flutter/ui/home/controller/home_header_controller.dart';
 
 class HomeHeader extends ConsumerWidget {
