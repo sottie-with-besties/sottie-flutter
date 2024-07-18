@@ -5,7 +5,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/find/classification_entity/classification.dart';
 import 'package:sottie_flutter/domain/find/classification_entity/gender_restrictions.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/age_class.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/age_range_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/category_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/date_class.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/gender_class.dart';
@@ -35,30 +35,20 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
 
   // 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
   void checkIfSettingHasError() {
-    if (classification.minNumOfMember > classification.maxNumOfMember &&
-        classification.maxNumOfMember != 0) {
-      checkList.add("최소 인원 수는 최대 인원 수 이하로 설정해주세요.");
-    }
-
-    if (classification.minAge > classification.maxAge &&
-        classification.maxAge != 0) {
-      checkList.add("최소 나이는 최대 나이 이하로 설정해주세요.");
+    if (classification.ageRange.isEmpty) {
+      checkList.add("나이 범위를 최소 하나 이상 설정해주세요.");
     }
 
     if (classification.date == null) {
       checkList.add("날짜 및 시간을 설정해주세요.");
     }
 
-    // startSameTime이 True일 때, maxNumOfMember가 제한이 있으면서 인원 수가 최대보다 크면 / 최소보다 작으면
-    if (classification.startSameTime &&
-        (classification.startNumOfMember < classification.minNumOfMember ||
-            (classification.startNumOfMember > classification.maxNumOfMember &&
-                classification.maxNumOfMember != 0))) {
-      checkList.add("채팅을 동시에 시작하기 위한 인원을 최소 인원 수 이상, 최대 인원 수 이하로 설정해주세요.");
+    if (classification.gender == GenderRestrictions.nobody) {
+      checkList.add("성별을 최소 하나 이상 선택해주세요.");
     }
 
-    if (classification.gender == GenderRestrictions.nobody) {
-      checkList.add("성별을 최소 하나 이상 설정해주세요.");
+    if (classification.category.isEmpty) {
+      checkList.add("카테고리를 최소 하나 이상 선택해주세요.");
     }
   }
 
@@ -83,26 +73,25 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               CategoryClass(classification: classification),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               LocationClass(classification: classification),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               DateClass(classification: classification),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               TimeClass(classification: classification),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               GenderClass(classification: classification),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               NumOfMemberClass(classification: classification),
-              const SizedBox(height: 15),
-              const Text("나이는 만 나이 기준입니다."),
+              const SizedBox(height: 20),
               AgeClass(classification: classification),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               MannerClass(classification: classification),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               StartSameTimeClass(classification: classification),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               OpenParticipationClass(classification: classification),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               OnlyMyFriendsClass(classification: classification),
               const SizedBox(height: 30),
               LocalTextField(
@@ -123,17 +112,11 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                   log(classification.location.toString(), name: "장소");
                   log(classification.date.toString(), name: "날짜 및 시간");
                   log(classification.gender.toString(), name: "성별");
-                  log(classification.minNumOfMember.toString(),
-                      name: "최소 인원 수");
-                  log(classification.maxNumOfMember.toString(),
-                      name: "최대 인원 수");
-                  log(classification.minAge.toString(), name: "최소 나이");
-                  log(classification.maxAge.toString(), name: "최대 나이");
+                  log(classification.numOfMember.toString(), name: "인원 수");
+                  log(classification.ageRange.toString(), name: "나이대");
                   log(classification.manner.toString(), name: "매너 온도");
                   log(classification.startSameTime.toString(),
                       name: "동시 채팅 시작");
-                  log(classification.startNumOfMember.toString(),
-                      name: "동시 몇명 시작");
                   log(classification.openParticipation.toString(),
                       name: "오픈 채팅");
                   log(classification.onlyMyFriends.toString(), name: "내 친구만");
@@ -162,7 +145,7 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                                     padding: const EdgeInsets.only(top: 32),
                                     child: Column(
                                       children: [
-                                        Text(
+                                        const Text(
                                           "설정을 다시 확인해주세요",
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,

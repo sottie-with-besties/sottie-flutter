@@ -11,7 +11,7 @@ class HomeHeader extends StatefulWidget {
 
 class _HomeHeaderState extends State<HomeHeader> {
   List<bool> selectedList = List<bool>.generate(
-    Category.values.length,
+    CategorySottie.values.length,
     (index) => index == 0 ? true : false,
   );
 
@@ -40,14 +40,14 @@ class _HomeHeaderState extends State<HomeHeader> {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: Category.values.length,
+        itemCount: CategorySottie.values.length,
         itemBuilder: (_, index) {
           return ChoiceChip(
             onSelected: (check) {
               _onSelected(index, check);
             },
             label: Text(
-              Category.values[index].name,
+              CategorySottie.values[index].name,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),

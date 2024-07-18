@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/find/classification_entity/classification.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
@@ -18,31 +17,6 @@ class StartSameTimeClass extends StatefulWidget {
 
 class _StartSameTimeClassState extends State<StartSameTimeClass> {
   bool startSameTime = false;
-  final textController = TextEditingController();
-  int startNumber = 0;
-
-  final formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-    textController.addListener(
-      () {
-        try {
-          startNumber = int.parse(textController.text);
-        } catch (e) {
-          startNumber = 0;
-        }
-        widget.classification.startNumOfMember = startNumber;
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,35 +37,9 @@ class _StartSameTimeClassState extends State<StartSameTimeClass> {
             ),
           ],
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 100,
-              child: Form(
-                autovalidateMode: AutovalidateMode.always,
-                key: formKey,
-                child: TextFormField(
-                  controller: textController,
-                  enabled: startSameTime,
-                  keyboardType: TextInputType.number,
-                  textAlign: TextAlign.center,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  validator: (val) {
-                    if (widget.classification.minNumOfMember > startNumber ||
-                        (widget.classification.maxNumOfMember != 0 &&
-                            widget.classification.maxNumOfMember <
-                                startNumber)) {
-                      return "최소 <= n <= 최대";
-                    }
-                    return null;
-                  },
-                ),
-              ),
-            ),
-            const Text("명이 모이면 채팅을 시작합니다.")
-          ],
-        )
+        const SizedBox(height: 10),
+        const Text(
+            "이 옵션을 설정하면 유저가 방에 들어오는 대로 채팅을 시작하는 것이 아닌, 설정한 인원 수 만큼 유저가 모이면 채팅이 동시에 시작됩니다."),
       ],
     );
   }

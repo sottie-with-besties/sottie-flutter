@@ -40,7 +40,7 @@ class _OpenParticipationClassState extends State<OpenParticipationClass> {
         ),
         const SizedBox(height: 10),
         const Text(
-            "오픈 채팅방으로 설정하여 입장 조건에 부합하는 유저가 상시 입장할 수 있습니다. 퇴장에 패널티를 부여하지 않습니다."),
+            "오픈 채팅방으로 설정하여 입장 조건에 부합하는 유저가 상시 입장할 수 있으며 퇴장에 패널티를 부여하지 않습니다. 모임 날짜와 관계 없이 채팅방이 유지됩니다."),
       ],
     );
   }

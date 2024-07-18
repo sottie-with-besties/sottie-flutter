@@ -22,66 +22,6 @@ class Sottie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final customTheme = ThemeData(
-      textTheme: GoogleFonts.nanumGothicTextTheme(),
-      scaffoldBackgroundColor: Colors.white,
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        // type: BottomNavigationBarType.fixed,
-        backgroundColor: mainSilverColor,
-        selectedItemColor: mainBrownColor,
-        unselectedItemColor: Colors.black45,
-        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-        showUnselectedLabels: true,
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: mainBrownColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          minimumSize: const Size(10, 55),
-        ),
-      ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          minimumSize: const Size(10, 50),
-        ),
-      ),
-      dropdownMenuTheme: DropdownMenuThemeData(
-        menuStyle: MenuStyle(
-          backgroundColor: WidgetStateProperty.resolveWith((state) {
-            return mainSilverColor;
-          }),
-        ),
-      ),
-      datePickerTheme: DatePickerThemeData(
-        backgroundColor: mainSilverColor,
-        dayShape: WidgetStateProperty.resolveWith((_) =>
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-        // 하이라이트된 날짜의 색을 바꾸는 것이나 코드 동작 안됨. 현재 보라색.
-        dayOverlayColor: WidgetStateProperty.resolveWith((_) => mainBrownColor),
-      ),
-      timePickerTheme: const TimePickerThemeData(
-        backgroundColor: mainSilverColor,
-      ),
-      sliderTheme: const SliderThemeData(
-        activeTrackColor: Colors.grey,
-        inactiveTrackColor: Colors.grey,
-        thumbColor: mainBrownColor,
-      ),
-      dialogBackgroundColor: mainSilverColor,
-      snackBarTheme: const SnackBarThemeData(
-        backgroundColor: mainBrownColor,
-        contentTextStyle: TextStyle(
-          color: mainSilverColor,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
     initSize(context);
 
     return ProviderScope(
@@ -89,7 +29,7 @@ class Sottie extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Sottie',
         routerConfig: CustomRouter.router,
-        theme: customTheme,
+        theme: _customTheme,
       ),
     );
   }
@@ -107,3 +47,75 @@ Future<void> _initSdks() async {
     javaScriptAppKey: javaScriptKey,
   );
 }
+
+final _customTheme = ThemeData(
+  textTheme: GoogleFonts.nanumGothicTextTheme(),
+  scaffoldBackgroundColor: Colors.white,
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    // type: BottomNavigationBarType.fixed,
+    backgroundColor: mainSilverColor,
+    selectedItemColor: mainBrownColor,
+    unselectedItemColor: Colors.black45,
+    selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+    showUnselectedLabels: true,
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: mainBrownColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      minimumSize: const Size(10, 55),
+    ),
+  ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      minimumSize: const Size(10, 50),
+    ),
+  ),
+  dropdownMenuTheme: DropdownMenuThemeData(
+    menuStyle: MenuStyle(
+      backgroundColor: WidgetStateProperty.resolveWith((state) {
+        return mainSilverColor;
+      }),
+    ),
+  ),
+  datePickerTheme: DatePickerThemeData(
+    backgroundColor: mainSilverColor,
+    dayShape: WidgetStateProperty.resolveWith(
+        (_) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+    // 하이라이트된 날짜의 색을 바꾸는 것이나 코드 동작 안됨. 현재 보라색.
+    dayOverlayColor: WidgetStateProperty.resolveWith((_) => mainBrownColor),
+  ),
+  timePickerTheme: const TimePickerThemeData(
+    backgroundColor: mainSilverColor,
+  ),
+  sliderTheme: const SliderThemeData(
+    activeTrackColor: mainBrownColor,
+    inactiveTrackColor: Colors.grey,
+    thumbColor: mainBrownColor,
+  ),
+  dialogBackgroundColor: mainSilverColor,
+  snackBarTheme: const SnackBarThemeData(
+    backgroundColor: mainBrownColor,
+    contentTextStyle: TextStyle(
+      color: mainSilverColor,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+  chipTheme: ChipThemeData(
+    selectedColor: mainBrownColor,
+    backgroundColor: mainSilverColor,
+    checkmarkColor: mainSilverColor,
+    shape: RoundedRectangleBorder(
+      side: const BorderSide(width: 0),
+      borderRadius: BorderRadius.circular(32),
+    ),
+    labelStyle: const TextStyle(
+      color: Colors.black,
+    ),
+  ),
+);

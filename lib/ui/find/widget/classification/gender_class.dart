@@ -18,9 +18,7 @@ class GenderClass extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const ClassificationTitle(title: "성별"),
-        const SizedBox(
-          width: 20,
-        ),
+        const SizedBox(width: 20),
         Expanded(
           child: SizedBox(
             child: Row(

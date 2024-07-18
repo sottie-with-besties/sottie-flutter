@@ -12,7 +12,7 @@ class HomeContentScreen extends StatelessWidget {
     final model = FindFeedModel(
       id: '123123',
       detailId: '3452623456',
-      category: Category.study.name,
+      category: CategorySottie.study.name,
       currentMemberCount: 2,
       maxMemberCount: 5,
       title: "플러터 스터디 모집",

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sottie_flutter/domain/find/classification_entity/classification.dart';
+import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
 
 class NumOfMemberClass extends StatelessWidget {
   const NumOfMemberClass({
@@ -12,19 +13,12 @@ class NumOfMemberClass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _NumOfMemberSelector(
-          tag: "최소 인원 수",
-          classification: classification,
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        _NumOfMemberSelector(
-          tag: "최대 인원 수",
-          classification: classification,
-        ),
+        const ClassificationTitle(title: "인원 수"),
+        const SizedBox(width: 20),
+        _NumOfMemberSelector(classification: classification),
       ],
     );
   }
@@ -32,11 +26,9 @@ class NumOfMemberClass extends StatelessWidget {
 
 class _NumOfMemberSelector extends StatefulWidget {
   const _NumOfMemberSelector({
-    required this.tag,
     required this.classification,
   });
 
-  final String tag;
   final Classification classification;
 
   @override
@@ -54,31 +46,40 @@ class _NumOfMemberSelectorState extends State<_NumOfMemberSelector> {
     }
   });
 
+  String focusVal = '';
+
   final controller = TextEditingController();
   final focusNode = FocusNode();
+
+  void _focusNodeListener() {
+    if (focusNode.hasFocus && focusVal != '직접 입력') {
+      focusNode.unfocus();
+    }
+  }
+
+  void _controllerListener() {
+    int num = 0;
+    if (controller.text == "제한 없음" ||
+        controller.text == "직접 입력" ||
+        controller.text == "") {
+      num = 0;
+    } else {
+      num = int.parse(controller.text);
+    }
+    widget.classification.numOfMember = num;
+  }
 
   @override
   void initState() {
     super.initState();
-    controller.addListener(() {
-      int num = 0;
-      if (controller.text == "제한 없음" ||
-          controller.text == "직접 입력" ||
-          controller.text == "") {
-        num = 0;
-      } else {
-        num = int.parse(controller.text);
-      }
-      if (widget.tag == "최소 인원 수") {
-        widget.classification.minNumOfMember = num;
-      } else {
-        widget.classification.maxNumOfMember = num;
-      }
-    });
+    focusNode.addListener(_focusNodeListener);
+    controller.addListener(_controllerListener);
   }
 
   @override
   void dispose() {
+    controller.removeListener(_controllerListener);
+    focusNode.removeListener(_focusNodeListener);
     controller.dispose();
     focusNode.dispose();
     super.dispose();
@@ -86,37 +87,27 @@ class _NumOfMemberSelectorState extends State<_NumOfMemberSelector> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          widget.tag,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-        DropdownMenu(
-          initialSelection: 0,
-          menuHeight: 200,
-          controller: controller,
-          focusNode: focusNode,
-          requestFocusOnTap: false,
-          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          dropdownMenuEntries: entries
-              .map((val) => DropdownMenuEntry(
-                  value: val == "제한 없음" ? 0 : val, label: val.toString()))
-              .toList(),
-          onSelected: (val) {
-            if (val == "직접 입력") {
-              controller.clear();
-              focusNode.requestFocus();
-            } else {
-              focusNode.unfocus();
-            }
-          },
-        ),
-      ],
+    return DropdownMenu(
+      initialSelection: 0,
+      menuHeight: 200,
+      controller: controller,
+      focusNode: focusNode,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      requestFocusOnTap: false,
+      dropdownMenuEntries: entries
+          .map((val) => DropdownMenuEntry(
+              value: val == "제한 없음" ? 0 : val, label: val.toString()))
+          .toList(),
+      onSelected: (val) {
+        focusVal = val.toString();
+        if (val == "직접 입력") {
+          controller.clear();
+          focusNode.requestFocus();
+        } else {
+          focusNode.unfocus();
+          widget.classification.numOfMember = int.parse(val.toString());
+        }
+      },
     );
   }
 }
