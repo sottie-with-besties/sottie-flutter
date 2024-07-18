@@ -4,7 +4,7 @@ import 'package:sottie_flutter/domain/find/classification_entity/location.dart';
 
 final class Classification {
   List<Category> category; // 분류
-  DateTime? date; // 시간도 포함, nonㄴ-null 타입으로 안됨
+  DateTime? date; // 시간도 포함, non-null 타입으로 안됨
   Location location; // 지역
   GenderRestrictions gender; // 성별 제한
   int minNumOfMember; // 최소 참여자 수 제한

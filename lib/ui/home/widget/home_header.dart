@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/find/classification_entity/category.dart';
-import 'package:sottie_flutter/ui/home/controller/home_header_controller.dart';
 
-class HomeHeader extends ConsumerWidget {
+class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final selectedList = ref.watch(homeHeaderControllerProvider);
+  State<HomeHeader> createState() => _HomeHeaderState();
+}
 
-    void onSelected(int index, bool check) {
-      final selectFunc = ref.read(homeHeaderControllerProvider.notifier);
-      index == 0
-          ? selectFunc.checkAll()
-          : selectFunc.checkAnyExceptAll(index, check);
+class _HomeHeaderState extends State<HomeHeader> {
+  List<bool> selectedList = List<bool>.generate(
+    Category.values.length,
+    (index) => index == 0 ? true : false,
+  );
+
+  // All을 체크하면 나머지 카테고리 체크 해제
+  void _checkAll() {
+    selectedList[0] = true;
+    for (int i = 1; i < selectedList.length; i++) {
+      selectedList[i] = false;
     }
+  }
 
+  // All이 아닌 나머지 카테고리 하나라도 체크되어 있으면 All 체크 해제
+  void _checkAnyExceptAll(int index, bool check) {
+    selectedList[0] = false;
+    selectedList[index] = check;
+  }
+
+  void _onSelected(int index, bool check) {
+    index == 0 ? _checkAll() : _checkAnyExceptAll(index, check);
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.separated(
@@ -26,7 +44,7 @@ class HomeHeader extends ConsumerWidget {
         itemBuilder: (_, index) {
           return ChoiceChip(
             onSelected: (check) {
-              onSelected(index, check);
+              _onSelected(index, check);
             },
             label: Text(
               Category.values[index].name,
