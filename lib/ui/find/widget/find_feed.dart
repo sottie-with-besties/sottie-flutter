@@ -5,6 +5,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/classification/model/category.dart';
 import 'package:sottie_flutter/data/find/model/find_feed_model.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class FindFeed extends StatelessWidget {
   const FindFeed({
@@ -25,7 +26,7 @@ class FindFeed extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Container(
-                height: 150,
+                height: 120 * hu,
                 padding: const EdgeInsets.all(12.0),
                 decoration: BoxDecoration(
                   border: Border.all(),
@@ -60,15 +61,14 @@ class FindFeed extends StatelessWidget {
                             border: Border.all(),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          width: 130,
-                          height: 80,
+                          width: 110 * wu,
+                          height: 70 * hu,
                           child: const Center(
                             child: Text("썸네일"),
                           ),
                         ),
                         SizedBox(
                           width: 190,
-                          height: 80,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -76,9 +76,9 @@ class FindFeed extends StatelessWidget {
                                 model.title,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16,
+                                  fontSize: 12 * hu,
                                 ),
                               ),
                               const SizedBox(
@@ -87,10 +87,16 @@ class FindFeed extends StatelessWidget {
                               Text(
                                 model.location,
                                 overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 11 * hu,
+                                ),
                               ),
                               Text(
                                 model.date,
                                 overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 11 * hu,
+                                ),
                               ),
                             ],
                           ),

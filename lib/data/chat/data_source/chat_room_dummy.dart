@@ -44,7 +44,7 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
       chatTitle: '주말 커피 모임',
       latestMsg: '주차 중입니다.',
       latestTime: '오후 2:50',
-      numOfMember: 6,
+      numOfMember: 1,
       notReadMsg: 50,
     ),
     ChatRoomModel(

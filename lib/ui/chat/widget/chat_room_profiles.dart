@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:random_avatar/random_avatar.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class ChatRoomProfiles extends StatelessWidget {
   const ChatRoomProfiles({
@@ -14,8 +15,7 @@ class ChatRoomProfiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
-      width: 100,
+      width: 80 * wu,
       child: Wrap(
         spacing: 5,
         runSpacing: 5,

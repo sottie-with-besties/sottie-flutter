@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 import '../../../core/constant/custom_colors.dart';
 
@@ -16,16 +17,16 @@ class ChatRoomSubInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const ts1 = TextStyle(
-      fontSize: 10,
-      color: Color(0x64000000),
+    final ts1 = TextStyle(
+      fontSize: 8 * hu,
+      color: const Color(0x64000000),
       fontWeight: FontWeight.bold,
     );
 
     final numOfMsg = notReadMsg > 999 ? '+999' : notReadMsg.toString();
 
     return SizedBox(
-      width: 60,
+      width: 50 * wu,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -36,12 +37,12 @@ class ChatRoomSubInfo extends StatelessWidget {
             children: [
               Text(
                 numOfMember.toString(),
-                style: const TextStyle(
-                  fontSize: 15,
+                style: TextStyle(
+                  fontSize: 12 * hu,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Text(
+              Text(
                 ' 명',
                 style: ts1,
               ),
@@ -65,15 +66,15 @@ class ChatRoomSubInfo extends StatelessWidget {
                   color: Colors.redAccent.withOpacity(0.8),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                width: 50,
-                height: 20,
+                width: 40 * wu,
+                height: 20 * hu,
                 child: Center(
                   child: Text(
                     numOfMsg,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: mainSilverColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 11,
+                      fontSize: 10 * hu,
                     ),
                   ),
                 ),

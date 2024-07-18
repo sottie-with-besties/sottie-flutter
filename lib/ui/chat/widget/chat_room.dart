@@ -4,6 +4,7 @@ import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_sub_info.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class ChatRoom extends StatelessWidget {
   const ChatRoom({
@@ -15,7 +16,7 @@ class ChatRoom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileSize = model.numOfMember < 2 ? 60.0 : 40.0;
+    final profileSize = model.numOfMember < 2 ? 45 * hu : 30 * hu;
     final profileCount = model.numOfMember > 4 ? 4 : model.numOfMember;
 
     return Material(
@@ -26,7 +27,7 @@ class ChatRoom extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(8),
-              height: 120,
+              height: 100 * hu,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

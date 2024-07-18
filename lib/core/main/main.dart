@@ -82,7 +82,7 @@ class Sottie extends StatelessWidget {
       ),
     );
 
-    ScreenSize.initSize(context);
+    initSize(context);
 
     return ProviderScope(
       child: MaterialApp.router(
