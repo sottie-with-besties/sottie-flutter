@@ -16,7 +16,7 @@ class MannerClass extends StatefulWidget {
 }
 
 class _MannerClassState extends State<MannerClass> {
-  int sliderValue = 3;
+  int sliderValue = 2;
   List<double> mannerPoint = <double>[0, 18.5, 36.5, 52.5, 70.5, 88.5, 100];
 
   String _renderMannerPointText() {

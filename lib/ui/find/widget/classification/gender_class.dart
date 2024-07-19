@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/find/classification_entity/classification.dart';
 import 'package:sottie_flutter/domain/find/classification_entity/gender_restrictions.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/find/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
 
-class GenderClass extends StatelessWidget {
+class GenderClass extends StatefulWidget {
   const GenderClass({
     super.key,
     required this.classification,
@@ -13,68 +17,96 @@ class GenderClass extends StatelessWidget {
   final Classification classification;
 
   @override
+  State<GenderClass> createState() => _GenderClassState();
+}
+
+class _GenderClassState extends State<GenderClass> {
+  @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    double animatedContainerHeight =
+        widget.classification.gender == GenderRestrictions.all ? 120 * hu : 0;
+
+    return Column(
       children: [
-        const ClassificationTitle(title: "성별"),
-        const SizedBox(width: 20),
-        Expanded(
-          child: SizedBox(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _GenderButton(
-                  gender: "남자",
-                  classificationCallback: () {
-                    switch (classification.gender) {
-                      case GenderRestrictions.all:
-                        classification.gender = GenderRestrictions.womanOnly;
-                        break;
-                      case GenderRestrictions.manOnly:
-                        classification.gender = GenderRestrictions.nobody;
-                        break;
-                      case GenderRestrictions.womanOnly:
-                        classification.gender = GenderRestrictions.all;
-                        break;
-                      case GenderRestrictions.nobody:
-                        classification.gender = GenderRestrictions.manOnly;
-                        break;
-                      default:
-                        classification.gender = GenderRestrictions.all;
-                        break;
-                    }
-                  },
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const ClassificationTitle(title: "성별"),
+            const SizedBox(width: 20),
+            Expanded(
+              child: SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _GenderButton(
+                      gender: "남자",
+                      classificationCallback: () {
+                        switch (widget.classification.gender) {
+                          case GenderRestrictions.all:
+                            widget.classification.gender =
+                                GenderRestrictions.womanOnly;
+                            break;
+                          case GenderRestrictions.manOnly:
+                            widget.classification.gender =
+                                GenderRestrictions.nobody;
+                            break;
+                          case GenderRestrictions.womanOnly:
+                            widget.classification.gender =
+                                GenderRestrictions.all;
+                            break;
+                          case GenderRestrictions.nobody:
+                            widget.classification.gender =
+                                GenderRestrictions.manOnly;
+                            break;
+                          default:
+                            widget.classification.gender =
+                                GenderRestrictions.all;
+                            break;
+                        }
+                        setState(() {});
+                      },
+                    ),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    _GenderButton(
+                      gender: "여자",
+                      classificationCallback: () {
+                        switch (widget.classification.gender) {
+                          case GenderRestrictions.all:
+                            widget.classification.gender =
+                                GenderRestrictions.manOnly;
+                            break;
+                          case GenderRestrictions.manOnly:
+                            widget.classification.gender =
+                                GenderRestrictions.all;
+                            break;
+                          case GenderRestrictions.womanOnly:
+                            widget.classification.gender =
+                                GenderRestrictions.nobody;
+                            break;
+                          case GenderRestrictions.nobody:
+                            widget.classification.gender =
+                                GenderRestrictions.womanOnly;
+                            break;
+                          default:
+                            widget.classification.gender =
+                                GenderRestrictions.all;
+                            break;
+                        }
+                        setState(() {});
+                      },
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  width: 50,
-                ),
-                _GenderButton(
-                  gender: "여자",
-                  classificationCallback: () {
-                    switch (classification.gender) {
-                      case GenderRestrictions.all:
-                        classification.gender = GenderRestrictions.manOnly;
-                        break;
-                      case GenderRestrictions.manOnly:
-                        classification.gender = GenderRestrictions.all;
-                        break;
-                      case GenderRestrictions.womanOnly:
-                        classification.gender = GenderRestrictions.nobody;
-                        break;
-                      case GenderRestrictions.nobody:
-                        classification.gender = GenderRestrictions.womanOnly;
-                        break;
-                      default:
-                        classification.gender = GenderRestrictions.all;
-                        break;
-                    }
-                  },
-                ),
-              ],
-            ),
-          ),
-        )
+              ),
+            )
+          ],
+        ),
+        _GenderRatio(
+          height: animatedContainerHeight,
+          classification: widget.classification,
+        ),
       ],
     );
   }
@@ -116,6 +148,169 @@ class _GenderButtonState extends State<_GenderButton> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _GenderRatio extends ConsumerStatefulWidget {
+  const _GenderRatio({
+    required this.classification,
+    required this.height,
+  });
+
+  final Classification classification;
+  final double height;
+
+  @override
+  ConsumerState<_GenderRatio> createState() => _GenderRatioState();
+}
+
+class _GenderRatioState extends ConsumerState<_GenderRatio> {
+  // 스위치 value
+  bool genderRestriction = true;
+
+  // 슬라이더 value
+  double value = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    // 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
+    ref.listen(numOfMemberProvider, (_, newState) {
+      if (value > newState) {
+        value = (newState / 2).floorToDouble();
+      }
+    });
+
+    // numOfMember의 값이 바뀌면 슬라이더도 바뀜
+    final refNumOfMember = ref.watch(numOfMemberProvider);
+    refNumOfMember == 0 ? genderRestriction = true : null;
+    widget.classification.noGenderRatio = genderRestriction;
+    widget.classification.numOfMan = value.toInt();
+    widget.classification.numOfWoman = (refNumOfMember - value).toInt();
+
+    return Row(
+      children: [
+        Expanded(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeOutCubic,
+            height: widget.height,
+            padding: EdgeInsets.only(top: 12 * hu),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const ClassificationTitle(title: '성비 제한 없음'),
+                      Switch(
+                          activeColor: mainBrownColor,
+                          value: genderRestriction,
+                          onChanged: (val) {
+                            genderRestriction = val;
+                            widget.classification.noGenderRatio =
+                                genderRestriction;
+                            setState(() {});
+                          }),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      // Todo: 현재 유져의 성별에 따라 min값 max값 설정하기
+                      // Todo: ex) 현재 유저가 남성이면 min값 1, 여자면 max를 refNumOfMember - 1로
+                      Slider(
+                          value: genderRestriction ? 0 : value,
+                          max: refNumOfMember.toDouble(),
+                          divisions: genderRestriction ? 1 : refNumOfMember,
+                          activeColor: !genderRestriction
+                              ? Colors.blueAccent
+                              : Colors.grey,
+                          inactiveColor: !genderRestriction
+                              ? Colors.redAccent
+                              : Colors.grey,
+                          thumbColor:
+                              !genderRestriction ? mainBrownColor : Colors.grey,
+                          onChanged: (val) {
+                            if (!genderRestriction) {
+                              value = val;
+                              widget.classification.numOfMan = value.toInt();
+                              widget.classification.numOfWoman =
+                                  (refNumOfMember - value).toInt();
+                              setState(() {});
+                            }
+                          }),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: SizedBox(
+                                child: Text(
+                                  "남자 ${value.toInt()}",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    if (value < refNumOfMember) {
+                                      value++;
+                                      setState(() {});
+                                    }
+                                  },
+                                  child: const FaIcon(
+                                    FontAwesomeIcons.plus,
+                                    color: Colors.blueAccent,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 70 * wu,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    if (value > 0) {
+                                      value--;
+                                      setState(() {});
+                                    }
+                                  },
+                                  child: const FaIcon(
+                                    FontAwesomeIcons.plus,
+                                    color: Colors.redAccent,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Expanded(
+                              child: SizedBox(
+                                child: Text(
+                                  "${(refNumOfMember - value).toInt()} 여자",
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

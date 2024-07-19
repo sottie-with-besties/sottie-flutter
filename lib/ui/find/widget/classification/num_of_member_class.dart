@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/domain/find/classification_entity/classification.dart';
+import 'package:sottie_flutter/ui/find/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
 
 class NumOfMemberClass extends StatelessWidget {
   const NumOfMemberClass({
     super.key,
     required this.classification,
+    required this.focusNode,
   });
 
   final Classification classification;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -18,24 +22,28 @@ class NumOfMemberClass extends StatelessWidget {
       children: [
         const ClassificationTitle(title: "인원 수"),
         const SizedBox(width: 20),
-        _NumOfMemberSelector(classification: classification),
+        _NumOfMemberSelector(
+            classification: classification, focusNode: focusNode),
       ],
     );
   }
 }
 
-class _NumOfMemberSelector extends StatefulWidget {
+class _NumOfMemberSelector extends ConsumerStatefulWidget {
   const _NumOfMemberSelector({
     required this.classification,
+    required this.focusNode,
   });
 
   final Classification classification;
+  final FocusNode focusNode;
 
   @override
-  State<_NumOfMemberSelector> createState() => _NumOfMemberSelectorState();
+  ConsumerState<_NumOfMemberSelector> createState() =>
+      _NumOfMemberSelectorState();
 }
 
-class _NumOfMemberSelectorState extends State<_NumOfMemberSelector> {
+class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
   final entries = List.generate(12, (index) {
     if (index == 0) {
       return "제한 없음";
@@ -49,11 +57,10 @@ class _NumOfMemberSelectorState extends State<_NumOfMemberSelector> {
   String focusVal = '';
 
   final controller = TextEditingController();
-  final focusNode = FocusNode();
 
   void _focusNodeListener() {
-    if (focusNode.hasFocus && focusVal != '직접 입력') {
-      focusNode.unfocus();
+    if (focusVal != '직접 입력') {
+      widget.focusNode.unfocus();
     }
   }
 
@@ -64,24 +71,32 @@ class _NumOfMemberSelectorState extends State<_NumOfMemberSelector> {
         controller.text == "") {
       num = 0;
     } else {
-      num = int.parse(controller.text);
+      try {
+        num = int.parse(controller.text);
+      } on Exception catch (_) {
+        // 사용자가 직접입력에 숫자를 마구 넣으면 int의 max값 초과 에러가 발생함
+        num = double.maxFinite.toInt();
+        controller.text = num.toString();
+      }
     }
     widget.classification.numOfMember = num;
+    ref.read(numOfMemberProvider.notifier).changeNumOfMember(num);
   }
 
   @override
   void initState() {
     super.initState();
-    focusNode.addListener(_focusNodeListener);
-    controller.addListener(_controllerListener);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.focusNode.addListener(_focusNodeListener);
+      controller.addListener(_controllerListener);
+    });
   }
 
   @override
   void dispose() {
     controller.removeListener(_controllerListener);
-    focusNode.removeListener(_focusNodeListener);
+    widget.focusNode.removeListener(_focusNodeListener);
     controller.dispose();
-    focusNode.dispose();
     super.dispose();
   }
 
@@ -91,9 +106,8 @@ class _NumOfMemberSelectorState extends State<_NumOfMemberSelector> {
       initialSelection: 0,
       menuHeight: 200,
       controller: controller,
-      focusNode: focusNode,
+      focusNode: widget.focusNode,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-      requestFocusOnTap: false,
       dropdownMenuEntries: entries
           .map((val) => DropdownMenuEntry(
               value: val == "제한 없음" ? 0 : val, label: val.toString()))
@@ -102,10 +116,13 @@ class _NumOfMemberSelectorState extends State<_NumOfMemberSelector> {
         focusVal = val.toString();
         if (val == "직접 입력") {
           controller.clear();
-          focusNode.requestFocus();
+          widget.focusNode.requestFocus();
         } else {
-          focusNode.unfocus();
+          widget.focusNode.unfocus();
           widget.classification.numOfMember = int.parse(val.toString());
+          ref
+              .read(numOfMemberProvider.notifier)
+              .changeNumOfMember(widget.classification.numOfMember);
         }
       },
     );
