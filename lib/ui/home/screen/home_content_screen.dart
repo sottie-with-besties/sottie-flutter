@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/data/find/model/find_feed_model.dart';
-import 'package:sottie_flutter/domain/find/classification_entity/category.dart';
-import 'package:sottie_flutter/ui/find/widget/find_feed.dart';
+import 'package:sottie_flutter/data/post/model/post_model.dart';
+import 'package:sottie_flutter/domain/post/classification_entity/category.dart';
+import 'package:sottie_flutter/ui/find/widget/post.dart';
 import 'package:sottie_flutter/ui/home/widget/event_page.dart';
 
 class HomeContentScreen extends StatelessWidget {
@@ -9,7 +9,7 @@ class HomeContentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = FindFeedModel(
+    final model = PostModel(
       id: '123123',
       detailId: '3452623456',
       category: CategorySottie.study.name,
@@ -30,35 +30,35 @@ class HomeContentScreen extends StatelessWidget {
           height: 30,
         ),
         _subTitle("# 인기 TOP 5"),
-        FindFeed(
+        Post(
           model: model,
         ),
-        FindFeed(
+        Post(
           model: model,
         ),
-        FindFeed(
+        Post(
           model: model,
         ),
-        FindFeed(
+        Post(
           model: model,
         ),
-        FindFeed(
+        Post(
           model: model,
         ),
         _subTitle("# 추천합니다"),
-        FindFeed(
+        Post(
           model: model,
         ),
-        FindFeed(
+        Post(
           model: model,
         ),
-        FindFeed(
+        Post(
           model: model,
         ),
-        FindFeed(
+        Post(
           model: model,
         ),
-        FindFeed(
+        Post(
           model: model,
         ),
       ],

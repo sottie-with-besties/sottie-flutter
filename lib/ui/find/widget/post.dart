@@ -3,17 +3,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/find/model/find_feed_model.dart';
-import 'package:sottie_flutter/domain/find/classification_entity/category.dart';
+import 'package:sottie_flutter/data/post/model/post_model.dart';
+import 'package:sottie_flutter/domain/post/classification_entity/category.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
-class FindFeed extends StatelessWidget {
-  const FindFeed({
+class Post extends StatelessWidget {
+  const Post({
     super.key,
     required this.model,
   });
 
-  final FindFeedModel model;
+  final PostModel model;
 
   @override
   Widget build(BuildContext context) {

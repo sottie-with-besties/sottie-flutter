@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/find/classification_entity/classification.dart';
+import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
 import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
 
 class TimeClass extends StatefulWidget {

@@ -1,9 +1,9 @@
-import '../model/find_feed_model.dart';
+import '../model/post_model.dart';
 
-Future<List<FindFeedModel>> getFindFeedDummy() async {
+Future<List<PostModel>> getPostDummy() async {
   await Future.delayed(const Duration(seconds: 1), null);
   return [
-    FindFeedModel(
+    PostModel(
       id: "1122138979809798",
       detailId: "11534613461346",
       category: "공부",
@@ -13,7 +13,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "수원시 성균관대역",
       date: "2024년 7월 3일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809799",
       detailId: "11534613461347",
       category: "운동",
@@ -23,7 +23,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "서울시 남산",
       date: "2024년 7월 4일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809800",
       detailId: "11534613461348",
       category: "음악",
@@ -33,7 +33,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "부산시 해운대",
       date: "2024년 7월 5일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809801",
       detailId: "11534613461349",
       category: "공부",
@@ -43,7 +43,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "대전시 서구",
       date: "2024년 7월 6일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809802",
       detailId: "11534613461350",
       category: "운동",
@@ -53,7 +53,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "서울시 강남구",
       date: "2024년 7월 7일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809803",
       detailId: "11534613461351",
       category: "음악",
@@ -63,7 +63,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "대구시 중구",
       date: "2024년 7월 8일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809804",
       detailId: "11534613461352",
       category: "공부",
@@ -73,7 +73,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "광주시 북구",
       date: "2024년 7월 9일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809805",
       detailId: "11534613461353",
       category: "운동",
@@ -83,7 +83,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "서울시 서초구",
       date: "2024년 7월 10일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809806",
       detailId: "11534613461354",
       category: "음악",
@@ -93,7 +93,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "인천시 연수구",
       date: "2024년 7월 11일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809807",
       detailId: "11534613461355",
       category: "공부",
@@ -103,7 +103,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "전주시 완산구",
       date: "2024년 7월 12일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809808",
       detailId: "11534613461356",
       category: "운동",
@@ -113,7 +113,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "서울시 성북구",
       date: "2024년 7월 13일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809809",
       detailId: "11534613461357",
       category: "음악",
@@ -123,7 +123,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "대구시 수성구",
       date: "2024년 7월 14일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809810",
       detailId: "11534613461358",
       category: "공부",
@@ -133,7 +133,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "울산시 남구",
       date: "2024년 7월 15일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809811",
       detailId: "11534613461359",
       category: "운동",
@@ -143,7 +143,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "부산시 남구",
       date: "2024년 7월 16일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809812",
       detailId: "11534613461360",
       category: "음악",
@@ -153,7 +153,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "서울시 마포구",
       date: "2024년 7월 17일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809813",
       detailId: "11534613461361",
       category: "공부",
@@ -163,7 +163,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "부산시 해운대구",
       date: "2024년 7월 18일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809814",
       detailId: "11534613461362",
       category: "운동",
@@ -173,7 +173,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "서울시 송파구",
       date: "2024년 7월 19일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809815",
       detailId: "11534613461363",
       category: "음악",
@@ -183,7 +183,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "대전시 유성구",
       date: "2024년 7월 20일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809816",
       detailId: "11534613461364",
       category: "공부",
@@ -193,7 +193,7 @@ Future<List<FindFeedModel>> getFindFeedDummy() async {
       location: "경주시",
       date: "2024년 7월 21일",
     ),
-    FindFeedModel(
+    PostModel(
       id: "1122138979809817",
       detailId: "11534613461365",
       category: "운동",

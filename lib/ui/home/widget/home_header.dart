@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/find/classification_entity/category.dart';
+import 'package:sottie_flutter/domain/post/classification_entity/category.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});

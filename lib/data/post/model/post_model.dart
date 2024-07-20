@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'find_feed_model.freezed.dart';
-part 'find_feed_model.g.dart';
+part 'post_model.freezed.dart';
+part 'post_model.g.dart';
 
 @freezed
-class FindFeedModel with _$FindFeedModel {
-  factory FindFeedModel({
+class PostModel with _$PostModel {
+  factory PostModel({
     required String id,
     required String detailId,
     required String category,
@@ -16,6 +16,6 @@ class FindFeedModel with _$FindFeedModel {
     required String date,
   }) = _FindFeedModel;
 
-  factory FindFeedModel.fromJson(Map<String, dynamic> json) =>
-      _$FindFeedModelFromJson(json);
+  factory PostModel.fromJson(Map<String, dynamic> json) =>
+      _$PostModelFromJson(json);
 }

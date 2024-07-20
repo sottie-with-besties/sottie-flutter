@@ -1,7 +1,7 @@
-import 'package:sottie_flutter/domain/find/classification_entity/age_range.dart';
-import 'package:sottie_flutter/domain/find/classification_entity/category.dart';
-import 'package:sottie_flutter/domain/find/classification_entity/gender_restrictions.dart';
-import 'package:sottie_flutter/domain/find/classification_entity/location.dart';
+import 'package:sottie_flutter/domain/post/classification_entity/age_range.dart';
+import 'package:sottie_flutter/domain/post/classification_entity/category.dart';
+import 'package:sottie_flutter/domain/post/classification_entity/gender_restrictions.dart';
+import 'package:sottie_flutter/domain/post/classification_entity/location.dart';
 
 final class Classification {
   List<CategorySottie> category; // 분류
