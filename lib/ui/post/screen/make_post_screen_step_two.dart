@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
 import 'package:sottie_flutter/domain/post/classification_entity/gender_restrictions.dart';
-import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/category_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/date_class.dart';
@@ -17,20 +16,16 @@ import 'package:sottie_flutter/ui/post/widget/classification/open_participation_
 import 'package:sottie_flutter/ui/post/widget/classification/start_same_time_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/time_class.dart';
 
-class MakePostScreen extends StatefulWidget {
-  const MakePostScreen({super.key});
+class MakePostScreenStepTwo extends StatefulWidget {
+  const MakePostScreenStepTwo({super.key});
 
   @override
-  State<MakePostScreen> createState() => _MakePostScreenState();
+  State<MakePostScreenStepTwo> createState() => _MakePostScreenStepTwoState();
 }
 
-class _MakePostScreenState extends State<MakePostScreen> {
-  Classification classification = Classification();
-
-  final titleController = TextEditingController();
-  final contentController = TextEditingController();
-
+class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
   final FocusNode focusNode = FocusNode();
+  Classification classification = Classification();
 
   // 설정이 이상 없는 지 확인, 에러 내용을 String으로 담아둠
   List<String> checkList = <String>[];
@@ -56,8 +51,6 @@ class _MakePostScreenState extends State<MakePostScreen> {
 
   @override
   void dispose() {
-    titleController.dispose();
-    contentController.dispose();
     focusNode.dispose();
     super.dispose();
   }
@@ -65,11 +58,15 @@ class _MakePostScreenState extends State<MakePostScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: focusNode.unfocus,
+      onTap: () {},
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.white,
+          title: const Text(
+            "환경 설정",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(32.0),
@@ -99,18 +96,6 @@ class _MakePostScreenState extends State<MakePostScreen> {
                 OpenParticipationClass(classification: classification),
                 const SizedBox(height: 20),
                 OnlyMyFriendsClass(classification: classification),
-                const SizedBox(height: 30),
-                LocalTextField(
-                  hint: "제목",
-                  prefixIcon: false,
-                  controller: titleController,
-                ),
-                LocalTextField(
-                  prefixIcon: false,
-                  hint: "내용을 입력하세요.",
-                  lines: 12,
-                  controller: contentController,
-                ),
                 const SizedBox(height: 80),
                 ElevatedButton(
                   onPressed: () {
@@ -198,8 +183,9 @@ class _MakePostScreenState extends State<MakePostScreen> {
                                 child: const Text(
                                   "생성",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: mainSilverColor),
+                                    fontWeight: FontWeight.bold,
+                                    color: mainSilverColor,
+                                  ),
                                 ),
                               ),
                             ],
@@ -209,14 +195,14 @@ class _MakePostScreenState extends State<MakePostScreen> {
                     );
                   },
                   child: const Text(
-                    "모집글 생성",
+                    "다음 2/3",
                     style: TextStyle(
                       color: mainSilverColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

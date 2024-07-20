@@ -112,7 +112,7 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
             InkWell(
               borderRadius: BorderRadius.circular(5),
               onTap: () async {
-                await context.push(CustomRouter.makeFindFeedPath);
+                await context.push(CustomRouter.makePostStepOnePath);
               },
               child: const FaIcon(
                 FontAwesomeIcons.plus,

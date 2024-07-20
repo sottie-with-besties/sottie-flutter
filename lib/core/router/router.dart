@@ -10,7 +10,8 @@ import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
-import 'package:sottie_flutter/ui/post/screen/make_post_screen.dart';
+import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_one.dart';
+import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_two.dart';
 import 'package:sottie_flutter/ui/post/screen/post_detail_screen.dart';
 
 sealed class CustomRouter {
@@ -33,8 +34,11 @@ sealed class CustomRouter {
   static const dmPath = "/dm";
   static const morePath = "/more";
 
-  // Make Find Feed Screen
-  static const makeFindFeedPath = "/makeFindFeed";
+  // Make Post Screen
+  static const makePostStepOnePath = "/makePostStepOne";
+  static const makePostStepTwoPath = "makePostStepTwo";
+  static const makePostStepThreePath =
+      "makePostStepThree"; // post detail screen
 
   // Find Detail Screen
   static const findDetailPath = "/findDetail";
@@ -111,9 +115,14 @@ final _routes = [
     ],
   ),
   GoRoute(
-    path: CustomRouter.makeFindFeedPath,
-    builder: (context, state) => const MakePostScreen(),
-  ),
+      path: CustomRouter.makePostStepOnePath,
+      builder: (context, state) => const MakePostScreenStepOne(),
+      routes: <GoRoute>[
+        GoRoute(
+          path: CustomRouter.makePostStepTwoPath,
+          builder: (context, state) => const MakePostScreenStepTwo(),
+        )
+      ]),
   GoRoute(
     path: CustomRouter.findDetailPath,
     builder: (context, state) => const PostDetailScreen(),
