@@ -9,7 +9,7 @@ final class Classification {
   Location location; // 지역
   int numOfMember; // (최대) 참여자 수 제한
   GenderRestrictions gender; // 성별 제한
-  bool noGenderRatio; // 성비 제한 없음 스위치
+  bool genderRatio; // 성비 제한 없음 스위치
   int numOfMan; // 성별 제한이 있을 경우의 남자 수;
   int numOfWoman; // 성별 제한이 있을 경우의 여자 수;
   List<AgeRangeSottie> ageRange;
@@ -24,7 +24,7 @@ final class Classification {
     this.location = Location.seoul,
     this.numOfMember = 0, // 0 => 최대 참여자 수 상관 없음
     this.gender = GenderRestrictions.all, // all => 성별 상관 없음
-    this.noGenderRatio = true,
+    this.genderRatio = false,
     this.numOfMan = 0,
     this.numOfWoman = 0,
     this.ageRange = const [],

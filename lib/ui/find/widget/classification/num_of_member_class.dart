@@ -71,11 +71,10 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
         controller.text == "") {
       num = 0;
     } else {
-      try {
-        num = int.parse(controller.text);
-      } on Exception catch (_) {
-        // 사용자가 직접입력에 숫자를 마구 넣으면 int의 max값 초과 에러가 발생함
-        num = double.maxFinite.toInt();
+      num = int.parse(controller.text);
+      // 사용자가 직접입력에 숫자를 int의 max값 보다 크게 넣으면 에러가 발생. 1000000을 최댓값으로 설정
+      if (num > 1000000) {
+        num = 1000000;
         controller.text = num.toString();
       }
     }

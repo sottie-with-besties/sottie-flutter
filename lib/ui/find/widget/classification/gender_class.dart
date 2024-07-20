@@ -183,8 +183,8 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
 
     // numOfMember의 값이 바뀌면 슬라이더도 바뀜
     final refNumOfMember = ref.watch(numOfMemberProvider);
-    refNumOfMember == 0 ? genderRestriction = true : null;
-    widget.classification.noGenderRatio = genderRestriction;
+    refNumOfMember == 0 ? genderRestriction = false : null;
+    widget.classification.genderRatio = genderRestriction;
     widget.classification.numOfMan = value.toInt();
     widget.classification.numOfWoman = (refNumOfMember - value).toInt();
 
@@ -202,13 +202,13 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const ClassificationTitle(title: '성비 제한 없음'),
+                      const ClassificationTitle(title: '성비 제한'),
                       Switch(
                           activeColor: mainBrownColor,
                           value: genderRestriction,
                           onChanged: (val) {
                             genderRestriction = val;
-                            widget.classification.noGenderRatio =
+                            widget.classification.genderRatio =
                                 genderRestriction;
                             setState(() {});
                           }),
@@ -219,19 +219,19 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                       // Todo: 현재 유져의 성별에 따라 min값 max값 설정하기
                       // Todo: ex) 현재 유저가 남성이면 min값 1, 여자면 max를 refNumOfMember - 1로
                       Slider(
-                          value: genderRestriction ? 0 : value,
+                          value: genderRestriction ? value : 0,
                           max: refNumOfMember.toDouble(),
-                          divisions: genderRestriction ? 1 : refNumOfMember,
-                          activeColor: !genderRestriction
+                          divisions: genderRestriction ? refNumOfMember : 1,
+                          activeColor: genderRestriction
                               ? Colors.blueAccent
                               : Colors.grey,
-                          inactiveColor: !genderRestriction
+                          inactiveColor: genderRestriction
                               ? Colors.redAccent
                               : Colors.grey,
                           thumbColor:
-                              !genderRestriction ? mainBrownColor : Colors.grey,
+                              genderRestriction ? mainBrownColor : Colors.grey,
                           onChanged: (val) {
-                            if (!genderRestriction) {
+                            if (genderRestriction) {
                               value = val;
                               widget.classification.numOfMan = value.toInt();
                               widget.classification.numOfWoman =
@@ -271,7 +271,7 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 70 * wu,
+                                  width: 80 * wu,
                                 ),
                                 InkWell(
                                   onTap: () {

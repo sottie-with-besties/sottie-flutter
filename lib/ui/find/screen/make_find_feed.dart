@@ -118,7 +118,7 @@ class _MakeFindFeedState extends State<MakeFindFeed> {
                     log(classification.location.toString(), name: "장소");
                     log(classification.date.toString(), name: "날짜 및 시간");
                     log(classification.gender.toString(), name: "성별");
-                    log(classification.noGenderRatio.toString(), name: "성비");
+                    log(classification.genderRatio.toString(), name: "성비");
                     log(classification.numOfMan.toString(), name: "남자 수");
                     log(classification.numOfWoman.toString(), name: "여자 수");
                     log(classification.numOfMember.toString(), name: "인원 수");
