@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class MannerClass extends StatefulWidget {
-  const MannerClass({
-    super.key,
-    required this.classification,
-  });
-
-  final Classification classification;
+  const MannerClass({super.key});
 
   @override
   State<MannerClass> createState() => _MannerClassState();
@@ -45,7 +40,7 @@ class _MannerClassState extends State<MannerClass> {
                 value: sliderValue.toDouble(),
                 onChanged: (val) {
                   sliderValue = val.toInt();
-                  widget.classification.manner = mannerPoint[sliderValue];
+                  makePostDetailEntity.manner = mannerPoint[sliderValue];
                   setState(() {});
                 },
               ),

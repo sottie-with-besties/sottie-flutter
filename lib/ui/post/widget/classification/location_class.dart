@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/location.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/location.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class LocationClass extends StatelessWidget {
   const LocationClass({
     super.key,
-    required this.classification,
   });
-
-  final Classification classification;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +15,8 @@ class LocationClass extends StatelessWidget {
       children: [
         const ClassificationTitle(title: "장소"),
         DropdownMenu(
-            initialSelection: classification.location,
-            onSelected: (location) => classification.location = location!,
+            initialSelection: makePostDetailEntity.location,
+            onSelected: (location) => makePostDetailEntity.location = location!,
             dropdownMenuEntries: Location.values.map((location) {
               return DropdownMenuEntry(value: location, label: location.name);
             }).toList()),

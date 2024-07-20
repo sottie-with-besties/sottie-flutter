@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/gender_restrictions.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/category_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/date_class.dart';
@@ -25,26 +25,25 @@ class MakePostScreenStepTwo extends StatefulWidget {
 
 class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
   final FocusNode focusNode = FocusNode();
-  Classification classification = Classification();
 
   // 설정이 이상 없는 지 확인, 에러 내용을 String으로 담아둠
   List<String> checkList = <String>[];
 
   // 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
   void checkIfSettingHasError() {
-    if (classification.ageRange.isEmpty) {
+    if (makePostDetailEntity.ageRange.isEmpty) {
       checkList.add("나이 범위를 최소 하나 이상 설정해주세요.");
     }
 
-    if (classification.date == null) {
+    if (makePostDetailEntity.date == null) {
       checkList.add("날짜 및 시간을 설정해주세요.");
     }
 
-    if (classification.gender == GenderRestrictions.nobody) {
+    if (makePostDetailEntity.gender == GenderRestrictions.nobody) {
       checkList.add("성별을 최소 하나 이상 선택해주세요.");
     }
 
-    if (classification.category.isEmpty) {
+    if (makePostDetailEntity.category.isEmpty) {
       checkList.add("카테고리를 최소 하나 이상 선택해주세요.");
     }
   }
@@ -74,46 +73,31 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                CategoryClass(classification: classification),
+                const CategoryClass(),
                 const SizedBox(height: 20),
-                LocationClass(classification: classification),
+                const LocationClass(),
                 const SizedBox(height: 20),
-                DateClass(classification: classification),
+                const DateClass(),
                 const SizedBox(height: 20),
-                TimeClass(classification: classification),
+                const TimeClass(),
                 const SizedBox(height: 20),
-                NumOfMemberClass(
-                    classification: classification, focusNode: focusNode),
+                NumOfMemberClass(focusNode: focusNode),
                 const SizedBox(height: 20),
-                GenderClass(classification: classification),
+                const GenderClass(),
                 const SizedBox(height: 20),
-                AgeClass(classification: classification),
+                const AgeClass(),
                 const SizedBox(height: 20),
-                MannerClass(classification: classification),
+                const MannerClass(),
                 const SizedBox(height: 20),
-                StartSameTimeClass(classification: classification),
+                const StartSameTimeClass(),
                 const SizedBox(height: 20),
-                OpenParticipationClass(classification: classification),
+                const OpenParticipationClass(),
                 const SizedBox(height: 20),
-                OnlyMyFriendsClass(classification: classification),
+                const OnlyMyFriendsClass(),
                 const SizedBox(height: 80),
                 ElevatedButton(
                   onPressed: () {
-                    log(classification.category.toString(), name: "분류");
-                    log(classification.location.toString(), name: "장소");
-                    log(classification.date.toString(), name: "날짜 및 시간");
-                    log(classification.gender.toString(), name: "성별");
-                    log(classification.genderRatio.toString(), name: "성비");
-                    log(classification.numOfMan.toString(), name: "남자 수");
-                    log(classification.numOfWoman.toString(), name: "여자 수");
-                    log(classification.numOfMember.toString(), name: "인원 수");
-                    log(classification.ageRange.toString(), name: "나이대");
-                    log(classification.manner.toString(), name: "매너 온도");
-                    log(classification.startSameTime.toString(),
-                        name: "동시 채팅 시작");
-                    log(classification.openParticipation.toString(),
-                        name: "오픈 채팅");
-                    log(classification.onlyMyFriends.toString(), name: "내 친구만");
+                    log(makePostDetailEntity.toString(), name: "엔티티");
 
                     checkList.clear();
                     checkIfSettingHasError();

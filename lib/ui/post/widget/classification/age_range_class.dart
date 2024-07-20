@@ -1,34 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/age_range.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/age_range.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class AgeClass extends StatelessWidget {
-  const AgeClass({
-    super.key,
-    required this.classification,
-  });
-
-  final Classification classification;
+  const AgeClass({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
-        const ClassificationTitle(title: '나이'),
-        const SizedBox(width: 30),
-        _AgeRange(classification: classification),
+        ClassificationTitle(title: '나이'),
+        SizedBox(width: 30),
+        _AgeRange(),
       ],
     );
   }
 }
 
 class _AgeRange extends StatefulWidget {
-  const _AgeRange({
-    required this.classification,
-  });
-
-  final Classification classification;
+  const _AgeRange();
 
   @override
   State<_AgeRange> createState() => _AgeRangeState();
@@ -54,7 +45,7 @@ class _AgeRangeState extends State<_AgeRange> {
             onSelected: (onSelected) {
               selectedList[age.index] = onSelected;
               onSelected ? tempList.add(age) : tempList.remove(age);
-              widget.classification.ageRange = tempList;
+              makePostDetailEntity.ageRange = tempList;
               setState(() {});
             },
           );

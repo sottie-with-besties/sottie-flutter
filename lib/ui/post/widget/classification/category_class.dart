@@ -1,35 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/category.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class CategoryClass extends StatelessWidget {
   const CategoryClass({
     super.key,
-    required this.classification,
   });
-
-  final Classification classification;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const ClassificationTitle(title: "분류"),
-        const SizedBox(width: 30),
-        _CategoryButtons(classification: classification),
+        ClassificationTitle(title: "분류"),
+        SizedBox(width: 30),
+        _CategoryButtons(),
       ],
     );
   }
 }
 
 class _CategoryButtons extends StatefulWidget {
-  const _CategoryButtons({
-    required this.classification,
-  });
-
-  final Classification classification;
+  const _CategoryButtons();
 
   @override
   State<_CategoryButtons> createState() => _CategoryButtonsState();
@@ -57,7 +50,7 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
             onSelected: (onSelected) {
               selectedList[category.index] = onSelected;
               onSelected ? tempList.add(category) : tempList.remove(category);
-              widget.classification.category = tempList;
+              makePostDetailEntity.category = tempList;
               setState(() {});
             },
           );

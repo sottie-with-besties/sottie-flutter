@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/category.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class Post extends StatelessWidget {

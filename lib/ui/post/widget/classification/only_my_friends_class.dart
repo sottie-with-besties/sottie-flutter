@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class OnlyMyFriendsClass extends StatefulWidget {
-  const OnlyMyFriendsClass({
-    super.key,
-    required this.classification,
-  });
-
-  final Classification classification;
+  const OnlyMyFriendsClass({super.key});
 
   @override
   State<OnlyMyFriendsClass> createState() => _OnlyMyFriendsClassState();
@@ -32,7 +27,7 @@ class _OnlyMyFriendsClassState extends State<OnlyMyFriendsClass> {
               value: onlyMyFriends,
               onChanged: (val) {
                 onlyMyFriends = val;
-                widget.classification.onlyMyFriends = onlyMyFriends;
+                makePostDetailEntity.onlyMyFriends = onlyMyFriends;
                 setState(() {});
               },
             ),

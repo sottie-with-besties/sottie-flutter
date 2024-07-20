@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
 class MakePostScreenStepOne extends StatefulWidget {
@@ -66,8 +67,10 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
               const SizedBox(height: 80),
               ElevatedButton(
                 onPressed: () {
-                  log(titleController.text, name: "제목");
-                  log(contentController.text, name: "내용");
+                  makePostDetailEntity.title = titleController.text;
+                  makePostDetailEntity.content = contentController.text;
+                  log(makePostDetailEntity.title, name: "제목");
+                  log(makePostDetailEntity.content, name: "내용");
                   context.push(
                       '${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}');
                 },

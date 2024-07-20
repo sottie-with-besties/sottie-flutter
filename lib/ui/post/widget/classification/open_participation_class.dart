@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class OpenParticipationClass extends StatefulWidget {
-  const OpenParticipationClass({
-    super.key,
-    required this.classification,
-  });
-
-  final Classification classification;
+  const OpenParticipationClass({super.key});
 
   @override
   State<OpenParticipationClass> createState() => _OpenParticipationClassState();
@@ -32,7 +27,7 @@ class _OpenParticipationClassState extends State<OpenParticipationClass> {
               value: openParticipation,
               onChanged: (val) {
                 openParticipation = val;
-                widget.classification.openParticipation = openParticipation;
+                makePostDetailEntity.openParticipation = openParticipation;
                 setState(() {});
               },
             ),

@@ -1,9 +1,12 @@
-import 'package:sottie_flutter/domain/post/classification_entity/age_range.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/category.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/gender_restrictions.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/location.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/age_range.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/location.dart';
 
-final class Classification {
+final class PostDetailModel {
+  String id;
+  String title;
+  String content;
   List<CategorySottie> category; // 분류
   DateTime? date; // 시간도 포함, non-null 타입으로 안됨
   Location location; // 지역
@@ -18,7 +21,10 @@ final class Classification {
   bool openParticipation; // 채팅방이 생성된 후에도 도중에 누군가 들어올 수 있음.
   bool onlyMyFriends; // 내 친구만 들어올 수 있음
 
-  Classification({
+  PostDetailModel({
+    this.id = '',
+    this.title = '',
+    this.content = '',
     this.category = const [],
     this.date, // date와 time은 null로 못받게 프론트에서 예외 처리
     this.location = Location.seoul,

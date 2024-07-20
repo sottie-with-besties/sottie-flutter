@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class TimeClass extends StatefulWidget {
-  const TimeClass({
-    super.key,
-    required this.classification,
-  });
-
-  final Classification classification;
+  const TimeClass({super.key});
 
   @override
   State<TimeClass> createState() => _TimeClassState();
@@ -42,8 +37,8 @@ class _TimeClassState extends State<TimeClass> {
 
               selectedTime = tempTime;
 
-              widget.classification.date =
-                  (widget.classification.date ?? DateTime.now()).copyWith(
+              makePostDetailEntity.date =
+                  (makePostDetailEntity.date ?? DateTime.now()).copyWith(
                 hour: selectedTime.hour,
                 minute: selectedTime.minute,
               );

@@ -2,19 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/gender_restrictions.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class GenderClass extends StatefulWidget {
-  const GenderClass({
-    super.key,
-    required this.classification,
-  });
-
-  final Classification classification;
+  const GenderClass({super.key});
 
   @override
   State<GenderClass> createState() => _GenderClassState();
@@ -24,7 +19,7 @@ class _GenderClassState extends State<GenderClass> {
   @override
   Widget build(BuildContext context) {
     double animatedContainerHeight =
-        widget.classification.gender == GenderRestrictions.all ? 120 * hu : 0;
+        makePostDetailEntity.gender == GenderRestrictions.all ? 120 * hu : 0;
 
     return Column(
       children: [
@@ -41,25 +36,25 @@ class _GenderClassState extends State<GenderClass> {
                     _GenderButton(
                       gender: "남자",
                       classificationCallback: () {
-                        switch (widget.classification.gender) {
+                        switch (makePostDetailEntity.gender) {
                           case GenderRestrictions.all:
-                            widget.classification.gender =
+                            makePostDetailEntity.gender =
                                 GenderRestrictions.womanOnly;
                             break;
                           case GenderRestrictions.manOnly:
-                            widget.classification.gender =
+                            makePostDetailEntity.gender =
                                 GenderRestrictions.nobody;
                             break;
                           case GenderRestrictions.womanOnly:
-                            widget.classification.gender =
+                            makePostDetailEntity.gender =
                                 GenderRestrictions.all;
                             break;
                           case GenderRestrictions.nobody:
-                            widget.classification.gender =
+                            makePostDetailEntity.gender =
                                 GenderRestrictions.manOnly;
                             break;
                           default:
-                            widget.classification.gender =
+                            makePostDetailEntity.gender =
                                 GenderRestrictions.all;
                             break;
                         }
@@ -72,25 +67,25 @@ class _GenderClassState extends State<GenderClass> {
                     _GenderButton(
                       gender: "여자",
                       classificationCallback: () {
-                        switch (widget.classification.gender) {
+                        switch (makePostDetailEntity.gender) {
                           case GenderRestrictions.all:
-                            widget.classification.gender =
+                            makePostDetailEntity.gender =
                                 GenderRestrictions.manOnly;
                             break;
                           case GenderRestrictions.manOnly:
-                            widget.classification.gender =
+                            makePostDetailEntity.gender =
                                 GenderRestrictions.all;
                             break;
                           case GenderRestrictions.womanOnly:
-                            widget.classification.gender =
+                            makePostDetailEntity.gender =
                                 GenderRestrictions.nobody;
                             break;
                           case GenderRestrictions.nobody:
-                            widget.classification.gender =
+                            makePostDetailEntity.gender =
                                 GenderRestrictions.womanOnly;
                             break;
                           default:
-                            widget.classification.gender =
+                            makePostDetailEntity.gender =
                                 GenderRestrictions.all;
                             break;
                         }
@@ -103,10 +98,7 @@ class _GenderClassState extends State<GenderClass> {
             )
           ],
         ),
-        _GenderRatio(
-          height: animatedContainerHeight,
-          classification: widget.classification,
-        ),
+        _GenderRatio(height: animatedContainerHeight),
       ],
     );
   }
@@ -154,11 +146,9 @@ class _GenderButtonState extends State<_GenderButton> {
 
 class _GenderRatio extends ConsumerStatefulWidget {
   const _GenderRatio({
-    required this.classification,
     required this.height,
   });
 
-  final Classification classification;
   final double height;
 
   @override
@@ -184,9 +174,9 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
     // numOfMember의 값이 바뀌면 슬라이더도 바뀜
     final refNumOfMember = ref.watch(numOfMemberProvider);
     refNumOfMember == 0 ? genderRestriction = false : null;
-    widget.classification.genderRatio = genderRestriction;
-    widget.classification.numOfMan = value.toInt();
-    widget.classification.numOfWoman = (refNumOfMember - value).toInt();
+    makePostDetailEntity.genderRatio = genderRestriction;
+    makePostDetailEntity.numOfMan = value.toInt();
+    makePostDetailEntity.numOfWoman = (refNumOfMember - value).toInt();
 
     return Row(
       children: [
@@ -208,7 +198,7 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                           value: genderRestriction,
                           onChanged: (val) {
                             genderRestriction = val;
-                            widget.classification.genderRatio =
+                            makePostDetailEntity.genderRatio =
                                 genderRestriction;
                             setState(() {});
                           }),
@@ -233,8 +223,8 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                           onChanged: (val) {
                             if (genderRestriction) {
                               value = val;
-                              widget.classification.numOfMan = value.toInt();
-                              widget.classification.numOfWoman =
+                              makePostDetailEntity.numOfMan = value.toInt();
+                              makePostDetailEntity.numOfWoman =
                                   (refNumOfMember - value).toInt();
                               setState(() {});
                             }

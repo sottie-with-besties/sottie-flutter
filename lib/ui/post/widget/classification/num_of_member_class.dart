@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class NumOfMemberClass extends StatelessWidget {
   const NumOfMemberClass({
     super.key,
-    required this.classification,
     required this.focusNode,
   });
 
-  final Classification classification;
   final FocusNode focusNode;
 
   @override
@@ -22,8 +20,7 @@ class NumOfMemberClass extends StatelessWidget {
       children: [
         const ClassificationTitle(title: "인원 수"),
         const SizedBox(width: 20),
-        _NumOfMemberSelector(
-            classification: classification, focusNode: focusNode),
+        _NumOfMemberSelector(focusNode: focusNode),
       ],
     );
   }
@@ -31,11 +28,9 @@ class NumOfMemberClass extends StatelessWidget {
 
 class _NumOfMemberSelector extends ConsumerStatefulWidget {
   const _NumOfMemberSelector({
-    required this.classification,
     required this.focusNode,
   });
 
-  final Classification classification;
   final FocusNode focusNode;
 
   @override
@@ -78,7 +73,7 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
         controller.text = num.toString();
       }
     }
-    widget.classification.numOfMember = num;
+    makePostDetailEntity.numOfMember = num;
     ref.read(numOfMemberProvider.notifier).changeNumOfMember(num);
   }
 
@@ -118,10 +113,10 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
           widget.focusNode.requestFocus();
         } else {
           widget.focusNode.unfocus();
-          widget.classification.numOfMember = int.parse(val.toString());
+          makePostDetailEntity.numOfMember = int.parse(val.toString());
           ref
               .read(numOfMemberProvider.notifier)
-              .changeNumOfMember(widget.classification.numOfMember);
+              .changeNumOfMember(makePostDetailEntity.numOfMember);
         }
       },
     );

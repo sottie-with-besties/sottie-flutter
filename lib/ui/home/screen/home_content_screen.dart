@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/category.dart';
 import 'package:sottie_flutter/ui/home/widget/event_page.dart';
 import 'package:sottie_flutter/ui/post/widget/post.dart';
 

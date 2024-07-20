@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class StartSameTimeClass extends StatefulWidget {
-  const StartSameTimeClass({
-    super.key,
-    required this.classification,
-  });
-
-  final Classification classification;
+  const StartSameTimeClass({super.key});
 
   @override
   State<StartSameTimeClass> createState() => _StartSameTimeClassState();
@@ -31,7 +26,7 @@ class _StartSameTimeClassState extends State<StartSameTimeClass> {
               value: startSameTime,
               onChanged: (val) {
                 startSameTime = val;
-                widget.classification.startSameTime = startSameTime;
+                makePostDetailEntity.startSameTime = startSameTime;
                 setState(() {});
               },
             ),
