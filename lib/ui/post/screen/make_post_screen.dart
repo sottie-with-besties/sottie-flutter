@@ -5,26 +5,26 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
 import 'package:sottie_flutter/domain/post/classification_entity/gender_restrictions.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/age_range_class.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/category_class.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/date_class.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/gender_class.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/location_class.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/manner_class.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/num_of_member_class.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/only_my_friends_class.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/open_participation_class.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/start_same_time_class.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/time_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/category_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/date_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/gender_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/location_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/manner_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/num_of_member_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/only_my_friends_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/open_participation_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/start_same_time_class.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/time_class.dart';
 
-class MakeFindFeed extends StatefulWidget {
-  const MakeFindFeed({super.key});
+class MakePostScreen extends StatefulWidget {
+  const MakePostScreen({super.key});
 
   @override
-  State<MakeFindFeed> createState() => _MakeFindFeedState();
+  State<MakePostScreen> createState() => _MakePostScreenState();
 }
 
-class _MakeFindFeedState extends State<MakeFindFeed> {
+class _MakePostScreenState extends State<MakePostScreen> {
   Classification classification = Classification();
 
   final titleController = TextEditingController();

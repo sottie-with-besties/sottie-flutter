@@ -5,8 +5,8 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
 import 'package:sottie_flutter/domain/post/classification_entity/gender_restrictions.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/find/controller/num_of_member.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class GenderClass extends StatefulWidget {
   const GenderClass({

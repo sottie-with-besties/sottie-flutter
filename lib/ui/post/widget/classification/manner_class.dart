@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class MannerClass extends StatefulWidget {
   const MannerClass({

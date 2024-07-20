@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/classification_entity/classification.dart';
-import 'package:sottie_flutter/ui/find/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class StartSameTimeClass extends StatefulWidget {
   const StartSameTimeClass({

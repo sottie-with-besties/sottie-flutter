@@ -8,10 +8,10 @@ import 'package:sottie_flutter/ui/auth/screen/verification_complete_screen.dart'
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
-import 'package:sottie_flutter/ui/find/screen/make_post.dart';
-import 'package:sottie_flutter/ui/find/screen/post_detail_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
+import 'package:sottie_flutter/ui/post/screen/make_post_screen.dart';
+import 'package:sottie_flutter/ui/post/screen/post_detail_screen.dart';
 
 sealed class CustomRouter {
   static final router = GoRouter(
@@ -112,10 +112,10 @@ final _routes = [
   ),
   GoRoute(
     path: CustomRouter.makeFindFeedPath,
-    builder: (context, state) => const MakeFindFeed(),
+    builder: (context, state) => const MakePostScreen(),
   ),
   GoRoute(
     path: CustomRouter.findDetailPath,
-    builder: (context, state) => const FindDetailScreen(),
+    builder: (context, state) => const PostDetailScreen(),
   ),
 ];

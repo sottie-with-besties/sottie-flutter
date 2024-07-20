@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 
-class FindDetailScreen extends StatefulWidget {
-  const FindDetailScreen({super.key});
+class PostDetailScreen extends StatefulWidget {
+  const PostDetailScreen({super.key});
 
   @override
-  State<FindDetailScreen> createState() => _FindDetailScreenState();
+  State<PostDetailScreen> createState() => _PostDetailScreenState();
 }
 
-class _FindDetailScreenState extends State<FindDetailScreen> {
+class _PostDetailScreenState extends State<PostDetailScreen> {
   final controller = PageController();
 
   // 더미
