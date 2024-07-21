@@ -20,6 +20,19 @@ class SignUpEntityModel {
     this.birthYear = '',
     this.phoneAuthenticated = false,
   });
+
+  toJson() {
+    return {
+      'name': name,
+      'email': email,
+      'nickName': nickName,
+      'password': password,
+      'phoneNumber': phoneNumber,
+      'identifier': identifier,
+      'birthYear': birthYear,
+      'phoneAuthenticated': phoneAuthenticated,
+    };
+  }
 }
 
 enum Gender {

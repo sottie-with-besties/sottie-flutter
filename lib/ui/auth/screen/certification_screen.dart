@@ -60,7 +60,7 @@ class CertificationScreen extends StatelessWidget {
 
           // 값 주입
           signUpEntity.name = res.data['name'];
-          // signUpEntity.gender = Gender.values.byName(res.data['gender']);
+          // signUpEntity.gender = Gender.values.byName(res.data['gender']); 성별은 잠시 제외하겠습니다
           signUpEntity.phoneNumber = res.data['phoneNumber'];
           signUpEntity.identifier = res.data['identifier'];
           signUpEntity.birthYear = res.data['birthYear'];
@@ -73,6 +73,12 @@ class CertificationScreen extends StatelessWidget {
                   signUpEntity.password!,
                 )
               : null;
+
+          // Todo: 최종 정보를 다시 보내는 코드 => api, 헤더 및 데이터 재확인, 성별 잠시 제외
+          await Dio().post(
+            "$serverIp/sottie/certifications",
+            data: jsonEncode(signUpEntity.toJson()),
+          );
 
           if (context.mounted) {
             context.go(CustomRouter.verificationCompletePath);
