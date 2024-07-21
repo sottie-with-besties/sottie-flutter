@@ -9,7 +9,7 @@ class LocalTextField extends StatelessWidget {
     this.hint,
     this.focusNode,
     this.prefixIcon = true,
-    this.suffixIcon = false,
+    this.suffixIcon,
     this.controller,
     this.inputFormatter,
     this.lines = 1,
@@ -18,7 +18,7 @@ class LocalTextField extends StatelessWidget {
   final String? hint;
   final FocusNode? focusNode;
   final bool prefixIcon;
-  final bool suffixIcon;
+  final Widget? suffixIcon;
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormatter;
   final int? lines;
@@ -59,15 +59,7 @@ class LocalTextField extends StatelessWidget {
                   ),
                 )
               : null,
-          suffixIcon: suffixIcon
-              ? const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  child: FaIcon(
-                    FontAwesomeIcons.bars,
-                    color: Colors.black,
-                  ),
-                )
-              : null,
+          suffixIcon: suffixIcon,
         ),
       ),
     );

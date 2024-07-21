@@ -22,14 +22,13 @@ void showCustomDialog(BuildContext context, Widget customChild) {
           actions: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey,
                 minimumSize: const Size(100, 50),
               ),
               onPressed: () {
                 Navigator.pop(context);
               },
               child: const Text(
-                "취소",
+                "확인",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: mainSilverColor,

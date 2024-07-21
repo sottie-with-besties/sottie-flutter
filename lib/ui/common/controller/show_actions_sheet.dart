@@ -6,6 +6,7 @@ void bottomSheet(BuildContext context, Widget screen) {
     context: context,
     clipBehavior: Clip.hardEdge,
     barrierColor: mainBrownColor,
+    backgroundColor: mainSilverColor,
     isScrollControlled: true,
     useSafeArea: true,
     showDragHandle: true,
