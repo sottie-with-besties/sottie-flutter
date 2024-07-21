@@ -1,9 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
 import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/category_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/date_class.dart';
@@ -57,7 +60,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: focusNode.unfocus,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -97,86 +100,37 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                 const SizedBox(height: 80),
                 ElevatedButton(
                   onPressed: () {
-                    log(makePostDetailEntity.toString(), name: "엔티티");
-
                     checkList.clear();
                     checkIfSettingHasError();
-                    log(checkList.toString());
 
-                    showGeneralDialog(
-                      context: context,
-                      pageBuilder: (context, a1, a2) => Container(),
-                      transitionDuration: const Duration(milliseconds: 200),
-                      transitionBuilder: (context, a1, a2, child) {
-                        return ScaleTransition(
-                          scale: a1,
-                          child: AlertDialog(
-                            scrollable: true,
-                            content: SizedBox(
-                              width: 300,
-                              height: 400,
-                              child: checkList.isEmpty
-                                  ? const Center(
-                                      child: Text("에러가 없으므로 모집글 완성본 미리보여주기"),
-                                    )
-                                  : Padding(
-                                      padding: const EdgeInsets.only(top: 32),
-                                      child: Column(
-                                        children: [
-                                          const Text(
-                                            "설정을 다시 확인해주세요",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20,
-                                            ),
-                                          ),
-                                          ...checkList.map((errorString) {
-                                            return Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 32,
-                                                      horizontal: 16),
-                                              child: Text(errorString),
-                                            );
-                                          }),
-                                        ],
-                                      ),
-                                    ),
-                            ),
-                            actions: [
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.grey,
-                                  minimumSize: const Size(100, 50),
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text(
-                                  "취소",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: mainSilverColor),
-                                ),
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(100, 50),
-                                ),
-                                onPressed: () {},
-                                child: const Text(
-                                  "생성",
+                    checkList.isEmpty
+                        ? context.push(CustomRouter.findDetailPath, extra: [
+                            '모집글 생성',
+                            () {
+                              log("모집글 생성");
+                            }
+                          ])
+                        : showCustomDialog(
+                            context,
+                            Column(
+                              children: [
+                                const Text(
+                                  "설정을 다시 확인해주세요",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: mainSilverColor,
+                                    fontSize: 20,
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
+                                ...checkList.map((errorString) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 32, horizontal: 16),
+                                    child: Text(errorString),
+                                  );
+                                }),
+                              ],
+                            ),
+                          );
                   },
                   child: const Text(
                     "다음 2/3",

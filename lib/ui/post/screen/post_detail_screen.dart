@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class PostDetailScreen extends StatefulWidget {
-  const PostDetailScreen({super.key});
+  const PostDetailScreen({
+    super.key,
+    required this.buttonTitle,
+    required this.onPressed,
+  });
+
+  final String buttonTitle;
+  final VoidCallback onPressed;
 
   @override
   State<PostDetailScreen> createState() => _PostDetailScreenState();
@@ -44,11 +53,11 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "플러터 스터디 모집",
+              Text(
+                makePostDetailEntity.title,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
@@ -59,7 +68,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               Column(
                 children: [
                   SizedBox(
-                    height: 300,
+                    height: 250 * hu,
                     child: PageView.builder(
                       controller: controller,
                       itemBuilder: (_, index) {
@@ -82,23 +91,27 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               const SizedBox(
                 height: 30,
               ),
-              const Text(
-                "앱 개발 최고의 프레임워크, 플러터를 공부하실 분들을 모집합니다! 저희는 매우 편안하고 친절한 분위기를 유지하고 목표달성을 위해 열심히 정진합니다!",
-                style: TextStyle(
+              Text(
+                makePostDetailEntity.content,
+                style: const TextStyle(
                   fontSize: 14,
                 ),
               ),
               const SizedBox(
+                height: 50,
+              ),
+              SizedBox(
                 height: 180,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("참여 인원: 2/5"),
-                    Text("날짜: 2024년 7월 7일 오후 2:00"),
-                    Text("장소: 수원시 성균관대역"),
-                    Text("나이: 성인"),
-                    Text("매너온도: 36.5도 이상"),
+                    Text("참여 인원: ${makePostDetailEntity.numOfMember}"),
+                    Text(
+                        "날짜: ${makePostDetailEntity.date == null ? "날짜 정보 없음" : makePostDetailEntity.date!.toString()}"),
+                    Text("장소: ${makePostDetailEntity.location.name}"),
+                    Text("나이: ${makePostDetailEntity.ageRange.toString()}"),
+                    Text("매너온도: ${makePostDetailEntity.manner}도 이상"),
                   ],
                 ),
               ),
@@ -115,10 +128,10 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                         backgroundColor: mainBrownColor,
                         minimumSize: const Size(100, 65),
                       ),
-                      onPressed: () {},
-                      child: const Text(
-                        "참여하기",
-                        style: TextStyle(
+                      onPressed: widget.onPressed,
+                      child: Text(
+                        widget.buttonTitle,
+                        style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                           color: mainSilverColor,

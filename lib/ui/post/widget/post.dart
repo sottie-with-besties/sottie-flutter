@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +22,12 @@ class Post extends StatelessWidget {
     return Material(
       color: mainSilverColor,
       child: InkWell(
-        onTap: () => context.push(CustomRouter.findDetailPath),
+        onTap: () => context.push(CustomRouter.findDetailPath, extra: [
+          '참여하기',
+          () {
+            log("참여하기 버튼");
+          },
+        ]),
         child: Column(
           children: [
             Padding(

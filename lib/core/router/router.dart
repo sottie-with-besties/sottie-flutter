@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
@@ -37,8 +39,6 @@ sealed class CustomRouter {
   // Make Post Screen
   static const makePostStepOnePath = "/makePostStepOne";
   static const makePostStepTwoPath = "makePostStepTwo";
-  static const makePostStepThreePath =
-      "makePostStepThree"; // post detail screen
 
   // Find Detail Screen
   static const findDetailPath = "/findDetail";
@@ -125,6 +125,11 @@ final _routes = [
       ]),
   GoRoute(
     path: CustomRouter.findDetailPath,
-    builder: (context, state) => const PostDetailScreen(),
+    builder: (context, state) {
+      final params = state.extra as List<dynamic>;
+      String buttonTitle = params[0] as String;
+      VoidCallback onPressed = params[1] as VoidCallback;
+      return PostDetailScreen(buttonTitle: buttonTitle, onPressed: onPressed);
+    },
   ),
 ];
