@@ -24,7 +24,7 @@ class _DmContentScreenState extends State<DmContentScreen> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: dmList,
-      builder: (context, snapshot) {
+      builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingSkeleton();
         } else if (!snapshot.hasData) {

@@ -8,6 +8,7 @@ void bottomSheet(BuildContext context, Widget screen) {
     barrierColor: mainBrownColor,
     isScrollControlled: true,
     useSafeArea: true,
+    showDragHandle: true,
     builder: (context) {
       return Container(
         width: MediaQuery.of(context).size.width,

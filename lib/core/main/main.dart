@@ -22,7 +22,9 @@ class Sottie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    initSize(context);
+    // 단위 길이 초기화
+    wu = MediaQuery.of(context).size.width / 320;
+    hu = MediaQuery.of(context).size.height / 690;
 
     return ProviderScope(
       child: MaterialApp.router(
