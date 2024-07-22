@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:random_avatar/random_avatar.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class FriendInfo extends StatelessWidget {
   const FriendInfo({
@@ -15,52 +14,28 @@ class FriendInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150.w,
-      height: 100.h,
+      width: 180 * wu,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: 150.w,
-                    child: Text(
-                      overflow: TextOverflow.ellipsis,
-                      friendName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.sp,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: 150.w,
-                    child: Text(
-                      overflow: TextOverflow.ellipsis,
-                      stateMsg,
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0x84000000),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+          Text(
+            overflow: TextOverflow.ellipsis,
+            friendName,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
+          SizedBox(height: 5 * hu),
+          Text(
+            overflow: TextOverflow.ellipsis,
+            stateMsg,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Color(0x84000000),
+            ),
           ),
         ],
       ),
