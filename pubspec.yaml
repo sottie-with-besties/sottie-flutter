@@ -37,13 +37,14 @@ dependencies:
   cupertino_icons: ^1.0.6
 
   # UI
-  flutter_screenutil: # 해상도에 따른 반응형 UI
   font_awesome_flutter: # 아이콘
   google_fonts: # 구글 폰트
   random_avatar:
   auth_button_kit:
   pinput: # 이메일, 전화번호 인증
   flutter_slidable:
+  smooth_page_indicator: # 홈 스크린 이벤트
+  skeletonizer: # 로딩 스켈레톤
 
   # Riverpod
   flutter_riverpod:
@@ -67,6 +68,14 @@ dependencies:
 
   # 파이어베이스
   firebase_core:
+  firebase_auth: # 이메일 인증, 핸드폰 번호 인증용
+
+  # Json Serialization
+  freezed_annotation:
+  json_annotation:
+
+  # 기타 유틸리티
+  easy_debounce:
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +93,10 @@ dev_dependencies:
 
   # Riverpod
   riverpod_generator:
+
+  # Json Serialization
+  freezed:
+  json_serializable:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

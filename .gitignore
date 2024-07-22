@@ -45,3 +45,4 @@ app.*.map.json
 
 # Auto-Generated Files
 *.g.dart
+*.freezed.dart

@@ -3,8 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/domain/auth/phone_verification.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
+import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 class FindPasswordScreen extends StatefulWidget {
   const FindPasswordScreen({super.key});
@@ -15,61 +17,97 @@ class FindPasswordScreen extends StatefulWidget {
 
 class _FindPasswordScreenState extends State<FindPasswordScreen> {
   int currentStep = 0;
-  String confirmPw = '';
+  String password = '';
 
-  final phonenumberKey = GlobalKey<FormState>();
+  String? phoneNumber = '';
+  String? verificationCode = '';
+
+  bool isNextLoading = false;
+  bool isCancelLoading = false;
+
+  final phoneNumberKey = GlobalKey<FormState>();
   final passwordKey = GlobalKey<FormState>();
 
-  StepState setStepState(int step) {
+  final loadingCircle = const Center(
+    child: CircularProgressIndicator(
+      color: mainSilverColor,
+    ),
+  );
+
+  bool _anyButtonLoading() {
+    return isNextLoading || isCancelLoading;
+  }
+
+  StepState _setStepState(int step) {
     return currentStep > step ? StepState.complete : StepState.disabled;
   }
 
-  void onStepTapped(step) {
+  void _onStepTapped(step) {
     setState(() {
       currentStep = step;
     });
   }
 
-  void onStepContinue() {
+  void _onStepContinue() async {
+    isNextLoading = true;
+    setState(() {});
+
     if (currentStep == 0) {
-      phonenumberKey.currentState!.validate() ? currentStep += 1 : null;
-      // Todo: 서버에서 이메일 인증코드 보내야함
+      if (phoneNumberKey.currentState!.validate()) {
+        final errorCode = await signInWithPhoneNumber(phoneNumber!);
+        if (errorCode == null) {
+          currentStep += 1;
+          setState(() {});
+        } else {
+          if (mounted) showSnackBar(context, errorCode);
+        }
+      }
     } else if (currentStep == 1) {
-      currentStep += 1;
-      // Todo: 서버에서 보낸 인증코드와 비교하여 분기 처리
-    } else if (currentStep == 2) {
-      passwordKey.currentState!.validate() ? currentStep += 1 : null;
-      // Todo: 비밀번호 재설정 후 데이터 서버 전송
+      final errorCode = await signInWithSmsCode(verificationCode!);
+      if (errorCode == null) {
+        currentStep += 1;
+        setState(() {});
+      } else {
+        if (mounted) showSnackBar(context, errorCode);
+      }
     }
+    isNextLoading = false;
     setState(() {});
   }
 
-  void onStepCancle() {
+  void _onStepCancel() async {
     if (currentStep == 0) {
       context.pop();
+    } else if (currentStep == 2) {
+      isCancelLoading = true;
+      setState(() {});
+      await deletePhoneUser(phoneNumber!);
+      currentStep -= 1;
+      isCancelLoading = false;
+      setState(() {});
     } else {
-      setState(() {
-        currentStep -= 1;
-      });
+      currentStep -= 1;
+      setState(() {});
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Stepper(
           elevation: 1,
           type: StepperType.horizontal,
           currentStep: currentStep,
-          onStepTapped: onStepTapped,
-          onStepContinue: onStepContinue,
-          onStepCancel: onStepCancle,
+          onStepTapped: _onStepTapped,
+          onStepContinue: _onStepContinue,
+          onStepCancel: _onStepCancel,
           steps: <Step>[
             Step(
               title: Container(),
               content: Form(
-                key: phonenumberKey,
+                key: phoneNumberKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -85,13 +123,16 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                     ),
                     AuthTextField(
                       hint: "전화번호 입력",
-                      validator: (val) => validatePhoneNumber(val!),
+                      validator: (val) {
+                        phoneNumber = val;
+                        return validatePhoneNumber(val!);
+                      },
                     ),
                   ],
                 ),
               ),
               isActive: currentStep > 0,
-              state: setStepState(0),
+              state: _setStepState(0),
             ),
             Step(
               title: Container(),
@@ -121,10 +162,22 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                     length: 6,
                     obscureText: true,
                     validator: (val) {
-                      return "코드가 일치하지 않습니다.";
-
-                      // Todo: 서버에서 보낸 인증코드와 비교
+                      verificationCode = val;
+                      return null;
                     },
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  OutlinedButton(
+                    onPressed: () async {
+                      final errorCode =
+                          await signInWithPhoneNumber(phoneNumber!);
+                      if (errorCode != null) {
+                        if (context.mounted) showSnackBar(context, errorCode);
+                      }
+                    },
+                    child: const Text("인증코드 재전송"),
                   ),
                   const SizedBox(
                     height: 30,
@@ -132,7 +185,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                 ],
               ),
               isActive: currentStep > 1,
-              state: setStepState(1),
+              state: _setStepState(1),
             ),
             Step(
               title: Container(),
@@ -155,7 +208,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                       obsecure: true,
                       hint: "특수문자, 대소문자, 숫자 포함 8~15자",
                       validator: (val) {
-                        confirmPw = val!;
+                        password = val!;
                         return validatePassword(val);
                       },
                     ),
@@ -164,7 +217,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                       hint: "한번 더 입력해주세요",
                       validator: (val) => confirmPassword(
                         val!,
-                        confirmPw,
+                        password,
                       ),
                     ),
                     Column(
@@ -204,7 +257,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                 ),
               ),
               isActive: currentStep > 2,
-              state: setStepState(2),
+              state: _setStepState(2),
             ),
           ],
           controlsBuilder: (context, details) {
@@ -224,14 +277,17 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                       ),
                       minimumSize: const Size(100, 50),
                     ),
-                    onPressed: () => onStepCancle(),
-                    child: const Text(
-                      "뒤로가기",
-                      style: TextStyle(
-                        color: mainSilverColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    onPressed: () =>
+                        _anyButtonLoading() ? null : _onStepCancel(),
+                    child: isCancelLoading
+                        ? loadingCircle
+                        : const Text(
+                            "뒤로가기",
+                            style: TextStyle(
+                              color: mainSilverColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                   ),
                   const SizedBox(
                     width: 20,
@@ -245,14 +301,17 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                         ),
                         minimumSize: const Size(100, 50),
                       ),
-                      onPressed: () => onStepContinue(),
-                      child: const Text(
-                        "다음",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: mainSilverColor,
-                        ),
-                      ),
+                      onPressed: () =>
+                          _anyButtonLoading() ? null : _onStepContinue(),
+                      child: isNextLoading
+                          ? loadingCircle
+                          : const Text(
+                              "다음",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: mainSilverColor,
+                              ),
+                            ),
                     ),
                 ],
               ),

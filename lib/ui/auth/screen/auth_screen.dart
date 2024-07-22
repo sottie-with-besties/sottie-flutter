@@ -2,14 +2,13 @@ import 'dart:developer';
 
 import 'package:auth_button_kit/auth_button_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/domain/auth/provider/google_login.dart';
-import 'package:sottie_flutter/domain/auth/provider/kakao_login.dart';
+import 'package:sottie_flutter/domain/auth/google_login.dart';
+import 'package:sottie_flutter/domain/auth/kakao_login.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
@@ -22,7 +21,11 @@ class OAuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
 
+    String? email;
+    String? password;
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: ColoredBox(
         color: const Color(0xdda0522d),
         child: Padding(
@@ -43,7 +46,7 @@ class OAuthScreen extends StatelessWidget {
                         child: Text(
                           "Sottie",
                           style: GoogleFonts.jua(
-                            fontSize: 30.sp,
+                            fontSize: 46,
                             color: mainSilverColor,
                             fontWeight: FontWeight.bold,
                           ),
@@ -52,7 +55,7 @@ class OAuthScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 10.h),
+                const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.8),
@@ -78,6 +81,7 @@ class OAuthScreen extends StatelessWidget {
                         AuthTextField(
                           hint: "이메일 입력",
                           validator: (val) {
+                            email = val;
                             return validateEmail(val!);
                           },
                         ),
@@ -85,6 +89,7 @@ class OAuthScreen extends StatelessWidget {
                           obsecure: true,
                           hint: "비밀번호 입력",
                           validator: (val) {
+                            password = val;
                             return validatePassword(val!);
                           },
                         ),
@@ -97,9 +102,6 @@ class OAuthScreen extends StatelessWidget {
                                 horizontal: 12,
                               ),
                               child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: mainBrownColor,
-                                ),
                                 onPressed: () {
                                   if (formKey.currentState!.validate()) {
                                     /*
@@ -150,7 +152,7 @@ class OAuthScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 15.h),
+                const SizedBox(height: 15),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Row(
@@ -175,11 +177,15 @@ class OAuthScreen extends StatelessWidget {
                     imgPath: AssetPath.kakaoLogin,
                     onPressed: () async {
                       log("kakao login button");
-                      await signInWithKakao();
+                      final errorCode = await signInWithKakao();
+                      // Todo: OAuth는 백엔드에 먼저 ID 토큰과 같은 정보를 보낸 후 본인인증이 안되어 있으면
+                      // Todo: 본인 인증 페이지로 넘어가게 하는 작업
                     }),
                 AuthButton(
                   onPressed: (_) async {
-                    await signInWithGoogle();
+                    final errorCode = await signInWithGoogle();
+                    // Todo: OAuth는 백엔드에 먼저 ID 토큰과 같은 정보를 보낸 후 본인인증이 안되어 있으면
+                    // Todo: 본인 인증 페이지로 넘어가게 하는 작업
                   },
                   brand: Method.google,
                   shape: RoundedRectangleBorder(
@@ -188,8 +194,10 @@ class OAuthScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
                 AuthButton(
-                  onPressed: (_) {
-                    log("Continue with Apple");
+                  onPressed: (_) async {
+                    // log("Continue with Apple");
+                    // final errorCode = await signOut();
+                    // log(errorCode.toString());
                     context.go(CustomRouter.homePath);
                   },
                   brand: Method.apple,
