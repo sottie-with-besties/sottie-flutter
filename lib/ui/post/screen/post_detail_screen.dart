@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -20,6 +22,7 @@ class PostDetailScreen extends StatefulWidget {
 
 class _PostDetailScreenState extends State<PostDetailScreen> {
   final controller = PageController();
+  List<Image>? images;
 
   // 더미
   final thumbnail = List.generate(
@@ -36,6 +39,20 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               style: const TextStyle(color: Colors.black),
             )),
           ));
+
+  @override
+  void initState() {
+    if (makePostDetailEntity.images != null) {
+      images = makePostDetailEntity.images!.map((image) {
+        return Image.file(
+          File(image.path),
+          fit: BoxFit.cover,
+        );
+      }).toList();
+    }
+
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -67,25 +84,27 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               ),
               Column(
                 children: [
-                  SizedBox(
-                    height: 250 * hu,
-                    child: PageView.builder(
-                      controller: controller,
-                      itemBuilder: (_, index) {
-                        return thumbnail[index % thumbnail.length];
-                      },
+                  if (images != null)
+                    SizedBox(
+                      height: 250 * hu,
+                      child: PageView.builder(
+                        controller: controller,
+                        itemBuilder: (_, index) {
+                          return images![index % images!.length];
+                        },
+                      ),
                     ),
-                  ),
                   const SizedBox(height: 16),
-                  SmoothPageIndicator(
-                    controller: controller,
-                    count: thumbnail.length,
-                    effect: const WormEffect(
-                      dotHeight: 8,
-                      dotWidth: 8,
-                      activeDotColor: mainBrownColor,
+                  if (images != null)
+                    SmoothPageIndicator(
+                      controller: controller,
+                      count: images!.length,
+                      effect: const WormEffect(
+                        dotHeight: 8,
+                        dotWidth: 8,
+                        activeDotColor: mainBrownColor,
+                      ),
                     ),
-                  ),
                 ],
               ),
               const SizedBox(

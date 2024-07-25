@@ -1,12 +1,14 @@
+import 'package:image_picker/image_picker.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/age_range.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/location.dart';
 
-final class PostDetailModel {
+final class MakePostModel {
   String id;
   String title;
   String content;
+  List<XFile>? images; // 업로드할 이미지 최대 3장정도?
   List<CategorySottie> category; // 분류
   DateTime? date; // 시간도 포함, non-null 타입으로 안됨
   Location location; // 지역
@@ -21,10 +23,11 @@ final class PostDetailModel {
   bool openParticipation; // 채팅방이 생성된 후에도 도중에 누군가 들어올 수 있음.
   bool onlyMyFriends; // 내 친구만 들어올 수 있음
 
-  PostDetailModel({
+  MakePostModel({
     this.id = '',
     this.title = '',
     this.content = '',
+    this.images,
     this.category = const [],
     this.date, // date와 time은 null로 못받게 프론트에서 예외 처리
     this.location = Location.seoul,

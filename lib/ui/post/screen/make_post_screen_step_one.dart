@@ -5,6 +5,7 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
+import 'package:sottie_flutter/ui/post/controller/image_selection.dart';
 
 class MakePostScreenStepOne extends StatefulWidget {
   const MakePostScreenStepOne({super.key});
@@ -48,7 +49,6 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
         body: Padding(
           padding: const EdgeInsets.all(32.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               LocalTextField(
                 hint: "제목",
@@ -63,29 +63,54 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                 controller: contentController,
                 focusNode: contentFocusNode,
               ),
-              const SizedBox(height: 80),
-              ElevatedButton(
-                onPressed: () {
-                  makePostDetailEntity.title = titleController.text;
-                  makePostDetailEntity.content = contentController.text;
-
-                  makePostDetailEntity.title == '' ||
-                          makePostDetailEntity.content == ''
-                      ? showCustomDialog(
-                          context,
-                          const Text("제목 및 내용을 한 글자 이상 입력해주세요."),
-                        )
-                      : context.push(
-                          '${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}');
-                },
-                child: const Text(
-                  "다음 1/3",
-                  style: TextStyle(
-                    color: mainSilverColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+              const SizedBox(height: 10),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 32),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      await imageSelection(context);
+                    },
+                    child: const Text(
+                      "이미지 선택",
+                      style: TextStyle(
+                        color: mainSilverColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
+              ),
+              const SizedBox(height: 80),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      if (titleController.text == '' ||
+                          contentController.text == '') {
+                        showCustomDialog(
+                          context,
+                          const Text("제목 및 내용을 한 글자 이상 입력해주세요."),
+                        );
+                      } else {
+                        makePostDetailEntity.title = titleController.text;
+                        makePostDetailEntity.content = contentController.text;
+                        context.push(
+                            '${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}');
+                      }
+                    },
+                    child: const Text(
+                      "다음 1/3",
+                      style: TextStyle(
+                        color: mainSilverColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           ),

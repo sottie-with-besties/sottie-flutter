@@ -1,3 +1,3 @@
-import 'package:sottie_flutter/data/post/model/post_detail/post_detail_model.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/make_post_model.dart';
 
-PostDetailModel makePostDetailEntity = PostDetailModel();
+MakePostModel makePostDetailEntity = MakePostModel();
