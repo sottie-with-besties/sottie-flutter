@@ -46,12 +46,12 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final id = widget.friendInfo['id'];
-    final friendName = widget.friendInfo['friendName'];
-    final stateMsg = widget.friendInfo['stateMsg'];
+    final id = widget.friendInfo['id'] ?? '';
+    final friendName = widget.friendInfo['friendName'] ?? '';
+    final stateMsg = widget.friendInfo['stateMsg'] ?? '';
 
     return Slidable(
-      key: ValueKey(id),
+      key: ValueKey(this.widget.key),
       closeOnScroll: false,
       groupTag: 'friend',
       controller: slidableController,

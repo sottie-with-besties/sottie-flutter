@@ -6,7 +6,6 @@ import 'package:sottie_flutter/ui/friend/widget/friend_header.dart';
 
 class FriendScreen extends StatelessWidget {
   const FriendScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     final focusNode = FocusNode();
