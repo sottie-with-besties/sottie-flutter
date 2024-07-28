@@ -3,51 +3,62 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:sottie_flutter/services/friend/friend_service.dart';
-import 'package:sottie_flutter/ui/friend/widget/friend.dart';
 import 'package:sottie_flutter/ui/friend/controller/friend_header_controller.dart';
+import 'package:sottie_flutter/ui/friend/widget/friend.dart';
 
-class FriendListScreen extends ConsumerStatefulWidget {
+class FriendListScreen extends ConsumerWidget {
   const FriendListScreen({super.key});
 
   @override
-  ConsumerState<FriendListScreen> createState() => _FriendListScreenState();
-}
-
-class _FriendListScreenState extends ConsumerState<FriendListScreen> {
-
-  List<Friend> friendList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    getData();
-  }
-
-  void getData() async {
-    friendList = await FriendService().getFriends('8');
-
-    log('friends $friendList', name: 'getData friendList');
-    setState(() {});
-  }
-
-  List<Friend> filterList(String inputText) {
-    return friendList.where((Friend data) {
-        log(data.toString(), name: 'where');
-        return data.friendInfo['friendName'].toString().contains(inputText);
-      }).toList();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final inputText = ref.watch(friendHeaderControllerProvider);
-    final friendFilterList = filterList(inputText).map((friend) {
-      log(friend.toString(), name: 'map');
+    final friendList = _dummy.where((Map<String, Object> data) {
+      log(data.toString(), name: 'where');
+      return data['friendName'].toString().contains(inputText);
+    }).map((Map<String, Object> data) {
+      log(data.toString(), name: 'map');
 
-      return Friend(key:friend.key , friendInfo: friend.friendInfo);
+      return Friend(friendInfo: data);
     }).toList();
 
-    return SlidableAutoCloseBehavior(child: Column(children: friendFilterList));
+    return SlidableAutoCloseBehavior(child: Column(children: friendList));
   }
-
 }
+
+const _dummy = [
+  {
+    'friendName': 'abcd',
+    'stateMsg': '카페에서 커피한잔~',
+    'id': '0',
+  },
+  {
+    'friendName': 'test',
+    'stateMsg': '아침 모임',
+    'id': '1',
+  },
+  {
+    'friendName': 'test',
+    'stateMsg': '저녁 모임',
+    'id': '2',
+  },
+  {
+    'friendName': 'hhhh',
+    'stateMsg': '점심 모임',
+    'id': '3',
+  },
+  {
+    'friendName': 'test',
+    'stateMsg': '조찬 모임',
+    'id': '4',
+  },
+  {
+    'friendName': 'test',
+    'stateMsg': '오후 커피 타임',
+    'id': '5',
+  },
+  {
+    'friendName': 'test',
+    'stateMsg': '야간 모임',
+    'id': '6',
+  },
+];
