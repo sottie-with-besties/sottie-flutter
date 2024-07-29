@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -24,7 +22,6 @@ class _StartSameTimeClassState extends ConsumerState<StartSameTimeClass> {
       startSameTime = false;
       setState(() {});
     }
-    log(startSameTime.toString());
 
     return Column(
       children: [
@@ -36,7 +33,6 @@ class _StartSameTimeClassState extends ConsumerState<StartSameTimeClass> {
               activeColor: mainBrownColor,
               value: startSameTime,
               onChanged: (val) {
-                log(val.toString());
                 if (numOfMember != 0) {
                   startSameTime = val;
                   makePostDetailEntity.startSameTime = startSameTime;
