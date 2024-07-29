@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
@@ -14,6 +12,7 @@ import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_one.dart';
+import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_three.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_two.dart';
 import 'package:sottie_flutter/ui/post/screen/post_detail_screen.dart';
 
@@ -41,6 +40,7 @@ sealed class CustomRouter {
   // Make Post Screen
   static const makePostStepOnePath = "/makePostStepOne";
   static const makePostStepTwoPath = "makePostStepTwo";
+  static const makePostStepThreePath = "makePostStepThree";
 
   // Find Detail Screen
   static const findDetailPath = "/findDetail";
@@ -125,21 +125,23 @@ final _routes = [
     ],
   ),
   GoRoute(
-      path: CustomRouter.makePostStepOnePath,
-      builder: (context, state) => const MakePostScreenStepOne(),
-      routes: <GoRoute>[
-        GoRoute(
-          path: CustomRouter.makePostStepTwoPath,
-          builder: (context, state) => const MakePostScreenStepTwo(),
-        )
-      ]),
+    path: CustomRouter.makePostStepOnePath,
+    builder: (context, state) => const MakePostScreenStepOne(),
+    routes: <GoRoute>[
+      GoRoute(
+        path: CustomRouter.makePostStepTwoPath,
+        builder: (context, state) => const MakePostScreenStepTwo(),
+        routes: <GoRoute>[
+          GoRoute(
+            path: CustomRouter.makePostStepThreePath,
+            builder: (context, state) => const MakePostScreenStepThree(),
+          )
+        ],
+      )
+    ],
+  ),
   GoRoute(
     path: CustomRouter.findDetailPath,
-    builder: (context, state) {
-      final params = state.extra as List<dynamic>;
-      String buttonTitle = params[0] as String;
-      VoidCallback onPressed = params[1] as VoidCallback;
-      return PostDetailScreen(buttonTitle: buttonTitle, onPressed: onPressed);
-    },
+    builder: (context, state) => const PostDetailScreen(),
   ),
 ];

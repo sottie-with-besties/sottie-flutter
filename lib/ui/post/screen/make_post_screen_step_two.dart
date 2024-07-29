@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -104,12 +102,8 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                     checkIfSettingHasError();
 
                     checkList.isEmpty
-                        ? context.push(CustomRouter.findDetailPath, extra: [
-                            '모집글 생성',
-                            () {
-                              log("모집글 생성");
-                            }
-                          ])
+                        ? context.push(
+                            "${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}/${CustomRouter.makePostStepThreePath}/")
                         : showCustomDialog(
                             context,
                             Column(

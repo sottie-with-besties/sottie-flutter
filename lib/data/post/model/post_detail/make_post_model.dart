@@ -37,9 +37,25 @@ final class MakePostModel {
     this.numOfMan = 0,
     this.numOfWoman = 0,
     this.ageRange = const [],
-    this.manner = 0, // 0 => 매너 온도 상관 없음
+    this.manner = 36.5, // 0 => 매너 온도 상관 없음
     this.startSameTime = false,
     this.openParticipation = false,
     this.onlyMyFriends = false,
   });
+
+  List<String> convertCategoryToStringList() {
+    List<String> result = <String>[];
+    for (CategorySottie i in category) {
+      result.add(i.name);
+    }
+    return result;
+  }
+
+  List<String> convertAgeRangeToStringList() {
+    List<String> result = <String>[];
+    for (AgeRangeSottie i in ageRange) {
+      result.add(i.name);
+    }
+    return result;
+  }
 }

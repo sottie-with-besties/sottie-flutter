@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -7,14 +7,7 @@ import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class PostDetailScreen extends StatefulWidget {
-  const PostDetailScreen({
-    super.key,
-    required this.buttonTitle,
-    required this.onPressed,
-  });
-
-  final String buttonTitle;
-  final VoidCallback onPressed;
+  const PostDetailScreen({super.key});
 
   @override
   State<PostDetailScreen> createState() => _PostDetailScreenState();
@@ -22,7 +15,6 @@ class PostDetailScreen extends StatefulWidget {
 
 class _PostDetailScreenState extends State<PostDetailScreen> {
   final controller = PageController();
-  List<Image>? images;
 
   // 더미
   final thumbnail = List.generate(
@@ -39,20 +31,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               style: const TextStyle(color: Colors.black),
             )),
           ));
-
-  @override
-  void initState() {
-    if (makePostDetailEntity.images != null) {
-      images = makePostDetailEntity.images!.map((image) {
-        return Image.file(
-          File(image.path),
-          fit: BoxFit.cover,
-        );
-      }).toList();
-    }
-
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -84,27 +62,25 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               ),
               Column(
                 children: [
-                  if (images != null)
-                    SizedBox(
-                      height: 250 * hu,
-                      child: PageView.builder(
-                        controller: controller,
-                        itemBuilder: (_, index) {
-                          return images![index % images!.length];
-                        },
-                      ),
-                    ),
-                  const SizedBox(height: 16),
-                  if (images != null)
-                    SmoothPageIndicator(
+                  SizedBox(
+                    height: 250 * hu,
+                    child: PageView.builder(
                       controller: controller,
-                      count: images!.length,
-                      effect: const WormEffect(
-                        dotHeight: 8,
-                        dotWidth: 8,
-                        activeDotColor: mainBrownColor,
-                      ),
+                      itemBuilder: (_, index) {
+                        return thumbnail[index % thumbnail.length];
+                      },
                     ),
+                  ),
+                  const SizedBox(height: 16),
+                  SmoothPageIndicator(
+                    controller: controller,
+                    count: thumbnail.length,
+                    effect: const WormEffect(
+                      dotHeight: 8,
+                      dotWidth: 8,
+                      activeDotColor: mainBrownColor,
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -147,10 +123,12 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                         backgroundColor: mainBrownColor,
                         minimumSize: const Size(100, 65),
                       ),
-                      onPressed: widget.onPressed,
-                      child: Text(
-                        widget.buttonTitle,
-                        style: const TextStyle(
+                      onPressed: () {
+                        log("참여하기");
+                      },
+                      child: const Text(
+                        '참여하기',
+                        style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                           color: mainSilverColor,
