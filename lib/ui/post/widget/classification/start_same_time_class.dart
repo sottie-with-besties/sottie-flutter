@@ -1,20 +1,31 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
-class StartSameTimeClass extends StatefulWidget {
+class StartSameTimeClass extends ConsumerStatefulWidget {
   const StartSameTimeClass({super.key});
 
   @override
-  State<StartSameTimeClass> createState() => _StartSameTimeClassState();
+  ConsumerState<StartSameTimeClass> createState() => _StartSameTimeClassState();
 }
 
-class _StartSameTimeClassState extends State<StartSameTimeClass> {
+class _StartSameTimeClassState extends ConsumerState<StartSameTimeClass> {
   bool startSameTime = false;
 
   @override
   Widget build(BuildContext context) {
+    final numOfMember = ref.watch(numOfMemberProvider);
+    if (numOfMember == 0) {
+      startSameTime = false;
+      setState(() {});
+    }
+    log(startSameTime.toString());
+
     return Column(
       children: [
         Row(
@@ -25,9 +36,12 @@ class _StartSameTimeClassState extends State<StartSameTimeClass> {
               activeColor: mainBrownColor,
               value: startSameTime,
               onChanged: (val) {
-                startSameTime = val;
-                makePostDetailEntity.startSameTime = startSameTime;
-                setState(() {});
+                log(val.toString());
+                if (numOfMember != 0) {
+                  startSameTime = val;
+                  makePostDetailEntity.startSameTime = startSameTime;
+                  setState(() {});
+                }
               },
             ),
           ],
