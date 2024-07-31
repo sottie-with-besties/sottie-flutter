@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/more/widget/extra_service_list.dart';
 import 'package:sottie_flutter/ui/more/widget/my_info.dart';
 import 'package:sottie_flutter/ui/more/widget/remain_gold.dart';
 
@@ -7,14 +9,16 @@ class MoreContentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 28, horizontal: 24),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyInfo(),
-          SizedBox(height: 15),
-          RemainGold(),
+          const MyInfo(),
+          SizedBox(height: 10 * hu),
+          const RemainGold(),
+          SizedBox(height: 25 * hu),
+          const ExtraServiceList(),
         ],
       ),
     );

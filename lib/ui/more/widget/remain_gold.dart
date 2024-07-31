@@ -24,7 +24,7 @@ class RemainGold extends StatelessWidget {
           const Row(
             children: [
               Text(
-                "450 ",
+                "450    ",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               FaIcon(
