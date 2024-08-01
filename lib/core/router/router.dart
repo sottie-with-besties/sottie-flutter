@@ -10,6 +10,11 @@ import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_event_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_guide_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_setting_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_store_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/info_modify_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_one.dart';
@@ -42,6 +47,11 @@ sealed class CustomRouter {
 
   static const morePath = "/more";
   static const infoModifyPath = "modify";
+  static const storePath = "store";
+  static const eventPath = "event";
+  static const customerServicePath = "customerService";
+  static const settingPath = "setting";
+  static const guidePath = "guide";
 
   // Make Post Screen
   static const makePostStepOnePath = "/makePostStepOne";
@@ -130,6 +140,26 @@ final _routes = [
                 path: CustomRouter.infoModifyPath,
                 builder: (_, __) => const InfoModifyScreen(),
               ),
+              GoRoute(
+                path: CustomRouter.storePath,
+                builder: (_, __) => const ExtraStoreScreen(),
+              ),
+              GoRoute(
+                path: CustomRouter.eventPath,
+                builder: (_, __) => const ExtraEventScreen(),
+              ),
+              GoRoute(
+                path: CustomRouter.customerServicePath,
+                builder: (_, __) => const ExtraCustomerServiceScreen(),
+              ),
+              GoRoute(
+                path: CustomRouter.settingPath,
+                builder: (_, __) => const ExtraSettingScreen(),
+              ),
+              GoRoute(
+                path: CustomRouter.guidePath,
+                builder: (_, __) => const ExtraGuideScreen(),
+              ),
             ],
           )
         ],
@@ -147,7 +177,7 @@ final _routes = [
           GoRoute(
             path: CustomRouter.makePostStepThreePath,
             builder: (_, __) => const MakePostScreenStepThree(),
-          )
+          ),
         ],
       )
     ],
