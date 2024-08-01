@@ -55,6 +55,7 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
 
 Widget _goldPurchase(int gold, int price) {
   return GestureDetector(
+    // Todo: 인 앱 구매 구현하기
     onTap: () => log("In App Purchase"),
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -74,9 +75,7 @@ Widget _goldPurchase(int gold, int price) {
                   FontAwesomeIcons.coins,
                   color: Colors.amber,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 Text(gold.toString()),
               ],
             ),
