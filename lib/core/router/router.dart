@@ -13,6 +13,7 @@ import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_event_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_guide_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_notice_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_setting_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_store_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/info_modify_screen.dart';
@@ -49,6 +50,7 @@ sealed class CustomRouter {
   static const infoModifyPath = "modify";
   static const storePath = "store";
   static const eventPath = "event";
+  static const noticePath = "notice";
   static const customerServicePath = "customerService";
   static const settingPath = "setting";
   static const guidePath = "guide";
@@ -147,6 +149,10 @@ final _routes = [
               GoRoute(
                 path: CustomRouter.eventPath,
                 builder: (_, __) => const ExtraEventScreen(),
+              ),
+              GoRoute(
+                path: CustomRouter.noticePath,
+                builder: (_, __) => const ExtraNoticeScreen(),
               ),
               GoRoute(
                 path: CustomRouter.customerServicePath,

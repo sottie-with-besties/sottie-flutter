@@ -25,6 +25,13 @@ class ExtraServiceList extends StatelessWidget {
         },
       },
       {
+        'name': "공지사항",
+        'icon': FontAwesomeIcons.clipboard,
+        'onTap': () {
+          context.push("${CustomRouter.morePath}/${CustomRouter.noticePath}");
+        },
+      },
+      {
         'name': "고객센터",
         'icon': FontAwesomeIcons.phoneVolume,
         'onTap': () {
