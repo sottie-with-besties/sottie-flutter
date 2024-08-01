@@ -10,6 +10,7 @@ import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/info_modify_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_one.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_three.dart';
@@ -32,10 +33,15 @@ sealed class CustomRouter {
 
   // Main Layout Screens
   static const homePath = "/home";
+
   static const chatPath = "/chat";
+
   static const dmPath = "/dm";
+
   static const friendPath = "/friend";
+
   static const morePath = "/more";
+  static const infoModifyPath = "modify";
 
   // Make Post Screen
   static const makePostStepOnePath = "/makePostStepOne";
@@ -49,23 +55,23 @@ sealed class CustomRouter {
 final _routes = [
   GoRoute(
     path: CustomRouter.authPath,
-    builder: (context, state) => const OAuthScreen(),
+    builder: (_, __) => const OAuthScreen(),
     routes: <GoRoute>[
       GoRoute(
         path: CustomRouter.signUpPath,
-        builder: (context, state) => const SignUpScreen(),
+        builder: (_, __) => const SignUpScreen(),
       ),
       GoRoute(
         path: CustomRouter.findIdPath,
-        builder: (context, state) => const FindIdScreen(),
+        builder: (_, __) => const FindIdScreen(),
       ),
       GoRoute(
         path: CustomRouter.findPasswordPath,
-        builder: (context, state) => const FindPasswordScreen(),
+        builder: (_, __) => const FindPasswordScreen(),
       ),
       GoRoute(
         path: CustomRouter.certificationPath,
-        builder: (context, state) {
+        builder: (_, state) {
           final isEmailJson = state.extra as Map<String, bool>;
           final isEmail = isEmailJson['isEmailLogin'] ?? false;
           return CertificationScreen(isEmailLogin: isEmail);
@@ -73,7 +79,7 @@ final _routes = [
       ),
       GoRoute(
         path: CustomRouter.verificationCompletePath,
-        builder: (context, state) => const VerificationCompleteScreen(),
+        builder: (_, __) => const VerificationCompleteScreen(),
       ),
     ],
   ),
@@ -86,7 +92,7 @@ final _routes = [
         routes: <GoRoute>[
           GoRoute(
             path: CustomRouter.homePath,
-            builder: (context, state) => const HomeScreen(),
+            builder: (_, __) => const HomeScreen(),
           )
         ],
       ),
@@ -94,7 +100,7 @@ final _routes = [
         routes: <GoRoute>[
           GoRoute(
             path: CustomRouter.chatPath,
-            builder: (context, state) => const ChatScreen(),
+            builder: (_, __) => const ChatScreen(),
           )
         ],
       ),
@@ -102,7 +108,7 @@ final _routes = [
         routes: <GoRoute>[
           GoRoute(
             path: CustomRouter.dmPath,
-            builder: (context, state) => const DmScreen(),
+            builder: (_, __) => const DmScreen(),
           )
         ],
       ),
@@ -110,7 +116,7 @@ final _routes = [
         routes: <GoRoute>[
           GoRoute(
             path: CustomRouter.friendPath,
-            builder: (context, state) => const FriendScreen(),
+            builder: (_, __) => const FriendScreen(),
           )
         ],
       ),
@@ -119,6 +125,12 @@ final _routes = [
           GoRoute(
             path: CustomRouter.morePath,
             builder: (context, state) => const MoreScreen(),
+            routes: <GoRoute>[
+              GoRoute(
+                path: CustomRouter.infoModifyPath,
+                builder: (_, __) => const InfoModifyScreen(),
+              ),
+            ],
           )
         ],
       ),
@@ -126,15 +138,15 @@ final _routes = [
   ),
   GoRoute(
     path: CustomRouter.makePostStepOnePath,
-    builder: (context, state) => const MakePostScreenStepOne(),
+    builder: (_, __) => const MakePostScreenStepOne(),
     routes: <GoRoute>[
       GoRoute(
         path: CustomRouter.makePostStepTwoPath,
-        builder: (context, state) => const MakePostScreenStepTwo(),
+        builder: (_, __) => const MakePostScreenStepTwo(),
         routes: <GoRoute>[
           GoRoute(
             path: CustomRouter.makePostStepThreePath,
-            builder: (context, state) => const MakePostScreenStepThree(),
+            builder: (_, __) => const MakePostScreenStepThree(),
           )
         ],
       )
@@ -142,6 +154,6 @@ final _routes = [
   ),
   GoRoute(
     path: CustomRouter.findDetailPath,
-    builder: (context, state) => const PostDetailScreen(),
+    builder: (_, __) => const PostDetailScreen(),
   ),
 ];

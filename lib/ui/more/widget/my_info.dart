@@ -1,8 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:random_avatar/random_avatar.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class MyInfo extends StatelessWidget {
@@ -49,7 +49,8 @@ class MyInfo extends StatelessWidget {
             ),
             OutlinedButton(
                 onPressed: () {
-                  log("수정");
+                  context.push(
+                      "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}");
                 },
                 child: const Text(
                   "수정",
