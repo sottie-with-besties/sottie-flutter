@@ -40,11 +40,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: const Text(
-            "모집글 작성",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          title: const Text("모집글 작성"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(32.0),

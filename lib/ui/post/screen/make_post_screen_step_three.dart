@@ -20,22 +20,6 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
   final controller = PageController();
   List<Image>? images;
 
-  // 더미
-  final thumbnail = List.generate(
-      5,
-      (index) => Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Colors.grey.shade300,
-            ),
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            child: Center(
-                child: Text(
-              "Thumbnail $index",
-              style: const TextStyle(color: Colors.black),
-            )),
-          ));
-
   @override
   void initState() {
     if (makePostDetailEntity.images != null) {
@@ -59,7 +43,9 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white),
+      appBar: AppBar(
+        title: const Text("미리 보기"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
         child: SingleChildScrollView(

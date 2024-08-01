@@ -6,7 +6,9 @@ class ExtraEventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("이벤트"),
+      ),
       body: Column(
         children: [
           Text("Event"),

@@ -11,7 +11,9 @@ class _ExtraGuideScreenState extends State<ExtraGuideScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("도움말"),
+      ),
       body: Column(
         children: [
           Text("Guide"),

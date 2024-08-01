@@ -11,7 +11,9 @@ class _ExtraSettingScreenState extends State<ExtraSettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("환경설정"),
+      ),
       body: Column(
         children: [
           Text("Setting"),

@@ -11,7 +11,9 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("상점"),
+      ),
       body: Column(
         children: [
           Text("Store"),
