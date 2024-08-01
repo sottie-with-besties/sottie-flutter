@@ -12,6 +12,7 @@ class ExtraNoticeScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ExtraServiceTile(
               title: "2024년 9월 17일 임시 점검 안내",
