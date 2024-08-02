@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 
 class NavigationScreen extends StatelessWidget {
   const NavigationScreen({
@@ -14,20 +15,50 @@ class NavigationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: shell,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: shell.currentIndex,
-        onTap: (index) => shell.goBranch(index),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.houseCircleXmark), label: "Home"),
-          BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.commentDots), label: "Chat"),
-          BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.message), label: "DM"),
-          BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.userGroup), label: "Friends"),
-          BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.ellipsis), label: "More"),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: shell.currentIndex,
+        onDestinationSelected: (index) => shell.goBranch(index),
+        destinations: const <NavigationDestination>[
+          NavigationDestination(
+            icon: FaIcon(FontAwesomeIcons.houseChimney),
+            selectedIcon: FaIcon(
+              FontAwesomeIcons.houseChimney,
+              color: mainSilverColor,
+            ),
+            label: "Home",
+          ),
+          NavigationDestination(
+            icon: FaIcon(FontAwesomeIcons.comments),
+            selectedIcon: FaIcon(
+              FontAwesomeIcons.comments,
+              color: mainSilverColor,
+            ),
+            label: "Chat",
+          ),
+          NavigationDestination(
+            icon: FaIcon(FontAwesomeIcons.message),
+            selectedIcon: FaIcon(
+              FontAwesomeIcons.message,
+              color: mainSilverColor,
+            ),
+            label: "DM",
+          ),
+          NavigationDestination(
+            icon: FaIcon(FontAwesomeIcons.userGroup),
+            selectedIcon: FaIcon(
+              FontAwesomeIcons.userGroup,
+              color: mainSilverColor,
+            ),
+            label: "Friends",
+          ),
+          NavigationDestination(
+            icon: FaIcon(FontAwesomeIcons.ellipsis),
+            selectedIcon: FaIcon(
+              FontAwesomeIcons.ellipsis,
+              color: mainSilverColor,
+            ),
+            label: "More",
+          ),
         ],
       ),
     );

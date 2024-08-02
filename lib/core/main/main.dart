@@ -61,13 +61,9 @@ final _customTheme = ThemeData(
     ),
   ),
   scaffoldBackgroundColor: Colors.white,
-  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    // type: BottomNavigationBarType.fixed,
+  navigationBarTheme: const NavigationBarThemeData(
     backgroundColor: mainSilverColor,
-    selectedItemColor: mainBrownColor,
-    unselectedItemColor: Colors.black45,
-    selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-    showUnselectedLabels: true,
+    indicatorColor: mainBrownColor,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
