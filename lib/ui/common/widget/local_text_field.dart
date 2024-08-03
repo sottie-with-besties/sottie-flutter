@@ -8,7 +8,8 @@ class LocalTextField extends StatelessWidget {
     super.key,
     this.hint,
     this.focusNode,
-    this.callback,
+    this.onChanged,
+    this.onFieldSubmitted,
     this.prefixIcon = true,
     this.suffixIcon,
     this.controller,
@@ -18,7 +19,8 @@ class LocalTextField extends StatelessWidget {
 
   final String? hint;
   final FocusNode? focusNode;
-  final void Function(String?)? callback;
+  final void Function(String?)? onChanged;
+  final void Function(String)? onFieldSubmitted;
   final bool prefixIcon;
   final Widget? suffixIcon;
   final TextEditingController? controller;
@@ -63,7 +65,8 @@ class LocalTextField extends StatelessWidget {
               : null,
           suffixIcon: suffixIcon,
         ),
-        onChanged: callback,
+        onChanged: onChanged,
+        onFieldSubmitted: onFieldSubmitted,
       ),
     );
   }

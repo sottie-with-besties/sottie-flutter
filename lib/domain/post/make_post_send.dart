@@ -10,7 +10,7 @@ Future<void> makePostSend() async {
     }).toList();
   }
 
-  // @Body로 보낼 수 있는지 확인
+  // Todo: @MultiPart()로 보낼 수 있는지 확인
   final formData = FormData.fromMap({
     'id': postSettingEntity.id,
     'title': postSettingEntity.title,

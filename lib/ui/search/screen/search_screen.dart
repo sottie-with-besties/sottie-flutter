@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/data/post/model/post_setting.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
+import 'package:sottie_flutter/domain/search/search_post.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
@@ -26,6 +27,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final searchFocusNode = FocusNode();
   final settingFocusNode = FocusNode();
+  final searchController = TextEditingController();
 
   @override
   void initState() {
@@ -38,6 +40,7 @@ class _SearchScreenState extends State<SearchScreen> {
   void dispose() {
     searchFocusNode.dispose();
     settingFocusNode.dispose();
+    searchController.dispose();
     super.dispose();
   }
 
@@ -54,6 +57,11 @@ class _SearchScreenState extends State<SearchScreen> {
             LocalTextField(
               hint: "날짜, 장소, 제목, 내용...",
               focusNode: searchFocusNode,
+              controller: searchController,
+              onFieldSubmitted: (searchContent) async {
+                postSettingEntity.title = searchContent;
+                await searchPost(); // Todo: 함수 미완성
+              },
               suffixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
