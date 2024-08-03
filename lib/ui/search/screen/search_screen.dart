@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/make_post_model.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/data/post/model/post_setting.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    makePostDetailEntity = MakePostModel();
+    postSettingEntity = PostSetting();
     searchFocusNode.requestFocus();
   }
 

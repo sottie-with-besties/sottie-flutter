@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class PostDetailScreen extends StatefulWidget {
@@ -49,7 +49,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                makePostDetailEntity.title,
+                postSettingEntity.title,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
@@ -87,7 +87,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 height: 30,
               ),
               Text(
-                makePostDetailEntity.content,
+                postSettingEntity.content,
                 style: const TextStyle(
                   fontSize: 14,
                 ),
@@ -101,12 +101,12 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("참여 인원: ${makePostDetailEntity.numOfMember}"),
+                    Text("참여 인원: ${postSettingEntity.numOfMember}"),
                     Text(
-                        "날짜: ${makePostDetailEntity.date == null ? "날짜 정보 없음" : makePostDetailEntity.date!.toString()}"),
-                    Text("장소: ${makePostDetailEntity.location.name}"),
-                    Text("나이: ${makePostDetailEntity.ageRange.toString()}"),
-                    Text("매너온도: ${makePostDetailEntity.manner}도 이상"),
+                        "날짜: ${postSettingEntity.date == null ? "날짜 정보 없음" : postSettingEntity.date!.toString()}"),
+                    Text("장소: ${postSettingEntity.location.name}"),
+                    Text("나이: ${postSettingEntity.ageRange.toString()}"),
+                    Text("매너온도: ${postSettingEntity.manner}도 이상"),
                   ],
                 ),
               ),

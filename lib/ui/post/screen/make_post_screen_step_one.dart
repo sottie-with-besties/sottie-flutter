@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/post/controller/image_selection.dart';
@@ -91,8 +91,8 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                           const Text("제목 및 내용을 한 글자 이상 입력해주세요."),
                         );
                       } else {
-                        makePostDetailEntity.title = titleController.text;
-                        makePostDetailEntity.content = contentController.text;
+                        postSettingEntity.title = titleController.text;
+                        postSettingEntity.content = contentController.text;
                         context.push(
                             '${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}');
                       }

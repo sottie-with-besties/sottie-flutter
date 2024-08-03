@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 
 Future<void> makePostSend() async {
   List? images;
-  if (makePostDetailEntity.images != null) {
-    images = makePostDetailEntity.images!.map((img) {
+  if (postSettingEntity.images != null) {
+    images = postSettingEntity.images!.map((img) {
       return MultipartFile.fromFileSync(img.path,
           contentType: DioMediaType('image', 'jpg'));
     }).toList();
@@ -12,25 +12,24 @@ Future<void> makePostSend() async {
 
   // @Body로 보낼 수 있는지 확인
   final formData = FormData.fromMap({
-    'id': makePostDetailEntity.id,
-    'title': makePostDetailEntity.title,
-    'content': makePostDetailEntity.content,
+    'id': postSettingEntity.id,
+    'title': postSettingEntity.title,
+    'content': postSettingEntity.content,
     'images': images ?? [],
-    // 'category': makePostDetailEntity.category, => Enum 데이터
-    'date': makePostDetailEntity.date != null
-        ? makePostDetailEntity.date!.toUtc()
-        : '',
-    'location': makePostDetailEntity.location.toString(), // Enum 데이터
-    'numOfMember': makePostDetailEntity.numOfMember,
-    'gender': makePostDetailEntity.gender.name, // Enum 데이터
-    'genderRatio': makePostDetailEntity.genderRatio,
-    'numOfMan': makePostDetailEntity.numOfMan,
-    'numOfWoman': makePostDetailEntity.numOfWoman,
-    // 'ageRange': makePostDetailEntity.ageRange, // Enum 데이터
-    'manner': makePostDetailEntity.manner,
-    'startSameTime': makePostDetailEntity.startSameTime,
-    'openParticipation': makePostDetailEntity.openParticipation,
-    'onlyMyFriends': makePostDetailEntity.onlyMyFriends,
+    'category': postSettingEntity.convertCategoryToStringList(), // Enum 데이터
+    'date':
+        postSettingEntity.date != null ? postSettingEntity.date!.toUtc() : '',
+    'location': postSettingEntity.location.toString(), // Enum 데이터
+    'numOfMember': postSettingEntity.numOfMember,
+    'gender': postSettingEntity.gender.name, // Enum 데이터
+    'genderRatio': postSettingEntity.genderRatio,
+    'numOfMan': postSettingEntity.numOfMan,
+    'numOfWoman': postSettingEntity.numOfWoman,
+    'ageRange': postSettingEntity.convertAgeRangeToStringList(), // Enum 데이터
+    'manner': postSettingEntity.manner,
+    'startSameTime': postSettingEntity.startSameTime,
+    'openParticipation': postSettingEntity.openParticipation,
+    'onlyMyFriends': postSettingEntity.onlyMyFriends,
   });
 }
 

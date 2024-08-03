@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/make_post_model.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/data/post/model/post_setting.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/alarm/screen/alarm_screen.dart';
 import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
 import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
@@ -114,7 +114,7 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
             InkWell(
               borderRadius: BorderRadius.circular(5),
               onTap: () async {
-                makePostDetailEntity = MakePostModel();
+                postSettingEntity = PostSetting();
                 await context.push(CustomRouter.makePostStepOnePath);
               },
               child: const FaIcon(

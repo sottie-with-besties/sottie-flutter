@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class DateClass extends StatefulWidget {
@@ -18,8 +18,8 @@ class _DateClassState extends State<DateClass> {
     super.initState();
 
     // 검색 스크린에서 필터링 시 데이터 유지
-    selectedDate = makePostDetailEntity.date ?? DateTime.now();
-    if (makePostDetailEntity.date == null) {
+    selectedDate = postSettingEntity.date ?? DateTime.now();
+    if (postSettingEntity.date == null) {
       dateString = "날짜 선택";
     } else {
       dateString =
@@ -60,7 +60,7 @@ class _DateClassState extends State<DateClass> {
               dateString =
                   "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${_intToWeekday(selectedDate.weekday)}";
 
-              makePostDetailEntity.date = selectedDate.copyWith();
+              postSettingEntity.date = selectedDate.copyWith();
 
               setState(() {});
             },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class OnlyMyFriendsClass extends StatefulWidget {
@@ -22,9 +22,9 @@ class _OnlyMyFriendsClassState extends State<OnlyMyFriendsClass> {
             const ClassificationTitle(title: "내 친구만 입장"),
             Switch(
               activeColor: mainBrownColor,
-              value: makePostDetailEntity.onlyMyFriends,
+              value: postSettingEntity.onlyMyFriends,
               onChanged: (val) {
-                makePostDetailEntity.onlyMyFriends = val;
+                postSettingEntity.onlyMyFriends = val;
                 setState(() {});
               },
             ),

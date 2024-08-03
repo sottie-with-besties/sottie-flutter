@@ -4,7 +4,7 @@ import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart'
 import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/location.dart';
 
-final class MakePostModel {
+final class PostSetting {
   String id;
   String title;
   String content;
@@ -23,7 +23,7 @@ final class MakePostModel {
   bool openParticipation; // 채팅방이 생성된 후에도 도중에 누군가 들어올 수 있음.
   bool onlyMyFriends; // 내 친구만 들어올 수 있음
 
-  MakePostModel({
+  PostSetting({
     this.id = '',
     this.title = '',
     this.content = '',

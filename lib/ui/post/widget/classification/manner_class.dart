@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
@@ -29,8 +29,8 @@ class _MannerClassState extends State<MannerClass> {
     super.initState();
 
     // 검색 스크린에서 필터링 시 데이터 유지
-    sliderValue = mannerPoint
-        .indexWhere((manner) => manner == makePostDetailEntity.manner);
+    sliderValue =
+        mannerPoint.indexWhere((manner) => manner == postSettingEntity.manner);
     setState(() {});
   }
 
@@ -50,7 +50,7 @@ class _MannerClassState extends State<MannerClass> {
                 value: sliderValue.toDouble(),
                 onChanged: (val) {
                   sliderValue = val.toInt();
-                  makePostDetailEntity.manner = mannerPoint[sliderValue];
+                  postSettingEntity.manner = mannerPoint[sliderValue];
                   setState(() {});
                 },
               ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
@@ -75,7 +75,7 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
         controller.text = num.toString();
       }
     }
-    makePostDetailEntity.numOfMember = num;
+    postSettingEntity.numOfMember = num;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(numOfMemberProvider.notifier).changeNumOfMember(num);
     });
@@ -89,13 +89,13 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
       controller.addListener(_controllerListener);
 
       // 검색 스크린에서 필터링 시 데이터 유지
-      initValue = makePostDetailEntity.numOfMember;
-      if (makePostDetailEntity.numOfMember > 10) {
-        controller.text = makePostDetailEntity.numOfMember.toString();
+      initValue = postSettingEntity.numOfMember;
+      if (postSettingEntity.numOfMember > 10) {
+        controller.text = postSettingEntity.numOfMember.toString();
       }
       ref
           .read(numOfMemberProvider.notifier)
-          .changeNumOfMember(makePostDetailEntity.numOfMember);
+          .changeNumOfMember(postSettingEntity.numOfMember);
       setState(() {});
     });
   }
@@ -127,10 +127,10 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
           widget.focusNode.requestFocus();
         } else {
           widget.focusNode.unfocus();
-          makePostDetailEntity.numOfMember = int.parse(val.toString());
+          postSettingEntity.numOfMember = int.parse(val.toString());
           ref
               .read(numOfMemberProvider.notifier)
-              .changeNumOfMember(makePostDetailEntity.numOfMember);
+              .changeNumOfMember(postSettingEntity.numOfMember);
         }
       },
     );
