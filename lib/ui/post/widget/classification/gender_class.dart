@@ -121,6 +121,24 @@ class _GenderButtonState extends State<_GenderButton> {
   bool isSelected = true;
 
   @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    if (makePostDetailEntity.gender == GenderRestrictions.all) {
+      isSelected = true;
+    } else if (makePostDetailEntity.gender == GenderRestrictions.manOnly) {
+      if (widget.gender == '여자') isSelected = false;
+    } else if (makePostDetailEntity.gender == GenderRestrictions.womanOnly) {
+      if (widget.gender == '남자') isSelected = false;
+    } else {
+      // GenderRestrictions.nobody
+      isSelected = false;
+    }
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ElevatedButton(
@@ -156,11 +174,17 @@ class _GenderRatio extends ConsumerStatefulWidget {
 }
 
 class _GenderRatioState extends ConsumerState<_GenderRatio> {
-  // 스위치 value
-  bool genderRestriction = true;
-
   // 슬라이더 value
   double value = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    value = makePostDetailEntity.numOfMan.toDouble();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,14 +193,16 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
       if (value > newState) {
         value = (newState / 2).floorToDouble();
       }
-    });
 
-    // numOfMember의 값이 바뀌면 슬라이더도 바뀜
-    final refNumOfMember = ref.watch(numOfMemberProvider);
-    refNumOfMember == 0 ? genderRestriction = false : null;
-    makePostDetailEntity.genderRatio = genderRestriction;
-    makePostDetailEntity.numOfMan = value.toInt();
-    makePostDetailEntity.numOfWoman = (refNumOfMember - value).toInt();
+      if (newState == 0) {
+        makePostDetailEntity.genderRatio = false;
+      }
+
+      makePostDetailEntity.numOfMan = value.toInt();
+      makePostDetailEntity.numOfWoman = (newState - value).toInt();
+      makePostDetailEntity.numOfMember = newState;
+      setState(() {});
+    });
 
     return Row(
       children: [
@@ -195,11 +221,9 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                       const ClassificationTitle(title: '성비 제한'),
                       Switch(
                           activeColor: mainBrownColor,
-                          value: genderRestriction,
+                          value: makePostDetailEntity.genderRatio,
                           onChanged: (val) {
-                            genderRestriction = val;
-                            makePostDetailEntity.genderRatio =
-                                genderRestriction;
+                            makePostDetailEntity.genderRatio = val;
                             setState(() {});
                           }),
                     ],
@@ -209,23 +233,27 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                       // Todo: 현재 유져의 성별에 따라 min값 max값 설정하기
                       // Todo: ex) 현재 유저가 남성이면 min값 1, 여자면 max를 refNumOfMember - 1로
                       Slider(
-                          value: genderRestriction ? value : 0,
-                          max: refNumOfMember.toDouble(),
-                          divisions: genderRestriction ? refNumOfMember : 1,
-                          activeColor: genderRestriction
+                          value: makePostDetailEntity.genderRatio ? value : 0,
+                          max: makePostDetailEntity.numOfMember.toDouble(),
+                          divisions: makePostDetailEntity.genderRatio
+                              ? makePostDetailEntity.numOfMember
+                              : 1,
+                          activeColor: makePostDetailEntity.genderRatio
                               ? Colors.blueAccent
                               : Colors.grey,
-                          inactiveColor: genderRestriction
+                          inactiveColor: makePostDetailEntity.genderRatio
                               ? Colors.redAccent
                               : Colors.grey,
-                          thumbColor:
-                              genderRestriction ? mainBrownColor : Colors.grey,
+                          thumbColor: makePostDetailEntity.genderRatio
+                              ? mainBrownColor
+                              : Colors.grey,
                           onChanged: (val) {
-                            if (genderRestriction) {
+                            if (makePostDetailEntity.genderRatio) {
                               value = val;
                               makePostDetailEntity.numOfMan = value.toInt();
                               makePostDetailEntity.numOfWoman =
-                                  (refNumOfMember - value).toInt();
+                                  (makePostDetailEntity.numOfMember - value)
+                                      .toInt();
                               setState(() {});
                             }
                           }),
@@ -250,7 +278,8 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    if (value < refNumOfMember) {
+                                    if (value <
+                                        makePostDetailEntity.numOfMember) {
                                       value++;
                                       setState(() {});
                                     }
@@ -261,7 +290,7 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 80 * wu,
+                                  width: 60 * wu,
                                 ),
                                 InkWell(
                                   onTap: () {
@@ -280,7 +309,7 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                             Expanded(
                               child: SizedBox(
                                 child: Text(
-                                  "${(refNumOfMember - value).toInt()} 여자",
+                                  "${(makePostDetailEntity.numOfMember - value).toInt()} 여자",
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.end,
                                   style: const TextStyle(

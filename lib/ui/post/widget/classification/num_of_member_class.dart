@@ -39,6 +39,8 @@ class _NumOfMemberSelector extends ConsumerStatefulWidget {
 }
 
 class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
+  dynamic initValue = 0;
+
   final entries = List.generate(12, (index) {
     if (index == 0) {
       return "제한 없음";
@@ -74,7 +76,9 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
       }
     }
     makePostDetailEntity.numOfMember = num;
-    ref.read(numOfMemberProvider.notifier).changeNumOfMember(num);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(numOfMemberProvider.notifier).changeNumOfMember(num);
+    });
   }
 
   @override
@@ -83,6 +87,16 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       widget.focusNode.addListener(_focusNodeListener);
       controller.addListener(_controllerListener);
+
+      // 검색 스크린에서 필터링 시 데이터 유지
+      initValue = makePostDetailEntity.numOfMember;
+      if (makePostDetailEntity.numOfMember > 10) {
+        controller.text = makePostDetailEntity.numOfMember.toString();
+      }
+      ref
+          .read(numOfMemberProvider.notifier)
+          .changeNumOfMember(makePostDetailEntity.numOfMember);
+      setState(() {});
     });
   }
 
@@ -97,7 +111,7 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
   @override
   Widget build(BuildContext context) {
     return DropdownMenu(
-      initialSelection: 0,
+      initialSelection: initValue,
       menuHeight: 200,
       controller: controller,
       focusNode: widget.focusNode,

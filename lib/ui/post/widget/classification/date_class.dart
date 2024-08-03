@@ -14,6 +14,22 @@ class _DateClassState extends State<DateClass> {
   DateTime selectedDate = DateTime.now();
 
   @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    selectedDate = makePostDetailEntity.date ?? DateTime.now();
+    if (makePostDetailEntity.date == null) {
+      dateString = "날짜 선택";
+    } else {
+      dateString =
+          "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${_intToWeekday(selectedDate.weekday)}";
+    }
+
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,7 +58,7 @@ class _DateClassState extends State<DateClass> {
               selectedDate = tempDate;
 
               dateString =
-                  "${tempDate.year}년 ${tempDate.month}월 ${tempDate.day}일 ${_intToWeekday(tempDate.weekday)}";
+                  "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${_intToWeekday(selectedDate.weekday)}";
 
               makePostDetailEntity.date = selectedDate.copyWith();
 

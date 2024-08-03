@@ -37,6 +37,17 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
   List<CategorySottie> tempList = [];
 
   @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    for (CategorySottie i in makePostDetailEntity.category) {
+      selectedList[i.index] = true;
+    }
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Wrap(

@@ -30,6 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
+    makePostDetailEntity = MakePostModel();
     searchFocusNode.requestFocus();
   }
 
@@ -58,7 +59,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 child: GestureDetector(
                   onTap: () {
-                    makePostDetailEntity = MakePostModel();
                     showCustomDialog(
                       context,
                       GestureDetector(

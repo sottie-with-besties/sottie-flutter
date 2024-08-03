@@ -11,8 +11,6 @@ class OnlyMyFriendsClass extends StatefulWidget {
 }
 
 class _OnlyMyFriendsClassState extends State<OnlyMyFriendsClass> {
-  bool onlyMyFriends = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,10 +22,9 @@ class _OnlyMyFriendsClassState extends State<OnlyMyFriendsClass> {
             const ClassificationTitle(title: "내 친구만 입장"),
             Switch(
               activeColor: mainBrownColor,
-              value: onlyMyFriends,
+              value: makePostDetailEntity.onlyMyFriends,
               onChanged: (val) {
-                onlyMyFriends = val;
-                makePostDetailEntity.onlyMyFriends = onlyMyFriends;
+                makePostDetailEntity.onlyMyFriends = val;
                 setState(() {});
               },
             ),

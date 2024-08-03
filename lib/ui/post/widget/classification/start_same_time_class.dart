@@ -13,13 +13,12 @@ class StartSameTimeClass extends ConsumerStatefulWidget {
 }
 
 class _StartSameTimeClassState extends ConsumerState<StartSameTimeClass> {
-  bool startSameTime = false;
-
   @override
   Widget build(BuildContext context) {
-    final numOfMember = ref.watch(numOfMemberProvider);
-    if (numOfMember == 0) {
-      startSameTime = false;
+    final refNumOfMember = ref.watch(numOfMemberProvider);
+
+    if (refNumOfMember == 0 && makePostDetailEntity.numOfMember == 0) {
+      makePostDetailEntity.startSameTime = false;
       setState(() {});
     }
 
@@ -31,11 +30,10 @@ class _StartSameTimeClassState extends ConsumerState<StartSameTimeClass> {
             const ClassificationTitle(title: "동시 채팅 시작"),
             Switch(
               activeColor: mainBrownColor,
-              value: startSameTime,
+              value: makePostDetailEntity.startSameTime,
               onChanged: (val) {
-                if (numOfMember != 0) {
-                  startSameTime = val;
-                  makePostDetailEntity.startSameTime = startSameTime;
+                if (refNumOfMember != 0) {
+                  makePostDetailEntity.startSameTime = val;
                   setState(() {});
                 }
               },

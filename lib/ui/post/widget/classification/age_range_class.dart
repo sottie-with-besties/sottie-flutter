@@ -34,6 +34,17 @@ class _AgeRangeState extends State<_AgeRange> {
   List<AgeRangeSottie> tempList = [];
 
   @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    for (AgeRangeSottie i in makePostDetailEntity.ageRange) {
+      selectedList[i.index] = true;
+    }
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Wrap(

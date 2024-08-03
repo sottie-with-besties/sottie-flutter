@@ -11,8 +11,6 @@ class OpenParticipationClass extends StatefulWidget {
 }
 
 class _OpenParticipationClassState extends State<OpenParticipationClass> {
-  bool openParticipation = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,10 +22,9 @@ class _OpenParticipationClassState extends State<OpenParticipationClass> {
             const ClassificationTitle(title: "오픈 채팅"),
             Switch(
               activeColor: mainBrownColor,
-              value: openParticipation,
+              value: makePostDetailEntity.openParticipation,
               onChanged: (val) {
-                openParticipation = val;
-                makePostDetailEntity.openParticipation = openParticipation;
+                makePostDetailEntity.openParticipation = val;
                 setState(() {});
               },
             ),

@@ -25,6 +25,16 @@ class _MannerClassState extends State<MannerClass> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    sliderValue = mannerPoint
+        .indexWhere((manner) => manner == makePostDetailEntity.manner);
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [

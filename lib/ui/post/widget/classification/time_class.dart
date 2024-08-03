@@ -13,6 +13,35 @@ class _TimeClassState extends State<TimeClass> {
   String timeString = '시간 선택';
   TimeOfDay selectedTime = const TimeOfDay(hour: 0, minute: 0);
 
+  void makeTimeString() {
+    if (makePostDetailEntity.date == null) {
+      timeString == "시간 선택";
+      return;
+    }
+
+    String temp = selectedTime.hour < 12 ? "AM" : "PM";
+    int hour = selectedTime.hour;
+
+    temp == "PM"
+        ? hour > 12
+            ? hour -= 12
+            : null
+        : null;
+
+    timeString = "$temp $hour시 ${selectedTime.minute}분";
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    selectedTime = TimeOfDay.fromDateTime(
+        makePostDetailEntity.date ?? DateTime(2000, 5, 27, 0, 0));
+    makeTimeString();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -43,16 +72,7 @@ class _TimeClassState extends State<TimeClass> {
                 minute: selectedTime.minute,
               );
 
-              String temp = selectedTime.hour < 12 ? "AM" : "PM";
-              int hour = selectedTime.hour;
-
-              temp == "PM"
-                  ? hour > 12
-                      ? hour -= 12
-                      : null
-                  : null;
-
-              timeString = "$temp $hour시 ${selectedTime.minute}분";
+              makeTimeString();
               setState(() {});
             },
             child: Text(
