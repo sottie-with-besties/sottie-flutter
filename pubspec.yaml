@@ -45,6 +45,7 @@ dependencies:
   flutter_slidable:
   smooth_page_indicator: # 홈 스크린 이벤트
   skeletonizer: # 로딩 스켈레톤
+  time_range_picker:
 
   # Riverpod
   flutter_riverpod:

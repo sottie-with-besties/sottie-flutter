@@ -10,7 +10,7 @@ class TimeClass extends StatefulWidget {
 }
 
 class _TimeClassState extends State<TimeClass> {
-  String timeString = '시간 선택';
+  String timeString = '0시 0분';
   TimeOfDay selectedTime = const TimeOfDay(hour: 0, minute: 0);
 
   @override
