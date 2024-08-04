@@ -65,7 +65,7 @@ final class PostSetting {
       'content': content,
       'images': images ?? [],
       'category': convertCategoryToStringList(), // Enum 데이터
-      'date': date != null ? date!.toUtc() : '',
+      'date': date ?? '',
       'location': location.toString(), // Enum 데이터
       'numOfMember': numOfMember,
       'gender': gender.name, // Enum 데이터
@@ -87,8 +87,8 @@ final class PostSetting {
       'title': title,
       'content': content,
       'category': convertCategoryToStringList(), // Enum 데이터
-      'dateStart': dateStart != null ? dateStart!.toUtc() : '',
-      'dateEnd': dateEnd != null ? dateEnd!.toUtc() : '',
+      'dateStart': dateStart ?? '',
+      'dateEnd': dateEnd ?? '',
       'timeStart': timeStart ?? '',
       'timeEnd': timeEnd ?? '',
       'location': location.toString(), // Enum 데이터
