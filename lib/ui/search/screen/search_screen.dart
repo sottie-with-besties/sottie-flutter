@@ -7,7 +7,6 @@ import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/category_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/date_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/gender_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/location_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/manner_class.dart';
@@ -15,7 +14,8 @@ import 'package:sottie_flutter/ui/post/widget/classification/num_of_member_class
 import 'package:sottie_flutter/ui/post/widget/classification/only_my_friends_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/open_participation_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/start_same_time_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/time_class.dart';
+import 'package:sottie_flutter/ui/search/widget/date_range_class.dart';
+import 'package:sottie_flutter/ui/search/widget/time_range_class.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -78,9 +78,9 @@ class _SearchScreenState extends State<SearchScreen> {
                             const SizedBox(height: 20),
                             const LocationClass(),
                             const SizedBox(height: 20),
-                            const DateClass(),
+                            const DateRangeClass(),
                             const SizedBox(height: 20),
-                            const TimeClass(),
+                            const TimeRangeClass(),
                             const SizedBox(height: 20),
                             NumOfMemberClass(focusNode: settingFocusNode),
                             const SizedBox(height: 20),

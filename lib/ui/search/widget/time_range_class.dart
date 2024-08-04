@@ -2,16 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
-class TimeClass extends StatefulWidget {
-  const TimeClass({super.key});
+class TimeRangeClass extends StatefulWidget {
+  const TimeRangeClass({super.key});
 
   @override
-  State<TimeClass> createState() => _TimeClassState();
+  State<TimeRangeClass> createState() => _TimeRangeClassState();
 }
 
-class _TimeClassState extends State<TimeClass> {
-  String timeString = '시간 선택';
+class _TimeRangeClassState extends State<TimeRangeClass> {
+  String timeString = '시간 범위 선택';
   TimeOfDay selectedTime = const TimeOfDay(hour: 0, minute: 0);
+
+  void makeTimeString() {
+    if (postSettingEntity.date == null) {
+      timeString == "시간 범위 선택";
+      return;
+    }
+
+    String temp = selectedTime.hour < 12 ? "AM" : "PM";
+    int hour = selectedTime.hour;
+
+    temp == "PM"
+        ? hour > 12
+            ? hour -= 12
+            : null
+        : null;
+
+    timeString = "$temp $hour시 ${selectedTime.minute}분";
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    selectedTime = TimeOfDay.fromDateTime(
+        postSettingEntity.date ?? DateTime(2000, 5, 27, 0, 0));
+    makeTimeString();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +72,7 @@ class _TimeClassState extends State<TimeClass> {
                 minute: selectedTime.minute,
               );
 
-              String temp = selectedTime.hour < 12 ? "AM" : "PM";
-              int hour = selectedTime.hour;
-
-              temp == "PM"
-                  ? hour > 12
-                      ? hour -= 12
-                      : null
-                  : null;
-
-              timeString = "$temp $hour시 ${selectedTime.minute}분";
+              makeTimeString();
               setState(() {});
             },
             child: Text(

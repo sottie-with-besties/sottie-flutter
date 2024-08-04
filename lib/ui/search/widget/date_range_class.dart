@@ -2,16 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
-class DateClass extends StatefulWidget {
-  const DateClass({super.key});
+class DateRangeClass extends StatefulWidget {
+  const DateRangeClass({super.key});
 
   @override
-  State<DateClass> createState() => _DateClassState();
+  State<DateRangeClass> createState() => _DateRangeClassState();
 }
 
-class _DateClassState extends State<DateClass> {
-  String dateString = '날짜 선택';
+class _DateRangeClassState extends State<DateRangeClass> {
+  String dateString = '날짜 범위 선택';
   DateTime selectedDate = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    selectedDate = postSettingEntity.date ?? DateTime.now();
+    if (postSettingEntity.date == null) {
+      dateString = "날짜 범위 선택";
+    } else {
+      dateString =
+          "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${_intToWeekday(selectedDate.weekday)}";
+    }
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
