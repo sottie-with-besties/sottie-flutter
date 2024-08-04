@@ -11,19 +11,22 @@ class DateRangeClass extends StatefulWidget {
 
 class _DateRangeClassState extends State<DateRangeClass> {
   String dateString = '날짜 범위 선택';
-  DateTime selectedDate = DateTime.now();
+  late DateTime dateStart;
+  late DateTime dateEnd;
 
   @override
   void initState() {
     super.initState();
 
     // 검색 스크린에서 필터링 시 데이터 유지
-    selectedDate = postSettingEntity.date ?? DateTime.now();
-    if (postSettingEntity.date == null) {
+    dateStart = postSettingEntity.dateStart ?? DateTime.now();
+    dateEnd = postSettingEntity.dateEnd ?? DateTime.now();
+    if (postSettingEntity.dateStart == null ||
+        postSettingEntity.dateEnd == null) {
       dateString = "날짜 범위 선택";
     } else {
       dateString =
-          "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${_intToWeekday(selectedDate.weekday)}";
+          "${dateStart.year}년 ${dateStart.month}월 ${dateStart.day}일 ${_intToWeekday(dateStart.weekday)} ~ ${dateEnd.year}년 ${dateEnd.month}월 ${dateEnd.day}일 ${_intToWeekday(dateEnd.weekday)}";
     }
 
     setState(() {});
@@ -35,32 +38,27 @@ class _DateRangeClassState extends State<DateRangeClass> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const ClassificationTitle(title: "날짜"),
-        const SizedBox(
-          width: 20,
-        ),
+        const SizedBox(width: 20),
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
-              late DateTime? tempDate;
+              late DateTimeRange? tempDate;
 
-              tempDate = await showDatePicker(
+              tempDate = await showDateRangePicker(
                 context: context,
+                initialDateRange: DateTimeRange(start: dateStart, end: dateEnd),
                 firstDate: DateTime.now(),
                 lastDate: DateTime(DateTime.now().year + 10),
-                initialDate: selectedDate,
-                currentDate: selectedDate,
-                initialEntryMode: DatePickerEntryMode.calendarOnly,
                 barrierDismissible: false,
               );
 
               if (tempDate == null) return;
 
-              selectedDate = tempDate;
+              postSettingEntity.dateStart = tempDate.start;
+              postSettingEntity.dateEnd = tempDate.end;
 
               dateString =
-                  "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${_intToWeekday(selectedDate.weekday)}";
-
-              postSettingEntity.date = selectedDate.copyWith();
+                  "${postSettingEntity.dateStart!.year}년 ${postSettingEntity.dateStart!.month}월 ${postSettingEntity.dateStart!.day}일 ${_intToWeekday(postSettingEntity.dateStart!.weekday)} ~ ${postSettingEntity.dateEnd!.year}년 ${postSettingEntity.dateEnd!.month}월 ${postSettingEntity.dateEnd!.day}일 ${_intToWeekday(postSettingEntity.dateEnd!.weekday)}";
 
               setState(() {});
             },
