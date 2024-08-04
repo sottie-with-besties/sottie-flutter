@@ -25,9 +25,7 @@ class _TimeClassState extends State<TimeClass> {
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
-              late TimeOfDay? tempTime;
-
-              tempTime = await showTimePicker(
+              TimeOfDay? tempTime = await showTimePicker(
                 context: context,
                 initialTime: selectedTime,
                 barrierDismissible: false,
@@ -43,8 +41,8 @@ class _TimeClassState extends State<TimeClass> {
                 minute: selectedTime.minute,
               );
 
-              String temp = selectedTime.hour < 12 ? "AM" : "PM";
               int hour = selectedTime.hour;
+              String temp = selectedTime.hour < 12 ? "AM" : "PM";
 
               temp == "PM"
                   ? hour > 12

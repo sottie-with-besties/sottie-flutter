@@ -25,9 +25,7 @@ class _DateClassState extends State<DateClass> {
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
-              late DateTime? tempDate;
-
-              tempDate = await showDatePicker(
+              DateTime? tempDate = await showDatePicker(
                 context: context,
                 firstDate: DateTime.now(),
                 lastDate: DateTime(DateTime.now().year + 10),

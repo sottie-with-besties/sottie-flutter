@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:time_range_picker/time_range_picker.dart';
 
 class TimeRangeClass extends StatefulWidget {
   const TimeRangeClass({super.key});
@@ -11,24 +12,34 @@ class TimeRangeClass extends StatefulWidget {
 
 class _TimeRangeClassState extends State<TimeRangeClass> {
   String timeString = '시간 범위 선택';
-  TimeOfDay selectedTime = const TimeOfDay(hour: 0, minute: 0);
 
   void makeTimeString() {
-    if (postSettingEntity.date == null) {
+    if (postSettingEntity.timeStart == null ||
+        postSettingEntity.timeEnd == null) {
       timeString == "시간 범위 선택";
       return;
     }
 
-    String temp = selectedTime.hour < 12 ? "AM" : "PM";
-    int hour = selectedTime.hour;
+    int startHour = postSettingEntity.timeStart!.hour;
+    String startTemp = startHour < 12 ? "AM" : "PM";
 
-    temp == "PM"
-        ? hour > 12
-            ? hour -= 12
+    startTemp == "PM"
+        ? startHour > 12
+            ? startHour -= 12
             : null
         : null;
 
-    timeString = "$temp $hour시 ${selectedTime.minute}분";
+    int endHour = postSettingEntity.timeEnd!.hour;
+    String endTemp = endHour < 12 ? "AM" : "PM";
+
+    endTemp == "PM"
+        ? endHour > 12
+            ? endHour -= 12
+            : null
+        : null;
+
+    timeString =
+        "$startTemp $startHour시 ${postSettingEntity.timeStart!.minute}분 ~ $endTemp $endHour시 ${postSettingEntity.timeEnd!.minute}분";
   }
 
   @override
@@ -36,8 +47,6 @@ class _TimeRangeClassState extends State<TimeRangeClass> {
     super.initState();
 
     // 검색 스크린에서 필터링 시 데이터 유지
-    selectedTime = TimeOfDay.fromDateTime(
-        postSettingEntity.date ?? DateTime(2000, 5, 27, 0, 0));
     makeTimeString();
     setState(() {});
   }
@@ -54,23 +63,26 @@ class _TimeRangeClassState extends State<TimeRangeClass> {
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
-              late TimeOfDay? tempTime;
-
-              tempTime = await showTimePicker(
+              TimeRange? tempTime = await showTimeRangePicker(
                 context: context,
-                initialTime: selectedTime,
+                start: postSettingEntity.timeStart ??
+                    const TimeOfDay(hour: 0, minute: 0),
+                end: postSettingEntity.timeEnd ??
+                    const TimeOfDay(hour: 0, minute: 0),
                 barrierDismissible: false,
+                interval: const Duration(minutes: 30),
+                strokeWidth: 24,
+                ticks: 24,
+                ticksWidth: 5,
+                ticksColor: Colors.black38,
+                strokeColor: Colors.deepPurple.shade200,
+                snap: true,
               );
 
               if (tempTime == null) return;
 
-              selectedTime = tempTime;
-
-              postSettingEntity.date =
-                  (postSettingEntity.date ?? DateTime.now()).copyWith(
-                hour: selectedTime.hour,
-                minute: selectedTime.minute,
-              );
+              postSettingEntity.timeStart = tempTime.startTime;
+              postSettingEntity.timeEnd = tempTime.endTime;
 
               makeTimeString();
               setState(() {});

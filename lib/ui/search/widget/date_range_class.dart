@@ -11,22 +11,18 @@ class DateRangeClass extends StatefulWidget {
 
 class _DateRangeClassState extends State<DateRangeClass> {
   String dateString = '날짜 범위 선택';
-  late DateTime dateStart;
-  late DateTime dateEnd;
 
   @override
   void initState() {
     super.initState();
 
     // 검색 스크린에서 필터링 시 데이터 유지
-    dateStart = postSettingEntity.dateStart ?? DateTime.now();
-    dateEnd = postSettingEntity.dateEnd ?? DateTime.now();
     if (postSettingEntity.dateStart == null ||
         postSettingEntity.dateEnd == null) {
       dateString = "날짜 범위 선택";
     } else {
       dateString =
-          "${dateStart.year}년 ${dateStart.month}월 ${dateStart.day}일 ${_intToWeekday(dateStart.weekday)} ~ ${dateEnd.year}년 ${dateEnd.month}월 ${dateEnd.day}일 ${_intToWeekday(dateEnd.weekday)}";
+          "${postSettingEntity.dateStart!.year}년 ${postSettingEntity.dateStart!.month}월 ${postSettingEntity.dateStart!.day}일 ${_intToWeekday(postSettingEntity.dateStart!.weekday)} ~ ${postSettingEntity.dateEnd!.year}년 ${postSettingEntity.dateEnd!.month}월 ${postSettingEntity.dateEnd!.day}일 ${_intToWeekday(postSettingEntity.dateEnd!.weekday)}";
     }
 
     setState(() {});
@@ -42,11 +38,11 @@ class _DateRangeClassState extends State<DateRangeClass> {
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
-              late DateTimeRange? tempDate;
-
-              tempDate = await showDateRangePicker(
+              DateTimeRange? tempDate = await showDateRangePicker(
                 context: context,
-                initialDateRange: DateTimeRange(start: dateStart, end: dateEnd),
+                initialDateRange: DateTimeRange(
+                    start: postSettingEntity.dateStart ?? DateTime.now(),
+                    end: postSettingEntity.dateEnd ?? DateTime.now()),
                 firstDate: DateTime.now(),
                 lastDate: DateTime(DateTime.now().year + 10),
                 barrierDismissible: false,
