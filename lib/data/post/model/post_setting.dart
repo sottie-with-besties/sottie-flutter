@@ -38,7 +38,7 @@ final class PostSetting {
     this.dateEnd,
     this.timeStart,
     this.timeEnd,
-    this.location = Location.seoul,
+    this.location = Location.all,
     this.numOfMember = 0, // 0 => 최대 참여자 수 상관 없음
     this.gender = GenderRestrictions.all, // all => 성별 상관 없음
     this.genderRatio = false,
