@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/search/controller/date_time_reset.dart';
 
-class DateRangeClass extends StatefulWidget {
+class DateRangeClass extends ConsumerStatefulWidget {
   const DateRangeClass({super.key});
 
   @override
-  State<DateRangeClass> createState() => _DateRangeClassState();
+  ConsumerState<DateRangeClass> createState() => _DateRangeClassState();
 }
 
-class _DateRangeClassState extends State<DateRangeClass> {
+class _DateRangeClassState extends ConsumerState<DateRangeClass> {
   String dateString = '날짜 범위 선택';
 
-  @override
-  void initState() {
-    super.initState();
-
-    // 검색 스크린에서 필터링 시 데이터 유지
+  void makeDateString() {
     if (postSettingEntity.dateStart == null ||
         postSettingEntity.dateEnd == null) {
       dateString = "날짜 범위 선택";
@@ -24,12 +22,13 @@ class _DateRangeClassState extends State<DateRangeClass> {
       dateString =
           "${postSettingEntity.dateStart!.year}년 ${postSettingEntity.dateStart!.month}월 ${postSettingEntity.dateStart!.day}일 ${_intToWeekday(postSettingEntity.dateStart!.weekday)} ~ ${postSettingEntity.dateEnd!.year}년 ${postSettingEntity.dateEnd!.month}월 ${postSettingEntity.dateEnd!.day}일 ${_intToWeekday(postSettingEntity.dateEnd!.weekday)}";
     }
-
-    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(dateTimeResetProvider);
+    makeDateString();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -45,6 +44,9 @@ class _DateRangeClassState extends State<DateRangeClass> {
                     end: postSettingEntity.dateEnd ?? DateTime.now()),
                 firstDate: DateTime.now(),
                 lastDate: DateTime(DateTime.now().year + 10),
+                cancelText: "취소",
+                confirmText: "저장하기",
+                saveText: "저장하기",
                 barrierDismissible: false,
               );
 
@@ -53,9 +55,7 @@ class _DateRangeClassState extends State<DateRangeClass> {
               postSettingEntity.dateStart = tempDate.start;
               postSettingEntity.dateEnd = tempDate.end;
 
-              dateString =
-                  "${postSettingEntity.dateStart!.year}년 ${postSettingEntity.dateStart!.month}월 ${postSettingEntity.dateStart!.day}일 ${_intToWeekday(postSettingEntity.dateStart!.weekday)} ~ ${postSettingEntity.dateEnd!.year}년 ${postSettingEntity.dateEnd!.month}월 ${postSettingEntity.dateEnd!.day}일 ${_intToWeekday(postSettingEntity.dateEnd!.weekday)}";
-
+              makeDateString();
               setState(() {});
             },
             child: Text(

@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/search/controller/date_time_reset.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 
-class TimeRangeClass extends StatefulWidget {
+class TimeRangeClass extends ConsumerStatefulWidget {
   const TimeRangeClass({super.key});
 
   @override
-  State<TimeRangeClass> createState() => _TimeRangeClassState();
+  ConsumerState<TimeRangeClass> createState() => _TimeRangeClassState();
 }
 
-class _TimeRangeClassState extends State<TimeRangeClass> {
+class _TimeRangeClassState extends ConsumerState<TimeRangeClass> {
   String timeString = '시간 범위 선택';
 
   void makeTimeString() {
     if (postSettingEntity.timeStart == null ||
         postSettingEntity.timeEnd == null) {
-      timeString == "시간 범위 선택";
+      timeString = "시간 범위 선택";
       return;
     }
 
@@ -43,16 +45,11 @@ class _TimeRangeClassState extends State<TimeRangeClass> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    // 검색 스크린에서 필터링 시 데이터 유지
-    makeTimeString();
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // 날짜 및 시간 초기화 버튼 눌리는거 인지 하는 용도
+    ref.watch(dateTimeResetProvider);
+    makeTimeString();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

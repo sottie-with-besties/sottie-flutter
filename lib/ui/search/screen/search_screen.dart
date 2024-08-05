@@ -15,6 +15,7 @@ import 'package:sottie_flutter/ui/post/widget/classification/only_my_friends_cla
 import 'package:sottie_flutter/ui/post/widget/classification/open_participation_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/start_same_time_class.dart';
 import 'package:sottie_flutter/ui/search/widget/date_range_class.dart';
+import 'package:sottie_flutter/ui/search/widget/date_time_reset_button.dart';
 import 'package:sottie_flutter/ui/search/widget/time_range_class.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -81,6 +82,8 @@ class _SearchScreenState extends State<SearchScreen> {
                             const DateRangeClass(),
                             const SizedBox(height: 20),
                             const TimeRangeClass(),
+                            const SizedBox(height: 20),
+                            const DateTimeResetButton(),
                             const SizedBox(height: 20),
                             NumOfMemberClass(focusNode: settingFocusNode),
                             const SizedBox(height: 20),
