@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/more/widget/remain_gold.dart';
 
@@ -39,6 +40,29 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
               _goldPurchase(3000, 5000),
               _goldPurchase(5000, 7000),
               _goldPurchase(10000, 12000),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Todo: 광고 나오게 하기
+                          log("광고 출력");
+                        },
+                        child: const Text(
+                          "광고 시청하고 10골드 받기",
+                          style: TextStyle(
+                            color: mainSilverColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(height: 50),
               termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
               termsAndConditions("법정대리인의 동의 없는 미성년자의 결제는 취소될 수 있습니다."),
