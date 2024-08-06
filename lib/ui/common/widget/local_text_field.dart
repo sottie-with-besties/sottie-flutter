@@ -15,6 +15,7 @@ class LocalTextField extends StatelessWidget {
     this.controller,
     this.inputFormatter,
     this.lines = 1,
+    this.maxLength,
   });
 
   final String? hint;
@@ -26,6 +27,7 @@ class LocalTextField extends StatelessWidget {
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormatter;
   final int? lines;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class LocalTextField extends StatelessWidget {
       child: TextFormField(
         minLines: lines,
         maxLines: lines,
+        maxLength: maxLength,
         controller: controller,
         focusNode: focusNode,
         inputFormatters: inputFormatter,
