@@ -39,8 +39,6 @@ class _NumOfMemberSelector extends ConsumerStatefulWidget {
 }
 
 class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
-  dynamic initValue = 0;
-
   final entries = List.generate(12, (index) {
     if (index == 0) {
       return "제한 없음";
@@ -75,6 +73,7 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
         controller.text = num.toString();
       }
     }
+
     postSettingEntity.numOfMember = num;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(numOfMemberProvider.notifier).changeNumOfMember(num);
@@ -89,14 +88,12 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
       controller.addListener(_controllerListener);
 
       // 검색 스크린에서 필터링 시 데이터 유지
-      initValue = postSettingEntity.numOfMember;
       if (postSettingEntity.numOfMember > 10) {
         controller.text = postSettingEntity.numOfMember.toString();
       }
       ref
           .read(numOfMemberProvider.notifier)
           .changeNumOfMember(postSettingEntity.numOfMember);
-      setState(() {});
     });
   }
 
@@ -111,7 +108,7 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
   @override
   Widget build(BuildContext context) {
     return DropdownMenu(
-      initialSelection: initValue,
+      initialSelection: postSettingEntity.numOfMember,
       menuHeight: 200,
       controller: controller,
       focusNode: widget.focusNode,
@@ -127,7 +124,12 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
           widget.focusNode.requestFocus();
         } else {
           widget.focusNode.unfocus();
-          postSettingEntity.numOfMember = int.parse(val.toString());
+          try {
+            postSettingEntity.numOfMember = int.parse(val.toString());
+          } on Exception catch (_) {
+            // 인원 수를 고른 후 키보드의 Done 버튼을 누를 경우의 에러 처리
+            // 리스너에서 이미 값을 처리하고 있기 때문에 그냥 패스하면 될듯?
+          }
           ref
               .read(numOfMemberProvider.notifier)
               .changeNumOfMember(postSettingEntity.numOfMember);
