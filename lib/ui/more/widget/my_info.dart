@@ -1,13 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:random_avatar/random_avatar.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
-class MyInfo extends StatelessWidget {
+class MyInfo extends StatefulWidget {
   const MyInfo({super.key});
 
+  @override
+  State<MyInfo> createState() => _MyInfoState();
+}
+
+class _MyInfoState extends State<MyInfo> {
   @override
   Widget build(BuildContext context) {
     const infoStyle = TextStyle(color: mainSilverColor);
@@ -19,38 +27,49 @@ class MyInfo extends StatelessWidget {
           children: [
             Row(
               children: [
-                RandomAvatar(
-                  DateTime.now().toIso8601String(),
-                  width: 45 * wu,
-                  height: 45 * wu,
-                ),
+                if (myInfoEntity.profile == null)
+                  RandomAvatar(
+                    DateTime.now().toIso8601String(),
+                    width: 45 * wu,
+                    height: 45 * wu,
+                  ),
+                if (myInfoEntity.profile != null)
+                  CircleAvatar(
+                    backgroundImage:
+                        FileImage(File(myInfoEntity.profile!.path)),
+                    radius: 23 * wu,
+                  ),
                 SizedBox(
                   width: 10 * wu,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "닉네임",
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16 * hu,
+                SizedBox(
+                  width: 155 * wu,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        myInfoEntity.nickName,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16 * hu,
+                        ),
                       ),
-                    ),
-                    const Text(
-                      "kjp00552277@gmail.com",
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
+                      Text(
+                        myInfoEntity.email,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
             OutlinedButton(
-                onPressed: () {
-                  context.push(
+                onPressed: () async {
+                  await context.push(
                       "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}");
+                  setState(() {});
                 },
                 child: const Text(
                   "수정",
@@ -68,27 +87,27 @@ class MyInfo extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           height: 30 * hu,
-          child: const Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "2000년 5월 27일",
+                myInfoEntity.birthYear,
                 style: infoStyle,
               ),
-              VerticalDivider(
+              const VerticalDivider(
                 indent: 10,
                 endIndent: 10,
               ),
               Text(
-                "남성",
+                myInfoEntity.gender.value,
                 style: infoStyle,
               ),
-              VerticalDivider(
+              const VerticalDivider(
                 indent: 10,
                 endIndent: 10,
               ),
               Text(
-                "김진표",
+                myInfoEntity.name,
                 style: infoStyle,
               ),
             ],

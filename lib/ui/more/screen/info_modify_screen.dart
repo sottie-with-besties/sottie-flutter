@@ -1,7 +1,10 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:random_avatar/random_avatar.dart';
+import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
@@ -34,39 +37,69 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               GestureDetector(
-                onTap: () {
-                  // Todo: 이미지 선택 기능
+                onTap: () async {
+                  final tempImg = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+                  if (tempImg == null) return;
+                  myInfoEntity.profile = tempImg;
+                  setState(() {});
                 },
-                child: RandomAvatar(
-                  DateTime.now().toIso8601String(),
-                  width: 80 * hu,
-                  height: 80 * hu,
-                ),
+                child: myInfoEntity.profile == null
+                    ? RandomAvatar(
+                        DateTime.now().toIso8601String(),
+                        width: 80 * hu,
+                        height: 80 * hu,
+                      )
+                    : CircleAvatar(
+                        backgroundImage:
+                            FileImage(File(myInfoEntity.profile!.path)),
+                        radius: 40 * hu,
+                      ),
               ),
               TextButton(
                   onPressed: () {
-                    // Todo: 이미지 초기화 하는 코드
+                    myInfoEntity.profile = null;
+                    setState(() {});
                   },
                   child: const Text("프로필 사진 초기화")),
               const SizedBox(height: 30),
               _renderSubTitle("닉네임"),
               LocalTextField(
                 prefixIcon: false,
-                hint: "닉네임",
+                hint: myInfoEntity.nickName,
                 maxLength: 10,
                 onFieldSubmitted: (value) {
-                  log(value);
+                  myInfoEntity.nickName = value;
                 },
               ),
               _renderSubTitle("상태 메세지"),
               LocalTextField(
                 prefixIcon: false,
-                hint: "상태 메세지",
-                maxLength: 80,
-                lines: 5,
+                hint: myInfoEntity.stateMessage,
+                maxLength: 30,
                 onFieldSubmitted: (value) {
-                  log(value);
+                  myInfoEntity.stateMessage = value;
                 },
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        log("이메일 변경");
+                      },
+                      child: const Text("이메일 변경")),
+                  TextButton(
+                      onPressed: () {
+                        log("비밀번호 변경");
+                      },
+                      child: const Text("비밀번호 변경")),
+                  TextButton(
+                      onPressed: () {
+                        log("개인정보 변경");
+                      },
+                      child: const Text("개인정보 변경 (이름, 성별, 전화번호 등)")),
+                ],
               ),
             ],
           ),

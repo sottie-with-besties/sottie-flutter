@@ -70,10 +70,28 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeClass> {
                 interval: const Duration(minutes: 30),
                 strokeWidth: 24,
                 ticks: 24,
-                ticksWidth: 5,
+                ticksWidth: 3,
                 ticksColor: Colors.black38,
                 strokeColor: Colors.deepPurple.shade200,
                 snap: true,
+                labels: [
+                  "12 am",
+                  "3 am",
+                  "6 am",
+                  "9 am",
+                  "12 pm",
+                  "3 pm",
+                  "6 pm",
+                  "9 pm"
+                ].asMap().entries.map((e) {
+                  return ClockLabel.fromIndex(
+                      idx: e.key, length: 8, text: e.value);
+                }).toList(),
+                labelOffset: -30,
+                labelStyle: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold),
               );
 
               if (tempTime == null) return;

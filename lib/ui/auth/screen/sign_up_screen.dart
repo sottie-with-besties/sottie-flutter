@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/auth/email_verification.dart';
-import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';
+import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
@@ -77,8 +77,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       final emailVerification = await isEmailVerification(email!, password!);
       if (emailVerification) {
         currentStep += 1;
-        signUpEntity.email = email;
-        signUpEntity.password = password;
+        myInfoEntity.email = email!;
+        myInfoEntity.password = password!;
       } else {
         if (mounted) showSnackBar(context, "이메일을 인증해주세요");
       }

@@ -10,7 +10,7 @@ class DateTimeResetButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Align(
       alignment: Alignment.centerRight,
-      child: OutlinedButton(
+      child: TextButton(
         onPressed: () {
           postSettingEntity.dateStart = null;
           postSettingEntity.dateEnd = null;
