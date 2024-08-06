@@ -51,6 +51,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                 prefixIcon: false,
                 controller: titleController,
                 focusNode: titleFocusNode,
+                maxLength: 15,
               ),
               LocalTextField(
                 prefixIcon: false,
@@ -58,6 +59,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                 lines: 12,
                 controller: contentController,
                 focusNode: contentFocusNode,
+                maxLength: 100,
               ),
               const SizedBox(height: 10),
               Align(
