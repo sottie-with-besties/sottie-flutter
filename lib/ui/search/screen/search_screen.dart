@@ -61,7 +61,7 @@ class _SearchScreenState extends State<SearchScreen> {
               controller: searchController,
               onFieldSubmitted: (searchContent) async {
                 postSettingEntity.title = searchContent;
-                await searchPost(); // Todo: 함수 미완성
+                await searchPost(); // Todo: 함수 구현해야함
               },
               suffixIcon: Padding(
                 padding:

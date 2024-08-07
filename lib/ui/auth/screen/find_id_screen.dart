@@ -120,6 +120,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                     ),
                     AuthTextField(
                       hint: "전화번호 입력",
+                      keyboardType: TextInputType.number,
                       validator: (val) {
                         phoneNumber = val;
                         return validatePhoneNumber(val!);

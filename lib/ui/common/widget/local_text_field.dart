@@ -16,6 +16,7 @@ class LocalTextField extends StatelessWidget {
     this.inputFormatter,
     this.lines = 1,
     this.maxLength,
+    this.keyboardType,
   });
 
   final String? hint;
@@ -28,6 +29,7 @@ class LocalTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatter;
   final int? lines;
   final int? maxLength;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class LocalTextField extends StatelessWidget {
         maxLength: maxLength,
         controller: controller,
         focusNode: focusNode,
+        keyboardType: keyboardType,
         inputFormatters: inputFormatter,
         decoration: InputDecoration(
           filled: true,

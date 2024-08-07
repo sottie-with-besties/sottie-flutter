@@ -1,12 +1,10 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:random_avatar/random_avatar.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
-import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
+import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
 class InfoModifyScreen extends StatefulWidget {
   const InfoModifyScreen({super.key});
@@ -44,17 +42,13 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   myInfoEntity.profile = tempImg;
                   setState(() {});
                 },
-                child: myInfoEntity.profile == null
-                    ? RandomAvatar(
-                        DateTime.now().toIso8601String(),
-                        width: 80 * hu,
-                        height: 80 * hu,
-                      )
-                    : CircleAvatar(
-                        backgroundImage:
-                            FileImage(File(myInfoEntity.profile!.path)),
-                        radius: 40 * hu,
-                      ),
+                child: UserProfile(
+                  avatarId: "abc",
+                  randomAvatarSize: 80,
+                  profileAvatarSize: 40,
+                  profileUrl: myInfoEntity.profile?.path,
+                  me: true,
+                ),
               ),
               TextButton(
                   onPressed: () {

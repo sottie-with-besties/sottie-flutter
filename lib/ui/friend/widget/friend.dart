@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend_info.dart';
-import 'package:sottie_flutter/ui/friend/widget/profile.dart';
 
 class Friend extends StatefulWidget {
   const Friend({
@@ -86,7 +86,12 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
         height: 75 * hu,
         child: Row(
           children: [
-            const FriendProfile(),
+            SizedBox(
+              width: 70 * wu,
+              child: const UserProfile(
+                randomAvatarSize: 45,
+              ),
+            ),
             SizedBox(width: 10 * wu),
             FriendInfo(
               friendName: friendName,

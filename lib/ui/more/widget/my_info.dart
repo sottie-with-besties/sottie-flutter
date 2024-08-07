@@ -1,12 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:random_avatar/random_avatar.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
 class MyInfo extends StatefulWidget {
   const MyInfo({super.key});
@@ -27,18 +25,14 @@ class _MyInfoState extends State<MyInfo> {
           children: [
             Row(
               children: [
-                if (myInfoEntity.profile == null)
-                  RandomAvatar(
-                    DateTime.now().toIso8601String(),
-                    width: 45 * wu,
-                    height: 45 * wu,
-                  ),
-                if (myInfoEntity.profile != null)
-                  CircleAvatar(
-                    backgroundImage:
-                        FileImage(File(myInfoEntity.profile!.path)),
-                    radius: 23 * wu,
-                  ),
+                // const 선언을 붙이면 프로필 사진 변경이 즉각 반영되지 않습니다.
+                UserProfile(
+                  avatarId: "abc",
+                  randomAvatarSize: 45,
+                  profileAvatarSize: 23,
+                  profileUrl: myInfoEntity.profile?.path,
+                  me: true,
+                ),
                 SizedBox(
                   width: 10 * wu,
                 ),

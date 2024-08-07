@@ -7,11 +7,13 @@ class AuthTextField extends StatelessWidget {
     this.obsecure = false,
     this.validator,
     this.hint,
+    this.keyboardType,
   });
 
   final bool obsecure;
   final String? Function(String?)? validator;
   final String? hint;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,7 @@ class AuthTextField extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        keyboardType: keyboardType,
         obscureText: obsecure,
         validator: validator,
         autovalidateMode: AutovalidateMode.onUserInteraction,

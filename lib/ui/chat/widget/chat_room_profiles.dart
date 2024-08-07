@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:random_avatar/random_avatar.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
 class ChatRoomProfiles extends StatelessWidget {
   const ChatRoomProfiles({
@@ -23,10 +23,8 @@ class ChatRoomProfiles extends StatelessWidget {
         runAlignment: WrapAlignment.center,
         children: List.generate(
           profileCount,
-          (_) => RandomAvatar(
-            DateTime.now().toIso8601String(),
-            width: profileSize,
-            height: profileSize,
+          (_) => UserProfile(
+            randomAvatarSize: profileSize,
           ),
         ),
       ),

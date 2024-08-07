@@ -139,6 +139,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     AuthTextField(
                       hint: "이메일을 입력해주세요.",
+                      keyboardType: TextInputType.emailAddress,
                       validator: (val) {
                         email = val;
                         return validateEmail(val!);

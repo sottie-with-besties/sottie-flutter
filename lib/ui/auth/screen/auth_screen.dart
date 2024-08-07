@@ -80,6 +80,7 @@ class OAuthScreen extends StatelessWidget {
                         ),
                         AuthTextField(
                           hint: "이메일 입력",
+                          keyboardType: TextInputType.emailAddress,
                           validator: (val) {
                             email = val;
                             return validateEmail(val!);

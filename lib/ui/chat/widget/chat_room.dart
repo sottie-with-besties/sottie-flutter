@@ -16,7 +16,7 @@ class ChatRoom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileSize = model.numOfMember < 2 ? 45 * hu : 30 * hu;
+    final profileSize = model.numOfMember < 2 ? 45.0 : 30.0;
     final profileCount = model.numOfMember > 4 ? 4 : model.numOfMember;
 
     return Material(
