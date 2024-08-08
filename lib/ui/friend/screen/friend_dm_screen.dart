@@ -8,7 +8,12 @@ import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend_dm_box.dart';
 
 class FriendDmScreen extends StatefulWidget {
-  const FriendDmScreen({super.key});
+  const FriendDmScreen({
+    super.key,
+    required this.id,
+  });
+
+  final String id;
 
   @override
   State<FriendDmScreen> createState() => _FriendDmScreenState();
@@ -27,9 +32,12 @@ class _FriendDmScreenState extends State<FriendDmScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const UserProfile(
-                  avatarId: "abcde",
-                  randomAvatarSize: 50,
+                Hero(
+                  tag: widget.id,
+                  child: UserProfile(
+                    avatarId: widget.id,
+                    randomAvatarSize: 50,
+                  ),
                 ),
                 SizedBox(
                   width: 225 * wu,
@@ -59,7 +67,9 @@ class _FriendDmScreenState extends State<FriendDmScreen> {
               ],
             ),
             const SizedBox(height: 20),
-            const FriendDmBox(),
+            FriendDmBox(
+              avatarId: widget.id,
+            ),
             renderDmTextField(),
           ],
         ),

@@ -81,8 +81,11 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
       ),
       child: GestureDetector(
         onTap: () async {
-          await context
-              .push("${CustomRouter.friendPath}/${CustomRouter.friendDmPath}");
+          await context.push(
+              "${CustomRouter.friendPath}/${CustomRouter.friendDmPath}",
+              extra: {
+                'id': id,
+              });
         },
         child: Container(
           padding: const EdgeInsets.all(8),
@@ -95,8 +98,12 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
             children: [
               SizedBox(
                 width: 70 * wu,
-                child: const UserProfile(
-                  randomAvatarSize: 45,
+                child: Hero(
+                  tag: id,
+                  child: UserProfile(
+                    randomAvatarSize: 45,
+                    avatarId: id,
+                  ),
                 ),
               ),
               SizedBox(width: 10 * wu),

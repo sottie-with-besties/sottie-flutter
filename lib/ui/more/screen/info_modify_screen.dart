@@ -42,12 +42,15 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   myInfoEntity.profile = tempImg;
                   setState(() {});
                 },
-                child: UserProfile(
-                  avatarId: "abc",
-                  randomAvatarSize: 80,
-                  profileAvatarSize: 40,
-                  profileUrl: myInfoEntity.profile?.path,
-                  me: true,
+                child: Hero(
+                  tag: 'me',
+                  child: UserProfile(
+                    avatarId: 'me',
+                    randomAvatarSize: 80,
+                    profileAvatarSize: 40,
+                    profileUrl: myInfoEntity.profile?.path,
+                    me: true,
+                  ),
                 ),
               ),
               TextButton(

@@ -26,12 +26,15 @@ class _MyInfoState extends State<MyInfo> {
             Row(
               children: [
                 // const 선언을 붙이면 프로필 사진 변경이 즉각 반영되지 않습니다.
-                UserProfile(
-                  avatarId: "abc",
-                  randomAvatarSize: 45,
-                  profileAvatarSize: 23,
-                  profileUrl: myInfoEntity.profile?.path,
-                  me: true,
+                Hero(
+                  tag: 'me',
+                  child: UserProfile(
+                    avatarId: 'me',
+                    randomAvatarSize: 45,
+                    profileAvatarSize: 23,
+                    profileUrl: myInfoEntity.profile?.path,
+                    me: true,
+                  ),
                 ),
                 SizedBox(
                   width: 10 * wu,

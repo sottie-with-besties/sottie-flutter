@@ -4,7 +4,12 @@ import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
 class FriendDmBox extends StatelessWidget {
-  const FriendDmBox({super.key});
+  const FriendDmBox({
+    super.key,
+    this.avatarId,
+  });
+
+  final String? avatarId;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +46,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
+                avatarId,
               ),
               renderDmChatBox(
                 [
@@ -50,6 +56,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 true,
+                avatarId,
               ),
               renderDmChatBox(
                 [
@@ -59,6 +66,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
+                avatarId,
               ),
               renderDmChatBox(
                 [
@@ -68,6 +76,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 true,
+                avatarId,
               ),
               renderDmChatBox(
                 [
@@ -77,6 +86,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
+                avatarId,
               ),
               renderDmChatBox(
                 [
@@ -86,6 +96,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
+                avatarId,
               ),
               renderDmChatBox(
                 [
@@ -95,6 +106,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
+                avatarId,
               ),
               renderDmChatBox(
                 [
@@ -104,6 +116,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
+                avatarId,
               ),
               renderDmChatBox(
                 [
@@ -113,6 +126,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
+                avatarId,
               ),
             ],
           ),
@@ -122,7 +136,7 @@ class FriendDmBox extends StatelessWidget {
   }
 }
 
-Widget renderDmChatBox(List<Widget> contents, bool myMsg) {
+Widget renderDmChatBox(List<Widget> contents, bool myMsg, String? avatarId) {
   return Padding(
     padding: const EdgeInsets.only(left: 8),
     child: Column(
@@ -132,8 +146,8 @@ Widget renderDmChatBox(List<Widget> contents, bool myMsg) {
               myMsg ? MainAxisAlignment.end : MainAxisAlignment.start,
           children: [
             if (!myMsg)
-              const UserProfile(
-                avatarId: "abcde",
+              UserProfile(
+                avatarId: avatarId,
                 randomAvatarSize: 30,
               ),
             const SizedBox(width: 15),

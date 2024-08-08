@@ -134,7 +134,10 @@ final _routes = [
               routes: <GoRoute>[
                 GoRoute(
                   path: CustomRouter.friendDmPath,
-                  builder: (_, __) => const FriendDmScreen(),
+                  builder: (_, state) {
+                    final params = state.extra as Map<String, dynamic>;
+                    return FriendDmScreen(id: params['id']);
+                  },
                 ),
               ]),
         ],
