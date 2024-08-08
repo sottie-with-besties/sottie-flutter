@@ -37,50 +37,53 @@ class _FriendDmScreenState extends State<FriendDmScreen> {
         backgroundColor: lightBrownColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Hero(
-                    tag: widget.id,
-                    child: UserProfile(
-                      avatarId: widget.id,
-                      randomAvatarSize: 50,
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Hero(
+                      tag: widget.id,
+                      child: UserProfile(
+                        avatarId: widget.id,
+                        randomAvatarSize: 50,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 225 * wu,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "김진표",
-                          style: TextStyle(
-                            color: mainSilverColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16 * wu,
+                    SizedBox(
+                      width: 225 * wu,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "김진표",
+                            style: TextStyle(
+                              color: mainSilverColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16 * wu,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          "안녕하세요 수원 사는 2000년생 김진표 입니다.",
-                          style: TextStyle(
-                            color: mainSilverColor,
-                            fontSize: 12 * wu,
+                          const SizedBox(height: 10),
+                          Text(
+                            "안녕하세요 수원 사는 2000년생 김진표 입니다.",
+                            style: TextStyle(
+                              color: mainSilverColor,
+                              fontSize: 12 * wu,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 12 * hu),
-              FriendDmBox(avatarId: widget.id),
-              SizedBox(height: 5 * hu),
-              renderDmTextField(focusNode),
-            ],
+                  ],
+                ),
+                SizedBox(height: 12 * hu),
+                FriendDmBox(avatarId: widget.id),
+                SizedBox(height: 5 * hu),
+                renderDmTextField(focusNode),
+              ],
+            ),
           ),
         ),
       ),

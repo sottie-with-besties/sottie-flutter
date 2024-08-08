@@ -30,13 +30,13 @@ class _FriendDmBoxState extends State<FriendDmBox> with WidgetsBindingObserver {
     super.dispose();
   }
 
+  // 키보드 올라오는 거 감지하여 높이 바꾸기
   @override
   void didChangeMetrics() {
-    final bottomInset = View.of(context).viewInsets.bottom;
-    final isKeyboardVisible = bottomInset > 0.0;
+    final keyboardHeight = View.of(context).viewInsets.bottom;
 
     setState(() {
-      _boxHeight = isKeyboardVisible ? 200 * hu : 370 * hu;
+      _boxHeight = 370 * hu - keyboardHeight / 5;
     });
   }
 
