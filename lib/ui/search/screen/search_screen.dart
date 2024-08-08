@@ -50,6 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return GestureDetector(
       onTap: searchFocusNode.unfocus,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             const SizedBox(

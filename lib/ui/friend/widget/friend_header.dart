@@ -15,12 +15,15 @@ class FriendHeader extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectFunc = ref.read(friendHeaderControllerProvider.notifier);
 
-    return LocalTextField(
-      hint: "이름, 연락처...",
-      focusNode: focusNode,
-      onChanged: (value) {
-        selectFunc.changeInput(value!);
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: LocalTextField(
+        hint: "이름, 연락처...",
+        focusNode: focusNode,
+        onChanged: (value) {
+          selectFunc.changeInput(value!);
+        },
+      ),
     );
   }
 }

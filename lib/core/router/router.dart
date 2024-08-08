@@ -8,6 +8,7 @@ import 'package:sottie_flutter/ui/auth/screen/verification_complete_screen.dart'
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
+import 'package:sottie_flutter/ui/friend/screen/friend_dm_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
@@ -45,6 +46,7 @@ sealed class CustomRouter {
   static const dmPath = "/dm";
 
   static const friendPath = "/friend";
+  static const friendDmPath = "friendDm";
 
   static const morePath = "/more";
   static const infoModifyPath = "modify";
@@ -127,9 +129,14 @@ final _routes = [
       StatefulShellBranch(
         routes: <GoRoute>[
           GoRoute(
-            path: CustomRouter.friendPath,
-            builder: (_, __) => const FriendScreen(),
-          )
+              path: CustomRouter.friendPath,
+              builder: (_, __) => const FriendScreen(),
+              routes: <GoRoute>[
+                GoRoute(
+                  path: CustomRouter.friendDmPath,
+                  builder: (_, __) => const FriendDmScreen(),
+                ),
+              ]),
         ],
       ),
       StatefulShellBranch(

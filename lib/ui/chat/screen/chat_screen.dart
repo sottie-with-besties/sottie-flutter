@@ -21,9 +21,12 @@ class ChatScreen extends StatelessWidget {
             title: '채팅',
           ),
         ),
-        header: LocalTextField(
-          hint: "제목, 날짜, 장소...",
-          focusNode: focusNode,
+        header: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: LocalTextField(
+            hint: "제목, 날짜, 장소...",
+            focusNode: focusNode,
+          ),
         ),
         contentChild: const ChatContentScreen(),
       ),

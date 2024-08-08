@@ -77,7 +77,7 @@ class _MyInfoState extends State<MyInfo> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 32),
           decoration: BoxDecoration(
-            color: const Color(0xdda0522d),
+            color: lightBrownColor,
             borderRadius: BorderRadius.circular(8),
           ),
           height: 30 * hu,

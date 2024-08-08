@@ -27,7 +27,7 @@ class OAuthScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: ColoredBox(
-        color: const Color(0xdda0522d),
+        color: lightBrownColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: SafeArea(

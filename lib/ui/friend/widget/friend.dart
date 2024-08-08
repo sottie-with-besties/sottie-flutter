@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend_info.dart';
@@ -77,27 +79,33 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
           ),
         ],
       ),
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: mainSilverColor,
-        ),
-        height: 75 * hu,
-        child: Row(
-          children: [
-            SizedBox(
-              width: 70 * wu,
-              child: const UserProfile(
-                randomAvatarSize: 45,
+      child: GestureDetector(
+        onTap: () async {
+          await context
+              .push("${CustomRouter.friendPath}/${CustomRouter.friendDmPath}");
+        },
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: mainSilverColor,
+          ),
+          height: 75 * hu,
+          child: Row(
+            children: [
+              SizedBox(
+                width: 70 * wu,
+                child: const UserProfile(
+                  randomAvatarSize: 45,
+                ),
               ),
-            ),
-            SizedBox(width: 10 * wu),
-            FriendInfo(
-              friendName: friendName,
-              stateMsg: stateMsg,
-            ),
-          ],
+              SizedBox(width: 10 * wu),
+              FriendInfo(
+                friendName: friendName,
+                stateMsg: stateMsg,
+              ),
+            ],
+          ),
         ),
       ),
     );

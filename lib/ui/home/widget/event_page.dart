@@ -11,17 +11,22 @@ class EventPage extends StatefulWidget {
 }
 
 class _EventPageState extends State<EventPage> {
-  final controller = PageController();
+  final _controller = PageController();
 
-  void autoPageChange() {
+  void _autoPageChange() {
     // 디바운스를 거는 이유
     // => 페이지가 자동으로 넘어가는 도중 유저가 페이지를 직접 손으로 밀어 넘길 경우
     // 함수가 반복 호출 되는 것을 방지하기 위해서
     EasyDebounce.debounce("autoPageChange", const Duration(seconds: 5), () {
-      controller.nextPage(
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeOutCubic,
-      );
+      // PageController가 현재 PageView와 연결되어 있는지 확인 -> 에러 방지
+      if (_controller.hasClients) {
+        _controller.nextPage(
+          duration: const Duration(seconds: 1),
+          curve: Curves.ease,
+        );
+      } else {
+        // PageController가 아직 사용 가능한 상태가 아닐 때 대처할 로직을 추가할 수 있습니다.
+      }
     });
   }
 
@@ -47,12 +52,12 @@ class _EventPageState extends State<EventPage> {
   @override
   void initState() {
     super.initState();
-    autoPageChange();
+    _autoPageChange();
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -63,16 +68,16 @@ class _EventPageState extends State<EventPage> {
         SizedBox(
           height: 240,
           child: PageView.builder(
-            controller: controller,
+            controller: _controller,
             itemBuilder: (_, index) {
               return events[index % events.length];
             },
-            onPageChanged: (_) => autoPageChange(),
+            onPageChanged: (_) => _autoPageChange(),
           ),
         ),
         const SizedBox(height: 16),
         SmoothPageIndicator(
-          controller: controller,
+          controller: _controller,
           count: events.length,
           effect: const WormEffect(
             dotHeight: 16,
