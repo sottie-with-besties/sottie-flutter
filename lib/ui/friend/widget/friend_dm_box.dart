@@ -3,7 +3,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
-class FriendDmBox extends StatelessWidget {
+class FriendDmBox extends StatefulWidget {
   const FriendDmBox({
     super.key,
     this.avatarId,
@@ -12,28 +12,61 @@ class FriendDmBox extends StatelessWidget {
   final String? avatarId;
 
   @override
+  State<FriendDmBox> createState() => _FriendDmBoxState();
+}
+
+class _FriendDmBoxState extends State<FriendDmBox> with WidgetsBindingObserver {
+  double _boxHeight = 350 * hu;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeMetrics() {
+    final bottomInset = View.of(context).viewInsets.bottom;
+    final isKeyboardVisible = bottomInset > 0.0;
+
+    setState(() {
+      _boxHeight = isKeyboardVisible ? 200 * hu : 370 * hu;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     const opponentStyle = TextStyle(color: Colors.black);
     const myStyle = TextStyle(color: mainSilverColor);
 
-    return InputDecorator(
-      decoration: InputDecoration(
-        labelText: 'DM',
-        labelStyle: const TextStyle(
-          color: mainSilverColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 24,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: mainSilverColor,
-            width: 1.5,
-          ),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOutCubic,
+      constraints: BoxConstraints(
+        maxHeight: _boxHeight,
       ),
-      child: SizedBox(
-        height: 350 * hu,
+      child: InputDecorator(
+        decoration: InputDecoration(
+          labelText: 'DM',
+          labelStyle: const TextStyle(
+            color: mainSilverColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: mainSilverColor,
+              width: 1.5,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+        ),
         child: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
           child: Column(
@@ -46,7 +79,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
-                avatarId,
+                widget.avatarId,
               ),
               renderDmChatBox(
                 [
@@ -56,7 +89,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 true,
-                avatarId,
+                widget.avatarId,
               ),
               renderDmChatBox(
                 [
@@ -66,7 +99,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
-                avatarId,
+                widget.avatarId,
               ),
               renderDmChatBox(
                 [
@@ -76,7 +109,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 true,
-                avatarId,
+                widget.avatarId,
               ),
               renderDmChatBox(
                 [
@@ -86,7 +119,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
-                avatarId,
+                widget.avatarId,
               ),
               renderDmChatBox(
                 [
@@ -96,7 +129,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
-                avatarId,
+                widget.avatarId,
               ),
               renderDmChatBox(
                 [
@@ -106,7 +139,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
-                avatarId,
+                widget.avatarId,
               ),
               renderDmChatBox(
                 [
@@ -116,7 +149,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
-                avatarId,
+                widget.avatarId,
               ),
               renderDmChatBox(
                 [
@@ -126,7 +159,7 @@ class FriendDmBox extends StatelessWidget {
                   ),
                 ],
                 false,
-                avatarId,
+                widget.avatarId,
               ),
             ],
           ),
