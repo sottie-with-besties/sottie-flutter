@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend_dm_box.dart';
+import 'package:sottie_flutter/ui/friend/widget/friend_type_box.dart';
 
 class FriendDmScreen extends StatefulWidget {
   const FriendDmScreen({
@@ -81,7 +79,7 @@ class _FriendDmScreenState extends State<FriendDmScreen> {
                 SizedBox(height: 12 * hu),
                 FriendDmBox(avatarId: widget.id),
                 SizedBox(height: 5 * hu),
-                renderDmTextField(focusNode),
+                FriendTypeBox(focusNode: focusNode),
               ],
             ),
           ),
@@ -89,52 +87,4 @@ class _FriendDmScreenState extends State<FriendDmScreen> {
       ),
     );
   }
-}
-
-Widget renderDmTextField(FocusNode focusNode) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      SizedBox(
-        width: 240 * wu,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: LocalTextField(
-            prefixIcon: false,
-            keyboardType: TextInputType.multiline,
-            hint: "내용을 입력하세요.",
-            focusNode: focusNode,
-            suffixIcon: GestureDetector(
-              onTap: () {
-                log("사진 및 동영상 고르기");
-              },
-              child: const Icon(
-                Icons.photo,
-              ),
-            ),
-          ),
-        ),
-      ),
-      GestureDetector(
-        onTap: () {
-          log("메세지 전송");
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            color: mainSilverColor,
-            borderRadius: BorderRadius.circular(5),
-          ),
-          width: 35 * wu,
-          height: 35 * hu,
-          padding: const EdgeInsets.all(5),
-          child: const FittedBox(
-            child: Icon(
-              Icons.send,
-              color: Colors.blueAccent,
-            ),
-          ),
-        ),
-      )
-    ],
-  );
 }

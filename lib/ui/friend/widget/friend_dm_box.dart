@@ -16,7 +16,7 @@ class FriendDmBox extends StatefulWidget {
 }
 
 class _FriendDmBoxState extends State<FriendDmBox> with WidgetsBindingObserver {
-  double _boxHeight = 350 * hu;
+  double _boxHeight = 380 * hu;
 
   @override
   void initState() {
@@ -36,7 +36,7 @@ class _FriendDmBoxState extends State<FriendDmBox> with WidgetsBindingObserver {
     final keyboardHeight = View.of(context).viewInsets.bottom;
 
     setState(() {
-      _boxHeight = 370 * hu - keyboardHeight / 5;
+      _boxHeight = 380 * hu - keyboardHeight / 5;
     });
   }
 

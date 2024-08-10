@@ -140,7 +140,7 @@ class OAuthScreen extends StatelessWidget {
                                         '/auth/${CustomRouter.findIdPath}');
                                   }),
                                   const SizedBox(width: 10),
-                                  _authUtilButton('비밀번호 찾기', () async {
+                                  _authUtilButton('비밀번호 찾기/변경', () async {
                                     await context.push(
                                         '/auth/${CustomRouter.findPasswordPath}');
                                   }),

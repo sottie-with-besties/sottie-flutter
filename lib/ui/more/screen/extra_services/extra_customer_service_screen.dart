@@ -1,6 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/more/widget/extra_service_tile.dart';
 
 class ExtraCustomerServiceScreen extends StatelessWidget {
@@ -52,8 +52,9 @@ class ExtraCustomerServiceScreen extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerRight,
               child: OutlinedButton(
-                onPressed: () {
-                  log("문의하기");
+                onPressed: () async {
+                  await context.push(
+                      '${CustomRouter.morePath}/${CustomRouter.customerServicePath}/${CustomRouter.contactPath}');
                 },
                 child: const Text("문의하기"),
               ),
