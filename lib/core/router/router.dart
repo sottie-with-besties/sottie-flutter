@@ -8,7 +8,7 @@ import 'package:sottie_flutter/ui/auth/screen/verification_complete_screen.dart'
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
-import 'package:sottie_flutter/ui/friend/screen/friend_dm_screen.dart';
+import 'package:sottie_flutter/ui/friend/screen/friend_detail_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
@@ -140,7 +140,7 @@ final _routes = [
                   path: CustomRouter.friendDmPath,
                   builder: (_, state) {
                     final params = state.extra as Map<String, dynamic>;
-                    return FriendDmScreen(id: params['id']);
+                    return FriendDetailScreen(id: params['id']);
                   },
                 ),
               ]),
