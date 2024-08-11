@@ -1,10 +1,11 @@
-
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+
 class DioApi {
   // flutter run --dart-define=BASE_URL="API_URL"
-  static const baseUrl = String.fromEnvironment("BASE_URL") ?? 'http://localhost:8080';
+  static const baseUrl =
+      String.fromEnvironment("BASE_URL") ?? 'http://localhost:8080';
   static BaseOptions options = BaseOptions(
     //로컬호스트
     baseUrl: baseUrl,
@@ -24,10 +25,10 @@ class DioApi {
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
-      Response<T> response = await dio.request<T>(path
-                                                , options: Options(method: method)
-                                                , queryParameters: queryParameters
-                                                , data: data);
+      Response<T> response = await dio.request<T>(path,
+          options: Options(method: method),
+          queryParameters: queryParameters,
+          data: data);
 
       if (response.statusCode != 200) {
         throw Exception('Failed to load data');
@@ -40,4 +41,3 @@ class DioApi {
     }
   }
 }
-

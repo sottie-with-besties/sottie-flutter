@@ -53,6 +53,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                 focusNode: titleFocusNode,
                 maxLength: 15,
               ),
+              const SizedBox(height: 15),
               LocalTextField(
                 prefixIcon: false,
                 hint: "내용을 입력하세요.",
@@ -61,11 +62,11 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                 focusNode: contentFocusNode,
                 maxLength: 100,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 32),
+                  padding: const EdgeInsets.only(right: 10),
                   child: ElevatedButton(
                     onPressed: () async {
                       await imageSelection(context);
@@ -80,7 +81,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                   ),
                 ),
               ),
-              const SizedBox(height: 80),
+              const SizedBox(height: 60),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
