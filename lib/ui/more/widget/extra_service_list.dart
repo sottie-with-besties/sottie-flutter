@@ -91,7 +91,7 @@ class _ExtraService extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(),
+          border: Border.all(width: 1.5),
           borderRadius: BorderRadius.circular(8),
         ),
         width: 80 * wu,

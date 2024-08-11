@@ -140,7 +140,12 @@ final _routes = [
                   path: CustomRouter.friendDmPath,
                   builder: (_, state) {
                     final params = state.extra as Map<String, dynamic>;
-                    return FriendDetailScreen(id: params['id']);
+                    return FriendDetailScreen(
+                      id: params['id'],
+                      nickname: params['friendName'],
+                      stateMessage: params['stateMsg'],
+                      mannerPoint: params['mannerPoint'],
+                    );
                   },
                 ),
               ]),

@@ -54,7 +54,7 @@ class _MyInfoState extends State<MyInfo> {
                         ),
                       ),
                       Text(
-                        myInfoEntity.email,
+                        myInfoEntity.stateMessage,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],

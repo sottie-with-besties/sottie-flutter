@@ -10,9 +10,15 @@ class FriendDetailScreen extends StatefulWidget {
   const FriendDetailScreen({
     super.key,
     required this.id,
+    required this.nickname,
+    required this.stateMessage,
+    required this.mannerPoint,
   });
 
   final String id;
+  final String nickname;
+  final String stateMessage;
+  final double mannerPoint;
 
   @override
   State<FriendDetailScreen> createState() => _FriendDetailScreenState();
@@ -63,20 +69,35 @@ class _FriendDetailScreenState extends State<FriendDetailScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "김진표",
-                          style: TextStyle(
-                            color: mainSilverColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16 * wu,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              widget.nickname,
+                              style: TextStyle(
+                                color: mainSilverColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16 * hu,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              widget.mannerPoint == widget.mannerPoint.toInt()
+                                  ? widget.mannerPoint.toInt().toString()
+                                  : widget.mannerPoint.toString(),
+                              style: TextStyle(
+                                color: mainSilverColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12 * hu,
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          "안녕하세요 수원 사는 2000년생 김진표 입니다.",
+                          widget.stateMessage,
                           style: TextStyle(
                             color: mainSilverColor,
-                            fontSize: 12 * wu,
+                            fontSize: 12 * hu,
                           ),
                         ),
                       ],

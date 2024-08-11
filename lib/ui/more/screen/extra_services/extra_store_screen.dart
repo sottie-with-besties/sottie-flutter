@@ -3,8 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/more/widget/remain_gold.dart';
+import 'package:sottie_flutter/ui/more/widget/extra_info.dart';
 
 class ExtraStoreScreen extends StatefulWidget {
   const ExtraStoreScreen({super.key});
@@ -26,7 +27,23 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const RemainGold(),
+              ExtraInfo(
+                subTitle: "내 골드",
+                valueChild: Row(
+                  children: [
+                    Text(
+                      "${myInfoEntity.gold}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    const SizedBox(width: 10),
+                    const FaIcon(
+                      FontAwesomeIcons.coins,
+                      color: Colors.amber,
+                    ),
+                  ],
+                ),
+              ),
               const SizedBox(height: 30),
               const Text(
                 "골드 구매",

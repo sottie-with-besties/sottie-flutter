@@ -12,6 +12,8 @@ final class MyInfo {
   bool phoneAuthenticated;
   String stateMessage;
   XFile? profile;
+  int gold;
+  double mannerPoint;
 
   // Todo: 배포할 때 쯤 내 개인정보 코드 수정
   MyInfo({
@@ -24,8 +26,10 @@ final class MyInfo {
     this.identifier = '1315135123',
     this.birthYear = '2000년 5월 27일',
     this.phoneAuthenticated = false,
-    this.stateMessage = '크아아아아아아악',
+    this.stateMessage = '상태 메세지',
     this.profile,
+    this.gold = 450,
+    this.mannerPoint = 100.0,
   });
 
   toJsonForSignUpCheck() {

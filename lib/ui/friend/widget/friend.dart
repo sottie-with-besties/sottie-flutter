@@ -51,6 +51,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
     final id = widget.friendInfo['id'];
     final friendName = widget.friendInfo['friendName'];
     final stateMsg = widget.friendInfo['stateMsg'];
+    final mannerPoint = widget.friendInfo['mannerPoint'];
 
     return Slidable(
       key: ValueKey(id),
@@ -85,6 +86,9 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
               "${CustomRouter.friendPath}/${CustomRouter.friendDmPath}",
               extra: {
                 'id': id,
+                'friendName': friendName,
+                'stateMsg': stateMsg,
+                'mannerPoint': mannerPoint,
               });
         },
         child: Container(
