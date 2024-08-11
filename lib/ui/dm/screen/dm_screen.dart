@@ -21,9 +21,12 @@ class DmScreen extends StatelessWidget {
             title: 'DM',
           ),
         ),
-        header: LocalTextField(
-          hint: '유저 이름, 내용...',
-          focusNode: focusNode,
+        header: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: LocalTextField(
+            hint: '유저 이름, 내용...',
+            focusNode: focusNode,
+          ),
         ),
         contentChild: const DmContentScreen(),
       ),
