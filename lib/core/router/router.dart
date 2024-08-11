@@ -142,7 +142,7 @@ final _routes = [
                     final params = state.extra as Map<String, dynamic>;
                     return FriendDetailScreen(
                       id: params['id'],
-                      nickname: params['friendName'],
+                      nickname: params['nickname'],
                       stateMessage: params['stateMsg'],
                       mannerPoint: params['mannerPoint'],
                     );

@@ -1,71 +1,54 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:sottie_flutter/data/user/data_source/friend_dummy.dart';
+import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 import 'package:sottie_flutter/ui/friend/controller/friend_header_controller.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend.dart';
 
-class FriendListScreen extends ConsumerWidget {
+class FriendListScreen extends ConsumerStatefulWidget {
   const FriendListScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final inputText = ref.watch(friendHeaderControllerProvider);
-    final friendList = _dummy.where((Map<String, Object> data) {
-      log(data.toString(), name: 'where');
-      return data['friendName'].toString().contains(inputText);
-    }).map((Map<String, Object> data) {
-      log(data.toString(), name: 'map');
-
-      return Friend(friendInfo: data);
-    }).toList();
-
-    return SlidableAutoCloseBehavior(child: Column(children: friendList));
-  }
+  ConsumerState<FriendListScreen> createState() => _FriendListScreenState();
 }
 
-const _dummy = [
-  {
-    'friendName': 'abcd',
-    'stateMsg': '카페에서 커피한잔~',
-    'mannerPoint': 87.5,
-    'id': '0',
-  },
-  {
-    'friendName': 'test',
-    'stateMsg': '아침 모임',
-    'mannerPoint': 100.0,
-    'id': '1',
-  },
-  {
-    'friendName': 'test',
-    'stateMsg': '저녁 모임',
-    'mannerPoint': 99.5,
-    'id': '2',
-  },
-  {
-    'friendName': 'hhhh',
-    'stateMsg': '점심 모임',
-    'mannerPoint': 41.5,
-    'id': '3',
-  },
-  {
-    'friendName': 'test',
-    'stateMsg': '조찬 모임',
-    'mannerPoint': 87.0,
-    'id': '4',
-  },
-  {
-    'friendName': 'test',
-    'stateMsg': '오후 커피 타임',
-    'mannerPoint': 39.5,
-    'id': '5',
-  },
-  {
-    'friendName': 'test',
-    'stateMsg': '야간 모임',
-    'mannerPoint': 44.7,
-    'id': '6',
-  },
-];
+class _FriendListScreenState extends ConsumerState<FriendListScreen> {
+  late Future<List<Map<String, dynamic>>> friendList;
+
+  @override
+  void initState() {
+    super.initState();
+    friendList = getFriendDummy();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final inputText = ref.watch(friendHeaderControllerProvider);
+
+    return FutureBuilder(
+      future: friendList,
+      builder: (_, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const LoadingSkeleton();
+        } else if (!snapshot.hasData) {
+          return const Center(
+            child: Text("모임에 참여하세요!"),
+          );
+        } else if (snapshot.hasData) {
+          final friendList = snapshot.data!
+              .where((Map<String, dynamic> data) =>
+                  data['nickname'].toString().contains(inputText))
+              .map((Map<String, dynamic> data) => Friend(friendInfo: data))
+              .toList();
+
+          return SlidableAutoCloseBehavior(child: Column(children: friendList));
+        } else {
+          return const Center(
+            child: Text("에러가 발생했습니다"),
+          );
+        }
+      },
+    );
+  }
+}
