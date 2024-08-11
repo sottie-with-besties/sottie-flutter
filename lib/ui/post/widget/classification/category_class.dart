@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class CategoryClass extends StatelessWidget {
@@ -37,6 +37,17 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
   List<CategorySottie> tempList = [];
 
   @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    for (CategorySottie i in postSettingEntity.category) {
+      selectedList[i.index] = true;
+    }
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Wrap(
@@ -50,7 +61,7 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
             onSelected: (onSelected) {
               selectedList[category.index] = onSelected;
               onSelected ? tempList.add(category) : tempList.remove(category);
-              makePostDetailEntity.category = tempList;
+              postSettingEntity.category = tempList;
               setState(() {});
             },
           );

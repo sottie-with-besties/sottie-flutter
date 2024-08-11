@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class TimeClass extends StatefulWidget {
@@ -10,7 +10,7 @@ class TimeClass extends StatefulWidget {
 }
 
 class _TimeClassState extends State<TimeClass> {
-  String timeString = '시간 선택';
+  String timeString = '0시 0분';
   TimeOfDay selectedTime = const TimeOfDay(hour: 0, minute: 0);
 
   @override
@@ -25,9 +25,7 @@ class _TimeClassState extends State<TimeClass> {
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
-              late TimeOfDay? tempTime;
-
-              tempTime = await showTimePicker(
+              TimeOfDay? tempTime = await showTimePicker(
                 context: context,
                 initialTime: selectedTime,
                 barrierDismissible: false,
@@ -37,14 +35,14 @@ class _TimeClassState extends State<TimeClass> {
 
               selectedTime = tempTime;
 
-              makePostDetailEntity.date =
-                  (makePostDetailEntity.date ?? DateTime.now()).copyWith(
+              postSettingEntity.date =
+                  (postSettingEntity.date ?? DateTime.now()).copyWith(
                 hour: selectedTime.hour,
                 minute: selectedTime.minute,
               );
 
-              String temp = selectedTime.hour < 12 ? "AM" : "PM";
               int hour = selectedTime.hour;
+              String temp = selectedTime.hour < 12 ? "AM" : "PM";
 
               temp == "PM"
                   ? hour > 12

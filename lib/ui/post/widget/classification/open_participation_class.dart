@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class OpenParticipationClass extends StatefulWidget {
@@ -11,8 +11,6 @@ class OpenParticipationClass extends StatefulWidget {
 }
 
 class _OpenParticipationClassState extends State<OpenParticipationClass> {
-  bool openParticipation = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,10 +22,9 @@ class _OpenParticipationClassState extends State<OpenParticipationClass> {
             const ClassificationTitle(title: "오픈 채팅"),
             Switch(
               activeColor: mainBrownColor,
-              value: openParticipation,
+              value: postSettingEntity.openParticipation,
               onChanged: (val) {
-                openParticipation = val;
-                makePostDetailEntity.openParticipation = openParticipation;
+                postSettingEntity.openParticipation = val;
                 setState(() {});
               },
             ),

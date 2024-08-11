@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/category_class.dart';
@@ -34,19 +32,19 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
 
   // 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
   void checkIfSettingHasError() {
-    if (makePostDetailEntity.ageRange.isEmpty) {
+    if (postSettingEntity.ageRange.isEmpty) {
       checkList.add("나이 범위를 최소 하나 이상 설정해주세요.");
     }
 
-    if (makePostDetailEntity.date == null) {
+    if (postSettingEntity.date == null) {
       checkList.add("날짜 및 시간을 설정해주세요.");
     }
 
-    if (makePostDetailEntity.gender == GenderRestrictions.nobody) {
+    if (postSettingEntity.gender == GenderRestrictions.nobody) {
       checkList.add("성별을 최소 하나 이상 선택해주세요.");
     }
 
-    if (makePostDetailEntity.category.isEmpty) {
+    if (postSettingEntity.category.isEmpty) {
       checkList.add("카테고리를 최소 하나 이상 선택해주세요.");
     }
   }
@@ -64,11 +62,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: const Text(
-            "환경 설정",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          title: const Text("환경 설정"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(32.0),
@@ -104,12 +98,8 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                     checkIfSettingHasError();
 
                     checkList.isEmpty
-                        ? context.push(CustomRouter.findDetailPath, extra: [
-                            '모집글 생성',
-                            () {
-                              log("모집글 생성");
-                            }
-                          ])
+                        ? context.push(
+                            "${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}/${CustomRouter.makePostStepThreePath}/")
                         : showCustomDialog(
                             context,
                             Column(

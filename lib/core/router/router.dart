@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
@@ -10,10 +8,20 @@ import 'package:sottie_flutter/ui/auth/screen/verification_complete_screen.dart'
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
+import 'package:sottie_flutter/ui/friend/screen/friend_detail_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_event_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_guide_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_notice_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_setting_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/extra_store_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/info_modify_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_one.dart';
+import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_three.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_two.dart';
 import 'package:sottie_flutter/ui/post/screen/post_detail_screen.dart';
 
@@ -33,14 +41,30 @@ sealed class CustomRouter {
 
   // Main Layout Screens
   static const homePath = "/home";
+
   static const chatPath = "/chat";
+
   static const dmPath = "/dm";
+
   static const friendPath = "/friend";
+  static const friendDmPath = "friendDm";
+
   static const morePath = "/more";
+  static const infoModifyPath = "modify";
+  static const storePath = "store";
+  static const eventPath = "event";
+  static const noticePath = "notice";
+
+  static const customerServicePath = "customerService";
+  static const contactPath = "contact";
+
+  static const settingPath = "setting";
+  static const guidePath = "guide";
 
   // Make Post Screen
   static const makePostStepOnePath = "/makePostStepOne";
   static const makePostStepTwoPath = "makePostStepTwo";
+  static const makePostStepThreePath = "makePostStepThree";
 
   // Find Detail Screen
   static const findDetailPath = "/findDetail";
@@ -49,23 +73,23 @@ sealed class CustomRouter {
 final _routes = [
   GoRoute(
     path: CustomRouter.authPath,
-    builder: (context, state) => const OAuthScreen(),
+    builder: (_, __) => const OAuthScreen(),
     routes: <GoRoute>[
       GoRoute(
         path: CustomRouter.signUpPath,
-        builder: (context, state) => const SignUpScreen(),
+        builder: (_, __) => const SignUpScreen(),
       ),
       GoRoute(
         path: CustomRouter.findIdPath,
-        builder: (context, state) => const FindIdScreen(),
+        builder: (_, __) => const FindIdScreen(),
       ),
       GoRoute(
         path: CustomRouter.findPasswordPath,
-        builder: (context, state) => const FindPasswordScreen(),
+        builder: (_, __) => const FindPasswordScreen(),
       ),
       GoRoute(
         path: CustomRouter.certificationPath,
-        builder: (context, state) {
+        builder: (_, state) {
           final isEmailJson = state.extra as Map<String, bool>;
           final isEmail = isEmailJson['isEmailLogin'] ?? false;
           return CertificationScreen(isEmailLogin: isEmail);
@@ -73,7 +97,7 @@ final _routes = [
       ),
       GoRoute(
         path: CustomRouter.verificationCompletePath,
-        builder: (context, state) => const VerificationCompleteScreen(),
+        builder: (_, __) => const VerificationCompleteScreen(),
       ),
     ],
   ),
@@ -86,7 +110,7 @@ final _routes = [
         routes: <GoRoute>[
           GoRoute(
             path: CustomRouter.homePath,
-            builder: (context, state) => const HomeScreen(),
+            builder: (_, __) => const HomeScreen(),
           )
         ],
       ),
@@ -94,7 +118,7 @@ final _routes = [
         routes: <GoRoute>[
           GoRoute(
             path: CustomRouter.chatPath,
-            builder: (context, state) => const ChatScreen(),
+            builder: (_, __) => const ChatScreen(),
           )
         ],
       ),
@@ -102,16 +126,29 @@ final _routes = [
         routes: <GoRoute>[
           GoRoute(
             path: CustomRouter.dmPath,
-            builder: (context, state) => const DmScreen(),
+            builder: (_, __) => const DmScreen(),
           )
         ],
       ),
       StatefulShellBranch(
         routes: <GoRoute>[
           GoRoute(
-            path: CustomRouter.friendPath,
-            builder: (context, state) => const FriendScreen(),
-          )
+              path: CustomRouter.friendPath,
+              builder: (_, __) => const FriendScreen(),
+              routes: <GoRoute>[
+                GoRoute(
+                  path: CustomRouter.friendDmPath,
+                  builder: (_, state) {
+                    final params = state.extra as Map<String, dynamic>;
+                    return FriendDetailScreen(
+                      id: params['id'],
+                      nickname: params['nickname'],
+                      stateMessage: params['stateMsg'],
+                      mannerPoint: params['mannerPoint'],
+                    );
+                  },
+                ),
+              ]),
         ],
       ),
       StatefulShellBranch(
@@ -119,27 +156,64 @@ final _routes = [
           GoRoute(
             path: CustomRouter.morePath,
             builder: (context, state) => const MoreScreen(),
+            routes: <GoRoute>[
+              GoRoute(
+                path: CustomRouter.infoModifyPath,
+                builder: (_, __) => const InfoModifyScreen(),
+              ),
+              GoRoute(
+                path: CustomRouter.storePath,
+                builder: (_, __) => const ExtraStoreScreen(),
+              ),
+              GoRoute(
+                path: CustomRouter.eventPath,
+                builder: (_, __) => const ExtraEventScreen(),
+              ),
+              GoRoute(
+                path: CustomRouter.noticePath,
+                builder: (_, __) => const ExtraNoticeScreen(),
+              ),
+              GoRoute(
+                  path: CustomRouter.customerServicePath,
+                  builder: (_, __) => const ExtraCustomerServiceScreen(),
+                  routes: <GoRoute>[
+                    GoRoute(
+                      path: CustomRouter.contactPath,
+                      builder: (_, __) => const ContactScreen(),
+                    ),
+                  ]),
+              GoRoute(
+                path: CustomRouter.settingPath,
+                builder: (_, __) => const ExtraSettingScreen(),
+              ),
+              GoRoute(
+                path: CustomRouter.guidePath,
+                builder: (_, __) => const ExtraGuideScreen(),
+              ),
+            ],
           )
         ],
       ),
     ],
   ),
   GoRoute(
-      path: CustomRouter.makePostStepOnePath,
-      builder: (context, state) => const MakePostScreenStepOne(),
-      routes: <GoRoute>[
-        GoRoute(
-          path: CustomRouter.makePostStepTwoPath,
-          builder: (context, state) => const MakePostScreenStepTwo(),
-        )
-      ]),
+    path: CustomRouter.makePostStepOnePath,
+    builder: (_, __) => const MakePostScreenStepOne(),
+    routes: <GoRoute>[
+      GoRoute(
+        path: CustomRouter.makePostStepTwoPath,
+        builder: (_, __) => const MakePostScreenStepTwo(),
+        routes: <GoRoute>[
+          GoRoute(
+            path: CustomRouter.makePostStepThreePath,
+            builder: (_, __) => const MakePostScreenStepThree(),
+          ),
+        ],
+      )
+    ],
+  ),
   GoRoute(
     path: CustomRouter.findDetailPath,
-    builder: (context, state) {
-      final params = state.extra as List<dynamic>;
-      String buttonTitle = params[0] as String;
-      VoidCallback onPressed = params[1] as VoidCallback;
-      return PostDetailScreen(buttonTitle: buttonTitle, onPressed: onPressed);
-    },
+    builder: (_, __) => const PostDetailScreen(),
   ),
 ];

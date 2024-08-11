@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
@@ -73,8 +73,11 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
         controller.text = num.toString();
       }
     }
-    makePostDetailEntity.numOfMember = num;
-    ref.read(numOfMemberProvider.notifier).changeNumOfMember(num);
+
+    postSettingEntity.numOfMember = num;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(numOfMemberProvider.notifier).changeNumOfMember(num);
+    });
   }
 
   @override
@@ -83,6 +86,14 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       widget.focusNode.addListener(_focusNodeListener);
       controller.addListener(_controllerListener);
+
+      // 검색 스크린에서 필터링 시 데이터 유지
+      if (postSettingEntity.numOfMember > 10) {
+        controller.text = postSettingEntity.numOfMember.toString();
+      }
+      ref
+          .read(numOfMemberProvider.notifier)
+          .changeNumOfMember(postSettingEntity.numOfMember);
     });
   }
 
@@ -97,7 +108,7 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
   @override
   Widget build(BuildContext context) {
     return DropdownMenu(
-      initialSelection: 0,
+      initialSelection: postSettingEntity.numOfMember,
       menuHeight: 200,
       controller: controller,
       focusNode: widget.focusNode,
@@ -113,10 +124,15 @@ class _NumOfMemberSelectorState extends ConsumerState<_NumOfMemberSelector> {
           widget.focusNode.requestFocus();
         } else {
           widget.focusNode.unfocus();
-          makePostDetailEntity.numOfMember = int.parse(val.toString());
+          try {
+            postSettingEntity.numOfMember = int.parse(val.toString());
+          } on Exception catch (_) {
+            // 인원 수를 고른 후 키보드의 Done 버튼을 누를 경우의 에러 처리
+            // 리스너에서 이미 값을 처리하고 있기 때문에 그냥 패스하면 될듯?
+          }
           ref
               .read(numOfMemberProvider.notifier)
-              .changeNumOfMember(makePostDetailEntity.numOfMember);
+              .changeNumOfMember(postSettingEntity.numOfMember);
         }
       },
     );

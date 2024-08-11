@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/age_range.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class AgeClass extends StatelessWidget {
@@ -34,6 +34,17 @@ class _AgeRangeState extends State<_AgeRange> {
   List<AgeRangeSottie> tempList = [];
 
   @override
+  void initState() {
+    super.initState();
+
+    // 검색 스크린에서 필터링 시 데이터 유지
+    for (AgeRangeSottie i in postSettingEntity.ageRange) {
+      selectedList[i.index] = true;
+    }
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Wrap(
@@ -45,7 +56,7 @@ class _AgeRangeState extends State<_AgeRange> {
             onSelected: (onSelected) {
               selectedList[age.index] = onSelected;
               onSelected ? tempList.add(age) : tempList.remove(age);
-              makePostDetailEntity.ageRange = tempList;
+              postSettingEntity.ageRange = tempList;
               setState(() {});
             },
           );

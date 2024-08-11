@@ -27,7 +27,7 @@ class OAuthScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: ColoredBox(
-        color: const Color(0xdda0522d),
+        color: lightBrownColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: SafeArea(
@@ -80,6 +80,7 @@ class OAuthScreen extends StatelessWidget {
                         ),
                         AuthTextField(
                           hint: "이메일 입력",
+                          keyboardType: TextInputType.emailAddress,
                           validator: (val) {
                             email = val;
                             return validateEmail(val!);
@@ -139,7 +140,7 @@ class OAuthScreen extends StatelessWidget {
                                         '/auth/${CustomRouter.findIdPath}');
                                   }),
                                   const SizedBox(width: 10),
-                                  _authUtilButton('비밀번호 찾기', () async {
+                                  _authUtilButton('비밀번호 찾기/변경', () async {
                                     await context.push(
                                         '/auth/${CustomRouter.findPasswordPath}');
                                   }),

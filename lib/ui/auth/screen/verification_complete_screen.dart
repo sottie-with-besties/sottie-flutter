@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';
+import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 
 class VerificationCompleteScreen extends StatelessWidget {
   const VerificationCompleteScreen({super.key});
@@ -21,19 +21,19 @@ class VerificationCompleteScreen extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
               ),
               const SizedBox(height: 20),
-              Text("이메일: ${signUpEntity.email}"),
+              Text("이메일: ${myInfoEntity.email}"),
               const SizedBox(height: 20),
-              Text("패스워드: ${signUpEntity.password}"),
+              Text("패스워드: ${myInfoEntity.password}"),
               const SizedBox(height: 20),
-              Text("이름: ${signUpEntity.name}"),
+              Text("이름: ${myInfoEntity.name}"),
               const SizedBox(height: 20),
-              Text("핸드폰 번호: ${signUpEntity.phoneNumber}"),
+              Text("핸드폰 번호: ${myInfoEntity.phoneNumber}"),
               const SizedBox(height: 20),
               // Text("성별: 남성"),
               // const SizedBox(height: 20),
-              Text("생일: ${signUpEntity.birthYear}"),
+              Text("생일: ${myInfoEntity.birthYear}"),
               const SizedBox(height: 20),
-              Text("닉네임: ${signUpEntity.nickName}"),
+              Text("닉네임: ${myInfoEntity.nickName}"),
               const SizedBox(height: 50),
               Row(
                 children: [

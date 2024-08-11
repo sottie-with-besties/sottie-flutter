@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
+import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
-class StartSameTimeClass extends StatefulWidget {
+class StartSameTimeClass extends ConsumerStatefulWidget {
   const StartSameTimeClass({super.key});
 
   @override
-  State<StartSameTimeClass> createState() => _StartSameTimeClassState();
+  ConsumerState<StartSameTimeClass> createState() => _StartSameTimeClassState();
 }
 
-class _StartSameTimeClassState extends State<StartSameTimeClass> {
-  bool startSameTime = false;
-
+class _StartSameTimeClassState extends ConsumerState<StartSameTimeClass> {
   @override
   Widget build(BuildContext context) {
+    final refNumOfMember = ref.watch(numOfMemberProvider);
+
+    if (refNumOfMember == 0 && postSettingEntity.numOfMember == 0) {
+      postSettingEntity.startSameTime = false;
+      setState(() {});
+    }
+
     return Column(
       children: [
         Row(
@@ -23,11 +30,12 @@ class _StartSameTimeClassState extends State<StartSameTimeClass> {
             const ClassificationTitle(title: "동시 채팅 시작"),
             Switch(
               activeColor: mainBrownColor,
-              value: startSameTime,
+              value: postSettingEntity.startSameTime,
               onChanged: (val) {
-                startSameTime = val;
-                makePostDetailEntity.startSameTime = startSameTime;
-                setState(() {});
+                if (refNumOfMember != 0) {
+                  postSettingEntity.startSameTime = val;
+                  setState(() {});
+                }
               },
             ),
           ],

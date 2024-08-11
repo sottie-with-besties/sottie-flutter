@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/post/make_post_detail_entity.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
 class DateClass extends StatefulWidget {
@@ -25,9 +25,7 @@ class _DateClassState extends State<DateClass> {
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
-              late DateTime? tempDate;
-
-              tempDate = await showDatePicker(
+              DateTime? tempDate = await showDatePicker(
                 context: context,
                 firstDate: DateTime.now(),
                 lastDate: DateTime(DateTime.now().year + 10),
@@ -42,9 +40,9 @@ class _DateClassState extends State<DateClass> {
               selectedDate = tempDate;
 
               dateString =
-                  "${tempDate.year}년 ${tempDate.month}월 ${tempDate.day}일 ${_intToWeekday(tempDate.weekday)}";
+                  "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${_intToWeekday(selectedDate.weekday)}";
 
-              makePostDetailEntity.date = selectedDate.copyWith();
+              postSettingEntity.date = selectedDate.copyWith();
 
               setState(() {});
             },

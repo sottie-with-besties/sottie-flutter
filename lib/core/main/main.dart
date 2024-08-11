@@ -52,14 +52,18 @@ Future<void> _initSdks() async {
 
 final _customTheme = ThemeData(
   textTheme: GoogleFonts.nanumGothicTextTheme(),
+  appBarTheme: AppBarTheme(
+    color: Colors.white,
+    titleTextStyle: TextStyle(
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+      fontSize: 15 * hu,
+    ),
+  ),
   scaffoldBackgroundColor: Colors.white,
-  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    // type: BottomNavigationBarType.fixed,
+  navigationBarTheme: const NavigationBarThemeData(
     backgroundColor: mainSilverColor,
-    selectedItemColor: mainBrownColor,
-    unselectedItemColor: Colors.black45,
-    selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-    showUnselectedLabels: true,
+    indicatorColor: mainBrownColor,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(

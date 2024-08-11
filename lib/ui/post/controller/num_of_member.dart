@@ -4,7 +4,7 @@ part 'num_of_member.g.dart';
 
 // NumOfMemberClass와 GenderClass의 상호작용을 위한 리버팟
 @Riverpod()
-class NumOfMember extends _$NumOfMember {
+final class NumOfMember extends _$NumOfMember {
   @override
   int build() {
     return 0;

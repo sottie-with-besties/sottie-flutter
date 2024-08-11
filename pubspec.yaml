@@ -45,6 +45,7 @@ dependencies:
   flutter_slidable:
   smooth_page_indicator: # 홈 스크린 이벤트
   skeletonizer: # 로딩 스켈레톤
+  time_range_picker:
 
   # Riverpod
   flutter_riverpod:
@@ -59,7 +60,11 @@ dependencies:
   # 포트원 본인인증
   iamport_flutter:
 
+  # 이미지 가져오기
+  image_picker:
 
+  # 로컬 데이터베이스
+  flutter_secure_storage:
 
   # OAuth
   google_sign_in: # 구글

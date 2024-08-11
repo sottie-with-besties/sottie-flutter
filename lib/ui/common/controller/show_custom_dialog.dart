@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
-void showCustomDialog(BuildContext context, Widget customChild) {
+void showCustomDialog(BuildContext context, Widget customChild,
+    {Color? color, Widget? extraButton}) {
   showGeneralDialog(
     context: context,
     pageBuilder: (context, a1, a2) => Container(),
@@ -11,6 +12,7 @@ void showCustomDialog(BuildContext context, Widget customChild) {
       return ScaleTransition(
         scale: a1,
         child: AlertDialog(
+          backgroundColor: color,
           scrollable: true,
           content: SizedBox(
             width: 250 * wu,
@@ -23,18 +25,20 @@ void showCustomDialog(BuildContext context, Widget customChild) {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(100, 50),
+                backgroundColor: Colors.grey,
               ),
               onPressed: () {
                 Navigator.pop(context);
               },
               child: const Text(
-                "확인",
+                "닫기",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: mainSilverColor,
                 ),
               ),
             ),
+            if (extraButton != null) extraButton,
           ],
         ),
       );
