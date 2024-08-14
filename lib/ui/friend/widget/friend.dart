@@ -25,9 +25,39 @@ class Friend extends StatefulWidget {
 class _FriendState extends State<Friend> with TickerProviderStateMixin {
   late SlidableController _slidableController;
 
-  void _deleteAction(BuildContext context, Map<String, dynamic> data) {
-    log("deleteAction ::: context : $context data : $data");
-    log("deleteAction ::: context : $context slidableController: $_slidableController");
+  void _deleteAction(Map<String, dynamic> data, bool withSlide) {
+    log("data : $data");
+    log("slidableController: $_slidableController");
+    showCustomDialog(
+      context,
+      Center(
+        child: Text(
+          "${widget.friendInfo['nickname']}를 삭제하시겠습니까?",
+          style: const TextStyle(
+            fontSize: 20,
+          ),
+        ),
+      ),
+      extraButton: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size(100, 50),
+        ),
+        onPressed: () {
+          // 꾹 누른건 팝 두번, 슬라이드는 한번만
+          context.pop();
+          withSlide ? null : context.pop();
+
+          log("친구 삭제 확인");
+        },
+        child: const Text(
+          "삭제",
+          style: TextStyle(
+            color: mainSilverColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
   }
 
   void _editAction(BuildContext context, Map<String, dynamic> data) {
@@ -55,7 +85,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
     final mannerPoint = widget.friendInfo['mannerPoint'] as double;
 
     return Slidable(
-      key: ValueKey(this.widget.key),
+      key: ValueKey(widget.key),
       closeOnScroll: false,
       groupTag: 'friend',
       controller: _slidableController,
@@ -72,7 +102,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
             label: 'Edit',
           ),
           SlidableAction(
-            onPressed: (context) => _deleteAction(context, widget.friendInfo),
+            onPressed: (context) => _deleteAction(widget.friendInfo, true),
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             autoClose: true,
@@ -142,35 +172,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
                     _renderOption(
                       color: Colors.redAccent,
                       onTap: () {
-                        showCustomDialog(
-                          context,
-                          Center(
-                            child: Text(
-                              "${widget.friendInfo['nickname']}를 삭제하시겠습니까?",
-                              style: const TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                          extraButton: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(100, 50),
-                            ),
-                            onPressed: () {
-                              // 두번 나가기
-                              context.pop();
-                              context.pop();
-                              log("친구 삭제 확인");
-                            },
-                            child: const Text(
-                              "삭제",
-                              style: TextStyle(
-                                color: mainSilverColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        );
+                        _deleteAction(widget.friendInfo, false);
                       },
                       icon: Icons.delete_forever,
                       optionTitle: "친구 삭제",
