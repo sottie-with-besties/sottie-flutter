@@ -78,7 +78,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
     } else if (currentStep == 2) {
       isCancelLoading = true;
       setState(() {});
-      await deletePhoneUser(phoneNumber!);
+      await deletePhoneUser();
       currentStep -= 1;
       isCancelLoading = false;
       setState(() {});
@@ -223,8 +223,11 @@ class _FindIdScreenState extends State<FindIdScreen> {
                             ),
                             minimumSize: const Size(100, 60),
                           ),
-                          onPressed: () {
-                            context.go(CustomRouter.authPath);
+                          onPressed: () async {
+                            await deletePhoneUser();
+                            if (context.mounted) {
+                              context.go(CustomRouter.authPath);
+                            }
                           },
                           child: const Text(
                             "확인",

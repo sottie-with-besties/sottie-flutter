@@ -50,6 +50,6 @@ Future<String?> signInWithSmsCode(String code) async {
 }
 
 // 핸드폰 인증만 하면 되기 때문에 유저를 파이어베이스에 저장하지 않고 삭제한다.
-Future<void> deletePhoneUser(String code) async {
+Future<void> deletePhoneUser() async {
   await _auth.currentUser!.delete();
 }

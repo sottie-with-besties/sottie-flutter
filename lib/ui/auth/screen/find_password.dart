@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/auth/phone_verification.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 class FindPasswordScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class FindPasswordScreen extends StatefulWidget {
 
 class _FindPasswordScreenState extends State<FindPasswordScreen> {
   int currentStep = 0;
-  String password = '';
+  String? password = '';
 
   String? phoneNumber = '';
   String? verificationCode = '';
@@ -81,7 +81,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
     } else if (currentStep == 2) {
       isCancelLoading = true;
       setState(() {});
-      await deletePhoneUser(phoneNumber!);
+      await deletePhoneUser();
       currentStep -= 1;
       isCancelLoading = false;
       setState(() {});
@@ -209,8 +209,8 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                       obsecure: true,
                       hint: "특수문자, 대소문자, 숫자 포함 8~15자",
                       validator: (val) {
-                        password = val!;
-                        return validatePassword(val);
+                        password = val;
+                        return validatePassword(val!);
                       },
                     ),
                     AuthTextField(
@@ -218,7 +218,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                       hint: "한번 더 입력해주세요",
                       validator: (val) => confirmPassword(
                         val!,
-                        password,
+                        password!,
                       ),
                     ),
                     Column(
@@ -239,8 +239,27 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                             ),
                             onPressed: () {
                               if (passwordKey.currentState!.validate()) {
-                                // Todo: 비밀번호 바뀐 데이터 서버 전송
-                                context.go(CustomRouter.authPath);
+                                showCustomDialog(
+                                  context,
+                                  const Text("비밀번호를 변경하시겠습니까?"),
+                                  extraButton: ElevatedButton(
+                                    onPressed: () async {
+                                      await deletePhoneUser();
+                                      if (context.mounted) {
+                                        context.pop();
+                                        showSnackBar(context, '비밀번호를 변경하였습니다.');
+                                        context.pop();
+                                      }
+                                    },
+                                    child: const Text(
+                                      "변경",
+                                      style: TextStyle(
+                                        color: mainSilverColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                );
                               }
                             },
                             child: const Text(

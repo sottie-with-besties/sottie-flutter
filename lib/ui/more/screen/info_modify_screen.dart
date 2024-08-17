@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
@@ -88,6 +90,8 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                       child: const Text("이메일 변경")),
                   TextButton(
                       onPressed: () {
+                        context.push(
+                            "${CustomRouter.authPath}/${CustomRouter.findPasswordPath}");
                         log("비밀번호 변경");
                       },
                       child: const Text("비밀번호 변경")),
