@@ -66,6 +66,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         }
       }
     } else if (currentStep == 2) {
+      // 이메일 인증 화면 -> 이메일 인증 성공 후 파이어베이스 유저 이메일 정보 삭제
       isNextLoading = true;
       setState(() {});
       final emailVerification = await isEmailVerification(email!, password!);
@@ -73,6 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         currentStep += 1;
         myInfoEntity.email = email!;
         myInfoEntity.password = password!;
+        await deleteEmailUser(email!, password!);
       } else {
         if (mounted) showSnackBar(context, "이메일을 인증해주세요");
       }
@@ -85,6 +87,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (currentStep == 0) {
       context.pop();
     } else if (currentStep == 2) {
+      // 이메일 인증 스크린에서 뒤로가기 했을 경우
       isCancelLoading = true;
       setState(() {});
       final String? errorCode = await deleteEmailUser(email!, password!);
@@ -94,6 +97,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (mounted) showSnackBar(context, errorCode);
       }
       isCancelLoading = false;
+      setState(() {});
+    } else if (currentStep == 3) {
+      currentStep -= 3;
       setState(() {});
     } else {
       currentStep -= 1;

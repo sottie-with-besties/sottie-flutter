@@ -54,6 +54,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
         }
       }
     } else if (currentStep == 1) {
+      // 번호 인증 화면 -> 인증 성공 후 파이어베이스 유저 폰 번호 정보 삭제
       final errorCode = await signInWithSmsCode(verificationCode!);
       if (errorCode == null) {
         await deletePhoneUser();
@@ -70,6 +71,10 @@ class _FindIdScreenState extends State<FindIdScreen> {
   void _onStepCancel() async {
     if (currentStep == 0) {
       context.pop();
+    } else if (currentStep == 2) {
+      // 아이디 확인 화면 -> 뒤로 가기 했을 때 인증 화면으로 넘어가지 않고 번호 입력 화면으로 넘어간다.
+      currentStep -= 2;
+      setState(() {});
     } else {
       currentStep -= 1;
       setState(() {});
@@ -208,8 +213,8 @@ class _FindIdScreenState extends State<FindIdScreen> {
                             ),
                             minimumSize: const Size(100, 60),
                           ),
-                          onPressed:  () {
-                              context.go(CustomRouter.authPath);
+                          onPressed: () {
+                            context.go(CustomRouter.authPath);
                           },
                           child: const Text(
                             "확인",

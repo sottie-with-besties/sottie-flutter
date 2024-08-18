@@ -20,6 +20,7 @@ class EmailChangeScreen extends StatefulWidget {
 class _EmailChangeScreenState extends State<EmailChangeScreen> {
   int currentStep = 0;
   String? email;
+  // 이메일만 다루기 때문에 비밀번호는 더미로 계정 생성한다.
   String dummyPassword = "sottie8452!^#@!";
 
   String? phoneNumber = '';
@@ -47,6 +48,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
 
   void _onStepContinue() async {
     if (currentStep == 0) {
+      // 핸드폰 번호 입력하는 화면
       if (phoneNumberKey.currentState!.validate()) {
         final errorCode = await signInWithPhoneNumber(phoneNumber!);
         if (errorCode == null) {
@@ -57,6 +59,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
         }
       }
     } else if (currentStep == 1) {
+      // 핸드폰 인증하는 화면 -> 인증 성공하면 파이어베이스 유저 핸드폰 번호 정보 삭제
       isNextLoading = true;
       setState(() {});
       final errorCode = await signInWithSmsCode(verificationCode!);
@@ -70,6 +73,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       isNextLoading = false;
       setState(() {});
     } else if (currentStep == 2) {
+      // 이메일 입력하는 화면 -> 이메일 입력 성공 후 이메일 인증 메일 보냄
       if (emailKey.currentState!.validate()) {
         isNextLoading = true;
         setState(() {});
@@ -86,11 +90,13 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
         }
       }
     } else if (currentStep == 3) {
+      // 이메일 인증 화면 -> 이메일 인증 성공 후 파이어베이스 유저 이메일 정보 삭제
       isNextLoading = true;
       setState(() {});
       final emailVerification =
           await isEmailVerification(email!, dummyPassword);
       if (emailVerification) {
+        await deleteEmailUser(email!, dummyPassword);
         currentStep += 1;
         myInfoEntity.email = email!;
       } else {
@@ -104,7 +110,12 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
   void _onStepCancel() async {
     if (currentStep == 0) {
       context.pop();
+    } else if (currentStep == 2) {
+      // 폰 인증화면으로 가지 않고 폰번호 입력 화면으로 넘어간다.
+      currentStep -= 2;
+      setState(() {});
     } else if (currentStep == 3) {
+      // 이메일 인증 스크린에서 뒤로가기 했을 경우 -> 이메일 생성을 다시 해야하기 때문에 삭제해주어야 한다.
       isCancelLoading = true;
       setState(() {});
       final String? errorCode = await deleteEmailUser(email!, dummyPassword);
@@ -114,6 +125,10 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
         if (mounted) showSnackBar(context, errorCode);
       }
       isCancelLoading = false;
+      setState(() {});
+    } else if (currentStep == 4) {
+      // 이메일 변경 확인 화면 -> 뒤로가기 했을 때 이메일 인증 화면으로 가지 않고 이메일 입력 화면으로 넘어간다.
+      currentStep -= 2;
       setState(() {});
     } else {
       currentStep -= 1;
@@ -337,7 +352,6 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                               : () async {
                                   isNextLoading = true;
                                   setState(() {});
-                                  await deleteEmailUser(email!, dummyPassword);
                                   // Todo: 이메일 변경 서버로 알림
                                   if (context.mounted) {
                                     showSnackBar(context, '이메일을 변경하였습니다.');

@@ -73,6 +73,10 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
   void _onStepCancel() async {
     if (currentStep == 0) {
       context.pop();
+    } else if (currentStep == 2) {
+      // 비밀번호 변경 화면 -> 뒤로 가기 했을 때 번호 인증 화면으로 가지 않고 번호 입력 화면으로 넘어간다.
+      currentStep -= 2;
+      setState(() {});
     } else {
       currentStep -= 1;
       setState(() {});
