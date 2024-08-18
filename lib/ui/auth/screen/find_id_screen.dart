@@ -39,12 +39,6 @@ class _FindIdScreenState extends State<FindIdScreen> {
     return currentStep > step ? StepState.complete : StepState.disabled;
   }
 
-  void _onStepTapped(step) {
-    setState(() {
-      currentStep = step;
-    });
-  }
-
   void _onStepContinue() async {
     isNextLoading = true;
     setState(() {});
@@ -62,6 +56,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
     } else if (currentStep == 1) {
       final errorCode = await signInWithSmsCode(verificationCode!);
       if (errorCode == null) {
+        await deletePhoneUser();
         currentStep += 1;
         setState(() {});
       } else {
@@ -75,13 +70,6 @@ class _FindIdScreenState extends State<FindIdScreen> {
   void _onStepCancel() async {
     if (currentStep == 0) {
       context.pop();
-    } else if (currentStep == 2) {
-      isCancelLoading = true;
-      setState(() {});
-      await deletePhoneUser();
-      currentStep -= 1;
-      isCancelLoading = false;
-      setState(() {});
     } else {
       currentStep -= 1;
       setState(() {});
@@ -97,9 +85,6 @@ class _FindIdScreenState extends State<FindIdScreen> {
           elevation: 1,
           type: StepperType.horizontal,
           currentStep: currentStep,
-          onStepTapped: _onStepTapped,
-          onStepContinue: _onStepContinue,
-          onStepCancel: _onStepCancel,
           steps: <Step>[
             Step(
               title: Container(),
@@ -223,11 +208,8 @@ class _FindIdScreenState extends State<FindIdScreen> {
                             ),
                             minimumSize: const Size(100, 60),
                           ),
-                          onPressed: () async {
-                            await deletePhoneUser();
-                            if (context.mounted) {
+                          onPressed:  () {
                               context.go(CustomRouter.authPath);
-                            }
                           },
                           child: const Text(
                             "확인",

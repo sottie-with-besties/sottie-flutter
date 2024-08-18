@@ -11,6 +11,7 @@ import 'package:sottie_flutter/ui/dm/screen/dm_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_detail_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/email_change_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_event_screen.dart';
@@ -40,17 +41,26 @@ sealed class CustomRouter {
   static const verificationCompletePath = "verificationComplete";
 
   // Main Layout Screens
+
+  // Home
   static const homePath = "/home";
 
+  // Chat
   static const chatPath = "/chat";
 
+  // "DM
   static const dmPath = "/dm";
 
+  // Friend
   static const friendPath = "/friend";
   static const friendDmPath = "friendDm";
 
+  // More
   static const morePath = "/more";
+
   static const infoModifyPath = "modify";
+  static const emailChangePath = "emailChange";
+
   static const storePath = "store";
   static const eventPath = "event";
   static const noticePath = "notice";
@@ -160,6 +170,12 @@ final _routes = [
               GoRoute(
                 path: CustomRouter.infoModifyPath,
                 builder: (_, __) => const InfoModifyScreen(),
+                routes: <GoRoute>[
+                  GoRoute(
+                    path: CustomRouter.emailChangePath,
+                    builder: (_, __) => const EmailChangeScreen(),
+                  ),
+                ],
               ),
               GoRoute(
                 path: CustomRouter.storePath,
@@ -174,14 +190,15 @@ final _routes = [
                 builder: (_, __) => const ExtraNoticeScreen(),
               ),
               GoRoute(
-                  path: CustomRouter.customerServicePath,
-                  builder: (_, __) => const ExtraCustomerServiceScreen(),
-                  routes: <GoRoute>[
-                    GoRoute(
-                      path: CustomRouter.contactPath,
-                      builder: (_, __) => const ContactScreen(),
-                    ),
-                  ]),
+                path: CustomRouter.customerServicePath,
+                builder: (_, __) => const ExtraCustomerServiceScreen(),
+                routes: <GoRoute>[
+                  GoRoute(
+                    path: CustomRouter.contactPath,
+                    builder: (_, __) => const ContactScreen(),
+                  ),
+                ],
+              ),
               GoRoute(
                 path: CustomRouter.settingPath,
                 builder: (_, __) => const ExtraSettingScreen(),

@@ -85,14 +85,14 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                 children: [
                   TextButton(
                       onPressed: () {
-                        log("이메일 변경");
+                        context.push(
+                            "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}/${CustomRouter.emailChangePath}");
                       },
                       child: const Text("이메일 변경")),
                   TextButton(
                       onPressed: () {
                         context.push(
                             "${CustomRouter.authPath}/${CustomRouter.findPasswordPath}");
-                        log("비밀번호 변경");
                       },
                       child: const Text("비밀번호 변경")),
                   TextButton(

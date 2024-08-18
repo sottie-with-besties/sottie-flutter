@@ -42,12 +42,6 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
     return currentStep > step ? StepState.complete : StepState.disabled;
   }
 
-  void _onStepTapped(step) {
-    setState(() {
-      currentStep = step;
-    });
-  }
-
   void _onStepContinue() async {
     isNextLoading = true;
     setState(() {});
@@ -65,6 +59,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
     } else if (currentStep == 1) {
       final errorCode = await signInWithSmsCode(verificationCode!);
       if (errorCode == null) {
+        await deletePhoneUser();
         currentStep += 1;
         setState(() {});
       } else {
@@ -78,13 +73,6 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
   void _onStepCancel() async {
     if (currentStep == 0) {
       context.pop();
-    } else if (currentStep == 2) {
-      isCancelLoading = true;
-      setState(() {});
-      await deletePhoneUser();
-      currentStep -= 1;
-      isCancelLoading = false;
-      setState(() {});
     } else {
       currentStep -= 1;
       setState(() {});
@@ -100,9 +88,6 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
           elevation: 1,
           type: StepperType.horizontal,
           currentStep: currentStep,
-          onStepTapped: _onStepTapped,
-          onStepContinue: _onStepContinue,
-          onStepCancel: _onStepCancel,
           steps: <Step>[
             Step(
               title: Container(),
@@ -243,14 +228,21 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                                   context,
                                   const Text("비밀번호를 변경하시겠습니까?"),
                                   extraButton: ElevatedButton(
-                                    onPressed: () async {
-                                      await deletePhoneUser();
-                                      if (context.mounted) {
-                                        context.pop();
-                                        showSnackBar(context, '비밀번호를 변경하였습니다.');
-                                        context.pop();
-                                      }
-                                    },
+                                    onPressed: _anyButtonLoading()
+                                        ? null
+                                        : () async {
+                                            isNextLoading = true;
+                                            setState(() {});
+                                            // Todo: 백엔드로 정보 수정 알림 보내야함
+                                            if (context.mounted) {
+                                              showSnackBar(
+                                                  context, '비밀번호를 변경하였습니다.');
+                                              context.pop();
+                                              context.pop();
+                                            }
+                                            isNextLoading = false;
+                                            setState(() {});
+                                          },
                                     child: const Text(
                                       "변경",
                                       style: TextStyle(

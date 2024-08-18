@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/auth/email_verification.dart';
+import 'package:sottie_flutter/domain/auth/phone_verification.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class EmailChangeScreen extends StatefulWidget {
+  const EmailChangeScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<EmailChangeScreen> createState() => _EmailChangeScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _EmailChangeScreenState extends State<EmailChangeScreen> {
   int currentStep = 0;
   String? email;
-  String? password;
+  String dummyPassword = "sottie8452!^#@!";
+
+  String? phoneNumber = '';
+  String? verificationCode = '';
 
   bool isNextLoading = false;
   bool isCancelLoading = false;
+
+  final emailKey = GlobalKey<FormState>();
+  final phoneNumberKey = GlobalKey<FormState>();
 
   bool _anyButtonLoading() {
     return isNextLoading || isCancelLoading;
@@ -33,46 +41,58 @@ class _SignUpScreenState extends State<SignUpScreen> {
     ),
   );
 
-  final emailKey = GlobalKey<FormState>();
-  final passwordKey = GlobalKey<FormState>();
-
   StepState _setStepState(int step) {
     return currentStep > step ? StepState.complete : StepState.disabled;
   }
 
   void _onStepContinue() async {
     if (currentStep == 0) {
-      if (emailKey.currentState!.validate()) {
-        currentStep += 1;
-        setState(() {});
+      if (phoneNumberKey.currentState!.validate()) {
+        final errorCode = await signInWithPhoneNumber(phoneNumber!);
+        if (errorCode == null) {
+          currentStep += 1;
+          setState(() {});
+        } else {
+          if (mounted) showSnackBar(context, errorCode);
+        }
       }
     } else if (currentStep == 1) {
-      // 파이어베이스에 이메일 및 비밀번호 등록
-      if (passwordKey.currentState!.validate()) {
-        if (email != null && password != null) {
-          isNextLoading = true;
-          setState(() {});
-          String? errorCode = await createEmailAndPassword(email!, password!);
-          if (mounted) {
-            if (errorCode == null) {
-              currentStep += 1;
-              await sendEmailVerification();
-            } else {
-              showSnackBar(context, errorCode);
-            }
+      isNextLoading = true;
+      setState(() {});
+      final errorCode = await signInWithSmsCode(verificationCode!);
+      if (errorCode == null) {
+        await deletePhoneUser();
+        currentStep += 1;
+        setState(() {});
+      } else {
+        if (mounted) showSnackBar(context, errorCode);
+      }
+      isNextLoading = false;
+      setState(() {});
+    } else if (currentStep == 2) {
+      if (emailKey.currentState!.validate()) {
+        isNextLoading = true;
+        setState(() {});
+        String? errorCode = await createEmailAndPassword(email!, dummyPassword);
+        if (mounted) {
+          if (errorCode == null) {
+            currentStep += 1;
+            await sendEmailVerification();
+          } else {
+            showSnackBar(context, errorCode);
           }
           isNextLoading = false;
           setState(() {});
         }
       }
-    } else if (currentStep == 2) {
+    } else if (currentStep == 3) {
       isNextLoading = true;
       setState(() {});
-      final emailVerification = await isEmailVerification(email!, password!);
+      final emailVerification =
+          await isEmailVerification(email!, dummyPassword);
       if (emailVerification) {
         currentStep += 1;
         myInfoEntity.email = email!;
-        myInfoEntity.password = password!;
       } else {
         if (mounted) showSnackBar(context, "이메일을 인증해주세요");
       }
@@ -84,10 +104,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void _onStepCancel() async {
     if (currentStep == 0) {
       context.pop();
-    } else if (currentStep == 2) {
+    } else if (currentStep == 3) {
       isCancelLoading = true;
       setState(() {});
-      final String? errorCode = await deleteEmailUser(email!, password!);
+      final String? errorCode = await deleteEmailUser(email!, dummyPassword);
       if (errorCode == null) {
         currentStep -= 1;
       } else {
@@ -111,6 +131,90 @@ class _SignUpScreenState extends State<SignUpScreen> {
           type: StepperType.horizontal,
           currentStep: currentStep,
           steps: <Step>[
+            Step(
+              title: Container(),
+              content: Form(
+                key: phoneNumberKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "전화번호를 입력해주세요",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    AuthTextField(
+                      hint: "전화번호 입력",
+                      keyboardType: TextInputType.number,
+                      validator: (val) {
+                        phoneNumber = val;
+                        return validatePhoneNumber(val!);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              isActive: currentStep > 0,
+              state: _setStepState(0),
+            ),
+            Step(
+              title: Container(),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "문자를 확인하세요!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    "인증코드를 발송하였습니다",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Pinput(
+                    length: 6,
+                    obscureText: true,
+                    validator: (val) {
+                      verificationCode = val;
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  OutlinedButton(
+                    onPressed: () async {
+                      final errorCode =
+                          await signInWithPhoneNumber(phoneNumber!);
+                      if (errorCode != null) {
+                        if (context.mounted) showSnackBar(context, errorCode);
+                      }
+                    },
+                    child: const Text("인증코드 재전송"),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ],
+              ),
+              isActive: currentStep > 1,
+              state: _setStepState(1),
+            ),
             Step(
               title: Container(),
               content: Form(
@@ -139,47 +243,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
               ),
-              isActive: currentStep > 0,
-              state: _setStepState(0),
-            ),
-            Step(
-              title: Container(),
-              content: Form(
-                key: passwordKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "비밀번호를 생성해주세요",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    AuthTextField(
-                      obsecure: true,
-                      hint: "특수문자, 대소문자, 숫자 포함 8~15자",
-                      validator: (val) {
-                        password = val;
-                        return validatePassword(val!);
-                      },
-                    ),
-                    AuthTextField(
-                      obsecure: true,
-                      hint: "한번 더 입력해주세요",
-                      validator: (val) => confirmPassword(
-                        val!,
-                        password!,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              isActive: currentStep > 1,
-              state: _setStepState(1),
+              isActive: currentStep > 2,
+              state: _setStepState(2),
             ),
             Step(
               title: Container(),
@@ -215,8 +280,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ],
               ),
-              isActive: currentStep > 2,
-              state: _setStepState(2),
+              isActive: currentStep > 3,
+              state: _setStepState(3),
             ),
             Step(
               title: Container(),
@@ -224,40 +289,87 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const Text(
-                    "본인인증을 진행해주세요!",
+                    "기존 이메일",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 22,
                     ),
                   ),
                   const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    myInfoEntity.email,
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(
                     height: 25,
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: mainBrownColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      minimumSize: const Size(100, 80),
+                  const Text(
+                    "변경 이메일",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    email ?? "알 수 없음",
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  ElevatedButton(
                     onPressed: () {
-                      context.push('/auth/${CustomRouter.certificationPath}',
-                          extra: {'isEmailLogin': true});
+                      showCustomDialog(
+                        context,
+                        const Text("이메일을 변경하시겠습니까?"),
+                        extraButton: ElevatedButton(
+                          onPressed: _anyButtonLoading()
+                              ? null
+                              : () async {
+                                  isNextLoading = true;
+                                  setState(() {});
+                                  await deleteEmailUser(email!, dummyPassword);
+                                  // Todo: 이메일 변경 서버로 알림
+                                  if (context.mounted) {
+                                    showSnackBar(context, '이메일을 변경하였습니다.');
+                                    context.pop();
+                                    context.pop();
+                                  }
+                                  isNextLoading = false;
+                                  setState(() {});
+                                },
+                          child: const Text(
+                            "변경",
+                            style: TextStyle(
+                              color: mainSilverColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      );
                     },
                     child: const Text(
-                      "본인인증 하기",
+                      "이메일 변경하기",
                       style: TextStyle(
                         color: mainSilverColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: 30,
+                        fontSize: 24,
                       ),
                     ),
                   ),
                 ],
               ),
-              isActive: currentStep > 3,
-              state: _setStepState(3),
+              isActive: currentStep > 4,
+              state: _setStepState(4),
             ),
           ],
           controlsBuilder: (context, details) {
@@ -291,7 +403,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(
                     width: 20,
                   ),
-                  if (currentStep < 3)
+                  if (currentStep < 4)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: mainBrownColor,
