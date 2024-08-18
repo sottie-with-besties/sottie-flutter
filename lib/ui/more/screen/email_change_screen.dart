@@ -352,10 +352,12 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                               : () async {
                                   isNextLoading = true;
                                   setState(() {});
-                                  // Todo: 이메일 변경 서버로 알림
+                                  // Todo: 이메일 변경 백엔드로 알림
                                   if (context.mounted) {
                                     showSnackBar(context, '이메일을 변경하였습니다.');
-                                    context.pop();
+                                    // 확실하게 다이얼로그를 닫는 코드. ChatGPT가 알려줌
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop();
                                     context.pop();
                                   }
                                   isNextLoading = false;
@@ -376,7 +378,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                       style: TextStyle(
                         color: mainSilverColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: 24,
+                        fontSize: 16,
                       ),
                     ),
                   ),

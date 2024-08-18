@@ -44,7 +44,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
         ),
         onPressed: () {
           // 꾹 누른건 팝 두번, 슬라이드는 한번만
-          context.pop();
+          Navigator.of(context, rootNavigator: true).pop();
           withSlide ? null : context.pop();
 
           log("친구 삭제 확인");

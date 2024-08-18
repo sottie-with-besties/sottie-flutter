@@ -241,7 +241,9 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                                             if (context.mounted) {
                                               showSnackBar(
                                                   context, '비밀번호를 변경하였습니다.');
-                                              context.pop();
+                                              Navigator.of(context,
+                                                      rootNavigator: true)
+                                                  .pop();
                                               context.pop();
                                             }
                                             isNextLoading = false;
@@ -261,9 +263,10 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                             child: const Text(
                               "비밀번호 재설정하기",
                               style: TextStyle(
-                                  color: mainSilverColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16),
+                                color: mainSilverColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ),
