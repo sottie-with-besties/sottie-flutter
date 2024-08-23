@@ -45,6 +45,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
       body: Padding(
         padding: const EdgeInsets.all(32.0),
         child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

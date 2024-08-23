@@ -56,58 +56,61 @@ class _SearchScreenState extends State<SearchScreen> {
             const SizedBox(
               height: 20,
             ),
-            LocalTextField(
-              hint: "날짜, 장소, 제목, 내용...",
-              focusNode: searchFocusNode,
-              controller: searchController,
-              onFieldSubmitted: (searchContent) async {
-                postSettingEntity.title = searchContent;
-                await searchPost(); // Todo: 함수 구현해야함
-              },
-              suffixIcon: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                child: GestureDetector(
-                  onTap: () {
-                    showCustomDialog(
-                      context,
-                      GestureDetector(
-                        onTap: settingFocusNode.unfocus,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const CategoryClass(),
-                            const SizedBox(height: 20),
-                            const LocationClass(),
-                            const SizedBox(height: 20),
-                            const DateRangeClass(),
-                            const SizedBox(height: 20),
-                            const TimeRangeClass(),
-                            const SizedBox(height: 10),
-                            const DateTimeResetButton(),
-                            const SizedBox(height: 10),
-                            NumOfMemberClass(focusNode: settingFocusNode),
-                            const SizedBox(height: 20),
-                            const GenderClass(),
-                            const SizedBox(height: 20),
-                            const AgeClass(),
-                            const SizedBox(height: 20),
-                            const MannerClass(),
-                            const SizedBox(height: 20),
-                            const StartSameTimeClass(),
-                            const SizedBox(height: 20),
-                            const OpenParticipationClass(),
-                            const SizedBox(height: 20),
-                            const OnlyMyFriendsClass(),
-                            const SizedBox(height: 80),
-                          ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: LocalTextField(
+                hint: "날짜, 장소, 제목, 내용...",
+                focusNode: searchFocusNode,
+                controller: searchController,
+                onFieldSubmitted: (searchContent) async {
+                  postSettingEntity.title = searchContent;
+                  await searchPost(); // Todo: 함수 구현해야함
+                },
+                suffixIcon: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  child: GestureDetector(
+                    onTap: () {
+                      showCustomDialog(
+                        context,
+                        GestureDetector(
+                          onTap: settingFocusNode.unfocus,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const CategoryClass(),
+                              const SizedBox(height: 20),
+                              const LocationClass(),
+                              const SizedBox(height: 20),
+                              const DateRangeClass(),
+                              const SizedBox(height: 20),
+                              const TimeRangeClass(),
+                              const SizedBox(height: 10),
+                              const DateTimeResetButton(),
+                              const SizedBox(height: 10),
+                              NumOfMemberClass(focusNode: settingFocusNode),
+                              const SizedBox(height: 20),
+                              const GenderClass(),
+                              const SizedBox(height: 20),
+                              const AgeClass(),
+                              const SizedBox(height: 20),
+                              const MannerClass(),
+                              const SizedBox(height: 20),
+                              const StartSameTimeClass(),
+                              const SizedBox(height: 20),
+                              const OpenParticipationClass(),
+                              const SizedBox(height: 20),
+                              const OnlyMyFriendsClass(),
+                              const SizedBox(height: 80),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  child: const FaIcon(
-                    FontAwesomeIcons.gear,
-                    color: Colors.black,
+                      );
+                    },
+                    child: const FaIcon(
+                      FontAwesomeIcons.gear,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),

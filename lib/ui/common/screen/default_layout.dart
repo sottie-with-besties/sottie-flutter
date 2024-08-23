@@ -28,6 +28,17 @@ class DefaultLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: lightBrownColor,
+        onPressed: () async {
+          postSettingEntity = PostSetting();
+          await context.push(CustomRouter.makePostStepOnePath);
+        },
+        child: const Icon(
+          Icons.post_add,
+          color: mainSilverColor,
+        ),
+      ),
       resizeToAvoidBottomInset: false,
       appBar: _renderAppbar(title, context),
       body: ColoredBox(
@@ -114,11 +125,11 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
             InkWell(
               borderRadius: BorderRadius.circular(5),
               onTap: () async {
-                postSettingEntity = PostSetting();
-                await context.push(CustomRouter.makePostStepOnePath);
+                await context.push(
+                    "${CustomRouter.morePath}/${CustomRouter.settingPath}");
               },
               child: const FaIcon(
-                FontAwesomeIcons.plus,
+                FontAwesomeIcons.gear,
                 color: mainSilverColor,
                 size: 28,
               ),
