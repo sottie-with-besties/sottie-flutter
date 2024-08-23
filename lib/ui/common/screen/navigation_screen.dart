@@ -36,14 +36,6 @@ class NavigationScreen extends StatelessWidget {
             label: "Chat",
           ),
           NavigationDestination(
-            icon: FaIcon(FontAwesomeIcons.message),
-            selectedIcon: FaIcon(
-              FontAwesomeIcons.message,
-              color: mainSilverColor,
-            ),
-            label: "DM",
-          ),
-          NavigationDestination(
             icon: FaIcon(FontAwesomeIcons.userGroup),
             selectedIcon: FaIcon(
               FontAwesomeIcons.userGroup,

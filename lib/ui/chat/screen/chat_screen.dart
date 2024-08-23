@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/ui/chat/screen/chat_content_screen.dart';
+import 'package:sottie_flutter/ui/chat/screen/chat_tab_screen.dart.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
@@ -14,7 +14,7 @@ class ChatScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => focusNode.unfocus(),
       child: DefaultLayout(
-        hasScrollBody: false,
+        hasScrollBody: true,
         title: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 12),
           child: AppBarTitle(
@@ -28,7 +28,7 @@ class ChatScreen extends StatelessWidget {
             focusNode: focusNode,
           ),
         ),
-        contentChild: const ChatContentScreen(),
+        contentChild: const ChatTabScreen(),
       ),
     );
   }

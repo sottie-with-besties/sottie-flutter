@@ -36,8 +36,10 @@ class _ChatContentScreenState extends State<ChatContentScreen> {
               snapshot.data!.map((e) => ChatRoom(model: e)).toList();
           return Padding(
             padding: const EdgeInsets.only(top: 12),
-            child: Column(
-              children: chatRooms,
+            child: SingleChildScrollView(
+              child: Column(
+                children: chatRooms,
+              ),
             ),
           );
         } else {

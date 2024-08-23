@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/data/dm/model/dm_model.dart';
 import 'package:sottie_flutter/domain/dm/dm_provider.dart';
+import 'package:sottie_flutter/ui/chat/widget/dm_chat_room.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
-import 'package:sottie_flutter/ui/dm/widget/dm_chat_room.dart';
 
 class DmContentScreen extends StatefulWidget {
   const DmContentScreen({super.key});
@@ -36,8 +38,10 @@ class _DmContentScreenState extends State<DmContentScreen> {
               snapshot.data!.map((e) => DmChatRoom(model: e)).toList();
           return Padding(
             padding: const EdgeInsets.only(top: 12),
-            child: Column(
-              children: chatRooms,
+            child: SingleChildScrollView(
+              child: Column(
+                children: chatRooms,
+              ),
             ),
           );
         } else {
