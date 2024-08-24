@@ -46,6 +46,7 @@ dependencies:
   smooth_page_indicator: # 홈 스크린 이벤트
   skeletonizer: # 로딩 스켈레톤
   time_range_picker:
+  fl_chart: # 친구 매너포인트 그래프
 
   # Riverpod
   flutter_riverpod:

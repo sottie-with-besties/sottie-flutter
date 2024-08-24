@@ -5,6 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
@@ -13,10 +14,10 @@ import 'package:sottie_flutter/ui/friend/widget/friend_info.dart';
 class Friend extends StatefulWidget {
   const Friend({
     super.key,
-    required this.friendInfo,
+    required this.model,
   });
 
-  final Map<String, dynamic> friendInfo;
+  final FriendDetailModel model;
 
   @override
   State<Friend> createState() => _FriendState();
@@ -25,14 +26,12 @@ class Friend extends StatefulWidget {
 class _FriendState extends State<Friend> with TickerProviderStateMixin {
   late SlidableController _slidableController;
 
-  void _deleteAction(Map<String, dynamic> data, bool withSlide) {
-    log("data : $data");
-    log("slidableController: $_slidableController");
+  void _deleteAction(bool withSlide) {
     showCustomDialog(
       context,
       Center(
         child: Text(
-          "${widget.friendInfo['nickname']}를 삭제하시겠습니까?",
+          "${widget.model.nickname}를 삭제하시겠습니까?",
           style: const TextStyle(
             fontSize: 20,
           ),
@@ -60,8 +59,8 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
     );
   }
 
-  void _editAction(BuildContext context, Map<String, dynamic> data) {
-    log("editAction ::: context : $context data : $data");
+  void _editAction() {
+    log("editAction");
   }
 
   @override
@@ -79,11 +78,6 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final id = widget.friendInfo['id'] as String;
-    final nickname = widget.friendInfo['nickname'] as String;
-    final stateMsg = widget.friendInfo['stateMsg'] as String;
-    final mannerPoint = widget.friendInfo['mannerPoint'] as double;
-
     return Slidable(
       key: ValueKey(widget.key),
       closeOnScroll: false,
@@ -94,7 +88,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
         motion: const DrawerMotion(),
         children: [
           SlidableAction(
-            onPressed: (context) => _editAction(context, widget.friendInfo),
+            onPressed: (context) => _editAction(),
             backgroundColor: const Color(0xFF21B7CA),
             foregroundColor: Colors.white,
             autoClose: true,
@@ -102,7 +96,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
             label: 'Edit',
           ),
           SlidableAction(
-            onPressed: (context) => _deleteAction(widget.friendInfo, true),
+            onPressed: (context) => _deleteAction(true),
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             autoClose: true,
@@ -124,12 +118,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
             onTap: () async {
               await context.push(
                 "${CustomRouter.friendPath}/${CustomRouter.friendDmPath}",
-                extra: {
-                  'id': id,
-                  'nickname': nickname,
-                  'stateMsg': stateMsg,
-                  'mannerPoint': mannerPoint,
-                },
+                extra: widget.model,
               );
             },
             onLongPress: () {
@@ -138,12 +127,12 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
                 Column(
                   children: [
                     UserProfile(
-                      avatarId: id,
+                      avatarId: widget.model.id,
                       randomAvatarSize: 100,
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      nickname,
+                      widget.model.nickname,
                       style: const TextStyle(
                         color: mainSilverColor,
                         fontWeight: FontWeight.bold,
@@ -153,26 +142,18 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
                     const SizedBox(height: 10),
                     _renderOption(
                       color: Colors.green,
-                      onTap: () async {
-                        context.pop();
-                        await context.push(
-                          "${CustomRouter.friendPath}/${CustomRouter.friendDmPath}",
-                          extra: {
-                            'id': id,
-                            'nickname': nickname,
-                            'stateMsg': stateMsg,
-                            'mannerPoint': mannerPoint,
-                          },
-                        );
+                      onTap: () {
+                        log("친구 DM 보내기");
+                        Navigator.of(context, rootNavigator: true).pop();
                       },
-                      icon: Icons.arrow_right_alt_outlined,
-                      optionTitle: "자세한 정보",
+                      icon: Icons.messenger_outline,
+                      optionTitle: "DM 보내기",
                     ),
                     const SizedBox(height: 10),
                     _renderOption(
                       color: Colors.redAccent,
                       onTap: () {
-                        _deleteAction(widget.friendInfo, false);
+                        _deleteAction(false);
                       },
                       icon: Icons.delete_forever,
                       optionTitle: "친구 삭제",
@@ -197,17 +178,17 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
                 SizedBox(
                   width: 70 * wu,
                   child: Hero(
-                    tag: id,
+                    tag: widget.model.id,
                     child: UserProfile(
                       randomAvatarSize: 45,
-                      avatarId: id,
+                      avatarId: widget.model.id,
                     ),
                   ),
                 ),
                 SizedBox(width: 10 * wu),
                 FriendInfo(
-                  friendName: nickname,
-                  stateMsg: stateMsg,
+                  friendName: widget.model.nickname,
+                  stateMsg: widget.model.stateMsg,
                 ),
               ],
             ),

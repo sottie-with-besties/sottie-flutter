@@ -29,6 +29,7 @@ class DefaultLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        heroTag: null, // Friend의 히어로와 충돌 방지
         backgroundColor: lightBrownColor,
         onPressed: () async {
           postSettingEntity = PostSetting();
