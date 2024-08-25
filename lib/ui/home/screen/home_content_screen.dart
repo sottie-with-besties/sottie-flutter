@@ -29,7 +29,7 @@ class HomeContentScreen extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        _subTitle("# 인기 TOP 5"),
+        _subTitle("# 최신 모집글"),
         Post(
           model: model,
         ),

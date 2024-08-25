@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
@@ -46,16 +47,28 @@ class _HomeHeaderState extends State<HomeHeader> {
             onSelected: (check) {
               _onSelected(index, check);
             },
-            label: Text(
-              CategorySottie.values[index].name,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
+            label: SizedBox(
+              height: 18 * hu,
+              child: Row(
+                children: [
+                  if (CategorySottie.values[index].name == '번개')
+                    const Icon(
+                      Icons.bolt,
+                      color: Colors.amber,
+                    ),
+                  Text(
+                    CategorySottie.values[index].name,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
             selected: selectedList[index],
+            selectedColor: Colors.lightBlue,
             backgroundColor: mainSilverColor,
-            checkmarkColor: Colors.green,
-            selectedColor: Colors.pinkAccent.withOpacity(0.2),
+            showCheckmark: false,
           );
         },
         separatorBuilder: (_, index) => const SizedBox(width: 10),
