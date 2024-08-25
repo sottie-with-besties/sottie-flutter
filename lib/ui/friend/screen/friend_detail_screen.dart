@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
+import 'package:sottie_flutter/data/friend/model/friend_review_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend_radar_chart.dart';
@@ -158,56 +159,9 @@ class _FriendDetailScreenState extends State<FriendDetailScreen> {
                       ],
                     ),
                   ),
-                  FriendReview(
-                    nickname: "SkyWalker",
-                    mannerPoint: 85,
-                    reviewText: "정말 친절하시고 대화가 잘 통합니다. 다음에도 꼭 함께 하고 싶습니다.",
-                  ),
-                  FriendReview(
-                    nickname: "PixelNinja",
-                    mannerPoint: 65,
-                    reviewText: "대체로 괜찮았지만, 약간의 무례함이 느껴졌습니다. 그래도 좋은 시간이었습니다.",
-                  ),
-                  FriendReview(
-                    nickname: "ShadowHunter",
-                    mannerPoint: 100,
-                    reviewText: "완벽한 매너와 친절함! 같이 있는 시간이 너무 즐거웠습니다.",
-                  ),
-                  FriendReview(
-                    nickname: "CyberCat",
-                    mannerPoint: 55,
-                    reviewText: "대화는 잘 통했지만, 가끔 예의가 부족하다고 느꼈습니다.",
-                  ),
-                  FriendReview(
-                    nickname: "DragonSlayer",
-                    mannerPoint: 90,
-                    reviewText: "대화가 아주 유쾌하고 매너가 좋으신 분이었습니다. 추천합니다!",
-                  ),
-                  FriendReview(
-                    nickname: "MysticMage",
-                    mannerPoint: 45,
-                    reviewText: "기대에 미치지 못했습니다. 다음 번엔 조금 더 신중히 선택할 것 같습니다.",
-                  ),
-                  FriendReview(
-                    nickname: "LunarEclipse",
-                    mannerPoint: 75,
-                    reviewText: "괜찮은 시간이었지만, 약간의 아쉬움이 남습니다.",
-                  ),
-                  FriendReview(
-                    nickname: "SilentStorm",
-                    mannerPoint: 50,
-                    reviewText: "처음엔 좋았지만, 점점 불편한 기분이 들었습니다.",
-                  ),
-                  FriendReview(
-                    nickname: "PixelPirate",
-                    mannerPoint: 80,
-                    reviewText: "친절하고 매너가 좋은 분입니다. 다음에 또 함께 하고 싶습니다.",
-                  ),
-                  FriendReview(
-                    nickname: "NeonTiger",
-                    mannerPoint: 70,
-                    reviewText: "대체로 좋았지만, 가끔 대화가 어색할 때가 있었습니다.",
-                  ),
+                  ..._dummyData.map((data) {
+                    return FriendReview(model: data);
+                  }),
                 ],
               ),
             ),
@@ -257,3 +211,106 @@ Widget _utilButton(IconData icon, String desc, VoidCallback onTap) {
     ),
   );
 }
+
+final List<FriendReviewModel> _dummyData = [
+  FriendReviewModel(
+    id: '1',
+    nickname: 'Alice',
+    total: 75,
+    participationIndex: 3,
+    attitudeIndex: 4,
+    timeIndex: 2,
+    likeabilityIndex: 4,
+    trustworthinessIndex: 3,
+  ),
+  FriendReviewModel(
+    id: '2',
+    nickname: 'Bob',
+    total: 50,
+    participationIndex: 2,
+    attitudeIndex: 3,
+    timeIndex: 3,
+    likeabilityIndex: 2,
+    trustworthinessIndex: 2,
+  ),
+  FriendReviewModel(
+    id: '3',
+    nickname: 'Charlie',
+    total: 85,
+    participationIndex: 4,
+    attitudeIndex: 4,
+    timeIndex: 4,
+    likeabilityIndex: 3,
+    trustworthinessIndex: 4,
+  ),
+  FriendReviewModel(
+    id: '4',
+    nickname: 'David',
+    total: 40,
+    participationIndex: 1,
+    attitudeIndex: 2,
+    timeIndex: 1,
+    likeabilityIndex: 3,
+    trustworthinessIndex: 2,
+  ),
+  FriendReviewModel(
+    id: '5',
+    nickname: 'Eva',
+    total: 95,
+    participationIndex: 4,
+    attitudeIndex: 4,
+    timeIndex: 4,
+    likeabilityIndex: 4,
+    trustworthinessIndex: 4,
+  ),
+  FriendReviewModel(
+    id: '6',
+    nickname: 'Frank',
+    total: 30,
+    participationIndex: 1,
+    attitudeIndex: 1,
+    timeIndex: 1,
+    likeabilityIndex: 2,
+    trustworthinessIndex: 1,
+  ),
+  FriendReviewModel(
+    id: '7',
+    nickname: 'Grace',
+    total: 65,
+    participationIndex: 3,
+    attitudeIndex: 3,
+    timeIndex: 2,
+    likeabilityIndex: 3,
+    trustworthinessIndex: 3,
+  ),
+  FriendReviewModel(
+    id: '8',
+    nickname: 'Hank',
+    total: 55,
+    participationIndex: 2,
+    attitudeIndex: 3,
+    timeIndex: 3,
+    likeabilityIndex: 2,
+    trustworthinessIndex: 3,
+  ),
+  FriendReviewModel(
+    id: '9',
+    nickname: 'Ivy',
+    total: 90,
+    participationIndex: 4,
+    attitudeIndex: 4,
+    timeIndex: 4,
+    likeabilityIndex: 3,
+    trustworthinessIndex: 4,
+  ),
+  FriendReviewModel(
+    id: '10',
+    nickname: 'Jack',
+    total: 70,
+    participationIndex: 3,
+    attitudeIndex: 3,
+    timeIndex: 3,
+    likeabilityIndex: 3,
+    trustworthinessIndex: 3,
+  ),
+];

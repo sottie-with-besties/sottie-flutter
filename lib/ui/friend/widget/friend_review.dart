@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/data/friend/model/friend_review_model.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
 class FriendReview extends StatelessWidget {
   const FriendReview({
     super.key,
-    required this.nickname,
-    required this.mannerPoint,
-    required this.reviewText,
+    required this.model,
   });
 
-  final String nickname;
-  final int mannerPoint;
-  final String reviewText;
+  final FriendReviewModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,7 @@ class FriendReview extends StatelessWidget {
                   const UserProfile(randomAvatarSize: 30),
                   const SizedBox(width: 15),
                   Text(
-                    nickname,
+                    model.nickname,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: mainSilverColor,
@@ -38,49 +36,81 @@ class FriendReview extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  ...List.generate(
-                    5,
-                    (index) {
-                      if (mannerPoint < index * 20 + 10) {
-                        return const Icon(Icons.star_border_outlined);
-                      } else if (mannerPoint >= index * 20 + 10 &&
-                          mannerPoint < index * 20 + 20) {
-                        return const Icon(
-                          Icons.star_half,
-                          color: Colors.amber,
-                        );
-                      } else if (mannerPoint >= index * 20 + 20) {
-                        return const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        );
-                      } else {
-                        return Container();
-                      }
-                    },
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: Text(
+                  model.total.toString(),
+                  style: TextStyle(
+                    color: mainSilverColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14 * hu,
                   ),
-                  const SizedBox(width: 10),
-                  Text(
-                    mannerPoint.toString(),
-                    style: const TextStyle(
-                      color: mainSilverColor,
-                    ),
-                  ),
-                ],
-              )
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.only(left: 5),
-            child: Text(
-              reviewText,
-              style: const TextStyle(
-                color: mainSilverColor,
-              ),
+          _EvaluationRow(
+              evaluationText: "참여도", selectedIndex: model.participationIndex),
+          _EvaluationRow(
+              evaluationText: "태도", selectedIndex: model.attitudeIndex),
+          _EvaluationRow(
+              evaluationText: "약속 시간", selectedIndex: model.timeIndex),
+          _EvaluationRow(
+              evaluationText: "호감도", selectedIndex: model.likeabilityIndex),
+          _EvaluationRow(
+              evaluationText: "신뢰도", selectedIndex: model.trustworthinessIndex),
+        ],
+      ),
+    );
+  }
+}
+
+class _EvaluationRow extends StatelessWidget {
+  const _EvaluationRow({
+    required this.evaluationText,
+    required this.selectedIndex,
+  });
+
+  final String evaluationText;
+  final int selectedIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    const chipLabel = ["매우 나쁨", "나쁨", "보통", "좋음", "매우 좋음"];
+
+    return FittedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            evaluationText,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 12 * hu,
+              color: mainSilverColor,
             ),
+          ),
+          SizedBox(width: 5 * wu),
+          ...List.generate(
+            5,
+            (index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: ChoiceChip(
+                  selectedColor: Colors.green.withOpacity(0.8),
+                  checkmarkColor: Colors.black,
+                  disabledColor: Colors.grey.withOpacity(0.5),
+                  label: Text(
+                    chipLabel[index],
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  selected: index == selectedIndex,
+                ),
+              );
+            },
           ),
         ],
       ),
