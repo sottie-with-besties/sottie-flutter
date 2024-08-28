@@ -11,6 +11,7 @@ import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_detail_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
+import 'package:sottie_flutter/ui/in_chat/screen/in_chat_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/email_change_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
@@ -47,10 +48,11 @@ sealed class CustomRouter {
 
   // Chat
   static const chatPath = "/chat";
+  static const inChatPath = "inChat";
 
   // Friend
   static const friendPath = "/friend";
-  static const friendDmPath = "friendDm";
+  static const friendDetailPath = "friendDetail";
 
   // More
   static const morePath = "/more";
@@ -126,25 +128,38 @@ final _routes = [
           GoRoute(
             path: CustomRouter.chatPath,
             builder: (_, __) => const ChatScreen(),
+            routes: <GoRoute>[
+              GoRoute(
+                path: CustomRouter.inChatPath,
+                builder: (_, state) {
+                  final params = state.extra as Map<String, dynamic>;
+                  return InChatScreen(
+                    id: params['id'],
+                    title: params['title'],
+                  );
+                },
+              ),
+            ],
           )
         ],
       ),
       StatefulShellBranch(
         routes: <GoRoute>[
           GoRoute(
-              path: CustomRouter.friendPath,
-              builder: (_, __) => const FriendScreen(),
-              routes: <GoRoute>[
-                GoRoute(
-                  path: CustomRouter.friendDmPath,
-                  builder: (_, state) {
-                    final params = state.extra as FriendDetailModel;
-                    return FriendDetailScreen(
-                      model: params,
-                    );
-                  },
-                ),
-              ]),
+            path: CustomRouter.friendPath,
+            builder: (_, __) => const FriendScreen(),
+            routes: <GoRoute>[
+              GoRoute(
+                path: CustomRouter.friendDetailPath,
+                builder: (_, state) {
+                  final params = state.extra as FriendDetailModel;
+                  return FriendDetailScreen(
+                    model: params,
+                  );
+                },
+              ),
+            ],
+          ),
         ],
       ),
       StatefulShellBranch(

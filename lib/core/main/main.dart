@@ -58,6 +58,7 @@ final _customTheme = ThemeData(
       fontWeight: FontWeight.bold,
       color: Colors.black,
       fontSize: 15 * hu,
+      overflow: TextOverflow.ellipsis,
     ),
   ),
   scaffoldBackgroundColor: Colors.white,

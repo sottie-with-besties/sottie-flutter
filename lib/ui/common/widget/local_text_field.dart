@@ -17,6 +17,7 @@ class LocalTextField extends StatelessWidget {
     this.lines = 1,
     this.maxLength,
     this.keyboardType,
+    this.borderRadius = 12,
   });
 
   final String? hint;
@@ -30,6 +31,7 @@ class LocalTextField extends StatelessWidget {
   final int? lines;
   final int? maxLength;
   final TextInputType? keyboardType;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +50,13 @@ class LocalTextField extends StatelessWidget {
           borderSide: const BorderSide(
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             width: 2.5,
           ),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.black54),

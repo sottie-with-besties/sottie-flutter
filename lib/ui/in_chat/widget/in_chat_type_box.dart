@@ -2,11 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
-class FriendTypeBox extends StatelessWidget {
-  const FriendTypeBox({
+class InChatTypeBox extends StatelessWidget {
+  const InChatTypeBox({
     super.key,
     required this.focusNode,
   });
@@ -18,21 +17,23 @@ class FriendTypeBox extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(
-          width: 240 * wu,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: LocalTextField(
-              prefixIcon: false,
-              keyboardType: TextInputType.multiline,
-              hint: "내용을 입력하세요.",
-              focusNode: focusNode,
-              suffixIcon: GestureDetector(
-                onTap: () {
-                  log("사진 및 동영상 고르기");
-                },
-                child: const Icon(
-                  Icons.photo,
+        Expanded(
+          child: SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 5.0),
+              child: LocalTextField(
+                borderRadius: 0,
+                prefixIcon: false,
+                keyboardType: TextInputType.multiline,
+                hint: "내용을 입력하세요.",
+                focusNode: focusNode,
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    log("사진 및 동영상 고르기");
+                  },
+                  child: const Icon(
+                    Icons.photo,
+                  ),
                 ),
               ),
             ),
@@ -47,8 +48,7 @@ class FriendTypeBox extends StatelessWidget {
               color: mainSilverColor,
               borderRadius: BorderRadius.circular(5),
             ),
-            width: 35 * wu,
-            height: 35 * hu,
+            height: 60,
             padding: const EdgeInsets.all(5),
             child: const FittedBox(
               child: Icon(

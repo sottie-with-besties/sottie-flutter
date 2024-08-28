@@ -66,7 +66,7 @@ class _HomeHeaderState extends State<HomeHeader> {
               ),
             ),
             selected: selectedList[index],
-            selectedColor: Colors.lightBlue,
+            selectedColor: Colors.lightBlueAccent.withOpacity(0.7),
             backgroundColor: mainSilverColor,
             showCheckmark: false,
           );

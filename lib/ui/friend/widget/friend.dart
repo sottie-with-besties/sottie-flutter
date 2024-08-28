@@ -117,7 +117,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
           child: InkWell(
             onTap: () async {
               await context.push(
-                "${CustomRouter.friendPath}/${CustomRouter.friendDmPath}",
+                "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
                 extra: widget.model,
               );
             },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
@@ -22,7 +24,15 @@ class ChatRoom extends StatelessWidget {
     return Material(
       color: mainSilverColor,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          context.push(
+            '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
+            extra: {
+              'id': model.id,
+              'title': model.chatTitle,
+            },
+          );
+        },
         child: Column(
           children: [
             Container(
