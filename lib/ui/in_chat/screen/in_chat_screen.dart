@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_box.dart';
+import 'package:sottie_flutter/ui/in_chat/widget/in_chat_drawer.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_type_box.dart';
 
 class InChatScreen extends StatefulWidget {
@@ -31,9 +33,15 @@ class _InChatScreenState extends State<InChatScreen> {
       onTap: _focusNode.unfocus,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(
+            widget.title,
+            style: const TextStyle(color: mainSilverColor),
+          ),
+          backgroundColor: lightBrownColor,
+          iconTheme: const IconThemeData(color: mainSilverColor),
         ),
-        endDrawer: const Drawer(),
+        backgroundColor: lightBrownColor,
+        endDrawer: const InChatDrawer(),
         body: Column(
           children: [
             const InChatBox(avatarId: "123"),

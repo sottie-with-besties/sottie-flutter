@@ -15,23 +15,23 @@ class InChatBox extends StatefulWidget {
   State<InChatBox> createState() => _InChatBoxState();
 }
 
-class _InChatBoxState extends State<InChatBox> with WidgetsBindingObserver {
+class _InChatBoxState extends State<InChatBox> {
+  final _scrollController = ScrollController(
+    keepScrollOffset: false,
+  );
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    });
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    _scrollController.dispose();
     super.dispose();
-  }
-
-  // 키보드 올라오는 거 감지하여 높이 바꾸기
-  @override
-  void didChangeMetrics() {
-    // setState(() {});
   }
 
   @override
@@ -43,6 +43,8 @@ class _InChatBoxState extends State<InChatBox> with WidgetsBindingObserver {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: ListView(
+          controller: _scrollController,
+          physics: const ClampingScrollPhysics(),
           children: [
             renderDmChatBox(
               [
@@ -77,21 +79,31 @@ class _InChatBoxState extends State<InChatBox> with WidgetsBindingObserver {
             renderDmChatBox(
               [
                 const Text(
-                  "수원에서 뵈요.",
-                  style: myStyle,
+                  "어디서 만날까요?",
+                  style: opponentStyle,
                 ),
               ],
-              true,
+              false,
               widget.avatarId,
             ),
             renderDmChatBox(
               [
                 const Text(
-                  "넵.",
+                  "어디서 만날까요?",
                   style: opponentStyle,
                 ),
               ],
               false,
+              widget.avatarId,
+            ),
+            renderDmChatBox(
+              [
+                const Text(
+                  "수원에서 뵈요.",
+                  style: myStyle,
+                ),
+              ],
+              true,
               widget.avatarId,
             ),
             renderDmChatBox(

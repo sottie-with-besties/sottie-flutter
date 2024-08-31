@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
 class InChatTypeBox extends StatelessWidget {
@@ -48,7 +49,7 @@ class InChatTypeBox extends StatelessWidget {
               color: mainSilverColor,
               borderRadius: BorderRadius.circular(5),
             ),
-            height: 60,
+            height: 40 * hu,
             padding: const EdgeInsets.all(5),
             child: const FittedBox(
               child: Icon(
