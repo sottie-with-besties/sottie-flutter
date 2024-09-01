@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sottie_flutter/data/friend/data_source/friend_dummy.dart';
-import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
+import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 import 'package:sottie_flutter/ui/friend/controller/friend_header_controller.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend.dart';
@@ -16,7 +16,7 @@ class FriendListScreen extends ConsumerStatefulWidget {
 
 class _FriendListScreenState extends ConsumerState<FriendListScreen> {
   // List<Friend> friendList = [];
-  late Future<List<FriendDetailModel>> friendList;
+  late Future<List<FriendModel>> friendList;
 
   @override
   void initState() {
@@ -65,9 +65,9 @@ class _FriendListScreenState extends ConsumerState<FriendListScreen> {
           );
         } else if (snapshot.hasData) {
           final friendList = snapshot.data!
-              .where((FriendDetailModel data) =>
+              .where((FriendModel data) =>
                   data.nickname.toString().contains(inputText))
-              .map((FriendDetailModel data) => Friend(model: data))
+              .map((FriendModel data) => Friend(model: data))
               .toList();
 
           return SlidableAutoCloseBehavior(child: Column(children: friendList));

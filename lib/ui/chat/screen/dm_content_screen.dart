@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/data/dm/model/dm_model.dart';
 import 'package:sottie_flutter/domain/dm/dm_provider.dart';

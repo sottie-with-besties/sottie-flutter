@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
+import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/find_id_screen.dart';
@@ -152,7 +152,7 @@ final _routes = [
               GoRoute(
                 path: CustomRouter.friendDetailPath,
                 builder: (_, state) {
-                  final params = state.extra as FriendDetailModel;
+                  final params = state.extra as FriendModel;
                   return FriendDetailScreen(
                     model: params,
                   );

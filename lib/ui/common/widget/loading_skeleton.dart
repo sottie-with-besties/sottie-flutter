@@ -10,11 +10,7 @@ class LoadingSkeleton extends StatelessWidget {
     return const SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            height: 15,
-          ),
-          _RenderBone(),
-          _RenderBone(),
+          SizedBox(height: 15),
           _RenderBone(),
           _RenderBone(),
           _RenderBone(),

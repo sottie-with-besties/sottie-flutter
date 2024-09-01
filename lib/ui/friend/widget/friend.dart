@@ -5,7 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
+import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
@@ -17,7 +17,7 @@ class Friend extends StatefulWidget {
     required this.model,
   });
 
-  final FriendDetailModel model;
+  final FriendModel model;
 
   @override
   State<Friend> createState() => _FriendState();

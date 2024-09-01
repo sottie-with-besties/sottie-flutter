@@ -1,107 +1,57 @@
-import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
+import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 
-Future<List<FriendDetailModel>> getFriendDummy() async {
+Future<List<FriendModel>> getFriendDummy() async {
   await Future.delayed(const Duration(seconds: 1), null);
   return [
-    FriendDetailModel(
+    FriendModel(
       id: '0',
       nickname: 'SkyWalker',
       stateMsg: '늘 하늘을 꿈꾸는 사람입니다.',
-      participationValue: 20.0,
-      attitudeValue: 18.3,
-      timeValue: 9.2,
-      likeabilityValue: 0.0,
-      trustworthinessValue: 17.3,
     ),
-    FriendDetailModel(
+    FriendModel(
       id: '1',
       nickname: 'MoonChild',
       stateMsg: '달을 사랑하는 사람입니다.',
-      participationValue: 15.5,
-      attitudeValue: 12.0,
-      timeValue: 8.7,
-      likeabilityValue: 4.5,
-      trustworthinessValue: 14.8,
     ),
-    FriendDetailModel(
+    FriendModel(
       id: '2',
       nickname: 'StarGazer',
       stateMsg: '별을 바라보며 꿈을 꿉니다.',
-      participationValue: 18.8,
-      attitudeValue: 16.2,
-      timeValue: 11.0,
-      likeabilityValue: 6.3,
-      trustworthinessValue: 19.0,
     ),
-    FriendDetailModel(
+    FriendModel(
       id: '3',
       nickname: 'SunSeeker',
       stateMsg: '태양을 향해 달려갑니다.',
-      participationValue: 12.3,
-      attitudeValue: 14.4,
-      timeValue: 7.1,
-      likeabilityValue: 8.0,
-      trustworthinessValue: 10.9,
     ),
-    FriendDetailModel(
+    FriendModel(
       id: '4',
       nickname: 'CometHunter',
       stateMsg: '혜성을 추적하는 사람입니다.',
-      participationValue: 14.7,
-      attitudeValue: 19.8,
-      timeValue: 12.5,
-      likeabilityValue: 3.2,
-      trustworthinessValue: 16.4,
     ),
-    FriendDetailModel(
+    FriendModel(
       id: '5',
       nickname: 'NebulaDreamer',
       stateMsg: '성운 속에서 꿈을 꿉니다.',
-      participationValue: 16.0,
-      attitudeValue: 10.9,
-      timeValue: 4.8,
-      likeabilityValue: 9.6,
-      trustworthinessValue: 12.1,
     ),
-    FriendDetailModel(
+    FriendModel(
       id: '6',
       nickname: 'GalaxyVoyager',
       stateMsg: '은하수를 항해합니다.',
-      participationValue: 13.4,
-      attitudeValue: 17.1,
-      timeValue: 10.2,
-      likeabilityValue: 5.0,
-      trustworthinessValue: 11.5,
     ),
-    FriendDetailModel(
+    FriendModel(
       id: '7',
       nickname: 'PlanetExplorer',
       stateMsg: '행성을 탐험하는 사람입니다.',
-      participationValue: 17.5,
-      attitudeValue: 20.0,
-      timeValue: 9.9,
-      likeabilityValue: 7.4,
-      trustworthinessValue: 18.8,
     ),
-    FriendDetailModel(
+    FriendModel(
       id: '8',
       nickname: 'CosmicTraveler',
       stateMsg: '우주를 여행하는 방랑자입니다.',
-      participationValue: 19.2,
-      attitudeValue: 13.8,
-      timeValue: 11.7,
-      likeabilityValue: 2.1,
-      trustworthinessValue: 14.0,
     ),
-    FriendDetailModel(
+    FriendModel(
       id: '9',
       nickname: 'AstroNomad',
       stateMsg: '별 사이를 떠도는 유랑자입니다.',
-      participationValue: 10.8,
-      attitudeValue: 15.6,
-      timeValue: 6.4,
-      likeabilityValue: 3.7,
-      trustworthinessValue: 13.3,
     ),
   ];
 }
