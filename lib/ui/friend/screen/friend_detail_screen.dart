@@ -18,9 +18,11 @@ class FriendDetailScreen extends StatefulWidget {
   const FriendDetailScreen({
     super.key,
     required this.model,
+    required this.isMyFriend,
   });
 
   final FriendModel model;
+  final bool isMyFriend;
 
   @override
   State<FriendDetailScreen> createState() => _FriendDetailScreenState();
@@ -94,13 +96,21 @@ class _FriendDetailScreenState extends State<FriendDetailScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _utilButton(
-                    FontAwesomeIcons.message,
-                    'DM',
-                    () {
-                      log("친구 DM 보내기");
-                    },
-                  ),
+                  widget.isMyFriend
+                      ? _utilButton(
+                          FontAwesomeIcons.message,
+                          'DM',
+                          () {
+                            log("친구 DM 보내기");
+                          },
+                        )
+                      : _utilButton(
+                          FontAwesomeIcons.userPlus,
+                          '추가',
+                          () {
+                            log("친구 추가 하기");
+                          },
+                        ),
                   _utilButton(
                     FontAwesomeIcons.ban,
                     '차단',

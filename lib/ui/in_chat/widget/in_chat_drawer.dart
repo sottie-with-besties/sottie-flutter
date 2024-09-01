@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
@@ -86,7 +89,17 @@ Widget _subTitle(String title) {
 Widget _inChatParticipant(BuildContext context, String id, String name) {
   return InkWell(
     onTap: () {
-      // context.push("${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}");
+      context.push(
+        "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
+        extra: {
+          'model': FriendModel(
+            id: id,
+            nickname: name,
+            stateMsg: '',
+          ),
+          'isMyFriend': false,
+        },
+      );
     },
     child: Padding(
       padding: const EdgeInsets.only(left: 12, bottom: 12),

@@ -118,7 +118,10 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
             onTap: () async {
               await context.push(
                 "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
-                extra: widget.model,
+                extra: {
+                  'model': widget.model,
+                  'isMyFriend': true,
+                },
               );
             },
             onLongPress: () {
