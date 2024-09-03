@@ -98,9 +98,9 @@ final _routes = [
       GoRoute(
         path: CustomRouter.certificationPath,
         builder: (_, state) {
-          final isEmailJson = state.extra as Map<String, bool>;
-          final isEmail = isEmailJson['isEmailLogin'] ?? false;
-          return CertificationScreen(isEmailLogin: isEmail);
+          final params = state.extra as Map<String, bool>;
+          final isModifyInfo = params['isModifyInfo'] ?? false;
+          return CertificationScreen(isModifyInfo: isModifyInfo);
         },
       ),
       GoRoute(

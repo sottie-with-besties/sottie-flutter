@@ -1,12 +1,13 @@
 import 'package:image_picker/image_picker.dart';
+import 'package:sottie_flutter/data/user/model/user_gender.dart';
 
-final class MyInfo {
+final class MyInfoModel {
   String name;
   String email;
   String nickName;
   String password;
   String phoneNumber;
-  Gender gender;
+  UserGender gender;
   String identifier;
   String birthYear;
   bool phoneAuthenticated;
@@ -16,13 +17,13 @@ final class MyInfo {
   double mannerPoint;
 
   // Todo: 배포할 때 쯤 내 개인정보 코드 수정
-  MyInfo({
+  MyInfoModel({
     this.name = '김진표',
     this.email = 'kjp00552277@gmail.com',
     this.nickName = '나의 닉네임',
     this.password = '12343456778',
     this.phoneNumber = '01035361901',
-    this.gender = Gender.male,
+    this.gender = UserGender.male,
     this.identifier = '1315135123',
     this.birthYear = '2000년 5월 27일',
     this.phoneAuthenticated = false,
@@ -45,13 +46,4 @@ final class MyInfo {
       'phoneAuthenticated': phoneAuthenticated,
     };
   }
-}
-
-enum Gender {
-  male("남성"),
-  female("여성");
-
-  final String value;
-
-  const Gender(this.value);
 }

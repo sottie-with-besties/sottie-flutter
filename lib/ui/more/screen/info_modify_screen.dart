@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -97,7 +95,12 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                       child: const Text("비밀번호 변경")),
                   TextButton(
                       onPressed: () {
-                        log("개인정보 변경");
+                        context.push(
+                          "${CustomRouter.authPath}/${CustomRouter.certificationPath}",
+                          extra: {
+                            'isModifyInfo': true,
+                          },
+                        );
                       },
                       child: const Text("개인정보 변경 (이름, 성별, 전화번호 등)")),
                 ],

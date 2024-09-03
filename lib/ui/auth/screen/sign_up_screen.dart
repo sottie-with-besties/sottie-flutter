@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/auth/email_verification.dart';
-import 'package:sottie_flutter/domain/user/my_info_entity.dart';
+import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
@@ -72,8 +72,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       final emailVerification = await isEmailVerification(email!, password!);
       if (emailVerification) {
         currentStep += 1;
-        myInfoEntity.email = email!;
-        myInfoEntity.password = password!;
+        signUpEntity.email = email!;
+        signUpEntity.password = password!;
         await deleteEmailUser(email!, password!);
       } else {
         if (mounted) showSnackBar(context, "이메일을 인증해주세요");
@@ -248,8 +248,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       minimumSize: const Size(100, 80),
                     ),
                     onPressed: () {
-                      context.push('/auth/${CustomRouter.certificationPath}',
-                          extra: {'isEmailLogin': true});
+                      context.push(
+                          '${CustomRouter.authPath}}/${CustomRouter.certificationPath}');
                     },
                     child: const Text(
                       "본인인증 하기",

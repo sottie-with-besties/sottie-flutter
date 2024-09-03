@@ -1,6 +1,6 @@
-import 'package:sottie_flutter/data/user/model/my_info.dart';
+import 'package:sottie_flutter/data/user/model/my_info_model.dart';
 
-MyInfo myInfoEntity = MyInfo();
+MyInfoModel myInfoEntity = MyInfoModel();
 
 // Todo: 내 정보 받아오는 코드
 

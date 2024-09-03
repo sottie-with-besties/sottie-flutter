@@ -10,17 +10,19 @@ import 'package:iamport_flutter/iamport_certification.dart';
 import 'package:iamport_flutter/model/certification_data.dart';
 import 'package:sottie_flutter/core/constant/server_ip.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/user/model/my_info.dart';
-import 'package:sottie_flutter/domain/auth/email_verification.dart';
+import 'package:sottie_flutter/data/user/model/user_gender.dart';
+import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
+import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 class CertificationScreen extends StatelessWidget {
   const CertificationScreen({
     super.key,
-    required this.isEmailLogin,
+    required this.isModifyInfo,
   });
 
-  final bool isEmailLogin;
+  // 회원가입이 아닌 More 스크린에서 내 정보 새로 인증할 때
+  final bool isModifyInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -45,44 +47,67 @@ class CertificationScreen extends StatelessWidget {
         callback: (Map<String, String> result) async {
           log(result.toString(), name: "Callback Argument");
 
-          // result를 그대로 백엔드로 보내 response를 전달받는다.
-          final res = await Dio().post(
-            "$serverIp/sottie/certifications",
-            data: jsonEncode(result),
-            options: Options(
-              headers: <String, String>{
-                'Content-Type': 'application/json; charset=UTF-8',
-              },
-              receiveTimeout: const Duration(seconds: 10),
-            ),
-          );
+          // 본인인증 스크린 예외 처리
+          if (result['imp_success'] == 'false') {
+            showSnackBar(context, "본인인증 에러가 발생하였습니다.");
+            return;
+          }
 
-          log(res.toString(), name: "Response");
+          try {
+            // result를 그대로 백엔드로 보내 response를 전달받는다.
 
-          // 값 주입
-          myInfoEntity.name = res.data['name'];
-          myInfoEntity.gender = Gender.values.byName(res.data['gender']);
-          myInfoEntity.phoneNumber = res.data['phoneNumber'];
-          myInfoEntity.identifier = res.data['identifier'];
-          myInfoEntity.birthYear = res.data['birthYear'];
-          myInfoEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
+            final res = await Dio().post(
+              "$serverIp/sottie/certifications",
+              data: jsonEncode(result),
+              options: Options(
+                headers: <String, String>{
+                  'Content-Type': 'application/json; charset=UTF-8',
+                },
+                receiveTimeout: const Duration(seconds: 10),
+              ),
+            );
 
-          // 이메일로 회원가입 했다면 파이어베이스 이메일 내역을 삭제한다.
-          isEmailLogin
-              ? await deleteEmailUser(
-                  myInfoEntity.email,
-                  myInfoEntity.password,
-                )
-              : null;
+            log(res.toString(), name: "Response");
 
-          // Todo: 최종 정보를 다시 보내는 코드 => api, 헤더 및 데이터 재확인, 성별 잠시 제외
-          await Dio().post(
-            "$serverIp/sottie/certifications",
-            data: jsonEncode(myInfoEntity.toJsonForSignUpCheck()),
-          );
+            if (isModifyInfo) {
+              myInfoEntity.name = res.data['name'];
+              myInfoEntity.gender =
+                  UserGender.values.byName(res.data['gender']);
+              myInfoEntity.phoneNumber = res.data['phoneNumber'];
+              myInfoEntity.identifier = res.data['identifier'];
+              myInfoEntity.birthYear = res.data['birthYear'];
+              myInfoEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
+            } else {
+              signUpEntity.name = res.data['name'];
+              signUpEntity.gender =
+                  UserGender.values.byName(res.data['gender']);
+              signUpEntity.phoneNumber = res.data['phoneNumber'];
+              signUpEntity.identifier = res.data['identifier'];
+              signUpEntity.birthYear = res.data['birthYear'];
+              signUpEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
+            }
+
+            // 값 주입
+
+            // Todo: 최종 정보를 다시 보내는 코드 => api, 헤더 및 데이터 재확인, 성별 잠시 제외
+            await Dio().post(
+              "$serverIp/sottie/certifications",
+              data: jsonEncode(myInfoEntity.toJsonForSignUpCheck()),
+            );
+          } on Exception catch (_) {
+            if (context.mounted) {
+              showSnackBar(context, "본인인증 도중 에러가 발생하였습니다.");
+            }
+          }
 
           if (context.mounted) {
-            context.go(CustomRouter.verificationCompletePath);
+            if (isModifyInfo) {
+              showSnackBar(context, '정보 수정 완료');
+              context.go(
+                  '${CustomRouter.morePath}/${CustomRouter.infoModifyPath}');
+            } else {
+              context.go(CustomRouter.verificationCompletePath);
+            }
           }
         },
       ),
