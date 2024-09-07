@@ -3,11 +3,17 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class PostDetailScreen extends StatefulWidget {
-  const PostDetailScreen({super.key});
+  const PostDetailScreen({
+    super.key,
+    required this.postModel,
+  });
+
+  final PostModel postModel;
 
   @override
   State<PostDetailScreen> createState() => _PostDetailScreenState();

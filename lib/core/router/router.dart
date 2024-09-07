@@ -74,8 +74,8 @@ sealed class CustomRouter {
   static const makePostStepTwoPath = "makePostStepTwo";
   static const makePostStepThreePath = "makePostStepThree";
 
-  // Find Detail Screen
-  static const findDetailPath = "/findDetail";
+  // Post Detail Screen
+  static const postDetailPath = "/postDetail";
 }
 
 final _routes = [
@@ -232,7 +232,12 @@ final _routes = [
     ],
   ),
   GoRoute(
-    path: CustomRouter.findDetailPath,
-    builder: (_, __) => const PostDetailScreen(),
+    path: CustomRouter.postDetailPath,
+    builder: (_, state) {
+      final params = state.extra as Map<String, dynamic>;
+      return PostDetailScreen(
+        postModel: params['postModel'],
+      );
+    },
   ),
 ];

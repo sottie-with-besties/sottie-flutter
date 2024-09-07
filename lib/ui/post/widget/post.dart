@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
@@ -17,7 +16,12 @@ class Post extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push(CustomRouter.findDetailPath),
+      onTap: () => context.push(
+        CustomRouter.postDetailPath,
+        extra: {
+          'postModel': model,
+        },
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Container(
@@ -32,16 +36,15 @@ class Post extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      const FaIcon(FontAwesomeIcons.pencil),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(CategorySottie.study.name),
-                    ],
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: 200 * wu,
+                    ),
+                    child: FittedBox(
+                      child: _categoryClassify(model.category),
+                    ),
                   ),
-                  Text("${model.currentMemberCount}/${model.maxMemberCount}"),
+                  _renderMemberCount(model),
                 ],
               ),
               SizedBox(height: 10 * hu),
@@ -98,5 +101,88 @@ class Post extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+Row _categoryClassify(List<String> categoryList) {
+  List<Widget> categories = [];
+
+  if (categoryList.contains('번개')) {
+    categories.add(_renderCategory(Icons.bolt, '번개'));
+  }
+
+  if (categoryList.contains('친목')) {
+    categories.add(_renderCategory(FontAwesomeIcons.userGroup, '친목'));
+  }
+
+  if (categoryList.contains('공부')) {
+    categories.add(_renderCategory(FontAwesomeIcons.pencil, '공부'));
+  }
+
+  if (categoryList.contains('구인/구직')) {
+    categories.add(_renderCategory(Icons.note_alt, '구인/구직'));
+  }
+
+  if (categoryList.contains('게임')) {
+    categories.add(_renderCategory(Icons.gamepad, '게임'));
+  }
+
+  if (categoryList.contains('운동')) {
+    categories.add(_renderCategory(FontAwesomeIcons.dumbbell, '운동'));
+  }
+
+  if (categoryList.contains('기타')) {
+    categories.add(_renderCategory(Icons.more_horiz, '기타'));
+  }
+
+  return Row(
+    children: [
+      ...categories,
+    ],
+  );
+}
+
+Widget _renderCategory(IconData icon, String category) {
+  return Padding(
+    padding: const EdgeInsets.only(right: 10),
+    child: Row(
+      children: [
+        FaIcon(icon),
+        const SizedBox(width: 5),
+        Text(category),
+      ],
+    ),
+  );
+}
+
+Widget _renderMemberCount(PostModel model) {
+  if (model.maxMemberCount == null &&
+      model.maxManCount == null &&
+      model.maxWomanCount == null) {
+    return const Text("인원 제한 없음");
+  } else if (model.currentMemberCount != null &&
+      model.currentManCount == null &&
+      model.currentWomanCount == null) {
+    return Text("${model.currentMemberCount}/${model.maxMemberCount}");
+  } else if (model.currentManCount != null && model.currentWomanCount != null) {
+    return Row(
+      children: [
+        const Icon(
+          Icons.man,
+          color: Colors.blue,
+        ),
+        SizedBox(width: 1 * wu),
+        Text("${model.currentManCount}/${model.maxManCount}"),
+        SizedBox(width: 3 * wu),
+        const Icon(
+          Icons.woman,
+          color: Colors.pinkAccent,
+        ),
+        SizedBox(width: 1 * wu),
+        Text("${model.currentWomanCount}/${model.maxWomanCount}"),
+      ],
+    );
+  } else {
+    return Container();
   }
 }
