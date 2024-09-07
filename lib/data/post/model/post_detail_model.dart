@@ -7,9 +7,9 @@ part 'post_detail_model.g.dart';
 class PostDetailModel with _$PostDetailModel {
   factory PostDetailModel({
     required String id,
-    required List<String> thumbnailUrls,
+    required List<String>? thumbnailUrls,
     required String content,
-    required List<String> ages,
+    required List<String> ageRange,
     required double mannerPoint,
     required bool startSameTime,
     required bool openParticipation,
