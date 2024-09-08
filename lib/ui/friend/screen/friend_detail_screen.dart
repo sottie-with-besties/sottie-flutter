@@ -5,16 +5,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/friend/data_source/friend_detail_dummy.dart';
 import 'package:sottie_flutter/data/friend/data_source/friend_review_dummy.dart';
-import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
 import 'package:sottie_flutter/data/friend/model/friend_model.dart';
-import 'package:sottie_flutter/data/friend/model/friend_review_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
+import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend_radar_chart.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend_review.dart';
 
-class FriendDetailScreen extends StatefulWidget {
+class FriendDetailScreen extends StatelessWidget {
   const FriendDetailScreen({
     super.key,
     required this.model,
@@ -23,22 +21,6 @@ class FriendDetailScreen extends StatefulWidget {
 
   final FriendModel model;
   final bool isMyFriend;
-
-  @override
-  State<FriendDetailScreen> createState() => _FriendDetailScreenState();
-}
-
-class _FriendDetailScreenState extends State<FriendDetailScreen> {
-  late Future<FriendDetailModel> friendDetailModel;
-  late Future<List<FriendReviewModel>> friendReviewModelList;
-
-  @override
-  void initState() {
-    super.initState();
-
-    friendDetailModel = getFriendDetailDummy();
-    friendReviewModelList = getFriendReviewDummy();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +35,9 @@ class _FriendDetailScreenState extends State<FriendDetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Hero(
-                  tag: widget.model.id,
+                  tag: model.id,
                   child: UserProfile(
-                    avatarId: widget.model.id,
+                    avatarId: model.id,
                     randomAvatarSize: 50,
                   ),
                 ),
@@ -68,7 +50,7 @@ class _FriendDetailScreenState extends State<FriendDetailScreen> {
                       Row(
                         children: [
                           Text(
-                            widget.model.nickname,
+                            model.nickname,
                             style: TextStyle(
                               color: mainSilverColor,
                               fontWeight: FontWeight.bold,
@@ -79,7 +61,7 @@ class _FriendDetailScreenState extends State<FriendDetailScreen> {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        widget.model.stateMsg,
+                        model.stateMsg,
                         style: TextStyle(
                           color: mainSilverColor,
                           fontSize: 12 * hu,
@@ -96,7 +78,7 @@ class _FriendDetailScreenState extends State<FriendDetailScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  widget.isMyFriend
+                  isMyFriend
                       ? _utilButton(
                           FontAwesomeIcons.message,
                           'DM',
@@ -133,115 +115,92 @@ class _FriendDetailScreenState extends State<FriendDetailScreen> {
               child: ListView(
                 physics: const ClampingScrollPhysics(),
                 children: [
-                  FutureBuilder(
-                    future: friendDetailModel,
-                    builder: (_, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Padding(
-                          padding: EdgeInsets.all(24.0),
-                          child: Center(
-                              child: CircularProgressIndicator(
-                                  color: mainSilverColor)),
-                        );
-                      } else if (!snapshot.hasData) {
-                        return const Center(
-                          child: Text("친구를 리뷰하세요!"),
-                        );
-                      } else if (snapshot.hasData) {
-                        final data = snapshot.data;
-
-                        return Column(
-                          children: [
-                            FriendRadarChart(
-                              participationValue: data!.participationValue,
-                              attitudeValue: data.attitudeValue,
-                              timeValue: data.timeValue,
-                              likeabilityValue: data.likeabilityValue,
-                              trustworthinessValue: data.trustworthinessValue,
-                            ),
-                            SizedBox(height: 10 * hu),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(top: 10 * hu, right: 24 * wu),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "매너 온도",
-                                    style: TextStyle(
-                                      fontSize: 12 * hu,
-                                      color: mainSilverColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 1.5,
-                                          color: mainSilverColor,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8)),
-                                    padding: const EdgeInsets.all(8),
-                                    child: Text(
-                                      (data.participationValue +
-                                              data.attitudeValue +
-                                              data.timeValue +
-                                              data.likeabilityValue +
-                                              data.trustworthinessValue)
-                                          .toStringAsFixed(1),
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: mainSilverColor,
-                                        fontSize: 16 * hu,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Text(
-                                    "°C",
-                                    style: TextStyle(
-                                      fontSize: 12 * hu,
-                                      color: mainSilverColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                  CustomFutureBuilder(
+                    futureFunction: getFriendDetailDummy,
+                    callBack: (futureData) => Column(
+                      children: [
+                        FriendRadarChart(
+                          participationValue: futureData.participationValue,
+                          attitudeValue: futureData.attitudeValue,
+                          timeValue: futureData.timeValue,
+                          likeabilityValue: futureData.likeabilityValue,
+                          trustworthinessValue: futureData.trustworthinessValue,
+                        ),
+                        SizedBox(height: 10 * hu),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(top: 10 * hu, right: 24 * wu),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                "매너 온도",
+                                style: TextStyle(
+                                  fontSize: 12 * hu,
+                                  color: mainSilverColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
-                        );
-                      } else {
-                        return const Center(
-                          child: Text("에러가 발생했습니다!",
-                              style: TextStyle(color: mainSilverColor)),
-                        );
-                      }
-                    },
+                              const SizedBox(width: 10),
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1.5,
+                                      color: mainSilverColor,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8)),
+                                padding: const EdgeInsets.all(8),
+                                child: Text(
+                                  (futureData.participationValue +
+                                          futureData.attitudeValue +
+                                          futureData.timeValue +
+                                          futureData.likeabilityValue +
+                                          futureData.trustworthinessValue)
+                                      .toStringAsFixed(1),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: mainSilverColor,
+                                    fontSize: 16 * hu,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                "°C",
+                                style: TextStyle(
+                                  fontSize: 12 * hu,
+                                  color: mainSilverColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    loadingWidget: const Padding(
+                      padding: EdgeInsets.all(24.0),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: mainSilverColor,
+                        ),
+                      ),
+                    ),
+                    notHasData: const Center(
+                      child: Text(
+                        "친구를 리뷰하세요!",
+                        style: TextStyle(
+                          color: mainSilverColor,
+                        ),
+                      ),
+                    ),
                   ),
-                  FutureBuilder(
-                    future: friendReviewModelList,
-                    builder: (_, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const LoadingSkeleton();
-                      } else if (!snapshot.hasData) {
-                        return Container();
-                      } else if (snapshot.hasData) {
-                        final data = snapshot.data;
-
-                        return Column(
-                          children: data!.map((data) {
+                  CustomFutureBuilder(
+                      futureFunction: getFriendReviewDummy,
+                      callBack: (futureData) => Column(
+                              children: futureData.map<Widget>((data) {
                             return FriendReview(model: data);
-                          }).toList(),
-                        );
-                      } else {
-                        return const Center(
-                          child: Text("에러가 발생했습니다!",
-                              style: TextStyle(color: mainSilverColor)),
-                        );
-                      }
-                    },
-                  ),
+                          }).toList())),
                 ],
               ),
             ),
