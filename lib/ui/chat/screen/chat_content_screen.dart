@@ -1,53 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/domain/chat/chat_provider.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 
-class ChatContentScreen extends StatefulWidget {
+class ChatContentScreen extends ConsumerWidget {
   const ChatContentScreen({super.key});
 
   @override
-  State<ChatContentScreen> createState() => _ChatContentScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final chatRoomState = ref.watch(chatRoomStateProvider);
 
-class _ChatContentScreenState extends State<ChatContentScreen> {
-  late Future<List<ChatRoomModel>> chatList;
-
-  @override
-  void initState() {
-    super.initState();
-    chatList = ChatProvider().getChatRoom();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: chatList,
-      builder: (_, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const LoadingSkeleton();
-        } else if (!snapshot.hasData) {
-          return const Center(
-            child: Text("모임에 참여하세요!"),
-          );
-        } else if (snapshot.hasData) {
-          final chatRooms =
-              snapshot.data!.map((e) => ChatRoom(model: e)).toList();
-          return Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: SingleChildScrollView(
-              child: Column(
-                children: chatRooms,
-              ),
-            ),
-          );
-        } else {
-          return const Center(
-            child: Text("에러가 발생했습니다"),
-          );
-        }
+    return chatRoomState.when(
+      data: (data) {
+        return ListView(
+          children: data.map((e) => ChatRoom(model: e)).toList(),
+        );
       },
+      error: (_, __) {
+        return const Center(
+          child: Text("데이터를 가져올 수 없습니다."),
+        );
+      },
+      loading: () => const LoadingSkeleton(),
     );
   }
 }
