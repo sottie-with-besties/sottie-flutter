@@ -28,7 +28,7 @@ void showCustomDialog(BuildContext context, Widget customChild,
                 backgroundColor: Colors.grey,
               ),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.of(context, rootNavigator: true).pop();
               },
               child: const Text(
                 "닫기",
