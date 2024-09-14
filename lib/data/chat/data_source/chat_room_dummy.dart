@@ -11,7 +11,7 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
       date: '2024-09-10',
       location: '서울 강남구',
       chatTitle: '번개 모임: 당일 만나요!',
-      latestMsg: '안녕하세요! 반갑습니다dsfasdfasdffasdfasdfsdfsdfsdaf.',
+      latestMsg: '안녕하세요! 반갑습니다. 수원 사는 김진표라고 합니다.',
       latestTime: '2024-09-14T07:55:00Z',
       notReadMsg: 1024,
       isChatRoomGenerated: true,

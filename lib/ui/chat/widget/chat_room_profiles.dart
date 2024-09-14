@@ -17,8 +17,8 @@ class ChatRoomProfiles extends StatelessWidget {
     return SizedBox(
       width: 80 * wu,
       child: Wrap(
-        spacing: 5,
-        runSpacing: 5,
+        spacing: 5 * wu,
+        runSpacing: 5 * hu,
         alignment: WrapAlignment.center,
         runAlignment: WrapAlignment.center,
         children: List.generate(

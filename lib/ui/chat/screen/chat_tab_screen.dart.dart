@@ -62,7 +62,7 @@ class _ChatTabScreenState extends State<ChatTabScreen>
         Expanded(
           child: TabBarView(
             controller: _tabController,
-            children: [
+            children: const [
               ChatContentScreen(),
               DmContentScreen(),
             ],

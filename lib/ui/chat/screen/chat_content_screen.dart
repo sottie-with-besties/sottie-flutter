@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/domain/chat/chat_provider.dart';
-import 'package:sottie_flutter/ui/chat/widget/chat_room.dart';
+import 'package:sottie_flutter/ui/chat/widget/chat_room_generated.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 
 class ChatContentScreen extends ConsumerWidget {
@@ -13,8 +13,20 @@ class ChatContentScreen extends ConsumerWidget {
 
     return chatRoomState.when(
       data: (data) {
+        final generatedChatRoomList =
+            data.where((chatRoom) => chatRoom.isChatRoomGenerated).toList();
+
+        final notGeneratedChatRoomList =
+            data.where((chatRoom) => !chatRoom.isChatRoomGenerated).toList();
+
         return ListView(
-          children: data.map((e) => ChatRoom(model: e)).toList(),
+          children: [
+            if (generatedChatRoomList.isNotEmpty)
+              ...generatedChatRoomList.map((e) => ChatRoomGenerated(model: e)),
+            if (notGeneratedChatRoomList.isNotEmpty)
+              ...notGeneratedChatRoomList
+                  .map((e) => ChatRoomGenerated(model: e)),
+          ],
         );
       },
       error: (_, __) {

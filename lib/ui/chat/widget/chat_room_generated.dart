@@ -8,8 +8,8 @@ import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_top.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
-class ChatRoom extends StatelessWidget {
-  const ChatRoom({
+class ChatRoomGenerated extends StatelessWidget {
+  const ChatRoomGenerated({
     super.key,
     required this.model,
   });
@@ -32,7 +32,7 @@ class ChatRoom extends StatelessWidget {
         },
         child: Container(
           padding: const EdgeInsets.all(8),
-          height: 135 * hu,
+          height: 130 * hu,
           child: Column(
             children: [
               ChatRoomTop(model: model),
@@ -51,9 +51,9 @@ class ChatRoom extends StatelessWidget {
                     date: model.date,
                     location: model.location,
                     chatTitle: model.chatTitle,
-                    latestMsg: model.latestMsg,
-                    latestTime: model.latestTime,
-                    notReadMsg: model.notReadMsg,
+                    latestMsg: model.latestMsg!,
+                    latestTime: model.latestTime!,
+                    notReadMsg: model.notReadMsg!,
                   ),
                 ],
               )
