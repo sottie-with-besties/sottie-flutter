@@ -10,15 +10,15 @@ class PostModel with _$PostModel {
     required String detailId,
     required List<String> category,
     required String? thumbnailUrl,
+    required String title,
+    required String location,
+    required String date,
     required int? currentMemberCount,
     required int? maxMemberCount,
     required int? currentManCount,
     required int? maxManCount,
     required int? currentWomanCount,
     required int? maxWomanCount,
-    required String title,
-    required String location,
-    required String date,
   }) = _PostModel;
 
   factory PostModel.fromJson(Map<String, dynamic> json) =>

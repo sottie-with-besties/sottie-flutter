@@ -5,7 +5,7 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
-import 'package:sottie_flutter/ui/chat/widget/chat_room_sub_info.dart';
+import 'package:sottie_flutter/ui/chat/widget/chat_room_top.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class ChatRoom extends StatelessWidget {
@@ -18,9 +18,6 @@ class ChatRoom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileSize = model.numOfMember < 2 ? 45.0 : 30.0;
-    final profileCount = model.numOfMember > 4 ? 4 : model.numOfMember;
-
     return Material(
       color: mainSilverColor,
       child: InkWell(
@@ -33,37 +30,35 @@ class ChatRoom extends StatelessWidget {
             },
           );
         },
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              height: 100 * hu,
-              child: Row(
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          height: 135 * hu,
+          child: Column(
+            children: [
+              ChatRoomTop(model: model),
+              SizedBox(height: 10 * hu),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ChatRoomProfiles(
-                    profileCount: profileCount,
-                    profileSize: profileSize,
+                    profileCount: model.profileThumbnails.length > 4
+                        ? 4
+                        : model.profileThumbnails.length,
+                    profileSize:
+                        model.profileThumbnails.length < 2 ? 45.0 : 30.0,
                   ),
                   ChatRoomInfo(
                     date: model.date,
                     location: model.location,
                     chatTitle: model.chatTitle,
                     latestMsg: model.latestMsg,
-                    numOfMember: model.numOfMember,
-                  ),
-                  ChatRoomSubInfo(
-                    numOfMember: model.numOfMember,
                     latestTime: model.latestTime,
                     notReadMsg: model.notReadMsg,
-                  )
+                  ),
                 ],
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
