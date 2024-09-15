@@ -8,7 +8,7 @@ class FriendModel with _$FriendModel {
   factory FriendModel({
     required String id,
     required String nickname,
-    required String stateMsg,
+    required String? stateMsg,
   }) = _FriendModel;
 
   factory FriendModel.fromJson(Map<String, dynamic> json) =>

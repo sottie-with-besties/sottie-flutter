@@ -241,7 +241,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
                 SizedBox(width: 10 * wu),
                 FriendInfo(
                   friendName: widget.model.nickname,
-                  stateMsg: widget.model.stateMsg,
+                  stateMsg: widget.model.stateMsg ?? '',
                 ),
               ],
             ),

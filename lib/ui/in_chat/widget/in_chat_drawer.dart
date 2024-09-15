@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
@@ -19,7 +21,12 @@ class InChatDrawer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _subTitle('사진, 동영상'),
+                _subTitle('채팅방 정보', () {
+                  log("채팅방 정보");
+                }),
+                _subTitle('사진, 동영상', () {
+                  log("사진, 동영상");
+                }),
                 Padding(
                   padding: const EdgeInsets.only(left: 8),
                   child: Wrap(
@@ -36,7 +43,9 @@ class InChatDrawer extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                _subTitle('공지사항'),
+                _subTitle('공지사항', () {
+                  log("공지사항 목록");
+                }),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
@@ -46,7 +55,9 @@ class InChatDrawer extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                _subTitle('참여자'),
+                _subTitle('참여자', () {
+                  log("참여자 목록");
+                }),
                 _inChatParticipant(context, "1", "김진표"),
                 _inChatParticipant(context, "2", "김진표"),
                 _inChatParticipant(context, "3", "김진표"),
@@ -61,11 +72,11 @@ class InChatDrawer extends StatelessWidget {
   }
 }
 
-Widget _subTitle(String title) {
+Widget _subTitle(String title, VoidCallback onTap) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 15),
-    child: GestureDetector(
-      onTap: () {},
+    child: InkWell(
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
         child: Row(

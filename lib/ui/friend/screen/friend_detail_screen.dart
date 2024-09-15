@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/friend/data_source/friend_detail_dummy.dart';
-import 'package:sottie_flutter/data/friend/data_source/friend_review_dummy.dart';
+import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
 import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
@@ -60,13 +60,14 @@ class FriendDetailScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        model.stateMsg,
-                        style: TextStyle(
-                          color: mainSilverColor,
-                          fontSize: 12 * hu,
+                      if (model.stateMsg != null)
+                        Text(
+                          model.stateMsg!,
+                          style: TextStyle(
+                            color: mainSilverColor,
+                            fontSize: 12 * hu,
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),
@@ -117,90 +118,100 @@ class FriendDetailScreen extends StatelessWidget {
                 children: [
                   CustomFutureBuilder(
                     futureFunction: getFriendDetailDummy,
-                    callBack: (futureData) => Column(
-                      children: [
-                        FriendRadarChart(
-                          participationValue: futureData.participationValue,
-                          attitudeValue: futureData.attitudeValue,
-                          timeValue: futureData.timeValue,
-                          likeabilityValue: futureData.likeabilityValue,
-                          trustworthinessValue: futureData.trustworthinessValue,
-                        ),
-                        SizedBox(height: 10 * hu),
-                        Padding(
-                          padding:
-                              EdgeInsets.only(top: 10 * hu, right: 24 * wu),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                "매너 온도",
-                                style: TextStyle(
-                                  fontSize: 12 * hu,
-                                  color: mainSilverColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 1.5,
+                    callBack: (futureData) {
+                      final detailData = futureData as FriendDetailModel;
+
+                      return Column(
+                        children: [
+                          detailData.participationValue != null
+                              ? FriendRadarChart(
+                                  participationValue:
+                                      detailData.participationValue!,
+                                  attitudeValue: detailData.attitudeValue!,
+                                  timeValue: detailData.timeValue!,
+                                  likeabilityValue:
+                                      detailData.likeabilityValue!,
+                                  trustworthinessValue:
+                                      detailData.trustworthinessValue!,
+                                )
+                              : const Center(
+                                  child: Text(
+                                    "친구를 리뷰하세요!",
+                                    style: TextStyle(
                                       color: mainSilverColor,
                                     ),
-                                    borderRadius: BorderRadius.circular(8)),
-                                padding: const EdgeInsets.all(8),
-                                child: Text(
-                                  (futureData.participationValue +
-                                          futureData.attitudeValue +
-                                          futureData.timeValue +
-                                          futureData.likeabilityValue +
-                                          futureData.trustworthinessValue)
-                                      .toStringAsFixed(1),
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: mainSilverColor,
-                                    fontSize: 16 * hu,
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 10),
-                              Text(
-                                "°C",
-                                style: TextStyle(
-                                  fontSize: 12 * hu,
-                                  color: mainSilverColor,
-                                  fontWeight: FontWeight.bold,
+                          SizedBox(height: 10 * hu),
+                          Padding(
+                            padding:
+                                EdgeInsets.only(top: 10 * hu, right: 24 * wu),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "매너 온도",
+                                  style: TextStyle(
+                                    fontSize: 12 * hu,
+                                    color: mainSilverColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                            ],
+                                const SizedBox(width: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: 1.5,
+                                        color: mainSilverColor,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8)),
+                                  padding: const EdgeInsets.all(8),
+                                  child: detailData.participationValue != null
+                                      ? Text(
+                                          (detailData.participationValue! +
+                                                  detailData.attitudeValue! +
+                                                  detailData.timeValue! +
+                                                  detailData.likeabilityValue! +
+                                                  detailData
+                                                      .trustworthinessValue!)
+                                              .toStringAsFixed(1),
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: mainSilverColor,
+                                            fontSize: 16 * hu,
+                                          ),
+                                        )
+                                      : Container(),
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  "°C",
+                                  style: TextStyle(
+                                    fontSize: 12 * hu,
+                                    color: mainSilverColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    loadingWidget: const Padding(
-                      padding: EdgeInsets.all(24.0),
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: mainSilverColor,
-                        ),
-                      ),
-                    ),
+                          if (detailData.friendReviews != null)
+                            if (detailData.friendReviews!.isNotEmpty)
+                              ...detailData.friendReviews!.map<Widget>((data) {
+                                return FriendReview(model: data);
+                              }),
+                        ],
+                      );
+                    },
                     notHasData: const Center(
                       child: Text(
-                        "친구를 리뷰하세요!",
+                        "데이터가 존재하지 않습니다.",
                         style: TextStyle(
                           color: mainSilverColor,
                         ),
                       ),
                     ),
                   ),
-                  CustomFutureBuilder(
-                      futureFunction: getFriendReviewDummy,
-                      callBack: (futureData) => Column(
-                              children: futureData.map<Widget>((data) {
-                            return FriendReview(model: data);
-                          }).toList())),
                 ],
               ),
             ),
