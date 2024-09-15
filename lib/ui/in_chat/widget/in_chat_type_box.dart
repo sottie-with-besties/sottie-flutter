@@ -19,16 +19,19 @@ class InChatTypeBox extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          child: SizedBox(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 5.0),
-              child: LocalTextField(
-                borderRadius: 0,
-                prefixIcon: false,
-                keyboardType: TextInputType.multiline,
-                hint: "내용을 입력하세요.",
-                focusNode: focusNode,
-                suffixIcon: GestureDetector(
+          child: LocalTextField(
+            enabledBorder: false,
+            focusBorder: false,
+            borderRadius: 0,
+            prefixIcon: false,
+            keyboardType: TextInputType.multiline,
+            hint: "내용을 입력하세요.",
+            focusNode: focusNode,
+            suffixIcon: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
                   onTap: () {
                     log("사진 및 동영상 고르기");
                   },
@@ -36,29 +39,27 @@ class InChatTypeBox extends StatelessWidget {
                     Icons.photo,
                   ),
                 ),
-              ),
+                SizedBox(width: 15 * wu),
+                GestureDetector(
+                  onTap: () {
+                    log("메세지 전송");
+                  },
+                  child: Container(
+                    height: 40 * hu,
+                    color: Colors.blueAccent,
+                    padding: const EdgeInsets.all(5),
+                    child: const FittedBox(
+                      child: Icon(
+                        Icons.send,
+                        color: mainSilverColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        GestureDetector(
-          onTap: () {
-            log("메세지 전송");
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              color: mainSilverColor,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            height: 40 * hu,
-            padding: const EdgeInsets.all(5),
-            child: const FittedBox(
-              child: Icon(
-                Icons.send,
-                color: Colors.blueAccent,
-              ),
-            ),
-          ),
-        )
       ],
     );
   }

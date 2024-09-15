@@ -27,6 +27,7 @@ class ChatRoomGenerated extends StatelessWidget {
             extra: {
               'id': model.id,
               'title': model.chatTitle,
+              'isGenerated': true,
             },
           );
         },

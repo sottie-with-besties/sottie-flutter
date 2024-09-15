@@ -135,6 +135,7 @@ final _routes = [
                   return InChatScreen(
                     id: params['id'],
                     title: params['title'],
+                    isGenerated: params['isGenerated'],
                   );
                 },
               ),

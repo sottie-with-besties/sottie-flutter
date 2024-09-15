@@ -25,6 +25,7 @@ class DmChatRoom extends StatelessWidget {
             extra: {
               'id': model.id,
               'title': model.name,
+              'isGenerated': true,
             },
           );
         },

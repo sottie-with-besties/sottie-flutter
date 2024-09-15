@@ -26,6 +26,47 @@ class Friend extends StatefulWidget {
 class _FriendState extends State<Friend> with TickerProviderStateMixin {
   late SlidableController _slidableController;
 
+  Widget _renderOption({
+    required Color color,
+    required VoidCallback onTap,
+    required IconData icon,
+    required String optionTitle,
+  }) {
+    return Material(
+      color: color,
+      borderRadius: BorderRadius.circular(8),
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                optionTitle,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: mainSilverColor,
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Icon(
+                icon,
+                color: mainSilverColor,
+                size: 24 * hu,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _dmAction(bool withSlide) {
+    log("DmAction");
+  }
+
   void _deleteAction(bool withSlide) {
     showCustomDialog(
       context,
@@ -44,7 +85,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
         onPressed: () {
           // 꾹 누른건 팝 두번, 슬라이드는 한번만
           Navigator.of(context, rootNavigator: true).pop();
-          withSlide ? null : context.pop();
+          withSlide ? null : Navigator.of(context, rootNavigator: true).pop();
 
           log("친구 삭제 확인");
         },
@@ -59,8 +100,8 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
     );
   }
 
-  void _editAction() {
-    log("editAction");
+  void _reportAction(bool withSlide) {
+    log("ReportAction");
   }
 
   @override
@@ -88,20 +129,31 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
         motion: const DrawerMotion(),
         children: [
           SlidableAction(
-            onPressed: (context) => _editAction(),
-            backgroundColor: const Color(0xFF21B7CA),
+            onPressed: (context) => _dmAction(true),
+            backgroundColor: Colors.green,
             foregroundColor: Colors.white,
             autoClose: true,
-            icon: Icons.edit,
-            label: 'Edit',
+            icon: Icons.messenger_outline,
+            label: 'DM',
+            padding: const EdgeInsets.symmetric(horizontal: 1),
           ),
           SlidableAction(
             onPressed: (context) => _deleteAction(true),
-            backgroundColor: const Color(0xFFFE4A49),
+            backgroundColor: Colors.redAccent,
             foregroundColor: Colors.white,
             autoClose: true,
             icon: Icons.delete,
             label: 'Delete',
+            padding: const EdgeInsets.symmetric(horizontal: 1),
+          ),
+          SlidableAction(
+            onPressed: (context) => _reportAction(true),
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+            autoClose: true,
+            icon: Icons.report,
+            label: 'Report',
+            padding: const EdgeInsets.symmetric(horizontal: 1),
           ),
         ],
       ),
@@ -146,8 +198,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
                     _renderOption(
                       color: Colors.green,
                       onTap: () {
-                        log("친구 DM 보내기");
-                        Navigator.of(context, rootNavigator: true).pop();
+                        _dmAction(false);
                       },
                       icon: Icons.messenger_outline,
                       optionTitle: "DM 보내기",
@@ -165,8 +216,7 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
                     _renderOption(
                       color: Colors.blueAccent,
                       onTap: () {
-                        context.pop();
-                        log("신고 하기");
+                        _reportAction(false);
                       },
                       icon: Icons.report_gmailerrorred_outlined,
                       optionTitle: "신고",
@@ -200,41 +250,4 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
       ),
     );
   }
-}
-
-Widget _renderOption({
-  required Color color,
-  required VoidCallback onTap,
-  required IconData icon,
-  required String optionTitle,
-}) {
-  return Material(
-    color: color,
-    borderRadius: BorderRadius.circular(8),
-    child: InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              optionTitle,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: mainSilverColor,
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Icon(
-              icon,
-              color: mainSilverColor,
-              size: 24 * hu,
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
 }
