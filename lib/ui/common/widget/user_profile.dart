@@ -11,27 +11,30 @@ class UserProfile extends StatelessWidget {
     this.randomAvatarSize = 80,
     this.profileAvatarSize = 40,
     this.profileUrl,
-    this.me = false,
+    this.myProfileXFilePath,
   });
 
   final String? avatarId;
   final double randomAvatarSize;
-  final String? profileUrl;
   final double profileAvatarSize;
-  final bool me;
+  final String? profileUrl;
+  final String? myProfileXFilePath;
 
   @override
   Widget build(BuildContext context) {
-    return profileUrl == null
-        ? RandomAvatar(
-            avatarId ?? DateTime.now().toIso8601String(),
-            width: randomAvatarSize * hu,
-            height: randomAvatarSize * hu,
-          )
+    // Todo: 사용자가 프로필사진 Path를 변경 또는 기존 프로필사진을 제거했을 때 예외 처리
+    return myProfileXFilePath == null
+        ? profileUrl == null
+            ? RandomAvatar(
+                avatarId ?? DateTime.now().toIso8601String(),
+                width: randomAvatarSize * hu,
+                height: randomAvatarSize * hu,
+              )
+            : CircleAvatar(
+                backgroundImage: NetworkImage(profileUrl!),
+                radius: profileAvatarSize * hu)
         : CircleAvatar(
-            backgroundImage:
-                me ? FileImage(File(profileUrl!)) : NetworkImage(profileUrl!),
-            radius: profileAvatarSize * hu,
-          );
+            backgroundImage: FileImage(File(myProfileXFilePath!)),
+            radius: profileAvatarSize * hu);
   }
 }

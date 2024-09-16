@@ -1,49 +1,28 @@
-import 'package:image_picker/image_picker.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sottie_flutter/data/user/model/user_gender.dart';
 
-final class MyInfoModel {
-  String name;
-  String email;
-  String nickName;
-  String password;
-  String phoneNumber;
-  UserGender gender;
-  String identifier;
-  String birthYear;
-  bool phoneAuthenticated;
-  String stateMessage;
-  XFile? profile;
-  int gold;
-  double mannerPoint;
+part 'my_info_model.freezed.dart';
+part 'my_info_model.g.dart';
 
-  // Todo: 배포할 때 쯤 내 개인정보 코드 수정
-  MyInfoModel({
-    this.name = '김진표',
-    this.email = 'kjp00552277@gmail.com',
-    this.nickName = '나의 닉네임',
-    this.password = '12343456778',
-    this.phoneNumber = '01035361901',
-    this.gender = UserGender.male,
-    this.identifier = '1315135123',
-    this.birthYear = '2000년 5월 27일',
-    this.phoneAuthenticated = false,
-    this.stateMessage = '상태 메세지',
-    this.profile,
-    this.gold = 450,
-    this.mannerPoint = 100.0,
-  });
+@unfreezed
+class MyInfoModel with _$MyInfoModel {
+  factory MyInfoModel({
+    @Default('김진표') String name,
+    @Default('kjp00552277@gmail.com') String email,
+    @Default('나의 닉네임') String nickName,
+    @Default('12343456778') String password,
+    @Default('01035361901') String phoneNumber,
+    @Default(UserGender.male) UserGender gender,
+    @Default('123123123') String identifier,
+    @Default('2000년 5월 27일') String birthYear,
+    @Default(false) bool phoneAuthenticated,
+    String? stateMessage,
+    String? profileUrl,
+    String? myProfilePath,
+    @Default(0) int gold,
+    @Default(0) double mannerPoint,
+  }) = _MyInfoModel;
 
-  toJsonForSignUpCheck() {
-    return {
-      'name': name,
-      'email': email,
-      'nickName': nickName,
-      'password': password,
-      'phoneNumber': phoneNumber,
-      'gender': gender.name,
-      'identifier': identifier,
-      'birthYear': birthYear,
-      'phoneAuthenticated': phoneAuthenticated,
-    };
-  }
+  factory MyInfoModel.fromJson(Map<String, dynamic> json) =>
+      _$MyInfoModelFromJson(json);
 }

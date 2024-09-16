@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -32,8 +34,8 @@ class _MyInfoState extends State<MyInfo> {
                     avatarId: 'me',
                     randomAvatarSize: 45,
                     profileAvatarSize: 23,
-                    profileUrl: myInfoEntity.profile?.path,
-                    me: true,
+                    profileUrl: myInfoEntity.profileUrl,
+                    myProfileXFilePath: myInfoEntity.myProfilePath,
                   ),
                 ),
                 SizedBox(
@@ -54,7 +56,7 @@ class _MyInfoState extends State<MyInfo> {
                         ),
                       ),
                       Text(
-                        myInfoEntity.stateMessage,
+                        myInfoEntity.stateMessage ?? '',
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
@@ -64,8 +66,11 @@ class _MyInfoState extends State<MyInfo> {
             ),
             OutlinedButton(
                 onPressed: () async {
-                  await context.push(
+                  final profileImageXFile = await context.push(
                       "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}");
+                  // Todo: Pop 이후에 변경된 나의 정보를 백엔드로 전송, 프로필 이미지 변환하여 따로 전송
+                  log(profileImageXFile.toString());
+
                   setState(() {});
                 },
                 child: const Text(

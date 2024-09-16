@@ -23,10 +23,10 @@ class Post extends StatelessWidget {
         },
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: EdgeInsets.symmetric(horizontal: 8 * wu),
         child: Container(
-          height: 120 * hu,
-          padding: const EdgeInsets.all(12.0),
+          height: 140 * hu,
+          padding: EdgeInsets.all(12.0 * hu),
           decoration: BoxDecoration(
             border: const Border(top: BorderSide(width: 0.3)),
             borderRadius: BorderRadius.circular(8),

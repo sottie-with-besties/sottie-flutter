@@ -77,6 +77,8 @@ class CertificationScreen extends StatelessWidget {
               myInfoEntity.identifier = res.data['identifier'];
               myInfoEntity.birthYear = res.data['birthYear'];
               myInfoEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
+
+              // 개인정보 변경에서 수정된 정보는 개인 정보 수정 스크린에서 pop을 한 후 진행
             } else {
               signUpEntity.name = res.data['name'];
               signUpEntity.gender =
@@ -85,15 +87,13 @@ class CertificationScreen extends StatelessWidget {
               signUpEntity.identifier = res.data['identifier'];
               signUpEntity.birthYear = res.data['birthYear'];
               signUpEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
+
+              // 최종 정보를 다시 보내는 코드 => api, 헤더 및 데이터 재확인
+              await Dio().post(
+                "$serverIp/sottie/certifications",
+                data: jsonEncode(signUpEntity.toJson()),
+              );
             }
-
-            // 값 주입
-
-            // Todo: 최종 정보를 다시 보내는 코드 => api, 헤더 및 데이터 재확인, 성별 잠시 제외
-            await Dio().post(
-              "$serverIp/sottie/certifications",
-              data: jsonEncode(myInfoEntity.toJsonForSignUpCheck()),
-            );
           } on Exception catch (_) {
             if (context.mounted) {
               showSnackBar(context, "본인인증 도중 에러가 발생하였습니다.");
