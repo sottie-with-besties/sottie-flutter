@@ -7,6 +7,7 @@ import 'package:sottie_flutter/data/post/data_source/post_detail_dummy.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_model.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 
 class PostDetailScreen extends StatefulWidget {
   const PostDetailScreen({
@@ -21,9 +22,7 @@ class PostDetailScreen extends StatefulWidget {
 }
 
 class _PostDetailScreenState extends State<PostDetailScreen> {
-  final controller = PageController();
-
-  late Future<PostDetailModel> postDetailModel;
+  final _thumbnailController = PageController();
 
   // 더미
   final thumbnail = List.generate(
@@ -42,15 +41,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
           ));
 
   @override
-  void initState() {
-    super.initState();
-    postDetailModel = getPostDetailDummy();
-  }
-
-  @override
   void dispose() {
-    controller.dispose();
     super.dispose();
+    _thumbnailController.dispose();
   }
 
   @override
@@ -59,139 +52,124 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
       appBar: AppBar(backgroundColor: Colors.white),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.postModel.title,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+        child: ListView(
+          children: [
+            Text(
+              widget.postModel.title,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
-              const SizedBox(
-                height: 30,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            CustomFutureBuilder(
+              futureFunction: getPostDetailDummy,
+              loadingWidget: const Center(
+                child: CircularProgressIndicator(color: Colors.black),
               ),
-              FutureBuilder(
-                future: postDetailModel,
-                builder: (_, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                        child: CircularProgressIndicator(color: Colors.black));
-                  } else if (!snapshot.hasData) {
-                    return Container();
-                  } else if (snapshot.hasData) {
-                    final postDetailModelData =
-                        snapshot.data as PostDetailModel;
+              callBack: (futureData) {
+                final postDetailModelData = futureData as PostDetailModel;
 
-                    return Column(
+                return Column(
+                  children: [
+                    Column(
                       children: [
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: 250 * hu,
-                              child: PageView.builder(
-                                controller: controller,
-                                itemBuilder: (_, index) {
-                                  return thumbnail[index % thumbnail.length];
-                                },
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            SmoothPageIndicator(
-                              controller: controller,
-                              count: thumbnail.length,
-                              effect: const WormEffect(
-                                dotHeight: 8,
-                                dotWidth: 8,
-                                activeDotColor: mainBrownColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                          postDetailModelData.content,
-                          style: const TextStyle(
-                            fontSize: 14,
+                        SizedBox(
+                          height: 250 * hu,
+                          child: PageView.builder(
+                            controller: _thumbnailController,
+                            itemBuilder: (_, index) {
+                              return thumbnail[index % thumbnail.length];
+                            },
                           ),
                         ),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        SizedBox(
-                          height: 200 * hu,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _renderMemberCount(widget.postModel),
-                              Text("날짜: ${widget.postModel.date}"),
-                              Text("장소: ${widget.postModel.location}"),
-                              _renderAgeRange(postDetailModelData.ageRange),
-                              Text(
-                                  "매너 온도: ${postDetailModelData.mannerPoint}도 이상"),
-                              if (postDetailModelData.startSameTime)
-                                const Text(
-                                    "동시 채팅 시작: 정해진 인원 수만큼 모집될때까지 채팅방이 생성되지 않다가, 정해진 인원 수 만큼 모이면 채팅방이 생성되고 채팅이 시작됩니다."),
-                              if (postDetailModelData.openParticipation)
-                                const Text(
-                                    "오픈 채팅: 정해진 모임 날짜로부터 24시간 이후에도 채팅방이 삭제되지 않으며, 채팅방 출입이 자유롭습니다."),
-                              if (postDetailModelData.onlyMyFriends)
-                                const Text(
-                                    "오직 내 친구만: 방장의 친구 목록에 등록된 유저만 입장할 수 있습니다."),
-                            ],
+                        const SizedBox(height: 16),
+                        SmoothPageIndicator(
+                          controller: _thumbnailController,
+                          count: thumbnail.length,
+                          effect: const WormEffect(
+                            dotHeight: 8,
+                            dotWidth: 8,
+                            activeDotColor: mainBrownColor,
                           ),
                         ),
                       ],
-                    );
-                  } else {
-                    return const Center(
-                      child: Text("데이터를 가져올 수 없습니다.",
-                          style: TextStyle(color: Colors.black)),
-                    );
-                  }
-                },
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: mainBrownColor,
-                        minimumSize: const Size(100, 65),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      postDetailModelData.content,
+                      style: const TextStyle(
+                        fontSize: 14,
                       ),
-                      onPressed: () {
-                        log("참여하기");
-                      },
-                      child: const Text(
-                        '참여하기',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: mainSilverColor,
-                        ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    SizedBox(
+                      height: 200 * hu,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _renderMemberCount(widget.postModel),
+                          Text("날짜: ${widget.postModel.date}"),
+                          Text("장소: ${widget.postModel.location}"),
+                          _renderAgeRange(postDetailModelData.ageRange),
+                          Text("매너 온도: ${postDetailModelData.mannerPoint}도 이상"),
+                          if (postDetailModelData.startSameTime)
+                            const Text(
+                                "동시 채팅 시작: 정해진 인원 수만큼 모집될때까지 채팅방이 생성되지 않다가, 정해진 인원 수 만큼 모이면 채팅방이 생성되고 채팅이 시작됩니다."),
+                          if (postDetailModelData.openParticipation)
+                            const Text(
+                                "오픈 채팅: 정해진 모임 날짜로부터 24시간 이후에도 채팅방이 삭제되지 않으며, 채팅방 출입이 자유롭습니다."),
+                          if (postDetailModelData.onlyMyFriends)
+                            const Text(
+                                "오직 내 친구만: 방장의 친구 목록에 등록된 유저만 입장할 수 있습니다."),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: mainBrownColor,
+                      minimumSize: const Size(100, 65),
+                    ),
+                    onPressed: () {
+                      log("참여하기");
+                    },
+                    child: const Text(
+                      '참여하기',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: mainSilverColor,
                       ),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+          ],
         ),
       ),
     );
