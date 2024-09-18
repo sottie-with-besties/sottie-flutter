@@ -8,6 +8,8 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
+import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
+import 'package:sottie_flutter/ui/common/widget/slide_tap_widget.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend_info.dart';
 
@@ -23,46 +25,7 @@ class Friend extends StatefulWidget {
   State<Friend> createState() => _FriendState();
 }
 
-class _FriendState extends State<Friend> with TickerProviderStateMixin {
-  late SlidableController _slidableController;
-
-  Widget _renderOption({
-    required Color color,
-    required VoidCallback onTap,
-    required IconData icon,
-    required String optionTitle,
-  }) {
-    return Material(
-      color: color,
-      borderRadius: BorderRadius.circular(8),
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                optionTitle,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: mainSilverColor,
-                  fontSize: 18,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Icon(
-                icon,
-                color: mainSilverColor,
-                size: 24 * hu,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
+class _FriendState extends State<Friend> {
   void _dmAction(bool withSlide) {
     log("DmAction");
   }
@@ -105,148 +68,109 @@ class _FriendState extends State<Friend> with TickerProviderStateMixin {
   }
 
   @override
-  void initState() {
-    _slidableController = SlidableController(this);
-    _slidableController.dismissGesture;
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _slidableController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Slidable(
-      key: ValueKey(widget.key),
-      closeOnScroll: false,
-      groupTag: 'friend',
-      controller: _slidableController,
-      endActionPane: ActionPane(
-        dragDismissible: false,
-        motion: const DrawerMotion(),
+    return SlideTapWidget(
+      onTap: () async {
+        await context.push(
+          "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
+          extra: {
+            'model': widget.model,
+            'isMyFriend': true,
+          },
+        );
+      },
+      onLongPressWidget: Column(
         children: [
-          SlidableAction(
-            onPressed: (context) => _dmAction(true),
-            backgroundColor: Colors.green,
-            foregroundColor: Colors.white,
-            autoClose: true,
-            icon: Icons.messenger_outline,
-            label: 'DM',
-            padding: const EdgeInsets.symmetric(horizontal: 1),
+          UserProfile(
+            avatarId: widget.model.id,
+            randomAvatarSize: 100,
           ),
-          SlidableAction(
-            onPressed: (context) => _deleteAction(true),
-            backgroundColor: Colors.redAccent,
-            foregroundColor: Colors.white,
-            autoClose: true,
-            icon: Icons.delete,
-            label: 'Delete',
-            padding: const EdgeInsets.symmetric(horizontal: 1),
-          ),
-          SlidableAction(
-            onPressed: (context) => _reportAction(true),
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-            autoClose: true,
-            icon: Icons.report,
-            label: 'Report',
-            padding: const EdgeInsets.symmetric(horizontal: 1),
-          ),
-        ],
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: mainSilverColor,
-        ),
-        height: 75 * hu,
-        child: Material(
-          color: mainSilverColor,
-          child: InkWell(
-            onTap: () async {
-              await context.push(
-                "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
-                extra: {
-                  'model': widget.model,
-                  'isMyFriend': true,
-                },
-              );
-            },
-            onLongPress: () {
-              showCustomDialog(
-                context,
-                Column(
-                  children: [
-                    UserProfile(
-                      avatarId: widget.model.id,
-                      randomAvatarSize: 100,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      widget.model.nickname,
-                      style: const TextStyle(
-                        color: mainSilverColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    _renderOption(
-                      color: Colors.green,
-                      onTap: () {
-                        _dmAction(false);
-                      },
-                      icon: Icons.messenger_outline,
-                      optionTitle: "DM 보내기",
-                    ),
-                    const SizedBox(height: 10),
-                    _renderOption(
-                      color: Colors.redAccent,
-                      onTap: () {
-                        _deleteAction(false);
-                      },
-                      icon: Icons.delete_forever,
-                      optionTitle: "친구 삭제",
-                    ),
-                    const SizedBox(height: 10),
-                    _renderOption(
-                      color: Colors.blueAccent,
-                      onTap: () {
-                        _reportAction(false);
-                      },
-                      icon: Icons.report_gmailerrorred_outlined,
-                      optionTitle: "신고",
-                    )
-                  ],
-                ),
-                color: Colors.transparent,
-              );
-            },
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 70 * wu,
-                  child: Hero(
-                    tag: widget.model.id,
-                    child: UserProfile(
-                      randomAvatarSize: 45,
-                      avatarId: widget.model.id,
-                    ),
-                  ),
-                ),
-                SizedBox(width: 10 * wu),
-                FriendInfo(
-                  friendName: widget.model.nickname,
-                  stateMsg: widget.model.stateMsg ?? '',
-                ),
-              ],
+          SizedBox(height: 10 * hu),
+          Text(
+            widget.model.nickname,
+            style: const TextStyle(
+              color: mainSilverColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
           ),
+          SizedBox(height: 10 * hu),
+          OnLongPressOption(
+            color: Colors.green,
+            onTap: () {
+              _dmAction(false);
+            },
+            icon: Icons.messenger_outline,
+            optionTitle: "DM 보내기",
+          ),
+          SizedBox(height: 10 * hu),
+          OnLongPressOption(
+            color: Colors.redAccent,
+            onTap: () {
+              _deleteAction(false);
+            },
+            icon: Icons.delete_forever,
+            optionTitle: "친구 삭제",
+          ),
+          SizedBox(height: 10 * hu),
+          OnLongPressOption(
+            color: Colors.blueAccent,
+            onTap: () {
+              _reportAction(false);
+            },
+            icon: Icons.report_gmailerrorred_outlined,
+            optionTitle: "신고",
+          )
+        ],
+      ),
+      slideActions: [
+        SlidableAction(
+          onPressed: (context) => _dmAction(true),
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
+          autoClose: true,
+          icon: Icons.messenger_outline,
+          label: 'DM',
+          padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
+        SlidableAction(
+          onPressed: (context) => _deleteAction(true),
+          backgroundColor: Colors.redAccent,
+          foregroundColor: Colors.white,
+          autoClose: true,
+          icon: Icons.delete,
+          label: 'Delete',
+          padding: const EdgeInsets.symmetric(horizontal: 1),
+        ),
+        SlidableAction(
+          onPressed: (context) => _reportAction(true),
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          autoClose: true,
+          icon: Icons.report,
+          label: 'Report',
+          padding: const EdgeInsets.symmetric(horizontal: 1),
+        ),
+      ],
+      groupTag: 'friend',
+      child: Row(
+        children: [
+          SizedBox(
+            width: 70 * wu,
+            child: Hero(
+              tag: widget.model.id,
+              child: UserProfile(
+                randomAvatarSize: 45,
+                avatarId: widget.model.id,
+              ),
+            ),
+          ),
+          SizedBox(width: 10 * wu),
+          FriendInfo(
+            friendName: widget.model.nickname,
+            stateMsg: widget.model.stateMsg ?? '',
+          ),
+        ],
       ),
     );
   }
