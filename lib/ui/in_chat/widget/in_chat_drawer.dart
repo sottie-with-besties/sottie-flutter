@@ -9,34 +9,13 @@ import 'package:sottie_flutter/data/post/model/post_detail/sottie_location.dart'
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
+import 'package:sottie_flutter/ui/in_chat/widget/in_chat_photo.dart';
 
 class InChatDrawer extends StatelessWidget {
   const InChatDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final pictureDummy = GestureDetector(
-      onTap: () {
-        context.push(
-          CustomRouter.photoMagnificationPath,
-          extra: {
-            'imageUrl':
-                'https://engineering.linecorp.com/wp-content/uploads/2019/08/flutter1.png'
-          },
-        );
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(),
-        ),
-        width: 50 * hu,
-        height: 50 * hu,
-        child: const Center(
-          child: Text("사진"),
-        ),
-      ),
-    );
-
     return Drawer(
       width: 200 * wu,
       child: SafeArea(
@@ -46,51 +25,60 @@ class InChatDrawer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _subTitle('채팅방 정보', () {
-                  context.push(
-                    "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatInfoPath}",
-                    extra: {
-                      'postModel': PostModel(
-                        id: '123123',
-                        detailId: '123123',
-                        category: [
-                          SottieCategory.amity.name,
-                          SottieCategory.exercise.name
-                        ],
-                        thumbnailUrl: null,
-                        title: "안녕하세요",
-                        location: SottieLocation.sungnam.name,
-                        date: "2024년 9월 18일",
-                        currentManCount: 3,
-                        maxManCount: 6,
-                        currentWomanCount: 4,
-                        maxWomanCount: 7,
-                      )
-                    },
-                  );
-                }),
-                _subTitle('사진, 동영상', () {
-                  log("사진, 동영상");
-                }),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Wrap(
-                    spacing: 5,
-                    runSpacing: 5,
-                    children: [
-                      pictureDummy,
-                      pictureDummy,
-                      pictureDummy,
-                      pictureDummy,
-                      pictureDummy,
-                      pictureDummy,
-                    ],
+                _subTitle(
+                  '채팅방 정보',
+                  () {
+                    context.push(
+                      "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatInfoPath}",
+                      extra: {
+                        'postModel': PostModel(
+                          id: '123123',
+                          detailId: '123123',
+                          category: [
+                            SottieCategory.amity.name,
+                            SottieCategory.exercise.name
+                          ],
+                          thumbnailUrl: null,
+                          title: "안녕하세요",
+                          location: SottieLocation.sungnam.name,
+                          date: "2024년 9월 18일",
+                          currentManCount: 3,
+                          maxManCount: 6,
+                          currentWomanCount: 4,
+                          maxWomanCount: 7,
+                        )
+                      },
+                    );
+                  },
+                ),
+                _subTitle(
+                  '사진, 동영상',
+                  () {
+                    context.push(
+                        "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatPhotoListPath}");
+                  },
+                ),
+                SizedBox(
+                  height: 130 * hu,
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5,
+                      crossAxisCount: 3,
+                    ),
+                    itemBuilder: (context, index) => const InChatPhoto(),
+                    itemCount: 6, // 예시로 8개의 아이템을 생성합니다.
                   ),
                 ),
                 const SizedBox(height: 30),
-                _subTitle('공지사항', () {
-                  log("공지사항 목록");
-                }),
+                _subTitle(
+                  '공지사항',
+                  () {
+                    context.push(
+                        "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatNotificationListPath}");
+                  },
+                ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
@@ -100,9 +88,12 @@ class InChatDrawer extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                _subTitle('참여자', () {
-                  log("참여자 목록");
-                }),
+                _subTitle(
+                  '참여자',
+                  () {
+                    log("참여자 목록");
+                  },
+                ),
                 _inChatParticipant(context, "1", "김진표"),
                 _inChatParticipant(context, "2", "김진표"),
                 _inChatParticipant(context, "3", "김진표"),

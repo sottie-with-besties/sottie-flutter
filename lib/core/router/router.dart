@@ -12,6 +12,8 @@ import 'package:sottie_flutter/ui/friend/screen/friend_detail_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_info_screen.dart';
+import 'package:sottie_flutter/ui/in_chat/screen/in_chat_notification_list_screen.dart';
+import 'package:sottie_flutter/ui/in_chat/screen/in_chat_photo_list_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/email_change_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
@@ -51,6 +53,9 @@ sealed class CustomRouter {
   static const chatPath = "/chat";
   static const inChatPath = "inChat";
   static const inChatInfoPath = "inChatInfo";
+  static const inChatPhotoListPath = "inChatPhotoList";
+  static const inChatNotificationListPath = "inChatNotificationList";
+  static const inChatParticipationListPath = "inChatParticipationList";
 
   /// Friend
   static const friendPath = "/friend";
@@ -153,6 +158,23 @@ final _routes = [
                 routes: <GoRoute>[
                   GoRoute(
                     path: CustomRouter.inChatInfoPath,
+                    builder: (_, state) {
+                      final params = state.extra as Map<String, dynamic>;
+                      return InChatInfoScreen(
+                        postModel: params['postModel'],
+                      );
+                    },
+                  ),
+                  GoRoute(
+                    path: CustomRouter.inChatPhotoListPath,
+                    builder: (_, __) => const InChatPhotoListScreen(),
+                  ),
+                  GoRoute(
+                    path: CustomRouter.inChatNotificationListPath,
+                    builder: (_, __) => const InChatNotificationListScreen(),
+                  ),
+                  GoRoute(
+                    path: CustomRouter.inChatParticipationListPath,
                     builder: (_, state) {
                       final params = state.extra as Map<String, dynamic>;
                       return InChatInfoScreen(
