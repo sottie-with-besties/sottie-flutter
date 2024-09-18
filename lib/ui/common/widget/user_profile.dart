@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:random_avatar/random_avatar.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class UserProfile extends StatelessWidget {
@@ -30,11 +32,23 @@ class UserProfile extends StatelessWidget {
                 width: randomAvatarSize * hu,
                 height: randomAvatarSize * hu,
               )
-            : CircleAvatar(
-                backgroundImage: NetworkImage(profileUrl!),
-                radius: profileAvatarSize * hu)
+            : GestureDetector(
+                onTap: () {
+                  context.push(
+                    CustomRouter.photoMagnificationPath,
+                    extra: {
+                      'imageUrl': profileUrl!,
+                    },
+                  );
+                },
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(profileUrl!),
+                  radius: profileAvatarSize * hu,
+                ),
+              )
         : CircleAvatar(
             backgroundImage: FileImage(File(myProfileXFilePath!)),
-            radius: profileAvatarSize * hu);
+            radius: profileAvatarSize * hu,
+          );
   }
 }
