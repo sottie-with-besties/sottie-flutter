@@ -7,6 +7,7 @@ import 'package:sottie_flutter/ui/auth/screen/sign_up_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/verification_complete_screen.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
+import 'package:sottie_flutter/ui/common/screen/photo_magnification_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_detail_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
@@ -78,6 +79,9 @@ sealed class CustomRouter {
 
   /// Post Detail Screen
   static const postDetailPath = "/postDetail";
+
+  /// Photo Magnification Screen
+  static const photoMagnificationPath = "/photoMagnification";
 }
 
 final _routes = [
@@ -265,6 +269,17 @@ final _routes = [
       final params = state.extra as Map<String, dynamic>;
       return PostDetailScreen(
         postModel: params['postModel'],
+      );
+    },
+  ),
+
+  /// 프로필 사진 눌렀을 때 사진 확대하여 보여주는 스크린
+  GoRoute(
+    path: CustomRouter.photoMagnificationPath,
+    builder: (_, state) {
+      final params = state.extra as Map<String, dynamic>;
+      return PhotoMagnificationScreen(
+        imageUrl: params['imageUrl'],
       );
     },
   ),

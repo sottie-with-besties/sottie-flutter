@@ -15,6 +15,28 @@ class InChatDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pictureDummy = GestureDetector(
+      onTap: () {
+        context.push(
+          CustomRouter.photoMagnificationPath,
+          extra: {
+            'imageUrl':
+                'https://engineering.linecorp.com/wp-content/uploads/2019/08/flutter1.png'
+          },
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(),
+        ),
+        width: 50 * hu,
+        height: 50 * hu,
+        child: const Center(
+          child: Text("사진"),
+        ),
+      ),
+    );
+
     return Drawer(
       width: 200 * wu,
       child: SafeArea(
@@ -56,12 +78,12 @@ class InChatDrawer extends StatelessWidget {
                     spacing: 5,
                     runSpacing: 5,
                     children: [
-                      _pictureDummy,
-                      _pictureDummy,
-                      _pictureDummy,
-                      _pictureDummy,
-                      _pictureDummy,
-                      _pictureDummy,
+                      pictureDummy,
+                      pictureDummy,
+                      pictureDummy,
+                      pictureDummy,
+                      pictureDummy,
+                      pictureDummy,
                     ],
                   ),
                 ),
@@ -150,14 +172,3 @@ Widget _inChatParticipant(BuildContext context, String id, String name) {
     ),
   );
 }
-
-final _pictureDummy = Container(
-  decoration: BoxDecoration(
-    border: Border.all(),
-  ),
-  width: 50 * hu,
-  height: 50 * hu,
-  child: const Center(
-    child: Text("사진"),
-  ),
-);
