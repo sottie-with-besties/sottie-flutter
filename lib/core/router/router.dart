@@ -10,6 +10,7 @@ import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_detail_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
+import 'package:sottie_flutter/ui/in_chat/screen/in_chat_info_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/email_change_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
@@ -32,7 +33,7 @@ sealed class CustomRouter {
     routes: _routes,
   );
 
-  // Auth Screens
+  /// Auth Screens
   static const authPath = "/auth";
   static const signUpPath = "signUp";
   static const certificationPath = "certification";
@@ -40,20 +41,21 @@ sealed class CustomRouter {
   static const findPasswordPath = "findPassword";
   static const verificationCompletePath = "verificationComplete";
 
-  // Main Layout Screens
+  /// Main Layout Screens
 
-  // Home
+  /// Home
   static const homePath = "/home";
 
-  // Chat
+  /// Chat
   static const chatPath = "/chat";
   static const inChatPath = "inChat";
+  static const inChatInfoPath = "inChatInfo";
 
-  // Friend
+  /// Friend
   static const friendPath = "/friend";
   static const friendDetailPath = "friendDetail";
 
-  // More
+  /// More
   static const morePath = "/more";
 
   static const infoModifyPath = "modify";
@@ -69,16 +71,17 @@ sealed class CustomRouter {
   static const settingPath = "setting";
   static const guidePath = "guide";
 
-  // Make Post Screen
+  /// Make Post Screen
   static const makePostStepOnePath = "/makePostStepOne";
   static const makePostStepTwoPath = "makePostStepTwo";
   static const makePostStepThreePath = "makePostStepThree";
 
-  // Post Detail Screen
+  /// Post Detail Screen
   static const postDetailPath = "/postDetail";
 }
 
 final _routes = [
+  /// Authentication: 로그인, 회원가입
   GoRoute(
     path: CustomRouter.authPath,
     builder: (_, __) => const OAuthScreen(),
@@ -109,11 +112,14 @@ final _routes = [
       ),
     ],
   ),
+
+  /// Main Layout: 바텀 네비게이션 + 첫 화면
   StatefulShellRoute.indexedStack(
     builder: (context, state, shell) => NavigationScreen(
       shell: shell,
     ),
     branches: <StatefulShellBranch>[
+      // 홈 화면: 최신 글, 추천 글 등
       StatefulShellBranch(
         routes: <GoRoute>[
           GoRoute(
@@ -122,6 +128,8 @@ final _routes = [
           )
         ],
       ),
+
+      /// 채팅 스크린: 모임 채팅방 + 1:1 DM 채팅방
       StatefulShellBranch(
         routes: <GoRoute>[
           GoRoute(
@@ -138,11 +146,24 @@ final _routes = [
                     isGenerated: params['isGenerated'],
                   );
                 },
+                routes: <GoRoute>[
+                  GoRoute(
+                    path: CustomRouter.inChatInfoPath,
+                    builder: (_, state) {
+                      final params = state.extra as Map<String, dynamic>;
+                      return InChatInfoScreen(
+                        postModel: params['postModel'],
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           )
         ],
       ),
+
+      /// 친구 목록 스크린: 친구, 친구 디테일 스크린
       StatefulShellBranch(
         routes: <GoRoute>[
           GoRoute(
@@ -164,6 +185,8 @@ final _routes = [
           ),
         ],
       ),
+
+      /// 더 보기 스크린: 내 정보 수정, 로그 아웃, 공지 사항, 이벤트 등 기타 유틸리티
       StatefulShellBranch(
         routes: <GoRoute>[
           GoRoute(
@@ -216,6 +239,8 @@ final _routes = [
       ),
     ],
   ),
+
+  /// 모집글 생성 스크린
   GoRoute(
     path: CustomRouter.makePostStepOnePath,
     builder: (_, __) => const MakePostScreenStepOne(),
@@ -232,6 +257,8 @@ final _routes = [
       )
     ],
   ),
+
+  /// 모집글 상세 화면 스크린
   GoRoute(
     path: CustomRouter.postDetailPath,
     builder: (_, state) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_category.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
 
@@ -30,18 +30,18 @@ class _CategoryButtons extends StatefulWidget {
 
 class _CategoryButtonsState extends State<_CategoryButtons> {
   List<bool> selectedList = List<bool>.generate(
-    CategorySottie.values.length,
+    SottieCategory.values.length,
     (index) => false,
   );
 
-  List<CategorySottie> tempList = [];
+  List<SottieCategory> tempList = [];
 
   @override
   void initState() {
     super.initState();
 
     // 검색 스크린에서 필터링 시 데이터 유지
-    for (CategorySottie i in postSettingEntity.category) {
+    for (SottieCategory i in postSettingEntity.category) {
       selectedList[i.index] = true;
     }
     setState(() {});
@@ -52,7 +52,7 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
     return Expanded(
       child: Wrap(
         spacing: 10,
-        children: CategorySottie.values
+        children: SottieCategory.values
             .where((category) => category.index != 0)
             .map((category) {
           return ChoiceChip(

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:sottie_flutter/core/local_database/secure_storage.dart';
 
 class CustomInterceptor extends Interceptor {
+  /// 디오가 네트워크 요청 할 때
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     const accessToken = '';
@@ -9,6 +10,8 @@ class CustomInterceptor extends Interceptor {
     super.onRequest(options, handler);
   }
 
+  /// 네트워크 요청 에러
+  /// 토큰이 만료 되었을 때 토큰 재요청
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     final refreshToken = await tokenStorage.read(key: refreshTokenKey);

@@ -1,4 +1,4 @@
-enum CategorySottie {
+enum SottieCategory {
   all('전체'),
   thunder('번개'),
   amity('친목'),
@@ -10,7 +10,7 @@ enum CategorySottie {
 
   final String name;
 
-  const CategorySottie(
+  const SottieCategory(
     this.name,
   );
 }

@@ -40,9 +40,7 @@ class Post extends StatelessWidget {
                     constraints: BoxConstraints(
                       maxWidth: 200 * wu,
                     ),
-                    child: FittedBox(
-                      child: _categoryClassify(model.category),
-                    ),
+                    child: _categoryClassify(model.category),
                   ),
                   _renderMemberCount(model),
                 ],
@@ -104,7 +102,7 @@ class Post extends StatelessWidget {
   }
 }
 
-Row _categoryClassify(List<String> categoryList) {
+FittedBox _categoryClassify(List<String> categoryList) {
   List<Widget> categories = [];
 
   if (categoryList.contains('번개')) {
@@ -135,11 +133,7 @@ Row _categoryClassify(List<String> categoryList) {
     categories.add(_renderCategory(Icons.more_horiz, '기타'));
   }
 
-  return Row(
-    children: [
-      ...categories,
-    ],
-  );
+  return FittedBox(child: Row(children: categories));
 }
 
 Widget _renderCategory(IconData icon, String category) {

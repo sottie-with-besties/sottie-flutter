@@ -6,7 +6,7 @@ final _auth = FirebaseAuth.instance;
 
 String? _verificationId;
 
-// 이 함수를 실행하면 로봇인지 아닌지 체크하는 웹 사이트가 열리고 다시 웹이 닫히면 SMS 코드 문자 발송
+/// 이 함수를 실행하면 로봇인지 아닌지 체크하는 웹 사이트가 열리고 다시 웹이 닫히면 SMS 코드 문자 발송
 Future<String?> signInWithPhoneNumber(String number) async {
   String? errorCode;
 
@@ -29,7 +29,7 @@ Future<String?> signInWithPhoneNumber(String number) async {
   return errorCode;
 }
 
-// 발송된 SMS 코드와 함께 로그인 하여 문제가 없으면 폰 인증 완료.
+/// 발송된 SMS 코드와 함께 로그인 하여 문제가 없으면 폰 인증 완료.
 Future<String?> signInWithSmsCode(String code) async {
   String? errorCode;
 
@@ -49,7 +49,7 @@ Future<String?> signInWithSmsCode(String code) async {
   return errorCode;
 }
 
-// 핸드폰 인증만 하면 되기 때문에 유저를 파이어베이스에 저장하지 않고 삭제한다.
+/// 핸드폰 인증만 하면 되기 때문에 유저를 파이어베이스에 저장하지 않고 삭제한다.
 Future<void> deletePhoneUser() async {
   await _auth.currentUser!.delete();
 }

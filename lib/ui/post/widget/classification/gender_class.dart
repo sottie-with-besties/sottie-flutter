@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_gender_restrictions.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
@@ -19,7 +19,7 @@ class _GenderClassState extends State<GenderClass> {
   @override
   Widget build(BuildContext context) {
     double animatedContainerHeight =
-        postSettingEntity.gender == GenderRestrictions.all ? 120 * hu : 0;
+        postSettingEntity.gender == SottieGenderRestrictions.all ? 120 * hu : 0;
 
     return Column(
       children: [
@@ -37,23 +37,25 @@ class _GenderClassState extends State<GenderClass> {
                       gender: "남자",
                       classificationCallback: () {
                         switch (postSettingEntity.gender) {
-                          case GenderRestrictions.all:
+                          case SottieGenderRestrictions.all:
                             postSettingEntity.gender =
-                                GenderRestrictions.womanOnly;
+                                SottieGenderRestrictions.womanOnly;
                             break;
-                          case GenderRestrictions.manOnly:
+                          case SottieGenderRestrictions.manOnly:
                             postSettingEntity.gender =
-                                GenderRestrictions.nobody;
+                                SottieGenderRestrictions.nobody;
                             break;
-                          case GenderRestrictions.womanOnly:
-                            postSettingEntity.gender = GenderRestrictions.all;
-                            break;
-                          case GenderRestrictions.nobody:
+                          case SottieGenderRestrictions.womanOnly:
                             postSettingEntity.gender =
-                                GenderRestrictions.manOnly;
+                                SottieGenderRestrictions.all;
+                            break;
+                          case SottieGenderRestrictions.nobody:
+                            postSettingEntity.gender =
+                                SottieGenderRestrictions.manOnly;
                             break;
                           default:
-                            postSettingEntity.gender = GenderRestrictions.all;
+                            postSettingEntity.gender =
+                                SottieGenderRestrictions.all;
                             break;
                         }
                         setState(() {});
@@ -66,23 +68,25 @@ class _GenderClassState extends State<GenderClass> {
                       gender: "여자",
                       classificationCallback: () {
                         switch (postSettingEntity.gender) {
-                          case GenderRestrictions.all:
+                          case SottieGenderRestrictions.all:
                             postSettingEntity.gender =
-                                GenderRestrictions.manOnly;
+                                SottieGenderRestrictions.manOnly;
                             break;
-                          case GenderRestrictions.manOnly:
-                            postSettingEntity.gender = GenderRestrictions.all;
-                            break;
-                          case GenderRestrictions.womanOnly:
+                          case SottieGenderRestrictions.manOnly:
                             postSettingEntity.gender =
-                                GenderRestrictions.nobody;
+                                SottieGenderRestrictions.all;
                             break;
-                          case GenderRestrictions.nobody:
+                          case SottieGenderRestrictions.womanOnly:
                             postSettingEntity.gender =
-                                GenderRestrictions.womanOnly;
+                                SottieGenderRestrictions.nobody;
+                            break;
+                          case SottieGenderRestrictions.nobody:
+                            postSettingEntity.gender =
+                                SottieGenderRestrictions.womanOnly;
                             break;
                           default:
-                            postSettingEntity.gender = GenderRestrictions.all;
+                            postSettingEntity.gender =
+                                SottieGenderRestrictions.all;
                             break;
                         }
                         setState(() {});
@@ -121,11 +125,11 @@ class _GenderButtonState extends State<_GenderButton> {
     super.initState();
 
     // 검색 스크린에서 필터링 시 데이터 유지
-    if (postSettingEntity.gender == GenderRestrictions.all) {
+    if (postSettingEntity.gender == SottieGenderRestrictions.all) {
       isSelected = true;
-    } else if (postSettingEntity.gender == GenderRestrictions.manOnly) {
+    } else if (postSettingEntity.gender == SottieGenderRestrictions.manOnly) {
       if (widget.gender == '여자') isSelected = false;
-    } else if (postSettingEntity.gender == GenderRestrictions.womanOnly) {
+    } else if (postSettingEntity.gender == SottieGenderRestrictions.womanOnly) {
       if (widget.gender == '남자') isSelected = false;
     } else {
       // GenderRestrictions.nobody

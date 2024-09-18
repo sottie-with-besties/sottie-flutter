@@ -1,4 +1,4 @@
-enum AgeRangeSottie {
+enum SottieAgeRange {
   teens('10대'),
   twenties('20대'),
   thirties('30대'),
@@ -10,5 +10,5 @@ enum AgeRangeSottie {
 
   final String name;
 
-  const AgeRangeSottie(this.name);
+  const SottieAgeRange(this.name);
 }

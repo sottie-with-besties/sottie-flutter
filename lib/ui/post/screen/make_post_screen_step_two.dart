@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_gender_restrictions.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
@@ -40,7 +40,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
       checkList.add("날짜 및 시간을 설정해주세요.");
     }
 
-    if (postSettingEntity.gender == GenderRestrictions.nobody) {
+    if (postSettingEntity.gender == SottieGenderRestrictions.nobody) {
       checkList.add("성별을 최소 하나 이상 선택해주세요.");
     }
 

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_gender_restrictions.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
@@ -117,10 +117,12 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
                     Text(
                         "나이: ${postSettingEntity.convertAgeRangeToStringList().reduce((p, n) => "$n , $p")}"),
                     Text("성별제한: ${postSettingEntity.gender.name}"),
-                    if (postSettingEntity.gender == GenderRestrictions.all)
+                    if (postSettingEntity.gender ==
+                        SottieGenderRestrictions.all)
                       Text(
                           "성비제한: ${postSettingEntity.genderRatio ? "있음" : "없음"}"),
-                    if (postSettingEntity.gender == GenderRestrictions.all &&
+                    if (postSettingEntity.gender ==
+                            SottieGenderRestrictions.all &&
                         postSettingEntity.genderRatio)
                       Text(
                           "남자: ${postSettingEntity.numOfMan}명 / 여자: ${postSettingEntity.numOfWoman}명"),

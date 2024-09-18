@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_category.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class HomeHeader extends StatefulWidget {
@@ -12,7 +12,7 @@ class HomeHeader extends StatefulWidget {
 
 class _HomeHeaderState extends State<HomeHeader> {
   List<bool> selectedList = List<bool>.generate(
-    CategorySottie.values.length,
+    SottieCategory.values.length,
     (index) => index == 0 ? true : false,
   );
 
@@ -41,7 +41,7 @@ class _HomeHeaderState extends State<HomeHeader> {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: CategorySottie.values.length,
+        itemCount: SottieCategory.values.length,
         itemBuilder: (_, index) {
           return ChoiceChip(
             onSelected: (check) {
@@ -51,13 +51,13 @@ class _HomeHeaderState extends State<HomeHeader> {
               height: 18 * hu,
               child: Row(
                 children: [
-                  if (CategorySottie.values[index].name == '번개')
+                  if (SottieCategory.values[index].name == '번개')
                     const Icon(
                       Icons.bolt,
                       color: Colors.amber,
                     ),
                   Text(
-                    CategorySottie.values[index].name,
+                    SottieCategory.values[index].name,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 
 Future<void> makePostSend() async {
-  // Todo: @MultiPart()로 보낼 수 있는지 확인
+  /// Todo: @MultiPart()로 보낼 수 있는지 확인
   final formData = FormData.fromMap(postSettingEntity.toJsonForMakePostSend());
 }
 

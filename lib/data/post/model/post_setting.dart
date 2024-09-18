@@ -1,28 +1,28 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/age_range.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/category_sottie.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/gender_restrictions.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/location.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_age_range.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_category.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_gender_restrictions.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_location.dart';
 
 final class PostSetting {
   String title;
   String content;
   List<XFile>? images; // 업로드할 이미지 최대 3장정도?
-  List<CategorySottie> category; // 분류
+  List<SottieCategory> category; // 분류
   DateTime? date; // 시간도 포함, non-null 타입으로 안됨
   DateTime? dateStart; // Search Screen Filtering
   DateTime? dateEnd; // Search Screen Filtering
   TimeOfDay? timeStart; // Search Screen Filtering
   TimeOfDay? timeEnd; // Search Screen Filtering
-  Location location; // 지역
+  SottieLocation location; // 지역
   int numOfMember; // (최대) 참여자 수 제한
-  GenderRestrictions gender; // 성별 제한
+  SottieGenderRestrictions gender; // 성별 제한
   bool genderRatio; // 성비 제한 없음 스위치
   int numOfMan; // 성별 제한이 있을 경우의 남자 수;
   int numOfWoman; // 성별 제한이 있을 경우의 여자 수;
-  List<AgeRangeSottie> ageRange;
+  List<SottieAgeRange> ageRange;
   double manner; // 사용자의 매너 점수, 매너 온도 제한
   bool startSameTime; // 인원이 한번에 모였을 때 시작?
   bool openParticipation; // 채팅방이 생성된 후에도 도중에 누군가 들어올 수 있음.
@@ -38,9 +38,9 @@ final class PostSetting {
     this.dateEnd,
     this.timeStart,
     this.timeEnd,
-    this.location = Location.all,
+    this.location = SottieLocation.all,
     this.numOfMember = 0, // 0 => 최대 참여자 수 상관 없음
-    this.gender = GenderRestrictions.all, // all => 성별 상관 없음
+    this.gender = SottieGenderRestrictions.all, // all => 성별 상관 없음
     this.genderRatio = false,
     this.numOfMan = 0,
     this.numOfWoman = 0,
@@ -109,7 +109,7 @@ final class PostSetting {
 
   List<String> convertCategoryToStringList() {
     List<String> result = <String>[];
-    for (CategorySottie i in category) {
+    for (SottieCategory i in category) {
       result.add(i.name);
     }
     return result;
@@ -117,7 +117,7 @@ final class PostSetting {
 
   List<String> convertAgeRangeToStringList() {
     List<String> result = <String>[];
-    for (AgeRangeSottie i in ageRange) {
+    for (SottieAgeRange i in ageRange) {
       result.add(i.name);
     }
     return result;

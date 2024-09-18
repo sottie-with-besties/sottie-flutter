@@ -29,15 +29,15 @@ Future<String?> signOut() async {
 }
 
 Future<String?> _signOutEmail() async {
-  // Todo: 백엔드로 이메일 유저 로그아웃
+  /// Todo: 백엔드로 이메일 유저 로그아웃
   authType = null;
   return null;
 }
 
 Future<String?> _signOutKakao() async {
   try {
-    // logout()은 말그대로 로그아웃만 하고 연결을 완전히 끊지는 않는다.
-    // unlink()는 완전히 로그아웃을 끊어서 다시 로그인 해야할 때 계정이랑 비밀번호 다시 쳐야됨
+    /// logout()은 말그대로 로그아웃만 하고 연결을 완전히 끊지는 않는다.
+    /// unlink()는 완전히 로그아웃을 끊어서 다시 로그인 해야할 때 계정이랑 비밀번호 다시 쳐야됨
 
     // await UserApi.instance.logout();
     await UserApi.instance.unlink();
@@ -66,7 +66,7 @@ Future<String?> _signOutGoogle() async {
 }
 
 Future<String?> _signOutApple() async {
-  // Todo: 애플 로그인 로그아웃 하는 코드
+  /// Todo: 애플 로그인 로그아웃 하는 코드
 
   authType = null;
   return null;

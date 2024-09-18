@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -10,8 +8,8 @@ import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 
-class PostDetailScreen extends StatefulWidget {
-  const PostDetailScreen({
+class InChatInfoScreen extends StatefulWidget {
+  const InChatInfoScreen({
     super.key,
     required this.postModel,
   });
@@ -19,13 +17,13 @@ class PostDetailScreen extends StatefulWidget {
   final PostModel postModel;
 
   @override
-  State<PostDetailScreen> createState() => _PostDetailScreenState();
+  State<InChatInfoScreen> createState() => _InChatInfoScreenState();
 }
 
-class _PostDetailScreenState extends State<PostDetailScreen> {
+class _InChatInfoScreenState extends State<InChatInfoScreen> {
   final _thumbnailController = PageController();
 
-  // 더미
+  /// 더미
   final thumbnail = List.generate(
       3,
       (index) => Container(
@@ -139,37 +137,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   ],
                 );
               },
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: mainBrownColor,
-                      minimumSize: const Size(100, 65),
-                    ),
-                    onPressed: () {
-                      log("참여하기");
-                    },
-                    child: const Text(
-                      '참여하기',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: mainSilverColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 50,
             ),
           ],
         ),

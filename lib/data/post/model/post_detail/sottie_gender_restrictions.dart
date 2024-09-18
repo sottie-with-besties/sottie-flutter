@@ -1,4 +1,4 @@
-enum GenderRestrictions {
+enum SottieGenderRestrictions {
   all("성별 제한 없음"),
   manOnly("남성"),
   womanOnly("여성"),
@@ -6,5 +6,5 @@ enum GenderRestrictions {
 
   final String name;
 
-  const GenderRestrictions(this.name);
+  const SottieGenderRestrictions(this.name);
 }

@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/friend/model/friend_model.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_category.dart';
+import 'package:sottie_flutter/data/post/model/post_detail/sottie_location.dart';
+import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
@@ -22,7 +25,27 @@ class InChatDrawer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _subTitle('채팅방 정보', () {
-                  log("채팅방 정보");
+                  context.push(
+                    "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatInfoPath}",
+                    extra: {
+                      'postModel': PostModel(
+                        id: '123123',
+                        detailId: '123123',
+                        category: [
+                          SottieCategory.amity.name,
+                          SottieCategory.exercise.name
+                        ],
+                        thumbnailUrl: null,
+                        title: "안녕하세요",
+                        location: SottieLocation.sungnam.name,
+                        date: "2024년 9월 18일",
+                        currentManCount: 3,
+                        maxManCount: 6,
+                        currentWomanCount: 4,
+                        maxWomanCount: 7,
+                      )
+                    },
+                  );
                 }),
                 _subTitle('사진, 동영상', () {
                   log("사진, 동영상");
