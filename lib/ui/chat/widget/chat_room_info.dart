@@ -91,7 +91,7 @@ class ChatRoomInfo extends StatelessWidget {
               ),
               if (notReadMsg != 0)
                 Padding(
-                  padding: EdgeInsets.only(right: 10 * wu),
+                  padding: EdgeInsets.only(right: 12 * wu),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.redAccent.withOpacity(0.8),
@@ -99,13 +99,13 @@ class ChatRoomInfo extends StatelessWidget {
                     ),
                     width: 40 * wu,
                     height: 20 * hu,
-                    child: Center(
+                    padding: EdgeInsets.all(3 * hu),
+                    child: FittedBox(
                       child: Text(
                         numOfMsg,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: mainSilverColor,
                           fontWeight: FontWeight.bold,
-                          fontSize: 10 * hu,
                         ),
                       ),
                     ),
