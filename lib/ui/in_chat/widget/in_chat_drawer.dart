@@ -58,20 +58,23 @@ class InChatDrawer extends StatelessWidget {
                         "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatPhotoListPath}");
                   },
                 ),
-                SizedBox(
-                  height: 130 * hu,
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisSpacing: 5,
-                      crossAxisSpacing: 5,
-                      crossAxisCount: 3,
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: SizedBox(
+                    height: 130 * hu,
+                    child: GridView.builder(
+                      physics: const ClampingScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisSpacing: 5,
+                        crossAxisSpacing: 5,
+                        crossAxisCount: 3,
+                      ),
+                      itemBuilder: (context, index) => const InChatPhoto(),
+                      itemCount: 6, // 예시로 8개의 아이템을 생성합니다.
                     ),
-                    itemBuilder: (context, index) => const InChatPhoto(),
-                    itemCount: 6, // 예시로 8개의 아이템을 생성합니다.
                   ),
                 ),
-                const SizedBox(height: 30),
                 _subTitle(
                   '공지사항',
                   () {

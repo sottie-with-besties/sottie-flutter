@@ -55,20 +55,21 @@ class ExtraServiceList extends StatelessWidget {
       },
     ];
 
-    return Center(
-      child: Wrap(
-        spacing: 20 * wu,
-        runSpacing: 20 * hu,
-        alignment: WrapAlignment.start,
-        children: servicesList
-            .map(
-              (e) => _ExtraService(
-                serviceName: e['name'] as String,
-                serviceIcon: e['icon'] as IconData,
-                onTap: e['onTap'] as void Function(),
-              ),
-            )
-            .toList(),
+    return SizedBox(
+      height: 200 * hu,
+      child: GridView.builder(
+        physics: const ClampingScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          crossAxisCount: 3,
+        ),
+        itemBuilder: (_, index) => _ExtraService(
+          serviceName: servicesList[index]['name'] as String,
+          serviceIcon: servicesList[index]['icon'] as IconData,
+          onTap: servicesList[index]['onTap'] as void Function(),
+        ),
+        itemCount: 6, // 예시로 8개의 아이템을 생성합니다.
       ),
     );
   }
@@ -94,24 +95,24 @@ class _ExtraService extends StatelessWidget {
           border: Border.all(width: 1.5),
           borderRadius: BorderRadius.circular(8),
         ),
-        width: 80 * wu,
-        height: 100 * hu,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            FaIcon(serviceIcon, size: 26 * hu),
-            SizedBox(height: 5 * hu),
-            FittedBox(
-              child: Text(
-                serviceName,
-                style: TextStyle(
-                  fontSize: 14 * hu,
-                  fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: EdgeInsets.all(16.0 * hu),
+          child: FittedBox(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                FaIcon(serviceIcon),
+                SizedBox(height: 5 * hu),
+                Text(
+                  serviceName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
