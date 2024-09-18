@@ -17,26 +17,18 @@ class MakePostScreenStepThree extends StatefulWidget {
 }
 
 class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
-  final controller = PageController();
-  List<Image>? images;
+  final _thumbnailController = PageController();
 
-  @override
-  void initState() {
-    if (postSettingEntity.images != null) {
-      images = postSettingEntity.images!.map((image) {
-        return Image.file(
-          File(image.path),
-          fit: BoxFit.cover,
-        );
-      }).toList();
-    }
-
-    super.initState();
-  }
+  List<Image>? images = postSettingEntity.images?.map((image) {
+    return Image.file(
+      File(image.path),
+      fit: BoxFit.cover,
+    );
+  }).toList();
 
   @override
   void dispose() {
-    controller.dispose();
+    _thumbnailController.dispose();
     super.dispose();
   }
 
@@ -66,20 +58,20 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
               ),
               Column(
                 children: [
-                  if (images != null)
+                  if (images != null && images!.isNotEmpty)
                     SizedBox(
                       height: 250 * hu,
                       child: PageView.builder(
-                        controller: controller,
+                        controller: _thumbnailController,
                         itemBuilder: (_, index) {
                           return images![index % images!.length];
                         },
                       ),
                     ),
                   const SizedBox(height: 16),
-                  if (images != null)
+                  if (images != null && images!.isNotEmpty)
                     SmoothPageIndicator(
-                      controller: controller,
+                      controller: _thumbnailController,
                       count: images!.length,
                       effect: const WormEffect(
                         dotHeight: 8,

@@ -62,7 +62,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text("환경 설정"),
+          title: const Text("채팅방 환경 설정"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(32.0),
