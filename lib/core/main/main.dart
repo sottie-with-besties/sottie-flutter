@@ -54,6 +54,7 @@ final _customTheme = ThemeData(
   textTheme: GoogleFonts.nanumGothicTextTheme(),
   appBarTheme: AppBarTheme(
     color: Colors.white,
+    centerTitle: true,
     titleTextStyle: TextStyle(
       fontWeight: FontWeight.bold,
       color: Colors.black,
