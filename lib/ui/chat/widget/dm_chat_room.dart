@@ -24,16 +24,12 @@ class DmChatRoom extends StatefulWidget {
 }
 
 class _DmChatRoomState extends State<DmChatRoom> {
-  void _dmAction(bool withSlide) {
+  void _alarmOnOffAction(bool withSlide) {
     log("DmAction");
   }
 
-  void _deleteAction(bool withSlide) {
+  void _chatRoomOutAction(bool withSlide) {
     log("DeleteAction");
-  }
-
-  void _reportAction(bool withSlide) {
-    log("ReportAction");
   }
 
   @override
@@ -54,59 +50,41 @@ class _DmChatRoomState extends State<DmChatRoom> {
       onLongPressWidget: Column(
         children: [
           OnLongPressOption(
-            color: Colors.green,
+            color: Colors.grey,
             onTap: () {
-              _dmAction(false);
+              _alarmOnOffAction(false);
             },
             icon: Icons.messenger_outline,
-            optionTitle: "DM 보내기",
+            optionTitle: "알람 Off",
           ),
           SizedBox(height: 10 * hu),
           OnLongPressOption(
             color: Colors.redAccent,
             onTap: () {
-              _deleteAction(false);
+              _chatRoomOutAction(false);
             },
             icon: Icons.delete_forever,
-            optionTitle: "친구 삭제",
+            optionTitle: "채팅 삭제",
           ),
-          SizedBox(height: 10 * hu),
-          OnLongPressOption(
-            color: Colors.blueAccent,
-            onTap: () {
-              _reportAction(false);
-            },
-            icon: Icons.report_gmailerrorred_outlined,
-            optionTitle: "신고",
-          )
         ],
       ),
       slideActions: [
         SlidableAction(
-          onPressed: (context) => _dmAction(true),
-          backgroundColor: Colors.green,
+          onPressed: (context) => _alarmOnOffAction(true),
+          backgroundColor: Colors.grey,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.messenger_outline,
-          label: 'DM',
+          label: '알람 Off',
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
         SlidableAction(
-          onPressed: (context) => _deleteAction(true),
+          onPressed: (context) => _chatRoomOutAction(true),
           backgroundColor: Colors.redAccent,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.delete,
-          label: 'Delete',
-          padding: const EdgeInsets.symmetric(horizontal: 1),
-        ),
-        SlidableAction(
-          onPressed: (context) => _reportAction(true),
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          autoClose: true,
-          icon: Icons.report,
-          label: 'Report',
+          label: '채팅 삭제',
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
       ],

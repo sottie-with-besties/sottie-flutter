@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
@@ -25,16 +26,12 @@ class ChatRoomGenerated extends StatefulWidget {
 }
 
 class _ChatRoomGeneratedState extends State<ChatRoomGenerated> {
-  void _dmAction(bool withSlide) {
+  void _alarmOnOffAction(bool withSlide) {
     log("DmAction");
   }
 
-  void _deleteAction(bool withSlide) {
+  void _chatRoomOutAction(bool withSlide) {
     log("DeleteAction");
-  }
-
-  void _reportAction(bool withSlide) {
-    log("ReportAction");
   }
 
   @override
@@ -55,59 +52,41 @@ class _ChatRoomGeneratedState extends State<ChatRoomGenerated> {
       onLongPressWidget: Column(
         children: [
           OnLongPressOption(
-            color: Colors.green,
+            color: Colors.grey,
             onTap: () {
-              _dmAction(false);
+              _alarmOnOffAction(false);
             },
-            icon: Icons.messenger_outline,
-            optionTitle: "DM 보내기",
+            icon: Icons.alarm_off,
+            optionTitle: "알람 끄기",
           ),
           SizedBox(height: 10 * hu),
           OnLongPressOption(
             color: Colors.redAccent,
             onTap: () {
-              _deleteAction(false);
+              _chatRoomOutAction(false);
             },
-            icon: Icons.delete_forever,
-            optionTitle: "친구 삭제",
+            icon: FontAwesomeIcons.outdent,
+            optionTitle: "채팅방 나가기",
           ),
-          SizedBox(height: 10 * hu),
-          OnLongPressOption(
-            color: Colors.blueAccent,
-            onTap: () {
-              _reportAction(false);
-            },
-            icon: Icons.report_gmailerrorred_outlined,
-            optionTitle: "신고",
-          )
         ],
       ),
       slideActions: [
         SlidableAction(
-          onPressed: (context) => _dmAction(true),
-          backgroundColor: Colors.green,
+          onPressed: (context) => _alarmOnOffAction(true),
+          backgroundColor: Colors.grey,
           foregroundColor: Colors.white,
           autoClose: true,
-          icon: Icons.messenger_outline,
-          label: 'DM',
+          icon: Icons.alarm_off,
+          label: '알람 끄기',
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
         SlidableAction(
-          onPressed: (context) => _deleteAction(true),
+          onPressed: (context) => _chatRoomOutAction(true),
           backgroundColor: Colors.redAccent,
           foregroundColor: Colors.white,
           autoClose: true,
-          icon: Icons.delete,
-          label: 'Delete',
-          padding: const EdgeInsets.symmetric(horizontal: 1),
-        ),
-        SlidableAction(
-          onPressed: (context) => _reportAction(true),
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          autoClose: true,
-          icon: Icons.report,
-          label: 'Report',
+          icon: FontAwesomeIcons.outdent,
+          label: '나가기',
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
       ],
