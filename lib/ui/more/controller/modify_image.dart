@@ -6,12 +6,11 @@ import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 final _picker = ImagePicker();
 
-Future<XFile?> modifyImage(BuildContext context) async {
+Future<void> modifyImage(BuildContext context) async {
   try {
     // 프로필 사진 선택
     final image = await _picker.pickImage(source: ImageSource.gallery);
     myInfoEntity.myProfilePath = image?.path;
-    return image;
   } on PlatformException catch (e) {
     if (e.code == 'photo_access_denied') {
       if (context.mounted) {
@@ -22,9 +21,7 @@ Future<XFile?> modifyImage(BuildContext context) async {
         showSnackBar(context, "에러가 발생했습니다. Error Code: ${e.code}");
       }
     }
-    return null;
   } catch (_) {
     if (context.mounted) showSnackBar(context, "알 수 없는 에러가 발생했습니다.");
-    return null;
   }
 }

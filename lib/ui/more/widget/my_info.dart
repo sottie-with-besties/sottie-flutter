@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -27,7 +25,6 @@ class _MyInfoState extends State<MyInfo> {
           children: [
             Row(
               children: [
-                // const 선언을 붙이면 프로필 사진 변경이 즉각 반영되지 않습니다.
                 Hero(
                   tag: 'me',
                   child: UserProfile(
@@ -66,11 +63,8 @@ class _MyInfoState extends State<MyInfo> {
             ),
             OutlinedButton(
                 onPressed: () async {
-                  final profileImageXFile = await context.push(
+                  await context.push(
                       "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}");
-                  // Todo: Pop 이후에 변경된 나의 정보를 백엔드로 전송, 프로필 이미지 변환하여 따로 전송
-                  log(profileImageXFile.toString());
-
                   setState(() {});
                 },
                 child: const Text(

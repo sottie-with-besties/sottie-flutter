@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
@@ -17,9 +16,6 @@ class InfoModifyScreen extends StatefulWidget {
 }
 
 class _InfoModifyScreenState extends State<InfoModifyScreen> {
-  XFile? _cachedProfile;
-  bool _backWithLeadingIcon = false;
-
   final _nicknameController = TextEditingController();
   final _stateMessageController = TextEditingController();
   final _nicknameFocusNode = FocusNode();
@@ -53,113 +49,97 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (_, __) {
-        if (!_backWithLeadingIcon) {
-          context.pop({'profileImageXFile': _cachedProfile});
-        }
+    return GestureDetector(
+      onTap: () {
+        myInfoEntity.nickName = _nicknameController.text;
+        myInfoEntity.stateMessage = _stateMessageController.text;
+        _nicknameFocusNode.unfocus();
+        _stateMessageFocusNode.unfocus();
+        // Todo: 디바운스 -> 서버로 수정한 정보 보내기
       },
-      child: GestureDetector(
-        onTap: () {
-          myInfoEntity.nickName = _nicknameController.text;
-          myInfoEntity.stateMessage = _stateMessageController.text;
-          _nicknameFocusNode.unfocus();
-          _stateMessageFocusNode.unfocus();
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                _backWithLeadingIcon = true;
-
-                context.pop({'profileImageXFile': _cachedProfile}); // 원하는 값을 전달
-              },
-            ),
-          ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  GestureDetector(
-                    onTap: () async {
-                      _cachedProfile = await modifyImage(context);
-                      setState(() {});
-                      log(myInfoEntity.myProfilePath ?? 'null');
-                    },
-                    child: Hero(
-                      tag: 'me',
-                      child: UserProfile(
-                        avatarId: 'me',
-                        randomAvatarSize: 80,
-                        profileAvatarSize: 40,
-                        profileUrl: myInfoEntity.profileUrl,
-                        myProfileXFilePath: myInfoEntity.myProfilePath,
-                      ),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    await modifyImage(context);
+                    setState(() {});
+                    log(myInfoEntity.myProfilePath ?? 'null');
+                    // Todo: 디바운스 -> 서버로 수정한 정보 보내기
+                  },
+                  child: Hero(
+                    tag: 'me',
+                    child: UserProfile(
+                      avatarId: 'me',
+                      randomAvatarSize: 80,
+                      profileAvatarSize: 40,
+                      profileUrl: myInfoEntity.profileUrl,
+                      myProfileXFilePath: myInfoEntity.myProfilePath,
                     ),
                   ),
-                  TextButton(
-                      onPressed: () {
-                        myInfoEntity.profileUrl = null;
-                        myInfoEntity.myProfilePath = null;
-                        setState(() {});
-                      },
-                      child: const Text("프로필 사진 초기화")),
-                  const SizedBox(height: 30),
-                  _renderSubTitle("닉네임"),
-                  LocalTextField(
-                    controller: _nicknameController,
-                    focusNode: _nicknameFocusNode,
-                    prefixIcon: false,
-                    hint: myInfoEntity.nickName,
-                    maxLength: 10,
-                    onFieldSubmitted: (value) {
-                      myInfoEntity.nickName = value;
+                ),
+                TextButton(
+                    onPressed: () {
+                      myInfoEntity.profileUrl = null;
+                      myInfoEntity.myProfilePath = null;
+                      setState(() {});
                     },
-                  ),
-                  _renderSubTitle("상태 메세지"),
-                  LocalTextField(
-                    controller: _stateMessageController,
-                    focusNode: _stateMessageFocusNode,
-                    prefixIcon: false,
-                    hint: myInfoEntity.stateMessage,
-                    maxLength: 30,
-                    onFieldSubmitted: (value) {
-                      myInfoEntity.stateMessage = value;
-                    },
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            context.push(
-                                "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}/${CustomRouter.emailChangePath}");
-                          },
-                          child: const Text("이메일 변경")),
-                      TextButton(
-                          onPressed: () {
-                            context.push(
-                                "${CustomRouter.authPath}/${CustomRouter.findPasswordPath}");
-                          },
-                          child: const Text("비밀번호 변경")),
-                      TextButton(
-                          onPressed: () {
-                            context.push(
-                              "${CustomRouter.authPath}/${CustomRouter.certificationPath}",
-                              extra: {
-                                'isModifyInfo': true,
-                              },
-                            );
-                          },
-                          child: const Text("개인정보 변경 (이름, 성별, 전화번호 등)")),
-                    ],
-                  ),
-                ],
-              ),
+                    child: const Text("프로필 사진 초기화")),
+                const SizedBox(height: 30),
+                _renderSubTitle("닉네임"),
+                LocalTextField(
+                  controller: _nicknameController,
+                  focusNode: _nicknameFocusNode,
+                  prefixIcon: false,
+                  hint: myInfoEntity.nickName,
+                  maxLength: 10,
+                  onFieldSubmitted: (value) {
+                    myInfoEntity.nickName = value;
+                  },
+                ),
+                _renderSubTitle("상태 메세지"),
+                LocalTextField(
+                  controller: _stateMessageController,
+                  focusNode: _stateMessageFocusNode,
+                  prefixIcon: false,
+                  hint: myInfoEntity.stateMessage,
+                  maxLength: 30,
+                  onFieldSubmitted: (value) {
+                    myInfoEntity.stateMessage = value;
+                  },
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          context.push(
+                              "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}/${CustomRouter.emailChangePath}");
+                        },
+                        child: const Text("이메일 변경")),
+                    TextButton(
+                        onPressed: () {
+                          context.push(
+                              "${CustomRouter.authPath}/${CustomRouter.findPasswordPath}");
+                        },
+                        child: const Text("비밀번호 변경")),
+                    TextButton(
+                        onPressed: () {
+                          context.push(
+                            "${CustomRouter.authPath}/${CustomRouter.certificationPath}",
+                            extra: {
+                              'isModifyInfo': true,
+                            },
+                          );
+                        },
+                        child: const Text("개인정보 변경 (이름, 성별, 전화번호 등)")),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
