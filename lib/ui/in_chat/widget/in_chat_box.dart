@@ -15,7 +15,7 @@ class InChatBox extends StatefulWidget {
   State<InChatBox> createState() => _InChatBoxState();
 }
 
-class _InChatBoxState extends State<InChatBox> {
+class _InChatBoxState extends State<InChatBox> with WidgetsBindingObserver {
   final _scrollController = ScrollController(
     keepScrollOffset: false,
   );
@@ -23,6 +23,7 @@ class _InChatBoxState extends State<InChatBox> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
     });
@@ -30,8 +31,14 @@ class _InChatBoxState extends State<InChatBox> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _scrollController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeMetrics() {
+    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
   }
 
   @override
