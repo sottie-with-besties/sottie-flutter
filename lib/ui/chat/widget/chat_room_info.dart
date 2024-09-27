@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 
 class ChatRoomInfo extends StatelessWidget {
   const ChatRoomInfo({
@@ -60,7 +61,7 @@ class ChatRoomInfo extends StatelessWidget {
               SizedBox(
                 width: 50 * wu,
                 child: Text(
-                  _renderLatestTime(latestTime),
+                  renderCustomStringTime(latestTime),
                   style: TextStyle(
                     fontSize: 8 * hu,
                     color: const Color(0x64000000),
@@ -117,28 +118,4 @@ class ChatRoomInfo extends StatelessWidget {
       ),
     );
   }
-}
-
-String _renderLatestTime(String utcTimeString) {
-  final now = DateTime.now();
-
-  final latestTime = DateTime.parse(utcTimeString);
-  final timeDifference = now.difference(latestTime);
-
-  late String customTime;
-
-  if (latestTime.year != now.year) {
-    customTime = '${latestTime.year}년 ${latestTime.month}월 ${latestTime.day}일';
-  } else if (timeDifference.inDays > 0) {
-    customTime = '${latestTime.month}월 ${latestTime.day}일';
-  } else {
-    final dayString = latestTime.hour < 12 ? '오전' : '오후';
-    final hour =
-        latestTime.hour > 12 ? '${latestTime.hour - 12}' : '${latestTime.hour}';
-
-    customTime =
-        '$dayString $hour : ${latestTime.minute.toString().padLeft(2, '0')}';
-  }
-
-  return customTime;
 }
