@@ -37,49 +37,53 @@ class _InChatBoxState extends State<InChatBox> with WidgetsBindingObserver {
       padding: const EdgeInsets.only(left: 8),
       child: Column(
         children: [
-          Align(
-            alignment: myMsg ? Alignment.centerRight : Alignment.centerLeft,
-            child: Column(
-              crossAxisAlignment:
-                  myMsg ? CrossAxisAlignment.start : CrossAxisAlignment.end,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (!myMsg)
-                      UserProfile(
-                        avatarId: model.userIdWhoSent,
-                        randomAvatarSize: 30,
-                      ),
-                    const SizedBox(width: 15),
-                    ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxHeight: 150 * hu,
-                        maxWidth: 150 * wu,
-                      ),
-                      child: SingleChildScrollView(
-                        physics: const ClampingScrollPhysics(),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: myMsg ? Colors.blueAccent : mainSilverColor,
-                            borderRadius: BorderRadius.circular(5),
+          Row(
+            mainAxisAlignment:
+                myMsg ? MainAxisAlignment.end : MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (!myMsg)
+                UserProfile(
+                  avatarId: model.userIdWhoSent,
+                  randomAvatarSize: 30,
+                ),
+              if (!myMsg) const SizedBox(width: 15),
+              Column(
+                crossAxisAlignment:
+                    myMsg ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                children: [
+                  ...model.entity.map(
+                    (entityData) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            maxHeight: 150 * hu,
+                            maxWidth: 150 * wu,
                           ),
-                          padding: const EdgeInsets.all(12),
-                          child: Text(
-                            model.entity.entity,
-                            style: TextStyle(
-                              color: myMsg ? mainSilverColor : Colors.black,
+                          child: SingleChildScrollView(
+                            physics: const ClampingScrollPhysics(),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color:
+                                    myMsg ? Colors.blueAccent : mainSilverColor,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              padding: const EdgeInsets.all(12),
+                              child: Text(
+                                entityData.entity,
+                                style: TextStyle(
+                                  color: myMsg ? mainSilverColor : Colors.black,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 5),
-                Transform.translate(
-                  offset: Offset(myMsg ? 12 * wu : 0, 0),
-                  child: Text(
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
                     renderCustomStringTime(
                       model.sentTime,
                       model.sentTime,
@@ -89,11 +93,11 @@ class _InChatBoxState extends State<InChatBox> with WidgetsBindingObserver {
                       fontSize: 10,
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 25),
         ],
       ),
     );
