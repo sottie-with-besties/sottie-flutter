@@ -2,15 +2,16 @@
 /// 올해 이전의 시간은 연 + 월 + 일
 /// 오늘이 아닌 시간은 월 + 일
 /// 오늘의 시간은 오전/오후 + 시 : 분(0~9분 => 00분, 01분, 02분...)
-String renderCustomStringTime(String utcTimeString) {
-  final now = DateTime.now();
+String renderCustomStringTime(
+    String utcTimeString, String compareDateUtcTimeString) {
+  final compareTime = DateTime.parse(compareDateUtcTimeString);
 
   final latestTime = DateTime.parse(utcTimeString);
-  final timeDifference = now.difference(latestTime);
+  final timeDifference = compareTime.difference(latestTime);
 
   late String customTime;
 
-  if (latestTime.year != now.year) {
+  if (latestTime.year != compareTime.year) {
     customTime = '${latestTime.year}년 ${latestTime.month}월 ${latestTime.day}일';
   } else if (timeDifference.inDays > 0) {
     customTime = '${latestTime.month}월 ${latestTime.day}일';

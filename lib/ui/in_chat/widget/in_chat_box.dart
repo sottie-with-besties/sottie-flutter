@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/data/in_chat/data_source/in_chat_message_dummy.dart';
+import 'package:sottie_flutter/data/in_chat/model/in_chat_message_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
+import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
 class InChatBox extends StatefulWidget {
@@ -16,21 +20,89 @@ class InChatBox extends StatefulWidget {
 }
 
 class _InChatBoxState extends State<InChatBox> with WidgetsBindingObserver {
+  // didChangeMetrics
+  double _viewInsetsBottom = 0;
+
+  /// 첫 입장 했을때 스크롤 맨 아래로 내리기. True로 바꾸어 한번만 동작하게 한다.
+  bool firstEnter = false;
+
   final _scrollController = ScrollController(
     keepScrollOffset: false,
   );
 
-  // didChangeMetrics
-  double _viewInsetsBottom = 0;
+  Widget _renderDmChatBox(InChatMessageDataModel model) {
+    final myMsg = model.userIdWhoSent == '12345';
 
-  /// 최근 채팅이 보이도록 채팅방 입장하기
+    return Padding(
+      padding: const EdgeInsets.only(left: 8),
+      child: Column(
+        children: [
+          Align(
+            alignment: myMsg ? Alignment.centerRight : Alignment.centerLeft,
+            child: Column(
+              crossAxisAlignment:
+                  myMsg ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (!myMsg)
+                      UserProfile(
+                        avatarId: model.userIdWhoSent,
+                        randomAvatarSize: 30,
+                      ),
+                    const SizedBox(width: 15),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: 150 * hu,
+                        maxWidth: 150 * wu,
+                      ),
+                      child: SingleChildScrollView(
+                        physics: const ClampingScrollPhysics(),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: myMsg ? Colors.blueAccent : mainSilverColor,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          padding: const EdgeInsets.all(12),
+                          child: Text(
+                            model.entity.entity,
+                            style: TextStyle(
+                              color: myMsg ? mainSilverColor : Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Transform.translate(
+                  offset: Offset(myMsg ? 12 * wu : 0, 0),
+                  child: Text(
+                    renderCustomStringTime(
+                      model.sentTime,
+                      model.sentTime,
+                    ),
+                    style: const TextStyle(
+                      color: mainSilverColor,
+                      fontSize: 10,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-    });
   }
 
   @override
@@ -45,7 +117,14 @@ class _InChatBoxState extends State<InChatBox> with WidgetsBindingObserver {
   /// 키보드가 올라오는 중 및 내려가는 중을 의미하는 것이며 그 이외에는 유저가 스크롤 할 수 있게 한다.
   @override
   void didChangeMetrics() {
+    /// 최근 채팅이 보이도록 채팅방 입장하기
+    if (_scrollController.hasClients && !firstEnter) {
+      firstEnter = true;
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    }
+
     final bottom = View.of(context).viewInsets.bottom;
+
     if (_viewInsetsBottom != bottom) {
       _viewInsetsBottom = bottom;
       _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
@@ -54,162 +133,50 @@ class _InChatBoxState extends State<InChatBox> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    const opponentStyle = TextStyle(color: Colors.black);
-    const myStyle = TextStyle(color: mainSilverColor);
-
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: ListView(
-          controller: _scrollController,
-          physics: const ClampingScrollPhysics(),
+    return CustomFutureBuilder(
+      futureFunction: getInChatMessageDummy,
+      loadingWidget: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            renderDmChatBox(
-              [
-                const Text(
-                  "안녕하세요.",
-                  style: opponentStyle,
-                ),
-              ],
-              false,
-              widget.avatarId,
+            SizedBox(
+              width: 50 * wu,
+              child: LinearProgressIndicator(
+                backgroundColor: mainSilverColor,
+                color: Colors.blueAccent,
+                borderRadius: BorderRadius.circular(8),
+                minHeight: 10,
+              ),
             ),
-            renderDmChatBox(
-              [
-                const Text(
-                  "반갑습니다.",
-                  style: myStyle,
-                ),
-              ],
-              true,
-              widget.avatarId,
-            ),
-            renderDmChatBox(
-              [
-                const Text(
-                  "어디서 만날까요?",
-                  style: opponentStyle,
-                ),
-              ],
-              false,
-              widget.avatarId,
-            ),
-            renderDmChatBox(
-              [
-                const Text(
-                  "어디서 만날까요?",
-                  style: opponentStyle,
-                ),
-              ],
-              false,
-              widget.avatarId,
-            ),
-            renderDmChatBox(
-              [
-                const Text(
-                  "어디서 만날까요?",
-                  style: opponentStyle,
-                ),
-              ],
-              false,
-              widget.avatarId,
-            ),
-            renderDmChatBox(
-              [
-                const Text(
-                  "수원에서 뵈요.",
-                  style: myStyle,
-                ),
-              ],
-              true,
-              widget.avatarId,
-            ),
-            renderDmChatBox(
-              [
-                const Text(
-                  "넵.",
-                  style: opponentStyle,
-                ),
-              ],
-              false,
-              widget.avatarId,
-            ),
-            renderDmChatBox(
-              [
-                const Text(
-                  "넵.",
-                  style: opponentStyle,
-                ),
-              ],
-              false,
-              widget.avatarId,
-            ),
-            renderDmChatBox(
-              [
-                const Text(
-                  "넵.",
-                  style: opponentStyle,
-                ),
-              ],
-              false,
-              widget.avatarId,
-            ),
-            renderDmChatBox(
-              [
-                const Text(
-                  "ㅁㄴ아ㅣ;러마ㅣ;ㅓ라ㅣ;ㅁㄴㅁㄴ이ㅏ;러ㅏㅣㅁ;어라ㅣ;ㅁㄴ어ㅏㅣ럼나ㅣ;러ㅏㅣㅁ너라ㅣ;ㅁㄴ어ㅑㅐㄹㅁ너댜ㅐ렂댜ㅐㅣ러ㅑㅐㅁㄴ어ㅑㅐ리;ㅁㄴ어ㅑㅐㅣㄹ머냐ㅐㅇ러ㅑㅐㅁㄴ어ㅑㅐㄹㅁㄴ어ㅑㅐㄹㅁ너ㅑ애러ㅐㅑ;ㅁ어랴ㅐ;ㅁ너ㅑㅐㄹ;ㅁㄴ어ㅑㅐ;ㄹㅁ너ㅑㅐ;ㅇ러ㅑㅐㅁㄴ;러ㅑㅐ;멍랴ㅐ;ㅁㄴ어ㅑㅐ;럼냐ㅐ;러ㅑㅐㅁㄴ러ㅑㅐㅔ;머ㅑㅐㄹ;ㅁ",
-                  style: opponentStyle,
-                ),
-              ],
-              false,
-              widget.avatarId,
-            ),
+            const SizedBox(height: 5),
+            const Text(
+              "채팅을 불러오고 있습니다...",
+              style: TextStyle(
+                color: mainSilverColor,
+              ),
+            )
           ],
         ),
       ),
+      callBack: (futureData) {
+        final data = futureData as InChatMessageModel;
+
+        return Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+
+            /// ListView.builder => 메모리 동적 해제
+            child: ListView.builder(
+              controller: _scrollController,
+              physics: const ClampingScrollPhysics(),
+              itemCount: data.inChatMessageData.length,
+              itemBuilder: (_, index) =>
+                  _renderDmChatBox(data.inChatMessageData[index]),
+            ),
+          ),
+        );
+      },
     );
   }
-}
-
-Widget renderDmChatBox(List<Widget> contents, bool myMsg, String? avatarId) {
-  return Padding(
-    padding: const EdgeInsets.only(left: 8),
-    child: Column(
-      children: [
-        Row(
-          mainAxisAlignment:
-              myMsg ? MainAxisAlignment.end : MainAxisAlignment.start,
-          children: [
-            if (!myMsg)
-              UserProfile(
-                avatarId: avatarId,
-                randomAvatarSize: 30,
-              ),
-            const SizedBox(width: 15),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxHeight: 150 * hu,
-                maxWidth: 150 * wu,
-              ),
-              child: SingleChildScrollView(
-                physics: const ClampingScrollPhysics(),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: myMsg ? Colors.blueAccent : mainSilverColor,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: contents,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-      ],
-    ),
-  );
 }

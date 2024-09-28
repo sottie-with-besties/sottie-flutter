@@ -47,6 +47,7 @@ class _InChatScreenState extends State<InChatScreen> {
         endDrawer: const InChatDrawer(),
         body: widget.isGenerated
             ? Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const InChatBox(avatarId: "123"),
                   InChatTypeBox(focusNode: _focusNode),
