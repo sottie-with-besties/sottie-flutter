@@ -78,7 +78,7 @@ dependencies:
 
   # Json Serialization
   freezed_annotation:
-  json_annotation:
+  json_annotation: 4.9.0
 
   # 기타 유틸리티
   easy_debounce:

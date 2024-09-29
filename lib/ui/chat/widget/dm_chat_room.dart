@@ -6,8 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:random_avatar/random_avatar.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/dm/model/dm_model.dart';
+import 'package:sottie_flutter/data/chat/model/dm_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_tap_widget.dart';
 
@@ -133,7 +134,8 @@ class _DmChatRoomState extends State<DmChatRoom> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.model.latestTime,
+                      renderCustomStringTime(widget.model.latestTime,
+                          DateTime.now().toUtc().toIso8601String()),
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: 10 * hu,

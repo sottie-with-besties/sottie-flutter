@@ -6,6 +6,7 @@ import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_top.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 
 class ChatRoomNotGenerated extends StatelessWidget {
   const ChatRoomNotGenerated({
@@ -17,6 +18,8 @@ class ChatRoomNotGenerated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final date = DateTime.parse(model.date);
+
     return Material(
       color: mainSilverColor,
       child: InkWell(
@@ -63,7 +66,7 @@ class ChatRoomNotGenerated extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          model.date,
+                          "${date.year}년 ${date.month}월 ${date.day}일 ${renderCustomStringTime(model.date, model.date)}",
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),

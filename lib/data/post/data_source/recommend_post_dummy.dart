@@ -16,7 +16,7 @@ Future<List<PostModel>> getRecommendPostDummy() async {
       maxWomanCount: 5,
       title: '번개 모임: 당일에 만나요!',
       location: '서울 용산구',
-      date: '2024-09-15',
+      date: '2024-09-15T12:30:00Z',
     ),
     PostModel(
       id: '7',
@@ -31,7 +31,7 @@ Future<List<PostModel>> getRecommendPostDummy() async {
       maxWomanCount: null,
       title: '공부 모임: 스터디 그룹 모집',
       location: '서울 광진구',
-      date: '2024-09-16',
+      date: '2024-09-16T12:30:00Z',
     ),
     PostModel(
       id: '8',
@@ -46,7 +46,7 @@ Future<List<PostModel>> getRecommendPostDummy() async {
       maxWomanCount: 6,
       title: '기타 모임: 다양한 사람들과 만나요!',
       location: '서울 강북구',
-      date: '2024-09-17',
+      date: '2024-09-17T12:30:00Z',
     ),
     PostModel(
       id: '9',
@@ -61,7 +61,7 @@ Future<List<PostModel>> getRecommendPostDummy() async {
       maxWomanCount: null,
       title: '운동과 공부를 동시에!',
       location: '서울 은평구',
-      date: '2024-09-18',
+      date: '2024-09-18T12:30:00Z',
     ),
     PostModel(
       id: '10',
@@ -76,7 +76,7 @@ Future<List<PostModel>> getRecommendPostDummy() async {
       maxWomanCount: 5,
       title: '게임 팀 모집: 실력과 열정 있는 분들 환영',
       location: '서울 노원구',
-      date: '2024-09-19',
+      date: '2024-09-19T12:30:00Z',
     ),
   ];
 }

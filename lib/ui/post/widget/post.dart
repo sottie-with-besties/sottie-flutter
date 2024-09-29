@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 
 class Post extends StatelessWidget {
   const Post({
@@ -15,6 +16,8 @@ class Post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final date = DateTime.parse(model.date);
+
     return GestureDetector(
       onTap: () => context.push(
         CustomRouter.postDetailPath,
@@ -25,7 +28,7 @@ class Post extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8 * wu),
         child: Container(
-          height: 140 * hu,
+          height: 135 * hu,
           padding: EdgeInsets.all(12.0 * hu),
           decoration: BoxDecoration(
             border: const Border(top: BorderSide(width: 0.3)),
@@ -83,7 +86,7 @@ class Post extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          model.date,
+                          "${date.year}년 ${date.month}월 ${date.day}일\n${renderCustomStringTime(model.date, model.date)}",
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: 11 * hu,

@@ -21,7 +21,7 @@ class InChatMessageModel with _$InChatMessageModel {
 /// userIdWhoSent: 메세지 보낸 유저 id -> 이걸로 나 또는 타인의 메세지 구별 가능
 /// sentTime: 유저가 메세지를 전송한 시간(UTC)
 /// entity를 List로 받아서 맨 아래쪽 메세지에 시간 표시
-@freezed
+@unfreezed
 class InChatMessageDataModel with _$InChatMessageDataModel {
   factory InChatMessageDataModel({
     required String id,

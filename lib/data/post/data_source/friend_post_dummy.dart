@@ -16,7 +16,7 @@ Future<List<PostModel>> getFriendPostDummy() async {
       maxWomanCount: 4,
       title: '운동 친목 모임: 같이 헬스장 가실 분!',
       location: '서울 서초구',
-      date: '2024-09-20',
+      date: '2024-09-20T12:30:00Z',
     ),
     PostModel(
       id: '12',
@@ -31,7 +31,7 @@ Future<List<PostModel>> getFriendPostDummy() async {
       maxWomanCount: null,
       title: '구인/구직: 아르바이트 팀원 구합니다',
       location: '서울 중구',
-      date: '2024-09-21',
+      date: '2024-09-21T12:30:00Z',
     ),
     PostModel(
       id: '13',
@@ -46,7 +46,7 @@ Future<List<PostModel>> getFriendPostDummy() async {
       maxWomanCount: 5,
       title: '스터디 모임: 다양한 분야 공부',
       location: '서울 강동구',
-      date: '2024-09-22',
+      date: '2024-09-22T12:30:00Z',
     ),
     PostModel(
       id: '14',
@@ -61,7 +61,7 @@ Future<List<PostModel>> getFriendPostDummy() async {
       maxWomanCount: null,
       title: '번개 게임 모임: 함께 즐길 분!',
       location: '서울 성동구',
-      date: '2024-09-23',
+      date: '2024-09-23T12:30:00Z',
     ),
     PostModel(
       id: '15',
@@ -76,7 +76,7 @@ Future<List<PostModel>> getFriendPostDummy() async {
       maxWomanCount: 2,
       title: '친목 모임: 새로운 친구들을 만나요',
       location: '서울 동대문구',
-      date: '2024-09-24',
+      date: '2024-09-24T12:30:00Z',
     ),
   ];
 }

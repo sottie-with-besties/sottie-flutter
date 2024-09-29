@@ -24,6 +24,7 @@ class ChatRoomInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final numOfMsg = notReadMsg > 999 ? '999+' : notReadMsg.toString();
+    final date = DateTime.parse(this.date);
 
     return SizedBox(
       width: 220 * wu,
@@ -80,8 +81,8 @@ class ChatRoomInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    "${date.year}년 ${date.month}월 ${date.day}일 ${renderCustomStringTime(this.date, this.date)}",
                     overflow: TextOverflow.ellipsis,
-                    date,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
