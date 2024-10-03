@@ -36,6 +36,53 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  # UI
+  font_awesome_flutter: # 아이콘
+  google_fonts: # 구글 폰트
+  random_avatar:
+  auth_button_kit:
+  pinput: # 이메일, 전화번호 인증
+  flutter_slidable:
+  smooth_page_indicator: # 홈 스크린 이벤트
+  skeletonizer: # 로딩 스켈레톤
+  time_range_picker:
+  fl_chart: # 친구 매너포인트 그래프
+
+  # Riverpod
+  flutter_riverpod:
+  riverpod_annotation:
+
+  # Network
+  dio:
+
+  # Router
+  go_router:
+
+  # 포트원 본인인증
+  iamport_flutter:
+
+  # 이미지 가져오기
+  image_picker:
+
+  # 로컬 데이터베이스
+  flutter_secure_storage: ^9.2.2
+
+  # OAuth
+  google_sign_in: # 구글
+  sign_in_with_apple: # 애플
+  kakao_flutter_sdk_user: # 카카오
+
+  # 파이어베이스
+  firebase_core:
+  firebase_auth: # 이메일 인증, 핸드폰 번호 인증용
+
+  # Json Serialization
+  freezed_annotation:
+  json_annotation: ^4.9.0
+
+  # 기타 유틸리티
+  easy_debounce:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -46,6 +93,16 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+
+  # Build Runner
+  build_runner:
+
+  # Riverpod
+  riverpod_generator:
+
+  # Json Serialization
+  freezed:
+  json_serializable:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
