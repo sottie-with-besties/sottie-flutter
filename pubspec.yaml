@@ -62,7 +62,7 @@ dependencies:
   iamport_flutter:
 
   # 이미지 가져오기
-  image_picker:
+  image_picker: ^1.1.2
 
   # 로컬 데이터베이스
   flutter_secure_storage: ^9.2.2
@@ -73,8 +73,9 @@ dependencies:
   kakao_flutter_sdk_user: # 카카오
 
   # 파이어베이스
-  firebase_core:
-  firebase_auth: # 이메일 인증, 핸드폰 번호 인증용
+  firebase_core: ^3.6.0
+  # 이메일 인증, 핸드폰 번호 인증용
+  firebase_auth: ^5.3.1
 
   # Json Serialization
   freezed_annotation:
