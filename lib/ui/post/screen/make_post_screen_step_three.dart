@@ -7,6 +7,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/sottie_gender_restrictions.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 
 class MakePostScreenStepThree extends StatefulWidget {
   const MakePostScreenStepThree({super.key});
@@ -104,7 +105,7 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
                     Text(
                         "참여 인원: ${postSettingEntity.numOfMember == 0 ? "제한 없음" : postSettingEntity.numOfMember}"),
                     Text(
-                        "날짜: ${postSettingEntity.date == null ? "날짜 정보 없음" : postSettingEntity.date!.toString().substring(0, 16)}"),
+                        "날짜: ${postSettingEntity.date == null ? "날짜 정보 없음" : "${postSettingEntity.date!.year}년 ${postSettingEntity.date!.month}월 ${postSettingEntity.date!.day}일 ${intToWeekday(postSettingEntity.date!.weekday)} ${renderCustomStringTime(postSettingEntity.date!.toUtc().toIso8601String(), postSettingEntity.date!.toUtc().toIso8601String())}"}"),
                     Text("장소: ${postSettingEntity.location.name}"),
                     Text(
                         "나이: ${postSettingEntity.convertAgeRangeToStringList().reduce((p, n) => "$n , $p")}"),

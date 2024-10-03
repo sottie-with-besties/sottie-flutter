@@ -86,7 +86,7 @@ class Post extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "${date.year}년 ${date.month}월 ${date.day}일\n${renderCustomStringTime(model.date, model.date)}",
+                          "${date.year}년 ${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)}\n${renderCustomStringTime(model.date, model.date)}",
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: 11 * hu,

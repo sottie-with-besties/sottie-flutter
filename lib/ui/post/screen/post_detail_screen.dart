@@ -8,6 +8,7 @@ import 'package:sottie_flutter/data/post/data_source/post_detail_dummy.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_model.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 
 class PostDetailScreen extends StatefulWidget {
@@ -49,11 +50,14 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final date = DateTime.parse(widget.postModel.date);
+
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.white),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
         child: ListView(
+          physics: const ClampingScrollPhysics(),
           children: [
             Text(
               widget.postModel.title,
@@ -120,7 +124,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                         children: [
                           _categoryClassify(widget.postModel.category),
                           _renderMemberCount(widget.postModel),
-                          Text("날짜: ${widget.postModel.date}"),
+                          Text(
+                              "날짜: ${date.year}년 ${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(widget.postModel.date, widget.postModel.date)}"),
                           Text("장소: ${widget.postModel.location}"),
                           _renderAgeRange(postDetailModelData.ageRange),
                           Text("매너 온도: ${postDetailModelData.mannerPoint}도 이상"),
