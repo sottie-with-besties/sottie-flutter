@@ -1,0 +1,6 @@
+framework module iamport_webview_flutter {
+  umbrella header "iamport_webview_flutter-umbrella.h"
+
+  export *
+  module * { export * }
+}

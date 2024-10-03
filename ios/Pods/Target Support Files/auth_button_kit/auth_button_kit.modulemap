@@ -1,0 +1,6 @@
+framework module auth_button_kit {
+  umbrella header "auth_button_kit-umbrella.h"
+
+  export *
+  module * { export * }
+}

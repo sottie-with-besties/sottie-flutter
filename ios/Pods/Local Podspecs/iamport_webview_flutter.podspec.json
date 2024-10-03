@@ -1,0 +1,44 @@
+{
+  "name": "iamport_webview_flutter",
+  "version": "0.0.1",
+  "summary": "A WebView Plugin for Flutter.",
+  "description": "A Flutter plugin that provides a WebView widget.\nDownloaded by pub (not CocoaPods).",
+  "homepage": "https://github.com/anymate98/plugins",
+  "license": {
+    "type": "BSD",
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "Hyukgyu Kwon": "me@kwon.hk"
+  },
+  "source": {
+    "http": "https://github.com/anymate98/plugins/tree/master/packages/iamport_webview_flutter"
+  },
+  "documentation_url": "https://pub.dev/packages/iamport_webview_flutter",
+  "source_files": "Classes/**/*",
+  "public_header_files": "Classes/**/*.h",
+  "dependencies": {
+    "Flutter": [
+
+    ]
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "pod_target_xcconfig": {
+    "DEFINES_MODULE": "YES",
+    "EXCLUDED_ARCHS[sdk=iphonesimulator*]": "i386"
+  },
+  "testspecs": [
+    {
+      "name": "Tests",
+      "test_type": "unit",
+      "source_files": "Tests/**/*",
+      "dependencies": {
+        "OCMock": [
+          "3.5"
+        ]
+      }
+    }
+  ]
+}
