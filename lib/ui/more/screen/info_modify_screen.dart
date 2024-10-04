@@ -58,6 +58,7 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
         // Todo: 디바운스 -> 서버로 수정한 정보 보내기
       },
       child: Scaffold(
+        appBar: AppBar(),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16),

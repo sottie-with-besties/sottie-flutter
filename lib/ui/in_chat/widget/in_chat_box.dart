@@ -28,7 +28,7 @@ class InChatBox extends StatelessWidget {
               width: 50 * wu,
               child: LinearProgressIndicator(
                 backgroundColor: mainSilverColor,
-                color: Colors.blueAccent,
+                color: mainBlueColor,
                 borderRadius: BorderRadius.circular(8),
                 minHeight: 10,
               ),
@@ -128,6 +128,8 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
 }
 
 Widget _renderDmChatBox(InChatMessageDataModel model) {
+  /// 내가 보낸 메세지이면 true
+  /// 추후 내 정보의 id와 바꾸는 코드로 변경해야 함
   final myMsg = model.userIdWhoSent == '12345';
 
   return Padding(
@@ -162,8 +164,7 @@ Widget _renderDmChatBox(InChatMessageDataModel model) {
                           physics: const ClampingScrollPhysics(),
                           child: Container(
                             decoration: BoxDecoration(
-                              color:
-                                  myMsg ? Colors.blueAccent : mainSilverColor,
+                              color: myMsg ? mainBlueColor : mainSilverColor,
                               borderRadius: BorderRadius.circular(5),
                             ),
                             padding: const EdgeInsets.all(12),
