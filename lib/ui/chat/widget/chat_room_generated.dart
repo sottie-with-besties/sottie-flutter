@@ -26,12 +26,32 @@ class ChatRoomGenerated extends StatefulWidget {
 }
 
 class _ChatRoomGeneratedState extends State<ChatRoomGenerated> {
+  bool chattingOver = false;
+  Duration chatRoomDisappearingTime = const Duration(hours: 24);
+
   void _alarmOnOffAction(bool withSlide) {
     log("DmAction");
   }
 
   void _chatRoomOutAction(bool withSlide) {
     log("DeleteAction");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    /// 채팅 모임 날짜 기준 24시간 경과 후 채팅방이 사라지기 시작함. 24시간 후 완전히 사라짐.
+    /// 모임 날짜 + 24시간 까지 채팅 가능, 그 이후 24시간 채팅방 삭제 대기
+    /// inDays == 1은 시간 차이가 24시간 이상 48시간 미만을 의미
+    final generatedDate = DateTime.parse(widget.model.date);
+    final now = DateTime.now();
+    final du = now.difference(generatedDate);
+    if (du.inDays == 1) {
+      chattingOver = true;
+      chatRoomDisappearingTime = du;
+      setState(() {});
+    }
   }
 
   @override
