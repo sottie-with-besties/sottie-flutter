@@ -71,7 +71,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
               widget.chatTitle,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 16 * hu,
+                fontSize: 12 * hu,
               ),
             ),
           ),

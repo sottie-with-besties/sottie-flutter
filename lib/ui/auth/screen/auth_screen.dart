@@ -12,6 +12,7 @@ import 'package:sottie_flutter/domain/auth/kakao_login.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
 
 class OAuthScreen extends StatelessWidget {
@@ -46,7 +47,7 @@ class OAuthScreen extends StatelessWidget {
                         child: Text(
                           "Sottie",
                           style: GoogleFonts.jua(
-                            fontSize: 46,
+                            fontSize: 36 * hu,
                             color: mainSilverColor,
                             fontWeight: FontWeight.bold,
                           ),
@@ -55,7 +56,6 @@ class OAuthScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.8),
@@ -153,9 +153,8 @@ class OAuthScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 15),
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
