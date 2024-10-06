@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 
 class ChatRoomInfo extends StatefulWidget {
@@ -116,13 +115,13 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                     ),
                   ],
                 ),
-          SizedBox(height: 3 * hu),
+          SizedBox(height: 10 * hu),
           chattingOver
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "채팅방이 자동으로 삭제됩니다",
+                      "채팅방이 자동으로 종료됩니다",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 10 * wu,
@@ -130,50 +129,11 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                         color: Colors.black.withOpacity(0.5),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        showCustomDialog(
-                          context,
-                          extraButton: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: const Size(100, 50),
-                              ),
-                              onPressed: () {},
-                              child: const Text(
-                                "확인",
-                                style: TextStyle(
-                                  color: mainSilverColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )),
-                          const Center(
-                            child: Text("채팅방을 나가시겠습니까?"),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.redAccent.withOpacity(0.7),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        padding: EdgeInsets.all(5 * wu),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            _ChatRoomDestroyingTimer(
-                              timeLeft: chatRoomDisappearingTime ??
-                                  const Duration(hours: 23),
-                            ),
-                            const Text(
-                              "채팅방 나가기",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: mainSilverColor),
-                            ),
-                          ],
-                        ),
-                      ),
+                    _ChatRoomDestroyingTimer(
+                      timeLeft:
+                          chatRoomDisappearingTime ?? const Duration(hours: 23),
                     ),
+                    Container(),
                   ],
                 )
               : Row(
