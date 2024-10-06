@@ -13,26 +13,13 @@ import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_tap_widget.dart';
 
-class ChatRoomGenerated extends StatefulWidget {
+class ChatRoomGenerated extends StatelessWidget {
   const ChatRoomGenerated({
     super.key,
     required this.model,
   });
 
   final ChatRoomModel model;
-
-  @override
-  State<ChatRoomGenerated> createState() => _ChatRoomGeneratedState();
-}
-
-class _ChatRoomGeneratedState extends State<ChatRoomGenerated> {
-  void _alarmOnOffAction(bool withSlide) {
-    log("DmAction");
-  }
-
-  void _chatRoomOutAction(bool withSlide) {
-    log("DeleteAction");
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +30,8 @@ class _ChatRoomGeneratedState extends State<ChatRoomGenerated> {
         context.push(
           '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
           extra: {
-            'id': widget.model.id,
-            'title': widget.model.chatTitle,
+            'id': model.id,
+            'title': model.chatTitle,
             'isGenerated': true,
           },
         );
@@ -92,25 +79,24 @@ class _ChatRoomGeneratedState extends State<ChatRoomGenerated> {
       ],
       child: Column(
         children: [
-          ChatRoomTop(model: widget.model),
+          ChatRoomTop(model: model),
           SizedBox(height: 10 * hu),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ChatRoomProfiles(
-                profileCount: widget.model.profileThumbnails.length > 4
+                profileCount: model.profileThumbnails.length > 4
                     ? 4
-                    : widget.model.profileThumbnails.length,
-                profileSize:
-                    widget.model.profileThumbnails.length < 2 ? 45.0 : 30.0,
+                    : model.profileThumbnails.length,
+                profileSize: model.profileThumbnails.length < 2 ? 45.0 : 30.0,
               ),
               ChatRoomInfo(
-                date: widget.model.date,
-                location: widget.model.location,
-                chatTitle: widget.model.chatTitle,
-                latestMsg: widget.model.latestMsg!,
-                latestTime: widget.model.latestTime!,
-                notReadMsg: widget.model.notReadMsg!,
+                date: model.date,
+                location: model.location,
+                chatTitle: model.chatTitle,
+                latestMsg: model.latestMsg!,
+                latestTime: model.latestTime!,
+                notReadMsg: model.notReadMsg!,
               ),
             ],
           )
@@ -118,4 +104,12 @@ class _ChatRoomGeneratedState extends State<ChatRoomGenerated> {
       ),
     );
   }
+}
+
+void _alarmOnOffAction(bool withSlide) {
+  log("DmAction");
+}
+
+void _chatRoomOutAction(bool withSlide) {
+  log("DeleteAction");
 }

@@ -8,7 +8,7 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
       inChatId: 'chat_1',
       profileThumbnails: ['thumb1.jpg'],
       category: ['번개'],
-      date: '2024-09-10T03:15:00Z',
+      date: '2024-10-04T09:00:00Z',
       location: '서울 강남구',
       chatTitle: '번개 모임: 당일 만나요!',
       latestMsg: '안녕하세요! 반갑습니다. 수원 사는 김진표라고 합니다.',

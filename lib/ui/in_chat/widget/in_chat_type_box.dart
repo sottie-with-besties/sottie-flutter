@@ -46,7 +46,7 @@ class InChatTypeBox extends StatelessWidget {
                   },
                   child: Container(
                     height: 40 * hu,
-                    color: Colors.blueAccent,
+                    color: mainBlueColor,
                     padding: const EdgeInsets.all(5),
                     child: const FittedBox(
                       child: Icon(

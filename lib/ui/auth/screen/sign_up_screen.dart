@@ -249,7 +249,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     onPressed: () {
                       context.push(
-                          '${CustomRouter.authPath}}/${CustomRouter.certificationPath}');
+                        '${CustomRouter.authPath}/${CustomRouter.certificationPath}',
+                        extra: {
+                          'isModifyInfo': false,
+                        },
+                      );
                     },
                     child: const Text(
                       "본인인증 하기",
