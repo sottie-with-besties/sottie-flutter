@@ -93,7 +93,7 @@ final _routes = [
   /// Authentication: 로그인, 회원가입
   GoRoute(
     path: CustomRouter.authPath,
-    builder: (_, __) => const OAuthScreen(),
+    builder: (_, __) => const AuthScreen(),
     routes: <GoRoute>[
       GoRoute(
         path: CustomRouter.signUpPath,

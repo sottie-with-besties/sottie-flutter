@@ -77,7 +77,8 @@ class CertificationScreen extends StatelessWidget {
               myInfoEntity.birthYear = res.data['birthYear'];
               myInfoEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
 
-              // 개인정보 변경에서 수정된 정보는 개인 정보 수정 스크린에서 pop을 한 후 진행
+              /// Todo: 내 정보를 로컬DB(ISAR)에 저장 및 서버 전송
+
             } else {
               signUpEntity.name = res.data['name'];
               signUpEntity.gender = res.data['gender'];
@@ -85,12 +86,6 @@ class CertificationScreen extends StatelessWidget {
               signUpEntity.identifier = res.data['identifier'];
               signUpEntity.birthYear = res.data['birthYear'];
               signUpEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
-
-              // 최종 정보를 다시 보내는 코드 => api, 헤더 및 데이터 재확인
-              await Dio().post(
-                "$serverIp/sottie/certifications",
-                data: signUpEntity.toJson(),
-              );
             }
           } on Exception catch (_) {
             if (context.mounted) {

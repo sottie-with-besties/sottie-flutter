@@ -16,7 +16,7 @@ abstract class AuthTokenRetrofit {
   @Headers(<String, dynamic>{
     'Content-Type': 'application/json',
   })
-  Future<void> signUp({
+  Future<HttpResponse> signUp({
     @Body() required SignUpModel signUpModel,
   });
 

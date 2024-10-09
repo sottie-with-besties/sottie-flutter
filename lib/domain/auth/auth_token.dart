@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:sottie_flutter/core/dio/dio_instance.dart';
+import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/core/local_database/secure_storage.dart';
 import 'package:sottie_flutter/repository/auth/auth_retrofit.dart';
 
@@ -11,7 +11,7 @@ String? accessToken;
 Future<void> emailLogin({required String idAndPassword}) async {
   final base64String = utf8.fuse(base64).encode(idAndPassword);
 
-  final tokenModel = await AuthTokenRetrofit(dioWithInterceptor)
+  final tokenModel = await AuthTokenRetrofit(cleanDio)
       .emailLogin(emailAndPassword: 'Basic $base64String');
 
   // 토큰들 저장
@@ -23,7 +23,7 @@ Future<void> emailLogin({required String idAndPassword}) async {
 
 /// 액세스 토큰 만료되었을 때 호출
 Future<void> refreshAccessToken({required String refreshToken}) async {
-  final newAccessTokenModel = await AuthTokenRetrofit(dioWithInterceptor)
+  final newAccessTokenModel = await AuthTokenRetrofit(customDio)
       .refreshAccessToken(refreshToken: 'Bearer $refreshToken');
 
   accessToken = newAccessTokenModel.accessToken;

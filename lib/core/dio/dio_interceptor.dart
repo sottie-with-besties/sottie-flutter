@@ -2,7 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:sottie_flutter/core/local_database/secure_storage.dart';
 import 'package:sottie_flutter/domain/auth/auth_token.dart';
 
-class CustomInterceptor extends Interceptor {
+final customDio = Dio()..interceptors.add(_CustomInterceptor());
+final cleanDio = Dio();
+
+class _CustomInterceptor extends Interceptor {
   /// 디오가 네트워크 요청 할 때
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
