@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:sottie_flutter/core/dio/dio_instance.dart';
 import 'package:sottie_flutter/core/local_database/secure_storage.dart';
-import 'package:sottie_flutter/data/auth/model/token_model.dart';
 import 'package:sottie_flutter/repository/auth/auth_retrofit.dart';
 
 /// 액세스 토큰 전역변수로 선언하기

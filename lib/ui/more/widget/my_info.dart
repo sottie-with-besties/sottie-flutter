@@ -95,7 +95,7 @@ class _MyInfoState extends State<MyInfo> {
                 endIndent: 10,
               ),
               Text(
-                myInfoEntity.gender.value,
+                myInfoEntity.gender,
                 style: infoStyle,
               ),
               const VerticalDivider(

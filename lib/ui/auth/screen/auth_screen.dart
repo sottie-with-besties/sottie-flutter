@@ -6,9 +6,12 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/core/dio/dio_instance.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/data/auth/model/sign_up_model.dart';
 import 'package:sottie_flutter/domain/auth/google_login.dart';
 import 'package:sottie_flutter/domain/auth/kakao_login.dart';
+import 'package:sottie_flutter/repository/auth/auth_retrofit.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
@@ -199,6 +202,17 @@ class OAuthScreen extends StatelessWidget {
                     // final errorCode = await signOut();
                     // log(errorCode.toString());
                     context.go(CustomRouter.homePath);
+                    /// 아래 레트로핏 코드 정상 작동
+                   // await AuthTokenRetrofit(dioWithNoInterceptor).signUp(signUpModel: SignUpModel(
+                   //     name: null,
+                   //     phoneNumber: "01094908151",
+                   //     gender: 'MALE',
+                   //     identifier: null,
+                   //     birthYear: null,
+                   //     phoneAuthenticated: true,
+                   //     email: "arisongha1022@gmail.com",
+                   //     password: "asap0302!!"
+                   // ));
                   },
                   brand: Method.apple,
                   shape: RoundedRectangleBorder(

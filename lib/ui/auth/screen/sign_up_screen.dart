@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/core/dio/server_ip.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/auth/email_verification.dart';
 import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';
@@ -256,17 +254,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           'isModifyInfo': false,
                         },
                       );
-                      // final dio = Dio();
-                      // await dio.post(serverIp, data: {
-                      //   "name": null,
-                      //   "phoneNumber": "01094908151",
-                      //   "gender": "MALE",
-                      //   "identifier": null,
-                      //   "birthYear": null,
-                      //   "phoneAuthenticated": true,
-                      //   "email": "arisongha6@gmail.com",
-                      //   "password": "asap0302!!"
-                      // });
                     },
                     child: const Text(
                       "본인인증 하기",
