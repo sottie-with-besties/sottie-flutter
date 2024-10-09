@@ -89,7 +89,7 @@ class CertificationScreen extends StatelessWidget {
               // 최종 정보를 다시 보내는 코드 => api, 헤더 및 데이터 재확인
               await Dio().post(
                 "$serverIp/sottie/certifications",
-                data: jsonEncode(signUpEntity.toJson()),
+                data: signUpEntity.toJson(),
               );
             }
           } on Exception catch (_) {
