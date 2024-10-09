@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:iamport_flutter/iamport_certification.dart';
 /* 아임포트 휴대폰 본인인증 데이터 모델을 불러옵니다. */
 import 'package:iamport_flutter/model/certification_data.dart';
-import 'package:sottie_flutter/core/constant/server_ip.dart';
+import 'package:sottie_flutter/core/dio/server_ip.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/user/model/user_gender.dart';
 import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';

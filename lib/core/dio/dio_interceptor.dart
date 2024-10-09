@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:sottie_flutter/core/local_database/secure_storage.dart';
+import 'package:sottie_flutter/domain/auth/auth_token.dart';
 
 class CustomInterceptor extends Interceptor {
   /// 디오가 네트워크 요청 할 때
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    const accessToken = '';
     options.headers.addAll({'authorization': 'Bearer $accessToken'});
     super.onRequest(options, handler);
   }
@@ -25,11 +25,11 @@ class CustomInterceptor extends Interceptor {
 
     try {
       if (isStatus401 && !isPathRefresh) {
-        // Todo: 액세스 토큰 새로 발급 받는 restApi 코드
+        await refreshAccessToken(refreshToken: refreshToken);
 
         final dio = Dio();
         final options = err.requestOptions;
-        options.headers.addAll({'authorization': 'Bearer ${"accessToken"}'});
+        options.headers.addAll({'authorization': 'Bearer $accessToken'});
 
         final resp = await dio.fetch(options);
         handler.resolve(resp);
