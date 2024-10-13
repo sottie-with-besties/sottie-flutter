@@ -75,10 +75,9 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   child: Hero(
                     tag: 'me',
                     child: UserProfile(
-                      avatarId: 'me',
+                      profileUrl: 'me',
                       randomAvatarSize: 80,
                       profileAvatarSize: 40,
-                      profileUrl: myInfoEntity.profileUrl,
                       myProfileXFilePath: myInfoEntity.myProfilePath,
                     ),
                   ),

@@ -82,7 +82,7 @@ class _FriendState extends State<Friend> {
       onLongPressWidget: Column(
         children: [
           UserProfile(
-            avatarId: widget.model.id,
+            profileUrl: widget.model.id,
             randomAvatarSize: 100,
           ),
           SizedBox(height: 10 * hu),
@@ -160,8 +160,8 @@ class _FriendState extends State<Friend> {
             child: Hero(
               tag: widget.model.id,
               child: UserProfile(
+                profileUrl: widget.model.id,
                 randomAvatarSize: 45,
-                avatarId: widget.model.id,
               ),
             ),
           ),

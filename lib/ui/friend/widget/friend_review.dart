@@ -24,7 +24,9 @@ class FriendReview extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const UserProfile(randomAvatarSize: 30),
+                  UserProfile(
+                      profileUrl: model.id,
+                      randomAvatarSize: 30),
                   const SizedBox(width: 15),
                   Text(
                     model.nickname,

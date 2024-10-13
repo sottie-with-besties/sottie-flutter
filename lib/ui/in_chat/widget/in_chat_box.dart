@@ -143,7 +143,7 @@ Widget _renderDmChatBox(InChatMessageDataModel model) {
           children: [
             if (!myMsg)
               UserProfile(
-                avatarId: model.userIdWhoSent,
+                profileUrl: model.userIdWhoSent,
                 randomAvatarSize: 30,
               ),
             if (!myMsg) const SizedBox(width: 15),

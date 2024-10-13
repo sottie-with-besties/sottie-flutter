@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
+import 'package:sottie_flutter/data/chat/model/chat_room_not_generated_model.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_top.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
@@ -14,7 +14,7 @@ class ChatRoomNotGenerated extends StatelessWidget {
     required this.model,
   });
 
-  final ChatRoomModel model;
+  final ChatRoomNotGeneratedModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +37,24 @@ class ChatRoomNotGenerated extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.black12,
-            ),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: Colors.blueAccent,
+                )),
             padding: const EdgeInsets.all(8),
             height: 130 * hu,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ChatRoomTop(model: model),
+                ChatRoomTop(
+                  categories: model.category,
+                  currentMemberCount: model.currentMemberCount,
+                  maxMemberCount: model.maxMemberCount,
+                  currentManCount: model.currentManCount,
+                  maxManCount: model.maxManCount,
+                  currentWomanCount: model.currentWomanCount,
+                  maxWomanCount: model.maxWomanCount,
+                ),
                 SizedBox(height: 10 * hu),
                 const Center(
                   child: Text("인원이 모두 모이면 채팅방이 생성됩니다."),

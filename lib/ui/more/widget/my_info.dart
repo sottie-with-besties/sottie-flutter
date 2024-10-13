@@ -28,10 +28,9 @@ class _MyInfoState extends State<MyInfo> {
                 Hero(
                   tag: 'me',
                   child: UserProfile(
-                    avatarId: 'me',
+                    profileUrl: 'me',
                     randomAvatarSize: 45,
                     profileAvatarSize: 23,
-                    profileUrl: myInfoEntity.profileUrl,
                     myProfileXFilePath: myInfoEntity.myProfilePath,
                   ),
                 ),

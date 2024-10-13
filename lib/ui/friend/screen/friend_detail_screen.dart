@@ -37,7 +37,7 @@ class FriendDetailScreen extends StatelessWidget {
                 Hero(
                   tag: model.id,
                   child: UserProfile(
-                    avatarId: model.id,
+                    profileUrl: model.id,
                     randomAvatarSize: 50,
                   ),
                 ),
