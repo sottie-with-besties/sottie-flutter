@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:sottie_flutter/core/local_database/secure_storage.dart';
-import 'package:sottie_flutter/domain/auth/auth_token.dart';
+import 'package:sottie_flutter/core/dio/auth_token.dart';
 
 final customDio = Dio()..interceptors.add(_CustomInterceptor());
 final cleanDio = Dio();
