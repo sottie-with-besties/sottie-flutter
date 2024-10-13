@@ -153,7 +153,7 @@ class _GenderButtonState extends State<_GenderButton> {
         child: Text(
           widget.gender,
           style: const TextStyle(
-            color: mainSilverColor,
+            color: mainWhiteSilverColor,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -220,7 +220,7 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                     children: [
                       const ClassificationTitle(title: '성비 제한'),
                       Switch(
-                          activeColor: mainBrownColor,
+                          activeColor: mainBlueColor,
                           value: postSettingEntity.genderRatio,
                           onChanged: (val) {
                             postSettingEntity.genderRatio = val;
@@ -245,7 +245,7 @@ class _GenderRatioState extends ConsumerState<_GenderRatio> {
                               ? Colors.redAccent
                               : Colors.grey,
                           thumbColor: postSettingEntity.genderRatio
-                              ? mainBrownColor
+                              ? mainBlackColor
                               : Colors.grey,
                           onChanged: (val) {
                             if (postSettingEntity.genderRatio) {

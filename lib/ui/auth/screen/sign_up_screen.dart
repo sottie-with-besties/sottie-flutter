@@ -29,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final loadingCircle = const Center(
     child: CircularProgressIndicator(
-      color: mainSilverColor,
+      color: mainWhiteSilverColor,
     ),
   );
 
@@ -241,7 +241,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: mainBrownColor,
+                      backgroundColor: mainBlueColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -258,7 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: const Text(
                       "본인인증 하기",
                       style: TextStyle(
-                        color: mainSilverColor,
+                        color: mainWhiteSilverColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
                       ),
@@ -293,7 +293,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         : const Text(
                             "뒤로가기",
                             style: TextStyle(
-                              color: mainSilverColor,
+                              color: mainWhiteSilverColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -304,7 +304,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   if (currentStep < 3)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainBrownColor,
+                        backgroundColor: mainBlueColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -317,7 +317,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               "다음",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: mainSilverColor,
+                                color: mainWhiteSilverColor,
                               ),
                             ),
                     ),
@@ -327,7 +327,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           },
           connectorColor: WidgetStateColor.resolveWith((state) {
             if (state.contains(WidgetState.selected)) {
-              return mainBrownColor;
+              return mainWhiteSilverColor;
             }
             return Colors.grey;
           }),

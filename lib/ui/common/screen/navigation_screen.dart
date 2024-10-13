@@ -23,7 +23,7 @@ class NavigationScreen extends StatelessWidget {
             icon: FaIcon(FontAwesomeIcons.houseChimney),
             selectedIcon: FaIcon(
               FontAwesomeIcons.houseChimney,
-              color: mainSilverColor,
+              color: mainBlueColor,
             ),
             label: "Home",
           ),
@@ -31,7 +31,7 @@ class NavigationScreen extends StatelessWidget {
             icon: FaIcon(FontAwesomeIcons.comments),
             selectedIcon: FaIcon(
               FontAwesomeIcons.comments,
-              color: mainSilverColor,
+              color: mainBlueColor,
             ),
             label: "Chat",
           ),
@@ -39,7 +39,7 @@ class NavigationScreen extends StatelessWidget {
             icon: FaIcon(FontAwesomeIcons.userGroup),
             selectedIcon: FaIcon(
               FontAwesomeIcons.userGroup,
-              color: mainSilverColor,
+              color: mainBlueColor,
             ),
             label: "Friends",
           ),
@@ -47,7 +47,7 @@ class NavigationScreen extends StatelessWidget {
             icon: FaIcon(FontAwesomeIcons.ellipsis),
             selectedIcon: FaIcon(
               FontAwesomeIcons.ellipsis,
-              color: mainSilverColor,
+              color: mainBlueColor,
             ),
             label: "More",
           ),

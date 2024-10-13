@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/more/controller/modify_image.dart';
@@ -89,25 +90,31 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                       setState(() {});
                     },
                     child: const Text("프로필 사진 초기화")),
-                const SizedBox(height: 30),
+                SizedBox(height: 30 * hu),
                 _renderSubTitle("닉네임"),
+                SizedBox(height: 5 * hu),
                 LocalTextField(
                   controller: _nicknameController,
                   focusNode: _nicknameFocusNode,
                   prefixIcon: false,
                   hint: myInfoEntity.nickName,
                   maxLength: 10,
+                  enabledBorder: false,
+                  focusBorder: false,
                   onFieldSubmitted: (value) {
                     myInfoEntity.nickName = value;
                   },
                 ),
                 _renderSubTitle("상태 메세지"),
+                SizedBox(height: 5 * hu),
                 LocalTextField(
                   controller: _stateMessageController,
                   focusNode: _stateMessageFocusNode,
                   prefixIcon: false,
                   hint: myInfoEntity.stateMessage,
                   maxLength: 30,
+                  enabledBorder: false,
+                  focusBorder: false,
                   onFieldSubmitted: (value) {
                     myInfoEntity.stateMessage = value;
                   },

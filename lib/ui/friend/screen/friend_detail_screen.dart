@@ -26,7 +26,7 @@ class FriendDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: const Color(0x00a0522d)),
-      backgroundColor: lightBrownColor,
+      backgroundColor: mainBlueColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(
@@ -52,7 +52,7 @@ class FriendDetailScreen extends StatelessWidget {
                           Text(
                             model.nickname,
                             style: TextStyle(
-                              color: mainSilverColor,
+                              color: mainWhiteSilverColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 16 * hu,
                             ),
@@ -64,7 +64,7 @@ class FriendDetailScreen extends StatelessWidget {
                         Text(
                           model.stateMsg!,
                           style: TextStyle(
-                            color: mainSilverColor,
+                            color: mainWhiteSilverColor,
                             fontSize: 12 * hu,
                           ),
                         ),
@@ -138,7 +138,7 @@ class FriendDetailScreen extends StatelessWidget {
                                   child: Text(
                                     "친구를 리뷰하세요!",
                                     style: TextStyle(
-                                      color: mainSilverColor,
+                                      color: mainWhiteSilverColor,
                                     ),
                                   ),
                                 ),
@@ -153,7 +153,7 @@ class FriendDetailScreen extends StatelessWidget {
                                   "매너 온도",
                                   style: TextStyle(
                                     fontSize: 12 * hu,
-                                    color: mainSilverColor,
+                                    color: mainWhiteSilverColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -162,7 +162,7 @@ class FriendDetailScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                         width: 1.5,
-                                        color: mainSilverColor,
+                                        color: mainWhiteSilverColor,
                                       ),
                                       borderRadius: BorderRadius.circular(8)),
                                   padding: const EdgeInsets.all(8),
@@ -177,7 +177,7 @@ class FriendDetailScreen extends StatelessWidget {
                                               .toStringAsFixed(1),
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: mainSilverColor,
+                                            color: mainWhiteSilverColor,
                                             fontSize: 16 * hu,
                                           ),
                                         )
@@ -188,7 +188,7 @@ class FriendDetailScreen extends StatelessWidget {
                                   "°C",
                                   style: TextStyle(
                                     fontSize: 12 * hu,
-                                    color: mainSilverColor,
+                                    color: mainWhiteSilverColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -207,7 +207,7 @@ class FriendDetailScreen extends StatelessWidget {
                       child: Text(
                         "데이터가 존재하지 않습니다.",
                         style: TextStyle(
-                          color: mainSilverColor,
+                          color: mainWhiteSilverColor,
                         ),
                       ),
                     ),
@@ -221,12 +221,12 @@ class FriendDetailScreen extends StatelessWidget {
                 log("리뷰 작성하기");
               },
               style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: mainSilverColor)),
+                  side: const BorderSide(color: mainWhiteSilverColor)),
               child: const Text(
                 "리뷰 작성하기",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: mainSilverColor,
+                  color: mainWhiteSilverColor,
                 ),
               ),
             ),
@@ -245,7 +245,7 @@ Widget _utilButton(IconData icon, String desc, VoidCallback onTap) {
       children: [
         FaIcon(
           icon,
-          color: mainSilverColor,
+          color: mainWhiteSilverColor,
           size: 16 * hu,
         ),
         SizedBox(height: 2 * hu),
@@ -253,7 +253,7 @@ Widget _utilButton(IconData icon, String desc, VoidCallback onTap) {
           desc,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: mainSilverColor,
+            color: mainWhiteSilverColor,
             fontSize: 10 * hu,
           ),
         )

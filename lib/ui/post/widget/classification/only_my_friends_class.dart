@@ -21,7 +21,7 @@ class _OnlyMyFriendsClassState extends State<OnlyMyFriendsClass> {
           children: [
             const ClassificationTitle(title: "내 친구만 입장"),
             Switch(
-              activeColor: mainBrownColor,
+              activeColor: mainBlueColor,
               value: postSettingEntity.onlyMyFriends,
               onChanged: (val) {
                 postSettingEntity.onlyMyFriends = val;

@@ -93,7 +93,7 @@ class _InChatInfoScreenState extends State<InChatInfoScreen> {
                           effect: const WormEffect(
                             dotHeight: 8,
                             dotWidth: 8,
-                            activeDotColor: mainBrownColor,
+                            activeDotColor: mainWhiteSilverColor,
                           ),
                         ),
                       ],

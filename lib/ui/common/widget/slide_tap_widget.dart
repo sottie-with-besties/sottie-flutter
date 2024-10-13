@@ -14,6 +14,7 @@ class SlideTapWidget extends StatefulWidget {
     this.height = 75,
     required this.child,
   });
+
   final VoidCallback onTap;
   final Widget onLongPressWidget;
   final List<Widget> slideActions;
@@ -57,11 +58,11 @@ class _SlideTapWidgetState extends State<SlideTapWidget>
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: mainSilverColor,
+          color: mainWhiteSilverColor,
         ),
         height: widget.height * hu,
         child: Material(
-          color: mainSilverColor,
+          color: mainWhiteSilverColor,
           child: InkWell(
             onTap: widget.onTap,
             onLongPress: () {

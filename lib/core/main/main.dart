@@ -57,20 +57,21 @@ final _customTheme = ThemeData(
     centerTitle: true,
     titleTextStyle: TextStyle(
       fontWeight: FontWeight.bold,
-      color: Colors.black,
+      color: mainBlackColor,
       fontSize: 15 * hu,
       overflow: TextOverflow.ellipsis,
     ),
   ),
   scaffoldBackgroundColor: Colors.white,
   navigationBarTheme: const NavigationBarThemeData(
-    backgroundColor: mainSilverColor,
-    indicatorColor: mainBrownColor,
+    backgroundColor: mainWhiteSilverColor,
+    indicatorColor: mainWhiteSilverColor,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: mainBrownColor,
+      backgroundColor: mainBlueColor,
       shape: RoundedRectangleBorder(
+        side: BorderSide.none,
         borderRadius: BorderRadius.circular(8),
       ),
       minimumSize: const Size(10, 55),
@@ -79,6 +80,7 @@ final _customTheme = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       shape: RoundedRectangleBorder(
+        side: BorderSide.none,
         borderRadius: BorderRadius.circular(8),
       ),
       minimumSize: const Size(10, 50),
@@ -87,37 +89,38 @@ final _customTheme = ThemeData(
   dropdownMenuTheme: DropdownMenuThemeData(
     menuStyle: MenuStyle(
       backgroundColor: WidgetStateProperty.resolveWith((state) {
-        return mainSilverColor;
+        return mainWhiteSilverColor;
       }),
     ),
   ),
   datePickerTheme: DatePickerThemeData(
-    backgroundColor: mainSilverColor,
+    backgroundColor: mainWhiteSilverColor,
     dayShape: WidgetStateProperty.resolveWith(
         (_) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
     // 하이라이트된 날짜의 색을 바꾸는 것이나 코드 동작 안됨. 현재 보라색.
-    dayOverlayColor: WidgetStateProperty.resolveWith((_) => mainBrownColor),
+    dayOverlayColor:
+        WidgetStateProperty.resolveWith((_) => mainWhiteSilverColor),
   ),
   timePickerTheme: const TimePickerThemeData(
-    backgroundColor: mainSilverColor,
+    backgroundColor: mainWhiteSilverColor,
   ),
   sliderTheme: const SliderThemeData(
-    activeTrackColor: mainBrownColor,
+    activeTrackColor: mainBlueColor,
     inactiveTrackColor: Colors.grey,
-    thumbColor: mainBrownColor,
+    thumbColor: mainBlueColor,
   ),
-  dialogBackgroundColor: mainSilverColor,
+  dialogBackgroundColor: mainWhiteSilverColor,
   snackBarTheme: const SnackBarThemeData(
-    backgroundColor: mainBrownColor,
+    backgroundColor: mainBlueColor,
     contentTextStyle: TextStyle(
-      color: mainSilverColor,
+      color: mainWhiteSilverColor,
       fontWeight: FontWeight.bold,
     ),
   ),
   chipTheme: ChipThemeData(
-    selectedColor: mainBrownColor,
-    backgroundColor: mainSilverColor,
-    checkmarkColor: mainSilverColor,
+    selectedColor: mainBlueColor,
+    backgroundColor: mainWhiteSilverColor,
+    checkmarkColor: mainWhiteSilverColor,
     shape: RoundedRectangleBorder(
       side: const BorderSide(width: 0),
       borderRadius: BorderRadius.circular(32),

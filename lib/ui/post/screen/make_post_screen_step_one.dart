@@ -59,7 +59,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                   child: const FittedBox(
                     child: FaIcon(
                       FontAwesomeIcons.minus,
-                      color: mainSilverColor,
+                      color: mainWhiteSilverColor,
                     ),
                   ),
                 ),
@@ -99,6 +99,8 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
               LocalTextField(
                 hint: "제목",
                 prefixIcon: false,
+                enabledBorder: false,
+                focusBorder: false,
                 controller: _titleController,
                 focusNode: _titleFocusNode,
                 maxLength: 15,
@@ -106,6 +108,8 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
               const SizedBox(height: 15),
               LocalTextField(
                 prefixIcon: false,
+                enabledBorder: false,
+                focusBorder: false,
                 hint: "내용을 입력하세요.",
                 lines: 12,
                 controller: _contentController,
@@ -134,7 +138,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                       child: const Text(
                         "이미지 선택",
                         style: TextStyle(
-                          color: mainSilverColor,
+                          color: mainWhiteSilverColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -164,7 +168,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                     child: const Text(
                       "다음 1/3",
                       style: TextStyle(
-                        color: mainSilverColor,
+                        color: mainWhiteSilverColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),

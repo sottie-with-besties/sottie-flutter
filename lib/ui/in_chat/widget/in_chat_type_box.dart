@@ -51,7 +51,7 @@ class InChatTypeBox extends StatelessWidget {
                     child: const FittedBox(
                       child: Icon(
                         Icons.send,
-                        color: mainSilverColor,
+                        color: mainWhiteSilverColor,
                       ),
                     ),
                   ),

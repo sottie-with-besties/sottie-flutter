@@ -41,7 +41,7 @@ class _ContactScreenState extends State<ContactScreen> {
                 child: const Text(
                   "문의하기",
                   style: TextStyle(
-                    color: mainSilverColor,
+                    color: mainWhiteSilverColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

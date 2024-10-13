@@ -21,7 +21,7 @@ class ChatRoomNotGenerated extends StatelessWidget {
     final date = DateTime.parse(model.date);
 
     return Material(
-      color: mainSilverColor,
+      color: mainWhiteSilverColor,
       child: InkWell(
         onTap: () {
           context.push(
@@ -91,24 +91,25 @@ class ChatRoomNotGenerated extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           showCustomDialog(
-                              context,
-                              const Center(
-                                child: Text("참여를 취소하시겠습니까?"),
-                              ),
-                              extraButton: ElevatedButton(
-                                onPressed: () {
-                                  // Todo: 리스트에서 해당 채팅 삭제 및 백엔드 콜
-                                  Navigator.of(context, rootNavigator: true)
-                                      .pop();
-                                },
-                                child: const Text(
-                                  "참여 취소",
-                                  style: TextStyle(
-                                    color: mainSilverColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                            context,
+                            const Center(
+                              child: Text("참여를 취소하시겠습니까?"),
+                            ),
+                            extraButton: ElevatedButton(
+                              onPressed: () {
+                                // Todo: 리스트에서 해당 채팅 삭제 및 백엔드 콜
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop();
+                              },
+                              child: const Text(
+                                "참여 취소",
+                                style: TextStyle(
+                                  color: mainBlackColor,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              ));
+                              ),
+                            ),
+                          );
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -120,8 +121,9 @@ class ChatRoomNotGenerated extends StatelessWidget {
                             child: Text(
                               "참여 취소",
                               style: TextStyle(
-                                  color: mainSilverColor,
-                                  fontWeight: FontWeight.bold),
+                                color: mainWhiteSilverColor,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),

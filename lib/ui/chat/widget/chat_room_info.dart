@@ -169,7 +169,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                             child: Text(
                               numOfMsg,
                               style: const TextStyle(
-                                color: mainSilverColor,
+                                color: mainWhiteSilverColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

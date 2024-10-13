@@ -60,6 +60,8 @@ class _SearchScreenState extends State<SearchScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: LocalTextField(
                 hint: "날짜, 장소, 제목, 내용...",
+                enabledBorder: false,
+                focusBorder: false,
                 focusNode: searchFocusNode,
                 controller: searchController,
                 onFieldSubmitted: (searchContent) async {

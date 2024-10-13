@@ -21,7 +21,7 @@ class _OpenParticipationClassState extends State<OpenParticipationClass> {
           children: [
             const ClassificationTitle(title: "오픈 채팅"),
             Switch(
-              activeColor: mainBrownColor,
+              activeColor: mainBlueColor,
               value: postSettingEntity.openParticipation,
               onChanged: (val) {
                 postSettingEntity.openParticipation = val;

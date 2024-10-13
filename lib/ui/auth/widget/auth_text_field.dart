@@ -22,17 +22,13 @@ class AuthTextField extends StatelessWidget {
       child: TextFormField(
         decoration: InputDecoration(
           filled: true,
-          fillColor: mainSilverColor,
+          fillColor: mainWhiteSilverColor,
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 1,
-            ),
+            borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(12),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 2.5,
-            ),
+            borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(12),
           ),
           errorBorder: OutlineInputBorder(

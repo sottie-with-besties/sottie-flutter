@@ -20,6 +20,7 @@ class EmailChangeScreen extends StatefulWidget {
 class _EmailChangeScreenState extends State<EmailChangeScreen> {
   int currentStep = 0;
   String? email;
+
   // 이메일만 다루기 때문에 비밀번호는 더미로 계정 생성한다.
   String dummyPassword = "sottie8452!^#@!";
 
@@ -38,7 +39,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
 
   final loadingCircle = const Center(
     child: CircularProgressIndicator(
-      color: mainSilverColor,
+      color: mainWhiteSilverColor,
     ),
   );
 
@@ -366,7 +367,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                           child: const Text(
                             "변경",
                             style: TextStyle(
-                              color: mainSilverColor,
+                              color: mainWhiteSilverColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -376,7 +377,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                     child: const Text(
                       "이메일 변경하기",
                       style: TextStyle(
-                        color: mainSilverColor,
+                        color: mainWhiteSilverColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -411,7 +412,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                         : const Text(
                             "뒤로가기",
                             style: TextStyle(
-                              color: mainSilverColor,
+                              color: mainWhiteSilverColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -422,7 +423,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                   if (currentStep < 4)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainBrownColor,
+                        backgroundColor: mainWhiteSilverColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -435,7 +436,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                               "다음",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: mainSilverColor,
+                                color: mainWhiteSilverColor,
                               ),
                             ),
                     ),
@@ -445,7 +446,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
           },
           connectorColor: WidgetStateColor.resolveWith((state) {
             if (state.contains(WidgetState.selected)) {
-              return mainBrownColor;
+              return mainWhiteSilverColor;
             }
             return Colors.grey;
           }),

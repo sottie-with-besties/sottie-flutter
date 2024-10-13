@@ -16,7 +16,7 @@ class MyInfo extends StatefulWidget {
 class _MyInfoState extends State<MyInfo> {
   @override
   Widget build(BuildContext context) {
-    const infoStyle = TextStyle(color: mainSilverColor);
+    const infoStyle = TextStyle(color: mainWhiteSilverColor);
 
     return Column(
       children: [
@@ -78,7 +78,7 @@ class _MyInfoState extends State<MyInfo> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 32),
           decoration: BoxDecoration(
-            color: lightBrownColor,
+            color: mainBlueColor,
             borderRadius: BorderRadius.circular(8),
           ),
           height: 30 * hu,

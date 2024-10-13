@@ -77,7 +77,7 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
                       effect: const WormEffect(
                         dotHeight: 8,
                         dotWidth: 8,
-                        activeDotColor: mainBrownColor,
+                        activeDotColor: mainWhiteSilverColor,
                       ),
                     ),
                 ],
@@ -145,7 +145,7 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
                     padding: const EdgeInsets.all(12.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainBrownColor,
+                        backgroundColor: mainWhiteSilverColor,
                         minimumSize: const Size(100, 65),
                       ),
                       onPressed: () {
@@ -156,7 +156,7 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: mainSilverColor,
+                          color: mainWhiteSilverColor,
                         ),
                       ),
                     ),

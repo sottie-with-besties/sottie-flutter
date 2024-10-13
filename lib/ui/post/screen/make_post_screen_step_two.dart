@@ -125,7 +125,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                   child: const Text(
                     "다음 2/3",
                     style: TextStyle(
-                      color: mainSilverColor,
+                      color: mainWhiteSilverColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),

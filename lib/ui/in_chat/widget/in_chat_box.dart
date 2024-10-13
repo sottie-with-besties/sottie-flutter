@@ -27,7 +27,7 @@ class InChatBox extends StatelessWidget {
             SizedBox(
               width: 50 * wu,
               child: LinearProgressIndicator(
-                backgroundColor: mainSilverColor,
+                backgroundColor: mainWhiteSilverColor,
                 color: mainBlueColor,
                 borderRadius: BorderRadius.circular(8),
                 minHeight: 10,
@@ -37,7 +37,7 @@ class InChatBox extends StatelessWidget {
             const Text(
               "채팅을 불러오고 있습니다...",
               style: TextStyle(
-                color: mainSilverColor,
+                color: mainWhiteSilverColor,
               ),
             )
           ],
@@ -164,14 +164,16 @@ Widget _renderDmChatBox(InChatMessageDataModel model) {
                           physics: const ClampingScrollPhysics(),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: myMsg ? mainBlueColor : mainSilverColor,
+                              color:
+                                  myMsg ? mainBlueColor : mainWhiteSilverColor,
                               borderRadius: BorderRadius.circular(5),
                             ),
                             padding: const EdgeInsets.all(12),
                             child: Text(
                               entityData.entity,
                               style: TextStyle(
-                                color: myMsg ? mainSilverColor : Colors.black,
+                                color:
+                                    myMsg ? mainWhiteSilverColor : Colors.black,
                               ),
                             ),
                           ),
@@ -187,7 +189,7 @@ Widget _renderDmChatBox(InChatMessageDataModel model) {
                     model.sentTime,
                   ),
                   style: const TextStyle(
-                    color: mainSilverColor,
+                    color: mainWhiteSilverColor,
                     fontSize: 10,
                   ),
                 ),

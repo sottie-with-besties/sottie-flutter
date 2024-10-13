@@ -55,7 +55,7 @@ class _FriendState extends State<Friend> {
         child: const Text(
           "삭제",
           style: TextStyle(
-            color: mainSilverColor,
+            color: mainWhiteSilverColor,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -89,7 +89,7 @@ class _FriendState extends State<Friend> {
           Text(
             widget.model.nickname,
             style: const TextStyle(
-              color: mainSilverColor,
+              color: mainWhiteSilverColor,
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),

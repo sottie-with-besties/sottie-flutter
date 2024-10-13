@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/model/post_detail/sottie_category.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
@@ -56,7 +57,14 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
             .where((category) => category.index != 0)
             .map((category) {
           return ChoiceChip(
-            label: Text(category.name),
+            label: Text(
+              category.name,
+              style: TextStyle(
+                color: selectedList[category.index]
+                    ? mainWhiteSilverColor
+                    : mainBlackColor,
+              ),
+            ),
             selected: selectedList[category.index],
             onSelected: (onSelected) {
               selectedList[category.index] = onSelected;

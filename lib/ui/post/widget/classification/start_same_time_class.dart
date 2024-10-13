@@ -29,7 +29,7 @@ class _StartSameTimeClassState extends ConsumerState<StartSameTimeClass> {
           children: [
             const ClassificationTitle(title: "동시 채팅 시작"),
             Switch(
-              activeColor: mainBrownColor,
+              activeColor: mainBlueColor,
               value: postSettingEntity.startSameTime,
               onChanged: (val) {
                 if (refNumOfMember != 0) {

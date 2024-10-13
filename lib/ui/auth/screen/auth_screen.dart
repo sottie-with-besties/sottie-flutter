@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:auth_button_kit/auth_button_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
@@ -13,6 +12,7 @@ import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
 import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -28,7 +28,7 @@ class AuthScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: ColoredBox(
-        color: lightBrownColor,
+        color: mainWhiteSilverColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: SafeArea(
@@ -36,29 +36,19 @@ class AuthScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Row(
                     children: [
-                      const AppLogo(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16),
-                        child: Text(
-                          "Sottie",
-                          style: GoogleFonts.jua(
-                            fontSize: 36 * hu,
-                            color: mainSilverColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
+                      AppLogo(),
+                      SizedBox(width: 10),
+                      AppBarTitle(title: "Sottie"),
                     ],
                   ),
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: const EdgeInsets.all(8),
@@ -71,7 +61,7 @@ class AuthScreen extends StatelessWidget {
                           padding:
                               EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                           child: Text(
-                            "로그인을 진행해주세요!",
+                            "로그인",
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -115,7 +105,7 @@ class AuthScreen extends StatelessWidget {
                                 child: const Text(
                                   "로그인",
                                   style: TextStyle(
-                                    color: mainSilverColor,
+                                    color: mainWhiteSilverColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -153,26 +143,7 @@ class AuthScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "------------------------",
-                        style: _dividerStyle,
-                      ),
-                      Text(
-                        "또는",
-                        style: _dividerStyle,
-                      ),
-                      Text(
-                        "-------------------------",
-                        style: _dividerStyle,
-                      ),
-                    ],
-                  ),
-                ),
+                SizedBox(height: 20 * hu),
                 OAuthButton(
                     imgPath: AssetPath.kakaoLogin,
                     onPressed: () async {
@@ -199,17 +170,18 @@ class AuthScreen extends StatelessWidget {
                     // final errorCode = await signOut();
                     // log(errorCode.toString());
                     context.go(CustomRouter.homePath);
+
                     /// 아래 레트로핏 코드 정상 작동
-                   // await AuthTokenRetrofit(dioWithNoInterceptor).signUp(signUpModel: SignUpModel(
-                   //     name: null,
-                   //     phoneNumber: "01094908151",
-                   //     gender: 'MALE',
-                   //     identifier: null,
-                   //     birthYear: null,
-                   //     phoneAuthenticated: true,
-                   //     email: "arisongha1022@gmail.com",
-                   //     password: "asap0302!!"
-                   // ));
+                    // await AuthTokenRetrofit(dioWithNoInterceptor).signUp(signUpModel: SignUpModel(
+                    //     name: null,
+                    //     phoneNumber: "01094908151",
+                    //     gender: 'MALE',
+                    //     identifier: null,
+                    //     birthYear: null,
+                    //     phoneAuthenticated: true,
+                    //     email: "arisongha1022@gmail.com",
+                    //     password: "asap0302!!"
+                    // ));
                   },
                   brand: Method.apple,
                   shape: RoundedRectangleBorder(
@@ -226,11 +198,6 @@ class AuthScreen extends StatelessWidget {
     );
   }
 }
-
-const _dividerStyle = TextStyle(
-  color: mainSilverColor,
-  fontWeight: FontWeight.bold,
-);
 
 Widget _authUtilButton(String text, VoidCallback onTap) {
   return GestureDetector(

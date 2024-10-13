@@ -17,7 +17,7 @@ class AppBarTitle extends StatelessWidget {
       style: GoogleFonts.jua(
         fontWeight: FontWeight.bold,
         fontSize: 38,
-        color: mainSilverColor,
+        color: mainBlackColor,
       ),
     );
   }
