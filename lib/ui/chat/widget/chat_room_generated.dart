@@ -85,10 +85,10 @@ class ChatRoomGenerated extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ChatRoomProfiles(
-                profileCount: model.profileThumbnails.length > 4
+                profileCount: model.profileThumbnails!.length > 4
                     ? 4
-                    : model.profileThumbnails.length,
-                profileSize: model.profileThumbnails.length < 2 ? 45.0 : 30.0,
+                    : model.profileThumbnails!.length,
+                profileSize: model.profileThumbnails!.length < 2 ? 45.0 : 30.0,
               ),
               ChatRoomInfo(
                 date: model.date,
