@@ -65,7 +65,7 @@ final _customTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   navigationBarTheme: const NavigationBarThemeData(
     backgroundColor: mainWhiteSilverColor,
-    indicatorColor: mainWhiteSilverColor,
+    indicatorColor: mainBlueColor,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
