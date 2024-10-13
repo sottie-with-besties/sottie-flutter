@@ -24,6 +24,7 @@ class ChatRoomProfiles extends StatelessWidget {
         children: List.generate(
           profileCount,
           (_) => UserProfile(
+            profileUrl: DateTime.now().toString(),
             randomAvatarSize: profileSize,
           ),
         ),

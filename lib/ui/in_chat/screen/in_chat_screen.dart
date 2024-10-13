@@ -38,12 +38,12 @@ class _InChatScreenState extends State<InChatScreen> {
         appBar: AppBar(
           title: Text(
             widget.title,
-            style: const TextStyle(color: mainSilverColor),
+            style: const TextStyle(color: mainWhiteSilverColor),
           ),
-          backgroundColor: lightBrownColor,
-          iconTheme: const IconThemeData(color: mainSilverColor),
+          backgroundColor: mainBlueColor,
+          iconTheme: const IconThemeData(color: mainWhiteSilverColor),
         ),
-        backgroundColor: lightBrownColor,
+        backgroundColor: mainBlueColor,
         endDrawer: const InChatDrawer(),
         body: widget.isGenerated
             ? Column(

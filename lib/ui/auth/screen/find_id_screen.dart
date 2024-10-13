@@ -27,7 +27,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
 
   final loadingCircle = const Center(
     child: CircularProgressIndicator(
-      color: mainSilverColor,
+      color: mainWhiteSilverColor,
     ),
   );
 
@@ -90,6 +90,14 @@ class _FindIdScreenState extends State<FindIdScreen> {
           elevation: 1,
           type: StepperType.horizontal,
           currentStep: currentStep,
+          connectorColor: WidgetStateColor.resolveWith(
+            (state) {
+              if (state.contains(WidgetState.selected)) {
+                return mainBlueColor;
+              }
+              return Colors.grey;
+            },
+          ),
           steps: <Step>[
             Step(
               title: Container(),
@@ -207,7 +215,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                         ),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: mainBrownColor,
+                            backgroundColor: mainWhiteSilverColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
@@ -219,7 +227,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                           child: const Text(
                             "확인",
                             style: TextStyle(
-                                color: mainSilverColor,
+                                color: mainWhiteSilverColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16),
                           ),
@@ -245,9 +253,6 @@ class _FindIdScreenState extends State<FindIdScreen> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
                       minimumSize: const Size(100, 50),
                     ),
                     onPressed: () =>
@@ -257,7 +262,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                         : const Text(
                             "뒤로가기",
                             style: TextStyle(
-                              color: mainSilverColor,
+                              color: mainWhiteSilverColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -268,10 +273,6 @@ class _FindIdScreenState extends State<FindIdScreen> {
                   if (currentStep < 2)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainBrownColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
                         minimumSize: const Size(100, 50),
                       ),
                       onPressed: () =>
@@ -282,7 +283,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                               "다음",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: mainSilverColor,
+                                color: mainWhiteSilverColor,
                               ),
                             ),
                     ),
@@ -290,12 +291,6 @@ class _FindIdScreenState extends State<FindIdScreen> {
               ),
             );
           },
-          connectorColor: WidgetStateColor.resolveWith((state) {
-            if (state.contains(WidgetState.selected)) {
-              return mainBrownColor;
-            }
-            return Colors.grey;
-          }),
         ),
       ),
     );

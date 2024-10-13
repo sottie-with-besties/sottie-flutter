@@ -5,7 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
+import 'package:sottie_flutter/data/chat/model/chat_room_generated_model.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_top.dart';
@@ -19,7 +19,7 @@ class ChatRoomGenerated extends StatelessWidget {
     required this.model,
   });
 
-  final ChatRoomModel model;
+  final ChatRoomGeneratedModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,18 @@ class ChatRoomGenerated extends StatelessWidget {
       ],
       child: Column(
         children: [
-          ChatRoomTop(model: model),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ChatRoomTop(
+              categories: model.category,
+              currentMemberCount: model.currentMemberCount,
+              maxMemberCount: model.maxMemberCount,
+              currentManCount: model.currentManCount,
+              maxManCount: model.maxManCount,
+              currentWomanCount: model.currentWomanCount,
+              maxWomanCount: model.maxWomanCount,
+            ),
+          ),
           SizedBox(height: 10 * hu),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,9 +105,9 @@ class ChatRoomGenerated extends StatelessWidget {
                 date: model.date,
                 location: model.location,
                 chatTitle: model.chatTitle,
-                latestMsg: model.latestMsg!,
-                latestTime: model.latestTime!,
-                notReadMsg: model.notReadMsg!,
+                latestMsg: model.latestMsg,
+                latestTime: model.latestTime,
+                notReadMsg: model.notReadMsg,
               ),
             ],
           )

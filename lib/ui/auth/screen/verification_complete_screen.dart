@@ -45,7 +45,7 @@ class VerificationCompleteScreen extends StatelessWidget {
                         child: const Text(
                           "로그인 화면으로",
                           style: TextStyle(
-                            color: mainSilverColor,
+                            color: mainWhiteSilverColor,
                             fontWeight: FontWeight.bold,
                           ),
                         )),

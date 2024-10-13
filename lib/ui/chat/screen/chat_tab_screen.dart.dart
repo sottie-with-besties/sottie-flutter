@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/ui/chat/screen/chat_content_screen.dart';
+import 'package:sottie_flutter/ui/chat/screen/chat_room_generated_content_screen.dart';
+import 'package:sottie_flutter/ui/chat/screen/chat_room_not_generated_content_screen.dart';
 import 'package:sottie_flutter/ui/chat/screen/dm_content_screen.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
@@ -17,7 +18,7 @@ class _ChatTabScreenState extends State<ChatTabScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -48,6 +49,15 @@ class _ChatTabScreenState extends State<ChatTabScreen>
               ),
               Tab(
                 child: Text(
+                  "채팅 대기",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Tab(
+                child: Text(
                   "DM",
                   style: TextStyle(
                     color: Colors.black,
@@ -63,7 +73,8 @@ class _ChatTabScreenState extends State<ChatTabScreen>
           child: TabBarView(
             controller: _tabController,
             children: const [
-              ChatContentScreen(),
+              ChatRoomGeneratedContentScreen(),
+              ChatRoomNotGeneratedContentScreen(),
               DmContentScreen(),
             ],
           ),

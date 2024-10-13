@@ -24,13 +24,13 @@ class FriendReview extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const UserProfile(randomAvatarSize: 30),
+                  UserProfile(profileUrl: model.id, randomAvatarSize: 30),
                   const SizedBox(width: 15),
                   Text(
                     model.nickname,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: mainSilverColor,
+                      color: mainWhiteSilverColor,
                       fontSize: 16,
                     ),
                   ),
@@ -41,7 +41,7 @@ class FriendReview extends StatelessWidget {
                 child: Text(
                   model.total.toString(),
                   style: TextStyle(
-                    color: mainSilverColor,
+                    color: mainWhiteSilverColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 14 * hu,
                   ),
@@ -88,7 +88,7 @@ class _EvaluationRow extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 12 * hu,
-              color: mainSilverColor,
+              color: mainWhiteSilverColor,
             ),
           ),
           SizedBox(width: 5 * wu),

@@ -44,6 +44,7 @@ class _HomeHeaderState extends State<HomeHeader> {
         itemCount: SottieCategory.values.length,
         itemBuilder: (_, index) {
           return ChoiceChip(
+            side: const BorderSide(width: 0.8),
             onSelected: (check) {
               _onSelected(index, check);
             },
@@ -58,8 +59,11 @@ class _HomeHeaderState extends State<HomeHeader> {
                     ),
                   Text(
                     SottieCategory.values[index].name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      color: selectedList[index]
+                          ? mainWhiteSilverColor
+                          : mainBlackColor,
                     ),
                   ),
                 ],
@@ -67,7 +71,7 @@ class _HomeHeaderState extends State<HomeHeader> {
             ),
             selected: selectedList[index],
             selectedColor: mainBlueColor.withOpacity(0.7),
-            backgroundColor: mainSilverColor,
+            backgroundColor: mainWhiteSilverColor,
             showCheckmark: false,
           );
         },

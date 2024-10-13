@@ -156,7 +156,7 @@ Widget _inChatParticipant(BuildContext context, String id, String name) {
       child: Row(
         children: [
           UserProfile(
-            avatarId: id,
+            profileUrl: id,
             randomAvatarSize: 30,
           ),
           SizedBox(width: 10 * wu),

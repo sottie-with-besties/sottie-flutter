@@ -30,7 +30,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
 
   final loadingCircle = const Center(
     child: CircularProgressIndicator(
-      color: mainSilverColor,
+      color: mainWhiteSilverColor,
     ),
   );
 
@@ -92,6 +92,14 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
           elevation: 1,
           type: StepperType.horizontal,
           currentStep: currentStep,
+          connectorColor: WidgetStateColor.resolveWith(
+            (state) {
+              if (state.contains(WidgetState.selected)) {
+                return mainBlueColor;
+              }
+              return Colors.grey;
+            },
+          ),
           steps: <Step>[
             Step(
               title: Container(),
@@ -220,7 +228,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                           ),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: mainBrownColor,
+                              backgroundColor: mainWhiteSilverColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -252,7 +260,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                                     child: const Text(
                                       "변경",
                                       style: TextStyle(
-                                        color: mainSilverColor,
+                                        color: mainWhiteSilverColor,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -263,7 +271,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                             child: const Text(
                               "비밀번호 재설정하기",
                               style: TextStyle(
-                                color: mainSilverColor,
+                                color: mainWhiteSilverColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                               ),
@@ -291,9 +299,6 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
                       minimumSize: const Size(100, 50),
                     ),
                     onPressed: () =>
@@ -303,7 +308,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                         : const Text(
                             "뒤로가기",
                             style: TextStyle(
-                              color: mainSilverColor,
+                              color: mainWhiteSilverColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -314,10 +319,6 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                   if (currentStep < 2)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainBrownColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
                         minimumSize: const Size(100, 50),
                       ),
                       onPressed: () =>
@@ -328,7 +329,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                               "다음",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: mainSilverColor,
+                                color: mainWhiteSilverColor,
                               ),
                             ),
                     ),
@@ -336,12 +337,6 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
               ),
             );
           },
-          connectorColor: WidgetStateColor.resolveWith((state) {
-            if (state.contains(WidgetState.selected)) {
-              return mainBrownColor;
-            }
-            return Colors.grey;
-          }),
         ),
       ),
     );

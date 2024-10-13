@@ -8,9 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:iamport_flutter/iamport_certification.dart';
 /* 아임포트 휴대폰 본인인증 데이터 모델을 불러옵니다. */
 import 'package:iamport_flutter/model/certification_data.dart';
-import 'package:sottie_flutter/core/constant/server_ip.dart';
+import 'package:sottie_flutter/core/dio/server_ip.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/user/model/user_gender.dart';
 import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
@@ -42,7 +41,8 @@ class CertificationScreen extends StatelessWidget {
           pg: 'inicis_unified', // PG사
           merchantUid: 'mid_${DateTime.now().millisecondsSinceEpoch}', // 주문번호
           mRedirectUrl: 'https://example.com',
-        ), // 본인인증 후 이동할 URL,
+        ),
+        // 본인인증 후 이동할 URL,
         /* [필수입력] 콜백 함수 */
         callback: (Map<String, String> result) async {
           log(result.toString(), name: "Callback Argument");
@@ -71,28 +71,21 @@ class CertificationScreen extends StatelessWidget {
 
             if (isModifyInfo) {
               myInfoEntity.name = res.data['name'];
-              myInfoEntity.gender =
-                  UserGender.values.byName(res.data['gender']);
+              myInfoEntity.gender = res.data['gender'];
               myInfoEntity.phoneNumber = res.data['phoneNumber'];
               myInfoEntity.identifier = res.data['identifier'];
               myInfoEntity.birthYear = res.data['birthYear'];
               myInfoEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
 
-              // 개인정보 변경에서 수정된 정보는 개인 정보 수정 스크린에서 pop을 한 후 진행
+              /// Todo: 내 정보를 로컬DB(ISAR)에 저장 및 서버 전송
+
             } else {
               signUpEntity.name = res.data['name'];
-              signUpEntity.gender =
-                  UserGender.values.byName(res.data['gender']);
+              signUpEntity.gender = res.data['gender'];
               signUpEntity.phoneNumber = res.data['phoneNumber'];
               signUpEntity.identifier = res.data['identifier'];
               signUpEntity.birthYear = res.data['birthYear'];
               signUpEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
-
-              // 최종 정보를 다시 보내는 코드 => api, 헤더 및 데이터 재확인
-              await Dio().post(
-                "$serverIp/sottie/certifications",
-                data: jsonEncode(signUpEntity.toJson()),
-              );
             }
           } on Exception catch (_) {
             if (context.mounted) {

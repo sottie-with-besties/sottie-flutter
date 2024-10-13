@@ -55,7 +55,7 @@ class _FriendState extends State<Friend> {
         child: const Text(
           "삭제",
           style: TextStyle(
-            color: mainSilverColor,
+            color: mainWhiteSilverColor,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -82,14 +82,14 @@ class _FriendState extends State<Friend> {
       onLongPressWidget: Column(
         children: [
           UserProfile(
-            avatarId: widget.model.id,
+            profileUrl: widget.model.id,
             randomAvatarSize: 100,
           ),
           SizedBox(height: 10 * hu),
           Text(
             widget.model.nickname,
             style: const TextStyle(
-              color: mainSilverColor,
+              color: mainWhiteSilverColor,
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),
@@ -160,8 +160,8 @@ class _FriendState extends State<Friend> {
             child: Hero(
               tag: widget.model.id,
               child: UserProfile(
+                profileUrl: widget.model.id,
                 randomAvatarSize: 45,
-                avatarId: widget.model.id,
               ),
             ),
           ),

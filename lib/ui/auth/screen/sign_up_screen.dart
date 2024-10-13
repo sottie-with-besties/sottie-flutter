@@ -29,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final loadingCircle = const Center(
     child: CircularProgressIndicator(
-      color: mainSilverColor,
+      color: mainWhiteSilverColor,
     ),
   );
 
@@ -116,6 +116,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           elevation: 1,
           type: StepperType.horizontal,
           currentStep: currentStep,
+          connectorColor: WidgetStateColor.resolveWith(
+            (state) {
+              if (state.contains(WidgetState.selected)) {
+                return mainBlueColor;
+              }
+              return Colors.grey;
+            },
+          ),
           steps: <Step>[
             Step(
               title: Container(),
@@ -241,13 +249,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: mainBrownColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
                       minimumSize: const Size(100, 80),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       context.push(
                         '${CustomRouter.authPath}/${CustomRouter.certificationPath}',
                         extra: {
@@ -258,7 +262,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: const Text(
                       "본인인증 하기",
                       style: TextStyle(
-                        color: mainSilverColor,
+                        color: mainWhiteSilverColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
                       ),
@@ -282,9 +286,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
                       minimumSize: const Size(100, 50),
                     ),
                     onPressed: _anyButtonLoading() ? null : _onStepCancel,
@@ -293,7 +294,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         : const Text(
                             "뒤로가기",
                             style: TextStyle(
-                              color: mainSilverColor,
+                              color: mainWhiteSilverColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -304,10 +305,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   if (currentStep < 3)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainBrownColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
                         minimumSize: const Size(100, 50),
                       ),
                       onPressed: _anyButtonLoading() ? null : _onStepContinue,
@@ -317,7 +314,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               "다음",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: mainSilverColor,
+                                color: mainWhiteSilverColor,
                               ),
                             ),
                     ),
@@ -325,12 +322,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             );
           },
-          connectorColor: WidgetStateColor.resolveWith((state) {
-            if (state.contains(WidgetState.selected)) {
-              return mainBrownColor;
-            }
-            return Colors.grey;
-          }),
         ),
       ),
     );

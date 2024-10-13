@@ -48,3 +48,6 @@ String intToWeekday(int weekday) {
       return "요일 정보 없음";
   }
 }
+
+/// 남성: MALE, 여성: FEMALE
+String convertGenderString(String gender) => gender == 'MALE' ? '남성' : '여성';

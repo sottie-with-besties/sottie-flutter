@@ -53,15 +53,15 @@ class _FriendRadarChartState extends State<FriendRadarChart> {
           RadarChartData(
             radarShape: RadarShape.polygon,
             radarBorderData:
-                const BorderSide(color: mainSilverColor, width: 0.5),
+                const BorderSide(color: mainWhiteSilverColor, width: 0.5),
             tickCount: 2,
             tickBorderData:
-                const BorderSide(color: mainSilverColor, width: 0.5),
+                const BorderSide(color: mainWhiteSilverColor, width: 0.5),
             gridBorderData: const BorderSide(color: Colors.transparent),
             ticksTextStyle: const TextStyle(color: Colors.transparent),
             titlePositionPercentageOffset: 0.2,
             titleTextStyle: const TextStyle(
-              color: mainSilverColor,
+              color: mainWhiteSilverColor,
               fontWeight: FontWeight.bold,
             ),
             getTitle: (index, angle) {

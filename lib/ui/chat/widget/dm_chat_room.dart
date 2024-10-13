@@ -155,7 +155,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
                         child: Text(
                           widget.model.notReadMsg.toString(),
                           style: const TextStyle(
-                            color: mainSilverColor,
+                            color: mainWhiteSilverColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),

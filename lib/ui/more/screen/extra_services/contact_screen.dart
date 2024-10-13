@@ -31,6 +31,8 @@ class _ContactScreenState extends State<ContactScreen> {
                 prefixIcon: false,
                 lines: 12,
                 maxLength: 250,
+                enabledBorder: false,
+                focusBorder: false,
               ),
               SizedBox(height: 30 * hu),
               ElevatedButton(
@@ -41,7 +43,7 @@ class _ContactScreenState extends State<ContactScreen> {
                 child: const Text(
                   "문의하기",
                   style: TextStyle(
-                    color: mainSilverColor,
+                    color: mainWhiteSilverColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

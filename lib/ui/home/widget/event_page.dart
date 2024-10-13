@@ -82,7 +82,7 @@ class _EventPageState extends State<EventPage> {
           effect: const WormEffect(
             dotHeight: 16,
             dotWidth: 16,
-            activeDotColor: mainBrownColor,
+            activeDotColor: mainBlueColor,
           ),
         ),
       ],

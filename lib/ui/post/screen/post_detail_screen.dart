@@ -99,7 +99,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                           effect: const WormEffect(
                             dotHeight: 8,
                             dotWidth: 8,
-                            activeDotColor: mainBrownColor,
+                            activeDotColor: mainWhiteSilverColor,
                           ),
                         ),
                       ],
@@ -155,7 +155,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   padding: const EdgeInsets.all(12.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: mainBrownColor,
+                      backgroundColor: mainBlueColor,
                       minimumSize: const Size(100, 65),
                     ),
                     onPressed: () {
@@ -166,7 +166,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: mainSilverColor,
+                        color: mainWhiteSilverColor,
                       ),
                     ),
                   ),

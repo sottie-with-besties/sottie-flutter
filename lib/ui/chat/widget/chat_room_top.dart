@@ -1,34 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class ChatRoomTop extends StatelessWidget {
   const ChatRoomTop({
     super.key,
-    required this.model,
+    required this.categories,
+    this.currentMemberCount,
+    this.maxMemberCount,
+    this.currentManCount,
+    this.maxManCount,
+    this.currentWomanCount,
+    this.maxWomanCount,
   });
 
-  final ChatRoomModel model;
+  final List<String> categories;
+  final int? currentMemberCount;
+  final int? maxMemberCount;
+  final int? currentManCount;
+  final int? maxManCount;
+  final int? currentWomanCount;
+  final int? maxWomanCount;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: 200 * wu,
-            ),
-            child: FittedBox(
-              child: _categoryClassify(model.category),
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 200 * wu,
           ),
-          _renderMemberCount(model),
-        ],
-      ),
+          child: FittedBox(
+            child: _categoryClassify(categories),
+          ),
+        ),
+        _renderMemberCount(
+          currentMemberCount: currentMemberCount,
+          maxMemberCount: maxMemberCount,
+          currentManCount: currentManCount,
+          maxManCount: maxManCount,
+          currentWomanCount: currentWomanCount,
+          maxWomanCount: maxWomanCount,
+        ),
+      ],
     );
   }
 }
@@ -87,16 +102,21 @@ Widget _renderCategory(IconData icon, String category) {
   );
 }
 
-Widget _renderMemberCount(ChatRoomModel model) {
-  if (model.maxMemberCount == null &&
-      model.maxManCount == null &&
-      model.maxWomanCount == null) {
+Widget _renderMemberCount({
+  int? currentMemberCount,
+  int? maxMemberCount,
+  int? currentManCount,
+  int? maxManCount,
+  int? currentWomanCount,
+  int? maxWomanCount,
+}) {
+  if (maxMemberCount == null && maxManCount == null && maxWomanCount == null) {
     return const Text("인원 제한 없음");
-  } else if (model.currentMemberCount != null &&
-      model.currentManCount == null &&
-      model.currentWomanCount == null) {
-    return Text("${model.currentMemberCount}/${model.maxMemberCount}");
-  } else if (model.currentManCount != null && model.currentWomanCount != null) {
+  } else if (currentMemberCount != null &&
+      currentManCount == null &&
+      currentWomanCount == null) {
+    return Text("$currentMemberCount/$maxMemberCount");
+  } else if (currentManCount != null && currentWomanCount != null) {
     return Row(
       children: [
         const Icon(
@@ -104,14 +124,14 @@ Widget _renderMemberCount(ChatRoomModel model) {
           color: Colors.blue,
         ),
         SizedBox(width: 1 * wu),
-        Text("${model.currentManCount}/${model.maxManCount}"),
+        Text("$currentManCount/$maxManCount"),
         SizedBox(width: 3 * wu),
         const Icon(
           Icons.woman,
           color: Colors.pinkAccent,
         ),
         SizedBox(width: 1 * wu),
-        Text("${model.currentWomanCount}/${model.maxWomanCount}"),
+        Text("$currentWomanCount/$maxWomanCount"),
       ],
     );
   } else {

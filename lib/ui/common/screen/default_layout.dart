@@ -30,27 +30,27 @@ class DefaultLayout extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         heroTag: null, // Friend의 히어로와 충돌 방지
-        backgroundColor: lightBrownColor,
+        backgroundColor: mainBlueColor,
         onPressed: () async {
           postSettingEntity = PostSetting();
           await context.push(CustomRouter.makePostStepOnePath);
         },
         child: const Icon(
           Icons.post_add,
-          color: mainSilverColor,
+          color: mainWhiteSilverColor,
         ),
       ),
       resizeToAvoidBottomInset: false,
       appBar: _renderAppbar(title, context),
       body: ColoredBox(
-        color: mainBrownColor,
+        color: mainWhiteSilverColor,
         child: CustomScrollView(
           physics: const ClampingScrollPhysics(),
           slivers: [
             if (header != null)
               SliverAppBar(
                 toolbarHeight: 70,
-                backgroundColor: mainBrownColor,
+                backgroundColor: mainWhiteSilverColor,
                 floating: true,
                 snap: true,
                 flexibleSpace: header,
@@ -62,7 +62,7 @@ class DefaultLayout extends StatelessWidget {
                   borderRadius: BorderRadius.vertical(
                     top: Radius.circular(16),
                   ),
-                  color: mainSilverColor,
+                  color: mainWhiteSilverColor,
                 ),
                 child: contentChild,
               ),
@@ -82,7 +82,7 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
   return AppBar(
     centerTitle: false,
     toolbarHeight: 80,
-    backgroundColor: mainBrownColor,
+    backgroundColor: mainWhiteSilverColor,
     title: title,
     actions: [
       Padding(
@@ -99,7 +99,7 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
               },
               child: const FaIcon(
                 FontAwesomeIcons.magnifyingGlass,
-                color: mainSilverColor,
+                color: mainBlackColor,
                 size: 28,
               ),
             ),
@@ -116,7 +116,7 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
               },
               child: const FaIcon(
                 FontAwesomeIcons.bell,
-                color: mainSilverColor,
+                color: mainBlackColor,
                 size: 28,
               ),
             ),
@@ -131,7 +131,7 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
               },
               child: const FaIcon(
                 FontAwesomeIcons.gear,
-                color: mainSilverColor,
+                color: mainBlackColor,
                 size: 28,
               ),
             ),

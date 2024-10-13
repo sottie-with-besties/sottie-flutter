@@ -71,7 +71,7 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
                         child: const Text(
                           "광고 시청하고 10골드 받기",
                           style: TextStyle(
-                            color: mainSilverColor,
+                            color: mainWhiteSilverColor,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

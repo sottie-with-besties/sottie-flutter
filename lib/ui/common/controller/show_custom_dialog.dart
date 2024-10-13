@@ -26,6 +26,7 @@ void showCustomDialog(BuildContext context, Widget customChild,
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(100, 50),
                 backgroundColor: Colors.grey,
+                side: BorderSide.none,
               ),
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop();
@@ -34,7 +35,7 @@ void showCustomDialog(BuildContext context, Widget customChild,
                 "닫기",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: mainSilverColor,
+                  color: mainWhiteSilverColor,
                 ),
               ),
             ),

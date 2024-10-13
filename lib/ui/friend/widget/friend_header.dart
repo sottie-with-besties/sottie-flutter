@@ -20,6 +20,8 @@ class FriendHeader extends ConsumerWidget {
       child: LocalTextField(
         hint: "이름, 연락처...",
         focusNode: focusNode,
+        enabledBorder: false,
+        focusBorder: false,
         onChanged: (value) {
           selectFunc.changeInput(value!);
         },

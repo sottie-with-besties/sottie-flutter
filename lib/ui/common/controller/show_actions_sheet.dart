@@ -5,8 +5,8 @@ void bottomSheet(BuildContext context, Widget screen) {
   showModalBottomSheet(
     context: context,
     clipBehavior: Clip.hardEdge,
-    barrierColor: mainBrownColor,
-    backgroundColor: mainSilverColor,
+    barrierColor: mainWhiteSilverColor,
+    backgroundColor: mainWhiteSilverColor,
     isScrollControlled: true,
     useSafeArea: true,
     showDragHandle: true,
@@ -15,7 +15,7 @@ void bottomSheet(BuildContext context, Widget screen) {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
-          color: mainSilverColor,
+          color: mainWhiteSilverColor,
         ),
         child: screen,
       );

@@ -16,7 +16,7 @@ class MyInfo extends StatefulWidget {
 class _MyInfoState extends State<MyInfo> {
   @override
   Widget build(BuildContext context) {
-    const infoStyle = TextStyle(color: mainSilverColor);
+    const infoStyle = TextStyle(color: mainWhiteSilverColor);
 
     return Column(
       children: [
@@ -28,10 +28,9 @@ class _MyInfoState extends State<MyInfo> {
                 Hero(
                   tag: 'me',
                   child: UserProfile(
-                    avatarId: 'me',
+                    profileUrl: 'me',
                     randomAvatarSize: 45,
                     profileAvatarSize: 23,
-                    profileUrl: myInfoEntity.profileUrl,
                     myProfileXFilePath: myInfoEntity.myProfilePath,
                   ),
                 ),
@@ -79,7 +78,7 @@ class _MyInfoState extends State<MyInfo> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 32),
           decoration: BoxDecoration(
-            color: lightBrownColor,
+            color: mainBlueColor,
             borderRadius: BorderRadius.circular(8),
           ),
           height: 30 * hu,
@@ -95,7 +94,7 @@ class _MyInfoState extends State<MyInfo> {
                 endIndent: 10,
               ),
               Text(
-                myInfoEntity.gender.value,
+                myInfoEntity.gender,
                 style: infoStyle,
               ),
               const VerticalDivider(

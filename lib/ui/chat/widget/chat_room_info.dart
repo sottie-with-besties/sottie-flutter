@@ -71,7 +71,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
               widget.chatTitle,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 16 * hu,
+                fontSize: 12 * hu,
               ),
             ),
           ),
@@ -169,7 +169,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                             child: Text(
                               numOfMsg,
                               style: const TextStyle(
-                                color: mainSilverColor,
+                                color: mainWhiteSilverColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
