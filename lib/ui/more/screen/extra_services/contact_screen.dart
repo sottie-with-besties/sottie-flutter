@@ -31,6 +31,8 @@ class _ContactScreenState extends State<ContactScreen> {
                 prefixIcon: false,
                 lines: 12,
                 maxLength: 250,
+                enabledBorder: false,
+                focusBorder: false,
               ),
               SizedBox(height: 30 * hu),
               ElevatedButton(

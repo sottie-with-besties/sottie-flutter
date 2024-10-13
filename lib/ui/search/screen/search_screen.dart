@@ -12,7 +12,6 @@ import 'package:sottie_flutter/ui/post/widget/classification/location_class.dart
 import 'package:sottie_flutter/ui/post/widget/classification/manner_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/num_of_member_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/only_my_friends_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/open_participation_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/start_same_time_class.dart';
 import 'package:sottie_flutter/ui/search/widget/date_range_class.dart';
 import 'package:sottie_flutter/ui/search/widget/date_time_reset_button.dart';
@@ -77,33 +76,32 @@ class _SearchScreenState extends State<SearchScreen> {
                         context,
                         GestureDetector(
                           onTap: settingFocusNode.unfocus,
-                          child: Column(
+                          child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const CategoryClass(),
-                              const SizedBox(height: 20),
-                              const LocationClass(),
-                              const SizedBox(height: 20),
-                              const DateRangeClass(),
-                              const SizedBox(height: 20),
-                              const TimeRangeClass(),
-                              const SizedBox(height: 10),
-                              const DateTimeResetButton(),
-                              const SizedBox(height: 10),
-                              NumOfMemberClass(focusNode: settingFocusNode),
-                              const SizedBox(height: 20),
-                              const GenderClass(),
-                              const SizedBox(height: 20),
-                              const AgeClass(),
-                              const SizedBox(height: 20),
-                              const MannerClass(),
-                              const SizedBox(height: 20),
-                              const StartSameTimeClass(),
-                              const SizedBox(height: 20),
-                              const OpenParticipationClass(),
-                              const SizedBox(height: 20),
-                              const OnlyMyFriendsClass(),
-                              const SizedBox(height: 80),
+                              CategoryClass(),
+                              SizedBox(height: 20),
+                              LocationClass(),
+                              SizedBox(height: 20),
+                              DateRangeClass(),
+                              SizedBox(height: 20),
+                              TimeRangeClass(),
+                              SizedBox(height: 10),
+                              DateTimeResetButton(),
+                              SizedBox(height: 10),
+                              NumOfMemberClass(),
+                              SizedBox(height: 20),
+                              GenderClass(),
+                              SizedBox(height: 20),
+                              AgeClass(),
+                              SizedBox(height: 20),
+                              MannerClass(),
+                              SizedBox(height: 20),
+                              StartSameTimeClass(),
+                              SizedBox(height: 20),
+                              SizedBox(height: 20),
+                              OnlyMyFriendsClass(),
+                              SizedBox(height: 80),
                             ],
                           ),
                         ),

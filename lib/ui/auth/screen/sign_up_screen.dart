@@ -116,6 +116,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           elevation: 1,
           type: StepperType.horizontal,
           currentStep: currentStep,
+          connectorColor: WidgetStateColor.resolveWith(
+            (state) {
+              if (state.contains(WidgetState.selected)) {
+                return mainBlueColor;
+              }
+              return Colors.grey;
+            },
+          ),
           steps: <Step>[
             Step(
               title: Container(),
@@ -241,10 +249,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: mainBlueColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
                       minimumSize: const Size(100, 80),
                     ),
                     onPressed: () async {
@@ -282,9 +286,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
                       minimumSize: const Size(100, 50),
                     ),
                     onPressed: _anyButtonLoading() ? null : _onStepCancel,
@@ -304,10 +305,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   if (currentStep < 3)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainBlueColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
                         minimumSize: const Size(100, 50),
                       ),
                       onPressed: _anyButtonLoading() ? null : _onStepContinue,
@@ -325,12 +322,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             );
           },
-          connectorColor: WidgetStateColor.resolveWith((state) {
-            if (state.contains(WidgetState.selected)) {
-              return mainWhiteSilverColor;
-            }
-            return Colors.grey;
-          }),
         ),
       ),
     );

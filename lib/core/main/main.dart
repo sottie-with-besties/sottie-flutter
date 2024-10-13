@@ -74,7 +74,7 @@ final _customTheme = ThemeData(
         side: BorderSide.none,
         borderRadius: BorderRadius.circular(8),
       ),
-      minimumSize: const Size(10, 55),
+      minimumSize: const Size(100, 50),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(

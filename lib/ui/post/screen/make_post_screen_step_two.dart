@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/post/model/post_detail/sottie_gender_restrictions.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
@@ -13,7 +12,6 @@ import 'package:sottie_flutter/ui/post/widget/classification/location_class.dart
 import 'package:sottie_flutter/ui/post/widget/classification/manner_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/num_of_member_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/only_my_friends_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/open_participation_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/start_same_time_class.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/time_class.dart';
 
@@ -38,10 +36,6 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
 
     if (postSettingEntity.date == null) {
       checkList.add("날짜 및 시간을 설정해주세요.");
-    }
-
-    if (postSettingEntity.gender == SottieGenderRestrictions.nobody) {
-      checkList.add("성별을 최소 하나 이상 선택해주세요.");
     }
 
     if (postSettingEntity.category.isEmpty) {
@@ -78,7 +72,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                 const SizedBox(height: 20),
                 const TimeClass(),
                 const SizedBox(height: 20),
-                NumOfMemberClass(focusNode: focusNode),
+                const NumOfMemberClass(),
                 const SizedBox(height: 20),
                 const GenderClass(),
                 const SizedBox(height: 20),
@@ -88,7 +82,6 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                 const SizedBox(height: 20),
                 const StartSameTimeClass(),
                 const SizedBox(height: 20),
-                const OpenParticipationClass(),
                 const SizedBox(height: 20),
                 const OnlyMyFriendsClass(),
                 const SizedBox(height: 80),

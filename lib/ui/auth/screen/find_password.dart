@@ -92,6 +92,14 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
           elevation: 1,
           type: StepperType.horizontal,
           currentStep: currentStep,
+          connectorColor: WidgetStateColor.resolveWith(
+            (state) {
+              if (state.contains(WidgetState.selected)) {
+                return mainBlueColor;
+              }
+              return Colors.grey;
+            },
+          ),
           steps: <Step>[
             Step(
               title: Container(),
@@ -291,9 +299,6 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
                       minimumSize: const Size(100, 50),
                     ),
                     onPressed: () =>
@@ -314,10 +319,6 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                   if (currentStep < 2)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainBlueColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
                         minimumSize: const Size(100, 50),
                       ),
                       onPressed: () =>
@@ -336,12 +337,6 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
               ),
             );
           },
-          connectorColor: WidgetStateColor.resolveWith((state) {
-            if (state.contains(WidgetState.selected)) {
-              return mainWhiteSilverColor;
-            }
-            return Colors.grey;
-          }),
         ),
       ),
     );
