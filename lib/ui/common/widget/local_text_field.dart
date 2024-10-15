@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 
 class LocalTextField extends StatelessWidget {
   const LocalTextField({
@@ -48,7 +49,7 @@ class LocalTextField extends StatelessWidget {
       inputFormatters: inputFormatter,
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.grey.withOpacity(0.25),
+        fillColor: mainGreyColor.withOpacity(0.25),
         enabledBorder: enabledBorder
             ? OutlineInputBorder(
                 borderSide: const BorderSide(

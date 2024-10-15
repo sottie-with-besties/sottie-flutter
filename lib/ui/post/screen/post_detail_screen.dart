@@ -32,7 +32,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
       (index) => Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Colors.grey.shade300,
+              color: mainGreyColor.shade300,
             ),
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             child: Center(

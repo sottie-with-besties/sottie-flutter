@@ -121,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               if (state.contains(WidgetState.selected)) {
                 return mainBlueColor;
               }
-              return Colors.grey;
+              return mainGreyColor;
             },
           ),
           steps: <Step>[
@@ -285,7 +285,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey,
+                      backgroundColor: mainGreyColor,
                       minimumSize: const Size(100, 50),
                     ),
                     onPressed: _anyButtonLoading() ? null : _onStepCancel,

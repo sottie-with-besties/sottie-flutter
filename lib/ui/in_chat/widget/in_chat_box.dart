@@ -27,7 +27,7 @@ class InChatBox extends StatelessWidget {
             SizedBox(
               width: 50 * wu,
               child: LinearProgressIndicator(
-                backgroundColor: mainWhiteSilverColor,
+                backgroundColor: mainGreyColor,
                 color: mainBlueColor,
                 borderRadius: BorderRadius.circular(8),
                 minHeight: 10,
@@ -37,7 +37,7 @@ class InChatBox extends StatelessWidget {
             const Text(
               "채팅을 불러오고 있습니다...",
               style: TextStyle(
-                color: mainWhiteSilverColor,
+                color: mainBlackColor,
               ),
             )
           ],
@@ -167,6 +167,7 @@ Widget _renderDmChatBox(InChatMessageDataModel model) {
                               color:
                                   myMsg ? mainBlueColor : mainWhiteSilverColor,
                               borderRadius: BorderRadius.circular(5),
+                              border: myMsg ? null : Border.all(width: 0.5),
                             ),
                             padding: const EdgeInsets.all(12),
                             child: Text(

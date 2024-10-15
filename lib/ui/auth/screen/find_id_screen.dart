@@ -95,7 +95,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
               if (state.contains(WidgetState.selected)) {
                 return mainBlueColor;
               }
-              return Colors.grey;
+              return mainGreyColor;
             },
           ),
           steps: <Step>[
@@ -252,7 +252,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey,
+                      backgroundColor: mainGreyColor,
                       minimumSize: const Size(100, 50),
                     ),
                     onPressed: () =>

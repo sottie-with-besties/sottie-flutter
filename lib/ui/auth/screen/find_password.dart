@@ -97,7 +97,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
               if (state.contains(WidgetState.selected)) {
                 return mainBlueColor;
               }
-              return Colors.grey;
+              return mainGreyColor;
             },
           ),
           steps: <Step>[
@@ -298,7 +298,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey,
+                      backgroundColor: mainGreyColor,
                       minimumSize: const Size(100, 50),
                     ),
                     onPressed: () =>

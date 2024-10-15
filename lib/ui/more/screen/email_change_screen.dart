@@ -400,7 +400,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey,
+                      backgroundColor: mainGreyColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -448,7 +448,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
             if (state.contains(WidgetState.selected)) {
               return mainWhiteSilverColor;
             }
-            return Colors.grey;
+            return mainGreyColor;
           }),
         ),
       ),

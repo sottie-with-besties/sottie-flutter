@@ -25,7 +25,7 @@ void showCustomDialog(BuildContext context, Widget customChild,
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(100, 50),
-                backgroundColor: Colors.grey,
+                backgroundColor: mainGreyColor,
                 side: BorderSide.none,
               ),
               onPressed: () {

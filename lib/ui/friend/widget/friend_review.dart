@@ -100,7 +100,7 @@ class _EvaluationRow extends StatelessWidget {
                 child: ChoiceChip(
                   selectedColor: Colors.green.withOpacity(0.8),
                   checkmarkColor: Colors.black,
-                  disabledColor: Colors.grey.withOpacity(0.5),
+                  disabledColor: mainGreyColor.withOpacity(0.5),
                   label: Text(
                     chipLabel[index],
                     style: const TextStyle(

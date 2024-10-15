@@ -45,8 +45,10 @@ class InChatTypeBox extends StatelessWidget {
                     log("메세지 전송");
                   },
                   child: Container(
-                    height: 40 * hu,
-                    color: mainBlueColor,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: mainBlueColor,
+                    ),
                     padding: const EdgeInsets.all(5),
                     child: const FittedBox(
                       child: Icon(
@@ -56,6 +58,7 @@ class InChatTypeBox extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(width: 10 * wu),
               ],
             ),
           ),

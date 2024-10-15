@@ -106,7 +106,7 @@ final _customTheme = ThemeData(
   ),
   sliderTheme: const SliderThemeData(
     activeTrackColor: mainBlueColor,
-    inactiveTrackColor: Colors.grey,
+    inactiveTrackColor: mainGreyColor,
     thumbColor: mainBlueColor,
   ),
   dialogBackgroundColor: mainWhiteSilverColor,

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 
 class ExtraEventScreen extends StatelessWidget {
   const ExtraEventScreen({super.key});
@@ -46,7 +47,7 @@ class _EventFeed extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.5),
+                color: mainGreyColor.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(8),
               ),
               height: 100,

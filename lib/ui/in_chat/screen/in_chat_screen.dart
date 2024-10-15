@@ -43,7 +43,7 @@ class _InChatScreenState extends State<InChatScreen> {
           backgroundColor: mainBlueColor,
           iconTheme: const IconThemeData(color: mainWhiteSilverColor),
         ),
-        backgroundColor: mainBlueColor,
+        backgroundColor: mainWhiteSilverColor,
         endDrawer: const InChatDrawer(),
         body: widget.isGenerated
             ? Column(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/chat/model/chat_room_generated_model.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
@@ -39,7 +40,7 @@ class ChatRoomGenerated extends StatelessWidget {
       onLongPressWidget: Column(
         children: [
           OnLongPressOption(
-            color: Colors.grey,
+            color: mainGreyColor,
             onTap: () {
               _alarmOnOffAction(false);
             },
@@ -60,7 +61,7 @@ class ChatRoomGenerated extends StatelessWidget {
       slideActions: [
         SlidableAction(
           onPressed: (context) => _alarmOnOffAction(true),
-          backgroundColor: Colors.grey,
+          backgroundColor: mainGreyColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.alarm_off,

@@ -51,7 +51,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
       onLongPressWidget: Column(
         children: [
           OnLongPressOption(
-            color: Colors.grey,
+            color: mainGreyColor,
             onTap: () {
               _alarmOnOffAction(false);
             },
@@ -72,7 +72,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
       slideActions: [
         SlidableAction(
           onPressed: (context) => _alarmOnOffAction(true),
-          backgroundColor: Colors.grey,
+          backgroundColor: mainGreyColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.messenger_outline,
