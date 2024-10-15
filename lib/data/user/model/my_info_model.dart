@@ -19,7 +19,7 @@ class MyInfoModel with _$MyInfoModel {
     String? profileUrl,
     String? myProfilePath,
     @Default(0) int gold,
-    @Default(0) double mannerPoint,
+    @Default(36.5) double mannerPoint,
   }) = _MyInfoModel;
 
   factory MyInfoModel.fromJson(Map<String, dynamic> json) =>

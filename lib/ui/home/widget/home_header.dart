@@ -16,7 +16,7 @@ class _HomeHeaderState extends State<HomeHeader> {
     (index) => index == 0 ? true : false,
   );
 
-  // All을 체크하면 나머지 카테고리 체크 해제
+  /// All을 체크하면 나머지 카테고리 체크 해제
   void _checkAll() {
     selectedList[0] = true;
     for (int i = 1; i < selectedList.length; i++) {
@@ -24,7 +24,7 @@ class _HomeHeaderState extends State<HomeHeader> {
     }
   }
 
-  // All이 아닌 나머지 카테고리 하나라도 체크되어 있으면 All 체크 해제
+  /// All이 아닌 나머지 카테고리 하나라도 체크되어 있으면 All 체크 해제
   void _checkAnyExceptAll(int index, bool check) {
     selectedList[0] = false;
     selectedList[index] = check;
@@ -44,7 +44,7 @@ class _HomeHeaderState extends State<HomeHeader> {
         itemCount: SottieCategory.values.length,
         itemBuilder: (_, index) {
           return ChoiceChip(
-            side: const BorderSide(width: 0.8),
+            side: selectedList[index] ? null : const BorderSide(width: 0.8),
             onSelected: (check) {
               _onSelected(index, check);
             },

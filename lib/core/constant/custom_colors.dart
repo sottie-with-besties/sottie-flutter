@@ -7,3 +7,5 @@ const mainBlueColor = Colors.blue;
 const mainBlackColor = Colors.black;
 
 const mainGreyColor = Colors.grey;
+
+const mainGreenColor = Colors.greenAccent;
