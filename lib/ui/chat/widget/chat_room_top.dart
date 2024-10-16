@@ -6,12 +6,12 @@ class ChatRoomTop extends StatelessWidget {
   const ChatRoomTop({
     super.key,
     required this.categories,
-    this.currentMemberCount,
-    this.maxMemberCount,
-    this.currentManCount,
-    this.maxManCount,
-    this.currentWomanCount,
-    this.maxWomanCount,
+    required this.currentMemberCount,
+    required this.maxMemberCount,
+    required this.currentManCount,
+    required this.maxManCount,
+    required this.currentWomanCount,
+    required this.maxWomanCount,
   });
 
   final List<String> categories;

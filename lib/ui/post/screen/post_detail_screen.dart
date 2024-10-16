@@ -99,7 +99,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                           effect: const WormEffect(
                             dotHeight: 8,
                             dotWidth: 8,
-                            activeDotColor: mainWhiteSilverColor,
+                            activeDotColor: mainBlueColor,
                           ),
                         ),
                       ],

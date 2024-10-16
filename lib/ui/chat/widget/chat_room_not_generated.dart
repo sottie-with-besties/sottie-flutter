@@ -75,7 +75,7 @@ class ChatRoomNotGenerated extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${date.year}년 ${date.month}월 ${date.day}일 ${renderCustomStringTime(model.date, model.date)}",
+                          "${date.year}년 ${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(model.date, model.date)}",
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),

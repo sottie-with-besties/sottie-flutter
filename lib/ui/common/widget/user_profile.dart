@@ -1,10 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:random_avatar/random_avatar.dart';
-import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/widget/go_to_network_image.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({
@@ -27,17 +26,11 @@ class UserProfile extends StatelessWidget {
 
     return myProfileXFilePath == null
         ? isUrl
-            ? GestureDetector(
-                onTap: () {
-                  context.push(
-                    CustomRouter.photoMagnificationPath,
-                    extra: {
-                      'imageUrl': profileUrl,
-                    },
-                  );
-                },
+            ? GoToNetworkImage(
+                imageUrl: profileUrl,
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(profileUrl),
+                  // Todo: CachedNetworkImage로 변경
                   radius: profileAvatarSize * hu,
                 ),
               )

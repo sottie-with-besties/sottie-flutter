@@ -54,6 +54,7 @@ class DefaultLayout extends StatelessWidget {
                 floating: true,
                 snap: true,
                 flexibleSpace: header,
+                scrolledUnderElevation: 0,
               ),
             SliverFillRemaining(
               hasScrollBody: hasScrollBody,
@@ -84,6 +85,7 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
     toolbarHeight: 80,
     backgroundColor: mainWhiteSilverColor,
     title: title,
+    scrolledUnderElevation: 0,
     actions: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
