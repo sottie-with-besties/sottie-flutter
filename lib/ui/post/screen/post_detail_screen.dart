@@ -15,9 +15,11 @@ class PostDetailScreen extends StatefulWidget {
   const PostDetailScreen({
     super.key,
     required this.postModel,
+    required this.isWaiting,
   });
 
   final PostModel postModel;
+  final bool isWaiting;
 
   @override
   State<PostDetailScreen> createState() => _PostDetailScreenState();
@@ -155,15 +157,17 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   padding: const EdgeInsets.all(12.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: mainBlueColor,
+                      backgroundColor: widget.isWaiting
+                          ? mainGreenColor.withOpacity(0.8)
+                          : mainBlueColor,
                       minimumSize: const Size(100, 65),
                     ),
                     onPressed: () {
-                      log("참여하기");
+                      widget.isWaiting ? log("참여 취소") : log("참여하기");
                     },
-                    child: const Text(
-                      '참여하기',
-                      style: TextStyle(
+                    child: Text(
+                      widget.isWaiting ? '참여 취소' : '참여하기',
+                      style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                         color: mainWhiteSilverColor,

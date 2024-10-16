@@ -152,7 +152,6 @@ final _routes = [
                   return InChatScreen(
                     id: params['id'],
                     title: params['title'],
-                    isGenerated: params['isGenerated'],
                   );
                 },
                 routes: <GoRoute>[
@@ -291,6 +290,7 @@ final _routes = [
       final params = state.extra as Map<String, dynamic>;
       return PostDetailScreen(
         postModel: params['postModel'],
+        isWaiting: params['isWaiting'],
       );
     },
   ),

@@ -159,7 +159,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                         padding: EdgeInsets.only(right: 12 * wu),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.redAccent.withOpacity(0.8),
+                            color: mainRedColor.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           width: 40 * wu,

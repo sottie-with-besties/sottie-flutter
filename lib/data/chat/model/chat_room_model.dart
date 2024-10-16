@@ -1,12 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'chat_room_not_generated_model.freezed.dart';
-
-part 'chat_room_not_generated_model.g.dart';
+part 'chat_room_model.freezed.dart';
+part 'chat_room_model.g.dart';
 
 @freezed
-class ChatRoomNotGeneratedModel with _$ChatRoomNotGeneratedModel {
-  factory ChatRoomNotGeneratedModel({
+class ChatRoomModel with _$ChatRoomModel {
+  factory ChatRoomModel({
     /// 채팅방 상태 관계 없이 반드시 받아야 하는 값
     required String id,
 
@@ -14,11 +13,9 @@ class ChatRoomNotGeneratedModel with _$ChatRoomNotGeneratedModel {
     required String inChatId,
 
     /// 채팅의 카테고리(친목, 번개, 구인/구직 등)
-
     required List<String> category,
 
     /// 모임 날짜
-
     required String date,
 
     /// 모임 장소
@@ -26,6 +23,18 @@ class ChatRoomNotGeneratedModel with _$ChatRoomNotGeneratedModel {
 
     /// 채팅 제목
     required String chatTitle,
+
+    /// 최대 4개까지만, 프로필 사진 설정한 유저가 4명 이상 없을 경우 유저의 id로 전송(Random Avatar)
+    required List<String> profileThumbnails,
+
+    /// 유저가 읽지 않은 메세지 내용
+    required String latestMsg,
+
+    /// 최근 전송 받은 메세지의 시각
+    required String latestTime,
+
+    /// 유저가 해당하는 채팅방의 읽지 않은 메세지 수
+    required int notReadMsg,
 
     /// 성비 제한이 없을 경우 currentMemberCount, maxMemberCount
     /// 성비 제한이 있을 경우 currentManCount, maxManCount, currentWomanCount, maxWomanCount
@@ -35,8 +44,8 @@ class ChatRoomNotGeneratedModel with _$ChatRoomNotGeneratedModel {
     int? maxManCount,
     int? currentWomanCount,
     int? maxWomanCount,
-  }) = _ChatRoomNotGeneratedModel;
+  }) = _ChatRoomModel;
 
-  factory ChatRoomNotGeneratedModel.fromJson(Map<String, dynamic> json) =>
-      _$ChatRoomNotGeneratedModelFromJson(json);
+  factory ChatRoomModel.fromJson(Map<String, dynamic> json) =>
+      _$ChatRoomModelFromJson(json);
 }

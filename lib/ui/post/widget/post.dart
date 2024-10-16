@@ -11,9 +11,11 @@ class Post extends StatelessWidget {
   const Post({
     super.key,
     required this.model,
+    required this.isWaiting,
   });
 
   final PostModel model;
+  final bool isWaiting;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class Post extends StatelessWidget {
         CustomRouter.postDetailPath,
         extra: {
           'postModel': model,
+          'isWaiting': isWaiting,
         },
       ),
       child: Padding(

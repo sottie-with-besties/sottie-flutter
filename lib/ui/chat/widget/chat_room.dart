@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/chat/model/chat_room_generated_model.dart';
+import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_top.dart';
@@ -14,13 +14,13 @@ import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_tap_widget.dart';
 
-class ChatRoomGenerated extends StatelessWidget {
-  const ChatRoomGenerated({
+class ChatRoom extends StatelessWidget {
+  const ChatRoom({
     super.key,
     required this.model,
   });
 
-  final ChatRoomGeneratedModel model;
+  final ChatRoomModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class ChatRoomGenerated extends StatelessWidget {
           ),
           SizedBox(height: 10 * hu),
           OnLongPressOption(
-            color: Colors.redAccent,
+            color: mainRedColor,
             onTap: () {
               _chatRoomOutAction(false);
             },
@@ -70,7 +70,7 @@ class ChatRoomGenerated extends StatelessWidget {
         ),
         SlidableAction(
           onPressed: (context) => _chatRoomOutAction(true),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: mainRedColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: FontAwesomeIcons.outdent,
@@ -119,7 +119,7 @@ class ChatRoomGenerated extends StatelessWidget {
 }
 
 void _alarmOnOffAction(bool withSlide) {
-  log("DmAction");
+  log("alarmOnOffAction");
 }
 
 void _chatRoomOutAction(bool withSlide) {

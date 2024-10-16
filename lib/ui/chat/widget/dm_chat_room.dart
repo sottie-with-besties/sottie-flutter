@@ -25,14 +25,6 @@ class DmChatRoom extends StatefulWidget {
 }
 
 class _DmChatRoomState extends State<DmChatRoom> {
-  void _alarmOnOffAction(bool withSlide) {
-    log("DmAction");
-  }
-
-  void _chatRoomOutAction(bool withSlide) {
-    log("DeleteAction");
-  }
-
   @override
   Widget build(BuildContext context) {
     return SlideTapWidget(
@@ -60,7 +52,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
           ),
           SizedBox(height: 10 * hu),
           OnLongPressOption(
-            color: Colors.redAccent,
+            color: mainRedColor,
             onTap: () {
               _chatRoomOutAction(false);
             },
@@ -81,7 +73,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
         ),
         SlidableAction(
           onPressed: (context) => _chatRoomOutAction(true),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: mainRedColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.delete,
@@ -149,7 +141,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
                       height: 25 * hu,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color: Colors.redAccent.withOpacity(0.8),
+                        color: mainRedColor.withOpacity(0.8),
                       ),
                       child: Center(
                         child: Text(
@@ -171,4 +163,12 @@ class _DmChatRoomState extends State<DmChatRoom> {
       ),
     );
   }
+}
+
+void _alarmOnOffAction(bool withSlide) {
+  log("DmAction");
+}
+
+void _chatRoomOutAction(bool withSlide) {
+  log("DeleteAction");
 }

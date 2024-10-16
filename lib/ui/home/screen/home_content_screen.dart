@@ -25,24 +25,36 @@ class HomeContentScreen extends StatelessWidget {
         CustomFutureBuilder(
           futureFunction: getFriendPostDummy,
           callBack: (futureData) => Column(
-            children:
-                futureData!.map<Widget>((data) => Post(model: data)).toList(),
+            children: futureData!
+                .map<Widget>((data) => Post(
+                      model: data,
+                      isWaiting: false,
+                    ))
+                .toList(),
           ),
         ),
         _subTitle("# 최신 모집글"),
         CustomFutureBuilder(
           futureFunction: getLatestPostDummy,
           callBack: (futureData) => Column(
-            children:
-                futureData!.map<Widget>((data) => Post(model: data)).toList(),
+            children: futureData!
+                .map<Widget>((data) => Post(
+                      model: data,
+                      isWaiting: false,
+                    ))
+                .toList(),
           ),
         ),
         _subTitle("# 추천 모집글"),
         CustomFutureBuilder(
           futureFunction: getRecommendPostDummy,
           callBack: (futureData) => Column(
-            children:
-                futureData!.map<Widget>((data) => Post(model: data)).toList(),
+            children: futureData!
+                .map<Widget>((data) => Post(
+                      model: data,
+                      isWaiting: false,
+                    ))
+                .toList(),
           ),
         ),
       ],

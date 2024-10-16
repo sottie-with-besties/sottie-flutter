@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/ui/chat/screen/chat_room_generated_content_screen.dart';
-import 'package:sottie_flutter/ui/chat/screen/chat_room_not_generated_content_screen.dart';
-import 'package:sottie_flutter/ui/chat/screen/dm_content_screen.dart';
+import 'package:sottie_flutter/ui/chat/screen/chat_room_screen.dart';
+import 'package:sottie_flutter/ui/chat/screen/chat_room_waiting_screen.dart';
+import 'package:sottie_flutter/ui/chat/screen/dm_screen.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
-class ChatTabScreen extends StatefulWidget {
-  const ChatTabScreen({super.key});
+class ChatTabView extends StatefulWidget {
+  const ChatTabView({super.key});
 
   @override
-  State<ChatTabScreen> createState() => _ChatTabScreenState();
+  State<ChatTabView> createState() => _ChatTabViewState();
 }
 
-class _ChatTabScreenState extends State<ChatTabScreen>
+class _ChatTabViewState extends State<ChatTabView>
     with TickerProviderStateMixin {
   late final TabController _tabController;
 
@@ -73,9 +73,9 @@ class _ChatTabScreenState extends State<ChatTabScreen>
           child: TabBarView(
             controller: _tabController,
             children: const [
-              ChatRoomGeneratedContentScreen(),
-              ChatRoomNotGeneratedContentScreen(),
-              DmContentScreen(),
+              ChatRoomScreen(),
+              ChatRoomWaitingScreen(),
+              DmScreen(),
             ],
           ),
         ),

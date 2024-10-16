@@ -9,3 +9,5 @@ const mainBlackColor = Colors.black;
 const mainGreyColor = Colors.grey;
 
 const mainGreenColor = Colors.greenAccent;
+
+const mainRedColor = Colors.redAccent;

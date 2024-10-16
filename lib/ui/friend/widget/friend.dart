@@ -105,7 +105,7 @@ class _FriendState extends State<Friend> {
           ),
           SizedBox(height: 10 * hu),
           OnLongPressOption(
-            color: Colors.redAccent,
+            color: mainRedColor,
             onTap: () {
               _deleteAction(false);
             },
@@ -135,7 +135,7 @@ class _FriendState extends State<Friend> {
         ),
         SlidableAction(
           onPressed: (context) => _deleteAction(true),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: mainRedColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.delete,

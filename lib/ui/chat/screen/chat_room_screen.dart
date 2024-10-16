@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/domain/dm/dm_provider.dart';
-import 'package:sottie_flutter/ui/chat/widget/dm_chat_room.dart';
+import 'package:sottie_flutter/domain/chat/chat_room_provider.dart';
+import 'package:sottie_flutter/ui/chat/widget/chat_room.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 
-class DmContentScreen extends ConsumerWidget {
-  const DmContentScreen({super.key});
+class ChatRoomScreen extends ConsumerWidget {
+  const ChatRoomScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final dmState = ref.watch(dmStateProvider);
+    final chatRoomState = ref.watch(chatRoomStateProvider);
 
-    return dmState.when(
+    return chatRoomState.when(
       data: (data) {
         return ListView(
-          children: data.map((e) => DmChatRoom(model: e)).toList(),
+          children: data.map((e) => ChatRoom(model: e)).toList(),
         );
       },
       error: (_, __) {
