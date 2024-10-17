@@ -9,7 +9,7 @@ import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
-import 'package:sottie_flutter/ui/common/widget/slide_tap_widget.dart';
+import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend_info.dart';
 
@@ -69,16 +69,8 @@ class _FriendState extends State<Friend> {
 
   @override
   Widget build(BuildContext context) {
-    return SlideTapWidget(
-      onTap: () async {
-        await context.push(
-          "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
-          extra: {
-            'model': widget.model,
-            'isMyFriend': true,
-          },
-        );
-      },
+    return SlideLongPressWidget(
+      groupTag: 'friend',
       onLongPressWidget: Column(
         children: [
           UserProfile(
@@ -152,25 +144,42 @@ class _FriendState extends State<Friend> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
       ],
-      groupTag: 'friend',
-      child: Row(
-        children: [
-          SizedBox(
-            width: 70 * wu,
-            child: Hero(
-              tag: widget.model.id,
-              child: UserProfile(
-                profileUrl: widget.model.id,
-                randomAvatarSize: 45,
-              ),
+      child: GestureDetector(
+        onTap: () {
+          context.push(
+            "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
+            extra: {
+              'model': widget.model,
+              'isMyFriend': true,
+            },
+          );
+        },
+        child: Container(
+          color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
+          child: Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: 5 * wu, vertical: 12 * hu),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 70 * wu,
+                  child: Hero(
+                    tag: widget.model.id,
+                    child: UserProfile(
+                      profileUrl: widget.model.id,
+                      randomAvatarSize: 45,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10 * wu),
+                FriendInfo(
+                  friendName: widget.model.nickname,
+                  stateMsg: widget.model.stateMsg ?? '',
+                ),
+              ],
             ),
           ),
-          SizedBox(width: 10 * wu),
-          FriendInfo(
-            friendName: widget.model.nickname,
-            stateMsg: widget.model.stateMsg ?? '',
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -12,7 +12,7 @@ import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_top.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
-import 'package:sottie_flutter/ui/common/widget/slide_tap_widget.dart';
+import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 
 class ChatRoom extends StatelessWidget {
   const ChatRoom({
@@ -24,19 +24,8 @@ class ChatRoom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SlideTapWidget(
-      height: 130,
+    return SlideLongPressWidget(
       groupTag: 'chat',
-      onTap: () {
-        context.push(
-          '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
-          extra: {
-            'id': model.id,
-            'title': model.chatTitle,
-            'isGenerated': true,
-          },
-        );
-      },
       onLongPressWidget: Column(
         children: [
           OnLongPressOption(
@@ -78,41 +67,60 @@ class ChatRoom extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
       ],
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: ChatRoomTop(
-              categories: model.category,
-              currentMemberCount: model.currentMemberCount,
-              maxMemberCount: model.maxMemberCount,
-              currentManCount: model.currentManCount,
-              maxManCount: model.maxManCount,
-              currentWomanCount: model.currentWomanCount,
-              maxWomanCount: model.maxWomanCount,
+      child: GestureDetector(
+        onTap: () {
+          context.push(
+            '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
+            extra: {
+              'id': model.id,
+              'title': model.chatTitle,
+            },
+          );
+        },
+        child: Container(
+          color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
+          child: Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: 3 * wu, vertical: 12 * hu),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: ChatRoomTop(
+                    categories: model.category,
+                    currentMemberCount: model.currentMemberCount,
+                    maxMemberCount: model.maxMemberCount,
+                    currentManCount: model.currentManCount,
+                    maxManCount: model.maxManCount,
+                    currentWomanCount: model.currentWomanCount,
+                    maxWomanCount: model.maxWomanCount,
+                  ),
+                ),
+                SizedBox(height: 10 * hu),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ChatRoomProfiles(
+                      profileCount: model.profileThumbnails.length > 4
+                          ? 4
+                          : model.profileThumbnails.length,
+                      profileSize:
+                          model.profileThumbnails.length < 2 ? 45.0 : 30.0,
+                    ),
+                    ChatRoomInfo(
+                      date: model.date,
+                      location: model.location,
+                      chatTitle: model.chatTitle,
+                      latestMsg: model.latestMsg,
+                      latestTime: model.latestTime,
+                      notReadMsg: model.notReadMsg,
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
-          SizedBox(height: 10 * hu),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ChatRoomProfiles(
-                profileCount: model.profileThumbnails.length > 4
-                    ? 4
-                    : model.profileThumbnails.length,
-                profileSize: model.profileThumbnails.length < 2 ? 45.0 : 30.0,
-              ),
-              ChatRoomInfo(
-                date: model.date,
-                location: model.location,
-                chatTitle: model.chatTitle,
-                latestMsg: model.latestMsg,
-                latestTime: model.latestTime,
-                notReadMsg: model.notReadMsg,
-              ),
-            ],
-          )
-        ],
+        ),
       ),
     );
   }
