@@ -1,3 +1,5 @@
-import 'package:sottie_flutter/data/auth/model/sign_up_model.dart';
+import 'package:sottie_flutter/data/auth/model/email_sign_up_model.dart';
+import 'package:sottie_flutter/data/auth/model/oauth_sign_up_model.dart';
 
-SignUpModel signUpEntity = SignUpModel();
+EmailSignUpModel emailSignUpEntity = EmailSignUpModel();
+OauthSignUpModel oauthSignUpModel = OauthSignUpModel();

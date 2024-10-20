@@ -6,12 +6,14 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/domain/auth/google_login.dart';
-import 'package:sottie_flutter/domain/auth/kakao_login.dart';
+import 'package:sottie_flutter/data/auth/model/email_login_model.dart';
+import 'package:sottie_flutter/domain/auth/auth_type.dart';
+import 'package:sottie_flutter/domain/auth/sign_in.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
 import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
 
@@ -22,8 +24,7 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
 
-    String? email;
-    String? password;
+    EmailLoginModel emailLoginModel = EmailLoginModel();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -72,7 +73,7 @@ class AuthScreen extends StatelessWidget {
                         hint: "이메일 입력",
                         keyboardType: TextInputType.emailAddress,
                         validator: (val) {
-                          email = val;
+                          emailLoginModel.email = val;
                           return validateEmail(val!);
                         },
                       ),
@@ -80,7 +81,7 @@ class AuthScreen extends StatelessWidget {
                         obsecure: true,
                         hint: "비밀번호 입력",
                         validator: (val) {
-                          password = val;
+                          emailLoginModel.password = val;
                           return validatePassword(val!);
                         },
                       ),
@@ -93,13 +94,20 @@ class AuthScreen extends StatelessWidget {
                               horizontal: 12,
                             ),
                             child: ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if (formKey.currentState!.validate()) {
-                                  /*
-                                  Todo: 로그인 성공했을 때 => 해당 이메일과 패스워드를 서버에 전송 후
-                                  정보가 유효하면 메인페이지로 라우팅
-                                  이메일이 존재하지 않거나 비밀번호가 다르면 스낵바, 다이얼로그 등 에러 표시
-                                   */
+                                  // signIn에 백엔드로 이메일 코드 전송 포함
+                                  final errorCode = await signIn(
+                                    authType: AuthType.email,
+                                    email: emailLoginModel.email,
+                                    password: emailLoginModel.password,
+                                  );
+
+                                  if (context.mounted) {
+                                    errorCode == null
+                                        ? context.go(CustomRouter.homePath)
+                                        : showSnackBar(context, errorCode);
+                                  }
                                 }
                               },
                               child: const Text(
@@ -148,15 +156,23 @@ class AuthScreen extends StatelessWidget {
                   imgPath: AssetPath.kakaoLogin,
                   onPressed: () async {
                     log("kakao login button");
-                    final errorCode = await signInWithKakao();
-                    // Todo: OAuth는 백엔드에 먼저 ID 토큰과 같은 정보를 보낸 후 본인인증이 안되어 있으면
-                    // Todo: 본인 인증 페이지로 넘어가게 하는 작업
+                    final errorCode = await signIn(authType: AuthType.kakao);
+
+                    if (context.mounted) {
+                      errorCode == null
+                          ? context.go(CustomRouter.homePath)
+                          : showSnackBar(context, errorCode);
+                    }
                   }),
               AuthButton(
                 onPressed: (_) async {
-                  final errorCode = await signInWithGoogle();
-                  // Todo: OAuth는 백엔드에 먼저 ID 토큰과 같은 정보를 보낸 후 본인인증이 안되어 있으면
-                  // Todo: 본인 인증 페이지로 넘어가게 하는 작업
+                  final errorCode = await signIn(authType: AuthType.google);
+
+                  if (context.mounted) {
+                    errorCode == null
+                        ? context.go(CustomRouter.homePath)
+                        : showSnackBar(context, errorCode);
+                  }
                 },
                 brand: Method.google,
                 shape: RoundedRectangleBorder(

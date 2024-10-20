@@ -78,14 +78,14 @@ class CertificationScreen extends StatelessWidget {
               myInfoEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
 
               /// Todo: 내 정보를 로컬DB(ISAR)에 저장 및 서버 전송
-
             } else {
-              signUpEntity.name = res.data['name'];
-              signUpEntity.gender = res.data['gender'];
-              signUpEntity.phoneNumber = res.data['phoneNumber'];
-              signUpEntity.identifier = res.data['identifier'];
-              signUpEntity.birthYear = res.data['birthYear'];
-              signUpEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
+              emailSignUpEntity.name = res.data['name'];
+              emailSignUpEntity.gender = res.data['gender'];
+              emailSignUpEntity.phoneNumber = res.data['phoneNumber'];
+              emailSignUpEntity.identifier = res.data['identifier'];
+              emailSignUpEntity.birthYear = res.data['birthYear'];
+              emailSignUpEntity.phoneAuthenticated =
+                  res.data['phoneAuthenticated'];
             }
           } on Exception catch (_) {
             if (context.mounted) {
