@@ -1,22 +1,19 @@
-import 'dart:developer';
+part of 'sign_in.dart';
 
-import 'package:flutter/services.dart';
-import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
-import 'package:sottie_flutter/domain/auth/auth_type.dart';
-
-Future<String?> signInWithKakao() async {
+Future<String?> _signInWithKakao() async {
   /// 카카오톡 실행이 가능하면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
   if (await isKakaoTalkInstalled()) {
     try {
       /// ID 토큰, 액세스 토큰이 담겨있습니다.
       final token = await UserApi.instance.loginWithKakaoTalk();
-      log(token.toString(), name: 'ID 토큰과 AccessToken');
 
       /// 나에 대한 정보입니다.
-      final user = await UserApi.instance.me();
-      log(user.toString(), name: 'User Info');
+      // final user = await UserApi.instance.me();
 
       authType = AuthType.kakao;
+
+      _oauthLoginEntity.idToken = token.idToken;
+      _oauthLoginEntity.accessToken = token.accessToken;
 
       /// Todo: 카카오 이메일 파라미터 받으면 signUpEntity에 넣기
 
@@ -33,12 +30,14 @@ Future<String?> signInWithKakao() async {
       /// 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
       try {
         final token = await UserApi.instance.loginWithKakaoAccount();
-        log(token.toString(), name: 'ID 토큰과 AccessToken');
 
-        final user = await UserApi.instance.me();
-        log(user.toString(), name: 'User Info');
+        // final user = await UserApi.instance.me();
 
         authType = AuthType.kakao;
+
+        _oauthLoginEntity.idToken = token.idToken;
+        _oauthLoginEntity.accessToken = token.accessToken;
+
         return null;
       } catch (error) {
         log('카카오계정으로 로그인 실패 $error');
@@ -49,12 +48,14 @@ Future<String?> signInWithKakao() async {
     /// 앱에 카카오톡이 설치 안되어있을 때
     try {
       final token = await UserApi.instance.loginWithKakaoAccount();
-      log(token.toString(), name: 'ID 토큰과 AccessToken');
 
-      final user = await UserApi.instance.me();
-      log(user.toString(), name: 'User Info');
+      // final user = await UserApi.instance.me();
 
       authType = AuthType.kakao;
+
+      _oauthLoginEntity.idToken = token.idToken;
+      _oauthLoginEntity.accessToken = token.accessToken;
+
       return null;
     } catch (error) {
       log('카카오계정으로 로그인 실패 $error');

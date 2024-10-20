@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:sottie_flutter/core/local_database/secure_storage.dart';
-import 'package:sottie_flutter/core/dio/auth_token.dart';
+import 'package:sottie_flutter/domain/auth/auth_token.dart';
+import 'package:sottie_flutter/repository/auth/auth_retrofit.dart';
 
 final customDio = Dio()..interceptors.add(_CustomInterceptor());
 final cleanDio = Dio();
@@ -15,6 +16,7 @@ class _CustomInterceptor extends Interceptor {
 
   /// 네트워크 요청 에러
   /// 토큰이 만료 되었을 때 토큰 재요청
+  /// 그 외의 에러는 에러 반환
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     final refreshToken = await tokenStorage.read(key: refreshTokenKey);
@@ -28,7 +30,7 @@ class _CustomInterceptor extends Interceptor {
 
     try {
       if (isStatus401 && !isPathRefresh) {
-        await refreshAccessToken(refreshToken: refreshToken);
+        await _refreshAccessToken(refreshToken: refreshToken);
 
         final dio = Dio();
         final options = err.requestOptions;
@@ -41,4 +43,15 @@ class _CustomInterceptor extends Interceptor {
       handler.reject(err);
     }
   }
+}
+
+/// 액세스 토큰 만료되었을 때 호출
+Future<void> _refreshAccessToken({required String refreshToken}) async {
+  final newAccessTokenModel = await AuthTokenRetrofit(customDio)
+      .refreshAccessToken(refreshToken: 'Bearer $refreshToken');
+
+  accessToken = newAccessTokenModel.accessToken;
+
+  await tokenStorage.write(
+      key: accessTokenKey, value: newAccessTokenModel.accessToken);
 }

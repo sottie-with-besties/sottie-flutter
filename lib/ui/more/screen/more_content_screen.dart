@@ -19,16 +19,16 @@ class MoreContentScreen extends StatelessWidget {
           const MyInfo(),
           SizedBox(height: 10 * hu),
           ExtraInfo(
-            subTitle: "나의 매너 점수",
+            subTitle: "나의 매너 온도",
             valueChild: Row(
               children: [
                 Text(
-                  "${myInfoEntity.mannerPoint == myInfoEntity.mannerPoint.toInt() ? myInfoEntity.mannerPoint.toInt() : myInfoEntity.mannerPoint}",
+                  "${myInfoEntity.mannerPoint}",
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 15),
                 ),
-                const SizedBox(width: 15),
-                const Text("점"),
+                const SizedBox(width: 12),
+                const Text("°C"),
                 const SizedBox(width: 5),
               ],
             ),

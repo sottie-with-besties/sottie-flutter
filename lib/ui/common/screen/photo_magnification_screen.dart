@@ -28,6 +28,7 @@ class PhotoMagnificationScreen extends StatelessWidget {
       backgroundColor: Colors.black38,
       body: Center(
         child: Image.network(
+          // Todo: CachedNetworkImage로 변경
           imageUrl,
           fit: BoxFit.cover,
           errorBuilder: (_, __, ___) {

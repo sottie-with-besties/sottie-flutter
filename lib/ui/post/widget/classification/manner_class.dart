@@ -29,8 +29,8 @@ class _MannerClassState extends State<MannerClass> {
     super.initState();
 
     // 검색 스크린에서 필터링 시 데이터 유지
-    sliderValue =
-        mannerPoint.indexWhere((manner) => manner == postSettingEntity.manner);
+    sliderValue = mannerPoint
+        .indexWhere((manner) => manner == postSettingEntity.mannerPoint);
     setState(() {});
   }
 
@@ -50,7 +50,7 @@ class _MannerClassState extends State<MannerClass> {
                 value: sliderValue.toDouble(),
                 onChanged: (val) {
                   sliderValue = val.toInt();
-                  postSettingEntity.manner = mannerPoint[sliderValue];
+                  postSettingEntity.mannerPoint = mannerPoint[sliderValue];
                   setState(() {});
                 },
               ),

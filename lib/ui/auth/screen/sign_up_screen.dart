@@ -72,8 +72,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       final emailVerification = await isEmailVerification(email!, password!);
       if (emailVerification) {
         currentStep += 1;
-        signUpEntity.email = email!;
-        signUpEntity.password = password!;
+        emailSignUpEntity.email = email!;
+        emailSignUpEntity.password = password!;
         await deleteEmailUser(email!, password!);
       } else {
         if (mounted) showSnackBar(context, "이메일을 인증해주세요");
@@ -121,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               if (state.contains(WidgetState.selected)) {
                 return mainBlueColor;
               }
-              return Colors.grey;
+              return mainGreyColor;
             },
           ),
           steps: <Step>[
@@ -285,7 +285,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey,
+                      backgroundColor: mainGreyColor,
                       minimumSize: const Size(100, 50),
                     ),
                     onPressed: _anyButtonLoading() ? null : _onStepCancel,

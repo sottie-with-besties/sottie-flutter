@@ -61,6 +61,7 @@ final _customTheme = ThemeData(
       fontSize: 15 * hu,
       overflow: TextOverflow.ellipsis,
     ),
+    scrolledUnderElevation: 0,
   ),
   scaffoldBackgroundColor: Colors.white,
   navigationBarTheme: const NavigationBarThemeData(
@@ -106,7 +107,7 @@ final _customTheme = ThemeData(
   ),
   sliderTheme: const SliderThemeData(
     activeTrackColor: mainBlueColor,
-    inactiveTrackColor: Colors.grey,
+    inactiveTrackColor: mainGreyColor,
     thumbColor: mainBlueColor,
   ),
   dialogBackgroundColor: mainWhiteSilverColor,

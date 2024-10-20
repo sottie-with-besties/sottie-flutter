@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/alarm/data_source/alarm_dummy.dart';
 import 'package:sottie_flutter/data/alarm/model/alarm_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
@@ -104,7 +105,7 @@ class _AlarmBox extends StatelessWidget {
                     ),
                   ),
                   VerticalDivider(
-                    color: Colors.grey.withOpacity(0.3),
+                    color: mainGreyColor.withOpacity(0.3),
                     width: 30 * wu,
                     indent: 3,
                     endIndent: 3,

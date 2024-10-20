@@ -51,7 +51,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.redAccent,
+                    color: mainRedColor,
                   ),
                   padding: const EdgeInsets.all(4),
                   width: 15 * hu,

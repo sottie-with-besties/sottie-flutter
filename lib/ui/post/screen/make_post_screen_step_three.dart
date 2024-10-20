@@ -111,13 +111,13 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
                     if (postSettingEntity.genderRatio)
                       Text(
                           "남자: ${postSettingEntity.numOfMan}명 / 여자: ${postSettingEntity.numOfWoman}명"),
-                    if (postSettingEntity.manner == 0.0)
+                    if (postSettingEntity.mannerPoint == 0.0)
                       const Text("매너온도: 제한 없음"),
-                    if (postSettingEntity.manner == 100.0)
+                    if (postSettingEntity.mannerPoint == 100.0)
                       const Text("매너온도: 완벽한 사람만"),
-                    if (postSettingEntity.manner != 0.0 &&
-                        postSettingEntity.manner != 100.0)
-                      Text("매너온도: ${postSettingEntity.manner}도 이상"),
+                    if (postSettingEntity.mannerPoint != 0.0 &&
+                        postSettingEntity.mannerPoint != 100.0)
+                      Text("매너온도: ${postSettingEntity.mannerPoint}도 이상"),
                     if (postSettingEntity.startSameTime)
                       const Text("동시 채팅 시작: 인원 수 만큼 모이면 동시에 채팅을 시작합니다."),
                     if (postSettingEntity.startSameTime)

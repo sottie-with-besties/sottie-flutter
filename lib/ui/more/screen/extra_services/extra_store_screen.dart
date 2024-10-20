@@ -144,7 +144,7 @@ Widget termsAndConditions(String content) {
     child: Text(
       "* $content",
       style: const TextStyle(
-        color: Colors.grey,
+        color: mainGreyColor,
         fontSize: 12,
       ),
     ),

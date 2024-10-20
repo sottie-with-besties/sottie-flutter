@@ -86,8 +86,8 @@ class _FriendRadarChartState extends State<FriendRadarChart> {
             },
             dataSets: <RadarDataSet>[
               RadarDataSet(
-                fillColor: Colors.lightBlue.withOpacity(0.2),
-                borderColor: Colors.lightBlue,
+                fillColor: mainGreenColor.withOpacity(0.5),
+                borderColor: mainGreenColor,
                 dataEntries: <RadarEntry>[
                   RadarEntry(value: _participation),
                   RadarEntry(value: _attitude),

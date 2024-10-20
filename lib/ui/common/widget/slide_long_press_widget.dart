@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 
-class SlideTapWidget extends StatefulWidget {
-  const SlideTapWidget({
+class SlideLongPressWidget extends StatefulWidget {
+  const SlideLongPressWidget({
     super.key,
-    required this.onTap,
     required this.onLongPressWidget,
     required this.slideActions,
     required this.groupTag,
-    this.height = 75,
     required this.child,
   });
 
-  final VoidCallback onTap;
   final Widget onLongPressWidget;
   final List<Widget> slideActions;
   final String groupTag;
-  final double height;
   final Widget child;
 
   @override
-  State<SlideTapWidget> createState() => _SlideTapWidgetState();
+  State<SlideLongPressWidget> createState() => _SlideLongPressWidgetState();
 }
 
-class _SlideTapWidgetState extends State<SlideTapWidget>
+class _SlideLongPressWidgetState extends State<SlideLongPressWidget>
     with TickerProviderStateMixin {
   late SlidableController _slidableController;
 
@@ -54,26 +49,17 @@ class _SlideTapWidgetState extends State<SlideTapWidget>
         motion: const DrawerMotion(),
         children: widget.slideActions,
       ),
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: mainWhiteSilverColor,
-        ),
-        height: widget.height * hu,
-        child: Material(
-          color: mainWhiteSilverColor,
-          child: InkWell(
-            onTap: widget.onTap,
-            onLongPress: () {
-              showCustomDialog(
-                context,
-                widget.onLongPressWidget,
-                color: Colors.transparent,
-              );
-            },
-            child: widget.child,
-          ),
+      child: Material(
+        color: mainWhiteSilverColor,
+        child: InkWell(
+          onLongPress: () {
+            showCustomDialog(
+              context,
+              widget.onLongPressWidget,
+              color: Colors.transparent,
+            );
+          },
+          child: widget.child,
         ),
       ),
     );

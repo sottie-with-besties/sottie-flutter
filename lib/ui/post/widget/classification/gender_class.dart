@@ -60,7 +60,7 @@ class _GenderClassState extends ConsumerState<GenderClass> {
                     max: postSettingEntity.numOfMember.toDouble(),
                     divisions: postSettingEntity.numOfMember,
                     activeColor: mainBlueColor,
-                    inactiveColor: Colors.redAccent,
+                    inactiveColor: mainRedColor,
                     thumbColor: mainBlackColor,
                     onChanged: (val) {
                       if (_sliderCondition(val)) {
@@ -114,7 +114,7 @@ class _GenderClassState extends ConsumerState<GenderClass> {
                       //       },
                       //       child: const FaIcon(
                       //         FontAwesomeIcons.plus,
-                      //         color: Colors.redAccent,
+                      //         color: mainRedColor,
                       //       ),
                       //     ),
                       //   ],

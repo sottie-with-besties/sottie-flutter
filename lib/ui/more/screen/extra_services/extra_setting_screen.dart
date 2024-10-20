@@ -54,7 +54,7 @@ class ExtraSettingScreen extends StatelessWidget {
                   const SizedBox(width: 30),
                   OutlinedButton(
                     onPressed: () {
-                      // Todo: 회원탈퇴하는 스크린 만들기(본인 인증 후 탈퇴)
+                      // Todo: 회원탈퇴하는 스크린 만들기(정말로 탈퇴하시겠습니까?)
                       log("회원 탈퇴");
                     },
                     child: const Text("회원탈퇴"),
@@ -108,8 +108,7 @@ class _SettingSwitchState extends State<_SettingSwitch> {
                 onChanged: (val) {
                   settingValue = val;
                   setState(() {});
-
-                  // Todo: 알림 변경에 대해 서버에 알리기
+                  // Todo: 알림 변경에 대해 서버에 알리기(디바운스)
                 },
               ),
             ],

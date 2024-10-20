@@ -25,10 +25,10 @@ class FriendDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: const Color(0x00a0522d)),
-      backgroundColor: mainBlueColor,
+      appBar: AppBar(backgroundColor: mainBlueColor.withOpacity(0.05)),
+      backgroundColor: mainBlueColor.withOpacity(0.8),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
         child: Column(
           children: [
             Row(

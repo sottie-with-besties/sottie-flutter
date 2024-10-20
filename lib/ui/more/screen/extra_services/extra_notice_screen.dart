@@ -17,7 +17,7 @@ class ExtraNoticeScreen extends StatelessWidget {
             ExtraServiceTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
-              children: [
+              children: const [
                 Text("2024년 9월 17일 임시 점검 안내"),
                 SizedBox(height: 35),
                 Text("다가오는 9월 17일 오후 3시부터 일시 저검이 있을 예정입니다."),
@@ -27,7 +27,7 @@ class ExtraNoticeScreen extends StatelessWidget {
             ExtraServiceTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
-              children: [
+              children: const [
                 Text("2024년 9월 17일 임시 점검 안내"),
                 SizedBox(height: 35),
                 Text("다가오는 9월 17일 오후 3시부터 일시 저검이 있을 예정입니다."),
@@ -37,7 +37,7 @@ class ExtraNoticeScreen extends StatelessWidget {
             ExtraServiceTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
-              children: [
+              children: const [
                 Text("2024년 9월 17일 임시 점검 안내"),
                 SizedBox(height: 35),
                 Text("다가오는 9월 17일 오후 3시부터 일시 저검이 있을 예정입니다."),
@@ -47,7 +47,7 @@ class ExtraNoticeScreen extends StatelessWidget {
             ExtraServiceTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
-              children: [
+              children: const [
                 Text("2024년 9월 17일 임시 점검 안내"),
                 SizedBox(height: 35),
                 Text("다가오는 9월 17일 오후 3시부터 일시 저검이 있을 예정입니다."),
@@ -57,7 +57,7 @@ class ExtraNoticeScreen extends StatelessWidget {
             ExtraServiceTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
-              children: [
+              children: const [
                 Text("2024년 9월 17일 임시 점검 안내"),
                 SizedBox(height: 35),
                 Text("다가오는 9월 17일 오후 3시부터 일시 저검이 있을 예정입니다."),
@@ -67,7 +67,7 @@ class ExtraNoticeScreen extends StatelessWidget {
             ExtraServiceTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
-              children: [
+              children: const [
                 Text("2024년 9월 17일 임시 점검 안내"),
                 SizedBox(height: 35),
                 Text("다가오는 9월 17일 오후 3시부터 일시 저검이 있을 예정입니다."),

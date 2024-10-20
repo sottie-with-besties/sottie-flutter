@@ -1,9 +1,9 @@
-import 'package:sottie_flutter/data/chat/model/chat_room_generated_model.dart';
+import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 
-Future<List<ChatRoomGeneratedModel>> getChatRoomGeneratedDummy() async {
+Future<List<ChatRoomModel>> getChatRoomDummy() async {
   await Future.delayed(const Duration(seconds: 1), null);
   return [
-    ChatRoomGeneratedModel(
+    ChatRoomModel(
       id: '1',
       inChatId: 'chat_1',
       category: ['친목'],
@@ -17,7 +17,7 @@ Future<List<ChatRoomGeneratedModel>> getChatRoomGeneratedDummy() async {
       currentMemberCount: 4,
       maxMemberCount: 8,
     ),
-    ChatRoomGeneratedModel(
+    ChatRoomModel(
       id: '2',
       inChatId: 'chat_2',
       category: ['운동'],
@@ -33,7 +33,7 @@ Future<List<ChatRoomGeneratedModel>> getChatRoomGeneratedDummy() async {
       currentWomanCount: 2,
       maxWomanCount: 3,
     ),
-    ChatRoomGeneratedModel(
+    ChatRoomModel(
       id: '3',
       inChatId: 'chat_3',
       category: ['공부'],
@@ -47,7 +47,7 @@ Future<List<ChatRoomGeneratedModel>> getChatRoomGeneratedDummy() async {
       currentMemberCount: 6,
       maxMemberCount: 6,
     ),
-    ChatRoomGeneratedModel(
+    ChatRoomModel(
       id: '4',
       inChatId: 'chat_4',
       category: ['게임'],
@@ -63,7 +63,7 @@ Future<List<ChatRoomGeneratedModel>> getChatRoomGeneratedDummy() async {
       currentWomanCount: 1,
       maxWomanCount: 2,
     ),
-    ChatRoomGeneratedModel(
+    ChatRoomModel(
       id: '5',
       inChatId: 'chat_5',
       category: ['구인/구직'],
@@ -79,7 +79,7 @@ Future<List<ChatRoomGeneratedModel>> getChatRoomGeneratedDummy() async {
       currentWomanCount: 1,
       maxWomanCount: 2,
     ),
-    ChatRoomGeneratedModel(
+    ChatRoomModel(
       id: '6',
       inChatId: 'chat_6',
       category: ['번개', '운동'],
@@ -93,7 +93,7 @@ Future<List<ChatRoomGeneratedModel>> getChatRoomGeneratedDummy() async {
       currentMemberCount: 5,
       maxMemberCount: 10,
     ),
-    ChatRoomGeneratedModel(
+    ChatRoomModel(
       id: '7',
       inChatId: 'chat_7',
       category: ['기타'],
@@ -107,7 +107,7 @@ Future<List<ChatRoomGeneratedModel>> getChatRoomGeneratedDummy() async {
       currentMemberCount: 3,
       maxMemberCount: 5,
     ),
-    ChatRoomGeneratedModel(
+    ChatRoomModel(
       id: '8',
       inChatId: 'chat_8',
       category: ['친목'],
@@ -121,7 +121,7 @@ Future<List<ChatRoomGeneratedModel>> getChatRoomGeneratedDummy() async {
       currentMemberCount: 7,
       maxMemberCount: 10,
     ),
-    ChatRoomGeneratedModel(
+    ChatRoomModel(
       id: '9',
       inChatId: 'chat_9',
       category: ['번개', '공부'],
@@ -135,7 +135,7 @@ Future<List<ChatRoomGeneratedModel>> getChatRoomGeneratedDummy() async {
       currentMemberCount: 8,
       maxMemberCount: 8,
     ),
-    ChatRoomGeneratedModel(
+    ChatRoomModel(
       id: '10',
       inChatId: 'chat_10',
       category: ['게임', '기타'],

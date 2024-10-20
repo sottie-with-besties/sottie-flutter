@@ -12,10 +12,10 @@ import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
 class DefaultLayout extends StatelessWidget {
   const DefaultLayout({
     super.key,
-    required this.contentChild,
+    required this.hasScrollBody,
     this.title,
     this.header,
-    required this.hasScrollBody,
+    required this.contentChild,
   });
 
   final Widget contentChild;
@@ -54,6 +54,7 @@ class DefaultLayout extends StatelessWidget {
                 floating: true,
                 snap: true,
                 flexibleSpace: header,
+                scrolledUnderElevation: 0,
               ),
             SliverFillRemaining(
               hasScrollBody: hasScrollBody,

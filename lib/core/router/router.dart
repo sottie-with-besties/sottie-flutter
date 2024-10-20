@@ -112,7 +112,11 @@ final _routes = [
         builder: (_, state) {
           final params = state.extra as Map<String, bool>;
           final isModifyInfo = params['isModifyInfo'] ?? false;
-          return CertificationScreen(isModifyInfo: isModifyInfo);
+          final isOauthSignUp = params['isOauthSignUp'] ?? false;
+          return CertificationScreen(
+            isModifyInfo: isModifyInfo,
+            isOauthSignUp: isOauthSignUp,
+          );
         },
       ),
       GoRoute(
@@ -152,7 +156,6 @@ final _routes = [
                   return InChatScreen(
                     id: params['id'],
                     title: params['title'],
-                    isGenerated: params['isGenerated'],
                   );
                 },
                 routes: <GoRoute>[
@@ -291,6 +294,7 @@ final _routes = [
       final params = state.extra as Map<String, dynamic>;
       return PostDetailScreen(
         postModel: params['postModel'],
+        isWaiting: params['isWaiting'],
       );
     },
   ),

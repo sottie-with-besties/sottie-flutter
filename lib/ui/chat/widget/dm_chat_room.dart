@@ -10,7 +10,7 @@ import 'package:sottie_flutter/data/chat/model/dm_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
-import 'package:sottie_flutter/ui/common/widget/slide_tap_widget.dart';
+import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 
 class DmChatRoom extends StatefulWidget {
   const DmChatRoom({
@@ -25,33 +25,14 @@ class DmChatRoom extends StatefulWidget {
 }
 
 class _DmChatRoomState extends State<DmChatRoom> {
-  void _alarmOnOffAction(bool withSlide) {
-    log("DmAction");
-  }
-
-  void _chatRoomOutAction(bool withSlide) {
-    log("DeleteAction");
-  }
-
   @override
   Widget build(BuildContext context) {
-    return SlideTapWidget(
-      height: 70,
+    return SlideLongPressWidget(
       groupTag: 'dm',
-      onTap: () {
-        context.push(
-          '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
-          extra: {
-            'id': widget.model.id,
-            'title': widget.model.name,
-            'isGenerated': true,
-          },
-        );
-      },
       onLongPressWidget: Column(
         children: [
           OnLongPressOption(
-            color: Colors.grey,
+            color: mainGreyColor,
             onTap: () {
               _alarmOnOffAction(false);
             },
@@ -60,7 +41,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
           ),
           SizedBox(height: 10 * hu),
           OnLongPressOption(
-            color: Colors.redAccent,
+            color: mainRedColor,
             onTap: () {
               _chatRoomOutAction(false);
             },
@@ -72,7 +53,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
       slideActions: [
         SlidableAction(
           onPressed: (context) => _alarmOnOffAction(true),
-          backgroundColor: Colors.grey,
+          backgroundColor: mainGreyColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.messenger_outline,
@@ -81,7 +62,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
         ),
         SlidableAction(
           onPressed: (context) => _chatRoomOutAction(true),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: mainRedColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.delete,
@@ -89,49 +70,58 @@ class _DmChatRoomState extends State<DmChatRoom> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
       ],
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+      child: GestureDetector(
+        onTap: () {
+          context.push(
+            '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
+            extra: {
+              'id': widget.model.id,
+              'title': widget.model.name,
+            },
+          );
+        },
+        child: Container(
+          color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
+          child: Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: 12 * wu, vertical: 12 * hu),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                RandomAvatar(
-                  DateTime.now().toIso8601String(),
-                  width: 45 * hu,
-                  height: 45 * hu,
-                ),
-                const SizedBox(
-                  width: 30,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Text(
-                      widget.model.name,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 12 * hu,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    RandomAvatar(
+                      DateTime.now().toIso8601String(),
+                      width: 45 * hu,
+                      height: 45 * hu,
                     ),
-                    Text(
-                      widget.model.latestMsg,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 10 * hu,
-                      ),
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.model.name,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12 * hu,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          widget.model.latestMsg,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 10 * hu,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-            IntrinsicHeight(
-              child: SizedBox(
-                width: 60 * wu,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Column(
                   children: [
                     Text(
                       renderCustomStringTime(widget.model.latestTime,
@@ -141,15 +131,13 @@ class _DmChatRoomState extends State<DmChatRoom> {
                         fontSize: 10 * hu,
                       ),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    SizedBox(height: 5 * hu),
                     Container(
                       width: 40 * wu,
                       height: 25 * hu,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color: Colors.redAccent.withOpacity(0.8),
+                        color: mainRedColor.withOpacity(0.8),
                       ),
                       child: Center(
                         child: Text(
@@ -163,12 +151,20 @@ class _DmChatRoomState extends State<DmChatRoom> {
                       ),
                     ),
                   ],
-                ),
-              ),
-            )
-          ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
+}
+
+void _alarmOnOffAction(bool withSlide) {
+  log("DmAction");
+}
+
+void _chatRoomOutAction(bool withSlide) {
+  log("DeleteAction");
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class LocalTextField extends StatelessWidget {
   const LocalTextField({
@@ -48,7 +50,7 @@ class LocalTextField extends StatelessWidget {
       inputFormatters: inputFormatter,
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.grey.withOpacity(0.25),
+        fillColor: mainGreyColor.withOpacity(0.25),
         enabledBorder: enabledBorder
             ? OutlineInputBorder(
                 borderSide: const BorderSide(
@@ -74,9 +76,10 @@ class LocalTextField extends StatelessWidget {
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.black54),
         prefixIcon: prefixIcon
-            ? const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                child: FaIcon(
+            ? Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 12 * wu, vertical: 10),
+                child: const FaIcon(
                   FontAwesomeIcons.magnifyingGlass,
                   color: Colors.black,
                 ),

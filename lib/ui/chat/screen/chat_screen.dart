@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/ui/chat/screen/chat_tab_screen.dart.dart';
+import 'package:sottie_flutter/ui/chat/screen/chat_tab_view.dart.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
@@ -41,7 +41,7 @@ class _ChatScreenState extends State<ChatScreen> {
             focusBorder: false,
           ),
         ),
-        contentChild: const ChatTabScreen(),
+        contentChild: const ChatTabView(),
       ),
     );
   }
