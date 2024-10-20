@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auth_button_kit/auth_button_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -152,27 +150,25 @@ class AuthScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20 * hu),
-              OAuthButton(
-                  imgPath: AssetPath.kakaoLogin,
-                  onPressed: () async {
-                    log("kakao login button");
-                    final errorCode = await signIn(authType: AuthType.kakao);
 
-                    if (context.mounted) {
-                      errorCode == null
-                          ? context.go(CustomRouter.homePath)
-                          : showSnackBar(context, errorCode);
-                    }
-                  }),
+              /// 카카오 로그인
+              OAuthButton(
+                imgPath: AssetPath.kakaoLogin,
+                onPressed: () async {
+                  await oauthLogin(
+                    context: context,
+                    oauthType: AuthType.kakao,
+                  );
+                },
+              ),
+
+              /// 구글 로그인
               AuthButton(
                 onPressed: (_) async {
-                  final errorCode = await signIn(authType: AuthType.google);
-
-                  if (context.mounted) {
-                    errorCode == null
-                        ? context.go(CustomRouter.homePath)
-                        : showSnackBar(context, errorCode);
-                  }
+                  await oauthLogin(
+                    context: context,
+                    oauthType: AuthType.google,
+                  );
                 },
                 brand: Method.google,
                 shape: RoundedRectangleBorder(
@@ -180,12 +176,17 @@ class AuthScreen extends StatelessWidget {
                 ),
                 fontWeight: FontWeight.bold,
               ),
+
+              /// 애플 로그인
               AuthButton(
                 onPressed: (_) async {
-                  // log("Continue with Apple");
-                  // final errorCode = await signOut();
-                  // log(errorCode.toString());
                   context.go(CustomRouter.homePath);
+
+                  /// 애플 로그인 코드
+                  // await _oauthLogin(
+                  //   context: context,
+                  //   oauthType: AuthType.apple,
+                  // );
 
                   /// 아래 레트로핏 코드 정상 작동
                   // await AuthTokenRetrofit(dioWithNoInterceptor).signUp(signUpModel: SignUpModel(

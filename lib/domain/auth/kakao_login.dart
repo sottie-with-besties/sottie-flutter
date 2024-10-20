@@ -12,8 +12,8 @@ Future<String?> _signInWithKakao() async {
 
       authType = AuthType.kakao;
 
-      _oauthLoginModel.idToken = token.idToken;
-      _oauthLoginModel.accessToken = token.accessToken;
+      _oauthLoginEntity.idToken = token.idToken;
+      _oauthLoginEntity.accessToken = token.accessToken;
 
       /// Todo: 카카오 이메일 파라미터 받으면 signUpEntity에 넣기
 
@@ -35,8 +35,8 @@ Future<String?> _signInWithKakao() async {
 
         authType = AuthType.kakao;
 
-        _oauthLoginModel.idToken = token.idToken;
-        _oauthLoginModel.accessToken = token.accessToken;
+        _oauthLoginEntity.idToken = token.idToken;
+        _oauthLoginEntity.accessToken = token.accessToken;
 
         return null;
       } catch (error) {
@@ -53,8 +53,8 @@ Future<String?> _signInWithKakao() async {
 
       authType = AuthType.kakao;
 
-      _oauthLoginModel.idToken = token.idToken;
-      _oauthLoginModel.accessToken = token.accessToken;
+      _oauthLoginEntity.idToken = token.idToken;
+      _oauthLoginEntity.accessToken = token.accessToken;
 
       return null;
     } catch (error) {

@@ -13,4 +13,6 @@ Future<void> _emailLogin(
     tokenStorage.write(key: refreshTokenKey, value: tokenModel.refreshToken),
     tokenStorage.write(key: accessTokenKey, value: tokenModel.accessToken),
   ]);
+
+  accessToken = tokenModel.accessToken;
 }

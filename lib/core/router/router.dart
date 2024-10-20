@@ -112,7 +112,11 @@ final _routes = [
         builder: (_, state) {
           final params = state.extra as Map<String, bool>;
           final isModifyInfo = params['isModifyInfo'] ?? false;
-          return CertificationScreen(isModifyInfo: isModifyInfo);
+          final isOauthSignUp = params['isOauthSignUp'] ?? false;
+          return CertificationScreen(
+            isModifyInfo: isModifyInfo,
+            isOauthSignUp: isOauthSignUp,
+          );
         },
       ),
       GoRoute(

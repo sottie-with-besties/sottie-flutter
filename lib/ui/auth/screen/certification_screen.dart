@@ -18,10 +18,12 @@ class CertificationScreen extends StatelessWidget {
   const CertificationScreen({
     super.key,
     required this.isModifyInfo,
+    required this.isOauthSignUp,
   });
 
   // 회원가입이 아닌 More 스크린에서 내 정보 새로 인증할 때
   final bool isModifyInfo;
+  final bool isOauthSignUp;
 
   @override
   Widget build(BuildContext context) {
@@ -79,13 +81,25 @@ class CertificationScreen extends StatelessWidget {
 
               /// Todo: 내 정보를 로컬DB(ISAR)에 저장 및 서버 전송
             } else {
-              emailSignUpEntity.name = res.data['name'];
-              emailSignUpEntity.gender = res.data['gender'];
-              emailSignUpEntity.phoneNumber = res.data['phoneNumber'];
-              emailSignUpEntity.identifier = res.data['identifier'];
-              emailSignUpEntity.birthYear = res.data['birthYear'];
-              emailSignUpEntity.phoneAuthenticated =
-                  res.data['phoneAuthenticated'];
+              // 소셜 로그인
+              if (isOauthSignUp) {
+                oauthSignUpEntity.name = res.data['name'];
+                oauthSignUpEntity.gender = res.data['gender'];
+                oauthSignUpEntity.phoneNumber = res.data['phoneNumber'];
+                oauthSignUpEntity.identifier = res.data['identifier'];
+                oauthSignUpEntity.birthYear = res.data['birthYear'];
+                oauthSignUpEntity.phoneAuthenticated =
+                    res.data['phoneAuthenticated'];
+              } else {
+                // 이메일 로그인
+                emailSignUpEntity.name = res.data['name'];
+                emailSignUpEntity.gender = res.data['gender'];
+                emailSignUpEntity.phoneNumber = res.data['phoneNumber'];
+                emailSignUpEntity.identifier = res.data['identifier'];
+                emailSignUpEntity.birthYear = res.data['birthYear'];
+                emailSignUpEntity.phoneAuthenticated =
+                    res.data['phoneAuthenticated'];
+              }
             }
           } on Exception catch (_) {
             if (context.mounted) {
