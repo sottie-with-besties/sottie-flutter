@@ -12,10 +12,10 @@ import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
 class DefaultLayout extends StatelessWidget {
   const DefaultLayout({
     super.key,
-    required this.contentChild,
+    required this.hasScrollBody,
     this.title,
     this.header,
-    required this.hasScrollBody,
+    required this.contentChild,
   });
 
   final Widget contentChild;
@@ -85,7 +85,6 @@ AppBar? _renderAppbar(Widget? title, BuildContext context) {
     toolbarHeight: 80,
     backgroundColor: mainWhiteSilverColor,
     title: title,
-    scrolledUnderElevation: 0,
     actions: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),

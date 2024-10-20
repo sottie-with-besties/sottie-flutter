@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -44,7 +43,6 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
     /// utc로 변환해주지 않으면 한국 시간과 utc 시간으로 비교가 되어 정확한 시간 차이를 계산할 수 없다.
     final now = DateTime.now().toUtc();
     final du = now.difference(generatedDate);
-    log(du.inHours.toString());
     if (du.inDays == 1) {
       chattingOver = true;
       chatRoomDisappearingTime = du;

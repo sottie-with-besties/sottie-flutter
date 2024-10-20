@@ -61,6 +61,7 @@ final _customTheme = ThemeData(
       fontSize: 15 * hu,
       overflow: TextOverflow.ellipsis,
     ),
+    scrolledUnderElevation: 0,
   ),
   scaffoldBackgroundColor: Colors.white,
   navigationBarTheme: const NavigationBarThemeData(
