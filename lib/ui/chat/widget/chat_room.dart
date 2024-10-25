@@ -9,10 +9,11 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
-import 'package:sottie_flutter/ui/chat/widget/chat_room_top.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
+import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
 class ChatRoom extends StatelessWidget {
   const ChatRoom({
@@ -85,15 +86,20 @@ class ChatRoom extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: ChatRoomTop(
-                    categories: model.category,
-                    currentMemberCount: model.currentMemberCount,
-                    maxMemberCount: model.maxMemberCount,
-                    currentManCount: model.currentManCount,
-                    maxManCount: model.maxManCount,
-                    currentWomanCount: model.currentWomanCount,
-                    maxWomanCount: model.maxWomanCount,
+                  padding: EdgeInsets.symmetric(horizontal: 12 * wu),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SottieCategoryUi(categories: model.category),
+                      CurrentNumOfMember(
+                        currentMemberCount: model.currentMemberCount,
+                        maxMemberCount: model.maxMemberCount,
+                        currentManCount: model.currentManCount,
+                        maxManCount: model.maxManCount,
+                        currentWomanCount: model.currentWomanCount,
+                        maxWomanCount: model.maxWomanCount,
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 10 * hu),

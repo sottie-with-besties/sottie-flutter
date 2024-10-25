@@ -3,9 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
-import 'package:sottie_flutter/ui/chat/widget/chat_room_top.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
+import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
+import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
 class Post extends StatelessWidget {
   const Post({
@@ -29,53 +30,64 @@ class Post extends StatelessWidget {
           'isWaiting': isWaiting,
         },
       ),
-      child: Padding(
-        padding: EdgeInsets.all(8 * hu),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: mainBlueColor,
-              width: 0.7,
+      child: Container(
+        decoration: const BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: mainGreyColor,
+              width: 0.5,
             ),
           ),
-          padding: EdgeInsets.symmetric(horizontal: 10 * wu, vertical: 8 * hu),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ChatRoomTop(
-                categories: model.category,
-                currentMemberCount: model.currentMemberCount,
-                maxMemberCount: model.maxMemberCount,
-                currentManCount: model.currentManCount,
-                maxManCount: model.maxManCount,
-                currentWomanCount: model.currentWomanCount,
-                maxWomanCount: model.maxWomanCount,
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 16 * wu, vertical: 8 * hu),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SottieCategoryUi(categories: model.category),
+            SizedBox(height: 5 * hu),
+            Text(
+              model.title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 12 * hu,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(height: 12 * hu),
-              Text(
-                model.title,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12 * hu,
+            ),
+            SizedBox(height: 3 * hu),
+            Text(
+              "${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(model.date, model.date)}",
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 10 * hu,
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(0.5),
+              ),
+            ),
+            SizedBox(height: 1 * hu),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  model.location,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 10 * hu,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.5),
+                  ),
                 ),
-              ),
-              SizedBox(height: 5 * hu),
-              Text(
-                "${date.year}년 ${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(model.date, model.date)}",
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 5 * hu),
-              Text(
-                model.location,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
+                CurrentNumOfMember(
+                  currentMemberCount: model.currentMemberCount,
+                  maxMemberCount: model.maxMemberCount,
+                  currentManCount: model.currentManCount,
+                  maxManCount: model.maxManCount,
+                  currentWomanCount: model.currentWomanCount,
+                  maxWomanCount: model.maxWomanCount,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

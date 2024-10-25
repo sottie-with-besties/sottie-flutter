@@ -141,7 +141,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${date.year}년 ${date.month}월 ${date.day}일 ${renderCustomStringTime(widget.date, widget.date)}",
+                          "${date.month}월 ${date.day}일 ${renderCustomStringTime(widget.date, widget.date)}",
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),

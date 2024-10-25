@@ -157,9 +157,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   padding: const EdgeInsets.all(12.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: widget.isWaiting
-                          ? mainGreenColor.withOpacity(0.8)
-                          : mainBlueColor,
+                      backgroundColor:
+                          widget.isWaiting ? mainRedColor : mainBlueColor,
                       minimumSize: const Size(100, 65),
                     ),
                     onPressed: () {

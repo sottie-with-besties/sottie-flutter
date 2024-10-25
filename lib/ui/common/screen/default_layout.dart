@@ -58,15 +58,7 @@ class DefaultLayout extends StatelessWidget {
               ),
             SliverFillRemaining(
               hasScrollBody: hasScrollBody,
-              child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(16),
-                  ),
-                  color: mainWhiteSilverColor,
-                ),
-                child: contentChild,
-              ),
+              child: contentChild,
             ),
           ],
         ),
