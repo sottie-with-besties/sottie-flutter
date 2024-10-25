@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/data_source/post_detail_dummy.dart';
@@ -9,7 +8,9 @@ import 'package:sottie_flutter/data/post/model/post_detail_model.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
+import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
+import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
 class PostDetailScreen extends StatefulWidget {
   const PostDetailScreen({
@@ -124,8 +125,18 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _categoryClassify(widget.postModel.category),
-                          _renderMemberCount(widget.postModel),
+                          SottieCategoryUi(
+                              sottieCategory: widget.postModel.category),
+                          CurrentNumOfMember(
+                            currentMemberCount:
+                                widget.postModel.currentMemberCount,
+                            maxMemberCount: widget.postModel.maxMemberCount,
+                            currentManCount: widget.postModel.currentManCount,
+                            maxManCount: widget.postModel.maxManCount,
+                            currentWomanCount:
+                                widget.postModel.currentWomanCount,
+                            maxWomanCount: widget.postModel.maxWomanCount,
+                          ),
                           Text(
                               "날짜: ${date.year}년 ${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(widget.postModel.date, widget.postModel.date)}"),
                           Text("장소: ${widget.postModel.location}"),
@@ -186,39 +197,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   }
 }
 
-Widget _renderMemberCount(PostModel model) {
-  if (model.maxMemberCount == null &&
-      model.maxManCount == null &&
-      model.maxWomanCount == null) {
-    return const Text("인원 제한 없음");
-  } else if (model.currentMemberCount != null &&
-      model.currentManCount == null &&
-      model.currentWomanCount == null) {
-    return Text("인원 수: ${model.currentMemberCount}/${model.maxMemberCount}");
-  } else if (model.currentManCount != null && model.currentWomanCount != null) {
-    return Row(
-      children: [
-        const Text("인원 수: "),
-        const Icon(
-          Icons.man,
-          color: Colors.blue,
-        ),
-        SizedBox(width: 1 * wu),
-        Text("${model.currentManCount}/${model.maxManCount}"),
-        SizedBox(width: 3 * wu),
-        const Icon(
-          Icons.woman,
-          color: Colors.pinkAccent,
-        ),
-        SizedBox(width: 1 * wu),
-        Text("${model.currentWomanCount}/${model.maxWomanCount}"),
-      ],
-    );
-  } else {
-    return Container();
-  }
-}
-
 Text _renderAgeRange(List<String> ageRange) {
   String ageRangeString = '나이:';
 
@@ -259,51 +237,4 @@ Text _renderAgeRange(List<String> ageRange) {
   }
 
   return Text(ageRangeString.substring(0, ageRangeString.length - 1));
-}
-
-FittedBox _categoryClassify(List<String> categoryList) {
-  List<Widget> categories = [];
-
-  if (categoryList.contains('번개')) {
-    categories.add(_renderCategory(Icons.bolt, '번개'));
-  }
-
-  if (categoryList.contains('친목')) {
-    categories.add(_renderCategory(FontAwesomeIcons.userGroup, '친목'));
-  }
-
-  if (categoryList.contains('공부')) {
-    categories.add(_renderCategory(FontAwesomeIcons.pencil, '공부'));
-  }
-
-  if (categoryList.contains('구인/구직')) {
-    categories.add(_renderCategory(Icons.note_alt, '구인/구직'));
-  }
-
-  if (categoryList.contains('게임')) {
-    categories.add(_renderCategory(Icons.gamepad, '게임'));
-  }
-
-  if (categoryList.contains('운동')) {
-    categories.add(_renderCategory(FontAwesomeIcons.dumbbell, '운동'));
-  }
-
-  if (categoryList.contains('기타')) {
-    categories.add(_renderCategory(Icons.more_horiz, '기타'));
-  }
-
-  return FittedBox(child: Row(children: categories));
-}
-
-Widget _renderCategory(IconData icon, String category) {
-  return Padding(
-    padding: const EdgeInsets.only(right: 10),
-    child: Row(
-      children: [
-        FaIcon(icon),
-        const SizedBox(width: 5),
-        Text(category),
-      ],
-    ),
-  );
 }

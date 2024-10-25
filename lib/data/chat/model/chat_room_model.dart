@@ -13,7 +13,7 @@ class ChatRoomModel with _$ChatRoomModel {
     required String inChatId,
 
     /// 채팅의 카테고리(친목, 번개, 구인/구직 등)
-    required List<String> category,
+    required String category,
 
     /// 모임 날짜
     required String date,

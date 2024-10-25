@@ -11,29 +11,7 @@ class HomeHeader extends StatefulWidget {
 }
 
 class _HomeHeaderState extends State<HomeHeader> {
-  List<bool> selectedList = List<bool>.generate(
-    SottieCategory.values.length,
-    (index) => index == 0 ? true : false,
-  );
-
-  /// All을 체크하면 나머지 카테고리 체크 해제
-  void _checkAll() {
-    selectedList[0] = true;
-    for (int i = 1; i < selectedList.length; i++) {
-      selectedList[i] = false;
-    }
-  }
-
-  /// All이 아닌 나머지 카테고리 하나라도 체크되어 있으면 All 체크 해제
-  void _checkAnyExceptAll(int index, bool check) {
-    selectedList[0] = false;
-    selectedList[index] = check;
-  }
-
-  void _onSelected(int index, bool check) {
-    index == 0 ? _checkAll() : _checkAnyExceptAll(index, check);
-    setState(() {});
-  }
+  int value = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +21,13 @@ class _HomeHeaderState extends State<HomeHeader> {
         scrollDirection: Axis.horizontal,
         itemCount: SottieCategory.values.length,
         itemBuilder: (_, index) {
+          final isSelected = value == index;
+
           return ChoiceChip(
-            side: selectedList[index] ? null : const BorderSide(width: 0.8),
-            onSelected: (check) {
-              _onSelected(index, check);
+            side: isSelected ? null : const BorderSide(width: 0.8),
+            onSelected: (_) {
+              value = index;
+              setState(() {});
             },
             label: SizedBox(
               height: 18 * hu,
@@ -61,15 +42,13 @@ class _HomeHeaderState extends State<HomeHeader> {
                     SottieCategory.values[index].name,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: selectedList[index]
-                          ? mainWhiteSilverColor
-                          : mainBlackColor,
+                      color: isSelected ? mainWhiteSilverColor : mainBlackColor,
                     ),
                   ),
                 ],
               ),
             ),
-            selected: selectedList[index],
+            selected: isSelected,
             selectedColor: mainBlueColor.withOpacity(0.7),
             backgroundColor: mainWhiteSilverColor,
             showCheckmark: false,

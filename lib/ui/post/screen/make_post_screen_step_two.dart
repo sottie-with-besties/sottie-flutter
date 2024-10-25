@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
@@ -25,21 +26,21 @@ class MakePostScreenStepTwo extends StatefulWidget {
 class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
   final FocusNode focusNode = FocusNode();
 
-  // 설정이 이상 없는 지 확인, 에러 내용을 String으로 담아둠
+  /// 에러 내용을 String으로 담아두어 다음 페이지로 넘어 갈 수 없는 이유 설명
   List<String> checkList = <String>[];
 
-  // 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
+  /// 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
   void checkIfSettingHasError() {
     if (postSettingEntity.ageRange.isEmpty) {
-      checkList.add("나이 범위를 최소 하나 이상 설정해주세요.");
+      checkList.add("나이 범위를 최소 하나 이상 선택해주세요.");
     }
 
     if (postSettingEntity.date == null) {
-      checkList.add("날짜 및 시간을 설정해주세요.");
+      checkList.add("날짜 및 시간을 선택해주세요.");
     }
 
-    if (postSettingEntity.category.isEmpty) {
-      checkList.add("카테고리를 최소 하나 이상 선택해주세요.");
+    if (postSettingEntity.category == SottieCategory.all) {
+      checkList.add("카테고리를 하나 선택해주세요.");
     }
   }
 

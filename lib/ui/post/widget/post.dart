@@ -43,7 +43,7 @@ class Post extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SottieCategoryUi(categories: model.category),
+            SottieCategoryUi(sottieCategory: model.category),
             SizedBox(height: 5 * hu),
             Text(
               model.title,

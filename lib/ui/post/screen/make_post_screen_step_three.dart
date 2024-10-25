@@ -99,8 +99,7 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                        "카테고리: ${postSettingEntity.convertCategoryToStringList().reduce((p, n) => "$n , $p")}"),
+                    Text("카테고리: ${postSettingEntity.category.name}"),
                     Text(
                         "날짜: ${postSettingEntity.date == null ? "날짜 정보 없음" : "${postSettingEntity.date!.year}년 ${postSettingEntity.date!.month}월 ${postSettingEntity.date!.day}일 ${intToWeekday(postSettingEntity.date!.weekday)} ${renderCustomStringTime(postSettingEntity.date!.toUtc().toIso8601String(), postSettingEntity.date!.toUtc().toIso8601String())}"}"),
                     Text("장소: ${postSettingEntity.location.name}"),

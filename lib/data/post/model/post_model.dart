@@ -8,7 +8,7 @@ class PostModel with _$PostModel {
   factory PostModel({
     required String id,
     required String detailId,
-    required List<String> category,
+    required String category,
     String? thumbnailUrl,
     required String title,
     required String location,

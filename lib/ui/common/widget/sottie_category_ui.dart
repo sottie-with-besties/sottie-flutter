@@ -5,65 +5,60 @@ import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 class SottieCategoryUi extends StatelessWidget {
   const SottieCategoryUi({
     super.key,
-    required this.categories,
+    required this.sottieCategory,
   });
 
-  final List<String> categories;
+  final String sottieCategory;
 
   @override
   Widget build(BuildContext context) {
-    return _categoryClassify(categories);
+    return _categoryClassify(sottieCategory);
   }
 }
 
-Row _categoryClassify(List<String> categoryList) {
-  List<Widget> categories = [];
+Widget _categoryClassify(String category) {
+  Widget sottieCategory = Container();
 
-  if (categoryList.contains('번개')) {
-    categories.add(_renderCategory(Icons.bolt, '번개'));
+  if (category == '번개') {
+    sottieCategory = _renderCategory(Icons.bolt, '번개');
   }
 
-  if (categoryList.contains('친목')) {
-    categories.add(_renderCategory(FontAwesomeIcons.userGroup, '친목'));
+  if (category == '친목') {
+    sottieCategory = _renderCategory(FontAwesomeIcons.userGroup, '친목');
   }
 
-  if (categoryList.contains('공부')) {
-    categories.add(_renderCategory(FontAwesomeIcons.pencil, '공부'));
+  if (category == '공부') {
+    sottieCategory = _renderCategory(FontAwesomeIcons.pencil, '공부');
   }
 
-  if (categoryList.contains('구인/구직')) {
-    categories.add(_renderCategory(Icons.note_alt, '구인/구직'));
+  if (category == '구인/구직') {
+    sottieCategory = _renderCategory(Icons.note_alt, '구인/구직');
   }
 
-  if (categoryList.contains('게임')) {
-    categories.add(_renderCategory(Icons.gamepad, '게임'));
+  if (category == '게임') {
+    sottieCategory = _renderCategory(Icons.gamepad, '게임');
   }
 
-  if (categoryList.contains('운동')) {
-    categories.add(_renderCategory(FontAwesomeIcons.dumbbell, '운동'));
+  if (category == '운동') {
+    sottieCategory = _renderCategory(FontAwesomeIcons.dumbbell, '운동');
   }
 
-  if (categoryList.contains('기타')) {
-    categories.add(_renderCategory(Icons.more_horiz, '기타'));
+  if (category == '기타') {
+    sottieCategory = _renderCategory(Icons.more_horiz, '기타');
   }
 
-  return Row(
-    children: categories,
-  );
+  return sottieCategory;
 }
 
 Widget _renderCategory(IconData icon, String category) {
-  return Padding(
-    padding: const EdgeInsets.only(right: 10),
-    child: Row(
-      children: [
-        FaIcon(
-          icon,
-          size: 10 * hu,
-        ),
-        const SizedBox(width: 5),
-        Text(category),
-      ],
-    ),
+  return Row(
+    children: [
+      FaIcon(
+        icon,
+        size: 10 * hu,
+      ),
+      const SizedBox(width: 5),
+      Text(category),
+    ],
   );
 }

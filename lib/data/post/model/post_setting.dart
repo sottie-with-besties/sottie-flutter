@@ -16,7 +16,7 @@ final class PostSetting {
   List<XFile>? images;
 
   /// 포스트 카테고리(번개, 친목, 게임 등)
-  List<SottieCategory> category;
+  SottieCategory category;
 
   /// 시간도 포함, non-null 타입으로 안됨
   DateTime? date;
@@ -64,7 +64,7 @@ final class PostSetting {
     this.title = '',
     this.content = '',
     this.images,
-    this.category = const [],
+    this.category = SottieCategory.all,
     this.date, // date와 time은 null로 못받게 프론트에서 예외 처리
     this.dateStart,
     this.dateEnd,
@@ -73,8 +73,8 @@ final class PostSetting {
     this.location = SottieLocation.all,
     this.numOfMember = 2,
     this.genderRatio = false,
-    this.numOfMan = 0,
-    this.numOfWoman = 0,
+    this.numOfMan = 1,
+    this.numOfWoman = 1,
     this.ageRange = const [],
     this.mannerPoint = 36.5, // 0 => 매너 온도 상관 없음
     this.startSameTime = false,
@@ -94,7 +94,7 @@ final class PostSetting {
       'title': title,
       'content': content,
       'images': images ?? [],
-      'category': convertCategoryToStringList(), // Enum 데이터
+      'category': category.name, // Enum 데이터
       'date': date ?? '',
       'location': location.toString(), // Enum 데이터
       'numOfMember': numOfMember,
@@ -114,7 +114,7 @@ final class PostSetting {
     final searchFilteringData = {
       'title': title,
       'content': content,
-      'category': convertCategoryToStringList(), // Enum 데이터
+      'category': category.name, // Enum 데이터
       'dateStart': dateStart ?? '',
       'dateEnd': dateEnd ?? '',
       'timeStart': timeStart ?? '',
@@ -131,14 +131,6 @@ final class PostSetting {
     };
 
     return searchFilteringData;
-  }
-
-  List<String> convertCategoryToStringList() {
-    List<String> result = <String>[];
-    for (SottieCategory i in category) {
-      result.add(i.name);
-    }
-    return result;
   }
 
   List<String> convertAgeRangeToStringList() {

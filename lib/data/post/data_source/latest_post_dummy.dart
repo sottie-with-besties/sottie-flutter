@@ -6,7 +6,7 @@ Future<List<PostModel>> getLatestPostDummy() async {
     PostModel(
       id: '1',
       detailId: 'detail_1',
-      category: ['번개', '공부'],
+      category: '번개',
       thumbnailUrl: null,
       currentMemberCount: null,
       maxMemberCount: null,
@@ -21,7 +21,7 @@ Future<List<PostModel>> getLatestPostDummy() async {
     PostModel(
       id: '2',
       detailId: 'detail_2',
-      category: ['구인/구직'],
+      category: '구인/구직',
       thumbnailUrl: null,
       currentMemberCount: 5,
       maxMemberCount: 10,
@@ -36,7 +36,7 @@ Future<List<PostModel>> getLatestPostDummy() async {
     PostModel(
       id: '3',
       detailId: 'detail_3',
-      category: ['게임'],
+      category: '게임',
       thumbnailUrl: null,
       currentMemberCount: 4,
       maxMemberCount: 8,
@@ -51,7 +51,7 @@ Future<List<PostModel>> getLatestPostDummy() async {
     PostModel(
       id: '4',
       detailId: 'detail_4',
-      category: ['운동'],
+      category: '운동',
       thumbnailUrl: null,
       currentMemberCount: null,
       maxMemberCount: null,
@@ -66,7 +66,7 @@ Future<List<PostModel>> getLatestPostDummy() async {
     PostModel(
       id: '5',
       detailId: 'detail_5',
-      category: ['친목'],
+      category: '친목',
       thumbnailUrl: null,
       currentMemberCount: 6,
       maxMemberCount: 6,

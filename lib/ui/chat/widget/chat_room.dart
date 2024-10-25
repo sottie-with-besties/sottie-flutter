@@ -90,7 +90,7 @@ class ChatRoom extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SottieCategoryUi(categories: model.category),
+                      SottieCategoryUi(sottieCategory: model.category),
                       CurrentNumOfMember(
                         currentMemberCount: model.currentMemberCount,
                         maxMemberCount: model.maxMemberCount,

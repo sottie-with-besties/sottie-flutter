@@ -30,24 +30,6 @@ class _CategoryButtons extends StatefulWidget {
 }
 
 class _CategoryButtonsState extends State<_CategoryButtons> {
-  List<bool> selectedList = List<bool>.generate(
-    SottieCategory.values.length,
-    (index) => false,
-  );
-
-  List<SottieCategory> tempList = [];
-
-  @override
-  void initState() {
-    super.initState();
-
-    // 검색 스크린에서 필터링 시 데이터 유지
-    for (SottieCategory i in postSettingEntity.category) {
-      selectedList[i.index] = true;
-    }
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -56,20 +38,18 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
         children: SottieCategory.values
             .where((category) => category.index != 0)
             .map((category) {
+          final isSelected = category == postSettingEntity.category;
+
           return ChoiceChip(
             label: Text(
               category.name,
               style: TextStyle(
-                color: selectedList[category.index]
-                    ? mainWhiteSilverColor
-                    : mainBlackColor,
+                color: isSelected ? mainWhiteSilverColor : mainBlackColor,
               ),
             ),
-            selected: selectedList[category.index],
+            selected: isSelected,
             onSelected: (onSelected) {
-              selectedList[category.index] = onSelected;
-              onSelected ? tempList.add(category) : tempList.remove(category);
-              postSettingEntity.category = tempList;
+              postSettingEntity.category = category;
               setState(() {});
             },
           );

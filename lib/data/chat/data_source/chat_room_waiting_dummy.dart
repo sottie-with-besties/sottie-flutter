@@ -6,7 +6,7 @@ Future<List<PostModel>> getChatRoomWaitingDummy() async {
     PostModel(
       id: '6',
       detailId: 'detail_6',
-      category: ['번개'],
+      category: '번개',
       thumbnailUrl: null,
       currentMemberCount: null,
       maxMemberCount: null,
@@ -21,7 +21,7 @@ Future<List<PostModel>> getChatRoomWaitingDummy() async {
     PostModel(
       id: '7',
       detailId: 'detail_7',
-      category: ['공부'],
+      category: '공부',
       thumbnailUrl: null,
       currentMemberCount: 3,
       maxMemberCount: 10,
@@ -36,7 +36,7 @@ Future<List<PostModel>> getChatRoomWaitingDummy() async {
     PostModel(
       id: '8',
       detailId: 'detail_8',
-      category: ['기타'],
+      category: '기타',
       thumbnailUrl: null,
       currentMemberCount: null,
       maxMemberCount: null,
@@ -51,7 +51,7 @@ Future<List<PostModel>> getChatRoomWaitingDummy() async {
     PostModel(
       id: '9',
       detailId: 'detail_9',
-      category: ['공부', '운동'],
+      category: '공부',
       thumbnailUrl: null,
       currentMemberCount: 7,
       maxMemberCount: 7,
@@ -66,7 +66,7 @@ Future<List<PostModel>> getChatRoomWaitingDummy() async {
     PostModel(
       id: '10',
       detailId: 'detail_10',
-      category: ['게임', '구인/구직'],
+      category: '게임',
       thumbnailUrl: null,
       currentMemberCount: null,
       maxMemberCount: null,
