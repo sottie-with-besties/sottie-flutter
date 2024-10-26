@@ -1,6 +1,4 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_age_range.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
@@ -11,9 +9,6 @@ final class PostSetting {
 
   /// 포스트 내용
   String content;
-
-  /// 업로드 할 썸네일 이미지 최대 3장
-  List<XFile>? images;
 
   /// 포스트 카테고리(번개, 친목, 게임 등)
   SottieCategory category;
@@ -63,7 +58,6 @@ final class PostSetting {
   PostSetting({
     this.title = '',
     this.content = '',
-    this.images,
     this.category = SottieCategory.all,
     this.date, // date와 time은 null로 못받게 프론트에서 예외 처리
     this.dateStart,
@@ -82,18 +76,9 @@ final class PostSetting {
   });
 
   Map<String, dynamic> toJsonForMakePostSend() {
-    List? images;
-    if (this.images != null) {
-      images = this.images!.map((img) {
-        return MultipartFile.fromFileSync(img.path,
-            contentType: DioMediaType('image', 'jpg'));
-      }).toList();
-    }
-
     final makePostData = {
       'title': title,
       'content': content,
-      'images': images ?? [],
       'category': category.name, // Enum 데이터
       'date': date ?? '',
       'location': location.toString(), // Enum 데이터

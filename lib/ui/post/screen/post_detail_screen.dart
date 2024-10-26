@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/data_source/post_detail_dummy.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_model.dart';
@@ -12,7 +11,7 @@ import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
-class PostDetailScreen extends StatefulWidget {
+class PostDetailScreen extends StatelessWidget {
   const PostDetailScreen({
     super.key,
     required this.postModel,
@@ -23,37 +22,8 @@ class PostDetailScreen extends StatefulWidget {
   final bool isWaiting;
 
   @override
-  State<PostDetailScreen> createState() => _PostDetailScreenState();
-}
-
-class _PostDetailScreenState extends State<PostDetailScreen> {
-  final _thumbnailController = PageController();
-
-  // 더미
-  final thumbnail = List.generate(
-      3,
-      (index) => Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: mainGreyColor.shade300,
-            ),
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            child: Center(
-                child: Text(
-              "Thumbnail $index",
-              style: const TextStyle(color: Colors.black),
-            )),
-          ));
-
-  @override
-  void dispose() {
-    super.dispose();
-    _thumbnailController.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final date = DateTime.parse(widget.postModel.date);
+    final date = DateTime.parse(postModel.date);
 
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.white),
@@ -63,7 +33,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
           physics: const ClampingScrollPhysics(),
           children: [
             Text(
-              widget.postModel.title,
+              postModel.title,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
@@ -84,32 +54,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
                 return Column(
                   children: [
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: 250 * hu,
-                          child: PageView.builder(
-                            controller: _thumbnailController,
-                            itemBuilder: (_, index) {
-                              return thumbnail[index % thumbnail.length];
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        SmoothPageIndicator(
-                          controller: _thumbnailController,
-                          count: thumbnail.length,
-                          effect: const WormEffect(
-                            dotHeight: 8,
-                            dotWidth: 8,
-                            activeDotColor: mainBlueColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
                     Text(
                       postDetailModelData.content,
                       style: const TextStyle(
@@ -125,21 +69,18 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SottieCategoryUi(
-                              sottieCategory: widget.postModel.category),
+                          SottieCategoryUi(sottieCategory: postModel.category),
                           CurrentNumOfMember(
-                            currentMemberCount:
-                                widget.postModel.currentMemberCount,
-                            maxMemberCount: widget.postModel.maxMemberCount,
-                            currentManCount: widget.postModel.currentManCount,
-                            maxManCount: widget.postModel.maxManCount,
-                            currentWomanCount:
-                                widget.postModel.currentWomanCount,
-                            maxWomanCount: widget.postModel.maxWomanCount,
+                            currentMemberCount: postModel.currentMemberCount,
+                            maxMemberCount: postModel.maxMemberCount,
+                            currentManCount: postModel.currentManCount,
+                            maxManCount: postModel.maxManCount,
+                            currentWomanCount: postModel.currentWomanCount,
+                            maxWomanCount: postModel.maxWomanCount,
                           ),
                           Text(
-                              "날짜: ${date.year}년 ${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(widget.postModel.date, widget.postModel.date)}"),
-                          Text("장소: ${widget.postModel.location}"),
+                              "날짜: ${date.year}년 ${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(postModel.date, postModel.date)}"),
+                          Text("장소: ${postModel.location}"),
                           _renderAgeRange(postDetailModelData.ageRange),
                           Text("매너 온도: ${postDetailModelData.mannerPoint}도 이상"),
                           if (postDetailModelData.startSameTime)
@@ -168,15 +109,14 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   padding: const EdgeInsets.all(12.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          widget.isWaiting ? mainRedColor : mainBlueColor,
+                      backgroundColor: isWaiting ? mainRedColor : mainBlueColor,
                       minimumSize: const Size(100, 65),
                     ),
                     onPressed: () {
-                      widget.isWaiting ? log("참여 취소") : log("참여하기");
+                      isWaiting ? log("참여 취소") : log("참여하기");
                     },
                     child: Text(
-                      widget.isWaiting ? '참여 취소' : '참여하기',
+                      isWaiting ? '참여 취소' : '참여하기',
                       style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,

@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 final _picker = ImagePicker();
 
-Future<void> imageSelection(BuildContext context) async {
+Future<List<XFile>?> imageSelection(BuildContext context) async {
   try {
-    // 여러 이미지와 동영상
-    final images = await _picker.pickMultipleMedia(limit: 3);
-    postSettingEntity.images = images;
+    /// 여러 이미지와 동영상 선택 및 채팅방에 전송
+    final images = await _picker.pickMultipleMedia();
+    return images;
   } on PlatformException catch (e) {
     if (e.code == 'photo_access_denied') {
       if (context.mounted) {
@@ -21,7 +20,9 @@ Future<void> imageSelection(BuildContext context) async {
         showSnackBar(context, "에러가 발생했습니다. Error Code: ${e.code}");
       }
     }
+    return null;
   } catch (_) {
     if (context.mounted) showSnackBar(context, "알 수 없는 에러가 발생했습니다.");
+    return null;
   }
 }

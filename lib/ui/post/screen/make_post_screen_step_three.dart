@@ -1,36 +1,12 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 
-class MakePostScreenStepThree extends StatefulWidget {
+class MakePostScreenStepThree extends StatelessWidget {
   const MakePostScreenStepThree({super.key});
-
-  @override
-  State<MakePostScreenStepThree> createState() =>
-      _MakePostScreenStepThreeState();
-}
-
-class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
-  final _thumbnailController = PageController();
-
-  List<Image>? images = postSettingEntity.images?.map((image) {
-    return Image.file(
-      File(image.path),
-      fit: BoxFit.cover,
-    );
-  }).toList();
-
-  @override
-  void dispose() {
-    _thumbnailController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,34 +32,6 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
               const SizedBox(
                 height: 30,
               ),
-              Column(
-                children: [
-                  if (images != null && images!.isNotEmpty)
-                    SizedBox(
-                      height: 250 * hu,
-                      child: PageView.builder(
-                        controller: _thumbnailController,
-                        itemBuilder: (_, index) {
-                          return images![index % images!.length];
-                        },
-                      ),
-                    ),
-                  const SizedBox(height: 16),
-                  if (images != null && images!.isNotEmpty)
-                    SmoothPageIndicator(
-                      controller: _thumbnailController,
-                      count: images!.length,
-                      effect: const WormEffect(
-                        dotHeight: 8,
-                        dotWidth: 8,
-                        activeDotColor: mainWhiteSilverColor,
-                      ),
-                    ),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
               Text(
                 postSettingEntity.content,
                 style: const TextStyle(
@@ -91,7 +39,7 @@ class _MakePostScreenStepThreeState extends State<MakePostScreenStepThree> {
                 ),
               ),
               const SizedBox(
-                height: 50,
+                height: 30,
               ),
               SizedBox(
                 height: 400,

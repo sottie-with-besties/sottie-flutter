@@ -1,15 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
-import 'package:sottie_flutter/ui/post/controller/image_selection.dart';
 
 class MakePostScreenStepOne extends StatefulWidget {
   const MakePostScreenStepOne({super.key});
@@ -24,52 +19,6 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
 
   final FocusNode _titleFocusNode = FocusNode();
   final FocusNode _contentFocusNode = FocusNode();
-
-  Widget _renderImagePreview(String imagePath) {
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: Image.file(
-            File(imagePath),
-            fit: BoxFit.cover,
-            width: 50 * wu,
-            height: 50 * wu,
-          ),
-        ),
-        Positioned.fill(
-          child: Align(
-            alignment: Alignment.topRight,
-            child: GestureDetector(
-              onTap: () {
-                postSettingEntity.images!
-                    .removeWhere((image) => image.path == imagePath);
-                setState(() {});
-              },
-              child: Padding(
-                padding: EdgeInsets.only(right: 3 * wu),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: mainRedColor,
-                  ),
-                  padding: const EdgeInsets.all(4),
-                  width: 15 * hu,
-                  height: 15 * hu,
-                  child: const FittedBox(
-                    child: FaIcon(
-                      FontAwesomeIcons.minus,
-                      color: mainWhiteSilverColor,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        )
-      ],
-    );
-  }
 
   @override
   void dispose() {
@@ -115,36 +64,6 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                 controller: _contentController,
                 focusNode: _contentFocusNode,
                 maxLength: 100,
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  postSettingEntity.images != null
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: postSettingEntity.images!.map((image) {
-                            return _renderImagePreview(image.path);
-                          }).toList(),
-                        )
-                      : Container(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        await imageSelection(context);
-                        setState(() {});
-                      },
-                      child: const Text(
-                        "이미지 선택",
-                        style: TextStyle(
-                          color: mainWhiteSilverColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
               ),
               const SizedBox(height: 60),
               Column(
