@@ -8,7 +8,6 @@ Future<PostDetailModel> getPostDetailDummy() async {
     ageRange: ['10대', '30대', '50대', '20대'],
     mannerPoint: 36.5,
     startSameTime: true,
-    openParticipation: false,
     onlyMyFriends: false,
   );
 }

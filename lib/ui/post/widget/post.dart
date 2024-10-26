@@ -45,17 +45,14 @@ class Post extends StatelessWidget {
           children: [
             SottieCategoryUi(sottieCategory: model.category),
             SizedBox(height: 5 * hu),
-            Hero(
-              tag: model.id,
-              child: Text(
-                model.title,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                style: TextStyle(
-                  fontSize: 12 * hu,
-                  fontWeight: FontWeight.bold,
-                  color: mainBlackColor,
-                ),
+            Text(
+              model.title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 12 * hu,
+                fontWeight: FontWeight.bold,
+                color: mainBlackColor,
               ),
             ),
             SizedBox(height: 3 * hu),
@@ -65,7 +62,7 @@ class Post extends StatelessWidget {
               style: TextStyle(
                 fontSize: 10 * hu,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5),
+                color: mainGreyColor2,
               ),
             ),
             SizedBox(height: 1 * hu),
@@ -78,7 +75,7 @@ class Post extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 10 * hu,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black.withOpacity(0.5),
+                    color: mainGreyColor2,
                   ),
                 ),
                 CurrentNumOfMember(

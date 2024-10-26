@@ -81,7 +81,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                   style: TextStyle(
                     fontSize: 10 * hu,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black.withOpacity(0.5),
+                    color: mainGreyColor2,
                   ),
                 )
               : Row(
@@ -95,7 +95,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                         style: TextStyle(
                           fontSize: 10 * hu,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black.withOpacity(0.5),
+                          color: mainGreyColor2,
                         ),
                       ),
                     ),
@@ -106,7 +106,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                             DateTime.now().toUtc().toIso8601String()),
                         style: TextStyle(
                           fontSize: 8 * hu,
-                          color: Colors.black.withOpacity(0.5),
+                          color: mainGreyColor2,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -124,7 +124,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                       style: TextStyle(
                         fontSize: 10 * wu,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black.withOpacity(0.5),
+                        color: mainGreyColor2,
                       ),
                     ),
                     _ChatRoomDestroyingTimer(

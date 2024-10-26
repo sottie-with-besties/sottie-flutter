@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class CurrentNumOfMember extends StatelessWidget {
@@ -10,6 +11,7 @@ class CurrentNumOfMember extends StatelessWidget {
     required this.maxManCount,
     required this.currentWomanCount,
     required this.maxWomanCount,
+    this.color = mainBlackColor,
   });
 
   final int? currentMemberCount;
@@ -18,6 +20,7 @@ class CurrentNumOfMember extends StatelessWidget {
   final int? maxManCount;
   final int? currentWomanCount;
   final int? maxWomanCount;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,7 @@ class CurrentNumOfMember extends StatelessWidget {
       maxManCount: maxManCount,
       currentWomanCount: currentWomanCount,
       maxWomanCount: maxWomanCount,
+      color: color,
     );
   }
 }
@@ -39,13 +43,29 @@ Widget _renderMemberCount({
   int? maxManCount,
   int? currentWomanCount,
   int? maxWomanCount,
+  Color color = mainBlackColor,
 }) {
   if (maxMemberCount == null && maxManCount == null && maxWomanCount == null) {
     return const Text("인원 제한 없음");
   } else if (currentMemberCount != null &&
       currentManCount == null &&
       currentWomanCount == null) {
-    return Text("$currentMemberCount/$maxMemberCount");
+    return Row(
+      children: [
+        Icon(
+          Icons.person,
+          color: color,
+          size: 12 * hu,
+        ),
+        SizedBox(width: 1 * wu),
+        Text(
+          "$currentMemberCount/$maxMemberCount",
+          style: TextStyle(
+            color: color,
+          ),
+        ),
+      ],
+    );
   } else if (currentManCount != null && currentWomanCount != null) {
     return Row(
       children: [
@@ -55,7 +75,12 @@ Widget _renderMemberCount({
           size: 12 * hu,
         ),
         SizedBox(width: 1 * wu),
-        Text("$currentManCount/$maxManCount"),
+        Text(
+          "$currentManCount/$maxManCount",
+          style: TextStyle(
+            color: color,
+          ),
+        ),
         SizedBox(width: 3 * wu),
         Icon(
           Icons.woman,
@@ -63,7 +88,12 @@ Widget _renderMemberCount({
           size: 12 * hu,
         ),
         SizedBox(width: 1 * wu),
-        Text("$currentWomanCount/$maxWomanCount"),
+        Text(
+          "$currentWomanCount/$maxWomanCount",
+          style: TextStyle(
+            color: color,
+          ),
+        ),
       ],
     );
   } else {

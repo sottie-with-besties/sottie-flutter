@@ -11,7 +11,6 @@ class PostDetailModel with _$PostDetailModel {
     required List<String> ageRange,
     required double mannerPoint,
     required bool startSameTime,
-    required bool openParticipation,
     required bool onlyMyFriends,
   }) = _PostDetailModel;
 

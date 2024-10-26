@@ -134,14 +134,9 @@ class _InChatInfoScreenState extends State<InChatInfoScreen> {
                           _renderAgeRange(postDetailModelData.ageRange),
                           Text("매너 온도: ${postDetailModelData.mannerPoint}도 이상"),
                           if (postDetailModelData.startSameTime)
-                            const Text(
-                                "동시 채팅 시작: 정해진 인원 수만큼 모집될때까지 채팅방이 생성되지 않다가, 정해진 인원 수 만큼 모이면 채팅방이 생성되고 채팅이 시작됩니다."),
-                          if (postDetailModelData.openParticipation)
-                            const Text(
-                                "오픈 채팅: 정해진 모임 날짜로부터 24시간 이후에도 채팅방이 삭제되지 않으며, 채팅방 출입이 자유롭습니다."),
+                            const Text("동시 채팅 시작"),
                           if (postDetailModelData.onlyMyFriends)
-                            const Text(
-                                "오직 내 친구만: 방장의 친구 목록에 등록된 유저만 입장할 수 있습니다."),
+                            const Text("내 친구만"),
                         ],
                       ),
                     ),
