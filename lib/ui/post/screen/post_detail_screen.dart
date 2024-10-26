@@ -32,13 +32,17 @@ class PostDetailScreen extends StatelessWidget {
         child: ListView(
           physics: const ClampingScrollPhysics(),
           children: [
-            Text(
-              postModel.title,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
+            Hero(
+              tag: postModel.id,
+              child: Text(
+                postModel.title,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16 * hu,
+                  color: mainBlackColor,
+                ),
               ),
             ),
             const SizedBox(

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
@@ -201,12 +202,20 @@ final _routes = [
             routes: <GoRoute>[
               GoRoute(
                 path: CustomRouter.friendDetailPath,
-                builder: (_, state) {
+                pageBuilder: (_, state) {
                   final params = state.extra as Map<String, dynamic>;
 
-                  return FriendDetailScreen(
-                    model: params['model'],
-                    isMyFriend: params['isMyFriend'],
+                  return CustomTransitionPage(
+                    child: FriendDetailScreen(
+                      model: params['model'],
+                      isMyFriend: params['isMyFriend'],
+                    ),
+                    transitionsBuilder: (_, animation, __, child) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      );
+                    },
                   );
                 },
               ),
@@ -290,11 +299,20 @@ final _routes = [
   /// 모집글 상세 화면 스크린
   GoRoute(
     path: CustomRouter.postDetailPath,
-    builder: (_, state) {
+    pageBuilder: (_, state) {
       final params = state.extra as Map<String, dynamic>;
-      return PostDetailScreen(
-        postModel: params['postModel'],
-        isWaiting: params['isWaiting'],
+
+      return CustomTransitionPage(
+        child: PostDetailScreen(
+          postModel: params['postModel'],
+          isWaiting: params['isWaiting'],
+        ),
+        transitionsBuilder: (_, animation, __, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
       );
     },
   ),

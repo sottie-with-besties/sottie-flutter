@@ -35,7 +35,6 @@ class InChatDrawer extends StatelessWidget {
                           id: '123123',
                           detailId: '123123',
                           category: SottieCategory.amity.name,
-                          thumbnailUrl: null,
                           title: "안녕하세요",
                           location: SottieLocation.sungnam.name,
                           date: "2024년 9월 18일",

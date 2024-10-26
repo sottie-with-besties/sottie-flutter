@@ -9,7 +9,6 @@ class PostModel with _$PostModel {
     required String id,
     required String detailId,
     required String category,
-    String? thumbnailUrl,
     required String title,
     required String location,
     required String date,

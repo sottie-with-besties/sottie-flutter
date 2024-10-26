@@ -4,10 +4,9 @@ Future<List<PostModel>> getLatestPostDummy() async {
   await Future.delayed(const Duration(seconds: 1), null);
   return [
     PostModel(
-      id: '1',
+      id: '16341356134561',
       detailId: 'detail_1',
       category: '번개',
-      thumbnailUrl: null,
       currentMemberCount: null,
       maxMemberCount: null,
       currentManCount: 3,
@@ -19,10 +18,9 @@ Future<List<PostModel>> getLatestPostDummy() async {
       date: '2024-09-10T12:30:00Z',
     ),
     PostModel(
-      id: '2',
+      id: '13641346136452',
       detailId: 'detail_2',
       category: '구인/구직',
-      thumbnailUrl: null,
       currentMemberCount: 5,
       maxMemberCount: 10,
       currentManCount: null,
@@ -34,10 +32,9 @@ Future<List<PostModel>> getLatestPostDummy() async {
       date: '2024-09-11T12:30:00Z',
     ),
     PostModel(
-      id: '3',
+      id: '3163513561356',
       detailId: 'detail_3',
       category: '게임',
-      thumbnailUrl: null,
       currentMemberCount: 4,
       maxMemberCount: 8,
       currentManCount: null,
@@ -49,10 +46,9 @@ Future<List<PostModel>> getLatestPostDummy() async {
       date: '2024-09-12T12:30:00Z',
     ),
     PostModel(
-      id: '4',
+      id: '413456134561356',
       detailId: 'detail_4',
       category: '운동',
-      thumbnailUrl: null,
       currentMemberCount: null,
       maxMemberCount: null,
       currentManCount: 4,
@@ -64,10 +60,9 @@ Future<List<PostModel>> getLatestPostDummy() async {
       date: '2024-09-13T12:30:00Z',
     ),
     PostModel(
-      id: '5',
+      id: '13461345613565',
       detailId: 'detail_5',
       category: '친목',
-      thumbnailUrl: null,
       currentMemberCount: 6,
       maxMemberCount: 6,
       currentManCount: null,
