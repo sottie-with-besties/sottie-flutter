@@ -4,6 +4,16 @@ part 'chat_room_model.freezed.dart';
 part 'chat_room_model.g.dart';
 
 @freezed
+class ChatRoomModelList with _$ChatRoomModelList {
+  factory ChatRoomModelList({
+    required List<ChatRoomModel> chatRoomModelList,
+  }) = _ChatRoomModelList;
+
+  factory ChatRoomModelList.fromJson(Map<String, dynamic> json) =>
+      _$ChatRoomModelListFromJson(json);
+}
+
+@freezed
 class ChatRoomModel with _$ChatRoomModel {
   factory ChatRoomModel({
     /// 채팅방 상태 관계 없이 반드시 받아야 하는 값

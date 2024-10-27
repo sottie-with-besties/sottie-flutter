@@ -6,9 +6,6 @@ part 'friend_detail_model.g.dart';
 @freezed
 class FriendDetailModel with _$FriendDetailModel {
   factory FriendDetailModel({
-    required String id,
-    required String nickname,
-    required String? stateMsg,
     required double? participationValue,
     required double? attitudeValue,
     required double? timeValue,

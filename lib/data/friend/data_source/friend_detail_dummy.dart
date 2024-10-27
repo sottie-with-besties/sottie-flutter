@@ -5,9 +5,6 @@ import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
 Future<FriendDetailModel> getFriendDetailDummy() async {
   await Future.delayed(const Duration(seconds: 1), null);
   return FriendDetailModel(
-    id: 'id',
-    nickname: 'nickname',
-    stateMsg: 'stateMsg',
     participationValue: _randomPoint(),
     attitudeValue: _randomPoint(),
     timeValue: _randomPoint(),
