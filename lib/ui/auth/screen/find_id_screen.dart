@@ -23,6 +23,8 @@ class _FindIdScreenState extends State<FindIdScreen> {
   bool isNextLoading = false;
   bool isCancelLoading = false;
 
+  final _focusNode = FocusNode();
+
   final phoneNumberKey = GlobalKey<FormState>();
 
   final loadingCircle = const Center(
@@ -82,32 +84,70 @@ class _FindIdScreenState extends State<FindIdScreen> {
   }
 
   @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Stepper(
-          elevation: 1,
-          type: StepperType.horizontal,
-          currentStep: currentStep,
-          connectorColor: WidgetStateColor.resolveWith(
-            (state) {
-              if (state.contains(WidgetState.selected)) {
-                return mainBlueColor;
-              }
-              return mainGreyColor;
-            },
-          ),
-          steps: <Step>[
-            Step(
-              title: Container(),
-              content: Form(
-                key: phoneNumberKey,
-                child: Column(
+    return GestureDetector(
+      onTap: _focusNode.unfocus,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: Stepper(
+            elevation: 1,
+            type: StepperType.horizontal,
+            currentStep: currentStep,
+            connectorColor: WidgetStateColor.resolveWith(
+              (state) {
+                if (state.contains(WidgetState.selected)) {
+                  return mainBlueColor;
+                }
+                return mainGreyColor;
+              },
+            ),
+            steps: <Step>[
+              Step(
+                title: Container(),
+                content: Form(
+                  key: phoneNumberKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "전화번호를 입력해주세요",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      AuthTextField(
+                        focusNode: _focusNode,
+                        hint: "전화번호 입력",
+                        keyboardType: TextInputType.number,
+                        validator: (val) {
+                          phoneNumber = val;
+                          return validatePhoneNumber(val!);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                isActive: currentStep > 0,
+                state: _setStepState(0),
+              ),
+              Step(
+                title: Container(),
+                content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "전화번호를 입력해주세요",
+                      "문자를 확인하세요!",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
@@ -116,181 +156,153 @@ class _FindIdScreenState extends State<FindIdScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    AuthTextField(
-                      hint: "전화번호 입력",
-                      keyboardType: TextInputType.number,
+                    const Text(
+                      "인증코드를 발송하였습니다",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Pinput(
+                      length: 6,
+                      obscureText: true,
                       validator: (val) {
-                        phoneNumber = val;
-                        return validatePhoneNumber(val!);
+                        verificationCode = val;
+                        return null;
                       },
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    OutlinedButton(
+                      onPressed: () async {
+                        final errorCode =
+                            await signInWithPhoneNumber(phoneNumber!);
+                        if (errorCode != null) {
+                          if (context.mounted) showSnackBar(context, errorCode);
+                        }
+                      },
+                      child: const Text("인증코드 재전송"),
+                    ),
+                    const SizedBox(
+                      height: 30,
                     ),
                   ],
                 ),
+                isActive: currentStep > 1,
+                state: _setStepState(1),
               ),
-              isActive: currentStep > 0,
-              state: _setStepState(0),
-            ),
-            Step(
-              title: Container(),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "문자를 확인하세요!",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "인증코드를 발송하였습니다",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Pinput(
-                    length: 6,
-                    obscureText: true,
-                    validator: (val) {
-                      verificationCode = val;
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  OutlinedButton(
-                    onPressed: () async {
-                      final errorCode =
-                          await signInWithPhoneNumber(phoneNumber!);
-                      if (errorCode != null) {
-                        if (context.mounted) showSnackBar(context, errorCode);
-                      }
-                    },
-                    child: const Text("인증코드 재전송"),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                ],
-              ),
-              isActive: currentStep > 1,
-              state: _setStepState(1),
-            ),
-            Step(
-              title: Container(),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "이메일 정보",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "jinpyokim13423@naver.com",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 12,
-                          horizontal: 16,
-                        ),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: mainWhiteSilverColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            minimumSize: const Size(100, 60),
-                          ),
-                          onPressed: () {
-                            context.go(CustomRouter.authPath);
-                          },
-                          child: const Text(
-                            "확인",
-                            style: TextStyle(
-                                color: mainWhiteSilverColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                        ),
+              Step(
+                title: Container(),
+                content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "이메일 정보",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
                       ),
-                    ],
-                  ),
-                ],
-              ),
-              isActive: currentStep > 2,
-              state: _setStepState(2),
-            ),
-          ],
-          controlsBuilder: (context, details) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 12,
-                horizontal: 12,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: mainGreyColor,
-                      minimumSize: const Size(100, 50),
                     ),
-                    onPressed: () =>
-                        _anyButtonLoading() ? null : _onStepCancel(),
-                    child: isCancelLoading
-                        ? loadingCircle
-                        : const Text(
-                            "뒤로가기",
-                            style: TextStyle(
-                              color: mainWhiteSilverColor,
-                              fontWeight: FontWeight.bold,
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      "jinpyokim13423@naver.com",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 16,
+                          ),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: mainWhiteSilverColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              minimumSize: const Size(100, 60),
+                            ),
+                            onPressed: () {
+                              context.go(CustomRouter.authPath);
+                            },
+                            child: const Text(
+                              "확인",
+                              style: TextStyle(
+                                  color: mainWhiteSilverColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
                             ),
                           ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  if (currentStep < 2)
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                isActive: currentStep > 2,
+                state: _setStepState(2),
+              ),
+            ],
+            controlsBuilder: (context, details) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 12,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        backgroundColor: mainGreyColor,
                         minimumSize: const Size(100, 50),
                       ),
                       onPressed: () =>
-                          _anyButtonLoading() ? null : _onStepContinue(),
-                      child: isNextLoading
+                          _anyButtonLoading() ? null : _onStepCancel(),
+                      child: isCancelLoading
                           ? loadingCircle
                           : const Text(
-                              "다음",
+                              "뒤로가기",
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
                                 color: mainWhiteSilverColor,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                     ),
-                ],
-              ),
-            );
-          },
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    if (currentStep < 2)
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(100, 50),
+                        ),
+                        onPressed: () =>
+                            _anyButtonLoading() ? null : _onStepContinue(),
+                        child: isNextLoading
+                            ? loadingCircle
+                            : const Text(
+                                "다음",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: mainWhiteSilverColor,
+                                ),
+                              ),
+                      ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

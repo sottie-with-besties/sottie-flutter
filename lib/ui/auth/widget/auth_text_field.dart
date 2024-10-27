@@ -4,16 +4,18 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 class AuthTextField extends StatelessWidget {
   const AuthTextField({
     super.key,
-    this.obsecure = false,
+    this.obscure = false,
     this.validator,
     this.hint,
     this.keyboardType,
+    this.focusNode,
   });
 
-  final bool obsecure;
+  final bool obscure;
   final String? Function(String?)? validator;
   final String? hint;
   final TextInputType? keyboardType;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +52,9 @@ class AuthTextField extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        focusNode: focusNode,
         keyboardType: keyboardType,
-        obscureText: obsecure,
+        obscureText: obscure,
         validator: validator,
         autovalidateMode: AutovalidateMode.onUserInteraction,
       ),
