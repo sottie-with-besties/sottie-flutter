@@ -70,16 +70,17 @@ final _customTheme = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-        backgroundColor: mainBlueColor,
-        foregroundColor: mainWhiteSilverColor,
-        shape: RoundedRectangleBorder(
-          side: BorderSide.none,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        minimumSize: const Size(100, 40),
-        textStyle: const TextStyle(
-          fontWeight: FontWeight.bold,
-        )),
+      backgroundColor: mainBlueColor,
+      foregroundColor: mainWhiteSilverColor,
+      shape: RoundedRectangleBorder(
+        side: BorderSide.none,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      minimumSize: const Size(80, 40),
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(

@@ -56,7 +56,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
         }
       }
     } else if (currentStep == 1) {
-      // 번호 인증 화면 -> 인증 성공 후 파이어베이스 유저 폰 번호 정보 삭제
+      /// 번호 인증 화면 -> 인증 성공 후 파이어베이스 유저 폰 번호 정보 삭제
       final errorCode = await signInWithSmsCode(verificationCode!);
       if (errorCode == null) {
         await deletePhoneUser();
@@ -74,7 +74,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
     if (currentStep == 0) {
       context.pop();
     } else if (currentStep == 2) {
-      // 아이디 확인 화면 -> 뒤로 가기 했을 때 인증 화면으로 넘어가지 않고 번호 입력 화면으로 넘어간다.
+      /// 아이디 확인 화면 -> 뒤로 가기 했을 때 인증 화면으로 넘어가지 않고 번호 입력 화면으로 넘어간다.
       currentStep -= 2;
       setState(() {});
     } else {
@@ -123,9 +123,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                           fontSize: 24,
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       AuthTextField(
                         focusNode: _focusNode,
                         hint: "전화번호 입력",
@@ -153,18 +151,14 @@ class _FindIdScreenState extends State<FindIdScreen> {
                         fontSize: 24,
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     const Text(
                       "인증코드를 발송하였습니다",
                       style: TextStyle(
                         fontSize: 16,
                       ),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    const SizedBox(height: 30),
                     Pinput(
                       length: 6,
                       obscureText: true,
@@ -186,9 +180,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                       },
                       child: const Text("인증코드 재전송"),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    const SizedBox(height: 30),
                   ],
                 ),
                 isActive: currentStep > 1,
@@ -206,9 +198,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                         fontSize: 24,
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     const Text(
                       "jinpyokim13423@naver.com",
                       style: TextStyle(
@@ -258,32 +248,19 @@ class _FindIdScreenState extends State<FindIdScreen> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: mainGreyColor,
-                        minimumSize: const Size(100, 50),
                       ),
                       onPressed: () =>
                           _anyButtonLoading() ? null : _onStepCancel(),
-                      child:
-                          isCancelLoading ? loadingCircle : const Text("뒤로가기"),
+                      child: isCancelLoading
+                          ? loadingCircle
+                          : const Icon(Icons.arrow_back),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    const SizedBox(width: 20),
                     if (currentStep < 2)
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(100, 50),
-                        ),
                         onPressed: () =>
                             _anyButtonLoading() ? null : _onStepContinue(),
-                        child: isNextLoading
-                            ? loadingCircle
-                            : const Text(
-                                "다음",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: mainWhiteSilverColor,
-                                ),
-                              ),
+                        child: isNextLoading ? loadingCircle : const Text("다음"),
                       ),
                   ],
                 ),

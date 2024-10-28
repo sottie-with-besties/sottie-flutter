@@ -18,11 +18,6 @@ class MoreScreen extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                '${myInfoEntity.mannerPoint} °C',
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(width: 20),
-              Text(
                 myInfoEntity.gold.toString(),
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),

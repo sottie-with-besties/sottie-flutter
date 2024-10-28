@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/more/widget/extra_info.dart';
 
 class ExtraStoreScreen extends StatefulWidget {
   const ExtraStoreScreen({super.key});
@@ -27,23 +26,7 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ExtraInfo(
-                subTitle: "내 골드",
-                valueChild: Row(
-                  children: [
-                    Text(
-                      "${myInfoEntity.gold}",
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 15),
-                    ),
-                    const SizedBox(width: 10),
-                    const FaIcon(
-                      FontAwesomeIcons.coins,
-                      color: Colors.amber,
-                    ),
-                  ],
-                ),
-              ),
+              _myGold,
               const SizedBox(height: 30),
               const Text(
                 "골드 구매",
@@ -75,11 +58,11 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
                 ],
               ),
               const SizedBox(height: 50),
-              termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
-              termsAndConditions("법정대리인의 동의 없는 미성년자의 결제는 취소될 수 있습니다."),
-              termsAndConditions("위 표기된 금액은 부가가치세(10%)가 포함된 금액입니다."),
-              termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
-              termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
+              _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
+              _termsAndConditions("법정대리인의 동의 없는 미성년자의 결제는 취소될 수 있습니다."),
+              _termsAndConditions("위 표기된 금액은 부가가치세(10%)가 포함된 금액입니다."),
+              _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
+              _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
             ],
           ),
         ),
@@ -87,6 +70,40 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
     );
   }
 }
+
+final _myGold = Padding(
+  padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+  child: Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(5),
+      border: Border.all(width: 0.5),
+    ),
+    padding: const EdgeInsets.symmetric(horizontal: 24),
+    height: 50 * hu,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          '내 골드',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14 * hu),
+        ),
+        Row(
+          children: [
+            Text(
+              "${myInfoEntity.gold}",
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            const SizedBox(width: 10),
+            const FaIcon(
+              FontAwesomeIcons.coins,
+              color: Colors.amber,
+            ),
+          ],
+        ),
+      ],
+    ),
+  ),
+);
 
 Widget _goldPurchase(int gold, int price) {
   return GestureDetector(
@@ -132,7 +149,7 @@ Widget _goldPurchase(int gold, int price) {
   );
 }
 
-Widget termsAndConditions(String content) {
+Widget _termsAndConditions(String content) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 5),
     child: Text(

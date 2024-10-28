@@ -305,21 +305,16 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: mainGreyColor,
-                        minimumSize: const Size(100, 50),
                       ),
                       onPressed: () =>
                           _anyButtonLoading() ? null : _onStepCancel(),
-                      child:
-                          isCancelLoading ? loadingCircle : const Text("뒤로가기"),
+                      child: isCancelLoading
+                          ? loadingCircle
+                          : const Icon(Icons.arrow_back),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    const SizedBox(width: 20),
                     if (currentStep < 2)
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(100, 50),
-                        ),
                         onPressed: () =>
                             _anyButtonLoading() ? null : _onStepContinue(),
                         child: isNextLoading ? loadingCircle : const Text("다음"),

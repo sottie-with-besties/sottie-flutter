@@ -57,24 +57,27 @@ class ExtraServiceList extends StatelessWidget {
 Widget _extraService(String serviceTitle, VoidCallback onTap) {
   return GestureDetector(
     onTap: onTap,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        TextButton(
-          onPressed: onTap,
-          style: TextButton.styleFrom(
-            foregroundColor: mainBlackColor,
+    child: Container(
+      color: Colors.transparent,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          TextButton(
+            onPressed: onTap,
+            style: TextButton.styleFrom(
+              foregroundColor: mainBlackColor,
+            ),
+            child: Text(
+              serviceTitle,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12 * hu),
+            ),
           ),
-          child: Text(
-            serviceTitle,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12 * hu),
+          const Icon(
+            Icons.keyboard_arrow_right,
+            color: mainBlackColor,
           ),
-        ),
-        const Icon(
-          Icons.keyboard_arrow_right,
-          color: mainBlackColor,
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }
