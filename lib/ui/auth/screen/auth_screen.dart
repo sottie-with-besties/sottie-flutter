@@ -1,6 +1,7 @@
 import 'package:auth_button_kit/auth_button_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
@@ -12,7 +13,6 @@ import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
-import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
 import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -54,13 +54,21 @@ class _AuthScreenState extends State<AuthScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Row(
                     children: [
-                      AppLogo(),
-                      SizedBox(width: 10),
-                      AppBarTitle(title: "Sottie"),
+                      const AppLogo(),
+                      const SizedBox(width: 10),
+                      Text(
+                        'Sottie',
+                        style: GoogleFonts.jua(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 38,
+                          color: mainBlackColor,
+                        ),
+                      ),
                     ],
                   ),
                 ),

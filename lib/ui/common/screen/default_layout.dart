@@ -1,47 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/post/model/post_setting.dart';
-import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/alarm/screen/alarm_screen.dart';
-import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
-import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
 
 class DefaultLayout extends StatelessWidget {
   const DefaultLayout({
     super.key,
     required this.hasScrollBody,
-    this.title,
+    this.appBarTitle,
+    this.appBarActions,
     this.header,
+    this.floatingActionButton,
     required this.contentChild,
   });
 
-  final Widget contentChild;
+  final bool hasScrollBody;
 
-  final Widget? title;
+  final String? appBarTitle;
+  final List<Widget>? appBarActions;
   final Widget? header;
 
-  final bool hasScrollBody;
+  final FloatingActionButton? floatingActionButton;
+
+  final Widget contentChild;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        heroTag: null, // Friend의 히어로와 충돌 방지
-        backgroundColor: mainBlueColor,
-        onPressed: () async {
-          postSettingEntity = PostSetting();
-          await context.push(CustomRouter.makePostStepOnePath);
-        },
-        child: const Icon(
-          Icons.post_add,
-          color: mainWhiteSilverColor,
-        ),
-      ),
+      floatingActionButton: floatingActionButton,
       resizeToAvoidBottomInset: false,
-      appBar: _renderAppbar(title, context),
+      appBar: _renderAppbar(appBarTitle, appBarActions),
       body: ColoredBox(
         color: mainWhiteSilverColor,
         child: CustomScrollView(
@@ -67,70 +54,24 @@ class DefaultLayout extends StatelessWidget {
   }
 }
 
-AppBar? _renderAppbar(Widget? title, BuildContext context) {
-  if (title == null) {
-    return null;
-  }
-
+AppBar? _renderAppbar(String? appBarTitle, List<Widget>? appBarActions) {
   return AppBar(
     centerTitle: false,
     toolbarHeight: 80,
     backgroundColor: mainWhiteSilverColor,
-    title: title,
-    actions: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Row(
-          children: [
-            InkWell(
-              borderRadius: BorderRadius.circular(5),
-              onTap: () {
-                bottomSheet(
-                  context,
-                  const SearchScreen(),
-                );
-              },
-              child: const FaIcon(
-                FontAwesomeIcons.magnifyingGlass,
+    title: Padding(
+      padding: const EdgeInsets.only(left: 5),
+      child: appBarTitle != null
+          ? Text(
+              appBarTitle,
+              style: GoogleFonts.jua(
+                fontWeight: FontWeight.bold,
+                fontSize: 38,
                 color: mainBlackColor,
-                size: 28,
               ),
-            ),
-            const SizedBox(
-              width: 25,
-            ),
-            InkWell(
-              borderRadius: BorderRadius.circular(5),
-              onTap: () {
-                bottomSheet(
-                  context,
-                  const AlarmScreen(),
-                );
-              },
-              child: const FaIcon(
-                FontAwesomeIcons.bell,
-                color: mainBlackColor,
-                size: 28,
-              ),
-            ),
-            const SizedBox(
-              width: 25,
-            ),
-            InkWell(
-              borderRadius: BorderRadius.circular(5),
-              onTap: () async {
-                await context.push(
-                    "${CustomRouter.morePath}/${CustomRouter.settingPath}");
-              },
-              child: const FaIcon(
-                FontAwesomeIcons.gear,
-                color: mainBlackColor,
-                size: 28,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ],
+            )
+          : Container(),
+    ),
+    actions: appBarActions,
   );
 }
