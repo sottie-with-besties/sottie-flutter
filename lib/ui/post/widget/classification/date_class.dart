@@ -41,7 +41,7 @@ class _DateClassState extends State<DateClass> {
               selectedDate = tempDate;
 
               dateString =
-                  "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${intToWeekday(selectedDate.weekday)}";
+                  "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${convertIntToWeekday(selectedDate.weekday)}";
 
               postSettingEntity.date = selectedDate.copyWith();
 

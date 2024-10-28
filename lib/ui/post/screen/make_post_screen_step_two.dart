@@ -30,10 +30,6 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
 
   /// 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
   void checkIfSettingHasError() {
-    if (postSettingEntity.ageRange.isEmpty) {
-      checkList.add("나이 범위를 최소 하나 이상 선택해주세요.");
-    }
-
     if (postSettingEntity.date == null) {
       checkList.add("날짜 및 시간을 선택해주세요.");
     }

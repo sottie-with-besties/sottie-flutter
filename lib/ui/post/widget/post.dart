@@ -57,7 +57,7 @@ class Post extends StatelessWidget {
             ),
             SizedBox(height: 3 * hu),
             Text(
-              "${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(model.date, model.date)}",
+              "${date.month}월 ${date.day}일 ${convertIntToWeekday(date.weekday)} ${renderCustomStringTime(model.date, model.date)}",
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 10 * hu,

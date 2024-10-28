@@ -119,6 +119,10 @@ final class PostSetting {
   }
 
   List<String> convertAgeRangeToStringList() {
+    if (ageRange.isEmpty) {
+      return ['나이 제한 없음'];
+    }
+
     List<String> result = <String>[];
     for (SottieAgeRange i in ageRange) {
       result.add(i.name);

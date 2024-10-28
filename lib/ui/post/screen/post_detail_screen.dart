@@ -110,7 +110,7 @@ class PostDetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(postModel.date, postModel.date)}",
+                                  "${date.month}월 ${date.day}일 ${convertIntToWeekday(date.weekday)} ${renderCustomStringTime(postModel.date, postModel.date)}",
                                   style: _conditionTextStyle,
                                 ),
                                 Text(
@@ -118,7 +118,8 @@ class PostDetailScreen extends StatelessWidget {
                                   style: _conditionTextStyle,
                                 ),
                                 Text(
-                                  _renderAgeRange(postDetailModelData.ageRange),
+                                  convertAgeRangeToString(
+                                      postDetailModelData.ageRange),
                                   style: _conditionTextStyle,
                                 ),
                                 Text(
@@ -178,48 +179,6 @@ class PostDetailScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-String _renderAgeRange(List<String> ageRange) {
-  String ageRangeString = '';
-
-  if (ageRange.isEmpty) {
-    ageRangeString = '나이 제한 없음';
-  }
-
-  if (ageRange.contains('10대')) {
-    ageRangeString = '$ageRangeString 10대,';
-  }
-
-  if (ageRange.contains('20대')) {
-    ageRangeString = '$ageRangeString 20대,';
-  }
-
-  if (ageRange.contains('30대')) {
-    ageRangeString = '$ageRangeString 30대,';
-  }
-
-  if (ageRange.contains('40대')) {
-    ageRangeString = '$ageRangeString 40대,';
-  }
-
-  if (ageRange.contains('50대')) {
-    ageRangeString = '$ageRangeString 50대,';
-  }
-
-  if (ageRange.contains('60대')) {
-    ageRangeString = '$ageRangeString 60대,';
-  }
-
-  if (ageRange.contains('70대')) {
-    ageRangeString = '$ageRangeString 70대,';
-  }
-
-  if (ageRange.contains('80대 이상')) {
-    ageRangeString = '$ageRangeString 80대 이상,';
-  }
-
-  return ageRangeString.substring(1, ageRangeString.length - 1);
 }
 
 final _conditionTextStyle = TextStyle(

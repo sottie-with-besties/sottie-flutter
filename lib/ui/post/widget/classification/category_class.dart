@@ -48,8 +48,10 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
               ),
             ),
             selected: isSelected,
-            onSelected: (onSelected) {
-              postSettingEntity.category = category;
+            onSelected: (_) {
+              postSettingEntity.category == category
+                  ? postSettingEntity.category = SottieCategory.all
+                  : postSettingEntity.category = category;
               setState(() {});
             },
           );

@@ -93,7 +93,7 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                     child: const Text("프로필 사진 초기화")),
                 SizedBox(height: 5 * hu),
                 Text(
-                  "${myInfoEntity.birthYear}  |  ${convertGenderString(myInfoEntity.gender)}  |  ${myInfoEntity.name}",
+                  "${myInfoEntity.birthYear}  |  ${convertGenderToString(myInfoEntity.gender)}  |  ${myInfoEntity.name}",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 20 * hu),

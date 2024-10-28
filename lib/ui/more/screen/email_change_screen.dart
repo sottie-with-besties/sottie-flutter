@@ -161,9 +161,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                         fontSize: 24,
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     AuthTextField(
                       hint: "전화번호 입력",
                       keyboardType: TextInputType.number,
@@ -190,18 +188,14 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                       fontSize: 24,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   const Text(
                     "인증코드를 발송하였습니다",
                     style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                   Pinput(
                     length: 6,
                     obscureText: true,
@@ -210,9 +204,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                       return null;
                     },
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                   OutlinedButton(
                     onPressed: () async {
                       final errorCode =
@@ -223,9 +215,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                     },
                     child: const Text("인증코드 재전송"),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                 ],
               ),
               isActive: currentStep > 1,
@@ -274,18 +264,14 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                       fontSize: 24,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   const Text(
                     "인증코드를 발송하였습니다. 이메일을 인증 하신 후 다음 버튼을 눌러주세요.",
                     style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   OutlinedButton(
                       onPressed: () async {
                         await sendEmailVerification();
@@ -311,18 +297,14 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                       fontSize: 22,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   Text(
                     myInfoEntity.email,
                     style: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
-                  const SizedBox(
-                    height: 25,
-                  ),
+                  const SizedBox(height: 25),
                   const Text(
                     "변경 이메일",
                     style: TextStyle(
@@ -330,9 +312,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                       fontSize: 22,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   Text(
                     email ?? "알 수 없음",
                     style: const TextStyle(
@@ -411,13 +391,10 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                             ),
                           ),
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
+                  const SizedBox(width: 20),
                   if (currentStep < 4)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainWhiteSilverColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
