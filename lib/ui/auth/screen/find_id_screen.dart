@@ -235,13 +235,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                             onPressed: () {
                               context.go(CustomRouter.authPath);
                             },
-                            child: const Text(
-                              "확인",
-                              style: TextStyle(
-                                  color: mainWhiteSilverColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16),
-                            ),
+                            child: const Text("확인"),
                           ),
                         ),
                       ],
@@ -268,15 +262,8 @@ class _FindIdScreenState extends State<FindIdScreen> {
                       ),
                       onPressed: () =>
                           _anyButtonLoading() ? null : _onStepCancel(),
-                      child: isCancelLoading
-                          ? loadingCircle
-                          : const Text(
-                              "뒤로가기",
-                              style: TextStyle(
-                                color: mainWhiteSilverColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                      child:
+                          isCancelLoading ? loadingCircle : const Text("뒤로가기"),
                     ),
                     const SizedBox(
                       width: 20,

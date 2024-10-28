@@ -310,15 +310,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         minimumSize: const Size(100, 50),
                       ),
                       onPressed: _anyButtonLoading() ? null : _onStepCancel,
-                      child: isCancelLoading
-                          ? loadingCircle
-                          : const Text(
-                              "뒤로가기",
-                              style: TextStyle(
-                                color: mainWhiteSilverColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                      child:
+                          isCancelLoading ? loadingCircle : const Text("뒤로가기"),
                     ),
                     const SizedBox(
                       width: 20,

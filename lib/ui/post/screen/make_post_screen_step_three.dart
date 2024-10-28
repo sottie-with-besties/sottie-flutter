@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 
@@ -84,14 +83,7 @@ class MakePostScreenStepThree extends StatelessWidget {
                       onPressed: () {
                         log("모집글 생성");
                       },
-                      child: const Text(
-                        '모집글 생성',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: mainWhiteSilverColor,
-                        ),
-                      ),
+                      child: const Text('모집글 생성'),
                     ),
                   ),
                 ],

@@ -68,13 +68,7 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
                           // Todo: 광고 나오게 하기
                           log("광고 출력");
                         },
-                        child: const Text(
-                          "광고 시청하고 10골드 받기",
-                          style: TextStyle(
-                            color: mainWhiteSilverColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        child: const Text("광고 시청하고 10골드 받기"),
                       ),
                     ),
                   ),

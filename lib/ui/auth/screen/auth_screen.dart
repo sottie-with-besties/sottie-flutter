@@ -130,13 +130,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     }
                                   }
                                 },
-                                child: const Text(
-                                  "로그인",
-                                  style: TextStyle(
-                                    color: mainWhiteSilverColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                child: const Text("로그인"),
                               ),
                             ),
                           ],
@@ -194,7 +188,8 @@ class _AuthScreenState extends State<AuthScreen> {
                   },
                   brand: Method.google,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    side: const BorderSide(),
+                    borderRadius: BorderRadius.circular(7),
                   ),
                   fontWeight: FontWeight.bold,
                 ),

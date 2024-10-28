@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
@@ -116,14 +115,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                             ),
                           );
                   },
-                  child: const Text(
-                    "다음 2/3",
-                    style: TextStyle(
-                      color: mainWhiteSilverColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
+                  child: const Text("다음 2/3"),
                 ),
               ],
             ),

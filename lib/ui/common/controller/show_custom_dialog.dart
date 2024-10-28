@@ -31,13 +31,7 @@ void showCustomDialog(BuildContext context, Widget customChild,
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop();
               },
-              child: const Text(
-                "닫기",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: mainWhiteSilverColor,
-                ),
-              ),
+              child: const Text("닫기"),
             ),
             if (extraButton != null) extraButton,
           ],

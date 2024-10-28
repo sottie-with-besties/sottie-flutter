@@ -52,13 +52,7 @@ class _FriendState extends State<Friend> {
 
           log("친구 삭제 확인");
         },
-        child: const Text(
-          "삭제",
-          style: TextStyle(
-            color: mainWhiteSilverColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        child: const Text("삭제"),
       ),
     );
   }

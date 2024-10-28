@@ -93,9 +93,6 @@ class PostDetailScreen extends StatelessWidget {
                         final postDetailModelData =
                             futureData as PostDetailModel;
 
-                        final conditionString =
-                            '${date.year}년 ${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(postModel.date, postModel.date)} / ${postModel.location} / ${_renderAgeRange(postDetailModelData.ageRange)} / ${postDetailModelData.mannerPoint}도 이상${postDetailModelData.startSameTime ? ' / 동시 채팅 시작' : ''}${postDetailModelData.onlyMyFriends ? ' / 내 친구만' : ''}';
-
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -113,48 +110,38 @@ class PostDetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  conditionString,
-                                  style: TextStyle(
-                                    color: mainBlackColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 11 * hu,
-                                  ),
+                                  "${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(postModel.date, postModel.date)}",
+                                  style: _conditionTextStyle,
                                 ),
-                                // Text(
-                                //   "${date.year}년 ${date.month}월 ${date.day}일 ${intToWeekday(date.weekday)} ${renderCustomStringTime(postModel.date, postModel.date)}",
-                                //   style: _conditionTextStyle,
-                                // ),
-                                // Text(
-                                //   postModel.location,
-                                //   style: _conditionTextStyle,
-                                // ),
-                                // Text(
-                                //   _renderAgeRange(postDetailModelData.ageRange),
-                                //   style: _conditionTextStyle,
-                                // ),
-                                // Text(
-                                //   "${postDetailModelData.mannerPoint}도 이상",
-                                //   style: _conditionTextStyle,
-                                // ),
-                                // if (postDetailModelData.startSameTime)
-                                //   const Text(
-                                //     "동시 채팅 시작",
-                                //     style: _conditionTextStyle,
-                                //   ),
-                                // if (postDetailModelData.onlyMyFriends)
-                                //   const Text(
-                                //     "내 친구만",
-                                //     style: _conditionTextStyle,
-                                //   ),
+                                Text(
+                                  postModel.location,
+                                  style: _conditionTextStyle,
+                                ),
+                                Text(
+                                  _renderAgeRange(postDetailModelData.ageRange),
+                                  style: _conditionTextStyle,
+                                ),
+                                Text(
+                                  "${postDetailModelData.mannerPoint}도 이상",
+                                  style: _conditionTextStyle,
+                                ),
+                                if (postDetailModelData.startSameTime)
+                                  Text(
+                                    "동시 채팅 시작",
+                                    style: _conditionTextStyle,
+                                  ),
+                                if (postDetailModelData.onlyMyFriends)
+                                  Text(
+                                    "내 친구만",
+                                    style: _conditionTextStyle,
+                                  ),
                               ],
                             ),
                           ],
                         );
                       },
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -163,7 +150,7 @@ class PostDetailScreen extends StatelessWidget {
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(
-                                color: mainWhiteSilverColor,
+                                color: mainBlackColor,
                               ),
                               minimumSize: const Size(100, 65),
                             ),
@@ -175,7 +162,7 @@ class PostDetailScreen extends StatelessWidget {
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: mainWhiteSilverColor,
+                                color: mainBlackColor,
                               ),
                             ),
                           ),
@@ -234,3 +221,9 @@ String _renderAgeRange(List<String> ageRange) {
 
   return ageRangeString.substring(1, ageRangeString.length - 1);
 }
+
+final _conditionTextStyle = TextStyle(
+  color: mainBlackColor,
+  fontWeight: FontWeight.bold,
+  fontSize: 11 * hu,
+);

@@ -364,13 +364,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                                   isNextLoading = false;
                                   setState(() {});
                                 },
-                          child: const Text(
-                            "변경",
-                            style: TextStyle(
-                              color: mainWhiteSilverColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          child: const Text("변경"),
                         ),
                       );
                     },

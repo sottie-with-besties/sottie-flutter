@@ -276,25 +276,12 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                                               isNextLoading = false;
                                               setState(() {});
                                             },
-                                      child: const Text(
-                                        "변경",
-                                        style: TextStyle(
-                                          color: mainWhiteSilverColor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
+                                      child: const Text("변경"),
                                     ),
                                   );
                                 }
                               },
-                              child: const Text(
-                                "비밀번호 재설정하기",
-                                style: TextStyle(
-                                  color: mainWhiteSilverColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
+                              child: const Text("비밀번호 재설정하기"),
                             ),
                           ),
                         ],
@@ -322,15 +309,8 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                       ),
                       onPressed: () =>
                           _anyButtonLoading() ? null : _onStepCancel(),
-                      child: isCancelLoading
-                          ? loadingCircle
-                          : const Text(
-                              "뒤로가기",
-                              style: TextStyle(
-                                color: mainWhiteSilverColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                      child:
+                          isCancelLoading ? loadingCircle : const Text("뒤로가기"),
                     ),
                     const SizedBox(
                       width: 20,
@@ -342,15 +322,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                         ),
                         onPressed: () =>
                             _anyButtonLoading() ? null : _onStepContinue(),
-                        child: isNextLoading
-                            ? loadingCircle
-                            : const Text(
-                                "다음",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: mainWhiteSilverColor,
-                                ),
-                              ),
+                        child: isNextLoading ? loadingCircle : const Text("다음"),
                       ),
                   ],
                 ),
