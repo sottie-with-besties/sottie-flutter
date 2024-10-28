@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/data_source/post_detail_dummy.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_model.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
@@ -76,41 +76,13 @@ class _InChatInfoScreenState extends State<InChatInfoScreen> {
 
                 return Column(
                   children: [
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: 250 * hu,
-                          child: PageView.builder(
-                            controller: _thumbnailController,
-                            itemBuilder: (_, index) {
-                              return thumbnail[index % thumbnail.length];
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        SmoothPageIndicator(
-                          controller: _thumbnailController,
-                          count: thumbnail.length,
-                          effect: const WormEffect(
-                            dotHeight: 8,
-                            dotWidth: 8,
-                            activeDotColor: mainWhiteSilverColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
                     Text(
                       postDetailModelData.content,
                       style: const TextStyle(
                         fontSize: 14,
                       ),
                     ),
-                    const SizedBox(
-                      height: 50,
-                    ),
+                    const SizedBox(height: 30),
                     SizedBox(
                       height: 250 * hu,
                       child: Column(
@@ -131,7 +103,8 @@ class _InChatInfoScreenState extends State<InChatInfoScreen> {
                           ),
                           Text("날짜: ${widget.postModel.date}"),
                           Text("장소: ${widget.postModel.location}"),
-                          _renderAgeRange(postDetailModelData.ageRange),
+                          Text(convertAgeRangeToString(
+                              postDetailModelData.ageRange)),
                           Text("매너 온도: ${postDetailModelData.mannerPoint}도 이상"),
                           if (postDetailModelData.startSameTime)
                             const Text("동시 채팅 시작"),
@@ -149,46 +122,4 @@ class _InChatInfoScreenState extends State<InChatInfoScreen> {
       ),
     );
   }
-}
-
-Text _renderAgeRange(List<String> ageRange) {
-  String ageRangeString = '나이:';
-
-  if (ageRange.isEmpty) {
-    ageRangeString = '나이 제한 없음 ';
-  }
-
-  if (ageRange.contains('10대')) {
-    ageRangeString = '$ageRangeString 10대,';
-  }
-
-  if (ageRange.contains('20대')) {
-    ageRangeString = '$ageRangeString 20대,';
-  }
-
-  if (ageRange.contains('30대')) {
-    ageRangeString = '$ageRangeString 30대,';
-  }
-
-  if (ageRange.contains('40대')) {
-    ageRangeString = '$ageRangeString 40대,';
-  }
-
-  if (ageRange.contains('50대')) {
-    ageRangeString = '$ageRangeString 50대,';
-  }
-
-  if (ageRange.contains('60대')) {
-    ageRangeString = '$ageRangeString 60대,';
-  }
-
-  if (ageRange.contains('70대')) {
-    ageRangeString = '$ageRangeString 70대,';
-  }
-
-  if (ageRange.contains('80대 이상')) {
-    ageRangeString = '$ageRangeString 80대 이상,';
-  }
-
-  return Text(ageRangeString.substring(0, ageRangeString.length - 1));
 }
