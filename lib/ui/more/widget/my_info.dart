@@ -75,39 +75,6 @@ class _MyInfoState extends State<MyInfo> {
         SizedBox(
           height: 10 * hu,
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          decoration: BoxDecoration(
-            color: mainBlueColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          height: 30 * hu,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                myInfoEntity.birthYear,
-                style: infoStyle,
-              ),
-              const VerticalDivider(
-                indent: 10,
-                endIndent: 10,
-              ),
-              Text(
-                myInfoEntity.gender,
-                style: infoStyle,
-              ),
-              const VerticalDivider(
-                indent: 10,
-                endIndent: 10,
-              ),
-              Text(
-                myInfoEntity.name,
-                style: infoStyle,
-              ),
-            ],
-          ),
-        )
       ],
     );
   }

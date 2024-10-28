@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/more/controller/modify_image.dart';
@@ -60,9 +61,9 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
       },
       child: Scaffold(
         appBar: AppBar(),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -90,7 +91,12 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                       setState(() {});
                     },
                     child: const Text("프로필 사진 초기화")),
-                SizedBox(height: 30 * hu),
+                SizedBox(height: 5 * hu),
+                Text(
+                  "${myInfoEntity.birthYear}  |  ${convertGenderString(myInfoEntity.gender)}  |  ${myInfoEntity.name}",
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20 * hu),
                 _renderSubTitle("닉네임"),
                 SizedBox(height: 5 * hu),
                 LocalTextField(
