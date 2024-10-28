@@ -3,7 +3,6 @@ import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
 import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
 import 'package:sottie_flutter/ui/home/screen/home_content_screen.dart';
-import 'package:sottie_flutter/ui/home/widget/home_header.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,7 +23,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      header: HomeHeader(),
       contentChild: HomeContentScreen(),
     );
   }
