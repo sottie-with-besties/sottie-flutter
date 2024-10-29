@@ -141,9 +141,11 @@ class _FriendState extends State<Friend> {
       child: GestureDetector(
         onTap: () {
           context.push(
-            "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
+            CustomRouter.userDetailPath,
             extra: {
-              'model': widget.model,
+              'userId': widget.model.id,
+              'nickName': widget.model.nickname,
+              'stateMsg': widget.model.stateMsg,
               'isMyFriend': true,
             },
           );

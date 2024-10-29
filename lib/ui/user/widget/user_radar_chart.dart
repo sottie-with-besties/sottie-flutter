@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
-class FriendRadarChart extends StatefulWidget {
-  const FriendRadarChart({
+class UserRadarChart extends StatefulWidget {
+  const UserRadarChart({
     super.key,
     required this.participationValue,
     required this.attitudeValue,
@@ -20,10 +20,10 @@ class FriendRadarChart extends StatefulWidget {
   final double trustworthinessValue;
 
   @override
-  State<FriendRadarChart> createState() => _FriendRadarChartState();
+  State<UserRadarChart> createState() => _UserRadarChartState();
 }
 
-class _FriendRadarChartState extends State<FriendRadarChart> {
+class _UserRadarChartState extends State<UserRadarChart> {
   double _participation = 0;
   double _attitude = 0;
   double _time = 0;

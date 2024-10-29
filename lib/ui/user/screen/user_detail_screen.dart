@@ -5,21 +5,24 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/friend/data_source/friend_detail_dummy.dart';
 import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
-import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
-import 'package:sottie_flutter/ui/friend/widget/friend_radar_chart.dart';
-import 'package:sottie_flutter/ui/friend/widget/friend_review.dart';
+import 'package:sottie_flutter/ui/user/widget/user_radar_chart.dart';
+import 'package:sottie_flutter/ui/user/widget/user_review.dart';
 
-class FriendDetailScreen extends StatelessWidget {
-  const FriendDetailScreen({
+class UserDetailScreen extends StatelessWidget {
+  const UserDetailScreen({
     super.key,
-    required this.model,
+    required this.userId,
+    required this.nickName,
+    required this.stateMsg,
     required this.isMyFriend,
   });
 
-  final FriendModel model;
+  final String userId;
+  final String nickName;
+  final String stateMsg;
   final bool isMyFriend;
 
   @override
@@ -35,9 +38,9 @@ class FriendDetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Hero(
-                  tag: model.id,
+                  tag: userId,
                   child: UserProfile(
-                    profileUrl: model.id,
+                    profileUrl: userId,
                     randomAvatarSize: 50,
                   ),
                 ),
@@ -50,7 +53,7 @@ class FriendDetailScreen extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            model.nickname,
+                            nickName,
                             style: TextStyle(
                               color: mainWhiteSilverColor,
                               fontWeight: FontWeight.bold,
@@ -60,14 +63,13 @@ class FriendDetailScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      if (model.stateMsg != null)
-                        Text(
-                          model.stateMsg!,
-                          style: TextStyle(
-                            color: mainWhiteSilverColor,
-                            fontSize: 12 * hu,
-                          ),
+                      Text(
+                        stateMsg,
+                        style: TextStyle(
+                          color: mainWhiteSilverColor,
+                          fontSize: 12 * hu,
                         ),
+                      ),
                     ],
                   ),
                 ),
@@ -124,7 +126,7 @@ class FriendDetailScreen extends StatelessWidget {
                       return Column(
                         children: [
                           detailData.participationValue != null
-                              ? FriendRadarChart(
+                              ? UserRadarChart(
                                   participationValue:
                                       detailData.participationValue!,
                                   attitudeValue: detailData.attitudeValue!,
@@ -198,7 +200,7 @@ class FriendDetailScreen extends StatelessWidget {
                           if (detailData.friendReviews != null)
                             if (detailData.friendReviews!.isNotEmpty)
                               ...detailData.friendReviews!.map<Widget>((data) {
-                                return FriendReview(model: data);
+                                return UserReview(model: data);
                               }),
                         ],
                       );

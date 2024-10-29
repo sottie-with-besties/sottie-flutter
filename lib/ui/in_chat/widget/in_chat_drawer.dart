@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
@@ -136,13 +135,11 @@ Widget _inChatParticipant(BuildContext context, String id, String name) {
   return InkWell(
     onTap: () {
       context.push(
-        "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
+        CustomRouter.userDetailPath,
         extra: {
-          'model': FriendModel(
-            id: id,
-            nickname: name,
-            stateMsg: '',
-          ),
+          'userId': "1234123",
+          'nickName': 'nickname',
+          'stateMsg': '안녕하세요',
           'isMyFriend': false,
         },
       );

@@ -9,7 +9,6 @@ import 'package:sottie_flutter/ui/auth/screen/verification_complete_screen.dart'
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/photo_magnification_screen.dart';
-import 'package:sottie_flutter/ui/friend/screen/friend_detail_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_info_screen.dart';
@@ -30,6 +29,7 @@ import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_one.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_three.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_two.dart';
 import 'package:sottie_flutter/ui/post/screen/post_detail_screen.dart';
+import 'package:sottie_flutter/ui/user/screen/user_detail_screen.dart';
 
 sealed class CustomRouter {
   static final router = GoRouter(
@@ -60,7 +60,6 @@ sealed class CustomRouter {
 
   /// Friend
   static const friendPath = "/friend";
-  static const friendDetailPath = "friendDetail";
 
   /// More
   static const morePath = "/more";
@@ -85,6 +84,9 @@ sealed class CustomRouter {
 
   /// Post Detail Screen
   static const postDetailPath = "/postDetail";
+
+  /// User Detail Screen
+  static const userDetailPath = "/userDetail";
 
   /// Photo Magnification Screen
   static const photoMagnificationPath = "/photoMagnification";
@@ -199,27 +201,6 @@ final _routes = [
           GoRoute(
             path: CustomRouter.friendPath,
             builder: (_, __) => const FriendScreen(),
-            routes: <GoRoute>[
-              GoRoute(
-                path: CustomRouter.friendDetailPath,
-                pageBuilder: (_, state) {
-                  final params = state.extra as Map<String, dynamic>;
-
-                  return CustomTransitionPage(
-                    child: FriendDetailScreen(
-                      model: params['model'],
-                      isMyFriend: params['isMyFriend'],
-                    ),
-                    transitionsBuilder: (_, animation, __, child) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
           ),
         ],
       ),
@@ -306,6 +287,29 @@ final _routes = [
         child: PostDetailScreen(
           postModel: params['postModel'],
           isWaiting: params['isWaiting'],
+        ),
+        transitionsBuilder: (_, animation, __, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+      );
+    },
+  ),
+
+  /// 유저 디테일 스크린
+  GoRoute(
+    path: CustomRouter.userDetailPath,
+    pageBuilder: (_, state) {
+      final params = state.extra as Map<String, dynamic>;
+
+      return CustomTransitionPage(
+        child: UserDetailScreen(
+          userId: params['userId'],
+          nickName: params['nickName'],
+          stateMsg: params['stateMsg'] ?? '',
+          isMyFriend: params['isMyFriend'],
         ),
         transitionsBuilder: (_, animation, __, child) {
           return FadeTransition(

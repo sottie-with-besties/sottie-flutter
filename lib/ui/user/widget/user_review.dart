@@ -4,8 +4,8 @@ import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
-class FriendReview extends StatelessWidget {
-  const FriendReview({
+class UserReview extends StatelessWidget {
+  const UserReview({
     super.key,
     required this.model,
   });
