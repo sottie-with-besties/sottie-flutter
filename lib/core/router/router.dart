@@ -19,7 +19,6 @@ import 'package:sottie_flutter/ui/more/screen/email_change_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_event_screen.dart';
-import 'package:sottie_flutter/ui/more/screen/extra_services/extra_guide_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_notice_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_setting_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_store_screen.dart';
@@ -75,7 +74,6 @@ sealed class CustomRouter {
   static const contactPath = "contact";
 
   static const settingPath = "setting";
-  static const guidePath = "guide";
 
   /// Make Post Screen
   static const makePostStepOnePath = "/makePostStepOne";
@@ -247,10 +245,6 @@ final _routes = [
               GoRoute(
                 path: CustomRouter.settingPath,
                 builder: (_, __) => const ExtraSettingScreen(),
-              ),
-              GoRoute(
-                path: CustomRouter.guidePath,
-                builder: (_, __) => const ExtraGuideScreen(),
               ),
             ],
           )

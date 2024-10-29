@@ -12,7 +12,7 @@ class ExtraServiceList extends StatelessWidget {
     return Column(
       children: [
         _extraService(
-          '상점',
+          '상점   ',
           () {
             context.push("${CustomRouter.morePath}/${CustomRouter.storePath}");
           },
@@ -41,12 +41,6 @@ class ExtraServiceList extends StatelessWidget {
           () {
             context
                 .push("${CustomRouter.morePath}/${CustomRouter.settingPath}");
-          },
-        ),
-        _extraService(
-          '도움말',
-          () {
-            context.push("${CustomRouter.morePath}/${CustomRouter.guidePath}");
           },
         ),
       ],

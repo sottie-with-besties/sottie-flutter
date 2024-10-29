@@ -3,13 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/friend/data_source/friend_detail_dummy.dart';
-import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
+import 'package:sottie_flutter/ui/user/screen/user_review_screen.dart';
 import 'package:sottie_flutter/ui/user/widget/user_radar_chart.dart';
-import 'package:sottie_flutter/ui/user/widget/user_review.dart';
 
 class UserDetailScreen extends StatelessWidget {
   const UserDetailScreen({
@@ -35,7 +32,6 @@ class UserDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Hero(
                   tag: userId,
@@ -44,8 +40,9 @@ class UserDetailScreen extends StatelessWidget {
                     randomAvatarSize: 50,
                   ),
                 ),
+                SizedBox(width: 10 * wu),
                 SizedBox(
-                  width: 225 * wu,
+                  width: 200 * wu,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,109 +110,11 @@ class UserDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 350 * hu,
-              child: ListView(
-                physics: const ClampingScrollPhysics(),
-                children: [
-                  CustomFutureBuilder(
-                    futureFunction: getFriendDetailDummy,
-                    callBack: (futureData) {
-                      final detailData = futureData as FriendDetailModel;
-
-                      return Column(
-                        children: [
-                          detailData.participationValue != null
-                              ? UserRadarChart(
-                                  participationValue:
-                                      detailData.participationValue!,
-                                  attitudeValue: detailData.attitudeValue!,
-                                  timeValue: detailData.timeValue!,
-                                  likeabilityValue:
-                                      detailData.likeabilityValue!,
-                                  trustworthinessValue:
-                                      detailData.trustworthinessValue!,
-                                )
-                              : const Center(
-                                  child: Text(
-                                    "친구를 리뷰하세요!",
-                                    style: TextStyle(
-                                      color: mainWhiteSilverColor,
-                                    ),
-                                  ),
-                                ),
-                          SizedBox(height: 10 * hu),
-                          Padding(
-                            padding:
-                                EdgeInsets.only(top: 10 * hu, right: 24 * wu),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  "매너 온도",
-                                  style: TextStyle(
-                                    fontSize: 12 * hu,
-                                    color: mainWhiteSilverColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 1.5,
-                                        color: mainWhiteSilverColor,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  padding: const EdgeInsets.all(8),
-                                  child: detailData.participationValue != null
-                                      ? Text(
-                                          (detailData.participationValue! +
-                                                  detailData.attitudeValue! +
-                                                  detailData.timeValue! +
-                                                  detailData.likeabilityValue! +
-                                                  detailData
-                                                      .trustworthinessValue!)
-                                              .toStringAsFixed(1),
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: mainWhiteSilverColor,
-                                            fontSize: 16 * hu,
-                                          ),
-                                        )
-                                      : Container(),
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  "°C",
-                                  style: TextStyle(
-                                    fontSize: 12 * hu,
-                                    color: mainWhiteSilverColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          if (detailData.friendReviews != null)
-                            if (detailData.friendReviews!.isNotEmpty)
-                              ...detailData.friendReviews!.map<Widget>((data) {
-                                return UserReview(model: data);
-                              }),
-                        ],
-                      );
-                    },
-                    notHasData: const Center(
-                      child: Text(
-                        "데이터가 존재하지 않습니다.",
-                        style: TextStyle(
-                          color: mainWhiteSilverColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            const Column(
+              children: [
+                UserRadarChart(),
+                UserReviewScreen(),
+              ],
             ),
             SizedBox(height: 5 * hu),
             OutlinedButton(

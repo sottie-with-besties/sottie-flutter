@@ -1,17 +1,10 @@
-import 'dart:math';
+import 'package:sottie_flutter/data/user/model/user_review_model.dart';
 
-import 'package:sottie_flutter/data/friend/model/friend_detail_model.dart';
-
-Future<FriendDetailModel> getFriendDetailDummy() async {
+Future<UserReviewModelList> getUserReviewDummy() async {
   await Future.delayed(const Duration(seconds: 1), null);
-  return FriendDetailModel(
-    participationValue: _randomPoint(),
-    attitudeValue: _randomPoint(),
-    timeValue: _randomPoint(),
-    likeabilityValue: _randomPoint(),
-    trustworthinessValue: _randomPoint(),
-    friendReviews: [
-      FriendReviewModel(
+  return UserReviewModelList(
+    userReviewModelList: [
+      UserReviewModel(
         id: '1',
         nickname: 'Alice',
         total: 75,
@@ -21,7 +14,7 @@ Future<FriendDetailModel> getFriendDetailDummy() async {
         likeabilityIndex: 4,
         trustworthinessIndex: 3,
       ),
-      FriendReviewModel(
+      UserReviewModel(
         id: '2',
         nickname: 'Bob',
         total: 50,
@@ -31,7 +24,7 @@ Future<FriendDetailModel> getFriendDetailDummy() async {
         likeabilityIndex: 2,
         trustworthinessIndex: 2,
       ),
-      FriendReviewModel(
+      UserReviewModel(
         id: '3',
         nickname: 'Charlie',
         total: 85,
@@ -41,7 +34,7 @@ Future<FriendDetailModel> getFriendDetailDummy() async {
         likeabilityIndex: 3,
         trustworthinessIndex: 4,
       ),
-      FriendReviewModel(
+      UserReviewModel(
         id: '4',
         nickname: 'David',
         total: 40,
@@ -51,7 +44,7 @@ Future<FriendDetailModel> getFriendDetailDummy() async {
         likeabilityIndex: 3,
         trustworthinessIndex: 2,
       ),
-      FriendReviewModel(
+      UserReviewModel(
         id: '5',
         nickname: 'Eva',
         total: 95,
@@ -61,7 +54,7 @@ Future<FriendDetailModel> getFriendDetailDummy() async {
         likeabilityIndex: 4,
         trustworthinessIndex: 4,
       ),
-      FriendReviewModel(
+      UserReviewModel(
         id: '6',
         nickname: 'Frank',
         total: 30,
@@ -71,7 +64,7 @@ Future<FriendDetailModel> getFriendDetailDummy() async {
         likeabilityIndex: 2,
         trustworthinessIndex: 1,
       ),
-      FriendReviewModel(
+      UserReviewModel(
         id: '7',
         nickname: 'Grace',
         total: 65,
@@ -81,7 +74,7 @@ Future<FriendDetailModel> getFriendDetailDummy() async {
         likeabilityIndex: 3,
         trustworthinessIndex: 3,
       ),
-      FriendReviewModel(
+      UserReviewModel(
         id: '8',
         nickname: 'Hank',
         total: 55,
@@ -91,7 +84,7 @@ Future<FriendDetailModel> getFriendDetailDummy() async {
         likeabilityIndex: 2,
         trustworthinessIndex: 3,
       ),
-      FriendReviewModel(
+      UserReviewModel(
         id: '9',
         nickname: 'Ivy',
         total: 90,
@@ -101,7 +94,7 @@ Future<FriendDetailModel> getFriendDetailDummy() async {
         likeabilityIndex: 3,
         trustworthinessIndex: 4,
       ),
-      FriendReviewModel(
+      UserReviewModel(
         id: '10',
         nickname: 'Jack',
         total: 70,
@@ -113,9 +106,4 @@ Future<FriendDetailModel> getFriendDetailDummy() async {
       ),
     ],
   );
-}
-
-double _randomPoint() {
-  // 0~20.0 사이의 랜덤한 실수를 소수점 첫째자리까지 생성
-  return double.parse((Random().nextDouble() * 20.0).toStringAsFixed(1));
 }
