@@ -10,6 +10,7 @@ import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/photo_magnification_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
+import 'package:sottie_flutter/ui/friend/screen/friend_util_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_info_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_notification_list_screen.dart';
@@ -59,6 +60,7 @@ sealed class CustomRouter {
 
   /// Friend
   static const friendPath = "/friend";
+  static const friendUtilPath = "friendUtil";
 
   /// More
   static const morePath = "/more";
@@ -199,6 +201,12 @@ final _routes = [
           GoRoute(
             path: CustomRouter.friendPath,
             builder: (_, __) => const FriendScreen(),
+            routes: <GoRoute>[
+              GoRoute(
+                path: CustomRouter.friendUtilPath,
+                builder: (_, __) => const FriendUtilScreen(),
+              )
+            ],
           ),
         ],
       ),

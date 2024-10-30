@@ -1,8 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_list_screen.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend_header.dart';
@@ -21,7 +21,8 @@ class FriendScreen extends StatelessWidget {
         appBarActions: [
           GestureDetector(
             onTap: () {
-              log("친구 추가");
+              context.push(
+                  '${CustomRouter.friendPath}/${CustomRouter.friendUtilPath}');
             },
             child: const Padding(
               padding: EdgeInsets.only(right: 24),
