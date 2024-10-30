@@ -27,7 +27,7 @@ class UserRadarChart extends StatelessWidget {
       child: CustomFutureBuilder(
         futureFunction: getUserPointDummy,
         loadingWidget: SizedBox(
-          height: 263 * hu,
+          height: isMe ? 275.5 * hu : 268 * hu,
           child: const Center(
             child: CircularProgressIndicator(
               strokeWidth: 6,
@@ -116,6 +116,7 @@ class UserRadarChart extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(height: 5 * hu),
                 ],
               ),
             );

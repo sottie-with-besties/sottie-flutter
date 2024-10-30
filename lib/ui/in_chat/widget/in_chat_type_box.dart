@@ -20,8 +20,6 @@ class InChatTypeBox extends StatelessWidget {
       children: [
         Expanded(
           child: LocalTextField(
-            enabledBorder: false,
-            focusBorder: false,
             borderRadius: 0,
             prefixIcon: false,
             keyboardType: TextInputType.multiline,

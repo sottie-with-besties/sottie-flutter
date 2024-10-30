@@ -105,8 +105,6 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   prefixIcon: false,
                   hint: myInfoEntity.nickName,
                   maxLength: 10,
-                  enabledBorder: false,
-                  focusBorder: false,
                   onFieldSubmitted: (value) {
                     myInfoEntity.nickName = value;
                   },
@@ -119,8 +117,6 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   prefixIcon: false,
                   hint: myInfoEntity.stateMessage,
                   maxLength: 30,
-                  enabledBorder: false,
-                  focusBorder: false,
                   onFieldSubmitted: (value) {
                     myInfoEntity.stateMessage = value;
                   },

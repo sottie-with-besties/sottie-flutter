@@ -31,8 +31,6 @@ class _ChatScreenState extends State<ChatScreen> {
           child: LocalTextField(
             hint: "제목, 날짜, 장소...",
             focusNode: focusNode,
-            enabledBorder: false,
-            focusBorder: false,
           ),
         ),
         contentChild: const ChatTabView(),

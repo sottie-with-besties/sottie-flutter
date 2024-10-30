@@ -14,6 +14,8 @@ class _FriendUtilScreenState extends State<FriendUtilScreen>
     with TickerProviderStateMixin {
   late final TabController _tabController;
 
+  final _focusNode = FocusNode();
+
   @override
   void initState() {
     super.initState();
@@ -23,54 +25,60 @@ class _FriendUtilScreenState extends State<FriendUtilScreen>
   @override
   void dispose() {
     _tabController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TabBar(
-              controller: _tabController,
-              indicatorColor: Colors.blueAccent,
-              indicatorSize: TabBarIndicatorSize.tab,
-              tabs: const <Widget>[
-                Tab(
-                  child: Text(
-                    "친구 추가",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: _focusNode.unfocus,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TabBar(
+                controller: _tabController,
+                indicatorColor: Colors.blueAccent,
+                indicatorSize: TabBarIndicatorSize.tab,
+                onTap: (_) => _focusNode.unfocus(),
+                tabs: const <Widget>[
+                  Tab(
+                    child: Text(
+                      "친구 추가",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                Tab(
-                  child: Text(
-                    "차단 목록",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                  Tab(
+                    child: Text(
+                      "차단 목록",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 5 * hu),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: const [
-                FriendAddScreen(),
-                FriendBlockScreen(),
-              ],
+            SizedBox(height: 5 * hu),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  FriendAddScreen(focusNode: _focusNode),
+                  const FriendBlockScreen(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

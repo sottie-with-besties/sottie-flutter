@@ -10,10 +10,16 @@ class FriendBlockScreen extends StatefulWidget {
 class _FriendBlockScreenState extends State<FriendBlockScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        Text("친구 차단"),
-      ],
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("친구 차단"),
+          ],
+        ),
+      ),
     );
   }
 }
