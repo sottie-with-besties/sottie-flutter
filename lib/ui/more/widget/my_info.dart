@@ -31,7 +31,7 @@ class _MyInfoState extends State<MyInfo> {
                   myProfileXFilePath: myInfoEntity.myProfilePath,
                 ),
               ),
-              SizedBox(width: 10 * wu),
+              SizedBox(width: 12 * wu),
               SizedBox(
                 width: 155 * wu,
                 child: Column(
@@ -43,7 +43,7 @@ class _MyInfoState extends State<MyInfo> {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16 * hu,
+                        fontSize: 14 * hu,
                       ),
                     ),
                     Text(

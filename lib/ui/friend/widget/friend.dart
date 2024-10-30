@@ -11,7 +11,6 @@ import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
-import 'package:sottie_flutter/ui/friend/widget/friend_info.dart';
 
 class Friend extends StatefulWidget {
   const Friend({
@@ -165,9 +164,32 @@ class _FriendState extends State<Friend> {
                   ),
                 ),
                 SizedBox(width: 15 * wu),
-                FriendInfo(
-                  friendName: widget.model.nickname,
-                  stateMsg: widget.model.stateMsg ?? '',
+                SizedBox(
+                  width: 180 * wu,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        overflow: TextOverflow.ellipsis,
+                        widget.model.nickname,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(height: 5 * hu),
+                      Text(
+                        overflow: TextOverflow.ellipsis,
+                        widget.model.stateMsg ?? '',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: mainGreyColor2,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
