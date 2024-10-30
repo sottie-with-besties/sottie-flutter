@@ -84,11 +84,12 @@ final _customTheme = ThemeData(
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
+      foregroundColor: mainBlackColor,
       shape: RoundedRectangleBorder(
-        side: BorderSide.none,
+        side: const BorderSide(color: mainBlackColor),
         borderRadius: BorderRadius.circular(8),
       ),
-      minimumSize: const Size(10, 50),
+      minimumSize: const Size(60, 40),
     ),
   ),
   dropdownMenuTheme: DropdownMenuThemeData(

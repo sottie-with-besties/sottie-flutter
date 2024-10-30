@@ -20,15 +20,9 @@ class UserReviewScreen extends StatelessWidget {
             child: Text('리뷰가 없습니다.'),
           );
         } else {
-          return SizedBox(
-            height: 200,
-            child: ListView(
-              children: reviews.map<Widget>(
-                (data) {
-                  return UserReview(model: data);
-                },
-              ).toList(),
-            ),
+          return ListView.builder(
+            itemCount: reviews.length,
+            itemBuilder: (_, index) => UserReview(model: reviews[index]),
           );
         }
       },

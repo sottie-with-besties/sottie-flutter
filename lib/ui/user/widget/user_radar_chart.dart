@@ -11,89 +11,90 @@ class UserRadarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomFutureBuilder(
-      futureFunction: getUserPointDummy,
-      loadingWidget: const Center(
-        child: CircularProgressIndicator(
-          strokeWidth: 8,
-          color: mainBlackColor,
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: mainBlueColor.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(12),
       ),
-      callBack: (futureData) {
-        final userPointModel = futureData as UserPointModel;
-
-        if (userPointModel.participationValue == null) {
-          return const Center(
-            child: Text(
-              "친구를 리뷰하세요!",
-              style: TextStyle(
-                color: mainBlackColor,
-              ),
+      padding: const EdgeInsets.all(12),
+      child: CustomFutureBuilder(
+        futureFunction: getUserPointDummy,
+        loadingWidget: SizedBox(
+          height: 263 * hu,
+          child: const Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 6,
+              color: mainBlackColor,
             ),
-          );
-        } else {
-          return Column(
-            children: [
-              _CustomRadarChart(
-                participationValue: userPointModel.participationValue!,
-                attitudeValue: userPointModel.attitudeValue!,
-                timeValue: userPointModel.timeValue!,
-                likeabilityValue: userPointModel.likeabilityValue!,
-                trustworthinessValue: userPointModel.trustworthinessValue!,
-              ),
-              SizedBox(height: 10 * hu),
-              Padding(
-                padding: EdgeInsets.only(top: 10 * hu, right: 24 * wu),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "매너 온도",
-                      style: TextStyle(
-                        fontSize: 12 * hu,
-                        color: mainWhiteSilverColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1.5,
-                            color: mainWhiteSilverColor,
+          ),
+        ),
+        callBack: (futureData) {
+          final userPointModel = futureData as UserPointModel;
+
+          if (userPointModel.participationValue == null) {
+            return const Center(child: Text("친구를 리뷰하세요!"));
+          } else {
+            return SizedBox(
+              child: Column(
+                children: [
+                  _CustomRadarChart(
+                    participationValue: userPointModel.participationValue!,
+                    attitudeValue: userPointModel.attitudeValue!,
+                    timeValue: userPointModel.timeValue!,
+                    likeabilityValue: userPointModel.likeabilityValue!,
+                    trustworthinessValue: userPointModel.trustworthinessValue!,
+                  ),
+                  SizedBox(height: 10 * hu),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5 * hu, right: 12 * wu),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "매너 온도",
+                          style: TextStyle(
+                            fontSize: 10 * hu,
+                            fontWeight: FontWeight.bold,
                           ),
-                          borderRadius: BorderRadius.circular(8)),
-                      padding: const EdgeInsets.all(8),
-                      child: Text(
-                        (userPointModel.participationValue! +
-                                userPointModel.attitudeValue! +
-                                userPointModel.timeValue! +
-                                userPointModel.likeabilityValue! +
-                                userPointModel.trustworthinessValue!)
-                            .toStringAsFixed(1),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: mainWhiteSilverColor,
-                          fontSize: 16 * hu,
                         ),
-                      ),
+                        const SizedBox(width: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 1.5,
+                              ),
+                              borderRadius: BorderRadius.circular(8)),
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            (userPointModel.participationValue! +
+                                    userPointModel.attitudeValue! +
+                                    userPointModel.timeValue! +
+                                    userPointModel.likeabilityValue! +
+                                    userPointModel.trustworthinessValue!)
+                                .toStringAsFixed(1),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10 * hu,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          "°C",
+                          style: TextStyle(
+                            fontSize: 10 * hu,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 10),
-                    Text(
-                      "°C",
-                      style: TextStyle(
-                        fontSize: 12 * hu,
-                        color: mainWhiteSilverColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          );
-        }
-      },
+            );
+          }
+        },
+      ),
     );
   }
 }
@@ -143,22 +144,17 @@ class _CustomRadarChartState extends State<_CustomRadarChart> {
     return Padding(
       padding: EdgeInsets.only(top: 20 * hu),
       child: SizedBox(
-        height: 180 * hu,
+        height: 200 * hu,
         child: RadarChart(
           RadarChartData(
             radarShape: RadarShape.polygon,
-            radarBorderData:
-                const BorderSide(color: mainWhiteSilverColor, width: 0.5),
+            radarBorderData: const BorderSide(width: 0.5),
             tickCount: 2,
-            tickBorderData:
-                const BorderSide(color: mainWhiteSilverColor, width: 0.5),
+            tickBorderData: const BorderSide(width: 0.5),
             gridBorderData: const BorderSide(color: Colors.transparent),
             ticksTextStyle: const TextStyle(color: Colors.transparent),
             titlePositionPercentageOffset: 0.2,
-            titleTextStyle: const TextStyle(
-              color: mainWhiteSilverColor,
-              fontWeight: FontWeight.bold,
-            ),
+            titleTextStyle: const TextStyle(fontWeight: FontWeight.bold),
             getTitle: (index, angle) {
               switch (index) {
                 case 0:
@@ -182,17 +178,6 @@ class _CustomRadarChartState extends State<_CustomRadarChart> {
             },
             dataSets: <RadarDataSet>[
               RadarDataSet(
-                fillColor: mainGreenColor.withOpacity(0.5),
-                borderColor: mainGreenColor,
-                dataEntries: <RadarEntry>[
-                  RadarEntry(value: _participation),
-                  RadarEntry(value: _attitude),
-                  RadarEntry(value: _time),
-                  RadarEntry(value: _likeability),
-                  RadarEntry(value: _trustworthiness),
-                ],
-              ),
-              RadarDataSet(
                 fillColor: Colors.transparent,
                 borderColor: Colors.transparent,
                 dataEntries: <RadarEntry>[
@@ -201,6 +186,17 @@ class _CustomRadarChartState extends State<_CustomRadarChart> {
                   const RadarEntry(value: 20),
                   const RadarEntry(value: 20),
                   const RadarEntry(value: 20),
+                ],
+              ),
+              RadarDataSet(
+                fillColor: mainBlueColor.withOpacity(0.5),
+                borderColor: mainBlueColor,
+                dataEntries: <RadarEntry>[
+                  RadarEntry(value: _participation),
+                  RadarEntry(value: _attitude),
+                  RadarEntry(value: _time),
+                  RadarEntry(value: _likeability),
+                  RadarEntry(value: _trustworthiness),
                 ],
               ),
             ],

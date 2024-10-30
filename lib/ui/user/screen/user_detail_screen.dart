@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/user/screen/user_review_screen.dart';
 import 'package:sottie_flutter/ui/user/widget/user_radar_chart.dart';
@@ -25,8 +26,8 @@ class UserDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: mainBlueColor.withOpacity(0.05)),
-      backgroundColor: mainBlueColor.withOpacity(0.8),
+      appBar: AppBar(backgroundColor: mainWhiteSilverColor),
+      backgroundColor: mainWhiteSilverColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
         child: Column(
@@ -52,7 +53,6 @@ class UserDetailScreen extends StatelessWidget {
                           Text(
                             nickName,
                             style: TextStyle(
-                              color: mainWhiteSilverColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 16 * hu,
                             ),
@@ -63,7 +63,6 @@ class UserDetailScreen extends StatelessWidget {
                       Text(
                         stateMsg,
                         style: TextStyle(
-                          color: mainWhiteSilverColor,
                           fontSize: 12 * hu,
                         ),
                       ),
@@ -72,7 +71,7 @@ class UserDetailScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10 * hu),
+            SizedBox(height: 15 * hu),
             SizedBox(
               height: 50 * hu,
               child: Row(
@@ -110,26 +109,25 @@ class UserDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const Column(
+            SizedBox(height: 10 * hu),
+            const UserRadarChart(),
+            SizedBox(height: 30 * hu),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                UserRadarChart(),
-                UserReviewScreen(),
-              ],
-            ),
-            SizedBox(height: 5 * hu),
-            OutlinedButton(
-              onPressed: () {
-                log("리뷰 작성하기");
-              },
-              style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: mainWhiteSilverColor)),
-              child: const Text(
-                "리뷰 작성하기",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: mainWhiteSilverColor,
+                OutlinedButton(
+                  onPressed: () {
+                    showCustomBottomSheet(context, const UserReviewScreen());
+                  },
+                  child: const Text("리뷰 보기"),
                 ),
-              ),
+                OutlinedButton(
+                  onPressed: () {
+                    log("리뷰 작성");
+                  },
+                  child: const Text("리뷰 작성"),
+                ),
+              ],
             ),
           ],
         ),
@@ -146,7 +144,6 @@ Widget _utilButton(IconData icon, String desc, VoidCallback onTap) {
       children: [
         FaIcon(
           icon,
-          color: mainWhiteSilverColor,
           size: 16 * hu,
         ),
         SizedBox(height: 2 * hu),
@@ -154,7 +151,6 @@ Widget _utilButton(IconData icon, String desc, VoidCallback onTap) {
           desc,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: mainWhiteSilverColor,
             fontSize: 10 * hu,
           ),
         )

@@ -30,7 +30,6 @@ class UserReview extends StatelessWidget {
                     model.nickname,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: mainWhiteSilverColor,
                       fontSize: 16,
                     ),
                   ),
@@ -41,7 +40,6 @@ class UserReview extends StatelessWidget {
                 child: Text(
                   model.total.toString(),
                   style: TextStyle(
-                    color: mainWhiteSilverColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 14 * hu,
                   ),
@@ -77,43 +75,39 @@ class _EvaluationRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const chipLabel = ["매우 나쁨", "나쁨", "보통", "좋음", "매우 좋음"];
+    const chipLabel = ["0", "5", "10", "15", "20"];
 
-    return FittedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SizedBox(
+          width: 50 * wu,
+          child: Text(
             evaluationText,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 12 * hu,
-              color: mainWhiteSilverColor,
+              fontSize: 12 * wu,
             ),
           ),
-          SizedBox(width: 5 * wu),
-          ...List.generate(
-            5,
-            (index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: ChoiceChip(
-                  selectedColor: Colors.green.withOpacity(0.8),
-                  checkmarkColor: Colors.black,
-                  disabledColor: mainGreyColor.withOpacity(0.5),
-                  label: Text(
-                    chipLabel[index],
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  selected: index == selectedIndex,
+        ),
+        ...List.generate(
+          5,
+          (index) {
+            return ChoiceChip(
+              selectedColor: mainGreenColor,
+              disabledColor: mainGreyColor.withOpacity(0.5),
+              showCheckmark: false,
+              label: Text(
+                chipLabel[index],
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
-              );
-            },
-          ),
-        ],
-      ),
+              ),
+              selected: index == selectedIndex,
+            );
+          },
+        ),
+      ],
     );
   }
 }

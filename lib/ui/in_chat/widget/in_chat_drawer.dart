@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
@@ -17,6 +18,7 @@ class InChatDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       width: 200 * wu,
+      backgroundColor: mainWhiteSilverColor,
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 6),

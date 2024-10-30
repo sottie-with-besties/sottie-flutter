@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 borderRadius: BorderRadius.circular(5),
                 onTap: () {
-                  bottomSheet(
+                  showCustomBottomSheet(
                     context,
                     const SearchScreen(),
                   );
@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 borderRadius: BorderRadius.circular(5),
                 onTap: () {
-                  bottomSheet(
+                  showCustomBottomSheet(
                     context,
                     const AlarmScreen(),
                   );
