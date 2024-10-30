@@ -154,20 +154,17 @@ class _FriendState extends State<Friend> {
           color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
           child: Padding(
             padding:
-                EdgeInsets.symmetric(horizontal: 5 * wu, vertical: 12 * hu),
+                EdgeInsets.symmetric(horizontal: 18 * wu, vertical: 10 * hu),
             child: Row(
               children: [
-                SizedBox(
-                  width: 70 * wu,
-                  child: Hero(
-                    tag: widget.model.id,
-                    child: UserProfile(
-                      profileUrl: widget.model.id,
-                      randomAvatarSize: 45,
-                    ),
+                Hero(
+                  tag: widget.model.id,
+                  child: UserProfile(
+                    profileUrl: widget.model.id,
+                    randomAvatarSize: 45,
                   ),
                 ),
-                SizedBox(width: 10 * wu),
+                SizedBox(width: 15 * wu),
                 FriendInfo(
                   friendName: widget.model.nickname,
                   stateMsg: widget.model.stateMsg ?? '',

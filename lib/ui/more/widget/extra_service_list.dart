@@ -12,7 +12,7 @@ class ExtraServiceList extends StatelessWidget {
     return Column(
       children: [
         _extraService(
-          '상점   ',
+          '골드 충전',
           () {
             context.push("${CustomRouter.morePath}/${CustomRouter.storePath}");
           },

@@ -110,14 +110,17 @@ class UserDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10 * hu),
-            const UserRadarChart(),
+            const UserRadarChart(isMe: false),
             SizedBox(height: 30 * hu),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OutlinedButton(
                   onPressed: () {
-                    showCustomBottomSheet(context, const UserReviewScreen());
+                    showCustomBottomSheet(
+                      context,
+                      const UserReviewScreen(),
+                    );
                   },
                   child: const Text("리뷰 보기"),
                 ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/more/screen/more_content_screen.dart';
@@ -15,18 +17,27 @@ class MoreScreen extends StatelessWidget {
       appBarActions: [
         Padding(
           padding: const EdgeInsets.only(right: 24),
-          child: Row(
-            children: [
-              Text(
-                myInfoEntity.gold.toString(),
-                style: const TextStyle(fontWeight: FontWeight.bold),
+          child: GestureDetector(
+            onTap: () {
+              context
+                  .push("${CustomRouter.morePath}/${CustomRouter.storePath}");
+            },
+            child: Container(
+              color: Colors.transparent,
+              child: Row(
+                children: [
+                  Text(
+                    myInfoEntity.gold.toString(),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(width: 10),
+                  const FaIcon(
+                    FontAwesomeIcons.coins,
+                    color: Colors.amber,
+                  ),
+                ],
               ),
-              const SizedBox(width: 10),
-              const FaIcon(
-                FontAwesomeIcons.coins,
-                color: Colors.amber,
-              ),
-            ],
+            ),
           ),
         )
       ],

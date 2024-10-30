@@ -15,64 +15,59 @@ class MyInfo extends StatefulWidget {
 class _MyInfoState extends State<MyInfo> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Hero(
-                  tag: 'me',
-                  child: UserProfile(
-                    profileUrl: 'me',
-                    randomAvatarSize: 45,
-                    profileAvatarSize: 23,
-                    myProfileXFilePath: myInfoEntity.myProfilePath,
-                  ),
+    return Padding(
+      padding: EdgeInsets.only(bottom: 10 * hu),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Hero(
+                tag: 'me',
+                child: UserProfile(
+                  profileUrl: 'me',
+                  randomAvatarSize: 45,
+                  profileAvatarSize: 23,
+                  myProfileXFilePath: myInfoEntity.myProfilePath,
                 ),
-                SizedBox(
-                  width: 10 * wu,
-                ),
-                SizedBox(
-                  width: 155 * wu,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        myInfoEntity.nickName,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16 * hu,
-                        ),
+              ),
+              SizedBox(width: 10 * wu),
+              SizedBox(
+                width: 155 * wu,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      myInfoEntity.nickName,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16 * hu,
                       ),
-                      Text(
-                        myInfoEntity.stateMessage ?? '',
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
+                    ),
+                    Text(
+                      myInfoEntity.stateMessage ?? '',
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
-              ],
+              ),
+            ],
+          ),
+          OutlinedButton(
+            onPressed: () async {
+              await context.push(
+                  "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}");
+              setState(() {});
+            },
+            child: const Text(
+              "수정",
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            OutlinedButton(
-                onPressed: () async {
-                  await context.push(
-                      "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}");
-                  setState(() {});
-                },
-                child: const Text(
-                  "수정",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ))
-          ],
-        ),
-        SizedBox(
-          height: 10 * hu,
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }

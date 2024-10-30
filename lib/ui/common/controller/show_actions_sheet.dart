@@ -5,7 +5,6 @@ void showCustomBottomSheet(BuildContext context, Widget screen) {
   showModalBottomSheet(
     context: context,
     clipBehavior: Clip.hardEdge,
-    barrierColor: mainWhiteSilverColor,
     backgroundColor: mainWhiteSilverColor,
     isScrollControlled: true,
     useSafeArea: true,
