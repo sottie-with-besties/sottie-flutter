@@ -38,6 +38,7 @@ class PostDetailScreen extends StatelessWidget {
               mainBlueColor.withOpacity(0.5),
               mainBlueColor,
             ],
+            stops: const [0.01, 0.2, 1],
           ),
         ),
         child: SafeArea(
@@ -69,12 +70,13 @@ class PostDetailScreen extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16 * hu,
-                        color: mainBlackColor,
+                        color: mainWhiteSilverColor,
                       ),
                     ),
                     SizedBox(height: 10 * hu),
                     SottieCategoryUi(
                       sottieCategory: postModel.category,
+                      color: mainWhiteSilverColor,
                     ),
                     SizedBox(height: 5 * hu),
                     CurrentNumOfMember(
@@ -84,6 +86,7 @@ class PostDetailScreen extends StatelessWidget {
                       maxManCount: postModel.maxManCount,
                       currentWomanCount: postModel.currentWomanCount,
                       maxWomanCount: postModel.maxWomanCount,
+                      color: mainWhiteSilverColor,
                     ),
                     SizedBox(height: 10 * hu),
                     CustomFutureBuilder(
@@ -100,7 +103,7 @@ class PostDetailScreen extends StatelessWidget {
                               postDetailModelData.content,
                               style: TextStyle(
                                 fontSize: 11 * hu,
-                                color: mainBlackColor,
+                                color: mainWhiteSilverColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -151,7 +154,7 @@ class PostDetailScreen extends StatelessWidget {
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(
-                                color: mainBlackColor,
+                                color: mainWhiteSilverColor,
                               ),
                               minimumSize: const Size(100, 65),
                             ),
@@ -163,7 +166,7 @@ class PostDetailScreen extends StatelessWidget {
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: mainBlackColor,
+                                color: mainWhiteSilverColor,
                               ),
                             ),
                           ),
@@ -182,7 +185,7 @@ class PostDetailScreen extends StatelessWidget {
 }
 
 final _conditionTextStyle = TextStyle(
-  color: mainBlackColor,
+  color: mainWhiteSilverColor,
   fontWeight: FontWeight.bold,
   fontSize: 11 * hu,
 );

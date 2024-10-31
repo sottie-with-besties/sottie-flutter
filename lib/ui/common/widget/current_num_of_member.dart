@@ -70,7 +70,7 @@ Widget _renderMemberCount({
     return Row(
       children: [
         Icon(
-          Icons.man,
+          Icons.person,
           color: Colors.blue,
           size: 12 * hu,
         ),
@@ -83,7 +83,7 @@ Widget _renderMemberCount({
         ),
         SizedBox(width: 3 * wu),
         Icon(
-          Icons.woman,
+          Icons.person,
           color: Colors.pinkAccent,
           size: 12 * hu,
         ),
