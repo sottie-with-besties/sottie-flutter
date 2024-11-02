@@ -102,7 +102,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _renderSubTitle("친구 요청"),
-                SizedBox(height: 15 * hu),
+                SizedBox(height: 10 * hu),
                 Center(
                   child: CustomFutureBuilder(
                     futureFunction: getFriendRequestDummy,
@@ -112,7 +112,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                       final friendRequestList = futureData as List<UserModel>;
 
                       return SizedBox(
-                        height: 220 * hu,
+                        height: 250 * hu,
                         child: ListView.builder(
                           itemCount: friendRequestList.length,
                           itemBuilder: (_, index) {
