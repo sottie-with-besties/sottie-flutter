@@ -1,9 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
+import 'package:sottie_flutter/domain/friend/friend_manage.dart';
+import 'package:sottie_flutter/domain/user/user_manage.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
@@ -24,19 +24,13 @@ class Friend extends StatefulWidget {
 }
 
 class _FriendState extends State<Friend> {
-  void _dmAction(bool withSlide) {
-    log("DmAction");
-  }
-
   void _deleteAction(bool withSlide) {
     showCustomDialog(
       context,
       Center(
         child: Text(
           "${widget.model.nickname}를 삭제하시겠습니까?",
-          style: const TextStyle(
-            fontSize: 20,
-          ),
+          style: const TextStyle(fontSize: 20),
         ),
       ),
       extraButton: ElevatedButton(
@@ -48,15 +42,11 @@ class _FriendState extends State<Friend> {
           Navigator.of(context, rootNavigator: true).pop();
           withSlide ? null : Navigator.of(context, rootNavigator: true).pop();
 
-          log("친구 삭제 확인");
+          friendDelete(context);
         },
         child: const Text("삭제"),
       ),
     );
-  }
-
-  void _reportAction(bool withSlide) {
-    log("ReportAction");
   }
 
   @override
@@ -82,7 +72,7 @@ class _FriendState extends State<Friend> {
           OnLongPressOption(
             color: Colors.green,
             onTap: () {
-              _dmAction(false);
+              friendSendDm(context);
             },
             icon: Icons.messenger_outline,
             optionTitle: "DM 보내기",
@@ -100,7 +90,7 @@ class _FriendState extends State<Friend> {
           OnLongPressOption(
             color: Colors.blueAccent,
             onTap: () {
-              _reportAction(false);
+              userReport(context);
             },
             icon: Icons.report_gmailerrorred_outlined,
             optionTitle: "신고",
@@ -109,7 +99,7 @@ class _FriendState extends State<Friend> {
       ),
       slideActions: [
         SlidableAction(
-          onPressed: (context) => _dmAction(true),
+          onPressed: (context) => friendSendDm(context),
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           autoClose: true,
@@ -127,7 +117,7 @@ class _FriendState extends State<Friend> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
         SlidableAction(
-          onPressed: (context) => _reportAction(true),
+          onPressed: (context) => userReport(context),
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
           autoClose: true,

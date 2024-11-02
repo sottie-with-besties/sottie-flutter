@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/data/friend/data_source/friend_request_dummy.dart';
 import 'package:sottie_flutter/data/user/data_source/user_search_dummy.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
+import 'package:sottie_flutter/domain/friend/friend_manage.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 
@@ -75,16 +81,75 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                 child: userSearching
                     ? const CircularProgressIndicator(color: mainBlackColor)
                     : userFound != null
-                        ? SottieUser(
-                            model: userFound!,
-                            isMyFriend: false,
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SottieUser(
+                                model: userFound!,
+                                isMyFriend: false,
+                                textWidth: 100,
+                              ),
+                              _renderFriendManageButton(
+                                  mainBlueColor, FontAwesomeIcons.userPlus, () {
+                                friendAdd(context);
+                              }),
+                            ],
                           )
                         : Text(userSearchText),
               ),
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _renderSubTitle("친구 요청"),
+                SizedBox(height: 15 * hu),
+                Center(
+                  child: CustomFutureBuilder(
+                    futureFunction: getFriendRequestDummy,
+                    loadingWidget:
+                        const CircularProgressIndicator(color: mainBlackColor),
+                    callBack: (futureData) {
+                      final friendRequestList = futureData as List<UserModel>;
+
+                      return SizedBox(
+                        height: 220 * hu,
+                        child: ListView.builder(
+                          itemCount: friendRequestList.length,
+                          itemBuilder: (_, index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10 * hu),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SottieUser(
+                                    model: friendRequestList[index],
+                                    isMyFriend: false,
+                                    textWidth: 100,
+                                  ),
+                                  Row(
+                                    children: [
+                                      _renderFriendManageButton(
+                                          mainRedColor, FontAwesomeIcons.xmark,
+                                          () {
+                                        log("friend request refuse");
+                                      }),
+                                      SizedBox(width: 10 * wu),
+                                      _renderFriendManageButton(mainBlueColor,
+                                          FontAwesomeIcons.userPlus, () {
+                                        friendAdd(context);
+                                      }),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           ],
@@ -100,3 +165,25 @@ Text _renderSubTitle(String title) => Text(
         fontWeight: FontWeight.bold,
       ),
     );
+
+InkWell _renderFriendManageButton(
+    Color color, IconData iconData, VoidCallback callback) {
+  return InkWell(
+    onTap: callback,
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: color,
+      ),
+      padding: const EdgeInsets.all(8),
+      width: 40 * wu,
+      height: 30 * wu,
+      child: FittedBox(
+        child: Icon(
+          iconData,
+          color: mainWhiteSilverColor,
+        ),
+      ),
+    ),
+  );
+}

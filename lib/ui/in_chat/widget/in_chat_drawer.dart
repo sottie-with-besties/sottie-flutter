@@ -7,6 +7,7 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
+import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_photo.dart';
@@ -139,9 +140,12 @@ Widget _inChatParticipant(BuildContext context, String id, String name) {
       context.push(
         CustomRouter.userDetailPath,
         extra: {
-          'userId': "1234123",
-          'nickName': 'nickname',
-          'stateMsg': '안녕하세요',
+          'model': UserModel(
+            id: '12312323',
+            nickname: 'nickName',
+            stateMsg: 'hihihihi',
+            profileUrl: null,
+          ),
           'isMyFriend': false,
         },
       );

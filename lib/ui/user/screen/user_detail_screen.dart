@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
+import 'package:sottie_flutter/domain/friend/friend_manage.dart';
+import 'package:sottie_flutter/domain/user/user_manage.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
 import 'package:sottie_flutter/ui/user/screen/user_review_screen.dart';
@@ -50,28 +52,28 @@ class UserDetailScreen extends StatelessWidget {
                           FontAwesomeIcons.message,
                           'DM',
                           () {
-                            log("친구 DM 보내기");
+                            friendSendDm(context);
                           },
                         )
                       : _utilButton(
                           FontAwesomeIcons.userPlus,
                           '추가',
                           () {
-                            log("친구 추가 하기");
+                            friendAdd(context);
                           },
                         ),
                   _utilButton(
                     FontAwesomeIcons.ban,
                     '차단',
                     () {
-                      log("친구 차단");
+                      friendBlock(context);
                     },
                   ),
                   _utilButton(
                     FontAwesomeIcons.circleExclamation,
                     '신고',
                     () {
-                      log("친구 신고");
+                      userReport(context);
                     },
                   ),
                 ],
