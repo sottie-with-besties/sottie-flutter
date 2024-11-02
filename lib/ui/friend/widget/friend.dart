@@ -136,9 +136,12 @@ class _FriendState extends State<Friend> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
       ],
-      child: SottieUser(
-        model: widget.model,
-        isMyFriend: true,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 10 * hu, horizontal: 16 * wu),
+        child: SottieUser(
+          model: widget.model,
+          isMyFriend: true,
+        ),
       ),
     );
   }
