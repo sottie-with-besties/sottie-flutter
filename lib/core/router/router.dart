@@ -16,14 +16,14 @@ import 'package:sottie_flutter/ui/in_chat/screen/in_chat_info_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_notification_list_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_photo_list_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_screen.dart';
-import 'package:sottie_flutter/ui/more/screen/email_change_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/email_change_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_event_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_notice_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_setting_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_store_screen.dart';
-import 'package:sottie_flutter/ui/more/screen/info_modify_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/info_modify_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_one.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_three.dart';
@@ -308,9 +308,7 @@ final _routes = [
 
       return CustomTransitionPage(
         child: UserDetailScreen(
-          userId: params['userId'],
-          nickName: params['nickName'],
-          stateMsg: params['stateMsg'] ?? '',
+          model: params['model'],
           isMyFriend: params['isMyFriend'],
         ),
         transitionsBuilder: (_, animation, __, child) {

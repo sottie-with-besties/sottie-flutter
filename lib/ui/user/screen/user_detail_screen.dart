@@ -3,81 +3,45 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
-import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/user/screen/user_review_screen.dart';
+import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 import 'package:sottie_flutter/ui/user/widget/user_radar_chart.dart';
 
 class UserDetailScreen extends StatelessWidget {
   const UserDetailScreen({
     super.key,
-    required this.userId,
-    required this.nickName,
-    required this.stateMsg,
+    required this.model,
     required this.isMyFriend,
   });
 
-  final String userId;
-  final String nickName;
-  final String stateMsg;
-  final bool isMyFriend;
+  final UserModel model;
+  final bool? isMyFriend;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: mainWhiteSilverColor),
       backgroundColor: mainWhiteSilverColor,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Hero(
-                  tag: userId,
-                  child: UserProfile(
-                    profileUrl: userId,
-                    randomAvatarSize: 50,
-                  ),
-                ),
-                SizedBox(width: 10 * wu),
-                SizedBox(
-                  width: 200 * wu,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            nickName,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16 * hu,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        stateMsg,
-                        style: TextStyle(
-                          fontSize: 12 * hu,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+      body: Column(
+        children: [
+          // 계속 디테일 스크린으로 들어가는 것을 방지
+          IgnorePointer(
+            child: SottieUser(
+              model: model,
+              isMyFriend: isMyFriend,
             ),
-            SizedBox(height: 15 * hu),
+          ),
+          SizedBox(height: 10 * hu),
+          if (isMyFriend != null)
             SizedBox(
               height: 50 * hu,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  isMyFriend
+                  isMyFriend!
                       ? _utilButton(
                           FontAwesomeIcons.message,
                           'DM',
@@ -109,31 +73,30 @@ class UserDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 10 * hu),
-            const UserRadarChart(isMe: false),
-            SizedBox(height: 30 * hu),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                OutlinedButton(
-                  onPressed: () {
-                    showCustomBottomSheet(
-                      context,
-                      const UserReviewScreen(),
-                    );
-                  },
-                  child: const Text("리뷰 보기"),
-                ),
-                OutlinedButton(
-                  onPressed: () {
-                    log("리뷰 작성");
-                  },
-                  child: const Text("리뷰 작성"),
-                ),
-              ],
-            ),
-          ],
-        ),
+          SizedBox(height: 10 * hu),
+          const UserRadarChart(),
+          SizedBox(height: 30 * hu),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              OutlinedButton(
+                onPressed: () {
+                  showCustomBottomSheet(
+                    context,
+                    const UserReviewScreen(),
+                  );
+                },
+                child: const Text("리뷰 보기"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  log("리뷰 작성");
+                },
+                child: const Text("리뷰 작성"),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

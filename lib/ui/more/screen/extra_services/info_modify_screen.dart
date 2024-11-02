@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
@@ -71,13 +69,12 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   onTap: () async {
                     await modifyImage(context);
                     setState(() {});
-                    log(myInfoEntity.myProfilePath ?? 'null');
                     // Todo: 디바운스 -> 서버로 수정한 정보 보내기
                   },
                   child: Hero(
-                    tag: 'me',
+                    tag: myInfoEntity.id,
                     child: UserProfile(
-                      profileUrl: 'me',
+                      profileUrl: myInfoEntity.profileUrl ?? myInfoEntity.id,
                       randomAvatarSize: 80,
                       profileAvatarSize: 40,
                       myProfileXFilePath: myInfoEntity.myProfilePath,

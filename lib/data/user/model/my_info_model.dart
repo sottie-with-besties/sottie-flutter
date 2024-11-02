@@ -6,6 +6,9 @@ part 'my_info_model.g.dart';
 @unfreezed
 class MyInfoModel with _$MyInfoModel {
   factory MyInfoModel({
+    /// ID
+    @Default('45152341245') String id,
+
     /// 실명
     @Default('김진표') String name,
 
@@ -39,7 +42,7 @@ class MyInfoModel with _$MyInfoModel {
     /// 프로필 Url
     String? profileUrl,
 
-    /// 프로필 path -> path로 프로필 사진 렌더링 한 후 에러 시 서버에게 url 통한 이미지 요청
+    /// 프로필 Path => 긍정 캐시
     String? myProfilePath,
 
     /// 골드 -> 화폐 이름 임시 지정

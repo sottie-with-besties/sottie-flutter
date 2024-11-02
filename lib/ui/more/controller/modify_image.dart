@@ -8,7 +8,7 @@ final _picker = ImagePicker();
 
 Future<void> modifyImage(BuildContext context) async {
   try {
-    // 프로필 사진 선택
+    /// 프로필 사진 선택
     final image = await _picker.pickImage(source: ImageSource.gallery);
     myInfoEntity.myProfilePath = image?.path;
   } on PlatformException catch (e) {

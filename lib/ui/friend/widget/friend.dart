@@ -2,15 +2,14 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/friend/model/friend_model.dart';
+import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
+import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 
 class Friend extends StatefulWidget {
   const Friend({
@@ -18,7 +17,7 @@ class Friend extends StatefulWidget {
     required this.model,
   });
 
-  final FriendModel model;
+  final UserModel model;
 
   @override
   State<Friend> createState() => _FriendState();
@@ -137,64 +136,9 @@ class _FriendState extends State<Friend> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
       ],
-      child: GestureDetector(
-        onTap: () {
-          context.push(
-            CustomRouter.userDetailPath,
-            extra: {
-              'userId': widget.model.id,
-              'nickName': widget.model.nickname,
-              'stateMsg': widget.model.stateMsg,
-              'isMyFriend': true,
-            },
-          );
-        },
-        child: Container(
-          color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
-          child: Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: 18 * wu, vertical: 10 * hu),
-            child: Row(
-              children: [
-                Hero(
-                  tag: widget.model.id,
-                  child: UserProfile(
-                    profileUrl: widget.model.id,
-                    randomAvatarSize: 45,
-                  ),
-                ),
-                SizedBox(width: 15 * wu),
-                SizedBox(
-                  width: 180 * wu,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        overflow: TextOverflow.ellipsis,
-                        widget.model.nickname,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                      SizedBox(height: 5 * hu),
-                      Text(
-                        overflow: TextOverflow.ellipsis,
-                        widget.model.stateMsg ?? '',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: mainGreyColor2,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+      child: SottieUser(
+        model: widget.model,
+        isMyFriend: true,
       ),
     );
   }

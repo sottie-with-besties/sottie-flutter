@@ -4,124 +4,106 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/user/data_source/user_point_dummy.dart';
 import 'package:sottie_flutter/data/user/model/user_point_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
-import 'package:sottie_flutter/ui/user/screen/user_review_screen.dart';
 
 class UserRadarChart extends StatelessWidget {
-  const UserRadarChart({
-    super.key,
-    required this.isMe,
-  });
-
-  final bool isMe;
+  const UserRadarChart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: mainBlueColor.withOpacity(0.15),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      padding: const EdgeInsets.all(12),
-      child: CustomFutureBuilder(
-        futureFunction: getUserPointDummy,
-        loadingWidget: SizedBox(
-          height: isMe ? 275.5 * hu : 268 * hu,
-          child: const Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 6,
-              color: mainBlackColor,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10 * hu),
+      child: Container(
+        decoration: BoxDecoration(
+          color: mainBlueColor.withOpacity(0.15),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        padding: const EdgeInsets.all(12),
+        child: CustomFutureBuilder(
+          futureFunction: getUserPointDummy,
+          loadingWidget: SizedBox(
+            height: 268 * hu,
+            child: const Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 6,
+                color: mainBlackColor,
+              ),
             ),
           ),
-        ),
-        callBack: (futureData) {
-          final userPointModel = futureData as UserPointModel;
+          callBack: (futureData) {
+            final userPointModel = futureData as UserPointModel;
 
-          if (userPointModel.participationValue == null) {
-            return SizedBox(
-              height: 263 * hu,
-              child: Center(
-                child: Text(isMe ? '등록된 리뷰가 없습니다.' : '친구를 리뷰하세요!'),
-              ),
-            );
-          } else {
-            return SizedBox(
-              child: Column(
-                children: [
-                  _CustomRadarChart(
-                    participationValue: userPointModel.participationValue!,
-                    attitudeValue: userPointModel.attitudeValue!,
-                    timeValue: userPointModel.timeValue!,
-                    likeabilityValue: userPointModel.likeabilityValue!,
-                    trustworthinessValue: userPointModel.trustworthinessValue!,
-                  ),
-                  SizedBox(height: 10 * hu),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5 * hu, right: 12 * wu),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        isMe
-                            ? OutlinedButton(
-                                onPressed: () {
-                                  showCustomBottomSheet(
-                                    context,
-                                    const UserReviewScreen(),
-                                  );
-                                },
-                                child: const Text("리뷰 보기"),
-                              )
-                            : Container(),
-                        Row(
-                          children: [
-                            Text(
-                              "매너 온도",
-                              style: TextStyle(
-                                fontSize: 10 * hu,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 1.5,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8)),
-                              padding: const EdgeInsets.all(8),
-                              child: Text(
-                                (userPointModel.participationValue! +
-                                        userPointModel.attitudeValue! +
-                                        userPointModel.timeValue! +
-                                        userPointModel.likeabilityValue! +
-                                        userPointModel.trustworthinessValue!)
-                                    .toStringAsFixed(1),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10 * hu,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              "°C",
-                              style: TextStyle(
-                                fontSize: 10 * hu,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+            if (userPointModel.participationValue == null) {
+              return SizedBox(
+                height: 263 * hu,
+                child: const Center(
+                  child: Text('친구를 리뷰하세요!'),
+                ),
+              );
+            } else {
+              return SizedBox(
+                child: Column(
+                  children: [
+                    _CustomRadarChart(
+                      participationValue: userPointModel.participationValue!,
+                      attitudeValue: userPointModel.attitudeValue!,
+                      timeValue: userPointModel.timeValue!,
+                      likeabilityValue: userPointModel.likeabilityValue!,
+                      trustworthinessValue:
+                          userPointModel.trustworthinessValue!,
                     ),
-                  ),
-                  SizedBox(height: 5 * hu),
-                ],
-              ),
-            );
-          }
-        },
+                    SizedBox(height: 10 * hu),
+                    Padding(
+                      padding: EdgeInsets.only(top: 5 * hu, right: 12 * wu),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "매너 온도",
+                            style: TextStyle(
+                              fontSize: 10 * hu,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 1.5,
+                                ),
+                                borderRadius: BorderRadius.circular(8)),
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              (userPointModel.participationValue! +
+                                      userPointModel.attitudeValue! +
+                                      userPointModel.timeValue! +
+                                      userPointModel.likeabilityValue! +
+                                      userPointModel.trustworthinessValue!)
+                                  .toStringAsFixed(1),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 10 * hu,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            "°C",
+                            style: TextStyle(
+                              fontSize: 10 * hu,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 5 * hu),
+                  ],
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

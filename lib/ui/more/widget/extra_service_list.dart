@@ -5,45 +5,64 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class ExtraServiceList extends StatelessWidget {
-  const ExtraServiceList({super.key});
+  const ExtraServiceList({
+    super.key,
+    required this.setStateProfile,
+  });
+
+  final void Function(VoidCallback) setStateProfile;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _extraService(
-          '골드 충전',
-          () {
-            context.push("${CustomRouter.morePath}/${CustomRouter.storePath}");
-          },
-        ),
-        _extraService(
-          '이벤트',
-          () {
-            context.push("${CustomRouter.morePath}/${CustomRouter.eventPath}");
-          },
-        ),
-        _extraService(
-          '공지사항',
-          () {
-            context.push("${CustomRouter.morePath}/${CustomRouter.noticePath}");
-          },
-        ),
-        _extraService(
-          '고객센터',
-          () {
-            context.push(
-                "${CustomRouter.morePath}/${CustomRouter.customerServicePath}");
-          },
-        ),
-        _extraService(
-          '환경설정',
-          () {
-            context
-                .push("${CustomRouter.morePath}/${CustomRouter.settingPath}");
-          },
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12 * wu),
+      child: Column(
+        children: [
+          _extraService(
+            '내 정보 수정',
+            () async {
+              await context.push(
+                  "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}");
+              setStateProfile(() {});
+            },
+          ),
+          _extraService(
+            '골드 충전',
+            () {
+              context
+                  .push("${CustomRouter.morePath}/${CustomRouter.storePath}");
+            },
+          ),
+          _extraService(
+            '이벤트',
+            () {
+              context
+                  .push("${CustomRouter.morePath}/${CustomRouter.eventPath}");
+            },
+          ),
+          _extraService(
+            '공지사항',
+            () {
+              context
+                  .push("${CustomRouter.morePath}/${CustomRouter.noticePath}");
+            },
+          ),
+          _extraService(
+            '고객센터',
+            () {
+              context.push(
+                  "${CustomRouter.morePath}/${CustomRouter.customerServicePath}");
+            },
+          ),
+          _extraService(
+            '환경설정',
+            () {
+              context
+                  .push("${CustomRouter.morePath}/${CustomRouter.settingPath}");
+            },
+          ),
+        ],
+      ),
     );
   }
 }

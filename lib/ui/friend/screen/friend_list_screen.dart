@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sottie_flutter/data/friend/data_source/friend_dummy.dart';
-import 'package:sottie_flutter/data/friend/model/friend_model.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/friend/controller/friend_header_controller.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend.dart';
@@ -56,9 +55,8 @@ class _FriendListScreenState extends ConsumerState<FriendListScreen> {
       futureFunction: getFriendDummy,
       callBack: (futureData) {
         final friendList = futureData
-            .where((FriendModel data) =>
-                data.nickname.toString().contains(inputText))
-            .map<Widget>((FriendModel data) => Friend(model: data))
+            .where((data) => data.nickname.toString().contains(inputText))
+            .map<Widget>((data) => Friend(model: data))
             .toList();
 
         return SlidableAutoCloseBehavior(child: Column(children: friendList));

@@ -18,7 +18,7 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("상점"),
+        title: const Text("골드 충전"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

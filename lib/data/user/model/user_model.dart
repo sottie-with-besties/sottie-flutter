@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'friend_model.freezed.dart';
-part 'friend_model.g.dart';
+part 'user_model.freezed.dart';
+part 'user_model.g.dart';
 
 @freezed
-class FriendModel with _$FriendModel {
-  factory FriendModel({
+class UserModel with _$UserModel {
+  factory UserModel({
     /// 친구 ID
     required String id,
 
@@ -16,9 +16,9 @@ class FriendModel with _$FriendModel {
     required String? stateMsg,
 
     /// 프로필 URL, 프로필 없으면 id로 랜덤 아바타 생성
-    String? profileUrl,
-  }) = _FriendModel;
+    required String? profileUrl,
+  }) = _UserModel;
 
-  factory FriendModel.fromJson(Map<String, dynamic> json) =>
-      _$FriendModelFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 }

@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/data/user/model/user_model.dart';
+import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/more/widget/extra_service_list.dart';
-import 'package:sottie_flutter/ui/more/widget/my_info.dart';
-import 'package:sottie_flutter/ui/user/widget/user_radar_chart.dart';
+import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 
-class MoreContentScreen extends StatelessWidget {
+class MoreContentScreen extends StatefulWidget {
   const MoreContentScreen({super.key});
 
   @override
+  State<MoreContentScreen> createState() => _MoreContentScreenState();
+}
+
+class _MoreContentScreenState extends State<MoreContentScreen> {
+  @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MyInfo(),
-          UserRadarChart(isMe: true),
-          ExtraServiceList(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SottieUser(
+          model: UserModel(
+            id: myInfoEntity.id,
+            nickname: myInfoEntity.nickName,
+            stateMsg: myInfoEntity.stateMessage,
+            profileUrl: myInfoEntity.profileUrl,
+          ),
+          isMyFriend: null,
+        ),
+        ExtraServiceList(
+          setStateProfile: setState,
+        ),
+      ],
     );
   }
 }
