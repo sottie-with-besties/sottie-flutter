@@ -39,6 +39,7 @@ class _UserBlockScreenState extends State<UserBlockScreen>
                         children: [
                           SottieUser(
                             model: userBlock,
+                            heroTag: 'userBlock',
                             isMyFriend: false, // Todo: 친구인지 아닌지 확인하는 로직 필요
                             textWidth: 100,
                           ),

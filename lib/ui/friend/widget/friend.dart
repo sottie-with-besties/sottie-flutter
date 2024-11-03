@@ -130,6 +130,7 @@ class _FriendState extends State<Friend> {
         padding: EdgeInsets.symmetric(vertical: 10 * hu, horizontal: 16 * wu),
         child: SottieUser(
           model: widget.model,
+          heroTag: 'friend',
           isMyFriend: true,
         ),
       ),

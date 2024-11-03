@@ -86,6 +86,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                             children: [
                               SottieUser(
                                 model: userFound!,
+                                heroTag: 'friendAddSearch',
                                 isMyFriend: false,
                                 textWidth: 100,
                               ),
@@ -124,6 +125,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                                 children: [
                                   SottieUser(
                                     model: friendRequestList[index],
+                                    heroTag: 'friendAddRequest',
                                     isMyFriend: false,
                                     textWidth: 100,
                                   ),

@@ -72,7 +72,7 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                     // Todo: 디바운스 -> 서버로 수정한 정보 보내기
                   },
                   child: Hero(
-                    tag: myInfoEntity.id,
+                    tag: '${myInfoEntity.id}/me',
                     child: UserProfile(
                       profileUrl: myInfoEntity.profileUrl ?? myInfoEntity.id,
                       randomAvatarSize: 80,

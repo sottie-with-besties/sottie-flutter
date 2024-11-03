@@ -95,11 +95,11 @@ class InChatDrawer extends StatelessWidget {
                     log("참여자 목록");
                   },
                 ),
-                _inChatParticipant(context, "1", "김진표"),
-                _inChatParticipant(context, "2", "김진표"),
-                _inChatParticipant(context, "3", "김진표"),
-                _inChatParticipant(context, "4", "김진표"),
-                _inChatParticipant(context, "5", "김진표"),
+                _inChatParticipant(context, "1346123456234567", "김진표"),
+                _inChatParticipant(context, "123423142413", "김진표"),
+                _inChatParticipant(context, "568344568", "김진표"),
+                _inChatParticipant(context, "1253412345", "김진표"),
+                _inChatParticipant(context, "4567845678", "김진표"),
               ],
             ),
           ),
@@ -134,19 +134,20 @@ Widget _subTitle(String title, VoidCallback onTap) {
   );
 }
 
-Widget _inChatParticipant(BuildContext context, String id, String name) {
+Widget _inChatParticipant(BuildContext context, String id, String nickName) {
   return InkWell(
     onTap: () {
       context.push(
         CustomRouter.userDetailPath,
         extra: {
           'model': UserModel(
-            id: '12312323',
-            nickname: 'nickName',
+            id: id,
+            nickname: nickName,
             stateMsg: 'hihihihi',
             profileUrl: null,
           ),
-          'isMyFriend': false,
+          'heroTag': 'participation',
+          'isMyFriend': false, // Todo: 내 친구인지 확인하는 로직
         },
       );
     },
@@ -154,12 +155,15 @@ Widget _inChatParticipant(BuildContext context, String id, String name) {
       padding: const EdgeInsets.only(left: 12, bottom: 12),
       child: Row(
         children: [
-          UserProfile(
-            profileUrl: id,
-            randomAvatarSize: 30,
+          Hero(
+            tag: '$id/participation',
+            child: UserProfile(
+              profileUrl: id,
+              randomAvatarSize: 30,
+            ),
           ),
           SizedBox(width: 10 * wu),
-          Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text(nickName, style: const TextStyle(fontWeight: FontWeight.bold)),
         ],
       ),
     ),

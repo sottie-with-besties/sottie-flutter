@@ -28,6 +28,7 @@ class _MoreContentScreenState extends State<MoreContentScreen> {
               stateMsg: myInfoEntity.stateMessage,
               profileUrl: myInfoEntity.profileUrl,
             ),
+            heroTag: 'me',
             isMyFriend: null,
           ),
         ),

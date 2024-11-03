@@ -309,6 +309,7 @@ final _routes = [
       return CustomTransitionPage(
         child: UserDetailScreen(
           model: params['model'],
+          heroTag: params['heroTag'],
           isMyFriend: params['isMyFriend'],
         ),
         transitionsBuilder: (_, animation, __, child) {

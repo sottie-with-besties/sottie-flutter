@@ -16,10 +16,12 @@ class UserDetailScreen extends StatelessWidget {
   const UserDetailScreen({
     super.key,
     required this.model,
+    required this.heroTag,
     required this.isMyFriend,
   });
 
   final UserModel model;
+  final String heroTag;
   final bool? isMyFriend;
 
   @override
@@ -37,6 +39,7 @@ class UserDetailScreen extends StatelessWidget {
               child: SottieUser(
                 model: model,
                 isMyFriend: isMyFriend,
+                heroTag: heroTag,
               ),
             ),
           ),

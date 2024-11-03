@@ -11,11 +11,13 @@ class SottieUser extends StatelessWidget {
   const SottieUser({
     super.key,
     required this.model,
+    required this.heroTag,
     required this.isMyFriend,
     this.textWidth = 200,
   });
 
   final UserModel model;
+  final String heroTag;
   final bool? isMyFriend;
   final double textWidth;
 
@@ -27,6 +29,7 @@ class SottieUser extends StatelessWidget {
           CustomRouter.userDetailPath,
           extra: {
             'model': model,
+            'heroTag': heroTag,
             'isMyFriend': isMyFriend,
           },
         );
@@ -36,7 +39,7 @@ class SottieUser extends StatelessWidget {
         child: Row(
           children: [
             Hero(
-              tag: model.id,
+              tag: '${model.id}/$heroTag',
               child: UserProfile(
                 profileUrl: model.profileUrl ?? model.id,
                 randomAvatarSize: 40,
