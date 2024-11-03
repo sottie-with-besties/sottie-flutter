@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_add_screen.dart';
-import 'package:sottie_flutter/ui/friend/screen/friend_block_screen.dart';
+import 'package:sottie_flutter/ui/friend/screen/user_block_screen.dart';
 
 class FriendUtilScreen extends StatefulWidget {
   const FriendUtilScreen({super.key});
@@ -73,7 +73,7 @@ class _FriendUtilScreenState extends State<FriendUtilScreen>
                 controller: _tabController,
                 children: [
                   FriendAddScreen(focusNode: _focusNode),
-                  const FriendBlockScreen(),
+                  const UserBlockScreen(),
                 ],
               ),
             ),

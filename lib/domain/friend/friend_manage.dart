@@ -13,11 +13,3 @@ void friendDelete(BuildContext context) {
 void friendSendDm(BuildContext context) {
   log("friendSendDm");
 }
-
-void friendBlock(BuildContext context) {
-  log("friendBlock");
-}
-
-void friendBlockRelease(BuildContext context) {
-  log("friendBlockRelease");
-}

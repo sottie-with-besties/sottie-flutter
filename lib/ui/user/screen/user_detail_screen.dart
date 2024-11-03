@@ -66,7 +66,7 @@ class UserDetailScreen extends StatelessWidget {
                     FontAwesomeIcons.ban,
                     '차단',
                     () {
-                      friendBlock(context);
+                      userBlock(context);
                     },
                   ),
                   _utilButton(
