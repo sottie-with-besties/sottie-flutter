@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -85,25 +83,14 @@ class UserDetailScreen extends StatelessWidget {
           SizedBox(height: 10 * hu),
           const UserRadarChart(),
           SizedBox(height: 30 * hu),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              OutlinedButton(
-                onPressed: () {
-                  showCustomBottomSheet(
-                    context,
-                    const UserReviewScreen(),
-                  );
-                },
-                child: const Text("리뷰 보기"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  log("리뷰 작성");
-                },
-                child: const Text("리뷰 작성"),
-              ),
-            ],
+          OutlinedButton(
+            onPressed: () {
+              showCustomBottomSheet(
+                context,
+                const UserReviewScreen(),
+              );
+            },
+            child: const Text("리뷰 보기"),
           ),
         ],
       ),
