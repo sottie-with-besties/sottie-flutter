@@ -25,7 +25,7 @@ class PostDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date = DateTime.parse(postModel.date);
+    final date = DateTime.parse(postModel.date).toLocal();
 
     return Scaffold(
       body: Container(
@@ -113,7 +113,7 @@ class PostDetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${date.month}월 ${date.day}일 ${convertIntToWeekday(date.weekday)} ${renderCustomStringTime(postModel.date, postModel.date)}",
+                                  "${date.month}월 ${date.day}일 ${convertIntToWeekday(date.weekday)} ${renderCustomStringTime(date.toString(), date.toString())}",
                                   style: _conditionTextStyle,
                                 ),
                                 Text(

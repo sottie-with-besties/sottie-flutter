@@ -5,7 +5,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 
-class ChatRoomInfo extends StatefulWidget {
+class ChatRoomInfo extends StatelessWidget {
   const ChatRoomInfo({
     super.key,
     required this.date,
@@ -14,6 +14,8 @@ class ChatRoomInfo extends StatefulWidget {
     required this.latestMsg,
     required this.latestTime,
     required this.notReadMsg,
+    required this.isChattingOver,
+    this.chatRoomDisappearingTime = const Duration(hours: 23),
   });
 
   final String date;
@@ -22,39 +24,13 @@ class ChatRoomInfo extends StatefulWidget {
   final String latestMsg;
   final String latestTime;
   final int notReadMsg;
-
-  @override
-  State<ChatRoomInfo> createState() => _ChatRoomInfoState();
-}
-
-class _ChatRoomInfoState extends State<ChatRoomInfo> {
-  bool chattingOver = false;
-  Duration? chatRoomDisappearingTime;
-
-  @override
-  void initState() {
-    super.initState();
-
-    /// 채팅 모임 날짜 기준 24시간 경과 후 채팅방이 사라지기 시작함. 24시간 후 완전히 사라짐.
-    /// 모임 날짜 + 24시간 까지 채팅 가능, 그 이후 24시간 채팅방 삭제 대기
-    /// inDays == 1은 시간 차이가 24시간 이상 48시간 미만을 의미
-    final generatedDate = DateTime.parse(widget.date);
-
-    /// utc로 변환해주지 않으면 한국 시간과 utc 시간으로 비교가 되어 정확한 시간 차이를 계산할 수 없다.
-    final now = DateTime.now().toUtc();
-    final du = now.difference(generatedDate);
-    if (du.inDays == 1) {
-      chattingOver = true;
-      chatRoomDisappearingTime = du;
-      setState(() {});
-    }
-  }
+  final bool isChattingOver;
+  final Duration? chatRoomDisappearingTime;
 
   @override
   Widget build(BuildContext context) {
-    final numOfMsg =
-        widget.notReadMsg > 999 ? '999+' : widget.notReadMsg.toString();
-    final date = DateTime.parse(widget.date);
+    final numOfMsg = notReadMsg > 999 ? '999+' : notReadMsg.toString();
+    final date = DateTime.parse(this.date).toLocal();
 
     return SizedBox(
       width: 220 * wu,
@@ -66,7 +42,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
             width: 200 * wu,
             child: Text(
               overflow: TextOverflow.ellipsis,
-              widget.chatTitle,
+              chatTitle,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 12 * hu,
@@ -74,7 +50,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
             ),
           ),
           SizedBox(height: 3 * hu),
-          chattingOver
+          isChattingOver
               ? Text(
                   "채팅이 종료되었습니다",
                   overflow: TextOverflow.ellipsis,
@@ -91,7 +67,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                       width: 150 * wu,
                       child: Text(
                         overflow: TextOverflow.ellipsis,
-                        widget.latestMsg,
+                        latestMsg,
                         style: TextStyle(
                           fontSize: 10 * hu,
                           fontWeight: FontWeight.bold,
@@ -102,7 +78,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                     SizedBox(
                       width: 50 * wu,
                       child: Text(
-                        renderCustomStringTime(widget.latestTime,
+                        renderCustomStringTime(latestTime,
                             DateTime.now().toUtc().toIso8601String()),
                         style: TextStyle(
                           fontSize: 8 * hu,
@@ -114,7 +90,7 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                   ],
                 ),
           SizedBox(height: 10 * hu),
-          chattingOver
+          isChattingOver
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -141,18 +117,18 @@ class _ChatRoomInfoState extends State<ChatRoomInfo> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${date.month}월 ${date.day}일 ${renderCustomStringTime(widget.date, widget.date)}",
+                          "${date.month}월 ${date.day}일 ${renderCustomStringTime(date.toString(), date.toString())}",
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
                           overflow: TextOverflow.ellipsis,
-                          widget.location,
+                          location,
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
-                    if (widget.notReadMsg != 0)
+                    if (notReadMsg != 0)
                       Padding(
                         padding: EdgeInsets.only(right: 12 * wu),
                         child: Container(

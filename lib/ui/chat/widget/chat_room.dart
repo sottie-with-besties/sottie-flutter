@@ -25,6 +25,23 @@ class ChatRoom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isChattingOver = false;
+    Duration chatRoomDisappearingTime = const Duration(hours: 23);
+
+    /// 채팅 모임 날짜 기준 24시간 경과 후 채팅방이 사라지기 시작함. 24시간 후 완전히 사라짐.
+    /// 모임 날짜 + 24시간 까지 채팅 가능, 그 이후 24시간 채팅방 삭제 대기
+    final generatedDate = DateTime.parse(model.date);
+
+    /// utc로 변환해주지 않으면 한국 시간과 utc 시간으로 비교가 되어 정확한 시간 차이를 계산할 수 없다.
+    final now = DateTime.now().toUtc();
+    final du = now.difference(generatedDate);
+
+    /// inDays == 1은 시간 차이가 24시간 이상 48시간 미만을 의미
+    if (du.inDays == 1) {
+      isChattingOver = true;
+      chatRoomDisappearingTime = du;
+    }
+
     return SlideLongPressWidget(
       groupTag: 'chat',
       onLongPressWidget: Column(
@@ -75,6 +92,7 @@ class ChatRoom extends StatelessWidget {
             extra: {
               'id': model.id,
               'title': model.chatTitle,
+              'isChattingOver': isChattingOver,
             },
           );
         },
@@ -120,6 +138,8 @@ class ChatRoom extends StatelessWidget {
                       latestMsg: model.latestMsg,
                       latestTime: model.latestTime,
                       notReadMsg: model.notReadMsg,
+                      isChattingOver: isChattingOver,
+                      chatRoomDisappearingTime: chatRoomDisappearingTime,
                     ),
                   ],
                 )

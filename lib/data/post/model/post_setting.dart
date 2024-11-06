@@ -80,7 +80,7 @@ final class PostSetting {
       'title': title,
       'content': content,
       'category': category.name, // Enum 데이터
-      'date': date ?? '',
+      'date': date?.toUtc().toString() ?? '',
       'location': location.toString(), // Enum 데이터
       'numOfMember': numOfMember,
       'genderRatio': genderRatio,
@@ -100,8 +100,8 @@ final class PostSetting {
       'title': title,
       'content': content,
       'category': category.name, // Enum 데이터
-      'dateStart': dateStart ?? '',
-      'dateEnd': dateEnd ?? '',
+      'dateStart': dateStart?.toUtc().toString() ?? '',
+      'dateEnd': dateEnd?.toUtc().toString() ?? '',
       'timeStart': timeStart ?? '',
       'timeEnd': timeEnd ?? '',
       'location': location.toString(), // Enum 데이터

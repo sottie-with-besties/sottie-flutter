@@ -20,9 +20,7 @@ class _DateClassState extends State<DateClass> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const ClassificationTitle(title: "날짜"),
-        const SizedBox(
-          width: 20,
-        ),
+        const SizedBox(width: 20),
         Expanded(
           child: OutlinedButton(
             onPressed: () async {

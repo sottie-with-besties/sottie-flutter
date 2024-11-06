@@ -124,8 +124,11 @@ class _DmChatRoomState extends State<DmChatRoom> {
                 Column(
                   children: [
                     Text(
-                      renderCustomStringTime(widget.model.latestTime,
-                          DateTime.now().toUtc().toIso8601String()),
+                      renderCustomStringTime(
+                          DateTime.parse(widget.model.latestTime)
+                              .toLocal()
+                              .toString(),
+                          DateTime.now().toLocal().toString()),
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: 10 * hu,

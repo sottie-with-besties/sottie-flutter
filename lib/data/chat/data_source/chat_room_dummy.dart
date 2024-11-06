@@ -7,7 +7,7 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
       id: '1',
       inChatId: 'chat_1',
       category: '친목',
-      date: '2024-10-10T18:00:00Z',
+      date: '2024-11-04T18:00:00Z',
       location: '서울 강남구',
       chatTitle: '친목 모임: 가벼운 저녁 식사',
       profileThumbnails: ['user1.jpg', 'user2.jpg'],

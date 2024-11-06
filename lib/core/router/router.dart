@@ -159,6 +159,7 @@ final _routes = [
                   return InChatScreen(
                     id: params['id'],
                     title: params['title'],
+                    isChattingOver: params['isChattingOver'],
                   );
                 },
                 routes: <GoRoute>[

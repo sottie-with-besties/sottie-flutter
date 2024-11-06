@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_box.dart';
@@ -9,10 +11,12 @@ class InChatScreen extends StatefulWidget {
     super.key,
     required this.id,
     required this.title,
+    required this.isChattingOver,
   });
 
   final String id;
   final String title;
+  final bool isChattingOver;
 
   @override
   State<InChatScreen> createState() => _InChatScreenState();
@@ -46,7 +50,19 @@ class _InChatScreenState extends State<InChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const InChatBox(avatarId: "123"),
-            InChatTypeBox(focusNode: _focusNode),
+            if (!widget.isChattingOver) InChatTypeBox(focusNode: _focusNode),
+            if (widget.isChattingOver)
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      log("message");
+                    },
+                    child: const Text("리뷰하세요!"),
+                  ),
+                ),
+              ),
           ],
         ),
       ),
