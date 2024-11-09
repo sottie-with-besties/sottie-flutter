@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
+import 'package:sottie_flutter/data/chat/model/dm_model.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_box.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_drawer.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_type_box.dart';
@@ -9,13 +11,13 @@ import 'package:sottie_flutter/ui/in_chat/widget/in_chat_type_box.dart';
 class InChatScreen extends StatefulWidget {
   const InChatScreen({
     super.key,
-    required this.id,
-    required this.title,
+    this.chatRoomModel,
+    this.dmModel,
     required this.isChattingOver,
   });
 
-  final String id;
-  final String title;
+  final ChatRoomModel? chatRoomModel;
+  final DmModel? dmModel;
   final bool isChattingOver;
 
   @override
@@ -33,12 +35,14 @@ class _InChatScreenState extends State<InChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDm = widget.chatRoomModel == null;
+
     return GestureDetector(
       onTap: _focusNode.unfocus,
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            widget.title,
+            isDm ? widget.dmModel!.name : widget.chatRoomModel!.chatTitle,
             style: const TextStyle(color: mainWhiteSilverColor),
           ),
           backgroundColor: mainBlueColor,

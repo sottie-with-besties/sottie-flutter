@@ -1,9 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
+import 'package:sottie_flutter/ui/common/widget/sottie_timer.dart';
 
 class ChatRoomInfo extends StatelessWidget {
   const ChatRoomInfo({
@@ -78,8 +77,10 @@ class ChatRoomInfo extends StatelessWidget {
                     SizedBox(
                       width: 50 * wu,
                       child: Text(
-                        renderCustomStringTime(latestTime,
-                            DateTime.now().toUtc().toIso8601String()),
+                        renderCustomStringTime(
+                          DateTime.parse(latestTime).toLocal().toString(),
+                          DateTime.now().toLocal().toString(),
+                        ),
                         style: TextStyle(
                           fontSize: 8 * hu,
                           color: mainGreyColor2,
@@ -103,7 +104,7 @@ class ChatRoomInfo extends StatelessWidget {
                         color: mainGreyColor2,
                       ),
                     ),
-                    _ChatRoomDestroyingTimer(
+                    ChatRoomDestroyingTimer(
                       timeLeft:
                           chatRoomDisappearingTime ?? const Duration(hours: 23),
                     ),
@@ -117,7 +118,7 @@ class ChatRoomInfo extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${date.month}월 ${date.day}일 ${renderCustomStringTime(date.toString(), date.toString())}",
+                          "${date.month}월 ${date.day}일 ${convertIntToWeekday(date.weekday)} ${renderCustomStringTime(date.toString(), date.toString())}",
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -153,60 +154,6 @@ class ChatRoomInfo extends StatelessWidget {
                   ],
                 ),
         ],
-      ),
-    );
-  }
-}
-
-class _ChatRoomDestroyingTimer extends StatefulWidget {
-  const _ChatRoomDestroyingTimer({required this.timeLeft});
-
-  final Duration timeLeft;
-
-  @override
-  State<_ChatRoomDestroyingTimer> createState() =>
-      _ChatRoomDestroyingTimerState();
-}
-
-class _ChatRoomDestroyingTimerState extends State<_ChatRoomDestroyingTimer> {
-  Duration timeLeftNow = const Duration();
-
-  String formatDuration(Duration d) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final hours = twoDigits(d.inHours);
-    final minutes = twoDigits(d.inMinutes.remainder(60));
-    final seconds = twoDigits(d.inSeconds.remainder(60));
-    return '$hours:$minutes:$seconds';
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    timeLeftNow = widget.timeLeft;
-
-    /// 채팅 종료 24시간 후 ~ 48시간 후 까지 이므로 48시간(172800초)에서 (현재 날짜 - 모임 날짜)(timeLeft)를 빼야 한다.
-    int seconds = 172800 - timeLeftNow.inSeconds;
-    timeLeftNow = Duration(seconds: seconds);
-    setState(() {});
-
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        seconds -= 1;
-        if (seconds < 0) {
-          timer.cancel();
-        } else {
-          timeLeftNow = Duration(seconds: seconds);
-        }
-      });
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      formatDuration(timeLeftNow),
-      style: const TextStyle(
-        fontWeight: FontWeight.bold,
       ),
     );
   }

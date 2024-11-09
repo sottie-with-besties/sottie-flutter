@@ -90,8 +90,7 @@ class ChatRoom extends StatelessWidget {
           context.push(
             '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
             extra: {
-              'id': model.id,
-              'title': model.chatTitle,
+              'chatRoomModel': model,
               'isChattingOver': isChattingOver,
             },
           );

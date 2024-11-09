@@ -75,8 +75,8 @@ class _DmChatRoomState extends State<DmChatRoom> {
           context.push(
             '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
             extra: {
-              'id': widget.model.id,
-              'title': widget.model.name,
+              'dmModel': widget.model,
+              'isChattingOver': false,
             },
           );
         },
@@ -125,10 +125,11 @@ class _DmChatRoomState extends State<DmChatRoom> {
                   children: [
                     Text(
                       renderCustomStringTime(
-                          DateTime.parse(widget.model.latestTime)
-                              .toLocal()
-                              .toString(),
-                          DateTime.now().toLocal().toString()),
+                        DateTime.parse(widget.model.latestTime)
+                            .toLocal()
+                            .toString(),
+                        DateTime.now().toLocal().toString(),
+                      ),
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: 10 * hu,

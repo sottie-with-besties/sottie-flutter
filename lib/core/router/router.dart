@@ -157,9 +157,9 @@ final _routes = [
                 builder: (_, state) {
                   final params = state.extra as Map<String, dynamic>;
                   return InChatScreen(
-                    id: params['id'],
-                    title: params['title'],
-                    isChattingOver: params['isChattingOver'],
+                    chatRoomModel: params['chatRoomModel'],
+                    dmModel: params['dmModel'],
+                    isChattingOver: params['isChattingOver'] ?? false,
                   );
                 },
                 routes: <GoRoute>[
