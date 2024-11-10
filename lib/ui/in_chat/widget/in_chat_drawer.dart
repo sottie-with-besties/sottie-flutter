@@ -95,11 +95,11 @@ class InChatDrawer extends StatelessWidget {
                     log("참여자 목록");
                   },
                 ),
-                _inChatParticipant(context, "1346123456234567", "김진표"),
-                _inChatParticipant(context, "123423142413", "김진표"),
-                _inChatParticipant(context, "568344568", "김진표"),
-                _inChatParticipant(context, "1253412345", "김진표"),
-                _inChatParticipant(context, "4567845678", "김진표"),
+                _inChatParticipant(context, "1346123456234567", "김진표", null),
+                _inChatParticipant(context, "123423142413", "김진표", null),
+                _inChatParticipant(context, "568344568", "김진표", null),
+                _inChatParticipant(context, "1253412345", "김진표", null),
+                _inChatParticipant(context, "4567845678", "김진표", null),
               ],
             ),
           ),
@@ -134,7 +134,8 @@ Widget _subTitle(String title, VoidCallback onTap) {
   );
 }
 
-Widget _inChatParticipant(BuildContext context, String id, String nickName) {
+Widget _inChatParticipant(
+    BuildContext context, String id, String nickName, String? profileUrl) {
   return InkWell(
     onTap: () {
       context.push(
@@ -143,8 +144,8 @@ Widget _inChatParticipant(BuildContext context, String id, String nickName) {
           'model': UserModel(
             id: id,
             nickname: nickName,
-            stateMsg: 'hihihihi',
-            profileUrl: null,
+            stateMsg: '',
+            profileUrl: profileUrl,
           ),
           'heroTag': 'participation',
           'isMyFriend': false, // Todo: 내 친구인지 확인하는 로직

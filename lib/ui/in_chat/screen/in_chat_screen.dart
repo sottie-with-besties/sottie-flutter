@@ -49,7 +49,7 @@ class _InChatScreenState extends State<InChatScreen> {
           iconTheme: const IconThemeData(color: mainWhiteSilverColor),
         ),
         backgroundColor: mainWhiteSilverColor,
-        endDrawer: const InChatDrawer(),
+        endDrawer: isDm ? null : const InChatDrawer(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
