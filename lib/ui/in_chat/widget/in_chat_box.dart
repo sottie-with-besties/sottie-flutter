@@ -81,6 +81,9 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
   /// 첫 입장 했을때 스크롤 맨 아래로 내리기. True로 바꾸어 한번만 동작하게 한다.
   bool firstEnter = false;
 
+  /// 채팅방에 날짜 표시하기 위한 보조 변수 => Todo: 초기화를 채팅이 생성된 시점으로 추후 변경하기
+  DateTime latestSentTime = DateTime(2024, 10, 10).toLocal();
+
   final _scrollController = ScrollController(
     keepScrollOffset: false,
   );
@@ -93,8 +96,7 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
     /// 최근 채팅이 보이도록 채팅방 입장하기
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
-        _scrollController
-            .jumpTo(_scrollController.position.maxScrollExtent - 50 * hu);
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       }
     });
   }
@@ -130,6 +132,7 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
             controller: _scrollController,
             physics: const ClampingScrollPhysics(),
             itemCount: widget.model.inChatMessageData.length + 1,
+            cacheExtent: widget.model.inChatMessageData.length.toDouble() * 100,
             itemBuilder: (_, index) {
               if (index == widget.model.inChatMessageData.length) {
                 Duration? du;
@@ -167,12 +170,62 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
                       )
                     : Container();
               } else {
-                return _renderDmChatBox(widget.model.inChatMessageData[index]);
+                /// 날짜 구분 ui 코드
+                final sentTime = widget.model.inChatMessageData[index].sentTime;
+                final dateSentTime = DateTime.parse(sentTime).toLocal();
+
+                final isAnotherDay = latestSentTime.day != dateSentTime.day;
+                latestSentTime = dateSentTime;
+
+                return Column(
+                  children: [
+                    if (index == 0)
+                      Column(
+                        children: [
+                          _renderSentTime(DateTime(2024, 9, 13)),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: mainBlueColor.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            padding: const EdgeInsets.all(12),
+                            child: const Text(
+                              textAlign: TextAlign.center,
+                              '채팅이 시작되었습니다.',
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                        ],
+                      ),
+
+                    /// ListView.builder의 특성으로 인해 메모리에서 해제 되면 날짜도 사라진다.
+                    /// 위로 올릴 때 날짜의 차이가 -1이 된다.
+                    if (isAnotherDay) _renderSentTime(latestSentTime),
+                    _renderDmChatBox(widget.model.inChatMessageData[index]),
+                  ],
+                );
               }
             }),
       ),
     );
   }
+}
+
+Widget _renderSentTime(DateTime sentTime) {
+  final sentTimeString =
+      "${sentTime.month}월 ${sentTime.day}일 ${convertIntToWeekday(sentTime.weekday)}";
+
+  return Padding(
+    padding: EdgeInsets.only(bottom: 16 * hu),
+    child: Container(
+      decoration: BoxDecoration(
+        color: mainGreenColor.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.all(12),
+      child: Text(sentTimeString),
+    ),
+  );
 }
 
 Widget _renderDmChatBox(InChatMessageDataModel model) {
@@ -237,10 +290,7 @@ Widget _renderDmChatBox(InChatMessageDataModel model) {
                     model.sentTime,
                     model.sentTime,
                   ),
-                  style: const TextStyle(
-                    color: mainWhiteSilverColor,
-                    fontSize: 10,
-                  ),
+                  style: TextStyle(fontSize: 8 * hu),
                 ),
               ],
             ),
