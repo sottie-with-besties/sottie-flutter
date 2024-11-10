@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
-import 'package:sottie_flutter/ui/common/widget/sottie_timer.dart';
+import 'package:sottie_flutter/ui/common/widget/chat_room_destroying_timer.dart';
 
 class ChatRoomInfo extends StatelessWidget {
   const ChatRoomInfo({

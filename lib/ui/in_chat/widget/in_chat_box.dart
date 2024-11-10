@@ -4,16 +4,19 @@ import 'package:sottie_flutter/data/in_chat/data_source/in_chat_message_dummy.da
 import 'package:sottie_flutter/data/in_chat/model/in_chat_message_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
+import 'package:sottie_flutter/ui/common/widget/chat_room_destroying_timer.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
 class InChatBox extends StatelessWidget {
   const InChatBox({
     super.key,
-    this.avatarId,
+    required this.isChattingOver,
+    required this.date,
   });
 
-  final String? avatarId;
+  final bool isChattingOver;
+  final String date; // 모임 날짜
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,11 @@ class InChatBox extends StatelessWidget {
       callBack: (futureData) {
         final data = futureData as InChatMessageModel;
 
-        return _ChatBox(model: data);
+        return _ChatBox(
+          model: data,
+          isChattingOver: isChattingOver,
+          date: date,
+        );
       },
     );
   }
@@ -55,9 +62,13 @@ class InChatBox extends StatelessWidget {
 class _ChatBox extends StatefulWidget {
   const _ChatBox({
     required this.model,
+    required this.isChattingOver,
+    required this.date,
   });
 
   final InChatMessageModel model;
+  final bool isChattingOver;
+  final String date; // 모임 날짜
 
   @override
   State<_ChatBox> createState() => _ChatBoxState();
@@ -116,12 +127,49 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
 
         /// ListView.builder => 메모리 동적 해제
         child: ListView.builder(
-          controller: _scrollController,
-          physics: const ClampingScrollPhysics(),
-          itemCount: widget.model.inChatMessageData.length,
-          itemBuilder: (_, index) =>
-              _renderDmChatBox(widget.model.inChatMessageData[index]),
-        ),
+            controller: _scrollController,
+            physics: const ClampingScrollPhysics(),
+            itemCount: widget.model.inChatMessageData.length + 1,
+            itemBuilder: (_, index) {
+              if (index == widget.model.inChatMessageData.length) {
+                Duration? du;
+
+                if (widget.date != '') {
+                  final generatedDate = DateTime.parse(widget.date);
+
+                  /// utc로 변환해주지 않으면 한국 시간과 utc 시간으로 비교가 되어 정확한 시간 차이를 계산할 수 없다.
+                  final now = DateTime.now().toUtc();
+                  du = now.difference(generatedDate);
+                }
+
+                return widget.isChattingOver
+                    ? Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: mainBlueColor.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Text(
+                                textAlign: TextAlign.center,
+                                '채팅이 종료되었습니다.\n채팅방이 채팅 리스트에서 자동으로 삭제됩니다.\n채팅방이 사라지기 전에 참여했던 인원들을 리뷰해보세요.',
+                              ),
+                              const SizedBox(height: 10),
+                              ChatRoomDestroyingTimer(
+                                  timeLeft: du ?? const Duration(hours: 32)),
+                            ],
+                          ),
+                        ),
+                      )
+                    : Container();
+              } else {
+                return _renderDmChatBox(widget.model.inChatMessageData[index]);
+              }
+            }),
       ),
     );
   }

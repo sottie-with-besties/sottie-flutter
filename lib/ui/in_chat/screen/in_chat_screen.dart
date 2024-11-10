@@ -53,7 +53,10 @@ class _InChatScreenState extends State<InChatScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const InChatBox(avatarId: "123"),
+            InChatBox(
+              isChattingOver: widget.isChattingOver,
+              date: widget.chatRoomModel?.date ?? '',
+            ),
             if (!widget.isChattingOver) InChatTypeBox(focusNode: _focusNode),
             if (widget.isChattingOver)
               Center(
@@ -61,7 +64,7 @@ class _InChatScreenState extends State<InChatScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      log("message");
+                      log("리뷰하세요!");
                     },
                     child: const Text("리뷰하세요!"),
                   ),
