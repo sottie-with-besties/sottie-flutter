@@ -103,7 +103,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.model.name,
+                          widget.model.nickName,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: 12 * hu,

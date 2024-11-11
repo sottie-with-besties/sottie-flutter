@@ -42,7 +42,7 @@ class _InChatScreenState extends State<InChatScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            isDm ? widget.dmModel!.name : widget.chatRoomModel!.chatTitle,
+            isDm ? widget.dmModel!.nickName : widget.chatRoomModel!.chatTitle,
             style: const TextStyle(color: mainWhiteSilverColor),
           ),
           backgroundColor: mainBlueColor,
