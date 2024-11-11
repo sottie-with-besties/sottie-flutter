@@ -16,7 +16,6 @@ class ChatRoomModelList with _$ChatRoomModelList {
 @freezed
 class ChatRoomModel with _$ChatRoomModel {
   factory ChatRoomModel({
-    /// 채팅방 상태 관계 없이 반드시 받아야 하는 값
     required String id,
 
     /// 채팅의 카테고리(친목, 번개, 구인/구직 등)
