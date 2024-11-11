@@ -5,7 +5,6 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
   return [
     ChatRoomModel(
       id: '1',
-      inChatId: 'chat_1',
       category: '친목',
       date: _renderDeletingDate(),
       location: '서울 강남구',
@@ -19,7 +18,6 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ),
     ChatRoomModel(
       id: '2',
-      inChatId: 'chat_2',
       category: '운동',
       date: '2024-10-11T07:30:00Z',
       location: '서울 마포구',
@@ -35,7 +33,6 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ),
     ChatRoomModel(
       id: '3',
-      inChatId: 'chat_3',
       category: '공부',
       date: '2024-10-12T15:00:00Z',
       location: '서울 서대문구',
@@ -49,7 +46,6 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ),
     ChatRoomModel(
       id: '4',
-      inChatId: 'chat_4',
       category: '게임',
       date: '2024-10-13T19:00:00Z',
       location: '서울 용산구',
@@ -65,7 +61,6 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ),
     ChatRoomModel(
       id: '5',
-      inChatId: 'chat_5',
       category: '구인/구직',
       date: '2024-10-14T09:00:00Z',
       location: '서울 동대문구',
@@ -81,7 +76,6 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ),
     ChatRoomModel(
       id: '6',
-      inChatId: 'chat_6',
       category: '번개',
       date: '2024-10-15T06:00:00Z',
       location: '서울 강북구',
@@ -95,7 +89,6 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ),
     ChatRoomModel(
       id: '7',
-      inChatId: 'chat_7',
       category: '기타',
       date: '2024-10-16T20:00:00Z',
       location: '서울 송파구',
@@ -109,7 +102,6 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ),
     ChatRoomModel(
       id: '8',
-      inChatId: 'chat_8',
       category: '친목',
       date: '2024-10-17T18:30:00Z',
       location: '서울 은평구',
@@ -123,7 +115,6 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ),
     ChatRoomModel(
       id: '9',
-      inChatId: 'chat_9',
       category: '번개',
       date: '2024-10-18T14:00:00Z',
       location: '서울 종로구',
@@ -137,7 +128,6 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ),
     ChatRoomModel(
       id: '10',
-      inChatId: 'chat_10',
       category: '게임',
       date: '2024-10-19T11:15:00Z',
       location: '서울 강동구',

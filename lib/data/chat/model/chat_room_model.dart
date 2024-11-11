@@ -19,9 +19,6 @@ class ChatRoomModel with _$ChatRoomModel {
     /// 채팅방 상태 관계 없이 반드시 받아야 하는 값
     required String id,
 
-    /// 해당 채팅방을 터치한 후 들어갔을 때의 방 id(필요한지 모르겠음)
-    required String inChatId,
-
     /// 채팅의 카테고리(친목, 번개, 구인/구직 등)
     required String category,
 
