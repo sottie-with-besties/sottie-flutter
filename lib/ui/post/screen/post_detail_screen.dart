@@ -113,7 +113,7 @@ class PostDetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${date.month}월 ${date.day}일 ${convertIntToWeekday(date.weekday)} ${renderCustomStringTime(date.toString(), date.toString())}",
+                                  convertDateTimeIntoString(date),
                                   style: _conditionTextStyle,
                                 ),
                                 Text(

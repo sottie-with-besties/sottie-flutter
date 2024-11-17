@@ -6,6 +6,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/chat/chat_room_waiting_provider.dart';
+import 'package:sottie_flutter/ui/chat/controller/chat_header_controller.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
@@ -16,12 +18,29 @@ class ChatRoomWaitingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final chatRoomState = ref.watch(chatRoomWaitingStateProvider);
+    final chatRoomWaitingState = ref.watch(chatRoomWaitingStateProvider);
+    final inputText = ref.watch(chatHeaderControllerProvider);
 
-    return chatRoomState.when(
+    return chatRoomWaitingState.when(
       data: (data) {
+        final chatRoomWaitingList = data.where((data) {
+          final dateString =
+              convertDateTimeIntoString(DateTime.parse(data.date).toLocal());
+          final searched = data.title.toString().contains(inputText) ||
+              dateString.toString().contains(inputText) ||
+              data.location.toString().contains(inputText);
+
+          return searched;
+        });
+
+        if (chatRoomWaitingList.isEmpty) {
+          return const Center(
+            child: Text("채팅방이 존재하지 않습니다"),
+          );
+        }
+
         return ListView(
-          children: data
+          children: chatRoomWaitingList
               .map(
                 (e) => SlideLongPressWidget(
                   groupTag: 'chat',

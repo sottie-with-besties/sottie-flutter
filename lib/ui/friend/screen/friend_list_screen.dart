@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sottie_flutter/domain/friend/friend_provider.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 import 'package:sottie_flutter/ui/friend/controller/friend_header_controller.dart';
@@ -40,8 +39,8 @@ class _FriendListScreenState extends ConsumerState<FriendListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final inputText = ref.watch(friendHeaderControllerProvider);
     final friendState = ref.watch(friendStateProvider);
+    final inputText = ref.watch(friendHeaderControllerProvider);
 
     // 연식님 코드
     //   final friendFilterList = filterList(inputText).map((friend) {
@@ -55,10 +54,8 @@ class _FriendListScreenState extends ConsumerState<FriendListScreen> {
 
     return friendState.when(
       data: (data) {
-        final friendList = data
-            .where((data) => data.nickname.toString().contains(inputText))
-            .map<Widget>((data) => Friend(model: data))
-            .toList();
+        final friendList =
+            data.where((data) => data.nickname.toString().contains(inputText));
 
         if (friendList.isEmpty) {
           return const Center(
@@ -66,7 +63,10 @@ class _FriendListScreenState extends ConsumerState<FriendListScreen> {
           );
         }
 
-        return SlidableAutoCloseBehavior(child: Column(children: friendList));
+        return Column(
+          children:
+              friendList.map<Widget>((data) => Friend(model: data)).toList(),
+        );
       },
       error: (_, __) => const Center(
         child: Text("친구를 불러오는 도중 에러가 발생했습니다"),

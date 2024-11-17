@@ -42,7 +42,7 @@ class MakePostScreenStepThree extends StatelessWidget {
                 children: [
                   Text("카테고리: ${postSettingEntity.category.name}"),
                   Text(
-                      "날짜: ${postSettingEntity.date == null ? "날짜 정보 없음" : "${postSettingEntity.date!.month}월 ${postSettingEntity.date!.day}일 ${convertIntToWeekday(postSettingEntity.date!.weekday)} ${renderCustomStringTime(postSettingEntity.date!.toUtc().toIso8601String(), postSettingEntity.date!.toUtc().toIso8601String())}"}"),
+                      "날짜: ${postSettingEntity.date == null ? "날짜 정보 없음" : convertDateTimeIntoString(postSettingEntity.date!.toLocal())}"),
                   Text("장소: ${postSettingEntity.location.name}"),
                   Text(
                       "나이: ${convertAgeRangeToString(postSettingEntity.convertAgeRangeToStringList())}"),

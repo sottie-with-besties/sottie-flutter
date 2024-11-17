@@ -118,7 +118,7 @@ class ChatRoomInfo extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${date.month}월 ${date.day}일 ${convertIntToWeekday(date.weekday)} ${renderCustomStringTime(date.toString(), date.toString())}",
+                          convertDateTimeIntoString(date),
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),

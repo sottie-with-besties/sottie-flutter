@@ -1,5 +1,3 @@
-
-
 /// 시간 관련 데이터는 UTC로 관리
 /// 올해 이전의 시간은 연 + 월 + 일
 /// 오늘이 아닌 시간은 월 + 일
@@ -49,6 +47,20 @@ String convertIntToWeekday(int weekday) {
     default:
       return "요일 정보 없음";
   }
+}
+
+/// 날짜 문자열로 바꾸기
+String convertDateTimeIntoString(DateTime datetime) {
+  final dayString = datetime.hour < 12 ? '오전' : '오후';
+  final hour =
+      datetime.hour > 12 ? '${datetime.hour - 12}' : '${datetime.hour}';
+
+  final customTime =
+      '$dayString $hour : ${datetime.minute.toString().padLeft(2, '0')}';
+
+  final dateString =
+      '${datetime.month}월 ${datetime.day}일 ${convertIntToWeekday(datetime.weekday)} $customTime';
+  return dateString;
 }
 
 /// 남성: MALE, 여성: FEMALE
