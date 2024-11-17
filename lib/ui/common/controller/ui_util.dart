@@ -1,3 +1,5 @@
+
+
 /// 시간 관련 데이터는 UTC로 관리
 /// 올해 이전의 시간은 연 + 월 + 일
 /// 오늘이 아닌 시간은 월 + 일
@@ -56,40 +58,40 @@ String convertAgeRangeToString(List<String> ageRange) {
   String ageRangeString = '';
 
   if (ageRange.isEmpty) {
-    ageRangeString = '나이 제한 없음';
+    ageRangeString = ' 나이 제한 없음';
   }
 
   if (ageRange.contains('10대')) {
-    ageRangeString = '$ageRangeString 10대,';
+    ageRangeString = ' 10대';
   }
 
   if (ageRange.contains('20대')) {
-    ageRangeString = '$ageRangeString 20대,';
+    ageRangeString = '$ageRangeString, 20대';
   }
 
   if (ageRange.contains('30대')) {
-    ageRangeString = '$ageRangeString 30대,';
+    ageRangeString = '$ageRangeString, 30대';
   }
 
   if (ageRange.contains('40대')) {
-    ageRangeString = '$ageRangeString 40대,';
+    ageRangeString = '$ageRangeString, 40대';
   }
 
   if (ageRange.contains('50대')) {
-    ageRangeString = '$ageRangeString 50대,';
+    ageRangeString = '$ageRangeString, 50대';
   }
 
   if (ageRange.contains('60대')) {
-    ageRangeString = '$ageRangeString 60대,';
+    ageRangeString = '$ageRangeString, 60대';
   }
 
   if (ageRange.contains('70대')) {
-    ageRangeString = '$ageRangeString 70대,';
+    ageRangeString = '$ageRangeString, 70대';
   }
 
   if (ageRange.contains('80대 이상')) {
-    ageRangeString = '$ageRangeString 80대 이상,';
+    ageRangeString = '$ageRangeString, 80대 이상';
   }
 
-  return ageRangeString.substring(1, ageRangeString.length - 1);
+  return ageRangeString.substring(1);
 }
