@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
-class DateClass extends StatefulWidget {
-  const DateClass({super.key});
+class DateOption extends StatefulWidget {
+  const DateOption({super.key});
 
   @override
-  State<DateClass> createState() => _DateClassState();
+  State<DateOption> createState() => _DateOptionState();
 }
 
-class _DateClassState extends State<DateClass> {
+class _DateOptionState extends State<DateOption> {
   String dateString = '날짜 선택';
   DateTime selectedDate = DateTime.now();
 
@@ -19,7 +19,7 @@ class _DateClassState extends State<DateClass> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const ClassificationTitle(title: "날짜"),
+        const OptionTitle(title: "날짜"),
         const SizedBox(width: 20),
         Expanded(
           child: OutlinedButton(

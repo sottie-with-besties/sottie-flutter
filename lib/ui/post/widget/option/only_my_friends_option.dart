@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
-class OnlyMyFriendsClass extends StatefulWidget {
-  const OnlyMyFriendsClass({super.key});
+class OnlyMyFriendsOption extends StatefulWidget {
+  const OnlyMyFriendsOption({super.key});
 
   @override
-  State<OnlyMyFriendsClass> createState() => _OnlyMyFriendsClassState();
+  State<OnlyMyFriendsOption> createState() => _OnlyMyFriendsOptionState();
 }
 
-class _OnlyMyFriendsClassState extends State<OnlyMyFriendsClass> {
+class _OnlyMyFriendsOptionState extends State<OnlyMyFriendsOption> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +19,7 @@ class _OnlyMyFriendsClassState extends State<OnlyMyFriendsClass> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const ClassificationTitle(title: "내 친구만 입장"),
+            const OptionTitle(title: "내 친구만 입장"),
             Switch(
               activeColor: mainBlueColor,
               value: postSettingEntity.onlyMyFriends,

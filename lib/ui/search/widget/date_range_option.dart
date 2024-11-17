@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 import 'package:sottie_flutter/ui/search/controller/date_time_reset.dart';
 
-class DateRangeClass extends ConsumerStatefulWidget {
-  const DateRangeClass({super.key});
+class DateRangeOption extends ConsumerStatefulWidget {
+  const DateRangeOption({super.key});
 
   @override
-  ConsumerState<DateRangeClass> createState() => _DateRangeClassState();
+  ConsumerState<DateRangeOption> createState() => _DateRangeClassState();
 }
 
-class _DateRangeClassState extends ConsumerState<DateRangeClass> {
+class _DateRangeClassState extends ConsumerState<DateRangeOption> {
   String dateString = '날짜 범위 선택';
 
   void makeDateString() {
@@ -20,7 +21,7 @@ class _DateRangeClassState extends ConsumerState<DateRangeClass> {
       dateString = "날짜 범위 선택";
     } else {
       dateString =
-          "${postSettingEntity.dateStart!.year}년 ${postSettingEntity.dateStart!.month}월 ${postSettingEntity.dateStart!.day}일 ${_intToWeekday(postSettingEntity.dateStart!.weekday)} ~ ${postSettingEntity.dateEnd!.year}년 ${postSettingEntity.dateEnd!.month}월 ${postSettingEntity.dateEnd!.day}일 ${_intToWeekday(postSettingEntity.dateEnd!.weekday)}";
+          "${postSettingEntity.dateStart!.year}년 ${postSettingEntity.dateStart!.month}월 ${postSettingEntity.dateStart!.day}일 ${convertIntToWeekday(postSettingEntity.dateStart!.weekday)} ~ ${postSettingEntity.dateEnd!.year}년 ${postSettingEntity.dateEnd!.month}월 ${postSettingEntity.dateEnd!.day}일 ${convertIntToWeekday(postSettingEntity.dateEnd!.weekday)}";
     }
   }
 
@@ -32,7 +33,7 @@ class _DateRangeClassState extends ConsumerState<DateRangeClass> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const ClassificationTitle(title: "날짜"),
+        const OptionTitle(title: "날짜"),
         const SizedBox(width: 20),
         Expanded(
           child: OutlinedButton(
@@ -66,26 +67,5 @@ class _DateRangeClassState extends ConsumerState<DateRangeClass> {
         )
       ],
     );
-  }
-}
-
-String _intToWeekday(int weekday) {
-  switch (weekday) {
-    case 1:
-      return "월요일";
-    case 2:
-      return "화요일";
-    case 3:
-      return "수요일";
-    case 4:
-      return "목요일";
-    case 5:
-      return "금요일";
-    case 6:
-      return "토요일";
-    case 7:
-      return "일요일";
-    default:
-      return "요일 정보 없음";
   }
 }

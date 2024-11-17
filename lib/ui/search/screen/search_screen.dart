@@ -5,17 +5,17 @@ import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/domain/search/search_post.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/category_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/gender_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/location_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/manner_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/num_of_member_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/only_my_friends_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/start_same_time_class.dart';
-import 'package:sottie_flutter/ui/search/widget/date_range_class.dart';
+import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/category_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/gender_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/location_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/manner_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/num_of_member_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/only_my_friends_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/start_same_time_option.dart';
+import 'package:sottie_flutter/ui/search/widget/date_range_option.dart';
 import 'package:sottie_flutter/ui/search/widget/date_time_reset_button.dart';
-import 'package:sottie_flutter/ui/search/widget/time_range_class.dart';
+import 'package:sottie_flutter/ui/search/widget/time_range_option.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -77,28 +77,28 @@ class _SearchScreenState extends State<SearchScreen> {
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CategoryClass(),
+                              CategoryOption(),
                               SizedBox(height: 20),
-                              LocationClass(),
+                              LocationOption(),
                               SizedBox(height: 20),
-                              DateRangeClass(),
+                              DateRangeOption(),
                               SizedBox(height: 20),
-                              TimeRangeClass(),
+                              TimeRangeOption(),
                               SizedBox(height: 10),
                               DateTimeResetButton(),
                               SizedBox(height: 10),
-                              NumOfMemberClass(),
+                              NumOfMemberOption(),
                               SizedBox(height: 20),
-                              GenderClass(),
+                              GenderOption(),
                               SizedBox(height: 20),
-                              AgeClass(),
+                              AgeOption(),
                               SizedBox(height: 20),
-                              MannerClass(),
+                              MannerOption(),
                               SizedBox(height: 20),
-                              StartSameTimeClass(),
+                              StartSameTimeOption(),
                               SizedBox(height: 20),
                               SizedBox(height: 20),
-                              OnlyMyFriendsClass(),
+                              OnlyMyFriendsOption(),
                               SizedBox(height: 80),
                             ],
                           ),

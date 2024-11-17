@@ -4,16 +4,16 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/category_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/date_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/gender_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/location_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/manner_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/num_of_member_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/only_my_friends_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/start_same_time_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/time_class.dart';
+import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/category_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/date_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/gender_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/location_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/manner_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/num_of_member_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/only_my_friends_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/start_same_time_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/time_option.dart';
 
 class MakePostScreenStepTwo extends StatefulWidget {
   const MakePostScreenStepTwo({super.key});
@@ -60,26 +60,26 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const CategoryClass(),
+                const CategoryOption(),
                 const SizedBox(height: 20),
-                const LocationClass(),
+                const LocationOption(),
                 const SizedBox(height: 20),
-                const DateClass(),
+                const DateOption(),
                 const SizedBox(height: 20),
-                const TimeClass(),
+                const TimeOption(),
                 const SizedBox(height: 20),
-                const NumOfMemberClass(),
+                const NumOfMemberOption(),
                 const SizedBox(height: 20),
-                const GenderClass(),
+                const GenderOption(),
                 const SizedBox(height: 20),
-                const AgeClass(),
+                const AgeOption(),
                 const SizedBox(height: 20),
-                const MannerClass(),
+                const MannerOption(),
                 const SizedBox(height: 20),
-                const StartSameTimeClass(),
+                const StartSameTimeOption(),
                 const SizedBox(height: 20),
                 const SizedBox(height: 20),
-                const OnlyMyFriendsClass(),
+                const OnlyMyFriendsOption(),
                 const SizedBox(height: 80),
                 ElevatedButton(
                   onPressed: () {

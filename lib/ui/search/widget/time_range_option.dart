@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 import 'package:sottie_flutter/ui/search/controller/date_time_reset.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 
-class TimeRangeClass extends ConsumerStatefulWidget {
-  const TimeRangeClass({super.key});
+class TimeRangeOption extends ConsumerStatefulWidget {
+  const TimeRangeOption({super.key});
 
   @override
-  ConsumerState<TimeRangeClass> createState() => _TimeRangeClassState();
+  ConsumerState<TimeRangeOption> createState() => _TimeRangeClassState();
 }
 
-class _TimeRangeClassState extends ConsumerState<TimeRangeClass> {
+class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
   String timeString = '시간 범위 선택';
 
   void makeTimeString() {
@@ -54,7 +54,7 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeClass> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const ClassificationTitle(title: "시간"),
+        const OptionTitle(title: "시간"),
         const SizedBox(
           width: 20,
         ),

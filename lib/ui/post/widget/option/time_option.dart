@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
-class TimeClass extends StatefulWidget {
-  const TimeClass({super.key});
+class TimeOption extends StatefulWidget {
+  const TimeOption({super.key});
 
   @override
-  State<TimeClass> createState() => _TimeClassState();
+  State<TimeOption> createState() => _TimeOptionState();
 }
 
-class _TimeClassState extends State<TimeClass> {
+class _TimeOptionState extends State<TimeOption> {
   String timeString = '0시 0분';
   TimeOfDay selectedTime = const TimeOfDay(hour: 0, minute: 0);
 
@@ -18,7 +18,7 @@ class _TimeClassState extends State<TimeClass> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const ClassificationTitle(title: "시간"),
+        const OptionTitle(title: "시간"),
         const SizedBox(
           width: 20,
         ),

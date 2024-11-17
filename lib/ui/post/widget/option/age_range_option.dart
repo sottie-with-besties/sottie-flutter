@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_age_range.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
-class AgeClass extends StatelessWidget {
-  const AgeClass({super.key});
+class AgeOption extends StatelessWidget {
+  const AgeOption({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Row(
       children: [
-        ClassificationTitle(title: '나이'),
+        OptionTitle(title: '나이'),
         SizedBox(width: 30),
         _AgeRange(),
       ],

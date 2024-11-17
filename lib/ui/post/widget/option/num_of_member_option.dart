@@ -3,17 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
-class NumOfMemberClass extends StatelessWidget {
-  const NumOfMemberClass({super.key});
+class NumOfMemberOption extends StatelessWidget {
+  const NumOfMemberOption({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ClassificationTitle(title: "인원 수"),
+        OptionTitle(title: "인원 수"),
         SizedBox(width: 20),
         _NumOfMemberSelector(),
       ],

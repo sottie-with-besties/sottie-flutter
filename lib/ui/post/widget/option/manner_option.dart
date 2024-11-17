@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
-class MannerClass extends StatefulWidget {
-  const MannerClass({super.key});
+class MannerOption extends StatefulWidget {
+  const MannerOption({super.key});
 
   @override
-  State<MannerClass> createState() => _MannerClassState();
+  State<MannerOption> createState() => _MannerOptionState();
 }
 
-class _MannerClassState extends State<MannerClass> {
+class _MannerOptionState extends State<MannerOption> {
   int sliderValue = 2;
   List<double> mannerPoint = <double>[0, 18.5, 36.5, 52.5, 70.5, 88.5, 100];
 
@@ -41,7 +41,7 @@ class _MannerClassState extends State<MannerClass> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const ClassificationTitle(title: "매너 온도"),
+            const OptionTitle(title: "매너 온도"),
             const SizedBox(width: 15),
             Expanded(
               child: Slider(

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
-class CategoryClass extends StatelessWidget {
-  const CategoryClass({
+class CategoryOption extends StatelessWidget {
+  const CategoryOption({
     super.key,
   });
 
@@ -14,7 +14,7 @@ class CategoryClass extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ClassificationTitle(title: "분류"),
+        OptionTitle(title: "분류"),
         SizedBox(width: 30),
         _CategoryButtons(),
       ],

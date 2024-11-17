@@ -4,16 +4,16 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
-class GenderClass extends ConsumerStatefulWidget {
-  const GenderClass({super.key});
+class GenderOption extends ConsumerStatefulWidget {
+  const GenderOption({super.key});
 
   @override
-  ConsumerState<GenderClass> createState() => _GenderClassState();
+  ConsumerState<GenderOption> createState() => _GenderClassState();
 }
 
-class _GenderClassState extends ConsumerState<GenderClass> {
+class _GenderClassState extends ConsumerState<GenderOption> {
   bool _sliderCondition(double val) =>
       postSettingEntity.genderRatio &&
       val.toInt() != postSettingEntity.numOfMember &&
@@ -36,7 +36,7 @@ class _GenderClassState extends ConsumerState<GenderClass> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const ClassificationTitle(title: '성비 제한'),
+            const OptionTitle(title: '성비 제한'),
             Switch(
               activeColor: mainBlueColor,
               value: postSettingEntity.genderRatio,

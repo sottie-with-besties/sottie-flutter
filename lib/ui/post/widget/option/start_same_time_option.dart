@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/classification_title.dart';
+import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
-class StartSameTimeClass extends StatefulWidget {
-  const StartSameTimeClass({super.key});
+class StartSameTimeOption extends StatefulWidget {
+  const StartSameTimeOption({super.key});
 
   @override
-  State<StartSameTimeClass> createState() => _StartSameTimeClassState();
+  State<StartSameTimeOption> createState() => _StartSameTimeOptionState();
 }
 
-class _StartSameTimeClassState extends State<StartSameTimeClass> {
+class _StartSameTimeOptionState extends State<StartSameTimeOption> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,7 +18,7 @@ class _StartSameTimeClassState extends State<StartSameTimeClass> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const ClassificationTitle(title: "동시 채팅 시작"),
+            const OptionTitle(title: "동시 채팅 시작"),
             Switch(
               activeColor: mainBlueColor,
               value: postSettingEntity.startSameTime,

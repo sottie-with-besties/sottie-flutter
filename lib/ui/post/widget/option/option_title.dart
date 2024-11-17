@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
-class ClassificationTitle extends StatelessWidget {
-  const ClassificationTitle({
+class OptionTitle extends StatelessWidget {
+  const OptionTitle({
     super.key,
     required this.title,
   });
