@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -91,9 +89,8 @@ class InChatDrawer extends StatelessWidget {
                 const SizedBox(height: 30),
                 _subTitle(
                   '참여자',
-                  () {
-                    log("참여자 목록");
-                  },
+                  null,
+                  tapInto: false,
                 ),
                 _inChatParticipant(context, "1346123456234567", "김진표", null),
                 _inChatParticipant(context, "123423142413", "김진표", null),
@@ -109,7 +106,11 @@ class InChatDrawer extends StatelessWidget {
   }
 }
 
-Widget _subTitle(String title, VoidCallback onTap) {
+Widget _subTitle(
+  String title,
+  VoidCallback? onTap, {
+  bool tapInto = true,
+}) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 15),
     child: InkWell(
@@ -126,7 +127,7 @@ Widget _subTitle(String title, VoidCallback onTap) {
                 fontSize: 12 * hu,
               ),
             ),
-            const Icon(Icons.arrow_right_alt),
+            tapInto ? const Icon(Icons.arrow_right_alt) : Container(),
           ],
         ),
       ),
