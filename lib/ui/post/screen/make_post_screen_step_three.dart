@@ -58,9 +58,7 @@ class MakePostScreenStepThree extends StatelessWidget {
                   if (postSettingEntity.mannerPoint != 0.0 &&
                       postSettingEntity.mannerPoint != 100.0)
                     Text("매너온도: ${postSettingEntity.mannerPoint}도 이상"),
-                  if (postSettingEntity.startSameTime)
-                    const Text("동시 채팅 시작: 인원 수 만큼 모이면 동시에 채팅을 시작합니다."),
-                  if (postSettingEntity.startSameTime)
+                  if (postSettingEntity.onlyMyFriends)
                     const Text("내 친구만 입장: 작성자의 친구만 입장할 수 있습니다."),
                 ],
               ),

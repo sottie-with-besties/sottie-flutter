@@ -12,7 +12,6 @@ import 'package:sottie_flutter/ui/post/widget/option/location_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/manner_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/num_of_member_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/only_my_friends_option.dart';
-import 'package:sottie_flutter/ui/post/widget/option/start_same_time_option.dart';
 import 'package:sottie_flutter/ui/search/widget/date_range_option.dart';
 import 'package:sottie_flutter/ui/search/widget/date_time_reset_button.dart';
 import 'package:sottie_flutter/ui/search/widget/time_range_option.dart';
@@ -94,9 +93,6 @@ class _SearchScreenState extends State<SearchScreen> {
                               AgeOption(),
                               SizedBox(height: 20),
                               MannerOption(),
-                              SizedBox(height: 20),
-                              StartSameTimeOption(),
-                              SizedBox(height: 20),
                               SizedBox(height: 20),
                               OnlyMyFriendsOption(),
                               SizedBox(height: 80),

@@ -49,9 +49,6 @@ final class PostSetting {
   /// 사용자의 매너 온도 제한
   double mannerPoint;
 
-  /// 설정된 인원 수가 모이면 채팅 시작
-  bool startSameTime;
-
   /// 내 친구만 포스트 참여 가능
   bool onlyMyFriends;
 
@@ -71,7 +68,6 @@ final class PostSetting {
     this.numOfWoman = 1,
     this.ageRange = const [],
     this.mannerPoint = 36.5, // 0 => 매너 온도 상관 없음
-    this.startSameTime = false,
     this.onlyMyFriends = false,
   });
 
@@ -88,7 +84,6 @@ final class PostSetting {
       'numOfWoman': numOfWoman,
       'ageRange': convertAgeRangeToStringList(), // Enum 데이터
       'manner': mannerPoint,
-      'startSameTime': startSameTime,
       'onlyMyFriends': onlyMyFriends,
     };
 
@@ -111,7 +106,6 @@ final class PostSetting {
       'numOfWoman': numOfWoman,
       'ageRange': convertAgeRangeToStringList(), // Enum 데이터
       'manner': mannerPoint,
-      'startSameTime': startSameTime,
       'onlyMyFriends': onlyMyFriends,
     };
 

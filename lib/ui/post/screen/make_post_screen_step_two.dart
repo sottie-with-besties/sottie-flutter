@@ -12,7 +12,6 @@ import 'package:sottie_flutter/ui/post/widget/option/location_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/manner_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/num_of_member_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/only_my_friends_option.dart';
-import 'package:sottie_flutter/ui/post/widget/option/start_same_time_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/time_option.dart';
 
 class MakePostScreenStepTwo extends StatefulWidget {
@@ -75,9 +74,6 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                 const AgeOption(),
                 const SizedBox(height: 20),
                 const MannerOption(),
-                const SizedBox(height: 20),
-                const StartSameTimeOption(),
-                const SizedBox(height: 20),
                 const SizedBox(height: 20),
                 const OnlyMyFriendsOption(),
                 const SizedBox(height: 80),
