@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/post/model/post_setting.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/domain/search/search_post.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_expansion_tile.dart';
@@ -32,7 +31,6 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    postSettingEntity = PostSetting();
     searchFocusNode.requestFocus();
   }
 
