@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
-import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 import 'package:sottie_flutter/ui/search/controller/date_time_reset.dart';
 
 class DateRangeOption extends ConsumerStatefulWidget {
@@ -27,40 +26,36 @@ class _DateRangeClassState extends ConsumerState<DateRangeOption> {
     ref.watch(dateTimeResetProvider);
     makeDateString();
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const OptionTitle(title: "날짜"),
-        const SizedBox(width: 20),
-        Expanded(
-          child: OutlinedButton(
-            onPressed: () async {
-              DateTimeRange? tempDateTimeRange = await showDateRangePicker(
-                context: context,
-                initialDateRange: postSettingEntity.dateTimeRange ??
-                    DateTimeRange(start: DateTime.now(), end: DateTime.now()),
-                firstDate: DateTime.now(),
-                lastDate: DateTime(DateTime.now().year + 1),
-                cancelText: "취소",
-                confirmText: "저장하기",
-                saveText: "저장하기",
-                barrierDismissible: false,
-              );
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          minimumSize: const Size(0, 50),
+        ),
+        onPressed: () async {
+          DateTimeRange? tempDateTimeRange = await showDateRangePicker(
+            context: context,
+            initialDateRange: postSettingEntity.dateTimeRange ??
+                DateTimeRange(start: DateTime.now(), end: DateTime.now()),
+            firstDate: DateTime.now(),
+            lastDate: DateTime(DateTime.now().year + 1),
+            cancelText: "취소",
+            confirmText: "저장하기",
+            saveText: "저장하기",
+            barrierDismissible: false,
+          );
 
-              if (tempDateTimeRange == null) return;
+          if (tempDateTimeRange == null) return;
 
-              postSettingEntity.dateTimeRange = tempDateTimeRange;
+          postSettingEntity.dateTimeRange = tempDateTimeRange;
 
-              makeDateString();
-              setState(() {});
-            },
-            child: Text(
-              dateString,
-              style: const TextStyle(color: Colors.black),
-            ),
-          ),
-        )
-      ],
-    );
+          makeDateString();
+          setState(() {});
+        },
+        child: Text(
+          dateString,
+          style: const TextStyle(color: Colors.black),
+        ),
+      ),
+    ]);
   }
 }

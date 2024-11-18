@@ -35,6 +35,7 @@ class CustomExpansionTile extends StatelessWidget {
         expandedAlignment: Alignment.topLeft,
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
         childrenPadding: const EdgeInsets.all(16),
+        shape: const Border(),
         children: children,
       ),
     );

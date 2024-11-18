@@ -7,16 +7,21 @@ import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 class CategoryOption extends StatelessWidget {
   const CategoryOption({
     super.key,
+    this.renderAtMakePostScreen = true,
   });
+
+  final bool renderAtMakePostScreen;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        OptionTitle(title: "분류"),
-        SizedBox(width: 30),
-        _CategoryButtons(),
+        if (renderAtMakePostScreen) ...[
+          const OptionTitle(title: "분류"),
+          const SizedBox(width: 30),
+        ],
+        const _CategoryButtons(),
       ],
     );
   }

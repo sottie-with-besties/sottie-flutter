@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 import 'package:sottie_flutter/ui/search/controller/date_time_reset.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 
@@ -51,62 +50,59 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
     ref.watch(dateTimeResetProvider);
     makeTimeString();
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const OptionTitle(title: "시간"),
-        const SizedBox(
-          width: 20,
-        ),
-        Expanded(
-          child: OutlinedButton(
-            onPressed: () async {
-              TimeRange? tempTime = await showTimeRangePicker(
-                context: context,
-                start: postSettingEntity.timeStart ??
-                    const TimeOfDay(hour: 0, minute: 0),
-                end: postSettingEntity.timeEnd ??
-                    const TimeOfDay(hour: 0, minute: 0),
-                barrierDismissible: false,
-                interval: const Duration(minutes: 30),
-                strokeWidth: 24,
-                ticks: 24,
-                ticksWidth: 3,
-                ticksColor: Colors.black38,
-                strokeColor: Colors.deepPurple.shade200,
-                snap: true,
-                labels: [
-                  "12 am",
-                  "3 am",
-                  "6 am",
-                  "9 am",
-                  "12 pm",
-                  "3 pm",
-                  "6 pm",
-                  "9 pm",
-                ].asMap().entries.map((e) {
-                  return ClockLabel.fromIndex(
-                      idx: e.key, length: 8, text: e.value);
-                }).toList(),
-                labelOffset: -30,
-                labelStyle: const TextStyle(
-                    fontSize: 16,
-                    color: mainGreyColor,
-                    fontWeight: FontWeight.bold),
-              );
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(0, 50),
+          ),
+          onPressed: () async {
+            TimeRange? tempTime = await showTimeRangePicker(
+              context: context,
+              start: postSettingEntity.timeStart ??
+                  const TimeOfDay(hour: 0, minute: 0),
+              end: postSettingEntity.timeEnd ??
+                  const TimeOfDay(hour: 0, minute: 0),
+              barrierDismissible: false,
+              interval: const Duration(minutes: 30),
+              strokeWidth: 24,
+              ticks: 24,
+              ticksWidth: 3,
+              ticksColor: Colors.black38,
+              strokeColor: Colors.deepPurple.shade200,
+              snap: true,
+              labels: [
+                "12 am",
+                "3 am",
+                "6 am",
+                "9 am",
+                "12 pm",
+                "3 pm",
+                "6 pm",
+                "9 pm",
+              ].asMap().entries.map((e) {
+                return ClockLabel.fromIndex(
+                    idx: e.key, length: 8, text: e.value);
+              }).toList(),
+              labelOffset: -30,
+              labelStyle: const TextStyle(
+                  fontSize: 16,
+                  color: mainGreyColor,
+                  fontWeight: FontWeight.bold),
+            );
 
-              if (tempTime == null) return;
+            if (tempTime == null) return;
 
-              postSettingEntity.timeStart = tempTime.startTime;
-              postSettingEntity.timeEnd = tempTime.endTime;
+            postSettingEntity.timeStart = tempTime.startTime;
+            postSettingEntity.timeEnd = tempTime.endTime;
 
-              makeTimeString();
-              setState(() {});
-            },
-            child: Text(
-              timeString,
-              style: const TextStyle(color: Colors.black),
-            ),
+            makeTimeString();
+            setState(() {});
+          },
+          child: Text(
+            timeString,
+            style: const TextStyle(color: Colors.black),
           ),
         )
       ],
