@@ -5,10 +5,7 @@ import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/domain/friend/friend_manage.dart';
 import 'package:sottie_flutter/domain/user/user_manage.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
-import 'package:sottie_flutter/ui/user/screen/user_review_screen.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
-import 'package:sottie_flutter/ui/user/widget/user_radar_chart.dart';
 
 class UserDetailScreen extends StatelessWidget {
   const UserDetailScreen({
@@ -80,18 +77,6 @@ class UserDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-          SizedBox(height: 10 * hu),
-          const UserRadarChart(),
-          SizedBox(height: 30 * hu),
-          OutlinedButton(
-            onPressed: () {
-              showCustomBottomSheet(
-                context,
-                const UserReviewScreen(),
-              );
-            },
-            child: const Text("리뷰 보기"),
-          ),
         ],
       ),
     );
