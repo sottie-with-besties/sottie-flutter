@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
-class ExtraServiceTile extends StatelessWidget {
-  const ExtraServiceTile({
+class CustomExpansionTile extends StatelessWidget {
+  const CustomExpansionTile({
     super.key,
     required this.title,
     this.subTitle,
