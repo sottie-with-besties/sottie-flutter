@@ -83,7 +83,7 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
                   "12 pm",
                   "3 pm",
                   "6 pm",
-                  "9 pm"
+                  "9 pm",
                 ].asMap().entries.map((e) {
                   return ClockLabel.fromIndex(
                       idx: e.key, length: 8, text: e.value);
