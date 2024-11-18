@@ -16,13 +16,10 @@ class _DateRangeClassState extends ConsumerState<DateRangeOption> {
   String dateString = '날짜 범위 선택';
 
   void makeDateString() {
-    if (postSettingEntity.dateStart == null ||
-        postSettingEntity.dateEnd == null) {
-      dateString = "날짜 범위 선택";
-    } else {
-      dateString =
-          "${postSettingEntity.dateStart!.year}년 ${postSettingEntity.dateStart!.month}월 ${postSettingEntity.dateStart!.day}일 ${convertIntToWeekday(postSettingEntity.dateStart!.weekday)} ~ ${postSettingEntity.dateEnd!.year}년 ${postSettingEntity.dateEnd!.month}월 ${postSettingEntity.dateEnd!.day}일 ${convertIntToWeekday(postSettingEntity.dateEnd!.weekday)}";
-    }
+    postSettingEntity.dateTimeRange == null
+        ? dateString = "날짜 범위 선택"
+        : dateString =
+            "${postSettingEntity.dateTimeRange!.start.year}년 ${postSettingEntity.dateTimeRange!.start.month}월 ${postSettingEntity.dateTimeRange!.start.day}일 ${convertIntToWeekday(postSettingEntity.dateTimeRange!.start.weekday)} ~ ${postSettingEntity.dateTimeRange!.end.year}년 ${postSettingEntity.dateTimeRange!.end.month}월 ${postSettingEntity.dateTimeRange!.end.day}일 ${convertIntToWeekday(postSettingEntity.dateTimeRange!.end.weekday)}";
   }
 
   @override
@@ -38,23 +35,21 @@ class _DateRangeClassState extends ConsumerState<DateRangeOption> {
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
-              DateTimeRange? tempDate = await showDateRangePicker(
+              DateTimeRange? tempDateTimeRange = await showDateRangePicker(
                 context: context,
-                initialDateRange: DateTimeRange(
-                    start: postSettingEntity.dateStart ?? DateTime.now(),
-                    end: postSettingEntity.dateEnd ?? DateTime.now()),
+                initialDateRange: postSettingEntity.dateTimeRange ??
+                    DateTimeRange(start: DateTime.now(), end: DateTime.now()),
                 firstDate: DateTime.now(),
-                lastDate: DateTime(DateTime.now().year + 10),
+                lastDate: DateTime(DateTime.now().year + 1),
                 cancelText: "취소",
                 confirmText: "저장하기",
                 saveText: "저장하기",
                 barrierDismissible: false,
               );
 
-              if (tempDate == null) return;
+              if (tempDateTimeRange == null) return;
 
-              postSettingEntity.dateStart = tempDate.start;
-              postSettingEntity.dateEnd = tempDate.end;
+              postSettingEntity.dateTimeRange = tempDateTimeRange;
 
               makeDateString();
               setState(() {});

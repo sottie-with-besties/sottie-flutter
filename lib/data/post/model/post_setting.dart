@@ -16,11 +16,8 @@ final class PostSetting {
   /// 시간도 포함, non-null 타입으로 안됨
   DateTime? date;
 
-  /// 검색 스크린 전용, 검색할 날짜 범위의 시작
-  DateTime? dateStart;
-
-  /// 검색 스크린 전용, 검색할 날짜 범위의 끝
-  DateTime? dateEnd;
+  /// 검색 스크린 전용, 검색할 날짜 범위
+  DateTimeRange? dateTimeRange;
 
   /// 검색 스크린 전용, 검색할 시간 범위의 시작
   TimeOfDay? timeStart;
@@ -57,8 +54,7 @@ final class PostSetting {
     this.content = '',
     this.category = SottieCategory.all,
     this.date, // date와 time은 null로 못받게 프론트에서 예외 처리
-    this.dateStart,
-    this.dateEnd,
+    this.dateTimeRange,
     this.timeStart,
     this.timeEnd,
     this.location = SottieLocation.all,
@@ -95,8 +91,8 @@ final class PostSetting {
       'title': title,
       'content': content,
       'category': category.name, // Enum 데이터
-      'dateStart': dateStart?.toUtc().toString() ?? '',
-      'dateEnd': dateEnd?.toUtc().toString() ?? '',
+      'dateStart': dateTimeRange?.start.toUtc().toString() ?? '',
+      'dateEnd': dateTimeRange?.end.toUtc().toString() ?? '',
       'timeStart': timeStart ?? '',
       'timeEnd': timeEnd ?? '',
       'location': location.toString(), // Enum 데이터
