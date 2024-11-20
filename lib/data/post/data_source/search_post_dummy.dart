@@ -1,6 +1,7 @@
 import '../model/post_model.dart';
 
-Future<List<PostModel>> getSearchPostDummy() async {
+Future<List<PostModel>> getSearchPostDummy(
+    Map<String, dynamic> postSetting) async {
   await Future.delayed(const Duration(seconds: 1), null);
   return [
     PostModel(

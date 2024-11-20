@@ -18,7 +18,7 @@ class HomeContentScreen extends ConsumerWidget {
       children: [
         _subTitle("# 최신 모집글"),
         CustomFutureBuilder(
-          futureFunction: getLatestPostDummy,
+          futureFunction: () async => getLatestPostDummy(null),
           callBack: (futureData) => Column(
             children: futureData!
                 .map<Widget>((data) => Post(
@@ -30,7 +30,7 @@ class HomeContentScreen extends ConsumerWidget {
         ),
         _subTitle("# 추천 모집글"),
         CustomFutureBuilder(
-          futureFunction: getRecommendPostDummy,
+          futureFunction: () async => getRecommendPostDummy(null),
           callBack: (futureData) => Column(
             children: futureData!
                 .map<Widget>((data) => Post(

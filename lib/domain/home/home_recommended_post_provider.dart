@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sottie_flutter/data/post/model/post_model.dart';
+import 'package:sottie_flutter/data/post/data_source/recommend_post_dummy.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
 
 part 'home_recommended_post_provider.g.dart';
@@ -8,9 +8,11 @@ part 'home_recommended_post_provider.g.dart';
 final class HomeRecommendedPost extends _$HomeRecommendedPost {
   @override
   Future<PostPaginationModel> build() async {
+    final postModelList = await getRecommendPostDummy(null);
+
     return PostPaginationModel(
-      postModelList: <PostModel>[],
-      postPaginationState: PostPaginationState.loading,
+      postModelList: postModelList,
+      postPaginationState: PostPaginationState.fetch,
     );
   }
 }

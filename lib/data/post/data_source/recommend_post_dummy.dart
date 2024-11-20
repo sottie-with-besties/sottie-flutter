@@ -1,6 +1,6 @@
 import '../model/post_model.dart';
 
-Future<List<PostModel>> getRecommendPostDummy() async {
+Future<List<PostModel>> getRecommendPostDummy(String? lastPostId) async {
   await Future.delayed(const Duration(seconds: 1), null);
   return [
     PostModel(
