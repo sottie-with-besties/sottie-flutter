@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/domain/home/home_search_post_provider.dart';
+import 'package:sottie_flutter/domain/home/home_state_provider.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/domain/search/search_post.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_expansion_tile.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
@@ -16,14 +18,14 @@ import 'package:sottie_flutter/ui/search/widget/date_range_option.dart';
 import 'package:sottie_flutter/ui/search/widget/date_time_reset_button.dart';
 import 'package:sottie_flutter/ui/search/widget/time_range_option.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenState extends ConsumerState<SearchScreen> {
   final searchFocusNode = FocusNode();
   final settingFocusNode = FocusNode();
   final searchController = TextEditingController();
@@ -60,7 +62,11 @@ class _SearchScreenState extends State<SearchScreen> {
                   controller: searchController,
                   onFieldSubmitted: (searchContent) async {
                     postSettingEntity.title = searchContent;
-                    await searchPost(context); // Todo: 함수 구현해야함
+                    ref
+                        .read(homeStateProvider.notifier)
+                        .changeHomeState(HomePostState.search);
+                    context.pop();
+                    ref.read(homeSearchPostProvider.notifier).searchPost();
                   },
                 ),
               ),
@@ -110,6 +116,9 @@ class _SearchScreenState extends State<SearchScreen> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
+                        ref
+                            .read(homeStateProvider.notifier)
+                            .changeHomeState(HomePostState.home);
                         context.pop();
                       },
                       style: ElevatedButton.styleFrom(
@@ -119,7 +128,11 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        await searchPost(context);
+                        ref
+                            .read(homeStateProvider.notifier)
+                            .changeHomeState(HomePostState.search);
+                        context.pop();
+                        ref.read(homeSearchPostProvider.notifier).searchPost();
                       },
                       child: const Text("검색"),
                     ),

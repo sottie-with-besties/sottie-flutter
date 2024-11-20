@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/data/post/data_source/latest_post_dummy.dart';
 import 'package:sottie_flutter/data/post/data_source/recommend_post_dummy.dart';
+import 'package:sottie_flutter/domain/home/home_state_provider.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/post/widget/post.dart';
 
-class HomeContentScreen extends StatelessWidget {
+class HomeContentScreen extends ConsumerWidget {
   const HomeContentScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homeState = ref.watch(homeStateProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
