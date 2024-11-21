@@ -1,18 +1,13 @@
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
 
-// Todo: 리버팟의 State를 직접 함수로 넘겨서 함수 내부에서 바꾸어도 상태가 변화?
+/// 리버팟의 State를 직접 함수로 넘겨서 함수 내부에서 바꾸어도 상태가 변화? => 변화 안됨
 Future<PostPaginationModel> homePostPagination(
   PostPaginationModel state,
   Future<List<PostModel>> Function(String lastPostId) getPostList,
   String lastId,
 ) async {
   try {
-    state = PostPaginationModel(
-      postModelList: state.postModelList,
-      postPaginationState: PostPaginationState.loading,
-    );
-
     final postList = await getPostList(lastId);
     return PostPaginationModel(
       postModelList: postList,

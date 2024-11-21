@@ -1,6 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:sottie_flutter/data/post/data_source/recommend_post_dummy.dart';
 import 'package:sottie_flutter/data/post/data_source/search_post_dummy.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
+import 'package:sottie_flutter/domain/home/home_post_pagination.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 
 part 'home_search_post_provider.g.dart';
@@ -19,7 +21,7 @@ final class HomeSearchPost extends _$HomeSearchPost {
   Future<void> searchPost() async {
     try {
       state = PostPaginationModel(
-        postModelList: state.postModelList,
+        postModelList: [],
         postPaginationState: PostPaginationState.loading,
       );
 
@@ -38,5 +40,22 @@ final class HomeSearchPost extends _$HomeSearchPost {
         errorCode: '검색 도중 에러가 발생하였습니다.',
       );
     }
+  }
+
+  Future<void> searchPagination() async {
+    state = PostPaginationModel(
+      postModelList: state.postModelList,
+      postPaginationState: PostPaginationState.loading,
+    );
+
+    final newPostPaginationModel =
+        await homePostPagination(state, getRecommendPostDummy, "123");
+
+    // Todo: Error 반환 시 예외 처리
+
+    state = PostPaginationModel(postModelList: [
+      ...state.postModelList,
+      ...newPostPaginationModel.postModelList
+    ], postPaginationState: PostPaginationState.fetch, errorCode: "에러발생");
   }
 }
