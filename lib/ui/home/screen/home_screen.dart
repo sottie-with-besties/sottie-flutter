@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      hasScrollBody: false,
+      hasScrollBody: true,
       appBarTitle: '모집글',
       appBarActions: [
         Padding(

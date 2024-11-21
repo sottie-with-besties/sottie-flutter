@@ -22,43 +22,45 @@ class HomeContentScreen extends ConsumerWidget {
     final homeSearchPostPagination = ref.watch(homeSearchPostProvider);
 
     if (homeState == HomePostState.home) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _subTitle("# 최신 모집글"),
-          // _PostPaginationListView(postProvider: homeLatestPostProvider),
-          CustomFutureBuilder(
-            futureFunction: () async => getLatestPostDummy(null),
-            callBack: (futureData) => Column(
-              children: futureData!
-                  .map<Widget>((data) => Post(
-                        model: data,
-                        isWaiting: false,
-                      ))
-                  .toList(),
+      return SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _subTitle("# 최신 모집글"),
+            // _PostPaginationListView(postProvider: homeLatestPostProvider),
+            CustomFutureBuilder(
+              futureFunction: () async => getLatestPostDummy(null),
+              callBack: (futureData) => Column(
+                children: futureData!
+                    .map<Widget>((data) => Post(
+                          model: data,
+                          isWaiting: false,
+                        ))
+                    .toList(),
+              ),
             ),
-          ),
-          _subTitle("# 추천 모집글"),
-          CustomFutureBuilder(
-            futureFunction: () async => getRecommendPostDummy(null),
-            callBack: (futureData) => Column(
-              children: futureData!
-                  .map<Widget>((data) => Post(
-                        model: data,
-                        isWaiting: false,
-                      ))
-                  .toList(),
+            _subTitle("# 추천 모집글"),
+            CustomFutureBuilder(
+              futureFunction: () async => getRecommendPostDummy(null),
+              callBack: (futureData) => Column(
+                children: futureData!
+                    .map<Widget>((data) => Post(
+                          model: data,
+                          isWaiting: false,
+                        ))
+                    .toList(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     } else {
+      /// homeState == HomePostState.home
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _subTitle("# 검색 결과"),
-          SizedBox(
-            height: 450 * hu,
+          Expanded(
             child: ListView.builder(
               itemCount: homeSearchPostPagination.postModelList.length + 1,
               itemBuilder: (_, index) {
