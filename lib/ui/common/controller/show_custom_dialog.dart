@@ -24,9 +24,7 @@ void showCustomDialog(BuildContext context, Widget customChild,
           actions: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                minimumSize: const Size(100, 50),
                 backgroundColor: mainGreyColor,
-                side: BorderSide.none,
               ),
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop();
