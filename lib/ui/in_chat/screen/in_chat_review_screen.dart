@@ -55,9 +55,18 @@ class InChatReviewScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            InChatReview(),
-            InChatReview(),
-            InChatReview(),
+            InChatReview(
+              profileUrl: '1234',
+              nickName: '닉네임1',
+            ),
+            InChatReview(
+              profileUrl: '12345',
+              nickName: '닉네임2',
+            ),
+            InChatReview(
+              profileUrl: '12346',
+              nickName: '닉네임3',
+            ),
           ],
         ),
       ),

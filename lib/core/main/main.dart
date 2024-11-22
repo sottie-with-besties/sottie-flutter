@@ -53,7 +53,7 @@ Future<void> _initSdks() async {
 final _customTheme = ThemeData(
   textTheme: GoogleFonts.nanumGothicTextTheme(),
   appBarTheme: AppBarTheme(
-    color: Colors.white,
+    color: mainWhiteSilverColor,
     centerTitle: true,
     titleTextStyle: TextStyle(
       fontWeight: FontWeight.bold,
@@ -63,7 +63,7 @@ final _customTheme = ThemeData(
     ),
     scrolledUnderElevation: 0,
   ),
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: mainWhiteSilverColor,
   navigationBarTheme: const NavigationBarThemeData(
     backgroundColor: mainWhiteSilverColor,
     indicatorColor: mainBlueColor,
