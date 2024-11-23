@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -10,10 +11,12 @@ class InChatReview extends StatefulWidget {
     super.key,
     required this.profileUrl,
     required this.nickName,
+    this.guideArrowOn = false,
   });
 
   final String profileUrl;
   final String nickName;
+  final bool guideArrowOn;
 
   @override
   State<InChatReview> createState() => _InChatReviewState();
@@ -41,6 +44,9 @@ class _InChatReviewState extends State<InChatReview> {
   /// 좋아요 또는 싫어요에 프로필을 옮겼을 때, 부연 설명 컨테이너의 투명도를 1로 바꾸어 나타나게함
   double _goodExplanationBoxOpacity = 0;
   double _badExplanationBoxOpacity = 0;
+
+  /// 가이드 화살표 투명도
+  double _guideArrowOpacity = 1;
 
   /// 프로필의 처음 위치 == _centerOfProfile
   double _profilePosition = 135 * wu;
@@ -148,6 +154,18 @@ class _InChatReviewState extends State<InChatReview> {
           _badExplanationBoxOpacity,
           "${widget.nickName}님의 매너온도가 1°C 하락합니다",
         ),
+        if (widget.guideArrowOn) ...[
+          _GuideArrow(
+            iconData: Icons.keyboard_arrow_left,
+            position: _centerOfProfile - (65 * wu),
+            opacity: _guideArrowOpacity,
+          ),
+          _GuideArrow(
+            iconData: Icons.keyboard_arrow_right,
+            position: _centerOfProfile + (50 * wu),
+            opacity: _guideArrowOpacity,
+          ),
+        ],
         AnimatedPositioned(
           duration: Duration(milliseconds: _duration),
           curve: _curve,
@@ -165,6 +183,7 @@ class _InChatReviewState extends State<InChatReview> {
               /// 좋아요 또는 싫어요 위치에서 드래그 시작시 부연 설명 투명도 안보이게 하기
               _goodExplanationBoxOpacity = 0;
               _badExplanationBoxOpacity = 0;
+              _guideArrowOpacity = 0;
               setState(() {});
             },
             onHorizontalDragUpdate: (details) {
@@ -210,6 +229,7 @@ class _InChatReviewState extends State<InChatReview> {
               else {
                 _profilePosition = _centerOfProfile;
                 _boxOpacity = 1;
+                _guideArrowOpacity = 1;
               }
 
               /// 끝날땐 애니메이션 천천히 보여주기
@@ -304,4 +324,81 @@ Positioned _renderReviewExplanation(
       ),
     ),
   );
+}
+
+/// 좋아요 또는 싫어요 선택 유도 화살표
+class _GuideArrow extends StatefulWidget {
+  const _GuideArrow({
+    required this.iconData,
+    required this.position,
+    required this.opacity,
+  });
+
+  final IconData iconData;
+  final double position;
+  final double opacity;
+
+  @override
+  State<_GuideArrow> createState() => _GuideArrowState();
+}
+
+class _GuideArrowState extends State<_GuideArrow> {
+  final List<bool> _lightOn = <bool>[false, false, false];
+  int _lightIndex = 0;
+  late Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    /// 아이콘에 따른 불 켜지는 순서 변경
+    if (widget.iconData == Icons.keyboard_arrow_left) {
+      _lightIndex = 2;
+      _lightOn[2] = true;
+    } else {
+      _lightIndex = 0;
+      _lightOn[0] = true;
+    }
+
+    timer = Timer.periodic(
+      const Duration(milliseconds: 500),
+      (timer) {
+        if (widget.iconData == Icons.keyboard_arrow_left) {
+          _lightOn[_lightIndex] = false;
+          _lightIndex == 0 ? _lightIndex = 2 : _lightIndex--;
+          _lightOn[_lightIndex] = true;
+        } else {
+          _lightOn[_lightIndex] = false;
+          _lightIndex == 2 ? _lightIndex = 0 : _lightIndex++;
+          _lightOn[_lightIndex] = true;
+        }
+        setState(() {});
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: widget.position,
+      child: AnimatedOpacity(
+        opacity: widget.opacity,
+        duration: const Duration(milliseconds: 300),
+        child: Row(
+          children: _lightOn.map<Widget>((light) {
+            return Icon(
+              widget.iconData,
+              color: light ? mainBlueColor : mainGreyColor,
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
 }
