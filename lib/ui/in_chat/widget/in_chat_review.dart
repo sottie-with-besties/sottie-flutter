@@ -345,7 +345,7 @@ class _GuideArrow extends StatefulWidget {
 class _GuideArrowState extends State<_GuideArrow> {
   final List<bool> _lightOn = <bool>[false, false, false];
   int _lightIndex = 0;
-  late Timer timer;
+  late Timer _timer;
 
   @override
   void initState() {
@@ -360,7 +360,7 @@ class _GuideArrowState extends State<_GuideArrow> {
       _lightOn[0] = true;
     }
 
-    timer = Timer.periodic(
+    _timer = Timer.periodic(
       const Duration(milliseconds: 500),
       (timer) {
         if (widget.iconData == Icons.keyboard_arrow_left) {
@@ -379,7 +379,7 @@ class _GuideArrowState extends State<_GuideArrow> {
 
   @override
   void dispose() {
-    timer.cancel();
+    _timer.cancel();
     super.dispose();
   }
 
