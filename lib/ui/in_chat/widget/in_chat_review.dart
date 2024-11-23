@@ -20,20 +20,32 @@ class InChatReview extends StatefulWidget {
 }
 
 class _InChatReviewState extends State<InChatReview> {
+  /// 프로필 중앙 위치
   final _centerOfProfile = 135 * wu;
+
+  /// 프로필 좋아요 위치
   final _leftOfProfile = 20 * wu;
+
+  /// 프로필 싫어요 위치
   final _rightOfProfile = 250 * wu;
 
+  /// 업데이트 중일땐 애니메이션이 빠르게, 끝날땐 느리게 변함
+  /// onHorizontalDragUpdate => 10, Curves.linear
+  /// onHorizontalDragEnd => 250, Curves.easeInOut
   int _duration = 10;
   Curve _curve = Curves.linear;
 
+  /// 좋아요, 싫어요 박스 투명도 => 프로필이 중앙에서 멀어질수록 점점 어두워짐
   double _boxOpacity = 1;
 
+  /// 좋아요 또는 싫어요에 프로필을 옮겼을 때, 부연 설명 컨테이너의 투명도를 1로 바꾸어 나타나게함
   double _goodExplanationBoxOpacity = 0;
   double _badExplanationBoxOpacity = 0;
 
+  /// 프로필의 처음 위치 == _centerOfProfile
   double _profilePosition = 135 * wu;
 
+  /// 프로필의 위치에 따른 컨테이너 그라디언트
   List<Color> _renderGradient() {
     if (_profilePosition < _centerOfProfile) {
       return <Color>[
@@ -53,20 +65,29 @@ class _InChatReviewState extends State<InChatReview> {
     }
   }
 
+  /// 프로필의 위치에 따른 stop value
   List<double> _renderStops() {
+    /// 값 조정
     double stop = 1 / _profilePosition * 50 + 0.25;
 
+    /// 좋아요
     if (_profilePosition == _leftOfProfile) {
       return <double>[
         0,
         0.99,
       ];
-    } else if (_profilePosition == _rightOfProfile) {
+    }
+
+    /// 싫어요
+    else if (_profilePosition == _rightOfProfile) {
       return <double>[
         0.01,
         1,
       ];
-    } else if (_profilePosition < _centerOfProfile) {
+    }
+
+    /// 좋아요 < 중간
+    else if (_profilePosition < _centerOfProfile) {
       if (stop > 0.99) {
         stop = 0.99;
       }
@@ -74,15 +95,21 @@ class _InChatReviewState extends State<InChatReview> {
         0,
         stop,
       ];
-    } else if (_profilePosition > _centerOfProfile) {
+    }
+
+    /// 중간 < 싫어요
+    else if (_profilePosition > _centerOfProfile) {
       if (stop < 0.01) {
         stop = 0.01;
       }
       return <double>[
-        stop - 0.2,
+        stop - 0.2, // 값이 부족하여 -0.2 만큼 추가
         1,
       ];
-    } else {
+    }
+
+    /// 중간
+    else {
       return <double>[0, 1];
     }
   }
@@ -135,6 +162,7 @@ class _InChatReviewState extends State<InChatReview> {
               _curve = Curves.linear;
             },
             onHorizontalDragStart: (_) {
+              /// 좋아요 또는 싫어요 위치에서 드래그 시작시 부연 설명 투명도 안보이게 하기
               _goodExplanationBoxOpacity = 0;
               _badExplanationBoxOpacity = 0;
               setState(() {});
@@ -143,6 +171,7 @@ class _InChatReviewState extends State<InChatReview> {
               /// 움직인 변위 값에 따라 ui 업데이트
               final move = details.primaryDelta!;
 
+              /// 일정 변위 만큼 움직이면 더이상 움직일 수 없게 한 후 좋아요 또는 싫어요 선택
               if (move.isNegative) {
                 if (_profilePosition < wu * 45) {
                   return;
@@ -152,6 +181,8 @@ class _InChatReviewState extends State<InChatReview> {
                   return;
                 }
               }
+
+              /// 투명도 조정
               _boxOpacity =
                   1 - ((_centerOfProfile - _profilePosition).abs() / 100);
               _profilePosition += move;
@@ -161,18 +192,27 @@ class _InChatReviewState extends State<InChatReview> {
               /// 드래그 종료 위치에 따라 프로필 포지션 변경
               final endDx = details.globalPosition.dx;
 
+              /// 싫어요
               if (endDx > wu * 230) {
                 _profilePosition = _rightOfProfile;
                 _boxOpacity = 0;
                 _badExplanationBoxOpacity = 1;
-              } else if (endDx < wu * 60) {
+              }
+
+              /// 좋아요
+              else if (endDx < wu * 60) {
                 _profilePosition = _leftOfProfile;
                 _boxOpacity = 0;
                 _goodExplanationBoxOpacity = 1;
-              } else {
+              }
+
+              /// 보통
+              else {
                 _profilePosition = _centerOfProfile;
                 _boxOpacity = 1;
               }
+
+              /// 끝날땐 애니메이션 천천히 보여주기
               _duration = 250;
               _curve = Curves.easeInOut;
               setState(() {});
