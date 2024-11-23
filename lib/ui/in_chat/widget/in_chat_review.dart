@@ -1,9 +1,11 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
 class InChatReview extends StatefulWidget {
@@ -171,9 +173,6 @@ class _InChatReviewState extends State<InChatReview> {
           curve: _curve,
           left: _profilePosition,
           child: GestureDetector(
-            onTap: () {
-              log("친구 추가");
-            },
             onHorizontalDragDown: (_) {
               /// 다시 드래그 시작할 때
               _duration = 10;
@@ -237,14 +236,56 @@ class _InChatReviewState extends State<InChatReview> {
               _curve = Curves.easeInOut;
               setState(() {});
             },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Stack(
+              alignment: AlignmentDirectional.topEnd,
               children: [
-                UserProfile(
-                  profileUrl: widget.profileUrl,
-                  randomAvatarSize: 40,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    UserProfile(
+                      profileUrl: widget.profileUrl,
+                      randomAvatarSize: 40,
+                      profileAvatarSize: 15,
+                    ),
+                    Text(widget.nickName),
+                  ],
                 ),
-                Text(widget.nickName),
+                Transform.translate(
+                  offset: const Offset(5, -5),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: mainBlackColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: const EdgeInsets.all(5),
+                    child: const FaIcon(
+                      FontAwesomeIcons.userPlus,
+                      color: mainWhiteSilverColor,
+                      size: 10,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    showCustomDialog(
+                      context,
+                      Center(
+                        child: Text("${widget.nickName}에게 친구 신청 하시겠습니까?"),
+                      ),
+                      extraButton: ElevatedButton(
+                        onPressed: () {
+                          context.pop();
+                        },
+                        child: const Text("신청"),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 30 * wu,
+                    height: 30 * hu,
+                    color: Colors.transparent,
+                  ),
+                ),
               ],
             ),
           ),
