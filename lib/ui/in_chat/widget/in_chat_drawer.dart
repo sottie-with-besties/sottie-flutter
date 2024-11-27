@@ -148,7 +148,7 @@ Widget _inChatParticipant(
             stateMsg: '',
             profileUrl: profileUrl,
           ),
-          'heroTag': 'participation',
+          'heroTag': '',
           'isMyFriend': false, // Todo: 내 친구인지 확인하는 로직
         },
       );
@@ -157,12 +157,9 @@ Widget _inChatParticipant(
       padding: const EdgeInsets.only(left: 12, bottom: 12),
       child: Row(
         children: [
-          Hero(
-            tag: '$id/participation',
-            child: UserProfile(
-              profileUrl: id,
-              randomAvatarSize: 30,
-            ),
+          UserProfile(
+            profileUrl: id,
+            randomAvatarSize: 30,
           ),
           SizedBox(width: 10 * wu),
           Text(nickName, style: const TextStyle(fontWeight: FontWeight.bold)),

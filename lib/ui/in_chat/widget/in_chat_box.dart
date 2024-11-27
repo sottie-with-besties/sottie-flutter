@@ -159,7 +159,7 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
                             children: [
                               const Text(
                                 textAlign: TextAlign.center,
-                                '채팅이 종료되었습니다.\n채팅방이 채팅 리스트에서 자동으로 삭제됩니다.\n채팅방이 사라지기 전에 참여했던 인원들을 리뷰해보세요.',
+                                '채팅이 종료되었습니다.\n채팅방이 채팅 리스트에서 자동으로 삭제되기 전에 참여자들을 리뷰하면 매너온도가 1°C 상승합니다.',
                               ),
                               const SizedBox(height: 10),
                               ChatRoomDestroyingTimer(

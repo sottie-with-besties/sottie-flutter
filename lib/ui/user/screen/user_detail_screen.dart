@@ -77,6 +77,22 @@ class UserDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 36),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "매너 온도",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "56.2°C",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
