@@ -27,6 +27,8 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>google</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.477385401612-96k3j2fj8bfak27fbngelkq188qohcsh</string>
@@ -38,6 +40,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>app-1-477385401612-ios-7d8cce7ba99a12c0931529</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>kakao</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>kakao4f5a3c6a2a120255f06bc88a94d92d1f</string>
 			</array>
 		</dict>
 	</array>
