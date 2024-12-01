@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sottie_flutter/data/post/data_source/recommend_post_dummy.dart';
+import 'package:sottie_flutter/data/post/data_source/latest_post_dummy.dart';
 import 'package:sottie_flutter/data/post/data_source/search_post_dummy.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
 import 'package:sottie_flutter/domain/home/home_post_pagination.dart';
@@ -13,20 +13,16 @@ final class HomeSearchPost extends _$HomeSearchPost {
   PostPaginationModel build() {
     return PostPaginationModel(
       postModelList: [],
-      postPaginationState: PostPaginationState.loading,
+      postPaginationState: PostPaginationState.firstLoading,
     );
   }
 
   /// 검색 => 검색 조건에 부합하는 모집글 가져오기
   Future<void> searchPost() async {
     try {
-      state = PostPaginationModel(
-        postModelList: [],
-        postPaginationState: PostPaginationState.loading,
-      );
-
       /// 서버에 보낼 데이터
       final searchFilteringData = postSettingEntity.toJsonForSearchFiltering();
+
       final postModelList = await getSearchPostDummy(searchFilteringData);
 
       state = PostPaginationModel(
@@ -49,7 +45,7 @@ final class HomeSearchPost extends _$HomeSearchPost {
     );
 
     final newPostPaginationModel =
-        await homePostPagination(state, getRecommendPostDummy, "123");
+        await homePostPagination(state, getLatestPostDummy, "123");
 
     // Todo: Error 반환 시 예외 처리
 

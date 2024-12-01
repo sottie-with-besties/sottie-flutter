@@ -2,6 +2,7 @@ import 'package:sottie_flutter/data/post/model/post_model.dart';
 
 enum PostPaginationState {
   fetch,
+  firstLoading,
   loading,
   error,
 }
