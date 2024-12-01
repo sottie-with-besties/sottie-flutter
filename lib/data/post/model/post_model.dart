@@ -7,31 +7,49 @@ part 'post_model.g.dart';
 class PostModel with _$PostModel {
   factory PostModel({
     /// 포스트 ID
-    required String id,
-
-    /// 포스트를 터치했을 때 나오는 포스트 상세화면 ID
-    required String detailId,
+    required int id,
 
     /// 포스트의 카테고리
-    required String category,
+    required String gatheringCategory,
 
     /// 포스트 제목
     required String title,
 
     /// 모집 장소
-    required String location,
+    required int locationId,
 
     /// 모집 날짜
-    required String date,
+    required DateTime gatheringDate,
 
-    /// 성비 제한이 없을 경우 currentMemberCount, maxMemberCount
-    /// 성비 제한이 있을 경우 currentManCount, maxManCount, currentWomanCount, maxWomanCount
-    int? currentMemberCount,
-    int? maxMemberCount,
-    int? currentManCount,
-    int? maxManCount,
-    int? currentWomanCount,
-    int? maxWomanCount,
+    /// 포스트를 설명하는 구체적 내용
+    required String content,
+
+    /// 성비 제한이 없을 경우 currentPeopleNum, peopleNum
+    /// 성비 제한이 있을 경우 currentMaleNum, maleNum, currentFemaleNum, femaleNum
+    required int currentPeopleNum,
+    required int peopleNum,
+    required int currentMaleNum,
+    required int maleNum,
+    required int currentFemaleNum,
+    required int femaleNum,
+
+    /// 모집하는 나이대(10대, 20대, 30대...)
+    required List<int> ageRange,
+
+    /// 매너 온도 일정 기준 이상
+    required bool mannerTemperature,
+
+    /// 내 친구만 입장 가능 여부
+    required bool onlyMyFriends,
+
+    /// 성비 제한
+    required String genderRestriction,
+
+    /// 매너 제한
+    required bool mannerRestriction,
+
+    /// 나이 제한
+    required bool ageRestriction,
   }) = _PostModel;
 
   factory PostModel.fromJson(Map<String, dynamic> json) =>

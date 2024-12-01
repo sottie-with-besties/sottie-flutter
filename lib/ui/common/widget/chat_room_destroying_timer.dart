@@ -34,6 +34,11 @@ class _ChatRoomDestroyingTimerState extends State<ChatRoomDestroyingTimer> {
     timeLeftNow = Duration(seconds: seconds);
     setState(() {});
 
+    if (seconds <= 0) {
+      timeLeftNow = const Duration(seconds: 0);
+      return;
+    }
+
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         seconds -= 1;

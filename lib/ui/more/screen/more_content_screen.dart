@@ -27,6 +27,7 @@ class _MoreContentScreenState extends State<MoreContentScreen> {
               nickname: myInfoEntity.nickName,
               stateMsg: myInfoEntity.stateMessage,
               profileUrl: myInfoEntity.profileUrl,
+              mannerTemperature: 42.1,
             ),
             heroTag: 'me',
             isMyFriend: null,

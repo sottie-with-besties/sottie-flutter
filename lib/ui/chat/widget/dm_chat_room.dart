@@ -125,10 +125,8 @@ class _DmChatRoomState extends State<DmChatRoom> {
                   children: [
                     Text(
                       renderCustomStringTime(
-                        DateTime.parse(widget.model.latestTime)
-                            .toLocal()
-                            .toString(),
-                        DateTime.now().toLocal().toString(),
+                        widget.model.latestTime.toLocal(),
+                        DateTime.now().toLocal(),
                       ),
                       style: TextStyle(
                         color: Colors.black54,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
 import 'package:sottie_flutter/domain/chat/chat_room_provider.dart';
 import 'package:sottie_flutter/ui/chat/controller/chat_header_controller.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room.dart';
@@ -18,11 +19,11 @@ class ChatRoomScreen extends ConsumerWidget {
       data: (data) {
         final chatRoomList = data.where((data) {
           final dateString =
-              convertDateTimeIntoString(DateTime.parse(data.date).toLocal());
+              convertDateTimeIntoString(data.gatheringDate.toLocal());
           final searched = data.chatTitle.toString().contains(inputText) ||
               data.latestMsg.toString().contains(inputText) ||
               dateString.toString().contains(inputText) ||
-              data.location.toString().contains(inputText);
+              SottieLocation.values[data.locationId].name.contains(inputText);
 
           return searched;
         });

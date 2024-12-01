@@ -3,14 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/post/data_source/post_detail_dummy.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_model.dart';
+import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
-import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
-import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
 class PostDetailScreen extends StatelessWidget {
@@ -25,7 +22,7 @@ class PostDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date = DateTime.parse(postModel.date).toLocal();
+    final date = postModel.gatheringDate.toLocal();
 
     return Scaffold(
       body: Container(
@@ -75,75 +72,62 @@ class PostDetailScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10 * hu),
                     SottieCategoryUi(
-                      sottieCategory: postModel.category,
+                      sottieCategory: postModel.gatheringCategory,
                       color: mainWhiteSilverColor,
                     ),
                     SizedBox(height: 5 * hu),
                     CurrentNumOfMember(
-                      currentMemberCount: postModel.currentMemberCount,
-                      maxMemberCount: postModel.maxMemberCount,
-                      currentManCount: postModel.currentManCount,
-                      maxManCount: postModel.maxManCount,
-                      currentWomanCount: postModel.currentWomanCount,
-                      maxWomanCount: postModel.maxWomanCount,
-                      color: mainWhiteSilverColor,
+                      currentPeopleNum: postModel.currentPeopleNum,
+                      peopleNum: postModel.peopleNum,
+                      currentMaleNum: postModel.currentMaleNum,
+                      maleNum: postModel.maleNum,
+                      currentFemaleNum: postModel.currentFemaleNum,
+                      femaleNum: postModel.femaleNum,
+                      genderRestriction: postModel.genderRestriction,
                     ),
                     SizedBox(height: 10 * hu),
-                    CustomFutureBuilder(
-                      futureFunction: getPostDetailDummy,
-                      loadingWidget: const LoadingSkeleton(itemCount: 1),
-                      callBack: (futureData) {
-                        final postDetailModelData =
-                            futureData as PostDetailModel;
-
-                        return Column(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          postModel.content,
+                          style: TextStyle(
+                            fontSize: 11 * hu,
+                            color: mainWhiteSilverColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 20 * hu),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              postDetailModelData.content,
-                              style: TextStyle(
-                                fontSize: 11 * hu,
-                                color: mainWhiteSilverColor,
-                                fontWeight: FontWeight.bold,
+                              convertDateTimeIntoString(date),
+                              style: _conditionTextStyle,
+                            ),
+                            Text(
+                              SottieLocation.values[postModel.locationId].name,
+                              style: _conditionTextStyle,
+                            ),
+                            // Text(
+                            //   convertAgeRangeToString(
+                            //       postDetailModelData.ageRange),
+                            //   style: _conditionTextStyle,
+                            // ),
+                            if (postModel.mannerRestriction)
+                              Text(
+                                "36.5°C 이상",
+                                style: _conditionTextStyle,
                               ),
-                            ),
-                            SizedBox(height: 20 * hu),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  convertDateTimeIntoString(date),
-                                  style: _conditionTextStyle,
-                                ),
-                                Text(
-                                  postModel.location,
-                                  style: _conditionTextStyle,
-                                ),
-                                Text(
-                                  convertAgeRangeToString(
-                                      postDetailModelData.ageRange),
-                                  style: _conditionTextStyle,
-                                ),
-                                Text(
-                                  "${postDetailModelData.mannerPoint}도 이상",
-                                  style: _conditionTextStyle,
-                                ),
-                                if (postDetailModelData.startSameTime)
-                                  Text(
-                                    "동시 채팅 시작",
-                                    style: _conditionTextStyle,
-                                  ),
-                                if (postDetailModelData.onlyMyFriends)
-                                  Text(
-                                    "내 친구만",
-                                    style: _conditionTextStyle,
-                                  ),
-                              ],
-                            ),
+                            if (postModel.onlyMyFriends)
+                              Text(
+                                "내 친구만",
+                                style: _conditionTextStyle,
+                              ),
                           ],
-                        );
-                      },
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 15),
                     Column(

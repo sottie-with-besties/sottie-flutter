@@ -10,7 +10,7 @@ part 'in_chat_message_model.g.dart';
 @unfreezed
 class InChatMessageModel with _$InChatMessageModel {
   factory InChatMessageModel({
-    required String id,
+    required int id,
     required List<InChatMessageDataModel> inChatMessageData,
   }) = _InChatMessageModel;
 
@@ -21,13 +21,13 @@ class InChatMessageModel with _$InChatMessageModel {
 @unfreezed
 class InChatMessageDataModel with _$InChatMessageDataModel {
   factory InChatMessageDataModel({
-    required String id,
+    required int id,
 
     /// 메세지 보낸 유저 id -> 이걸로 나 또는 타인의 메세지 구별 가능
     required String userIdWhoSent,
 
-    /// 유저가 메세지를 전송한 시간(UTC)
-    required String sentTime,
+    /// 유저가 메세지를 전송한 시간
+    required DateTime sentTime,
 
     /// entity를 List로 받아서 맨 아래쪽 메세지에 시간 표시
     required List<InChatMessageDataEntityModel> entity,

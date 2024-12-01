@@ -30,14 +30,11 @@ class ChatRoom extends StatelessWidget {
 
     /// 채팅 모임 날짜 기준 24시간 경과 후 채팅방이 사라지기 시작함. 24시간 후 완전히 사라짐.
     /// 모임 날짜 + 24시간 까지 채팅 가능, 그 이후 24시간 채팅방 삭제 대기
-    final generatedDate = DateTime.parse(model.date);
-
-    /// utc로 변환해주지 않으면 한국 시간과 utc 시간으로 비교가 되어 정확한 시간 차이를 계산할 수 없다.
-    final now = DateTime.now().toUtc();
-    final du = now.difference(generatedDate);
+    final now = DateTime.now().toLocal();
+    final du = now.difference(model.gatheringDate);
 
     /// inDays == 1은 시간 차이가 24시간 이상 48시간 미만을 의미
-    if (du.inDays == 1) {
+    if (du.inDays >= 1) {
       isChattingOver = true;
       chatRoomDisappearingTime = du;
     }
@@ -107,14 +104,15 @@ class ChatRoom extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SottieCategoryUi(sottieCategory: model.category),
+                      SottieCategoryUi(sottieCategory: model.gatheringCategory),
                       CurrentNumOfMember(
-                        currentMemberCount: model.currentMemberCount,
-                        maxMemberCount: model.maxMemberCount,
-                        currentManCount: model.currentManCount,
-                        maxManCount: model.maxManCount,
-                        currentWomanCount: model.currentWomanCount,
-                        maxWomanCount: model.maxWomanCount,
+                        currentPeopleNum: model.currentPeopleNum,
+                        peopleNum: model.peopleNum,
+                        currentMaleNum: model.currentMaleNum,
+                        maleNum: model.maleNum,
+                        currentFemaleNum: model.currentFemaleNum,
+                        femaleNum: model.femaleNum,
+                        genderRestriction: model.genderRestriction,
                       ),
                     ],
                   ),
@@ -124,15 +122,15 @@ class ChatRoom extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ChatRoomProfiles(
-                      profileCount: model.profileThumbnails.length > 4
+                      profileCount: model.profileThumbnailsUrl.length > 4
                           ? 4
-                          : model.profileThumbnails.length,
+                          : model.profileThumbnailsUrl.length,
                       profileSize:
-                          model.profileThumbnails.length < 2 ? 45.0 : 30.0,
+                          model.profileThumbnailsUrl.length < 2 ? 45.0 : 30.0,
                     ),
                     ChatRoomInfo(
-                      date: model.date,
-                      location: model.location,
+                      gatheringDate: model.gatheringDate,
+                      locationId: model.locationId,
                       chatTitle: model.chatTitle,
                       latestMsg: model.latestMsg,
                       latestTime: model.latestTime,

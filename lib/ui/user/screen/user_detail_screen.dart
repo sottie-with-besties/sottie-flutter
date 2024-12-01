@@ -77,18 +77,18 @@ class UserDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 36),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 36),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "매너 온도",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "56.2°C",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  model.mannerTemperature.toString(),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),

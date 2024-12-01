@@ -47,16 +47,22 @@ class _PostPaginationListViewState
     extends ConsumerState<_PostPaginationListView> {
   final _paginationController = ScrollController();
 
+  bool _isLatestProvider() =>
+      widget.postProvider.runtimeType ==
+      NotifierProvider<HomeLatestPost, PostPaginationModel>;
+
+  bool _noMorePagination = false;
+
   /// 스크롤을 내려서 자동으로 페이지네이션
   void _cursorPagination() {
     if (_paginationController.offset >
-        _paginationController.position.maxScrollExtent - 200) {
+            _paginationController.position.maxScrollExtent - 200 &&
+        !_noMorePagination) {
       EasyThrottle.throttle(
         'postPagination',
         const Duration(seconds: 3),
         () {
-          if (widget.postProvider.runtimeType ==
-              NotifierProvider<HomeLatestPost, PostPaginationModel>) {
+          if (_isLatestProvider()) {
             final provider = widget.postProvider
                 as NotifierProvider<HomeLatestPost, PostPaginationModel>;
             ref.read(provider.notifier).latestPagination();
@@ -80,7 +86,7 @@ class _PostPaginationListViewState
       final provider = widget.postProvider
           as NotifierProvider<HomeLatestPost, PostPaginationModel>;
 
-      ref.read(provider.notifier).firstFetch();
+      ref.read(provider.notifier).latestPagination(firstFetch: true);
     }
 
     _paginationController.addListener(_cursorPagination);
@@ -107,27 +113,47 @@ class _PostPaginationListViewState
 
             if (paginationState == PostPaginationState.firstLoading) {
               return const LoadingSkeleton();
-            } else if (paginationState == PostPaginationState.loading ||
-                paginationState == PostPaginationState.fetch) {
+            } else if (paginationState == PostPaginationState.loading) {
               return const Center(
                   child: CircularProgressIndicator(color: mainBlackColor));
+            } else if (paginationState == PostPaginationState.fetch) {
+              return Container();
             } else {
-              /// 에러 발생 시
+              /// 데이터가 더 이상 없을 때
               if (postPaginationModel.errorCode == "데이터가 더 이상 존재하지 않습니다") {
+                _noMorePagination = true;
                 return const Center(
                   child: Text("데이터가 더 이상 존재하지 않습니다"),
                 );
               } else {
+                /// 그 외 다른 오류
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text("에러가 발생했습니다"),
+                    const Text("모집글을 불러오는 도중 에러가 발생했습니다"),
                     TextButton(
                       onPressed: () async {
-                        await ref
-                            .read(homeSearchPostProvider.notifier)
-                            .searchPagination();
+                        if (_isLatestProvider()) {
+                          final provider = widget.postProvider
+                              as NotifierProvider<HomeLatestPost,
+                                  PostPaginationModel>;
+                          ref.read(provider.notifier).latestPagination(
+                              firstFetch:
+                                  postPaginationModel.postModelList.isEmpty
+                                      ? true
+                                      : false);
+                        } else {
+                          final provider = widget.postProvider
+                              as NotifierProvider<HomeSearchPost,
+                                  PostPaginationModel>;
+                          ref.read(provider.notifier).searchPagination(
+                                firstFetch:
+                                    postPaginationModel.postModelList.isEmpty
+                                        ? true
+                                        : false,
+                              );
+                        }
                       },
                       child: const Text("다시 시도"),
                     ),

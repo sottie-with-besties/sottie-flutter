@@ -20,6 +20,7 @@ class FriendService {
           nickname: data['alias'],
           stateMsg: data['stateMsg'],
           profileUrl: null,
+          mannerTemperature: 36.1,
         ),
       );
     }).toList();

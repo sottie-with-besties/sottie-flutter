@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
-import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
@@ -31,18 +28,25 @@ class InChatDrawer extends StatelessWidget {
                     context.push(
                       "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatInfoPath}",
                       extra: {
-                        'postModel': PostModel(
-                          id: '123123',
-                          detailId: '123123',
-                          category: SottieCategory.amity.name,
-                          title: "안녕하세요",
-                          location: SottieLocation.sungnam.name,
-                          date: "2024년 9월 18일",
-                          currentManCount: 3,
-                          maxManCount: 6,
-                          currentWomanCount: 4,
-                          maxWomanCount: 7,
-                        )
+                        // 'postModel': PostModel(
+                        //   id: id,
+                        //   gatheringCategory: gatheringCategory,
+                        //   title: title,
+                        //   locationId: locationId,
+                        //   content: content,
+                        //   currentPeopleNum: currentPeopleNum,
+                        //   peopleNum: peopleNum,
+                        //   currentMaleNum: currentMaleNum,
+                        //   maleNum: maleNum,
+                        //   currentFemaleNum: currentFemaleNum,
+                        //   femaleNum: femaleNum,
+                        //   ageRange: ageRange,
+                        //   mannerTemperature: mannerTemperature,
+                        //   onlyMyFriends: onlyMyFriends,
+                        //   genderRestriction: genderRestriction,
+                        //   mannerRestriction: mannerRestriction,
+                        //   ageRestriction: ageRestriction,
+                        // ),
                       },
                     );
                   },
@@ -92,11 +96,11 @@ class InChatDrawer extends StatelessWidget {
                   null,
                   tapInto: false,
                 ),
-                _inChatParticipant(context, "1346123456234567", "김진표", null),
-                _inChatParticipant(context, "123423142413", "김진표", null),
-                _inChatParticipant(context, "568344568", "김진표", null),
-                _inChatParticipant(context, "1253412345", "김진표", null),
-                _inChatParticipant(context, "4567845678", "김진표", null),
+                _inChatParticipant(context, 13461234567, "김진표", null),
+                _inChatParticipant(context, 123423142413, "김진표", null),
+                _inChatParticipant(context, 568344568, "김진표", null),
+                _inChatParticipant(context, 1253412345, "김진표", null),
+                _inChatParticipant(context, 4567845678, "김진표", null),
               ],
             ),
           ),
@@ -136,7 +140,7 @@ Widget _subTitle(
 }
 
 Widget _inChatParticipant(
-    BuildContext context, String id, String nickName, String? profileUrl) {
+    BuildContext context, int id, String nickName, String? profileUrl) {
   return InkWell(
     onTap: () {
       context.push(
@@ -146,7 +150,8 @@ Widget _inChatParticipant(
             id: id,
             nickname: nickName,
             stateMsg: '',
-            profileUrl: profileUrl,
+            profileUrl: profileUrl ?? '123451234',
+            mannerTemperature: 39.2,
           ),
           'heroTag': '',
           'isMyFriend': false, // Todo: 내 친구인지 확인하는 로직
@@ -158,7 +163,7 @@ Widget _inChatParticipant(
       child: Row(
         children: [
           UserProfile(
-            profileUrl: id,
+            profileUrl: profileUrl ?? 'asdas123',
             randomAvatarSize: 30,
           ),
           SizedBox(width: 10 * wu),

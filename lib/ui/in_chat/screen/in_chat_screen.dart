@@ -55,7 +55,7 @@ class _InChatScreenState extends State<InChatScreen> {
           children: [
             InChatBox(
               isChattingOver: widget.isChattingOver,
-              date: widget.chatRoomModel?.date ?? '',
+              date: widget.chatRoomModel?.gatheringDate ?? DateTime(2000),
             ),
             if (!widget.isChattingOver) InChatTypeBox(focusNode: _focusNode),
             if (widget.isChattingOver)

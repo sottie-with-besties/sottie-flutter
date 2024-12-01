@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
@@ -20,7 +21,7 @@ class Post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date = DateTime.parse(model.date).toLocal();
+    final date = model.gatheringDate.toLocal();
 
     return GestureDetector(
       onTap: () => context.push(
@@ -43,7 +44,7 @@ class Post extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SottieCategoryUi(sottieCategory: model.category),
+            SottieCategoryUi(sottieCategory: model.gatheringCategory),
             SizedBox(height: 5 * hu),
             Text(
               model.title,
@@ -70,7 +71,7 @@ class Post extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  model.location,
+                  SottieLocation.values[model.locationId].name,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 10 * hu,
@@ -79,12 +80,13 @@ class Post extends StatelessWidget {
                   ),
                 ),
                 CurrentNumOfMember(
-                  currentMemberCount: model.currentMemberCount,
-                  maxMemberCount: model.maxMemberCount,
-                  currentManCount: model.currentManCount,
-                  maxManCount: model.maxManCount,
-                  currentWomanCount: model.currentWomanCount,
-                  maxWomanCount: model.maxWomanCount,
+                  currentPeopleNum: model.currentPeopleNum,
+                  peopleNum: model.peopleNum,
+                  currentMaleNum: model.currentMaleNum,
+                  maleNum: model.maleNum,
+                  currentFemaleNum: model.currentFemaleNum,
+                  femaleNum: model.femaleNum,
+                  genderRestriction: model.genderRestriction,
                 ),
               ],
             ),

@@ -66,7 +66,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         .read(homeStateProvider.notifier)
                         .changeHomeState(HomePostState.search);
                     context.pop();
-                    ref.read(homeSearchPostProvider.notifier).searchPost();
+                    ref
+                        .read(homeSearchPostProvider.notifier)
+                        .searchPagination(firstFetch: true);
                   },
                 ),
               ),
@@ -132,7 +134,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                             .read(homeStateProvider.notifier)
                             .changeHomeState(HomePostState.search);
                         context.pop();
-                        ref.read(homeSearchPostProvider.notifier).searchPost();
+                        ref
+                            .read(homeSearchPostProvider.notifier)
+                            .searchPagination(firstFetch: true);
                       },
                       child: const Text("검색"),
                     ),

@@ -1,9 +1,12 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/data/post/data_source/latest_post_dummy.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
-import 'package:sottie_flutter/domain/home/home_post_pagination.dart';
+import 'package:sottie_flutter/repository/home/home_post_retrofit.dart';
 
 part 'home_latest_post_provider.g.dart';
+
+final _repo = HomePostRetrofit(customDio);
 
 @Riverpod(keepAlive: true)
 final class HomeLatestPost extends _$HomeLatestPost {
@@ -15,29 +18,41 @@ final class HomeLatestPost extends _$HomeLatestPost {
     );
   }
 
-  Future<void> firstFetch() async {
-    final postList = await getLatestPostDummy("123213");
+  Future<void> latestPagination({bool firstFetch = false}) async {
+    try {
+      if (!firstFetch) {
+        state = PostPaginationModel(
+          postModelList: state.postModelList,
+          postPaginationState: PostPaginationState.loading,
+        );
+      }
 
-    state = PostPaginationModel(
-      postModelList: postList,
-      postPaginationState: PostPaginationState.fetch,
-    );
-  }
+      // final postList = await _repo.getLatestPostModelList(
+      //   lastPostId: firstFetch ? 0 : state.postModelList.last.id,
+      // );
 
-  Future<void> latestPagination() async {
-    state = PostPaginationModel(
-      postModelList: state.postModelList,
-      postPaginationState: PostPaginationState.loading,
-    );
+      final postList = await getLatestPostDummy("123");
 
-    final newPostPaginationModel =
-        await homePostPagination(state, getLatestPostDummy, "123");
-
-    // Todo: Error 반환 시 예외 처리
-
-    state = PostPaginationModel(postModelList: [
-      ...state.postModelList,
-      ...newPostPaginationModel.postModelList
-    ], postPaginationState: PostPaginationState.fetch, errorCode: "에러발생");
+      if (postList.isEmpty) {
+        state = PostPaginationModel(
+            postModelList: postList,
+            postPaginationState: PostPaginationState.error,
+            errorCode: '데이터가 더 이상 존재하지 않습니다');
+      } else {
+        state = PostPaginationModel(
+          postModelList: [
+            ...state.postModelList,
+            ...postList,
+          ],
+          postPaginationState: PostPaginationState.fetch,
+        );
+      }
+    } catch (_) {
+      state = PostPaginationModel(
+        postModelList: state.postModelList,
+        postPaginationState: PostPaginationState.error,
+        errorCode: '모집글을 불러오는 도중 에러가 발생했습니다.',
+      );
+    }
   }
 }

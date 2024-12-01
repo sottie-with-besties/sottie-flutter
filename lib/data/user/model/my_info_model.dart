@@ -7,7 +7,7 @@ part 'my_info_model.g.dart';
 class MyInfoModel with _$MyInfoModel {
   factory MyInfoModel({
     /// ID
-    @Default('45152341245') String id,
+    @Default(45152341245) int id,
 
     /// 실명
     @Default('김진표') String name,
@@ -42,7 +42,7 @@ class MyInfoModel with _$MyInfoModel {
     /// 프로필 Url
     String? profileUrl,
 
-    /// 프로필 Path => 긍정 캐시
+    /// 프로필 Path => 긍정적 캐시
     String? myProfilePath,
 
     /// 골드 -> 화폐 이름 임시 지정

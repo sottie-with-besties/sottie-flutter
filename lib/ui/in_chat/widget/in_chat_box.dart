@@ -16,7 +16,7 @@ class InChatBox extends StatelessWidget {
   });
 
   final bool isChattingOver;
-  final String date; // 모임 날짜
+  final DateTime date; // 모임 날짜
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class _ChatBox extends StatefulWidget {
 
   final InChatMessageModel model;
   final bool isChattingOver;
-  final String date; // 모임 날짜
+  final DateTime date; // 모임 날짜
 
   @override
   State<_ChatBox> createState() => _ChatBoxState();
@@ -137,14 +137,12 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
               if (index == widget.model.inChatMessageData.length) {
                 Duration? du;
 
-                if (widget.date != '') {
-                  final generatedDate = DateTime.parse(widget.date);
+                final gatheringDate = widget.date.toLocal();
 
-                  /// utc로 변환해주지 않으면 한국 시간과 utc 시간으로 비교가 되어 정확한 시간 차이를 계산할 수 없다.
-                  final now = DateTime.now().toUtc();
-                  du = now.difference(generatedDate);
-                }
+                final now = DateTime.now().toLocal();
+                du = now.difference(gatheringDate);
 
+                /// DM은 widget.isChattingOver가 무조건 falsed이다.
                 return widget.isChattingOver
                     ? Padding(
                         padding: const EdgeInsets.all(12.0),
@@ -159,11 +157,10 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
                             children: [
                               const Text(
                                 textAlign: TextAlign.center,
-                                '채팅이 종료되었습니다.\n채팅방이 채팅 리스트에서 자동으로 삭제되기 전에 참여자들을 리뷰하면 매너온도가 1°C 상승합니다.',
+                                '채팅이 종료되었습니다.\n시간이 경과하기 전에 참여자들을 리뷰하면 당신의 매너온도가 1°C 상승합니다.',
                               ),
                               const SizedBox(height: 10),
-                              ChatRoomDestroyingTimer(
-                                  timeLeft: du ?? const Duration(hours: 32)),
+                              ChatRoomDestroyingTimer(timeLeft: du),
                             ],
                           ),
                         ),
@@ -172,7 +169,7 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
               } else {
                 /// 날짜 구분 ui 코드
                 final sentTime = widget.model.inChatMessageData[index].sentTime;
-                final dateSentTime = DateTime.parse(sentTime).toLocal();
+                final dateSentTime = sentTime.toLocal();
 
                 final isAnotherDay = latestSentTime.day != dateSentTime.day;
                 latestSentTime = dateSentTime;
