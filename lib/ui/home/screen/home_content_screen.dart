@@ -47,6 +47,7 @@ class _PostPaginationListViewState
     extends ConsumerState<_PostPaginationListView> {
   final _paginationController = ScrollController();
 
+  /// 스크롤을 내려서 자동으로 페이지네이션
   void _cursorPagination() {
     if (_paginationController.offset >
         _paginationController.position.maxScrollExtent - 200) {
