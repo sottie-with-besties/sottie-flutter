@@ -35,8 +35,8 @@ class _TimeOptionState extends State<TimeOption> {
 
               selectedTime = tempTime;
 
-              postSettingEntity.date =
-                  (postSettingEntity.date ?? DateTime.now()).copyWith(
+              postSettingEntity.gatheringDate =
+                  (postSettingEntity.gatheringDate ?? DateTime.now()).copyWith(
                 hour: selectedTime.hour,
                 minute: selectedTime.minute,
               );

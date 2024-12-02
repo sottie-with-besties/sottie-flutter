@@ -29,11 +29,11 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
 
   /// 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
   void checkIfSettingHasError() {
-    if (postSettingEntity.date == null) {
+    if (postSettingEntity.gatheringDate == null) {
       checkList.add("날짜 및 시간을 선택해주세요.");
     }
 
-    if (postSettingEntity.category == SottieCategory.all) {
+    if (postSettingEntity.gatheringCategory == SottieCategory.all) {
       checkList.add("카테고리를 하나 선택해주세요.");
     }
   }

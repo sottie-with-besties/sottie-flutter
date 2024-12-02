@@ -43,7 +43,7 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
         children: SottieCategory.values
             .where((category) => category.index != 0)
             .map((category) {
-          final isSelected = category == postSettingEntity.category;
+          final isSelected = category == postSettingEntity.gatheringCategory;
 
           return ChoiceChip(
             label: Text(
@@ -54,9 +54,9 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
             ),
             selected: isSelected,
             onSelected: (_) {
-              postSettingEntity.category == category
-                  ? postSettingEntity.category = SottieCategory.all
-                  : postSettingEntity.category = category;
+              postSettingEntity.gatheringCategory == category
+                  ? postSettingEntity.gatheringCategory = SottieCategory.all
+                  : postSettingEntity.gatheringCategory = category;
               setState(() {});
             },
           );

@@ -15,21 +15,21 @@ class GenderOption extends ConsumerStatefulWidget {
 
 class _GenderClassState extends ConsumerState<GenderOption> {
   bool _sliderCondition(double val) =>
-      postSettingEntity.genderRatio &&
-      val.toInt() != postSettingEntity.numOfMember &&
+      postSettingEntity.genderRestriction != 'NONE' &&
+      val.toInt() != postSettingEntity.peopleNum &&
       val.toInt() != 0;
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(numOfMemberProvider, (_, numOfMember) {
+    ref.listen(numOfMemberProvider, (_, peopleNum) {
       /// 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
-      postSettingEntity.numOfMan = (numOfMember / 2).floorToDouble().toInt();
-      postSettingEntity.numOfWoman = numOfMember - postSettingEntity.numOfMan;
+      postSettingEntity.maleNum = (peopleNum / 2).floorToDouble().toInt();
+      postSettingEntity.femaleNum = peopleNum - postSettingEntity.maleNum;
       setState(() {});
     });
 
     double animatedContainerHeight =
-        postSettingEntity.genderRatio ? 80 * hu : 0;
+        postSettingEntity.genderRestriction != 'NONE' ? 80 * hu : 0;
 
     return Column(
       children: [
@@ -39,9 +39,9 @@ class _GenderClassState extends ConsumerState<GenderOption> {
             const OptionTitle(title: '성비 제한'),
             Switch(
               activeColor: mainBlueColor,
-              value: postSettingEntity.genderRatio,
+              value: postSettingEntity.genderRestriction != 'NONE',
               onChanged: (val) {
-                postSettingEntity.genderRatio = val;
+                postSettingEntity.genderRestriction = val ? 'MALE' : 'NONE';
                 setState(() {});
               },
             ),
@@ -56,17 +56,17 @@ class _GenderClassState extends ConsumerState<GenderOption> {
             child: Column(
               children: [
                 Slider(
-                    value: postSettingEntity.numOfMan.toDouble(),
-                    max: postSettingEntity.numOfMember.toDouble(),
-                    divisions: postSettingEntity.numOfMember,
+                    value: postSettingEntity.maleNum.toDouble(),
+                    max: postSettingEntity.peopleNum.toDouble(),
+                    divisions: postSettingEntity.peopleNum,
                     activeColor: mainBlueColor,
                     inactiveColor: mainRedColor,
                     thumbColor: mainBlackColor,
                     onChanged: (val) {
                       if (_sliderCondition(val)) {
-                        postSettingEntity.numOfMan = val.toInt();
-                        postSettingEntity.numOfWoman =
-                            (postSettingEntity.numOfMember - val).toInt();
+                        postSettingEntity.maleNum = val.toInt();
+                        postSettingEntity.femaleNum =
+                            (postSettingEntity.peopleNum - val).toInt();
                         setState(() {});
                       }
                     }),
@@ -78,7 +78,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                       Expanded(
                         child: SizedBox(
                           child: Text(
-                            "남자 ${postSettingEntity.numOfMan}",
+                            "남자 ${postSettingEntity.maleNum}",
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               color: Colors.blue,
@@ -87,42 +87,10 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                           ),
                         ),
                       ),
-                      // Row(
-                      //   children: [
-                      //     InkWell(
-                      //       onTap: () {
-                      //         if (postSettingEntity.numOfMan <
-                      //             postSettingEntity.numOfMember) {
-                      //           postSettingEntity.numOfMan += 1;
-                      //           setState(() {});
-                      //         }
-                      //       },
-                      //       child: const FaIcon(
-                      //         FontAwesomeIcons.plus,
-                      //         color: Colors.blueAccent,
-                      //       ),
-                      //     ),
-                      //     SizedBox(
-                      //       width: 60 * wu,
-                      //     ),
-                      //     InkWell(
-                      //       onTap: () {
-                      //         if (postSettingEntity.numOfMan > 0) {
-                      //           postSettingEntity.numOfMan -= 1;
-                      //           setState(() {});
-                      //         }
-                      //       },
-                      //       child: const FaIcon(
-                      //         FontAwesomeIcons.plus,
-                      //         color: mainRedColor,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
                       Expanded(
                         child: SizedBox(
                           child: Text(
-                            "${postSettingEntity.numOfMember - postSettingEntity.numOfMan} 여자",
+                            "${postSettingEntity.peopleNum - postSettingEntity.maleNum} 여자",
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.end,
                             style: const TextStyle(

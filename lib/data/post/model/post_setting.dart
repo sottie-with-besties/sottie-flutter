@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_age_range.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
 
 final class PostSetting {
   /// 포스트 제목
@@ -11,10 +10,10 @@ final class PostSetting {
   String content;
 
   /// 포스트 카테고리(번개, 친목, 게임 등)
-  SottieCategory category;
+  SottieCategory gatheringCategory;
 
   /// 시간도 포함, non-null 타입으로 안됨
-  DateTime? date;
+  DateTime? gatheringDate;
 
   /// 검색 스크린 전용, 검색할 날짜 범위
   DateTimeRange? dateTimeRange;
@@ -26,25 +25,28 @@ final class PostSetting {
   TimeOfDay? timeEnd;
 
   /// 지역
-  SottieLocation location;
+  int locationId;
 
   /// 참여자 수 2 ~ 10 명
-  int numOfMember;
+  int peopleNum;
 
-  /// 성비 제한 스위치
-  bool genderRatio;
+  /// 성비 제한 스위치 (NONE, MALE, FEMAIL)
+  String genderRestriction;
 
   /// 성비 제한이 있을 경우의 남자 수
-  int numOfMan;
+  int maleNum;
 
   /// 성비 제한이 있을 경우의 여자 수
-  int numOfWoman;
+  int femaleNum;
 
   /// 나이 범위(10대, 20대, 30대 등)
   List<SottieAgeRange> ageRange;
 
+  /// 나이 제한 여부
+  bool ageRestriction;
+
   /// 사용자의 매너 온도 제한
-  double mannerPoint;
+  bool mannerRestriction;
 
   /// 내 친구만 포스트 참여 가능
   bool onlyMyFriends;
@@ -52,18 +54,19 @@ final class PostSetting {
   PostSetting({
     this.title = '',
     this.content = '',
-    this.category = SottieCategory.all,
-    this.date, // date와 time은 null로 못받게 프론트에서 예외 처리
+    this.gatheringCategory = SottieCategory.all,
+    this.gatheringDate, // date와 time은 null로 못받게 프론트에서 예외 처리
     this.dateTimeRange,
     this.timeStart,
     this.timeEnd,
-    this.location = SottieLocation.all,
-    this.numOfMember = 2,
-    this.genderRatio = false,
-    this.numOfMan = 1,
-    this.numOfWoman = 1,
+    this.locationId = 0,
+    this.peopleNum = 2,
+    this.genderRestriction = 'NONE',
+    this.maleNum = 1,
+    this.femaleNum = 1,
     this.ageRange = const [],
-    this.mannerPoint = 36.5, // 0 => 매너 온도 상관 없음
+    this.ageRestriction = false,
+    this.mannerRestriction = false,
     this.onlyMyFriends = false,
   });
 
@@ -71,15 +74,16 @@ final class PostSetting {
     final makePostData = {
       'title': title,
       'content': content,
-      'category': category.name, // Enum 데이터
-      'date': date?.toUtc().toString() ?? '',
-      'location': location.toString(), // Enum 데이터
-      'numOfMember': numOfMember,
-      'genderRatio': genderRatio,
-      'numOfMan': numOfMan,
-      'numOfWoman': numOfWoman,
-      'ageRange': convertAgeRangeToStringList(), // Enum 데이터
-      'manner': mannerPoint,
+      'gatheringCategory': gatheringCategory.name, // Enum 데이터
+      'gatheringDate': gatheringDate?.toLocal().toString() ?? '',
+      'locationId': locationId,
+      'peopleNum': peopleNum,
+      'genderRestriction': genderRestriction,
+      'maleNum': maleNum,
+      'femaleNum': femaleNum,
+      'ageRange': convertAgeRangeToStringList(),
+      'ageRestriction': ageRestriction,
+      'mannerRestriction': mannerRestriction,
       'onlyMyFriends': onlyMyFriends,
     };
 
@@ -90,18 +94,19 @@ final class PostSetting {
     final searchFilteringData = {
       'title': title,
       'content': content,
-      'category': category.name, // Enum 데이터
-      'dateStart': dateTimeRange?.start.toUtc().toString() ?? '',
-      'dateEnd': dateTimeRange?.end.toUtc().toString() ?? '',
+      'gatheringCategory': gatheringCategory.name, // Enum 데이터
+      'dateStart': dateTimeRange?.start.toLocal().toString() ?? '',
+      'dateEnd': dateTimeRange?.end.toLocal().toString() ?? '',
       'timeStart': timeStart ?? '',
       'timeEnd': timeEnd ?? '',
-      'location': location.toString(), // Enum 데이터
-      'numOfMember': numOfMember,
-      'genderRatio': genderRatio,
-      'numOfMan': numOfMan,
-      'numOfWoman': numOfWoman,
+      'locationId': locationId, // Enum 데이터
+      'peopleNum': peopleNum,
+      'genderRestriction': genderRestriction,
+      'maleNum': maleNum,
+      'femaleNum': femaleNum,
       'ageRange': convertAgeRangeToStringList(), // Enum 데이터
-      'manner': mannerPoint,
+      'ageRestriction': ageRestriction,
+      'mannerRestriction': mannerRestriction,
       'onlyMyFriends': onlyMyFriends,
     };
 

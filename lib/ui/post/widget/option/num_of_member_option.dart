@@ -29,17 +29,17 @@ class _NumOfMemberSelector extends ConsumerWidget {
     final entries = List.generate(9, (index) => index + 2);
 
     return DropdownMenu(
-      initialSelection: postSettingEntity.numOfMember,
+      initialSelection: postSettingEntity.peopleNum,
       menuHeight: 200,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       dropdownMenuEntries: entries
           .map((val) => DropdownMenuEntry(value: val, label: val.toString()))
           .toList(),
       onSelected: (val) {
-        postSettingEntity.numOfMember = val!;
+        postSettingEntity.peopleNum = val!;
         ref
             .read(numOfMemberProvider.notifier)
-            .changeNumOfMember(postSettingEntity.numOfMember);
+            .changeNumOfMember(postSettingEntity.peopleNum);
       },
     );
   }

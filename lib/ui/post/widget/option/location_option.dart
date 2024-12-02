@@ -22,11 +22,13 @@ class LocationOption extends StatelessWidget {
         ],
         Expanded(
           child: DropdownMenu(
-              initialSelection: postSettingEntity.location,
+              initialSelection: postSettingEntity.locationId,
               expandedInsets: const EdgeInsets.all(0),
-              onSelected: (location) => postSettingEntity.location = location!,
+              onSelected: (location) =>
+                  postSettingEntity.locationId = location!,
               dropdownMenuEntries: SottieLocation.values.map((location) {
-                return DropdownMenuEntry(value: location, label: location.name);
+                return DropdownMenuEntry(
+                    value: location.index, label: location.name);
               }).toList()),
         ),
       ],

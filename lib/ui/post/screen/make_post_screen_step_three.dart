@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
@@ -40,24 +41,20 @@ class MakePostScreenStepThree extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("카테고리: ${postSettingEntity.category.name}"),
+                  Text("카테고리: ${postSettingEntity.gatheringCategory.name}"),
                   Text(
-                      "날짜: ${postSettingEntity.date == null ? "날짜 정보 없음" : convertDateTimeIntoString(postSettingEntity.date!.toLocal())}"),
-                  Text("장소: ${postSettingEntity.location.name}"),
+                      "날짜: ${postSettingEntity.gatheringDate == null ? "날짜 정보 없음" : convertDateTimeIntoString(postSettingEntity.gatheringDate!.toLocal())}"),
+                  Text(
+                      "장소: ${SottieLocation.values[postSettingEntity.locationId].name}"),
                   Text(
                       "나이: ${convertAgeRangeToString(postSettingEntity.convertAgeRangeToStringList())}"),
                   Text(
-                      "참여 인원: ${postSettingEntity.numOfMember == 0 ? "제한 없음" : postSettingEntity.numOfMember}"),
-                  if (postSettingEntity.genderRatio)
+                      "참여 인원: ${postSettingEntity.peopleNum == 0 ? "제한 없음" : postSettingEntity.peopleNum}"),
+                  if (postSettingEntity.genderRestriction != 'NONE')
                     Text(
-                        "남자: ${postSettingEntity.numOfMan}명 / 여자: ${postSettingEntity.numOfWoman}명"),
-                  if (postSettingEntity.mannerPoint == 0.0)
-                    const Text("매너온도: 제한 없음"),
-                  if (postSettingEntity.mannerPoint == 100.0)
-                    const Text("매너온도: 완벽한 사람만"),
-                  if (postSettingEntity.mannerPoint != 0.0 &&
-                      postSettingEntity.mannerPoint != 100.0)
-                    Text("매너온도: ${postSettingEntity.mannerPoint}도 이상"),
+                        "남자: ${postSettingEntity.maleNum}명 / 여자: ${postSettingEntity.femaleNum}명"),
+                  if (postSettingEntity.mannerRestriction)
+                    const Text("매너온도: 36.5°C 이상"),
                   if (postSettingEntity.onlyMyFriends)
                     const Text("내 친구만 입장: 작성자의 친구만 입장할 수 있습니다."),
                 ],

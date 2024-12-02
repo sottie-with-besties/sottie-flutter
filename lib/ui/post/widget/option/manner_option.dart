@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
 class MannerOption extends StatefulWidget {
@@ -11,66 +11,27 @@ class MannerOption extends StatefulWidget {
 }
 
 class _MannerOptionState extends State<MannerOption> {
-  int sliderValue = 2;
-  List<double> mannerPoint = <double>[0, 18.5, 36.5, 52.5, 70.5, 88.5, 100];
-
-  String _renderMannerPointText() {
-    if (sliderValue == 0) {
-      return "제한 없음";
-    } else if (sliderValue == 6) {
-      return "완벽한 사람만";
-    } else {
-      return "${mannerPoint[sliderValue]} 이상";
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    // 검색 스크린에서 필터링 시 데이터 유지
-    sliderValue = mannerPoint
-        .indexWhere((manner) => manner == postSettingEntity.mannerPoint);
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const OptionTitle(title: "매너 온도"),
-            const SizedBox(width: 15),
-            Expanded(
-              child: Slider(
-                max: 6,
-                divisions: 6,
-                value: sliderValue.toDouble(),
-                onChanged: (val) {
-                  sliderValue = val.toInt();
-                  postSettingEntity.mannerPoint = mannerPoint[sliderValue];
-                  setState(() {});
-                },
-              ),
+            const OptionTitle(title: "매너 온도 제한"),
+            Switch(
+              activeColor: mainBlueColor,
+              value: postSettingEntity.mannerRestriction,
+              onChanged: (val) {
+                postSettingEntity.mannerRestriction = val;
+                setState(() {});
+              },
             ),
           ],
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              _renderMannerPointText(),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-              ),
-            ),
-            SizedBox(width: 12 * wu),
-          ],
-        ),
+        const SizedBox(height: 10),
+        const Text("매너 온도 36.5°C 이상의 유저만 채팅방에 입장할 수 있습니다."),
       ],
     );
   }

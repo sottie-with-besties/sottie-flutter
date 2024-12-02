@@ -41,7 +41,7 @@ class _DateOptionState extends State<DateOption> {
               dateString =
                   "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${convertIntToWeekday(selectedDate.weekday)}";
 
-              postSettingEntity.date = selectedDate.copyWith();
+              postSettingEntity.gatheringDate = selectedDate.copyWith();
 
               setState(() {});
             },
