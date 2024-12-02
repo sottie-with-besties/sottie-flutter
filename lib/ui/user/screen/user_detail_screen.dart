@@ -27,15 +27,14 @@ class UserDetailScreen extends StatelessWidget {
       body: Column(
         children: [
           // 계속 디테일 스크린으로 들어가는 것을 방지
-          IgnorePointer(
-            child: Padding(
-              padding:
-                  EdgeInsets.symmetric(vertical: 5 * hu, horizontal: 16 * wu),
-              child: SottieUser(
-                model: model,
-                isMyFriend: isMyFriend,
-                heroTag: heroTag,
-              ),
+          Padding(
+            padding:
+                EdgeInsets.symmetric(vertical: 5 * hu, horizontal: 16 * wu),
+            child: SottieUser(
+              model: model,
+              isMyFriend: isMyFriend,
+              heroTag: heroTag,
+              goToDetailPath: false,
             ),
           ),
           SizedBox(height: 10 * hu),

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sottie_flutter/data/user/model/user_model.dart';
 
 part 'dm_model.freezed.dart';
 part 'dm_model.g.dart';
@@ -8,8 +9,8 @@ class DmModel with _$DmModel {
   factory DmModel({
     required int id,
 
-    /// DM을 주고받는 상대방의 닉네임
-    required String nickName,
+    /// DM을 주고받는 상대방의 정보
+    required UserModel userModel,
 
     /// 최근 받은 DM 내용
     required String latestMsg,
