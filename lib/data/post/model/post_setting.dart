@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_age_range.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
 
 final class PostSetting {
@@ -39,8 +38,11 @@ final class PostSetting {
   /// 성비 제한이 있을 경우의 여자 수
   int femaleNum;
 
-  /// 나이 범위(10대, 20대, 30대 등)
-  List<int> ageRange;
+  /// 최소 나이
+  int ageFrom;
+
+  /// 최대 나이
+  int ageTo;
 
   /// 나이 제한 여부
   bool ageRestriction;
@@ -64,7 +66,8 @@ final class PostSetting {
     this.genderRestriction = 'NONE',
     this.maleNum = 1,
     this.femaleNum = 1,
-    this.ageRange = const [0],
+    this.ageFrom = 1,
+    this.ageTo = 1,
     this.ageRestriction = false,
     this.mannerRestriction = false,
     this.onlyMyFriends = false,
@@ -81,7 +84,8 @@ final class PostSetting {
       'genderRestriction': genderRestriction,
       'maleNum': maleNum,
       'femaleNum': femaleNum,
-      'ageRange': convertAgeRangeToStringList(),
+      'ageTo': ageTo,
+      'ageFrom': ageFrom,
       'ageRestriction': ageRestriction,
       'mannerRestriction': mannerRestriction,
       'onlyMyFriends': onlyMyFriends,
@@ -104,20 +108,13 @@ final class PostSetting {
       'genderRestriction': genderRestriction,
       'maleNum': maleNum,
       'femaleNum': femaleNum,
-      'ageRange': convertAgeRangeToStringList(), // Enum 데이터
+      'ageTo': ageTo,
+      'ageFrom': ageFrom,
       'ageRestriction': ageRestriction,
       'mannerRestriction': mannerRestriction,
       'onlyMyFriends': onlyMyFriends,
     };
 
     return searchFilteringData;
-  }
-
-  List<String> convertAgeRangeToStringList() {
-    List<String> result = <String>[];
-    for (int i in ageRange) {
-      result.add(SottieAgeRange.values[i].name);
-    }
-    return result;
   }
 }
