@@ -36,6 +36,10 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
     if (postSettingEntity.gatheringCategory == SottieCategory.all) {
       checkList.add("카테고리를 하나 선택해주세요.");
     }
+
+    if (postSettingEntity.peopleNum == 0) {
+      checkList.add("인원 수를 설정해주세요");
+    }
   }
 
   @override

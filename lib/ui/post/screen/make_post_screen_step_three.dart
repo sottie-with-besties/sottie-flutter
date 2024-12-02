@@ -54,7 +54,7 @@ class MakePostScreenStepThree extends StatelessWidget {
                     Text(
                         "남자: ${postSettingEntity.maleNum}명 / 여자: ${postSettingEntity.femaleNum}명"),
                   if (postSettingEntity.mannerRestriction)
-                    const Text("매너온도: 36.5°C 이상"),
+                    const Text("매너 온도 제한: 매너온도가 36.5°C 이상인 유저만 입장할 수 있습니다."),
                   if (postSettingEntity.onlyMyFriends)
                     const Text("내 친구만 입장: 작성자의 친구만 입장할 수 있습니다."),
                 ],

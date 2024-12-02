@@ -26,14 +26,15 @@ class _NumOfMemberSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final entries = List.generate(9, (index) => index + 2);
+    final entries = <int>[0, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     return DropdownMenu(
       initialSelection: postSettingEntity.peopleNum,
       menuHeight: 200,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       dropdownMenuEntries: entries
-          .map((val) => DropdownMenuEntry(value: val, label: val.toString()))
+          .map((val) => DropdownMenuEntry(
+              value: val, label: val == 0 ? '설정' : val.toString()))
           .toList(),
       onSelected: (val) {
         postSettingEntity.peopleNum = val!;

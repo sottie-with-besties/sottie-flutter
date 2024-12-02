@@ -68,7 +68,7 @@ String convertGenderToString(String gender) => gender == 'MALE' ? '남성' : '�
 String convertAgeRangeToString(List<String> ageRange) {
   String ageRangeString = '';
 
-  if (ageRange.isEmpty) {
+  if (ageRange.contains('나이 제한 없음')) {
     ageRangeString = ' 나이 제한 없음';
   }
 

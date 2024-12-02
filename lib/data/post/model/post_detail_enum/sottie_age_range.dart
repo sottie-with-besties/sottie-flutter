@@ -1,4 +1,5 @@
 enum SottieAgeRange {
+  all('나이 제한 없음'),
   teens('10대'),
   twenties('20대'),
   thirties('30대'),

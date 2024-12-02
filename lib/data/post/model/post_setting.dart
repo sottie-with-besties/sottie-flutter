@@ -40,7 +40,7 @@ final class PostSetting {
   int femaleNum;
 
   /// 나이 범위(10대, 20대, 30대 등)
-  List<SottieAgeRange> ageRange;
+  List<int> ageRange;
 
   /// 나이 제한 여부
   bool ageRestriction;
@@ -60,11 +60,11 @@ final class PostSetting {
     this.timeStart,
     this.timeEnd,
     this.locationId = 0,
-    this.peopleNum = 2,
+    this.peopleNum = 0,
     this.genderRestriction = 'NONE',
     this.maleNum = 1,
     this.femaleNum = 1,
-    this.ageRange = const [],
+    this.ageRange = const [0],
     this.ageRestriction = false,
     this.mannerRestriction = false,
     this.onlyMyFriends = false,
@@ -115,8 +115,8 @@ final class PostSetting {
 
   List<String> convertAgeRangeToStringList() {
     List<String> result = <String>[];
-    for (SottieAgeRange i in ageRange) {
-      result.add(i.name);
+    for (int i in ageRange) {
+      result.add(SottieAgeRange.values[i].name);
     }
     return result;
   }

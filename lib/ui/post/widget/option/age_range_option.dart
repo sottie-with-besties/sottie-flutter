@@ -31,15 +31,15 @@ class _AgeRangeState extends State<_AgeRange> {
     (index) => false,
   );
 
-  List<SottieAgeRange> tempList = [];
+  List<int> tempList = [];
 
   @override
   void initState() {
     super.initState();
 
-    // 검색 스크린에서 필터링 시 데이터 유지
-    for (SottieAgeRange i in postSettingEntity.ageRange) {
-      selectedList[i.index] = true;
+    /// 검색 스크린에서 필터링 시 데이터 유지
+    for (int i in postSettingEntity.ageRange) {
+      selectedList[i] = true;
     }
     setState(() {});
   }
@@ -54,9 +54,32 @@ class _AgeRangeState extends State<_AgeRange> {
             label: Text(age.name),
             selected: selectedList[age.index],
             onSelected: (onSelected) {
-              selectedList[age.index] = onSelected;
-              onSelected ? tempList.add(age) : tempList.remove(age);
-              postSettingEntity.ageRange = tempList;
+              if (age.index == 0) {
+                selectedList[0] = true;
+                for (int i = 1; i < selectedList.length; i++) {
+                  selectedList[i] = false;
+                }
+                tempList = <int>[0];
+                postSettingEntity.ageRange = tempList;
+              } else {
+                if (postSettingEntity.ageRange[0] == 0) {
+                  tempList = <int>[];
+                }
+                selectedList[0] = false;
+                selectedList[age.index] = onSelected;
+                if (onSelected) {
+                  tempList.add(age.index);
+                } else {
+                  tempList.remove(age.index);
+
+                  if (tempList.isEmpty) {
+                    tempList = <int>[0];
+                    selectedList[0] = true;
+                  }
+                }
+                postSettingEntity.ageRange = tempList;
+              }
+
               setState(() {});
             },
           );
