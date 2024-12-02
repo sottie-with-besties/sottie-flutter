@@ -63,10 +63,10 @@ class _GenderClassState extends ConsumerState<GenderOption> {
           curve: Curves.easeOutCubic,
           height: animatedContainerHeight,
           padding: EdgeInsets.only(top: 12 * hu),
-          child: SingleChildScrollView(
-            child: _notSelected
-                ? Container()
-                : Column(
+          child: _notSelected
+              ? Container()
+              : SingleChildScrollView(
+                  child: Column(
                     children: [
                       Slider(
                           value: postSettingEntity.maleNum.toDouble(),
@@ -127,7 +127,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                       )
                     ],
                   ),
-          ),
+                ),
         ),
       ],
     );
