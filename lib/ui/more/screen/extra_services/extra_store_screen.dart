@@ -22,49 +22,41 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _myGold,
-              const SizedBox(height: 30),
-              const Text(
-                "골드 구매",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-              const SizedBox(height: 15),
-              _goldPurchase(1000, 1400),
-              _goldPurchase(3000, 5000),
-              _goldPurchase(5000, 7000),
-              _goldPurchase(10000, 12000),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Todo: 광고 나오게 하기
-                          log("광고 출력");
-                        },
-                        child: const Text("광고 시청하고 10골드 받기"),
-                      ),
-                    ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _myGold,
+                const SizedBox(height: 30),
+                const Text(
+                  " 골드 구매",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
                   ),
-                ],
-              ),
-              const SizedBox(height: 50),
-              _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
-              _termsAndConditions("법정대리인의 동의 없는 미성년자의 결제는 취소될 수 있습니다."),
-              _termsAndConditions("위 표기된 금액은 부가가치세(10%)가 포함된 금액입니다."),
-              _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
-              _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
-            ],
-          ),
+                ),
+                const SizedBox(height: 15),
+                _goldPurchase(1000, 1400),
+                _goldPurchase(3000, 5000),
+                _goldPurchase(5000, 7000),
+                _goldPurchase(10000, 12000),
+                _goldPurchase(50000, 35000),
+                _goldPurchase(100000, 67000),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
+                _termsAndConditions("법정대리인의 동의 없는 미성년자의 결제는 취소될 수 있습니다."),
+                _termsAndConditions("위 표기된 금액은 부가가치세(10%)가 포함된 금액입니다."),
+                _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
+                _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
+              ],
+            )
+          ],
         ),
       ),
     );

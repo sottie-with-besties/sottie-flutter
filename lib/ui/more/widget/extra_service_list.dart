@@ -27,7 +27,7 @@ class ExtraServiceList extends StatelessWidget {
             },
           ),
           _extraService(
-            '골드 충전',
+            '골드 충전소',
             () {
               context
                   .push("${CustomRouter.morePath}/${CustomRouter.storePath}");
