@@ -38,10 +38,10 @@ final class PostSetting {
   /// 성비 제한이 있을 경우의 여자 수
   int femaleNum;
 
-  /// 최소 나이
+  /// 최소 나이대
   int ageFrom;
 
-  /// 최대 나이
+  /// 최대 나이대
   int ageTo;
 
   /// 나이 제한 여부

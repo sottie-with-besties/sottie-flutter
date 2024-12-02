@@ -65,44 +65,12 @@ String convertDateTimeIntoString(DateTime datetime) {
 /// 남성: MALE, 여성: FEMALE
 String convertGenderToString(String gender) => gender == 'MALE' ? '남성' : '여성';
 
-String convertAgeRangeToString(List<String> ageRange) {
+String convertAgeRangeToString(int ageFrom, int ageTo) {
   String ageRangeString = '';
 
-  if (ageRange.contains('나이 제한 없음')) {
-    ageRangeString = ' 나이 제한 없음';
+  for (int i = ageFrom; i <= ageTo; i++) {
+    ageRangeString = '$ageRangeString, ${i}0대';
   }
 
-  if (ageRange.contains('10대')) {
-    ageRangeString = ' 10대';
-  }
-
-  if (ageRange.contains('20대')) {
-    ageRangeString = '$ageRangeString, 20대';
-  }
-
-  if (ageRange.contains('30대')) {
-    ageRangeString = '$ageRangeString, 30대';
-  }
-
-  if (ageRange.contains('40대')) {
-    ageRangeString = '$ageRangeString, 40대';
-  }
-
-  if (ageRange.contains('50대')) {
-    ageRangeString = '$ageRangeString, 50대';
-  }
-
-  if (ageRange.contains('60대')) {
-    ageRangeString = '$ageRangeString, 60대';
-  }
-
-  if (ageRange.contains('70대')) {
-    ageRangeString = '$ageRangeString, 70대';
-  }
-
-  if (ageRange.contains('80대 이상')) {
-    ageRangeString = '$ageRangeString, 80대 이상';
-  }
-
-  return ageRangeString.substring(1);
+  return ageRangeString.substring(2);
 }

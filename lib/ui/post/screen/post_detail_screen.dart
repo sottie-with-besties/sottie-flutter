@@ -110,11 +110,16 @@ class PostDetailScreen extends StatelessWidget {
                               SottieLocation.values[postModel.locationId].name,
                               style: _conditionTextStyle,
                             ),
-                            // Text(
-                            //   convertAgeRangeToString(
-                            //       postDetailModelData.ageRange),
-                            //   style: _conditionTextStyle,
-                            // ),
+                            postModel.ageRestriction
+                                ? Text(
+                                    convertAgeRangeToString(
+                                        postModel.ageFrom, postModel.ageTo),
+                                    style: _conditionTextStyle,
+                                  )
+                                : Text(
+                                    "나이 제한 없음",
+                                    style: _conditionTextStyle,
+                                  ),
                             if (postModel.mannerRestriction)
                               Text(
                                 "36.5°C 이상",

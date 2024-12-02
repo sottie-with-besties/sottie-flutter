@@ -46,8 +46,10 @@ class MakePostScreenStepThree extends StatelessWidget {
                       "날짜: ${postSettingEntity.gatheringDate == null ? "날짜 정보 없음" : convertDateTimeIntoString(postSettingEntity.gatheringDate!.toLocal())}"),
                   Text(
                       "장소: ${SottieLocation.values[postSettingEntity.locationId].name}"),
-                  // Text(
-                  //     "나이: ${convertAgeRangeToString(postSettingEntity.convertAgeRangeToStringList())}"),
+                  postSettingEntity.ageRestriction
+                      ? Text(
+                          "나이: ${convertAgeRangeToString(postSettingEntity.ageFrom, postSettingEntity.ageTo)}")
+                      : const Text("나이 제한 없음"),
                   Text(
                       "참여 인원: ${postSettingEntity.peopleNum == 0 ? "제한 없음" : postSettingEntity.peopleNum}"),
                   if (postSettingEntity.genderRestriction != 'NONE')

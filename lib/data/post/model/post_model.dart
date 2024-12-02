@@ -33,8 +33,11 @@ class PostModel with _$PostModel {
     required int currentFemaleNum,
     required int femaleNum,
 
-    /// 모집하는 나이대(10대, 20대, 30대...)
-    required List<int> ageRange,
+    /// 최소 나이대
+    required int ageFrom,
+
+    /// 최대 나이대
+    required int ageTo,
 
     /// 내 친구만 입장 가능 여부
     required bool onlyMyFriends,
