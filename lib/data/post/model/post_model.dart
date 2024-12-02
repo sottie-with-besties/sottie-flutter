@@ -36,16 +36,13 @@ class PostModel with _$PostModel {
     /// 모집하는 나이대(10대, 20대, 30대...)
     required List<int> ageRange,
 
-    /// 매너 온도 일정 기준 이상
-    required bool mannerTemperature,
-
     /// 내 친구만 입장 가능 여부
     required bool onlyMyFriends,
 
     /// 성비 제한
     required String genderRestriction,
 
-    /// 매너 제한
+    /// 매너 온도 일정 기준 이상
     required bool mannerRestriction,
 
     /// 나이 제한
