@@ -92,7 +92,7 @@ class PostDetailScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          postModel.content,
+                          postModel.contents,
                           style: TextStyle(
                             fontSize: 11 * hu,
                             color: mainWhiteSilverColor,

@@ -48,6 +48,8 @@ Widget _categoryClassify(String category, Color color) {
 
   if (category == '기타') {
     sottieCategory = _renderCategory(Icons.more_horiz, '기타', color);
+  } else {
+    sottieCategory = _renderCategory(Icons.more_horiz, '알 수 없음', color);
   }
 
   return sottieCategory;

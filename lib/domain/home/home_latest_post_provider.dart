@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
-import 'package:sottie_flutter/data/post/data_source/latest_post_dummy.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
 import 'package:sottie_flutter/repository/home/home_post_retrofit.dart';
 
@@ -27,11 +28,11 @@ final class HomeLatestPost extends _$HomeLatestPost {
         );
       }
 
-      // final postList = await _repo.getLatestPostModelList(
-      //   lastPostId: firstFetch ? 0 : state.postModelList.last.id,
-      // );
+      final postList = await _repo.getLatestPostModelList(
+        lastPostId: firstFetch ? 0 : state.postModelList.last.id,
+      );
 
-      final postList = await getLatestPostDummy("123");
+      // final postList = await getLatestPostDummy("123");
 
       if (postList.isEmpty) {
         state = PostPaginationModel(
@@ -47,7 +48,9 @@ final class HomeLatestPost extends _$HomeLatestPost {
           postPaginationState: PostPaginationState.fetch,
         );
       }
-    } catch (_) {
+    } catch (e, stack) {
+      log(e.toString());
+      log(stack.toString());
       state = PostPaginationModel(
         postModelList: state.postModelList,
         postPaginationState: PostPaginationState.error,
