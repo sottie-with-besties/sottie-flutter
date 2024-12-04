@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
@@ -22,14 +20,6 @@ class FriendHeader extends ConsumerWidget {
       child: LocalTextField(
         hint: "이름, 연락처...",
         focusNode: focusNode,
-        enabledBorder: false,
-        focusBorder: false,
-        suffixIcon: GestureDetector(
-          onTap: () {
-            log("친구 추가 요청, 친구 차단 목록 스크린");
-          },
-          child: const Icon(Icons.menu),
-        ),
         onChanged: (value) {
           selectFunc.changeInput(value!);
         },

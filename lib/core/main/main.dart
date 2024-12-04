@@ -53,7 +53,7 @@ Future<void> _initSdks() async {
 final _customTheme = ThemeData(
   textTheme: GoogleFonts.nanumGothicTextTheme(),
   appBarTheme: AppBarTheme(
-    color: Colors.white,
+    color: mainWhiteSilverColor,
     centerTitle: true,
     titleTextStyle: TextStyle(
       fontWeight: FontWeight.bold,
@@ -63,7 +63,7 @@ final _customTheme = ThemeData(
     ),
     scrolledUnderElevation: 0,
   ),
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: mainWhiteSilverColor,
   navigationBarTheme: const NavigationBarThemeData(
     backgroundColor: mainWhiteSilverColor,
     indicatorColor: mainBlueColor,
@@ -71,20 +71,25 @@ final _customTheme = ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: mainBlueColor,
+      foregroundColor: mainWhiteSilverColor,
       shape: RoundedRectangleBorder(
         side: BorderSide.none,
         borderRadius: BorderRadius.circular(8),
       ),
-      minimumSize: const Size(100, 50),
+      minimumSize: const Size(80, 40),
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
+      foregroundColor: mainBlackColor,
       shape: RoundedRectangleBorder(
-        side: BorderSide.none,
+        side: const BorderSide(color: mainBlackColor),
         borderRadius: BorderRadius.circular(8),
       ),
-      minimumSize: const Size(10, 50),
+      minimumSize: const Size(60, 40),
     ),
   ),
   dropdownMenuTheme: DropdownMenuThemeData(

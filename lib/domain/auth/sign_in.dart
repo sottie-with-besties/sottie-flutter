@@ -30,9 +30,12 @@ Future<String?> signIn(
 
   switch (authType) {
     case AuthType.email:
-      // Todo: 예외 처리 미흡
-      errorCode = null;
-      await _emailLogin(email: email!, password: password!);
+      try {
+        await _emailLogin(email: email!, password: password!);
+        errorCode = null;
+      } catch (_) {
+        errorCode = "이메일 로그인 에러가 발생하였습니다";
+      }
       break;
     case AuthType.kakao:
       errorCode = await _signInWithKakao();

@@ -4,6 +4,8 @@ part of 'sign_in.dart';
 Future<void> _emailLogin(
     {required String email, required String password}) async {
   final base64String = utf8.fuse(base64).encode('$email:$password');
+  
+  // Todo: 이메일 비번 암호화 코드
 
   final tokenModel = await AuthTokenRetrofit(cleanDio)
       .emailLogin(emailAndPassword: 'Basic $base64String');

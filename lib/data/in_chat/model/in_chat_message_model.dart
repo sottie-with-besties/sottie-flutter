@@ -10,7 +10,7 @@ part 'in_chat_message_model.g.dart';
 @unfreezed
 class InChatMessageModel with _$InChatMessageModel {
   factory InChatMessageModel({
-    required String id,
+    required int id,
     required List<InChatMessageDataModel> inChatMessageData,
   }) = _InChatMessageModel;
 
@@ -18,15 +18,18 @@ class InChatMessageModel with _$InChatMessageModel {
       _$InChatMessageModelFromJson(json);
 }
 
-/// userIdWhoSent: 메세지 보낸 유저 id -> 이걸로 나 또는 타인의 메세지 구별 가능
-/// sentTime: 유저가 메세지를 전송한 시간(UTC)
-/// entity를 List로 받아서 맨 아래쪽 메세지에 시간 표시
 @unfreezed
 class InChatMessageDataModel with _$InChatMessageDataModel {
   factory InChatMessageDataModel({
-    required String id,
+    required int id,
+
+    /// 메세지 보낸 유저 id -> 이걸로 나 또는 타인의 메세지 구별 가능
     required String userIdWhoSent,
-    required String sentTime,
+
+    /// 유저가 메세지를 전송한 시간
+    required DateTime sentTime,
+
+    /// entity를 List로 받아서 맨 아래쪽 메세지에 시간 표시
     required List<InChatMessageDataEntityModel> entity,
   }) = _InChatMessageDataModel;
 
@@ -34,13 +37,13 @@ class InChatMessageDataModel with _$InChatMessageDataModel {
       _$InChatMessageDataModelFromJson(json);
 }
 
-/// entity: 실질적인 데이터 -> 문장, 이미지 및 동영상 url
-/// entityType: 데이터의 타입 -> 문장 string, 이미지 및 동영상 mediaUrl
-/// 유저가 웹사이트 url을 보냈을 때(?)
 @freezed
 class InChatMessageDataEntityModel with _$InChatMessageDataEntityModel {
   factory InChatMessageDataEntityModel({
+    /// 실질적인 데이터 -> 문장, 이미지 및 동영상 url
     required String entity,
+
+    /// 데이터의 타입 -> 문장 string, 이미지 및 동영상 mediaUrl
     required String entityType,
   }) = _InChatMessageDataEntityModel;
 

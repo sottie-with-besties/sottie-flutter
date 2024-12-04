@@ -3,12 +3,12 @@ import 'package:sottie_flutter/data/in_chat/model/in_chat_message_model.dart';
 Future<InChatMessageModel> getInChatMessageDummy() async {
   await Future.delayed(const Duration(seconds: 1), null);
   return InChatMessageModel(
-    id: '0',
+    id: 1,
     inChatMessageData: [
       InChatMessageDataModel(
-        id: '1',
+        id: 1,
         userIdWhoSent: '12345',
-        sentTime: '2024-09-14T08:00:00Z',
+        sentTime: DateTime(2024, 9, 14, 8, 0),
         entity: [
           InChatMessageDataEntityModel(
             entity: '안녕하세요.',
@@ -17,9 +17,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '2',
+        id: 2,
         userIdWhoSent: '54321',
-        sentTime: '2024-09-14T08:01:00Z',
+        sentTime: DateTime(2024, 9, 14, 8, 1),
         entity: [
           InChatMessageDataEntityModel(
             entity: '반갑습니다.',
@@ -32,9 +32,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '3',
+        id: 3,
         userIdWhoSent: '12345',
-        sentTime: '2024-09-14T08:02:00Z',
+        sentTime: DateTime(2024, 9, 15, 8, 2),
         entity: [
           InChatMessageDataEntityModel(
             entity: '저는 김철수입니다.',
@@ -43,9 +43,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '4',
+        id: 4,
         userIdWhoSent: '54321',
-        sentTime: '2024-09-14T08:03:00Z',
+        sentTime: DateTime(2024, 9, 15, 8, 3),
         entity: [
           InChatMessageDataEntityModel(
             entity: '아, 그렇군요.',
@@ -62,9 +62,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '5',
+        id: 5,
         userIdWhoSent: '12345',
-        sentTime: '2024-09-14T08:05:00Z',
+        sentTime: DateTime(2024, 9, 15, 8, 5),
         entity: [
           InChatMessageDataEntityModel(
             entity: '네, 맞습니다.',
@@ -73,9 +73,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '6',
+        id: 6,
         userIdWhoSent: '54321',
-        sentTime: '2024-09-14T08:06:00Z',
+        sentTime: DateTime(2024, 9, 15, 8, 6),
         entity: [
           InChatMessageDataEntityModel(
             entity: '시간은 3시 어떠세요?',
@@ -84,9 +84,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '7',
+        id: 7,
         userIdWhoSent: '12345',
-        sentTime: '2024-09-14T08:07:00Z',
+        sentTime: DateTime(2024, 9, 15, 8, 7),
         entity: [
           InChatMessageDataEntityModel(
             entity: '네, 3시에 뵙겠습니다.',
@@ -95,9 +95,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '8',
+        id: 8,
         userIdWhoSent: '54321',
-        sentTime: '2024-09-14T08:08:00Z',
+        sentTime: DateTime(2024, 9, 15, 8, 8),
         entity: [
           InChatMessageDataEntityModel(
             entity: '좋습니다. 그럼 수원역에서 봬요.',
@@ -106,9 +106,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '9',
+        id: 9,
         userIdWhoSent: '12345',
-        sentTime: '2024-09-14T08:09:00Z',
+        sentTime: DateTime(2024, 9, 15, 8, 9),
         entity: [
           InChatMessageDataEntityModel(
             entity: '네, 수원역에서 뵐게요.',
@@ -117,9 +117,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '10',
+        id: 10,
         userIdWhoSent: '54321',
-        sentTime: '2024-09-14T08:10:00Z',
+        sentTime: DateTime(2024, 9, 16, 8, 10),
         entity: [
           InChatMessageDataEntityModel(
             entity: '그럼 그때 뵙겠습니다.',
@@ -128,9 +128,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '11',
+        id: 11,
         userIdWhoSent: '12345',
-        sentTime: '2024-09-14T08:11:00Z',
+        sentTime: DateTime(2024, 9, 16, 8, 11),
         entity: [
           InChatMessageDataEntityModel(
             entity: '네, 좋은 하루 보내세요.',
@@ -139,9 +139,9 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         ],
       ),
       InChatMessageDataModel(
-        id: '12',
+        id: 12,
         userIdWhoSent: '54321',
-        sentTime: '2024-09-14T08:12:00Z',
+        sentTime: DateTime(2024, 9, 16, 8, 12),
         entity: [
           InChatMessageDataEntityModel(
             entity: '감사합니다. 좋은 하루 되세요.',

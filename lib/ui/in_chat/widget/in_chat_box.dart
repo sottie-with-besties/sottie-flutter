@@ -4,16 +4,19 @@ import 'package:sottie_flutter/data/in_chat/data_source/in_chat_message_dummy.da
 import 'package:sottie_flutter/data/in_chat/model/in_chat_message_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
+import 'package:sottie_flutter/ui/common/widget/chat_room_destroying_timer.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
 class InChatBox extends StatelessWidget {
   const InChatBox({
     super.key,
-    this.avatarId,
+    required this.isChattingOver,
+    required this.date,
   });
 
-  final String? avatarId;
+  final bool isChattingOver;
+  final DateTime date; // 모임 날짜
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,11 @@ class InChatBox extends StatelessWidget {
       callBack: (futureData) {
         final data = futureData as InChatMessageModel;
 
-        return _ChatBox(model: data);
+        return _ChatBox(
+          model: data,
+          isChattingOver: isChattingOver,
+          date: date,
+        );
       },
     );
   }
@@ -55,9 +62,13 @@ class InChatBox extends StatelessWidget {
 class _ChatBox extends StatefulWidget {
   const _ChatBox({
     required this.model,
+    required this.isChattingOver,
+    required this.date,
   });
 
   final InChatMessageModel model;
+  final bool isChattingOver;
+  final DateTime date; // 모임 날짜
 
   @override
   State<_ChatBox> createState() => _ChatBoxState();
@@ -69,6 +80,9 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
 
   /// 첫 입장 했을때 스크롤 맨 아래로 내리기. True로 바꾸어 한번만 동작하게 한다.
   bool firstEnter = false;
+
+  /// 채팅방에 날짜 표시하기 위한 보조 변수 => Todo: 초기화를 채팅이 생성된 시점으로 추후 변경하기
+  DateTime latestSentTime = DateTime(2024, 10, 10).toLocal();
 
   final _scrollController = ScrollController(
     keepScrollOffset: false,
@@ -82,8 +96,7 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
     /// 최근 채팅이 보이도록 채팅방 입장하기
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
-        _scrollController
-            .jumpTo(_scrollController.position.maxScrollExtent - 50 * hu);
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       }
     });
   }
@@ -116,15 +129,100 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
 
         /// ListView.builder => 메모리 동적 해제
         child: ListView.builder(
-          controller: _scrollController,
-          physics: const ClampingScrollPhysics(),
-          itemCount: widget.model.inChatMessageData.length,
-          itemBuilder: (_, index) =>
-              _renderDmChatBox(widget.model.inChatMessageData[index]),
-        ),
+            controller: _scrollController,
+            physics: const ClampingScrollPhysics(),
+            itemCount: widget.model.inChatMessageData.length + 1,
+            cacheExtent: widget.model.inChatMessageData.length.toDouble() * 100,
+            itemBuilder: (_, index) {
+              if (index == widget.model.inChatMessageData.length) {
+                Duration? du;
+
+                final gatheringDate = widget.date.toLocal();
+
+                final now = DateTime.now().toLocal();
+                du = now.difference(gatheringDate);
+
+                /// DM은 widget.isChattingOver가 무조건 falsed이다.
+                return widget.isChattingOver
+                    ? Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: mainBlueColor.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Text(
+                                textAlign: TextAlign.center,
+                                '채팅이 종료되었습니다.\n시간이 경과하기 전에 참여자들을 리뷰하면 당신의 매너온도가 1°C 상승합니다.',
+                              ),
+                              const SizedBox(height: 10),
+                              ChatRoomDestroyingTimer(timeLeft: du),
+                            ],
+                          ),
+                        ),
+                      )
+                    : Container();
+              } else {
+                /// 날짜 구분 ui 코드
+                final sentTime = widget.model.inChatMessageData[index].sentTime;
+                final dateSentTime = sentTime.toLocal();
+
+                final isAnotherDay = latestSentTime.day != dateSentTime.day;
+                latestSentTime = dateSentTime;
+
+                return Column(
+                  children: [
+                    if (index == 0)
+                      Column(
+                        children: [
+                          _renderSentTime(DateTime(2024, 9, 13)),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: mainBlueColor.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            padding: const EdgeInsets.all(12),
+                            child: const Text(
+                              textAlign: TextAlign.center,
+                              '채팅이 시작되었습니다.',
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                        ],
+                      ),
+
+                    /// ListView.builder의 특성으로 인해 메모리에서 해제 되면 날짜도 사라진다.
+                    /// 위로 올릴 때 날짜의 차이가 -1이 된다.
+                    if (isAnotherDay) _renderSentTime(latestSentTime),
+                    _renderDmChatBox(widget.model.inChatMessageData[index]),
+                  ],
+                );
+              }
+            }),
       ),
     );
   }
+}
+
+Widget _renderSentTime(DateTime sentTime) {
+  final sentTimeString =
+      "${sentTime.month}월 ${sentTime.day}일 ${convertIntToWeekday(sentTime.weekday)}";
+
+  return Padding(
+    padding: EdgeInsets.only(bottom: 16 * hu),
+    child: Container(
+      decoration: BoxDecoration(
+        color: mainGreenColor.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.all(12),
+      child: Text(sentTimeString),
+    ),
+  );
 }
 
 Widget _renderDmChatBox(InChatMessageDataModel model) {
@@ -141,11 +239,7 @@ Widget _renderDmChatBox(InChatMessageDataModel model) {
               myMsg ? MainAxisAlignment.end : MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (!myMsg)
-              UserProfile(
-                profileUrl: model.userIdWhoSent,
-                randomAvatarSize: 30,
-              ),
+            if (!myMsg) const UserProfile(),
             if (!myMsg) const SizedBox(width: 15),
             Column(
               crossAxisAlignment:
@@ -189,10 +283,7 @@ Widget _renderDmChatBox(InChatMessageDataModel model) {
                     model.sentTime,
                     model.sentTime,
                   ),
-                  style: const TextStyle(
-                    color: mainWhiteSilverColor,
-                    fontSize: 10,
-                  ),
+                  style: TextStyle(fontSize: 8 * hu),
                 ),
               ],
             ),

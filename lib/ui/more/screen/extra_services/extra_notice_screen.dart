@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/ui/more/widget/extra_service_tile.dart';
+import 'package:sottie_flutter/ui/common/widget/custom_expansion_tile.dart';
 
 class ExtraNoticeScreen extends StatelessWidget {
   const ExtraNoticeScreen({super.key});
@@ -14,7 +14,7 @@ class ExtraNoticeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ExtraServiceTile(
+            CustomExpansionTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
               children: const [
@@ -24,7 +24,7 @@ class ExtraNoticeScreen extends StatelessWidget {
                 SizedBox(height: 20),
               ],
             ),
-            ExtraServiceTile(
+            CustomExpansionTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
               children: const [
@@ -34,7 +34,7 @@ class ExtraNoticeScreen extends StatelessWidget {
                 SizedBox(height: 20),
               ],
             ),
-            ExtraServiceTile(
+            CustomExpansionTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
               children: const [
@@ -44,7 +44,7 @@ class ExtraNoticeScreen extends StatelessWidget {
                 SizedBox(height: 20),
               ],
             ),
-            ExtraServiceTile(
+            CustomExpansionTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
               children: const [
@@ -54,7 +54,7 @@ class ExtraNoticeScreen extends StatelessWidget {
                 SizedBox(height: 20),
               ],
             ),
-            ExtraServiceTile(
+            CustomExpansionTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
               children: const [
@@ -64,7 +64,7 @@ class ExtraNoticeScreen extends StatelessWidget {
                 SizedBox(height: 20),
               ],
             ),
-            ExtraServiceTile(
+            CustomExpansionTile(
               title: "2024년 9월 17일 임시 점검 안내",
               subTitle: DateTime.now().toString().substring(0, 10),
               children: const [

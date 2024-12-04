@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
 
@@ -42,13 +41,7 @@ class VerificationCompleteScreen extends StatelessWidget {
                         onPressed: () {
                           context.go(CustomRouter.authPath);
                         },
-                        child: const Text(
-                          "로그인 화면으로",
-                          style: TextStyle(
-                            color: mainWhiteSilverColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
+                        child: const Text("로그인 화면으로")),
                   ),
                 ],
               )

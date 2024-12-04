@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sottie_flutter/data/post/model/post_setting.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/domain/home/home_search_post_provider.dart';
+import 'package:sottie_flutter/domain/home/home_state_provider.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/domain/search/search_post.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
+import 'package:sottie_flutter/ui/common/widget/custom_expansion_tile.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/category_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/gender_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/location_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/manner_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/num_of_member_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/only_my_friends_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/start_same_time_class.dart';
-import 'package:sottie_flutter/ui/search/widget/date_range_class.dart';
+import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/category_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/gender_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/location_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/manner_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/num_of_member_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/only_my_friends_option.dart';
+import 'package:sottie_flutter/ui/search/widget/date_range_option.dart';
 import 'package:sottie_flutter/ui/search/widget/date_time_reset_button.dart';
-import 'package:sottie_flutter/ui/search/widget/time_range_class.dart';
+import 'package:sottie_flutter/ui/search/widget/time_range_option.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenState extends ConsumerState<SearchScreen> {
   final searchFocusNode = FocusNode();
   final settingFocusNode = FocusNode();
   final searchController = TextEditingController();
@@ -32,7 +33,6 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    postSettingEntity = PostSetting();
     searchFocusNode.requestFocus();
   }
 
@@ -50,72 +50,101 @@ class _SearchScreenState extends State<SearchScreen> {
       onTap: searchFocusNode.unfocus,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: LocalTextField(
-                hint: "날짜, 장소, 제목, 내용...",
-                enabledBorder: false,
-                focusBorder: false,
-                focusNode: searchFocusNode,
-                controller: searchController,
-                onFieldSubmitted: (searchContent) async {
-                  postSettingEntity.title = searchContent;
-                  await searchPost(); // Todo: 함수 구현해야함
-                },
-                suffixIcon: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  child: GestureDetector(
-                    onTap: () {
-                      showCustomDialog(
-                        context,
-                        GestureDetector(
-                          onTap: settingFocusNode.unfocus,
-                          child: const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CategoryClass(),
-                              SizedBox(height: 20),
-                              LocationClass(),
-                              SizedBox(height: 20),
-                              DateRangeClass(),
-                              SizedBox(height: 20),
-                              TimeRangeClass(),
-                              SizedBox(height: 10),
-                              DateTimeResetButton(),
-                              SizedBox(height: 10),
-                              NumOfMemberClass(),
-                              SizedBox(height: 20),
-                              GenderClass(),
-                              SizedBox(height: 20),
-                              AgeClass(),
-                              SizedBox(height: 20),
-                              MannerClass(),
-                              SizedBox(height: 20),
-                              StartSameTimeClass(),
-                              SizedBox(height: 20),
-                              SizedBox(height: 20),
-                              OnlyMyFriendsClass(),
-                              SizedBox(height: 80),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                    child: const FaIcon(
-                      FontAwesomeIcons.gear,
-                      color: Colors.black,
-                    ),
-                  ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: LocalTextField(
+                  hint: "날짜, 장소, 제목, 내용...",
+                  focusNode: searchFocusNode,
+                  controller: searchController,
+                  onFieldSubmitted: (searchContent) async {
+                    postSettingEntity.title = searchContent;
+                    ref
+                        .read(homeStateProvider.notifier)
+                        .changeHomeState(HomePostState.search);
+                    context.pop();
+                    ref
+                        .read(homeSearchPostProvider.notifier)
+                        .searchPagination(firstFetch: true);
+                  },
                 ),
               ),
-            ),
-          ],
+              const CustomExpansionTile(
+                title: "카테고리",
+                children: <Widget>[
+                  CategoryOption(renderAtMakePostScreen: false),
+                ],
+              ),
+              const CustomExpansionTile(
+                title: "장소, 날짜, 시간",
+                children: <Widget>[
+                  LocationOption(renderAtMakePostScreen: false),
+                  SizedBox(height: 20),
+                  DateRangeOption(),
+                  SizedBox(height: 20),
+                  TimeRangeOption(),
+                  SizedBox(height: 10),
+                  DateTimeResetButton(),
+                  SizedBox(height: 10),
+                ],
+              ),
+              const CustomExpansionTile(
+                title: "인원 수, 나이 제한, 성비 제한",
+                children: <Widget>[
+                  NumOfMemberOption(),
+                  SizedBox(height: 20),
+                  GenderOption(),
+                  SizedBox(height: 20),
+                  AgeOption(),
+                  SizedBox(height: 20),
+                ],
+              ),
+              const CustomExpansionTile(
+                title: "기타 옵션",
+                children: <Widget>[
+                  MannerOption(),
+                  SizedBox(height: 20),
+                  OnlyMyFriendsOption(),
+                  SizedBox(height: 80),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(32),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        ref
+                            .read(homeStateProvider.notifier)
+                            .changeHomeState(HomePostState.home);
+                        context.pop();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: mainGreenColor.shade700,
+                      ),
+                      child: const Text("검색 초기화"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        ref
+                            .read(homeStateProvider.notifier)
+                            .changeHomeState(HomePostState.search);
+                        context.pop();
+                        ref
+                            .read(homeSearchPostProvider.notifier)
+                            .searchPagination(firstFetch: true);
+                      },
+                      child: const Text("검색"),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

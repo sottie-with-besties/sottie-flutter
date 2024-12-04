@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/data/post/model/post_setting.dart';
+import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/find_id_screen.dart';
@@ -8,27 +11,26 @@ import 'package:sottie_flutter/ui/auth/screen/verification_complete_screen.dart'
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/photo_magnification_screen.dart';
-import 'package:sottie_flutter/ui/friend/screen/friend_detail_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
+import 'package:sottie_flutter/ui/friend/screen/friend_util_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
-import 'package:sottie_flutter/ui/in_chat/screen/in_chat_info_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_notification_list_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_photo_list_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_screen.dart';
-import 'package:sottie_flutter/ui/more/screen/email_change_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/email_change_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_event_screen.dart';
-import 'package:sottie_flutter/ui/more/screen/extra_services/extra_guide_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_notice_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_setting_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_store_screen.dart';
-import 'package:sottie_flutter/ui/more/screen/info_modify_screen.dart';
+import 'package:sottie_flutter/ui/more/screen/extra_services/info_modify_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_one.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_three.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_two.dart';
 import 'package:sottie_flutter/ui/post/screen/post_detail_screen.dart';
+import 'package:sottie_flutter/ui/user/screen/user_detail_screen.dart';
 
 sealed class CustomRouter {
   static final router = GoRouter(
@@ -59,7 +61,7 @@ sealed class CustomRouter {
 
   /// Friend
   static const friendPath = "/friend";
-  static const friendDetailPath = "friendDetail";
+  static const friendUtilPath = "friendUtil";
 
   /// More
   static const morePath = "/more";
@@ -75,7 +77,6 @@ sealed class CustomRouter {
   static const contactPath = "contact";
 
   static const settingPath = "setting";
-  static const guidePath = "guide";
 
   /// Make Post Screen
   static const makePostStepOnePath = "/makePostStepOne";
@@ -84,6 +85,9 @@ sealed class CustomRouter {
 
   /// Post Detail Screen
   static const postDetailPath = "/postDetail";
+
+  /// User Detail Screen
+  static const userDetailPath = "/userDetail";
 
   /// Photo Magnification Screen
   static const photoMagnificationPath = "/photoMagnification";
@@ -154,17 +158,29 @@ final _routes = [
                 builder: (_, state) {
                   final params = state.extra as Map<String, dynamic>;
                   return InChatScreen(
-                    id: params['id'],
-                    title: params['title'],
+                    chatRoomModel: params['chatRoomModel'],
+                    dmModel: params['dmModel'],
+                    isChattingOver: params['isChattingOver'] ?? false,
                   );
                 },
                 routes: <GoRoute>[
                   GoRoute(
                     path: CustomRouter.inChatInfoPath,
-                    builder: (_, state) {
+                    pageBuilder: (_, state) {
                       final params = state.extra as Map<String, dynamic>;
-                      return InChatInfoScreen(
-                        postModel: params['postModel'],
+
+                      return CustomTransitionPage(
+                        child: PostDetailScreen(
+                          postModel: params['postModel'],
+                          isWaiting: false,
+                          isCheckInfo: true,
+                        ),
+                        transitionsBuilder: (_, animation, __, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
                       );
                     },
                   ),
@@ -175,15 +191,6 @@ final _routes = [
                   GoRoute(
                     path: CustomRouter.inChatNotificationListPath,
                     builder: (_, __) => const InChatNotificationListScreen(),
-                  ),
-                  GoRoute(
-                    path: CustomRouter.inChatParticipationListPath,
-                    builder: (_, state) {
-                      final params = state.extra as Map<String, dynamic>;
-                      return InChatInfoScreen(
-                        postModel: params['postModel'],
-                      );
-                    },
                   ),
                 ],
               ),
@@ -200,16 +207,9 @@ final _routes = [
             builder: (_, __) => const FriendScreen(),
             routes: <GoRoute>[
               GoRoute(
-                path: CustomRouter.friendDetailPath,
-                builder: (_, state) {
-                  final params = state.extra as Map<String, dynamic>;
-
-                  return FriendDetailScreen(
-                    model: params['model'],
-                    isMyFriend: params['isMyFriend'],
-                  );
-                },
-              ),
+                path: CustomRouter.friendUtilPath,
+                builder: (_, __) => const FriendUtilScreen(),
+              )
             ],
           ),
         ],
@@ -258,10 +258,6 @@ final _routes = [
                 path: CustomRouter.settingPath,
                 builder: (_, __) => const ExtraSettingScreen(),
               ),
-              GoRoute(
-                path: CustomRouter.guidePath,
-                builder: (_, __) => const ExtraGuideScreen(),
-              ),
             ],
           )
         ],
@@ -272,6 +268,11 @@ final _routes = [
   /// 모집글 생성 스크린
   GoRoute(
     path: CustomRouter.makePostStepOnePath,
+    onExit: (_, __) {
+      /// 첫번째 모집글 생성 화면에서 뒤로가기 또는 모집글 생성 완료 시(pop, go) postSetting 초기화하여 검색에 영향 X
+      postSettingEntity = PostSetting();
+      return true;
+    },
     builder: (_, __) => const MakePostScreenStepOne(),
     routes: <GoRoute>[
       GoRoute(
@@ -290,11 +291,43 @@ final _routes = [
   /// 모집글 상세 화면 스크린
   GoRoute(
     path: CustomRouter.postDetailPath,
-    builder: (_, state) {
+    pageBuilder: (_, state) {
       final params = state.extra as Map<String, dynamic>;
-      return PostDetailScreen(
-        postModel: params['postModel'],
-        isWaiting: params['isWaiting'],
+
+      return CustomTransitionPage(
+        child: PostDetailScreen(
+          postModel: params['postModel'],
+          isWaiting: params['isWaiting'] ?? false,
+          isCheckInfo: false,
+        ),
+        transitionsBuilder: (_, animation, __, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+      );
+    },
+  ),
+
+  /// 유저 디테일 스크린
+  GoRoute(
+    path: CustomRouter.userDetailPath,
+    pageBuilder: (_, state) {
+      final params = state.extra as Map<String, dynamic>;
+
+      return CustomTransitionPage(
+        child: UserDetailScreen(
+          model: params['model'],
+          heroTag: params['heroTag'],
+          isMyFriend: params['isMyFriend'],
+        ),
+        transitionsBuilder: (_, animation, __, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
       );
     },
   ),

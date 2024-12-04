@@ -23,10 +23,7 @@ class ChatRoomProfiles extends StatelessWidget {
         runAlignment: WrapAlignment.center,
         children: List.generate(
           profileCount,
-          (_) => UserProfile(
-            profileUrl: DateTime.now().toString(),
-            randomAvatarSize: profileSize,
-          ),
+          (_) => const UserProfile(),
         ),
       ),
     );

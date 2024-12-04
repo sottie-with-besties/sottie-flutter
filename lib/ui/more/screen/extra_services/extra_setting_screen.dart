@@ -104,7 +104,7 @@ class _SettingSwitchState extends State<_SettingSwitch> {
               ),
               Switch(
                 value: settingValue,
-                activeColor: mainWhiteSilverColor,
+                activeColor: mainBlueColor,
                 onChanged: (val) {
                   settingValue = val;
                   setState(() {});

@@ -12,8 +12,7 @@ class DateTimeResetButton extends ConsumerWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          postSettingEntity.dateStart = null;
-          postSettingEntity.dateEnd = null;
+          postSettingEntity.dateTimeRange = null;
           postSettingEntity.timeStart = null;
           postSettingEntity.timeEnd = null;
           ref.read(dateTimeResetProvider.notifier).changeResetValue();

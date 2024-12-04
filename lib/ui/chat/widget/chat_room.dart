@@ -9,10 +9,11 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
-import 'package:sottie_flutter/ui/chat/widget/chat_room_top.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
+import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
 class ChatRoom extends StatelessWidget {
   const ChatRoom({
@@ -24,6 +25,20 @@ class ChatRoom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isChattingOver = false;
+    Duration chatRoomDisappearingTime = const Duration(hours: 23);
+
+    /// 채팅 모임 날짜 기준 24시간 경과 후 채팅방이 사라지기 시작함. 24시간 후 완전히 사라짐.
+    /// 모임 날짜 + 24시간 까지 채팅 가능, 그 이후 24시간 채팅방 삭제 대기
+    final now = DateTime.now().toLocal();
+    final du = now.difference(model.gatheringDate);
+
+    /// inDays == 1은 시간 차이가 24시간 이상 48시간 미만을 의미
+    if (du.inDays >= 1) {
+      isChattingOver = true;
+      chatRoomDisappearingTime = du;
+    }
+
     return SlideLongPressWidget(
       groupTag: 'chat',
       onLongPressWidget: Column(
@@ -72,8 +87,8 @@ class ChatRoom extends StatelessWidget {
           context.push(
             '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
             extra: {
-              'id': model.id,
-              'title': model.chatTitle,
+              'chatRoomModel': model,
+              'isChattingOver': isChattingOver,
             },
           );
         },
@@ -85,15 +100,21 @@ class ChatRoom extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: ChatRoomTop(
-                    categories: model.category,
-                    currentMemberCount: model.currentMemberCount,
-                    maxMemberCount: model.maxMemberCount,
-                    currentManCount: model.currentManCount,
-                    maxManCount: model.maxManCount,
-                    currentWomanCount: model.currentWomanCount,
-                    maxWomanCount: model.maxWomanCount,
+                  padding: EdgeInsets.symmetric(horizontal: 12 * wu),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SottieCategoryUi(sottieCategory: model.gatheringCategory),
+                      CurrentNumOfMember(
+                        currentPeopleNum: model.currentPeopleNum,
+                        peopleNum: model.peopleNum,
+                        currentMaleNum: model.currentMaleNum,
+                        maleNum: model.maleNum,
+                        currentFemaleNum: model.currentFemaleNum,
+                        femaleNum: model.femaleNum,
+                        genderRestriction: model.genderRestriction,
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 10 * hu),
@@ -101,19 +122,21 @@ class ChatRoom extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ChatRoomProfiles(
-                      profileCount: model.profileThumbnails.length > 4
+                      profileCount: model.profileThumbnailsUrl.length > 4
                           ? 4
-                          : model.profileThumbnails.length,
+                          : model.profileThumbnailsUrl.length,
                       profileSize:
-                          model.profileThumbnails.length < 2 ? 45.0 : 30.0,
+                          model.profileThumbnailsUrl.length < 2 ? 45.0 : 30.0,
                     ),
                     ChatRoomInfo(
-                      date: model.date,
-                      location: model.location,
-                      chatTitle: model.chatTitle,
+                      gatheringDate: model.gatheringDate,
+                      locationId: model.locationId,
+                      chatTitle: model.title,
                       latestMsg: model.latestMsg,
                       latestTime: model.latestTime,
                       notReadMsg: model.notReadMsg,
+                      isChattingOver: isChattingOver,
+                      chatRoomDisappearingTime: chatRoomDisappearingTime,
                     ),
                   ],
                 )

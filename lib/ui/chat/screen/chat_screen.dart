@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_tab_view.dart.dart';
+import 'package:sottie_flutter/ui/chat/widget/chat_header.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
-import 'package:sottie_flutter/ui/common/widget/app_bar_title.dart';
-import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -26,21 +25,8 @@ class _ChatScreenState extends State<ChatScreen> {
       onTap: () => focusNode.unfocus(),
       child: DefaultLayout(
         hasScrollBody: true,
-        title: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12),
-          child: AppBarTitle(
-            title: '채팅',
-          ),
-        ),
-        header: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: LocalTextField(
-            hint: "제목, 날짜, 장소...",
-            focusNode: focusNode,
-            enabledBorder: false,
-            focusBorder: false,
-          ),
-        ),
+        appBarTitle: '채팅',
+        header: ChatHeader(focusNode: focusNode),
         contentChild: const ChatTabView(),
       ),
     );

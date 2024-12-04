@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/age_range_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/category_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/date_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/gender_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/location_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/manner_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/num_of_member_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/only_my_friends_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/start_same_time_class.dart';
-import 'package:sottie_flutter/ui/post/widget/classification/time_class.dart';
+import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/category_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/date_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/gender_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/location_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/manner_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/num_of_member_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/only_my_friends_option.dart';
+import 'package:sottie_flutter/ui/post/widget/option/time_option.dart';
 
 class MakePostScreenStepTwo extends StatefulWidget {
   const MakePostScreenStepTwo({super.key});
@@ -25,21 +24,21 @@ class MakePostScreenStepTwo extends StatefulWidget {
 class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
   final FocusNode focusNode = FocusNode();
 
-  // 설정이 이상 없는 지 확인, 에러 내용을 String으로 담아둠
+  /// 에러 내용을 String으로 담아두어 다음 페이지로 넘어 갈 수 없는 이유 설명
   List<String> checkList = <String>[];
 
-  // 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
+  /// 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
   void checkIfSettingHasError() {
-    if (postSettingEntity.ageRange.isEmpty) {
-      checkList.add("나이 범위를 최소 하나 이상 설정해주세요.");
+    if (postSettingEntity.gatheringDate == null) {
+      checkList.add("날짜 및 시간을 선택해주세요.");
     }
 
-    if (postSettingEntity.date == null) {
-      checkList.add("날짜 및 시간을 설정해주세요.");
+    if (postSettingEntity.gatheringCategory == SottieCategory.all) {
+      checkList.add("카테고리를 하나 선택해주세요.");
     }
 
-    if (postSettingEntity.category.isEmpty) {
-      checkList.add("카테고리를 최소 하나 이상 선택해주세요.");
+    if (postSettingEntity.peopleNum == 0) {
+      checkList.add("인원 수를 설정해주세요");
     }
   }
 
@@ -64,26 +63,23 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const CategoryClass(),
+                const CategoryOption(),
                 const SizedBox(height: 20),
-                const LocationClass(),
+                const LocationOption(),
                 const SizedBox(height: 20),
-                const DateClass(),
+                const DateOption(),
                 const SizedBox(height: 20),
-                const TimeClass(),
+                const TimeOption(),
                 const SizedBox(height: 20),
-                const NumOfMemberClass(),
+                const NumOfMemberOption(),
                 const SizedBox(height: 20),
-                const GenderClass(),
+                const GenderOption(),
                 const SizedBox(height: 20),
-                const AgeClass(),
+                const AgeOption(),
                 const SizedBox(height: 20),
-                const MannerClass(),
+                const MannerOption(),
                 const SizedBox(height: 20),
-                const StartSameTimeClass(),
-                const SizedBox(height: 20),
-                const SizedBox(height: 20),
-                const OnlyMyFriendsClass(),
+                const OnlyMyFriendsOption(),
                 const SizedBox(height: 80),
                 ElevatedButton(
                   onPressed: () {
@@ -115,14 +111,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                             ),
                           );
                   },
-                  child: const Text(
-                    "다음 2/3",
-                    style: TextStyle(
-                      color: mainWhiteSilverColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
+                  child: const Text("다음 2/3"),
                 ),
               ],
             ),

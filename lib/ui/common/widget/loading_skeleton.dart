@@ -3,19 +3,19 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 
 class LoadingSkeleton extends StatelessWidget {
-  const LoadingSkeleton({super.key});
+  const LoadingSkeleton({
+    super.key,
+    this.itemCount = 4,
+  });
+
+  final int itemCount;
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
-        children: [
-          SizedBox(height: 15),
-          _RenderBone(),
-          _RenderBone(),
-          _RenderBone(),
-          _RenderBone(),
-        ],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: List.generate(itemCount, (_) => const _RenderBone()),
       ),
     );
   }

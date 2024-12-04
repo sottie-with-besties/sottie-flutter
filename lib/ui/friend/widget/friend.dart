@@ -1,17 +1,15 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/friend/model/friend_model.dart';
+import 'package:sottie_flutter/data/user/model/user_model.dart';
+import 'package:sottie_flutter/domain/friend/friend_manage.dart';
+import 'package:sottie_flutter/domain/user/user_manage.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
-import 'package:sottie_flutter/ui/friend/widget/friend_info.dart';
+import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 
 class Friend extends StatefulWidget {
   const Friend({
@@ -19,26 +17,20 @@ class Friend extends StatefulWidget {
     required this.model,
   });
 
-  final FriendModel model;
+  final UserModel model;
 
   @override
   State<Friend> createState() => _FriendState();
 }
 
 class _FriendState extends State<Friend> {
-  void _dmAction(bool withSlide) {
-    log("DmAction");
-  }
-
   void _deleteAction(bool withSlide) {
     showCustomDialog(
       context,
       Center(
         child: Text(
           "${widget.model.nickname}를 삭제하시겠습니까?",
-          style: const TextStyle(
-            fontSize: 20,
-          ),
+          style: const TextStyle(fontSize: 20),
         ),
       ),
       extraButton: ElevatedButton(
@@ -50,21 +42,11 @@ class _FriendState extends State<Friend> {
           Navigator.of(context, rootNavigator: true).pop();
           withSlide ? null : Navigator.of(context, rootNavigator: true).pop();
 
-          log("친구 삭제 확인");
+          friendDelete(context);
         },
-        child: const Text(
-          "삭제",
-          style: TextStyle(
-            color: mainWhiteSilverColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        child: const Text("삭제"),
       ),
     );
-  }
-
-  void _reportAction(bool withSlide) {
-    log("ReportAction");
   }
 
   @override
@@ -73,10 +55,7 @@ class _FriendState extends State<Friend> {
       groupTag: 'friend',
       onLongPressWidget: Column(
         children: [
-          UserProfile(
-            profileUrl: widget.model.id,
-            randomAvatarSize: 100,
-          ),
+          UserProfile(profileUrl: widget.model.profileUrl),
           SizedBox(height: 10 * hu),
           Text(
             widget.model.nickname,
@@ -90,7 +69,7 @@ class _FriendState extends State<Friend> {
           OnLongPressOption(
             color: Colors.green,
             onTap: () {
-              _dmAction(false);
+              friendSendDm(context);
             },
             icon: Icons.messenger_outline,
             optionTitle: "DM 보내기",
@@ -108,7 +87,7 @@ class _FriendState extends State<Friend> {
           OnLongPressOption(
             color: Colors.blueAccent,
             onTap: () {
-              _reportAction(false);
+              userReport(context);
             },
             icon: Icons.report_gmailerrorred_outlined,
             optionTitle: "신고",
@@ -117,7 +96,7 @@ class _FriendState extends State<Friend> {
       ),
       slideActions: [
         SlidableAction(
-          onPressed: (context) => _dmAction(true),
+          onPressed: (context) => friendSendDm(context),
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           autoClose: true,
@@ -135,7 +114,7 @@ class _FriendState extends State<Friend> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
         SlidableAction(
-          onPressed: (context) => _reportAction(true),
+          onPressed: (context) => userReport(context),
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
           autoClose: true,
@@ -144,41 +123,12 @@ class _FriendState extends State<Friend> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
       ],
-      child: GestureDetector(
-        onTap: () {
-          context.push(
-            "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
-            extra: {
-              'model': widget.model,
-              'isMyFriend': true,
-            },
-          );
-        },
-        child: Container(
-          color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
-          child: Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: 5 * wu, vertical: 12 * hu),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 70 * wu,
-                  child: Hero(
-                    tag: widget.model.id,
-                    child: UserProfile(
-                      profileUrl: widget.model.id,
-                      randomAvatarSize: 45,
-                    ),
-                  ),
-                ),
-                SizedBox(width: 10 * wu),
-                FriendInfo(
-                  friendName: widget.model.nickname,
-                  stateMsg: widget.model.stateMsg ?? '',
-                ),
-              ],
-            ),
-          ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 10 * hu, horizontal: 16 * wu),
+        child: SottieUser(
+          model: widget.model,
+          heroTag: 'friend',
+          isMyFriend: true,
         ),
       ),
     );

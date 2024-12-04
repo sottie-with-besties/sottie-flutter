@@ -1,23 +1,27 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/friend/model/friend_model.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
+import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
+import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_photo.dart';
 
 class InChatDrawer extends StatelessWidget {
-  const InChatDrawer({super.key});
+  const InChatDrawer({
+    super.key,
+    required this.chatRoomModel,
+  });
+
+  final ChatRoomModel chatRoomModel;
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       width: 200 * wu,
+      backgroundColor: mainWhiteSilverColor,
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 6),
@@ -32,20 +36,24 @@ class InChatDrawer extends StatelessWidget {
                       "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatInfoPath}",
                       extra: {
                         'postModel': PostModel(
-                          id: '123123',
-                          detailId: '123123',
-                          category: [
-                            SottieCategory.amity.name,
-                            SottieCategory.exercise.name
-                          ],
-                          thumbnailUrl: null,
-                          title: "안녕하세요",
-                          location: SottieLocation.sungnam.name,
-                          date: "2024년 9월 18일",
-                          currentManCount: 3,
-                          maxManCount: 6,
-                          currentWomanCount: 4,
-                          maxWomanCount: 7,
+                          id: chatRoomModel.id,
+                          gatheringCategory: chatRoomModel.gatheringCategory,
+                          title: chatRoomModel.title,
+                          locationId: chatRoomModel.locationId,
+                          gatheringDate: chatRoomModel.gatheringDate,
+                          contents: chatRoomModel.content,
+                          currentPeopleNum: chatRoomModel.currentPeopleNum,
+                          peopleNum: chatRoomModel.peopleNum,
+                          currentMaleNum: chatRoomModel.currentMaleNum,
+                          maleNum: chatRoomModel.maleNum,
+                          currentFemaleNum: chatRoomModel.currentFemaleNum,
+                          femaleNum: chatRoomModel.femaleNum,
+                          ageFrom: chatRoomModel.ageFrom,
+                          ageTo: chatRoomModel.ageTo,
+                          onlyMyFriends: chatRoomModel.onlyMyFriends,
+                          genderRestriction: chatRoomModel.genderRestriction,
+                          mannerRestriction: chatRoomModel.mannerRestriction,
+                          ageRestriction: chatRoomModel.ageRestriction,
                         )
                       },
                     );
@@ -93,15 +101,14 @@ class InChatDrawer extends StatelessWidget {
                 const SizedBox(height: 30),
                 _subTitle(
                   '참여자',
-                  () {
-                    log("참여자 목록");
-                  },
+                  null,
+                  tapInto: false,
                 ),
-                _inChatParticipant(context, "1", "김진표"),
-                _inChatParticipant(context, "2", "김진표"),
-                _inChatParticipant(context, "3", "김진표"),
-                _inChatParticipant(context, "4", "김진표"),
-                _inChatParticipant(context, "5", "김진표"),
+                _inChatParticipant(context, 13461234567, "김진표", null),
+                _inChatParticipant(context, 123423142413, "김진표", null),
+                _inChatParticipant(context, 568344568, "김진표", null),
+                _inChatParticipant(context, 1253412345, "김진표", null),
+                _inChatParticipant(context, 4567845678, "김진표", null),
               ],
             ),
           ),
@@ -111,7 +118,11 @@ class InChatDrawer extends StatelessWidget {
   }
 }
 
-Widget _subTitle(String title, VoidCallback onTap) {
+Widget _subTitle(
+  String title,
+  VoidCallback? onTap, {
+  bool tapInto = true,
+}) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 15),
     child: InkWell(
@@ -128,7 +139,7 @@ Widget _subTitle(String title, VoidCallback onTap) {
                 fontSize: 12 * hu,
               ),
             ),
-            const Icon(Icons.arrow_right_alt),
+            tapInto ? const Icon(Icons.arrow_right_alt) : Container(),
           ],
         ),
       ),
@@ -136,18 +147,22 @@ Widget _subTitle(String title, VoidCallback onTap) {
   );
 }
 
-Widget _inChatParticipant(BuildContext context, String id, String name) {
+Widget _inChatParticipant(
+    BuildContext context, int id, String nickName, String? profileUrl) {
   return InkWell(
     onTap: () {
       context.push(
-        "${CustomRouter.friendPath}/${CustomRouter.friendDetailPath}",
+        CustomRouter.userDetailPath,
         extra: {
-          'model': FriendModel(
+          'model': UserModel(
             id: id,
-            nickname: name,
+            nickname: nickName,
             stateMsg: '',
+            profileUrl: profileUrl,
+            mannerTemperature: 39.2,
           ),
-          'isMyFriend': false,
+          'heroTag': '',
+          'isMyFriend': false, // Todo: 내 친구인지 확인하는 로직
         },
       );
     },
@@ -155,12 +170,9 @@ Widget _inChatParticipant(BuildContext context, String id, String name) {
       padding: const EdgeInsets.only(left: 12, bottom: 12),
       child: Row(
         children: [
-          UserProfile(
-            profileUrl: id,
-            randomAvatarSize: 30,
-          ),
+          const UserProfile(),
           SizedBox(width: 10 * wu),
-          Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text(nickName, style: const TextStyle(fontWeight: FontWeight.bold)),
         ],
       ),
     ),
