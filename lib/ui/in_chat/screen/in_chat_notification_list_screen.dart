@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/ui/in_chat/widget/in_chat_notification.dart';
 
 class InChatNotificationListScreen extends StatelessWidget {
   const InChatNotificationListScreen({super.key});
@@ -9,8 +10,15 @@ class InChatNotificationListScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("공지사항"),
       ),
-      body: const Center(
-        child: Text("공지사항"),
+      body: const Column(
+        children: [
+          InChatNotification(),
+          InChatNotification(),
+          InChatNotification(),
+          InChatNotification(),
+          InChatNotification(),
+          InChatNotification(),
+        ],
       ),
     );
   }
