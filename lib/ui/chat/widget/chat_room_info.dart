@@ -29,7 +29,7 @@ class ChatRoomInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final numOfMsg = notReadMsg > 999 ? '999+' : notReadMsg.toString();
+    final numOfNotReadMsg = notReadMsg > 999 ? '999+' : notReadMsg.toString();
     final date = gatheringDate.toLocal();
 
     return SizedBox(
@@ -143,7 +143,7 @@ class ChatRoomInfo extends StatelessWidget {
                           padding: EdgeInsets.all(3 * hu),
                           child: FittedBox(
                             child: Text(
-                              numOfMsg,
+                              numOfNotReadMsg,
                               style: const TextStyle(
                                 color: mainWhiteSilverColor,
                                 fontWeight: FontWeight.bold,

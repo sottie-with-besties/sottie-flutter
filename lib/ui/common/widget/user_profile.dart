@@ -51,7 +51,7 @@ ClipRRect _defaultProfile(double size, String? assetPath,
               ),
             )
           : ColoredBox(
-              color: Colors.indigoAccent,
+              color: mainBlueColor,
               child: FittedBox(
                 child: Center(
                   child: Padding(

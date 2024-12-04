@@ -110,7 +110,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
                     SizedBox(height: 5 * hu),
                     Container(
                       width: 40 * wu,
-                      height: 25 * hu,
+                      height: 20 * hu,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: mainRedColor.withOpacity(0.8),
