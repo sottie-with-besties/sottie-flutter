@@ -131,7 +131,7 @@ class ChatRoom extends StatelessWidget {
                     ChatRoomInfo(
                       gatheringDate: model.gatheringDate,
                       locationId: model.locationId,
-                      chatTitle: model.chatTitle,
+                      chatTitle: model.title,
                       latestMsg: model.latestMsg,
                       latestTime: model.latestTime,
                       notReadMsg: model.notReadMsg,

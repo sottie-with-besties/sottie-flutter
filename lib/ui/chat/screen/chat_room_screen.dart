@@ -20,7 +20,7 @@ class ChatRoomScreen extends ConsumerWidget {
         final chatRoomList = data.where((data) {
           final dateString =
               convertDateTimeIntoString(data.gatheringDate.toLocal());
-          final searched = data.chatTitle.toString().contains(inputText) ||
+          final searched = data.title.toString().contains(inputText) ||
               data.latestMsg.toString().contains(inputText) ||
               dateString.toString().contains(inputText) ||
               SottieLocation.values[data.locationId].name.contains(inputText);

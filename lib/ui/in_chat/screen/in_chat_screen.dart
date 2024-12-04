@@ -44,7 +44,7 @@ class _InChatScreenState extends State<InChatScreen> {
           title: Text(
             isDm
                 ? widget.dmModel!.userModel.nickname
-                : widget.chatRoomModel!.chatTitle,
+                : widget.chatRoomModel!.title,
             style: const TextStyle(color: mainWhiteSilverColor),
           ),
           backgroundColor: mainBlueColor,

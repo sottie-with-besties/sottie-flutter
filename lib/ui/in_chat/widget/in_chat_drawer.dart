@@ -38,10 +38,10 @@ class InChatDrawer extends StatelessWidget {
                         'postModel': PostModel(
                           id: chatRoomModel.id,
                           gatheringCategory: chatRoomModel.gatheringCategory,
-                          title: chatRoomModel.chatTitle,
+                          title: chatRoomModel.title,
                           locationId: chatRoomModel.locationId,
                           gatheringDate: chatRoomModel.gatheringDate,
-                          content: '',
+                          content: chatRoomModel.content,
                           currentPeopleNum: chatRoomModel.currentPeopleNum,
                           peopleNum: chatRoomModel.peopleNum,
                           currentMaleNum: chatRoomModel.currentMaleNum,

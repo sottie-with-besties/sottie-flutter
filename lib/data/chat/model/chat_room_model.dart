@@ -18,7 +18,7 @@ class ChatRoomModel with _$ChatRoomModel {
     required int locationId,
 
     /// 채팅 제목
-    required String chatTitle,
+    required String title,
 
     /// 최대 4개까지만
     required List<String> profileThumbnailsUrl,
@@ -31,6 +31,9 @@ class ChatRoomModel with _$ChatRoomModel {
 
     /// 유저가 해당하는 채팅방의 읽지 않은 메세지 수
     required int notReadMsg,
+
+    /// 채팅방을 설명하는 구체적 내용
+    required String content,
 
     /// 성비 제한이 없을 경우 currentPeopleNum, peopleNum
     /// 성비 제한이 있을 경우 currentMaleNum, maleNum, currentFemaleNum, femaleNum
