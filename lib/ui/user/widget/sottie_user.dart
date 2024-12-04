@@ -45,9 +45,7 @@ class SottieUser extends StatelessWidget {
             Hero(
               tag: '${model.id}/$heroTag',
               child: UserProfile(
-                profileUrl: model.profileUrl ?? '12312554',
-                randomAvatarSize: 40,
-                profileAvatarSize: 20,
+                profileUrl: model.profileUrl,
                 myProfileXFilePath:
                     isMyFriend == null ? myInfoEntity.myProfilePath : null,
               ),

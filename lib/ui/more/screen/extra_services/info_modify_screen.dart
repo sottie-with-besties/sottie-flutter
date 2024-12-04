@@ -63,7 +63,7 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
           padding: const EdgeInsets.all(16),
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
                   onTap: () async {
@@ -71,27 +71,32 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                     setState(() {});
                     // Todo: 디바운스 -> 서버로 수정한 정보 보내기
                   },
-                  child: Hero(
-                    tag: '${myInfoEntity.id}/me',
-                    child: UserProfile(
-                      profileUrl: myInfoEntity.profileUrl ?? '12353',
-                      randomAvatarSize: 80,
-                      profileAvatarSize: 40,
-                      myProfileXFilePath: myInfoEntity.myProfilePath,
+                  child: Center(
+                    child: Hero(
+                      tag: '${myInfoEntity.id}/me',
+                      child: UserProfile(
+                        profileUrl: myInfoEntity.profileUrl,
+                        profileSize: 50,
+                        myProfileXFilePath: myInfoEntity.myProfilePath,
+                      ),
                     ),
                   ),
                 ),
-                TextButton(
-                    onPressed: () {
-                      myInfoEntity.profileUrl = null;
-                      myInfoEntity.myProfilePath = null;
-                      setState(() {});
-                    },
-                    child: const Text("프로필 사진 초기화")),
+                Center(
+                  child: TextButton(
+                      onPressed: () {
+                        myInfoEntity.profileUrl = null;
+                        myInfoEntity.myProfilePath = null;
+                        setState(() {});
+                      },
+                      child: const Text("프로필 사진 초기화")),
+                ),
                 SizedBox(height: 5 * hu),
-                Text(
-                  "${myInfoEntity.birthYear}  |  ${convertGenderToString(myInfoEntity.gender)}  |  ${myInfoEntity.name}",
-                  textAlign: TextAlign.center,
+                Center(
+                  child: Text(
+                    "${myInfoEntity.birthYear}  |  ${convertGenderToString(myInfoEntity.gender)}  |  ${myInfoEntity.name}",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 SizedBox(height: 20 * hu),
                 _renderSubTitle("닉네임"),

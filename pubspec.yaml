@@ -39,7 +39,6 @@ dependencies:
   # UI
   font_awesome_flutter: # 아이콘
   google_fonts: # 구글 폰트
-  random_avatar: # 유저 프로필
   auth_button_kit: # OAuth 소셜 로그인 버튼, 카카오는 없음
   pinput: # 이메일, 전화번호 인증
   flutter_slidable: # IOS 인터페이스
@@ -60,8 +59,9 @@ dependencies:
   # 포트원 본인인증
   iamport_flutter:
 
-  # 이미지 가져오기
+  # 이미지
   image_picker: 1.1.2
+  cached_network_image:
 
   # 로컬 데이터베이스
   flutter_secure_storage: 9.2.2

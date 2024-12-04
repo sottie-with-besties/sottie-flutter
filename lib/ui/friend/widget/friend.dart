@@ -55,10 +55,7 @@ class _FriendState extends State<Friend> {
       groupTag: 'friend',
       onLongPressWidget: Column(
         children: [
-          UserProfile(
-            profileUrl: widget.model.profileUrl ?? '3512354',
-            randomAvatarSize: 100,
-          ),
+          UserProfile(profileUrl: widget.model.profileUrl),
           SizedBox(height: 10 * hu),
           Text(
             widget.model.nickname,

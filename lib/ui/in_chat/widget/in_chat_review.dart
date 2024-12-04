@@ -242,11 +242,7 @@ class _InChatReviewState extends State<InChatReview> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    UserProfile(
-                      profileUrl: widget.profileUrl,
-                      randomAvatarSize: 40,
-                      profileAvatarSize: 15,
-                    ),
+                    UserProfile(profileUrl: widget.profileUrl),
                     Text(widget.nickName),
                   ],
                 ),

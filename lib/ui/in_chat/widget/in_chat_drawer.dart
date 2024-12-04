@@ -162,10 +162,7 @@ Widget _inChatParticipant(
       padding: const EdgeInsets.only(left: 12, bottom: 12),
       child: Row(
         children: [
-          UserProfile(
-            profileUrl: profileUrl ?? 'asdas123',
-            randomAvatarSize: 30,
-          ),
+          const UserProfile(),
           SizedBox(width: 10 * wu),
           Text(nickName, style: const TextStyle(fontWeight: FontWeight.bold)),
         ],

@@ -239,11 +239,7 @@ Widget _renderDmChatBox(InChatMessageDataModel model) {
               myMsg ? MainAxisAlignment.end : MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (!myMsg)
-              UserProfile(
-                profileUrl: model.userIdWhoSent,
-                randomAvatarSize: 30,
-              ),
+            if (!myMsg) const UserProfile(),
             if (!myMsg) const SizedBox(width: 15),
             Column(
               crossAxisAlignment:

@@ -7,21 +7,24 @@ Future<List<UserModel>> getFriendDummy() async {
       id: 1,
       nickname: 'SkyWalker',
       stateMsg: '늘 하늘을 꿈꾸는 사람입니다.',
-      profileUrl: null,
+      profileUrl:
+          'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fce8Ad2%2FbtsJDujvc9s%2FrOyCoGTkrDxPQHR64hPZAK%2Ftfile.dat',
       mannerTemperature: 36.1,
     ),
     UserModel(
       id: 2,
       nickname: 'MoonChild',
       stateMsg: '달을 사랑하는 사람입니다.',
-      profileUrl: null,
+      profileUrl:
+          'https://lh4.googleusercontent.com/on7Yj1rShJRRBy88rTmptLVzMI4gEBDBabmSMv-GGsPIo5umfS5dpSJp3b4EoqKtnxdOYXeHSyct6m2fLYKckaikrUJn91PNWkIYXtkrCljcvdEnGdf_nQM5Qw6bQY4q6jvbWiBcC3WPTIcDS_lizv3R25oVAF_H0PNzvRo7JivPSiZR',
       mannerTemperature: 36.1,
     ),
     UserModel(
       id: 3,
       nickname: 'StarGazer',
       stateMsg: '별을 바라보며 꿈을 꿉니다.',
-      profileUrl: null,
+      profileUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2d3IW4R8PR4TO7Va-lOAV6PrrYh250bqJpw&s',
       mannerTemperature: 36.1,
     ),
     UserModel(
