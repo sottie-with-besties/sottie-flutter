@@ -158,7 +158,7 @@ Widget _inChatParticipant(
             id: id,
             nickname: nickName,
             stateMsg: '',
-            profileUrl: profileUrl ?? '123451234',
+            profileUrl: profileUrl,
             mannerTemperature: 39.2,
           ),
           'heroTag': '',
