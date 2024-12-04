@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -27,18 +28,19 @@ class PhotoMagnificationScreen extends StatelessWidget {
       ),
       backgroundColor: Colors.black38,
       body: Center(
-        child: Image.network(
-          // Todo: CachedNetworkImage로 변경
-          imageUrl,
+        child: CachedNetworkImage(
+          imageUrl: imageUrl,
           fit: BoxFit.cover,
-          errorBuilder: (_, __, ___) {
-            return const Center(
-              child: Text(
-                "이미지를 불러올 수 없습니다.",
-                style: TextStyle(
-                  color: mainWhiteSilverColor,
-                ),
-              ),
+          imageBuilder: (_, imageProvider) =>
+              Image(image: imageProvider, fit: BoxFit.cover),
+          placeholder: (_, __) => const Text(
+            "이미지를 불러오는 중...",
+            style: TextStyle(color: mainWhiteSilverColor),
+          ),
+          errorWidget: (_, __, ___) {
+            return const Text(
+              "이미지를 불러올 수 없습니다.",
+              style: TextStyle(color: mainWhiteSilverColor),
             );
           },
         ),

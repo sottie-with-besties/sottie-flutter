@@ -51,7 +51,8 @@ class _InChatScreenState extends State<InChatScreen> {
           iconTheme: const IconThemeData(color: mainWhiteSilverColor),
         ),
         backgroundColor: mainWhiteSilverColor,
-        endDrawer: isDm ? null : const InChatDrawer(),
+        endDrawer:
+            isDm ? null : InChatDrawer(chatRoomModel: widget.chatRoomModel!),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

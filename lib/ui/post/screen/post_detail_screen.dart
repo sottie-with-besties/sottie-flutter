@@ -15,10 +15,12 @@ class PostDetailScreen extends StatelessWidget {
     super.key,
     required this.postModel,
     required this.isWaiting,
+    required this.isCheckInfo,
   });
 
   final PostModel postModel;
   final bool isWaiting;
+  final bool isCheckInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -135,33 +137,34 @@ class PostDetailScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 15),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                              side: const BorderSide(
-                                color: mainWhiteSilverColor,
+                    if (!isCheckInfo)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                side: const BorderSide(
+                                  color: mainWhiteSilverColor,
+                                ),
+                                minimumSize: const Size(100, 65),
                               ),
-                              minimumSize: const Size(100, 65),
-                            ),
-                            onPressed: () {
-                              isWaiting ? log("참여 취소") : log("참여하기");
-                            },
-                            child: Text(
-                              isWaiting ? '참여 취소' : '참여하기',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: mainWhiteSilverColor,
+                              onPressed: () {
+                                isWaiting ? log("참여 취소") : log("참여하기");
+                              },
+                              child: Text(
+                                isWaiting ? '참여 취소' : '참여하기',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: mainWhiteSilverColor,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
                   ],
                 ),
               ],

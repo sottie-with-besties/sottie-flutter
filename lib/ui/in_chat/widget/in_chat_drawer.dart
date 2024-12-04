@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
+import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_photo.dart';
 
 class InChatDrawer extends StatelessWidget {
-  const InChatDrawer({super.key});
+  const InChatDrawer({
+    super.key,
+    required this.chatRoomModel,
+  });
+
+  final ChatRoomModel chatRoomModel;
 
   @override
   Widget build(BuildContext context) {
@@ -28,25 +35,26 @@ class InChatDrawer extends StatelessWidget {
                     context.push(
                       "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatInfoPath}",
                       extra: {
-                        // 'postModel': PostModel(
-                        //   id: id,
-                        //   gatheringCategory: gatheringCategory,
-                        //   title: title,
-                        //   locationId: locationId,
-                        //   content: content,
-                        //   currentPeopleNum: currentPeopleNum,
-                        //   peopleNum: peopleNum,
-                        //   currentMaleNum: currentMaleNum,
-                        //   maleNum: maleNum,
-                        //   currentFemaleNum: currentFemaleNum,
-                        //   femaleNum: femaleNum,
-                        //   ageRange: ageRange,
-                        //   mannerTemperature: mannerTemperature,
-                        //   onlyMyFriends: onlyMyFriends,
-                        //   genderRestriction: genderRestriction,
-                        //   mannerRestriction: mannerRestriction,
-                        //   ageRestriction: ageRestriction,
-                        // ),
+                        'postModel': PostModel(
+                          id: chatRoomModel.id,
+                          gatheringCategory: chatRoomModel.gatheringCategory,
+                          title: chatRoomModel.chatTitle,
+                          locationId: chatRoomModel.locationId,
+                          gatheringDate: chatRoomModel.gatheringDate,
+                          content: '',
+                          currentPeopleNum: chatRoomModel.currentPeopleNum,
+                          peopleNum: chatRoomModel.peopleNum,
+                          currentMaleNum: chatRoomModel.currentMaleNum,
+                          maleNum: chatRoomModel.maleNum,
+                          currentFemaleNum: chatRoomModel.currentFemaleNum,
+                          femaleNum: chatRoomModel.femaleNum,
+                          ageFrom: chatRoomModel.ageFrom,
+                          ageTo: chatRoomModel.ageTo,
+                          onlyMyFriends: chatRoomModel.onlyMyFriends,
+                          genderRestriction: chatRoomModel.genderRestriction,
+                          mannerRestriction: chatRoomModel.mannerRestriction,
+                          ageRestriction: chatRoomModel.ageRestriction,
+                        )
                       },
                     );
                   },

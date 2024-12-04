@@ -14,7 +14,6 @@ import 'package:sottie_flutter/ui/common/screen/photo_magnification_screen.dart'
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_util_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
-import 'package:sottie_flutter/ui/in_chat/screen/in_chat_info_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_notification_list_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_photo_list_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_screen.dart';
@@ -167,10 +166,21 @@ final _routes = [
                 routes: <GoRoute>[
                   GoRoute(
                     path: CustomRouter.inChatInfoPath,
-                    builder: (_, state) {
+                    pageBuilder: (_, state) {
                       final params = state.extra as Map<String, dynamic>;
-                      return InChatInfoScreen(
-                        postModel: params['postModel'],
+
+                      return CustomTransitionPage(
+                        child: PostDetailScreen(
+                          postModel: params['postModel'],
+                          isWaiting: false,
+                          isCheckInfo: true,
+                        ),
+                        transitionsBuilder: (_, animation, __, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
                       );
                     },
                   ),
@@ -181,15 +191,6 @@ final _routes = [
                   GoRoute(
                     path: CustomRouter.inChatNotificationListPath,
                     builder: (_, __) => const InChatNotificationListScreen(),
-                  ),
-                  GoRoute(
-                    path: CustomRouter.inChatParticipationListPath,
-                    builder: (_, state) {
-                      final params = state.extra as Map<String, dynamic>;
-                      return InChatInfoScreen(
-                        postModel: params['postModel'],
-                      );
-                    },
                   ),
                 ],
               ),
@@ -296,7 +297,8 @@ final _routes = [
       return CustomTransitionPage(
         child: PostDetailScreen(
           postModel: params['postModel'],
-          isWaiting: params['isWaiting'],
+          isWaiting: params['isWaiting'] ?? false,
+          isCheckInfo: false,
         ),
         transitionsBuilder: (_, animation, __, child) {
           return FadeTransition(
