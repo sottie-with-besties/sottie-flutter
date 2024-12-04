@@ -31,7 +31,7 @@ final class HomeLatestPost extends _$HomeLatestPost {
       final postList = await _repo.getLatestPostModelList(
         lastPostId: firstFetch ? 0 : state.postModelList.last.id,
       );
-
+      
       // final postList = await getLatestPostDummy("123");
 
       if (postList.isEmpty) {
