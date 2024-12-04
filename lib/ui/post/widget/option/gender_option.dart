@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -14,10 +16,18 @@ class GenderOption extends ConsumerStatefulWidget {
 }
 
 class _GenderClassState extends ConsumerState<GenderOption> {
-  bool _notSelected = true;
+  bool _notSelected = false;
 
   bool _sliderCondition(double val) =>
       postSettingEntity.genderRestriction != 'NONE' && !_notSelected;
+
+  @override
+  void initState() {
+    super.initState();
+    postSettingEntity.genderRestriction == 'NONE'
+        ? _notSelected = true
+        : _notSelected = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +61,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
               onChanged: (val) {
                 if (!_notSelected) {
                   // Todo: MALE 말고 다른걸로 바꾸기
-                  postSettingEntity.genderRestriction = val ? 'MALE' : 'NONE';
+                  postSettingEntity.genderRestriction = val ? 'MIX' : 'NONE';
                   setState(() {});
                 }
               },
@@ -69,29 +79,33 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                   child: Column(
                     children: [
                       Slider(
-                          value: postSettingEntity.maleNum.toDouble(),
-                          max: postSettingEntity.peopleNum.toDouble(),
-                          divisions: postSettingEntity.peopleNum,
-                          activeColor: mainBlueColor,
-                          inactiveColor: mainRedColor,
-                          thumbColor: mainBlackColor,
-                          onChanged: (val) {
-                            if (_sliderCondition(val)) {
-                              postSettingEntity.maleNum = val.toInt();
-                              postSettingEntity.femaleNum =
-                                  (postSettingEntity.peopleNum - val).toInt();
+                        value: postSettingEntity.maleNum.toDouble(),
+                        max: postSettingEntity.peopleNum.toDouble(),
+                        divisions: postSettingEntity.peopleNum,
+                        activeColor: mainBlueColor,
+                        inactiveColor: mainRedColor,
+                        thumbColor: mainBlackColor,
+                        onChanged: (val) {
+                          if (_sliderCondition(val)) {
+                            postSettingEntity.maleNum = val.toInt();
+                            postSettingEntity.femaleNum =
+                                (postSettingEntity.peopleNum - val).toInt();
 
-                              if (postSettingEntity.maleNum ==
-                                  postSettingEntity.peopleNum) {
-                                postSettingEntity.genderRestriction = 'MALE';
-                              } else if (postSettingEntity.femaleNum ==
-                                  postSettingEntity.peopleNum) {
-                                postSettingEntity.genderRestriction = 'FEMALE';
-                              }
-
-                              setState(() {});
+                            if (postSettingEntity.maleNum ==
+                                postSettingEntity.peopleNum) {
+                              postSettingEntity.genderRestriction = 'MALE';
+                            } else if (postSettingEntity.femaleNum ==
+                                postSettingEntity.peopleNum) {
+                              postSettingEntity.genderRestriction = 'FEMALE';
+                            } else {
+                              postSettingEntity.genderRestriction = 'MIX';
                             }
-                          }),
+
+                            setState(() {});
+                          }
+                          log(postSettingEntity.genderRestriction);
+                        },
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Row(

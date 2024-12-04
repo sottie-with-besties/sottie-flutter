@@ -3,15 +3,16 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class CurrentNumOfMember extends StatelessWidget {
-  const CurrentNumOfMember(
-      {super.key,
-      required this.currentPeopleNum,
-      required this.peopleNum,
-      required this.currentMaleNum,
-      required this.maleNum,
-      required this.currentFemaleNum,
-      required this.femaleNum,
-      required this.genderRestriction});
+  const CurrentNumOfMember({
+    super.key,
+    required this.currentPeopleNum,
+    required this.peopleNum,
+    required this.currentMaleNum,
+    required this.maleNum,
+    required this.currentFemaleNum,
+    required this.femaleNum,
+    required this.genderRestriction,
+  });
 
   final int currentPeopleNum;
   final int peopleNum;
