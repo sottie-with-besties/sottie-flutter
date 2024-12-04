@@ -60,7 +60,7 @@ class _PostPaginationListViewState
         !_noMorePagination) {
       EasyThrottle.throttle(
         'postPagination',
-        const Duration(seconds: 3),
+        const Duration(seconds: 1),
         () {
           if (_isLatestProvider()) {
             final provider = widget.postProvider
