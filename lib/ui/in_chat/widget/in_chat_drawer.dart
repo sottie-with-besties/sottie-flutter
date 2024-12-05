@@ -41,7 +41,7 @@ class InChatDrawer extends StatelessWidget {
                           title: chatRoomModel.title,
                           locationId: chatRoomModel.locationId,
                           gatheringDate: chatRoomModel.gatheringDate,
-                          contents: chatRoomModel.content,
+                          contents: chatRoomModel.contents,
                           currentPeopleNum: chatRoomModel.currentPeopleNum,
                           peopleNum: chatRoomModel.peopleNum,
                           currentMaleNum: chatRoomModel.currentMaleNum,

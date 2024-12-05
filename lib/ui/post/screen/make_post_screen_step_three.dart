@@ -32,7 +32,7 @@ class MakePostScreenStepThree extends StatelessWidget {
               ),
               SizedBox(height: 30 * hu),
               Text(
-                postSettingEntity.content,
+                postSettingEntity.contents,
                 style: const TextStyle(
                   fontSize: 14,
                 ),

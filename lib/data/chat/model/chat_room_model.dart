@@ -33,7 +33,7 @@ class ChatRoomModel with _$ChatRoomModel {
     required int notReadMsg,
 
     /// 채팅방을 설명하는 구체적 내용
-    required String content,
+    required String contents,
 
     /// 성비 제한이 없을 경우 currentPeopleNum, peopleNum
     /// 성비 제한이 있을 경우 currentMaleNum, maleNum, currentFemaleNum, femaleNum

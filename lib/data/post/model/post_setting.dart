@@ -6,7 +6,7 @@ final class PostSetting {
   String title;
 
   /// 포스트 내용
-  String content;
+  String contents;
 
   /// 포스트 카테고리(번개, 친목, 게임 등)
   SottieCategory gatheringCategory;
@@ -55,7 +55,7 @@ final class PostSetting {
 
   PostSetting({
     this.title = '',
-    this.content = '',
+    this.contents = '',
     this.gatheringCategory = SottieCategory.all,
     this.gatheringDate, // date와 time은 null로 못받게 프론트에서 예외 처리
     this.dateTimeRange,
@@ -73,21 +73,35 @@ final class PostSetting {
     this.onlyMyFriends = false,
   });
 
+  // GatheringCategory gatheringCategory,
+  //     String title,
+  // Long locationId,
+  //     LocalDateTime gatheringDate,
+  // String contents,
+  //     Integer peopleNum,
+  // Integer femaleNum,
+  //     Integer maleNum,
+  // Integer ageFrom,
+  //     Integer ageTo,
+  // GenderCategory genderRestriction,
+  //     Boolean mannerRestriction,
+  // Boolean ageRestriction
+
   Map<String, dynamic> toJsonForMakePostSend() {
     final makePostData = {
+      'gatheringCategory': gatheringCategory.name,
       'title': title,
-      'content': content,
-      'gatheringCategory': gatheringCategory.name, // Enum 데이터
-      'gatheringDate': gatheringDate?.toLocal().toString() ?? '',
       'locationId': locationId,
+      'gatheringDate': gatheringDate?.toLocal().toString() ?? '',
+      'contents': contents,
       'peopleNum': peopleNum,
-      'genderRestriction': genderRestriction,
       'maleNum': maleNum,
       'femaleNum': femaleNum,
-      'ageTo': ageTo,
       'ageFrom': ageFrom,
-      'ageRestriction': ageRestriction,
+      'ageTo': ageTo,
+      'genderRestriction': genderRestriction,
       'mannerRestriction': mannerRestriction,
+      'ageRestriction': ageRestriction,
       'onlyMyFriends': onlyMyFriends,
     };
 
@@ -97,7 +111,7 @@ final class PostSetting {
   Map<String, dynamic> toJsonForSearchFiltering() {
     final searchFilteringData = {
       'title': title,
-      'content': content,
+      'content': contents,
       'gatheringCategory': gatheringCategory.name, // Enum 데이터
       'dateStart': dateTimeRange?.start.toLocal().toString() ?? '',
       'dateEnd': dateTimeRange?.end.toLocal().toString() ?? '',

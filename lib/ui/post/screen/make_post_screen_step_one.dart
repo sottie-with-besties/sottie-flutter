@@ -74,7 +74,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                         );
                       } else {
                         postSettingEntity.title = _titleController.text;
-                        postSettingEntity.content = _contentController.text;
+                        postSettingEntity.contents = _contentController.text;
                         context.push(
                             '${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}');
                       }
