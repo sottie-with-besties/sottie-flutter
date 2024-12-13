@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
-import 'package:sottie_flutter/repository/home/home_post_retrofit.dart';
+import 'package:sottie_flutter/repository/home/home_post_repository.dart';
 
 part 'home_latest_post_provider.g.dart';
 
-final _repo = HomePostRetrofit(customDio);
+final _repo = HomePostRepository(customDio);
 
 @Riverpod(keepAlive: true)
 final class HomeLatestPost extends _$HomeLatestPost {
@@ -31,7 +31,7 @@ final class HomeLatestPost extends _$HomeLatestPost {
       final postList = await _repo.getLatestPostModelList(
         lastPostId: firstFetch ? 0 : state.postModelList.last.id,
       );
-      
+
       // final postList = await getLatestPostDummy("123");
 
       if (postList.isEmpty) {

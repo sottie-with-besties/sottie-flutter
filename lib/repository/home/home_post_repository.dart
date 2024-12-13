@@ -3,12 +3,12 @@ import 'package:retrofit/retrofit.dart';
 import 'package:sottie_flutter/core/dio/server_ip.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 
-part 'home_post_retrofit.g.dart';
+part 'home_post_repository.g.dart';
 
 /// Authentication 관련 Rest Api 통신 코드
 @RestApi(baseUrl: serverIp)
-abstract class HomePostRetrofit {
-  factory HomePostRetrofit(Dio dio, {String baseUrl}) = _HomePostRetrofit;
+abstract class HomePostRepository {
+  factory HomePostRepository(Dio dio, {String baseUrl}) = _HomePostRepository;
 
   @GET('/sottie/gatherings')
   @Headers(<String, dynamic>{

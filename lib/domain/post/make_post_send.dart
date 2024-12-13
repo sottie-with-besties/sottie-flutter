@@ -1,9 +1,19 @@
-import 'package:dio/dio.dart';
+import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
+import 'package:sottie_flutter/repository/post/post_repository.dart';
 
-Future<void> makePostSend() async {
-  /// Todo: @MultiPart()로 보낼 수 있는지 확인
-  final formData = FormData.fromMap(postSettingEntity.toJsonForMakePostSend());
+final _repo = PostRepository(customDio);
+
+Future<bool> makePostSend() async {
+  try {
+    final resp = await _repo.makePost(
+        postOptions: postSettingEntity.toJsonForMakePostSend());
+
+    // Todo: resp status code에 따른 예외처리
+    return true;
+  } catch (_) {
+    return false;
+  }
 }
 
 // FormData _formData;

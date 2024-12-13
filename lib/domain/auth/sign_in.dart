@@ -16,12 +16,15 @@ import 'package:sottie_flutter/domain/auth/auth_token.dart';
 import 'package:sottie_flutter/domain/auth/auth_type.dart';
 import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';
 import 'package:sottie_flutter/domain/user/my_info_entity.dart';
-import 'package:sottie_flutter/repository/auth/auth_retrofit.dart';
+import 'package:sottie_flutter/repository/auth/auth_repository.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 part 'apple_login.dart';
+
 part 'email_login.dart';
+
 part 'google_login.dart';
+
 part 'kakao_login.dart';
 
 Future<String?> signIn(

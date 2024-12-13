@@ -3,11 +3,11 @@ import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/data/post/data_source/search_post_dummy.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
-import 'package:sottie_flutter/repository/home/home_post_retrofit.dart';
+import 'package:sottie_flutter/repository/home/home_post_repository.dart';
 
 part 'home_search_post_provider.g.dart';
 
-final _repo = HomePostRetrofit(customDio);
+final _repo = HomePostRepository(customDio);
 
 @Riverpod(keepAlive: true)
 final class HomeSearchPost extends _$HomeSearchPost {

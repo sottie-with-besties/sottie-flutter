@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_age_range.dart';
@@ -125,10 +123,6 @@ class _AgeRangeState extends State<_AgeRange> {
                         selectedList[i - 1] = true;
                       }
                       setState(() {});
-
-                      log(postSettingEntity.ageFrom.toString(),
-                          name: 'ageFrom');
-                      log(postSettingEntity.ageTo.toString(), name: 'ageTo');
                     },
                   ),
                 );

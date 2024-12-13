@@ -1,9 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
+import 'package:sottie_flutter/domain/post/make_post_send.dart';
 import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
+import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 
 class MakePostScreenStepThree extends StatelessWidget {
@@ -68,8 +71,26 @@ class MakePostScreenStepThree extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: ElevatedButton(
-                      onPressed: () {
-                        log("모집글 생성");
+                      onPressed: () async {
+                        final makePostSuccess = await makePostSend();
+
+                        if (context.mounted) {
+                          if (makePostSuccess) {
+                            await showCustomDialog(
+                              context,
+                              const Center(
+                                child: Text('모집글을 작성했습니다'),
+                              ),
+                            );
+                            context.mounted
+                                ? context.go(CustomRouter.homePath)
+                                : null;
+
+                            // Todo: 유저 골드 차감
+                          } else {
+                            showSnackBar(context, '모집글 생성 실패');
+                          }
+                        }
                       },
                       child: const Text('모집글 생성'),
                     ),

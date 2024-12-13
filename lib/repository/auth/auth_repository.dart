@@ -4,14 +4,13 @@ import 'package:sottie_flutter/core/dio/server_ip.dart';
 import 'package:sottie_flutter/data/auth/model/email_sign_up_model.dart';
 import 'package:sottie_flutter/data/auth/model/token_model.dart';
 
-part 'auth_retrofit.g.dart';
+part 'auth_repository.g.dart';
 
 /// Authentication 관련 Rest Api 통신 코드
 @RestApi(baseUrl: serverIp)
-abstract class AuthTokenRetrofit {
-  factory AuthTokenRetrofit(Dio dio, {String baseUrl}) = _AuthTokenRetrofit;
+abstract class AuthTokenRepository {
+  factory AuthTokenRepository(Dio dio, {String baseUrl}) = _AuthTokenRepository;
 
-  /// Todo: Future<SignUpSuccessModel>로 변경해야함
   @POST('/sottie/users/signup')
   @Headers(<String, dynamic>{
     'Content-Type': 'application/json',
