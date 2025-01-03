@@ -160,7 +160,8 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
                                 '채팅이 종료되었습니다.\n시간이 경과하기 전에 참여자들을 리뷰하면 당신의 매너온도가 1°C 상승합니다.',
                               ),
                               const SizedBox(height: 10),
-                              ChatRoomDestroyingTimer(timeLeft: du),
+                              ChatRoomDestroyingTimer(
+                                  key: UniqueKey(), timeLeft: du),
                             ],
                           ),
                         ),

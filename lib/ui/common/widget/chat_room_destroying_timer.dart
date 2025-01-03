@@ -14,7 +14,7 @@ class ChatRoomDestroyingTimer extends StatefulWidget {
 
 class _ChatRoomDestroyingTimerState extends State<ChatRoomDestroyingTimer> {
   Duration timeLeftNow = const Duration();
-  late Timer timer;
+  Timer? timer;
 
   String formatDuration(Duration d) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
@@ -53,7 +53,7 @@ class _ChatRoomDestroyingTimerState extends State<ChatRoomDestroyingTimer> {
 
   @override
   void dispose() {
-    timer.cancel();
+    timer?.cancel();
     super.dispose();
   }
 

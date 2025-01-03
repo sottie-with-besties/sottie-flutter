@@ -6,7 +6,7 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ChatRoomModel(
       id: 1,
       gatheringCategory: '번개',
-      gatheringDate: DateTime(2024, 12, 5, 8, 50),
+      gatheringDate: DateTime(2025, 1, 3, 8, 50),
       locationId: 2,
       title: '친목 모임: 가벼운 저녁 식사',
       profileThumbnailsUrl: ['1', '32', '42', '123'],
@@ -55,4 +55,4 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
 }
 
 DateTime _renderDeletingDate() =>
-    DateTime(2024, DateTime.now().month, DateTime.now().day - 1).toLocal();
+    DateTime(2025, DateTime.now().month, DateTime.now().day - 1).toLocal();
