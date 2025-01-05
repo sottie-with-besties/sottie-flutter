@@ -6,16 +6,16 @@ part 'user_model.g.dart';
 @freezed
 class UserModel with _$UserModel {
   factory UserModel({
-    /// 친구 ID
+    /// 유저 ID
     required int id,
 
-    /// 친구 닉네임
+    /// 유저 닉네임
     required String nickname,
 
-    /// 친구 상태 메세지
+    /// 유저 상태 메세지
     required String? stateMsg,
 
-    /// 프로필 URL, 프로필 없으면 id로 랜덤 아바타 생성
+    /// 유저 프로필 URL
     required String? profileUrl,
 
     /// 매너온도
