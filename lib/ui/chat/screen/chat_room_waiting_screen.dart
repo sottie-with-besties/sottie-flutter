@@ -6,7 +6,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
-import 'package:sottie_flutter/domain/chat/chat_room_waiting_provider.dart';
+import 'package:sottie_flutter/provider/chat/chat_room_waiting_provider.dart';
 import 'package:sottie_flutter/ui/chat/controller/chat_header_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';

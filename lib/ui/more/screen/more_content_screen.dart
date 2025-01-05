@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
-import 'package:sottie_flutter/domain/user/my_info_entity.dart';
+import 'package:sottie_flutter/provider/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/more/widget/extra_service_list.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';

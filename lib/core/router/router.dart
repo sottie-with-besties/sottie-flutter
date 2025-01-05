@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/data/post/model/post_setting.dart';
-import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
+import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/find_id_screen.dart';

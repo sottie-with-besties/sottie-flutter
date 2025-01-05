@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/domain/chat/dm_provider.dart';
+import 'package:sottie_flutter/provider/chat/dm_provider.dart';
 import 'package:sottie_flutter/ui/chat/controller/chat_header_controller.dart';
 import 'package:sottie_flutter/ui/chat/widget/dm_chat_room.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';

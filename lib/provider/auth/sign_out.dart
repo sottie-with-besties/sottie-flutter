@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
-import 'package:sottie_flutter/domain/auth/auth_type.dart';
+import 'package:sottie_flutter/provider/auth/auth_type.dart';
 
 Future<String?> signOut() async {
   String? errorCode;

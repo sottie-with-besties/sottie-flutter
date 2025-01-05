@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sottie_flutter/domain/user/my_info_entity.dart';
+import 'package:sottie_flutter/provider/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 final _picker = ImagePicker();

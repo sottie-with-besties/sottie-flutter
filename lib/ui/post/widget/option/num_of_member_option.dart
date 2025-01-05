@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/domain/post/post_setting_entity.dart';
+import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 

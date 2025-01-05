@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/domain/friend/friend_provider.dart';
+import 'package:sottie_flutter/provider/friend/friend_provider.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 import 'package:sottie_flutter/ui/friend/controller/friend_header_controller.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend.dart';

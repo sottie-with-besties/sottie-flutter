@@ -6,7 +6,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/friend/data_source/friend_request_dummy.dart';
 import 'package:sottie_flutter/data/user/data_source/user_search_dummy.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
-import 'package:sottie_flutter/domain/friend/friend_manage.dart';
+import 'package:sottie_flutter/provider/friend/friend_manage.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';

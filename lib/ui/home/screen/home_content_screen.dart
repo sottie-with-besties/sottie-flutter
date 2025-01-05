@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
-import 'package:sottie_flutter/domain/home/home_latest_post_provider.dart';
-import 'package:sottie_flutter/domain/home/home_search_post_provider.dart';
-import 'package:sottie_flutter/domain/home/home_state_provider.dart';
+import 'package:sottie_flutter/provider/home/home_latest_post_provider.dart';
+import 'package:sottie_flutter/provider/home/home_search_post_provider.dart';
+import 'package:sottie_flutter/provider/home/home_state_provider.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 import 'package:sottie_flutter/ui/post/widget/post.dart';
 

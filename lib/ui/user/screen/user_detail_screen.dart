@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
-import 'package:sottie_flutter/domain/friend/friend_manage.dart';
-import 'package:sottie_flutter/domain/user/user_manage.dart';
+import 'package:sottie_flutter/provider/friend/friend_manage.dart';
+import 'package:sottie_flutter/provider/user/user_manage.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 

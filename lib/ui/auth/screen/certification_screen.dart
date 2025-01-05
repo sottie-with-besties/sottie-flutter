@@ -10,8 +10,8 @@ import 'package:iamport_flutter/iamport_certification.dart';
 import 'package:iamport_flutter/model/certification_data.dart';
 import 'package:sottie_flutter/core/dio/server_ip.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/domain/auth/sign_up_entity.dart';
-import 'package:sottie_flutter/domain/user/my_info_entity.dart';
+import 'package:sottie_flutter/provider/user/my_info_entity.dart';
+import 'package:sottie_flutter/provider/auth/sign_up_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 class CertificationScreen extends StatelessWidget {
