@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/data/post/repository_impl/post_repository_impl.dart';
 import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
@@ -13,10 +11,7 @@ Future<bool> makePostSend() async {
 
     // Todo: resp status code에 따른 예외처리
     return true;
-  } catch (e, stackTrace) {
-    log(e.toString());
-    log(stackTrace.toString());
-
+  } catch (_, __) {
     return false;
   }
 }

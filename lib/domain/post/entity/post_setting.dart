@@ -90,20 +90,6 @@ final class PostSetting {
       'ageRestriction': ageRestriction,
       // 'onlyMyFriends': onlyMyFriends,
     };
-
-    // GatheringCategory gatheringCategory, (ex: FRIENDSHIP)
-    // String title, (ex: 강남역 빠르게 번개)
-    // Long locationId, (ex: 1)
-    // LocalDateTime gatheringDate,
-    // String contents, (ex: 치맥 후 보드게임해요)
-    // Integer peopleNum, (4)
-    // Integer femaleNum, (2)
-    // Integer maleNum, (2)
-    // Integer ageFrom, (20)
-    // Integer ageTo, (40)
-    // GenderCategory genderRestriction, (MIXED)
-    // Boolean mannerRestriction, (true)
-    // Boolean ageRestriction (true)
   }
 
   Map<String, dynamic> toJsonForSearchFiltering() {
