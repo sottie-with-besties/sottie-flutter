@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
-import 'package:sottie_flutter/repository/home/home_post_repository.dart';
+import 'package:sottie_flutter/data/post/repository_impl/post_repository_impl.dart';
 
 part 'home_latest_post_provider.g.dart';
 
-final _repo = HomePostRepository(customDio);
+final _repo = PostRepositoryImpl(customDio);
 
 @Riverpod(keepAlive: true)
 final class HomeLatestPost extends _$HomeLatestPost {

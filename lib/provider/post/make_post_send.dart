@@ -1,8 +1,8 @@
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
+import 'package:sottie_flutter/data/post/repository_impl/post_repository_impl.dart';
 import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
-import 'package:sottie_flutter/repository/post/post_repository.dart';
 
-final _repo = PostRepository(customDio);
+final _repo = PostRepositoryImpl(customDio);
 
 Future<bool> makePostSend() async {
   try {
