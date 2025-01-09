@@ -46,7 +46,7 @@ class LocalTextField extends StatelessWidget {
       inputFormatters: inputFormatter,
       decoration: InputDecoration(
         filled: true,
-        fillColor: mainGreyColor.withOpacity(0.25),
+        fillColor: mainGreyColor.withValues(alpha: 0.25),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(borderRadius),

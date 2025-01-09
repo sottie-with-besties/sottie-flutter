@@ -348,7 +348,7 @@ Positioned _renderReviewExplanation(
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: mainBlackColor.withOpacity(0.5),
+          color: mainBlackColor.withValues(alpha: 0.5),
         ),
         padding: const EdgeInsets.all(12),
         child: Text(

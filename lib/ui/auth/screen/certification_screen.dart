@@ -4,14 +4,14 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:portone_flutter/Iamport_certification.dart';
+import 'package:portone_flutter/model/certification_data.dart';
 /* 아임포트 휴대폰 본인인증 모듈을 불러옵니다. */
-import 'package:iamport_flutter/iamport_certification.dart';
 /* 아임포트 휴대폰 본인인증 데이터 모델을 불러옵니다. */
-import 'package:iamport_flutter/model/certification_data.dart';
 import 'package:sottie_flutter/core/dio/server_ip.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/provider/user/my_info_entity.dart';
 import 'package:sottie_flutter/provider/auth/sign_up_entity.dart';
+import 'package:sottie_flutter/provider/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 class CertificationScreen extends StatelessWidget {

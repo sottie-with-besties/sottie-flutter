@@ -34,7 +34,7 @@ class PostDetailScreen extends StatelessWidget {
             end: Alignment.bottomRight,
             colors: [
               mainGreenColor,
-              mainBlueColor.withOpacity(0.5),
+              mainBlueColor.withValues(alpha: 0.5),
               mainBlueColor,
             ],
             stops: const [0.01, 0.2, 1],

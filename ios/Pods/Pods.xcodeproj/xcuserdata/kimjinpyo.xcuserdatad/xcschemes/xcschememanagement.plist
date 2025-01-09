@@ -179,11 +179,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>iamport_flutter.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>iamport_webview_flutter.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -215,6 +210,11 @@
 			<false/>
 		</dict>
 		<key>path_provider_foundation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>portone_flutter.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

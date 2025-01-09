@@ -105,7 +105,7 @@ class _AlarmBox extends StatelessWidget {
                     ),
                   ),
                   VerticalDivider(
-                    color: mainGreyColor.withOpacity(0.3),
+                    color: mainGreyColor.withValues(alpha: 0.3),
                     width: 30 * wu,
                     indent: 3,
                     endIndent: 3,

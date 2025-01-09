@@ -46,9 +46,6 @@ Future<String?> signIn(
     case AuthType.apple:
       errorCode = await _signInWithApple();
       break;
-    default:
-      errorCode = 'switch default error catch';
-      break;
   }
 
   return errorCode;

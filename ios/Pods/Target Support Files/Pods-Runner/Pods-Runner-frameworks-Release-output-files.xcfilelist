@@ -13,11 +13,11 @@ ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecaptchaInterop.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/app_links.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/auth_button_kit.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/flutter_secure_storage.framework
-${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iamport_flutter.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iamport_webview_flutter.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/image_picker_ios.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/kakao_flutter_sdk_common.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/path_provider_foundation.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/portone_flutter.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/shared_preferences_foundation.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/sign_in_with_apple.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/sqflite_darwin.framework

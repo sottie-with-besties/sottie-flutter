@@ -8,7 +8,7 @@ const mainBlackColor = Colors.black;
 
 const mainGreyColor = Colors.grey;
 
-Color mainGreyColor2 = Colors.black.withOpacity(0.5);
+Color mainGreyColor2 = Colors.black.withValues(alpha: 0.5);
 
 const mainGreenColor = Colors.greenAccent;
 

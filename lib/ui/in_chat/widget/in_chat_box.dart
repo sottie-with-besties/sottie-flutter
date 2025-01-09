@@ -148,7 +148,7 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: mainBlueColor.withOpacity(0.3),
+                            color: mainBlueColor.withValues(alpha: 0.3),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           padding: const EdgeInsets.all(12),
@@ -183,7 +183,7 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
                           _renderSentTime(DateTime(2024, 9, 13)),
                           Container(
                             decoration: BoxDecoration(
-                              color: mainBlueColor.withOpacity(0.3),
+                              color: mainBlueColor.withValues(alpha: 0.3),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             padding: const EdgeInsets.all(12),
@@ -217,7 +217,7 @@ Widget _renderSentTime(DateTime sentTime) {
     padding: EdgeInsets.only(bottom: 16 * hu),
     child: Container(
       decoration: BoxDecoration(
-        color: mainGreenColor.withOpacity(0.5),
+        color: mainGreenColor.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(8),
       ),
       padding: const EdgeInsets.all(12),

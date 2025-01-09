@@ -42,12 +42,6 @@
 @import google_sign_in_ios;
 #endif
 
-#if __has_include(<iamport_flutter/IamportFlutterPlugin.h>)
-#import <iamport_flutter/IamportFlutterPlugin.h>
-#else
-@import iamport_flutter;
-#endif
-
 #if __has_include(<iamport_webview_flutter/FLTIamportWebViewFlutterPlugin.h>)
 #import <iamport_webview_flutter/FLTIamportWebViewFlutterPlugin.h>
 #else
@@ -70,6 +64,12 @@
 #import <path_provider_foundation/PathProviderPlugin.h>
 #else
 @import path_provider_foundation;
+#endif
+
+#if __has_include(<portone_flutter/IamportFlutterPlugin.h>)
+#import <portone_flutter/IamportFlutterPlugin.h>
+#else
+@import portone_flutter;
 #endif
 
 #if __has_include(<shared_preferences_foundation/SharedPreferencesPlugin.h>)
@@ -105,11 +105,11 @@
   [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
   [FlutterSecureStoragePlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterSecureStoragePlugin"]];
   [FLTGoogleSignInPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTGoogleSignInPlugin"]];
-  [IamportFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"IamportFlutterPlugin"]];
   [FLTIamportWebViewFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTIamportWebViewFlutterPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [KakaoFlutterSdkPlugin registerWithRegistrar:[registry registrarForPlugin:@"KakaoFlutterSdkPlugin"]];
   [PathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"PathProviderPlugin"]];
+  [IamportFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"IamportFlutterPlugin"]];
   [SharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"SharedPreferencesPlugin"]];
   [SignInWithApplePlugin registerWithRegistrar:[registry registrarForPlugin:@"SignInWithApplePlugin"]];
   [SqflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"SqflitePlugin"]];
