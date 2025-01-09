@@ -1,16 +1,18 @@
-enum SottieCategory {
-  all('전체'),
-  thunder('번개'),
-  amity('친목'),
-  study('공부'),
-  hiring('구인/구직'),
-  game('게임'),
-  exercise('운동'),
-  others('기타');
+// ignore_for_file: constant_identifier_names
 
-  final String name;
+enum SottieCategory {
+  ALL('전체'),
+  THUNDER('번개'),
+  FRIENDSHIP('친목'),
+  STUDY('공부'),
+  HIRING('구인/구직'),
+  GAME('게임'),
+  EXERCISE('운동'),
+  OTHERS('기타');
+
+  final String koreanName;
 
   const SottieCategory(
-    this.name,
+    this.koreanName,
   );
 }

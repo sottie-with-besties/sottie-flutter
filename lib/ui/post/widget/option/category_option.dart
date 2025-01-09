@@ -47,7 +47,7 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
 
           return ChoiceChip(
             label: Text(
-              category.name,
+              category.koreanName,
               style: TextStyle(
                 color: isSelected ? mainWhiteSilverColor : mainBlackColor,
               ),
@@ -55,7 +55,7 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
             selected: isSelected,
             onSelected: (_) {
               postSettingEntity.gatheringCategory == category
-                  ? postSettingEntity.gatheringCategory = SottieCategory.all
+                  ? postSettingEntity.gatheringCategory = SottieCategory.ALL
                   : postSettingEntity.gatheringCategory = category;
               setState(() {});
             },

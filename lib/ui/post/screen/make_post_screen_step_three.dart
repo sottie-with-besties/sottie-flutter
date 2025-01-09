@@ -44,7 +44,8 @@ class MakePostScreenStepThree extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("카테고리: ${postSettingEntity.gatheringCategory.name}"),
+                  Text(
+                      "카테고리: ${postSettingEntity.gatheringCategory.koreanName}"),
                   Text(
                       "날짜: ${postSettingEntity.gatheringDate == null ? "날짜 정보 없음" : convertDateTimeIntoString(postSettingEntity.gatheringDate!.toLocal())}"),
                   Text(

@@ -33,7 +33,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
       checkList.add("날짜 및 시간을 선택해주세요.");
     }
 
-    if (postSettingEntity.gatheringCategory == SottieCategory.all) {
+    if (postSettingEntity.gatheringCategory == SottieCategory.ALL) {
       checkList.add("카테고리를 하나 선택해주세요.");
     }
 

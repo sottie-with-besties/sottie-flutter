@@ -56,7 +56,7 @@ final class PostSetting {
   PostSetting({
     this.title = '',
     this.contents = '',
-    this.gatheringCategory = SottieCategory.all,
+    this.gatheringCategory = SottieCategory.ALL,
     this.gatheringDate, // date와 time은 null로 못받게 프론트에서 예외 처리
     this.dateTimeRange,
     this.timeStart,
@@ -73,26 +73,12 @@ final class PostSetting {
     this.onlyMyFriends = false,
   });
 
-  // GatheringCategory gatheringCategory,
-  //     String title,
-  // Long locationId,
-  //     LocalDateTime gatheringDate,
-  // String contents,
-  //     Integer peopleNum,
-  // Integer femaleNum,
-  //     Integer maleNum,
-  // Integer ageFrom,
-  //     Integer ageTo,
-  // GenderCategory genderRestriction,
-  //     Boolean mannerRestriction,
-  // Boolean ageRestriction
-
   Map<String, dynamic> toJsonForMakePostSend() {
-    final makePostData = {
+    return {
       'gatheringCategory': gatheringCategory.name,
       'title': title,
       'locationId': locationId,
-      'gatheringDate': gatheringDate?.toLocal().toString() ?? '',
+      'gatheringDate': gatheringDate?.toIso8601String() ?? '',
       'contents': contents,
       'peopleNum': peopleNum,
       'maleNum': maleNum,
@@ -102,17 +88,29 @@ final class PostSetting {
       'genderRestriction': genderRestriction,
       'mannerRestriction': mannerRestriction,
       'ageRestriction': ageRestriction,
-      'onlyMyFriends': onlyMyFriends,
+      // 'onlyMyFriends': onlyMyFriends,
     };
 
-    return makePostData;
+    // GatheringCategory gatheringCategory, (ex: FRIENDSHIP)
+    // String title, (ex: 강남역 빠르게 번개)
+    // Long locationId, (ex: 1)
+    // LocalDateTime gatheringDate,
+    // String contents, (ex: 치맥 후 보드게임해요)
+    // Integer peopleNum, (4)
+    // Integer femaleNum, (2)
+    // Integer maleNum, (2)
+    // Integer ageFrom, (20)
+    // Integer ageTo, (40)
+    // GenderCategory genderRestriction, (MIXED)
+    // Boolean mannerRestriction, (true)
+    // Boolean ageRestriction (true)
   }
 
   Map<String, dynamic> toJsonForSearchFiltering() {
     final searchFilteringData = {
       'title': title,
       'content': contents,
-      'gatheringCategory': gatheringCategory.name, // Enum 데이터
+      'gatheringCategory': gatheringCategory.koreanName, // Enum 데이터
       'dateStart': dateTimeRange?.start.toLocal().toString() ?? '',
       'dateEnd': dateTimeRange?.end.toLocal().toString() ?? '',
       'timeStart': timeStart ?? '',

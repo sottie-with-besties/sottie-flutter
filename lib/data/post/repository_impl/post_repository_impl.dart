@@ -25,9 +25,8 @@ abstract class PostRepositoryImpl {
     required int lastPostId,
   });
 
-  @POST('/sottie/gatherings')
-  @Headers(<String, dynamic>{
-    'Content-Type': 'application/json',
-  })
-  Future<HttpResponse> makePost({required Map<String, dynamic> postOptions});
+  @POST('/sottie/gathering')
+  @Headers(<String, dynamic>{'Content-Type': "application/json"})
+  Future<HttpResponse> makePost(
+      {@Body() required Map<String, dynamic> postSetting});
 }
