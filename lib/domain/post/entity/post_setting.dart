@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_category.dart';
 
 final class PostSetting {
   /// 포스트 제목

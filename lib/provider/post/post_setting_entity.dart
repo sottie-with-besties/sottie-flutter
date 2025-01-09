@@ -1,3 +1,3 @@
-import 'package:sottie_flutter/data/post/model/post_setting.dart';
+import 'package:sottie_flutter/domain/post/entity/post_setting.dart';
 
 PostSetting postSettingEntity = PostSetting();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_category.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';

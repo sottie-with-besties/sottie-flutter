@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/post/model/post_setting.dart';
+import 'package:sottie_flutter/domain/post/entity/post_setting.dart';
 import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/alarm/screen/alarm_screen.dart';
 import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';

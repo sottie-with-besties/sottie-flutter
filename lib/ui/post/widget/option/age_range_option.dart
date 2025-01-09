@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_age_range.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_age_range.dart';
 import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';

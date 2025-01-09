@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/post/model/post_detail_enum/sottie_location.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_location.dart';
 import 'package:sottie_flutter/provider/post/make_post_send.dart';
 import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
