@@ -8,8 +8,6 @@ final _repo = PostRepositoryImpl(cleanDio);
 
 Future<bool> makePostSend() async {
   try {
-    log(postSettingEntity.toJsonForMakePostSend().toString());
-
     final resp = await _repo.makePost(
         postSetting: postSettingEntity.toJsonForMakePostSend());
 
