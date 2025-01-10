@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_category.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_gender_restriction.dart';
 
-final class PostSetting {
+final class PostOptions {
   /// 포스트 제목
   String title;
 
@@ -29,8 +30,8 @@ final class PostSetting {
   /// 참여자 수 2 ~ 10 명
   int peopleNum;
 
-  /// 성비 제한 스위치 (NONE, MALE, FEMAIL)
-  String genderRestriction;
+  /// 성비 제한 여부
+  SottieGenderRestriction genderRestriction;
 
   /// 성비 제한이 있을 경우의 남자 수
   int maleNum;
@@ -53,7 +54,7 @@ final class PostSetting {
   /// 내 친구만 포스트 참여 가능
   bool onlyMyFriends;
 
-  PostSetting({
+  PostOptions({
     this.title = '',
     this.contents = '',
     this.gatheringCategory = SottieCategory.ALL,
@@ -62,12 +63,12 @@ final class PostSetting {
     this.timeStart,
     this.timeEnd,
     this.locationId = 0,
-    this.peopleNum = 0,
-    this.genderRestriction = 'NONE',
-    this.maleNum = 1,
-    this.femaleNum = 1,
-    this.ageFrom = 1,
-    this.ageTo = 1,
+    this.peopleNum = 1,
+    this.genderRestriction = SottieGenderRestriction.NONE,
+    this.maleNum = 0,
+    this.femaleNum = 0,
+    this.ageFrom = 0,
+    this.ageTo = 0,
     this.ageRestriction = false,
     this.mannerRestriction = false,
     this.onlyMyFriends = false,
@@ -83,9 +84,9 @@ final class PostSetting {
       'peopleNum': peopleNum,
       'maleNum': maleNum,
       'femaleNum': femaleNum,
-      'ageFrom': ageFrom,
-      'ageTo': ageTo,
-      'genderRestriction': genderRestriction,
+      'ageFrom': ageFrom * 10,
+      'ageTo': ageTo * 10,
+      'genderRestriction': genderRestriction.name,
       'mannerRestriction': mannerRestriction,
       'ageRestriction': ageRestriction,
       // 'onlyMyFriends': onlyMyFriends,
@@ -106,8 +107,8 @@ final class PostSetting {
       'genderRestriction': genderRestriction,
       'maleNum': maleNum,
       'femaleNum': femaleNum,
-      'ageTo': ageTo,
-      'ageFrom': ageFrom,
+      'ageTo': ageTo * 10,
+      'ageFrom': ageFrom * 10,
       'ageRestriction': ageRestriction,
       'mannerRestriction': mannerRestriction,
       'onlyMyFriends': onlyMyFriends,
@@ -116,3 +117,5 @@ final class PostSetting {
     return searchFilteringData;
   }
 }
+
+PostOptions postOptions = PostOptions();

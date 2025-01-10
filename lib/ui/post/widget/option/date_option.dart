@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
+import 'package:sottie_flutter/domain/post/entity/post_options.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
@@ -41,7 +41,7 @@ class _DateOptionState extends State<DateOption> {
               dateString =
                   "${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 ${convertIntToWeekday(selectedDate.weekday)}";
 
-              postSettingEntity.gatheringDate = selectedDate.copyWith();
+              postOptions.gatheringDate = selectedDate.copyWith();
 
               setState(() {});
             },

@@ -1,13 +1,13 @@
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/data/post/repository_impl/post_repository_impl.dart';
-import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
+import 'package:sottie_flutter/domain/post/entity/post_options.dart';
 
 final _repo = PostRepositoryImpl(cleanDio);
 
 Future<bool> makePostSend() async {
   try {
-    final resp = await _repo.makePost(
-        postSetting: postSettingEntity.toJsonForMakePostSend());
+    final resp =
+        await _repo.makePost(postSetting: postOptions.toJsonForMakePostSend());
 
     // Todo: resp status code에 따른 예외처리
     return true;

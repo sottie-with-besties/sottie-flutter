@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_category.dart';
-import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
+import 'package:sottie_flutter/domain/post/entity/post_options.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
 class CategoryOption extends StatelessWidget {
@@ -43,7 +43,7 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
         children: SottieCategory.values
             .where((category) => category.index != 0)
             .map((category) {
-          final isSelected = category == postSettingEntity.gatheringCategory;
+          final isSelected = category == postOptions.gatheringCategory;
 
           return ChoiceChip(
             label: Text(
@@ -54,9 +54,9 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
             ),
             selected: isSelected,
             onSelected: (_) {
-              postSettingEntity.gatheringCategory == category
-                  ? postSettingEntity.gatheringCategory = SottieCategory.ALL
-                  : postSettingEntity.gatheringCategory = category;
+              postOptions.gatheringCategory == category
+                  ? postOptions.gatheringCategory = SottieCategory.ALL
+                  : postOptions.gatheringCategory = category;
               setState(() {});
             },
           );

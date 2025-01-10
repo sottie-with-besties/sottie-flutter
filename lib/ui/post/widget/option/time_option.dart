@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
+import 'package:sottie_flutter/domain/post/entity/post_options.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
 class TimeOption extends StatefulWidget {
@@ -35,8 +35,8 @@ class _TimeOptionState extends State<TimeOption> {
 
               selectedTime = tempTime;
 
-              postSettingEntity.gatheringDate =
-                  (postSettingEntity.gatheringDate ?? DateTime.now()).copyWith(
+              postOptions.gatheringDate =
+                  (postOptions.gatheringDate ?? DateTime.now()).copyWith(
                 hour: selectedTime.hour,
                 minute: selectedTime.minute,
               );

@@ -3,7 +3,7 @@ import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
 import 'package:sottie_flutter/data/post/repository_impl/post_repository_impl.dart';
 import 'package:sottie_flutter/data/post/repository_impl/search_post_dummy.dart';
-import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
+import 'package:sottie_flutter/domain/post/entity/post_options.dart';
 
 part 'home_search_post_provider.g.dart';
 
@@ -29,8 +29,8 @@ final class HomeSearchPost extends _$HomeSearchPost {
         );
       }
 
-      final postList = await getSearchPostDummy(
-          postSettingEntity.toJsonForSearchFiltering());
+      final postList =
+          await getSearchPostDummy(postOptions.toJsonForSearchFiltering());
 
       // final postList = await _repo.getSearchPostModelList(
       //     searchSetting: postSettingEntity.toJsonForSearchFiltering(),

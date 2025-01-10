@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/provider/post/post_setting_entity.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_gender_restriction.dart';
+import 'package:sottie_flutter/domain/post/entity/post_options.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
@@ -16,38 +15,45 @@ class GenderOption extends ConsumerStatefulWidget {
 }
 
 class _GenderClassState extends ConsumerState<GenderOption> {
-  bool _notSelected = false;
+  bool _peopleNumIsSelected = false;
 
-  bool _sliderCondition(double val) =>
-      postSettingEntity.genderRestriction != 'NONE' && !_notSelected;
+  bool _sliderCondition() =>
+      postOptions.genderRestriction != SottieGenderRestriction.NONE &&
+      _peopleNumIsSelected;
 
   @override
   void initState() {
     super.initState();
-    postSettingEntity.genderRestriction == 'NONE'
-        ? _notSelected = true
-        : _notSelected = false;
+    postOptions.genderRestriction == SottieGenderRestriction.NONE
+        ? _peopleNumIsSelected = false
+        : _peopleNumIsSelected = true;
   }
 
   @override
   Widget build(BuildContext context) {
     ref.listen(numOfMemberProvider, (_, peopleNum) {
-      if (peopleNum == 0) {
-        _notSelected = true;
-        postSettingEntity.genderRestriction = 'NONE';
+      if (peopleNum == 1) {
+        _peopleNumIsSelected = false;
+        postOptions.genderRestriction = SottieGenderRestriction.NONE;
+        postOptions.maleNum = 0;
+        postOptions.femaleNum = 0;
       } else {
-        _notSelected = false;
+        _peopleNumIsSelected = true;
 
-        /// 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
-        postSettingEntity.maleNum = (peopleNum / 2).floorToDouble().toInt();
-        postSettingEntity.femaleNum = peopleNum - postSettingEntity.maleNum;
+        if (postOptions.genderRestriction != SottieGenderRestriction.NONE) {
+          /// 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
+          postOptions.maleNum = (peopleNum / 2).floorToDouble().toInt();
+          postOptions.femaleNum = peopleNum - postOptions.maleNum;
+        }
       }
 
       setState(() {});
     });
 
     double animatedContainerHeight =
-        postSettingEntity.genderRestriction != 'NONE' ? 80 * hu : 0;
+        postOptions.genderRestriction != SottieGenderRestriction.NONE
+            ? 80 * hu
+            : 0;
 
     return Column(
       children: [
@@ -57,11 +63,23 @@ class _GenderClassState extends ConsumerState<GenderOption> {
             const OptionTitle(title: '성비 제한'),
             Switch(
               activeColor: mainBlueColor,
-              value: postSettingEntity.genderRestriction != 'NONE',
+              value: _sliderCondition(),
               onChanged: (val) {
-                if (!_notSelected) {
-                  // Todo: MALE 말고 다른걸로 바꾸기
-                  postSettingEntity.genderRestriction = val ? 'MIX' : 'NONE';
+                if (_peopleNumIsSelected) {
+                  if (val == true) {
+                    postOptions.genderRestriction = SottieGenderRestriction.MIX;
+
+                    /// 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
+                    postOptions.maleNum =
+                        (postOptions.peopleNum / 2).floorToDouble().toInt();
+                    postOptions.femaleNum =
+                        postOptions.peopleNum - postOptions.maleNum;
+                  } else {
+                    postOptions.genderRestriction =
+                        SottieGenderRestriction.NONE;
+                    postOptions.maleNum = 0;
+                    postOptions.femaleNum = 0;
+                  }
                   setState(() {});
                 }
               },
@@ -73,37 +91,37 @@ class _GenderClassState extends ConsumerState<GenderOption> {
           curve: Curves.easeOutCubic,
           height: animatedContainerHeight,
           padding: EdgeInsets.only(top: 12 * hu),
-          child: _notSelected
-              ? Container()
-              : SingleChildScrollView(
+          child: _peopleNumIsSelected
+              ? SingleChildScrollView(
                   child: Column(
                     children: [
                       Slider(
-                        value: postSettingEntity.maleNum.toDouble(),
-                        max: postSettingEntity.peopleNum.toDouble(),
-                        divisions: postSettingEntity.peopleNum,
+                        value: postOptions.maleNum.toDouble(),
+                        max: postOptions.peopleNum.toDouble(),
+                        divisions: postOptions.peopleNum,
                         activeColor: mainBlueColor,
                         inactiveColor: mainRedColor,
                         thumbColor: mainBlackColor,
                         onChanged: (val) {
-                          if (_sliderCondition(val)) {
-                            postSettingEntity.maleNum = val.toInt();
-                            postSettingEntity.femaleNum =
-                                (postSettingEntity.peopleNum - val).toInt();
+                          if (_sliderCondition()) {
+                            postOptions.maleNum = val.toInt();
+                            postOptions.femaleNum =
+                                (postOptions.peopleNum - val).toInt();
 
-                            if (postSettingEntity.maleNum ==
-                                postSettingEntity.peopleNum) {
-                              postSettingEntity.genderRestriction = 'MALE';
-                            } else if (postSettingEntity.femaleNum ==
-                                postSettingEntity.peopleNum) {
-                              postSettingEntity.genderRestriction = 'FEMALE';
+                            if (postOptions.maleNum == postOptions.peopleNum) {
+                              postOptions.genderRestriction =
+                                  SottieGenderRestriction.MALE;
+                            } else if (postOptions.femaleNum ==
+                                postOptions.peopleNum) {
+                              postOptions.genderRestriction =
+                                  SottieGenderRestriction.FEMALE;
                             } else {
-                              postSettingEntity.genderRestriction = 'MIX';
+                              postOptions.genderRestriction =
+                                  SottieGenderRestriction.MIX;
                             }
 
                             setState(() {});
                           }
-                          log(postSettingEntity.genderRestriction);
                         },
                       ),
                       Padding(
@@ -114,7 +132,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                             Expanded(
                               child: SizedBox(
                                 child: Text(
-                                  "남자 ${postSettingEntity.maleNum}",
+                                  "남자 ${postOptions.maleNum}",
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
                                     color: Colors.blue,
@@ -126,7 +144,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                             Expanded(
                               child: SizedBox(
                                 child: Text(
-                                  "${postSettingEntity.peopleNum - postSettingEntity.maleNum} 여자",
+                                  "${postOptions.peopleNum - postOptions.maleNum} 여자",
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.end,
                                   style: const TextStyle(
@@ -138,10 +156,31 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                             ),
                           ],
                         ),
-                      )
+                      ),
+                      if (postOptions.genderRestriction ==
+                          SottieGenderRestriction.MALE)
+                        Text(
+                          '남자만 입장 가능',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10 * hu,
+                            color: mainBlueColor,
+                          ),
+                        ),
+                      if (postOptions.genderRestriction ==
+                          SottieGenderRestriction.FEMALE)
+                        Text(
+                          '여자만 입장 가능',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10 * hu,
+                            color: mainRedColor,
+                          ),
+                        ),
                     ],
                   ),
-                ),
+                )
+              : Container(),
         ),
       ],
     );
