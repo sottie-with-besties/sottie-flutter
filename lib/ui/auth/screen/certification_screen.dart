@@ -12,7 +12,7 @@ import 'package:sottie_flutter/core/dio/server_ip.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/auth/model/email_sign_up_model.dart';
 import 'package:sottie_flutter/data/auth/model/oauth_sign_up_model.dart';
-import 'package:sottie_flutter/provider/user/my_info_entity.dart';
+import 'package:sottie_flutter/domain/user/entity/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 class CertificationScreen extends StatelessWidget {

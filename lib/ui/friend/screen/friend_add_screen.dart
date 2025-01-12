@@ -6,7 +6,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/friend/repository_impl/friend_request_dummy.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/data/user/repository_impl/user_search_dummy.dart';
-import 'package:sottie_flutter/provider/friend/friend_manage.dart';
+import 'package:sottie_flutter/provider/friend/friend_manage_provider.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
@@ -92,7 +92,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                               ),
                               _renderFriendManageButton(
                                   mainBlueColor, FontAwesomeIcons.userPlus, () {
-                                friendAdd(context);
+                                friendManageProvider.friendAdd(context);
                               }),
                             ],
                           )
@@ -139,7 +139,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                                       SizedBox(width: 10 * wu),
                                       _renderFriendManageButton(mainBlueColor,
                                           FontAwesomeIcons.userPlus, () {
-                                        friendAdd(context);
+                                        friendManageProvider.friendAdd(context);
                                       }),
                                     ],
                                   )

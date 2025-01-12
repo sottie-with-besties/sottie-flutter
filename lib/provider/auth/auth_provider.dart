@@ -16,7 +16,7 @@ import 'package:sottie_flutter/data/auth/repository_impl/auth_repository_impl.da
 import 'package:sottie_flutter/domain/auth/entity/access_token_entity.dart';
 import 'package:sottie_flutter/domain/auth/entity/auth_type.dart';
 import 'package:sottie_flutter/domain/auth/entity/oauth_login_entity.dart';
-import 'package:sottie_flutter/provider/user/my_info_entity.dart';
+import 'package:sottie_flutter/domain/user/entity/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
 part 'auth_part/auth_email.dart';
