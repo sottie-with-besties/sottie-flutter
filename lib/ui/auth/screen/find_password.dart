@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/provider/auth/email_verification.dart';
+import 'package:sottie_flutter/provider/auth/verification_provider.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
@@ -56,12 +56,12 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
         if (email != null) {
           isNextLoading = true;
           setState(() {});
-          String? errorCode =
-              await createEmailAndPassword(email!, _dummyPassword);
+          String? errorCode = await verificationProvider.createEmailAndPassword(
+              email!, _dummyPassword);
           if (mounted) {
             if (errorCode == null) {
               currentStep += 1;
-              await sendEmailVerification();
+              await verificationProvider.sendEmailVerification();
             } else {
               showSnackBar(context, errorCode);
             }
@@ -74,10 +74,10 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
       /// 이메일 인증 화면 -> 이메일 인증 성공 후 파이어베이스 유저 이메일 정보 삭제
       isNextLoading = true;
       setState(() {});
-      final emailVerification =
-          await isEmailVerification(email!, _dummyPassword);
+      final emailVerification = await verificationProvider.isEmailVerification(
+          email!, _dummyPassword);
       if (emailVerification) {
-        await deleteEmailUser(email!, _dummyPassword);
+        await verificationProvider.deleteEmailUser(email!, _dummyPassword);
         currentStep += 1;
       } else {
         if (mounted) showSnackBar(context, "이메일을 인증해주세요");
@@ -94,7 +94,8 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
       /// 이메일 인증 스크린에서 뒤로가기 했을 경우
       isCancelLoading = true;
       setState(() {});
-      final String? errorCode = await deleteEmailUser(email!, _dummyPassword);
+      final String? errorCode =
+          await verificationProvider.deleteEmailUser(email!, _dummyPassword);
       if (errorCode == null) {
         currentStep -= 1;
       } else {
@@ -198,7 +199,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                     ),
                     OutlinedButton(
                         onPressed: () async {
-                          await sendEmailVerification();
+                          await verificationProvider.sendEmailVerification();
                         },
                         child: const Text("이메일 인증 재발송")),
                     const SizedBox(

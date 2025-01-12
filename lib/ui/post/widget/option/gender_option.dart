@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_gender_restriction.dart';
-import 'package:sottie_flutter/domain/post/entity/post_options.dart';
+import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';

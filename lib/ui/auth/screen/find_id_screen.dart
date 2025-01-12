@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/provider/auth/phone_verification.dart';
+import 'package:sottie_flutter/provider/auth/verification_provider.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
@@ -47,7 +47,8 @@ class _FindIdScreenState extends State<FindIdScreen> {
 
     if (currentStep == 0) {
       if (phoneNumberKey.currentState!.validate()) {
-        final errorCode = await signInWithPhoneNumber(phoneNumber!);
+        final errorCode =
+            await verificationProvider.signInWithPhoneNumber(phoneNumber!);
         if (errorCode == null) {
           currentStep += 1;
           setState(() {});
@@ -57,9 +58,10 @@ class _FindIdScreenState extends State<FindIdScreen> {
       }
     } else if (currentStep == 1) {
       /// 번호 인증 화면 -> 인증 성공 후 파이어베이스 유저 폰 번호 정보 삭제
-      final errorCode = await signInWithSmsCode(verificationCode!);
+      final errorCode =
+          await verificationProvider.signInWithSmsCode(verificationCode!);
       if (errorCode == null) {
-        await deletePhoneUser();
+        await verificationProvider.deletePhoneUser();
         currentStep += 1;
         setState(() {});
       } else {
@@ -172,8 +174,8 @@ class _FindIdScreenState extends State<FindIdScreen> {
                     ),
                     OutlinedButton(
                       onPressed: () async {
-                        final errorCode =
-                            await signInWithPhoneNumber(phoneNumber!);
+                        final errorCode = await verificationProvider
+                            .signInWithPhoneNumber(phoneNumber!);
                         if (errorCode != null) {
                           if (context.mounted) showSnackBar(context, errorCode);
                         }

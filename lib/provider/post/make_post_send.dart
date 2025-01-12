@@ -1,6 +1,6 @@
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/data/post/repository_impl/post_repository_impl.dart';
-import 'package:sottie_flutter/domain/post/entity/post_options.dart';
+import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 
 final _repo = PostRepositoryImpl(cleanDio);
 

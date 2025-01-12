@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_gender_restriction.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_location.dart';
-import 'package:sottie_flutter/domain/post/entity/post_options.dart';
+import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/provider/post/make_post_send.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';

@@ -1,4 +1,4 @@
-part of 'sign_in.dart';
+part of '../auth_provider.dart';
 
 /// 이메일로 로그인 => base64로 변환
 Future<void> _emailLogin(
@@ -16,5 +16,11 @@ Future<void> _emailLogin(
     tokenStorage.write(key: accessTokenKey, value: tokenModel.accessToken),
   ]);
 
-  accessToken = tokenModel.accessToken;
+  accessTokenEntity.changeToken(tokenModel.accessToken);
+}
+
+Future<String?> _signOutEmail() async {
+  /// Todo: 백엔드로 이메일 유저 로그아웃
+  authType = null;
+  return null;
 }

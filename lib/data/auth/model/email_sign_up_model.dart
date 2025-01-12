@@ -20,3 +20,5 @@ class EmailSignUpModel with _$EmailSignUpModel {
   factory EmailSignUpModel.fromJson(Map<String, dynamic> json) =>
       _$EmailSignUpModelFromJson(json);
 }
+
+final emailSignUp = EmailSignUpModel();

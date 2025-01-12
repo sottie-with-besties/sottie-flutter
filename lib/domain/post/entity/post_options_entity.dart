@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_category.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_gender_restriction.dart';
 
-final class PostOptions {
+final class PostOptionsEntity {
   /// 포스트 제목
   String title;
 
@@ -54,7 +54,7 @@ final class PostOptions {
   /// 내 친구만 포스트 참여 가능
   bool onlyMyFriends;
 
-  PostOptions({
+  PostOptionsEntity({
     this.title = '',
     this.contents = '',
     this.gatheringCategory = SottieCategory.ALL,
@@ -118,4 +118,4 @@ final class PostOptions {
   }
 }
 
-PostOptions postOptions = PostOptions();
+PostOptionsEntity postOptions = PostOptionsEntity();

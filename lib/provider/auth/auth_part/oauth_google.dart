@@ -1,4 +1,4 @@
-part of 'sign_in.dart';
+part of '../auth_provider.dart';
 
 Future<String?> _signInWithGoogle() async {
   /// Trigger the authentication flow
@@ -23,5 +23,19 @@ Future<String?> _signInWithGoogle() async {
     return null;
   } on Exception catch (_) {
     return "구글 로그인 도중 에러가 발생했습니다";
+  }
+}
+
+Future<String?> _signOutGoogle() async {
+  try {
+    await GoogleSignIn().disconnect();
+    await GoogleSignIn().signOut();
+    log('sign out google');
+
+    authType = null;
+    return null;
+  } on Exception catch (_) {
+    log('sign out google failed');
+    return "구글 로그아웃 도중 에러가 발생했습니다.";
   }
 }

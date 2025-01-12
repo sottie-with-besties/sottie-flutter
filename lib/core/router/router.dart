@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sottie_flutter/domain/post/entity/post_options.dart';
+import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/find_id_screen.dart';
@@ -269,7 +269,7 @@ final _routes = [
     path: CustomRouter.makePostStepOnePath,
     onExit: (_, __) {
       /// 첫번째 모집글 생성 화면에서 뒤로가기 또는 모집글 생성 완료 시(pop, go) postSetting 초기화하여 검색에 영향 X
-      postOptions = PostOptions();
+      postOptions = PostOptionsEntity();
       return true;
     },
     builder: (_, __) => const MakePostScreenStepOne(),

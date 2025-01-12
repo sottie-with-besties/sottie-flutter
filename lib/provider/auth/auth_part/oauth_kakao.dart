@@ -1,4 +1,4 @@
-part of 'sign_in.dart';
+part of '../auth_provider.dart';
 
 Future<String?> _signInWithKakao() async {
   /// 카카오톡 실행이 가능하면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
@@ -61,5 +61,22 @@ Future<String?> _signInWithKakao() async {
       log('카카오계정으로 로그인 실패 $error');
       return '카카오계정으로 로그인 실패';
     }
+  }
+}
+
+Future<String?> _signOutKakao() async {
+  try {
+    /// logout()은 말그대로 로그아웃만 하고 연결을 완전히 끊지는 않는다.
+    /// unlink()는 완전히 로그아웃을 끊어서 다시 로그인 해야할 때 계정이랑 비밀번호 다시 쳐야됨
+
+    // await UserApi.instance.logout();
+    await UserApi.instance.unlink();
+    log('카카오 로그아웃 성공, SDK에서 토큰 삭제');
+
+    authType = null;
+    return null;
+  } catch (_) {
+    log('로그아웃 실패, SDK에서 토큰 삭제(?)');
+    return "카카오 로그아웃 실패";
   }
 }

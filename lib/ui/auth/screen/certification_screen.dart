@@ -10,7 +10,8 @@ import 'package:portone_flutter/model/certification_data.dart';
 /* 아임포트 휴대폰 본인인증 데이터 모델을 불러옵니다. */
 import 'package:sottie_flutter/core/dio/server_ip.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/provider/auth/sign_up_entity.dart';
+import 'package:sottie_flutter/data/auth/model/email_sign_up_model.dart';
+import 'package:sottie_flutter/data/auth/model/oauth_sign_up_model.dart';
 import 'package:sottie_flutter/provider/user/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
 
@@ -83,22 +84,20 @@ class CertificationScreen extends StatelessWidget {
             } else {
               // 소셜 로그인
               if (isOauthSignUp) {
-                oauthSignUpEntity.name = res.data['name'];
-                oauthSignUpEntity.gender = res.data['gender'];
-                oauthSignUpEntity.phoneNumber = res.data['phoneNumber'];
-                oauthSignUpEntity.identifier = res.data['identifier'];
-                oauthSignUpEntity.birthYear = res.data['birthYear'];
-                oauthSignUpEntity.phoneAuthenticated =
-                    res.data['phoneAuthenticated'];
+                oauthSignUp.name = res.data['name'];
+                oauthSignUp.gender = res.data['gender'];
+                oauthSignUp.phoneNumber = res.data['phoneNumber'];
+                oauthSignUp.identifier = res.data['identifier'];
+                oauthSignUp.birthYear = res.data['birthYear'];
+                oauthSignUp.phoneAuthenticated = res.data['phoneAuthenticated'];
               } else {
                 // 이메일 로그인
-                emailSignUpEntity.name = res.data['name'];
-                emailSignUpEntity.gender = res.data['gender'];
-                emailSignUpEntity.phoneNumber = res.data['phoneNumber'];
-                emailSignUpEntity.identifier = res.data['identifier'];
-                emailSignUpEntity.birthYear = res.data['birthYear'];
-                emailSignUpEntity.phoneAuthenticated =
-                    res.data['phoneAuthenticated'];
+                emailSignUp.name = res.data['name'];
+                emailSignUp.gender = res.data['gender'];
+                emailSignUp.phoneNumber = res.data['phoneNumber'];
+                emailSignUp.identifier = res.data['identifier'];
+                emailSignUp.birthYear = res.data['birthYear'];
+                emailSignUp.phoneAuthenticated = res.data['phoneAuthenticated'];
               }
             }
           } on Exception catch (_) {

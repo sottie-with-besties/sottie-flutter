@@ -20,3 +20,5 @@ class OauthSignUpModel with _$OauthSignUpModel {
   factory OauthSignUpModel.fromJson(Map<String, dynamic> json) =>
       _$OauthSignUpModelFromJson(json);
 }
+
+final oauthSignUp = OauthSignUpModel();

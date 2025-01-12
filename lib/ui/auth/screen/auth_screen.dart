@@ -5,9 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/auth/model/email_login_model.dart';
-import 'package:sottie_flutter/provider/auth/auth_type.dart';
-import 'package:sottie_flutter/provider/auth/sign_in.dart';
+import 'package:sottie_flutter/domain/auth/entity/auth_type.dart';
+import 'package:sottie_flutter/domain/auth/entity/email_login_entity.dart';
+import 'package:sottie_flutter/provider/auth/auth_provider.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
@@ -28,7 +28,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  EmailLoginModel emailLoginModel = EmailLoginModel();
+  EmailLoginEntity emailLoginModel = EmailLoginEntity();
 
   @override
   void dispose() {
@@ -125,7 +125,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
                                     // signIn에 백엔드로 이메일 코드 전송 포함
-                                    final errorCode = await signIn(
+                                    final errorCode = await authProvider.signIn(
                                       authType: AuthType.email,
                                       email: emailLoginModel.email,
                                       password: emailLoginModel.password,
@@ -179,7 +179,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 OAuthButton(
                   imgPath: AssetPath.kakaoLogin,
                   onPressed: () async {
-                    await oauthLogin(
+                    await authProvider.oauthLogin(
                       context: context,
                       oauthType: AuthType.kakao,
                     );
@@ -189,7 +189,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 /// 구글 로그인
                 AuthButton(
                   onPressed: (_) async {
-                    await oauthLogin(
+                    await authProvider.oauthLogin(
                       context: context,
                       oauthType: AuthType.google,
                     );

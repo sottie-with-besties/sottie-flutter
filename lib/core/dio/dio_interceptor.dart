@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:sottie_flutter/core/local_database/secure_storage.dart';
 import 'package:sottie_flutter/data/auth/repository_impl/auth_repository_impl.dart';
-import 'package:sottie_flutter/provider/auth/auth_token.dart';
+import 'package:sottie_flutter/domain/auth/entity/access_token_entity.dart';
 
 final customDio = Dio()..interceptors.add(_CustomInterceptor());
 final cleanDio = Dio();
@@ -10,7 +10,8 @@ class _CustomInterceptor extends Interceptor {
   /// 디오가 네트워크 요청 할 때
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers.addAll({'authorization': 'Bearer $accessToken'});
+    options.headers
+        .addAll({'authorization': 'Bearer ${accessTokenEntity.accessToken}'});
     super.onRequest(options, handler);
   }
 
@@ -34,7 +35,8 @@ class _CustomInterceptor extends Interceptor {
 
         final dio = Dio();
         final options = err.requestOptions;
-        options.headers.addAll({'authorization': 'Bearer $accessToken'});
+        options.headers.addAll(
+            {'authorization': 'Bearer ${accessTokenEntity.accessToken}'});
 
         final resp = await dio.fetch(options);
         handler.resolve(resp);
@@ -50,7 +52,7 @@ Future<void> _refreshAccessToken({required String refreshToken}) async {
   final newAccessTokenModel = await AuthTokenRepositoryImpl(customDio)
       .refreshAccessToken(refreshToken: 'Bearer $refreshToken');
 
-  accessToken = newAccessTokenModel.accessToken;
+  accessTokenEntity.changeToken(newAccessTokenModel.accessToken);
 
   await tokenStorage.write(
       key: accessTokenKey, value: newAccessTokenModel.accessToken);
