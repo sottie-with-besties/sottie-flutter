@@ -3,9 +3,6 @@ import 'package:sottie_flutter/core/local_database/secure_storage.dart';
 import 'package:sottie_flutter/data/auth/repository_impl/auth_repository_impl.dart';
 import 'package:sottie_flutter/domain/auth/entity/access_token_entity.dart';
 
-final customDio = Dio()..interceptors.add(_CustomInterceptor());
-final cleanDio = Dio();
-
 class _CustomInterceptor extends Interceptor {
   /// 디오가 네트워크 요청 할 때
   @override
@@ -57,3 +54,6 @@ Future<void> _refreshAccessToken({required String refreshToken}) async {
   await tokenStorage.write(
       key: accessTokenKey, value: newAccessTokenModel.accessToken);
 }
+
+final customDio = Dio()..interceptors.add(_CustomInterceptor());
+final cleanDio = Dio();

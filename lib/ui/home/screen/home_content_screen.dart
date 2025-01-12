@@ -2,7 +2,7 @@ import 'package:easy_debounce/easy_throttle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
+import 'package:sottie_flutter/domain/post/entity/post_pagination_entity.dart';
 import 'package:sottie_flutter/provider/home/home_latest_post_provider.dart';
 import 'package:sottie_flutter/provider/home/home_search_post_provider.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
@@ -36,7 +36,7 @@ class HomeContentScreen extends ConsumerWidget {
 class _PostPaginationListView extends ConsumerStatefulWidget {
   const _PostPaginationListView({required this.postProvider});
 
-  final NotifierProvider<dynamic, PostPaginationModel> postProvider;
+  final NotifierProvider<dynamic, PostPaginationEntity> postProvider;
 
   @override
   ConsumerState<_PostPaginationListView> createState() =>
@@ -49,7 +49,7 @@ class _PostPaginationListViewState
 
   bool _isLatestProvider() =>
       widget.postProvider.runtimeType ==
-      NotifierProvider<HomeLatestPost, PostPaginationModel>;
+      NotifierProvider<HomeLatestPost, PostPaginationEntity>;
 
   bool _noMorePagination = false;
 
@@ -64,11 +64,11 @@ class _PostPaginationListViewState
         () {
           if (_isLatestProvider()) {
             final provider = widget.postProvider
-                as NotifierProvider<HomeLatestPost, PostPaginationModel>;
+                as NotifierProvider<HomeLatestPost, PostPaginationEntity>;
             ref.read(provider.notifier).latestPagination();
           } else {
             final provider = widget.postProvider
-                as NotifierProvider<HomeSearchPost, PostPaginationModel>;
+                as NotifierProvider<HomeSearchPost, PostPaginationEntity>;
             ref.read(provider.notifier).searchPagination();
           }
         },
@@ -82,9 +82,9 @@ class _PostPaginationListViewState
 
     /// 홈 화면 들어가자 마자 최신 모집글 불러오기
     if (widget.postProvider.runtimeType ==
-        NotifierProvider<HomeLatestPost, PostPaginationModel>) {
+        NotifierProvider<HomeLatestPost, PostPaginationEntity>) {
       final provider = widget.postProvider
-          as NotifierProvider<HomeLatestPost, PostPaginationModel>;
+          as NotifierProvider<HomeLatestPost, PostPaginationEntity>;
 
       ref.read(provider.notifier).latestPagination(firstFetch: true);
     }
@@ -137,7 +137,7 @@ class _PostPaginationListViewState
                         if (_isLatestProvider()) {
                           final provider = widget.postProvider
                               as NotifierProvider<HomeLatestPost,
-                                  PostPaginationModel>;
+                                  PostPaginationEntity>;
                           ref.read(provider.notifier).latestPagination(
                               firstFetch:
                                   postPaginationModel.postModelList.isEmpty
@@ -146,7 +146,7 @@ class _PostPaginationListViewState
                         } else {
                           final provider = widget.postProvider
                               as NotifierProvider<HomeSearchPost,
-                                  PostPaginationModel>;
+                                  PostPaginationEntity>;
                           ref.read(provider.notifier).searchPagination(
                                 firstFetch:
                                     postPaginationModel.postModelList.isEmpty

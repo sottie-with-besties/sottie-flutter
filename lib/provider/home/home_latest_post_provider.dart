@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
-import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
 import 'package:sottie_flutter/data/post/repository_impl/post_repository_impl.dart';
+import 'package:sottie_flutter/domain/post/entity/post_pagination_entity.dart';
 
 part 'home_latest_post_provider.g.dart';
 
@@ -12,8 +12,8 @@ final _repo = PostRepositoryImpl(customDio);
 @Riverpod(keepAlive: true)
 final class HomeLatestPost extends _$HomeLatestPost {
   @override
-  PostPaginationModel build() {
-    return PostPaginationModel(
+  PostPaginationEntity build() {
+    return PostPaginationEntity(
       postModelList: [],
       postPaginationState: PostPaginationState.firstLoading,
     );
@@ -22,7 +22,7 @@ final class HomeLatestPost extends _$HomeLatestPost {
   Future<void> latestPagination({bool firstFetch = false}) async {
     try {
       if (!firstFetch) {
-        state = PostPaginationModel(
+        state = PostPaginationEntity(
           postModelList: state.postModelList,
           postPaginationState: PostPaginationState.loading,
         );
@@ -35,12 +35,12 @@ final class HomeLatestPost extends _$HomeLatestPost {
       // final postList = await getLatestPostDummy("123");
 
       if (postList.isEmpty) {
-        state = PostPaginationModel(
+        state = PostPaginationEntity(
             postModelList: postList,
             postPaginationState: PostPaginationState.error,
             errorCode: '데이터가 더 이상 존재하지 않습니다');
       } else {
-        state = PostPaginationModel(
+        state = PostPaginationEntity(
           postModelList: [
             ...state.postModelList,
             ...postList,
@@ -51,7 +51,7 @@ final class HomeLatestPost extends _$HomeLatestPost {
     } catch (e, stack) {
       log(e.toString());
       log(stack.toString());
-      state = PostPaginationModel(
+      state = PostPaginationEntity(
         postModelList: state.postModelList,
         postPaginationState: PostPaginationState.error,
         errorCode: '모집글을 불러오는 도중 에러가 발생했습니다.',

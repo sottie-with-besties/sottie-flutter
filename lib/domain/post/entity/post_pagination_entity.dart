@@ -7,12 +7,12 @@ enum PostPaginationState {
   error,
 }
 
-class PostPaginationModel {
+class PostPaginationEntity {
   final List<PostModel> postModelList;
   final PostPaginationState postPaginationState;
   final String? errorCode;
 
-  PostPaginationModel({
+  PostPaginationEntity({
     required this.postModelList,
     required this.postPaginationState,
     this.errorCode,

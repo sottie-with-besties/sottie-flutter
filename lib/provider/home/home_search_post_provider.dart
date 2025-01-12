@@ -1,9 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
-import 'package:sottie_flutter/data/post/model/post_pagination_model.dart';
 import 'package:sottie_flutter/data/post/repository_impl/post_repository_impl.dart';
 import 'package:sottie_flutter/data/post/repository_impl/search_post_dummy.dart';
 import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
+import 'package:sottie_flutter/domain/post/entity/post_pagination_entity.dart';
 
 part 'home_search_post_provider.g.dart';
 
@@ -12,8 +12,8 @@ final _repo = PostRepositoryImpl(customDio);
 @Riverpod(keepAlive: true)
 final class HomeSearchPost extends _$HomeSearchPost {
   @override
-  PostPaginationModel build() {
-    return PostPaginationModel(
+  PostPaginationEntity build() {
+    return PostPaginationEntity(
       postModelList: [],
       postPaginationState: PostPaginationState.firstLoading,
     );
@@ -23,7 +23,7 @@ final class HomeSearchPost extends _$HomeSearchPost {
   Future<void> searchPagination({bool firstFetch = false}) async {
     try {
       if (!firstFetch) {
-        state = PostPaginationModel(
+        state = PostPaginationEntity(
           postModelList: state.postModelList,
           postPaginationState: PostPaginationState.loading,
         );
@@ -37,12 +37,12 @@ final class HomeSearchPost extends _$HomeSearchPost {
       //     lastPostId: firstFetch ? 0 : state.postModelList.last.id);
 
       if (postList.isEmpty) {
-        state = PostPaginationModel(
+        state = PostPaginationEntity(
             postModelList: postList,
             postPaginationState: PostPaginationState.error,
             errorCode: '데이터가 더 이상 존재하지 않습니다');
       } else {
-        state = PostPaginationModel(
+        state = PostPaginationEntity(
           postModelList: [
             ...state.postModelList,
             ...postList,
@@ -51,7 +51,7 @@ final class HomeSearchPost extends _$HomeSearchPost {
         );
       }
     } on Exception catch (_) {
-      state = PostPaginationModel(
+      state = PostPaginationEntity(
         postModelList: state.postModelList,
         postPaginationState: PostPaginationState.error,
         errorCode: '모집글을 불러오는 도중 에러가 발생했습니다.',
