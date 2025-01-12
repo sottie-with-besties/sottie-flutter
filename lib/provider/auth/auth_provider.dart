@@ -17,7 +17,7 @@ import 'package:sottie_flutter/domain/auth/entity/access_token_entity.dart';
 import 'package:sottie_flutter/domain/auth/entity/auth_type.dart';
 import 'package:sottie_flutter/domain/auth/entity/oauth_login_entity.dart';
 import 'package:sottie_flutter/domain/user/entity/my_info_entity.dart';
-import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 
 part 'auth_part/auth_email.dart';
 part 'auth_part/oauth_apple.dart';
@@ -111,12 +111,12 @@ final class AuthProvider {
           }
         } else {
           /// 알 수 없는 에러
-          showSnackBar(context, errorCode);
+          showCustomSnackBar(context, errorCode);
         }
       }
     } on Exception catch (_) {
       if (context.mounted) {
-        showSnackBar(context, "알 수 없는 에러가 발생하였습니다");
+        showCustomSnackBar(context, "알 수 없는 에러가 발생하였습니다");
       }
     }
   }

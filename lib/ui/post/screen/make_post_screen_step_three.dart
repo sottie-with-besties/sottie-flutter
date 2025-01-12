@@ -7,7 +7,7 @@ import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/provider/post/post_provider.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
-import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 
 class MakePostScreenStepThree extends StatelessWidget {
@@ -90,7 +90,7 @@ class MakePostScreenStepThree extends StatelessWidget {
 
                             // Todo: 유저 골드 차감
                           } else {
-                            showSnackBar(context, '모집글 생성 실패');
+                            showCustomSnackBar(context, '모집글 생성 실패');
                           }
                         }
                       },

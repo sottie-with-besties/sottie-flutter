@@ -6,7 +6,7 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/provider/auth/verification_provider.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
-import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 
 class FindIdScreen extends StatefulWidget {
   const FindIdScreen({super.key});
@@ -53,7 +53,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
           currentStep += 1;
           setState(() {});
         } else {
-          if (mounted) showSnackBar(context, errorCode);
+          if (mounted) showCustomSnackBar(context, errorCode);
         }
       }
     } else if (currentStep == 1) {
@@ -65,7 +65,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
         currentStep += 1;
         setState(() {});
       } else {
-        if (mounted) showSnackBar(context, errorCode);
+        if (mounted) showCustomSnackBar(context, errorCode);
       }
     }
     isNextLoading = false;
@@ -177,7 +177,8 @@ class _FindIdScreenState extends State<FindIdScreen> {
                         final errorCode = await verificationProvider
                             .signInWithPhoneNumber(phoneNumber!);
                         if (errorCode != null) {
-                          if (context.mounted) showSnackBar(context, errorCode);
+                          if (context.mounted)
+                            showCustomSnackBar(context, errorCode);
                         }
                       },
                       child: const Text("인증코드 재전송"),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
 import 'package:sottie_flutter/data/post/repository_impl/post_repository_impl.dart';
 import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
@@ -13,6 +15,32 @@ final class PostProvider {
       // Todo: resp status code에 따른 예외처리
       return true;
     } catch (_, __) {
+      return false;
+    }
+  }
+
+  Future<bool> postJoin({required int postId, int userId = 7}) async {
+    try {
+      log(postId.toString());
+      final resp = await _repo.postJoin(postJoinInfo: {
+        'gatheringId': 17,
+        'userId': userId,
+      });
+      return true;
+    } catch (e, stackTrace) {
+      log(e.toString());
+      log(stackTrace.toString());
+      return false;
+    }
+  }
+
+  Future<bool> postExit() async {
+    try {
+      final resp = await _repo.postExit();
+      return true;
+    } catch (e, stackTrace) {
+      log(e.toString());
+      log(stackTrace.toString());
       return false;
     }
   }

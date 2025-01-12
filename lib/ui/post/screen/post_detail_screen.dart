@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_location.dart';
+import 'package:sottie_flutter/provider/post/post_provider.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
 import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
@@ -150,8 +152,34 @@ class PostDetailScreen extends StatelessWidget {
                                 ),
                                 minimumSize: const Size(100, 65),
                               ),
-                              onPressed: () {
-                                isWaiting ? log("참여 취소") : log("참여하기");
+                              onPressed: () async {
+                                if (isWaiting) {
+                                  log("참여취소");
+
+                                  final result = await postProvider.postExit();
+
+                                  if (context.mounted) {
+                                    if (result) {
+                                    } else {
+                                      showCustomSnackBar(
+                                          context, '에러가 발생하였습니다.');
+                                    }
+                                  }
+                                } else {
+                                  log("참여하기");
+
+                                  final result = await postProvider.postJoin(
+                                    postId: postModel.id,
+                                  );
+
+                                  if (context.mounted) {
+                                    if (result) {
+                                    } else {
+                                      showCustomSnackBar(
+                                          context, '참여하기 도중 에러가 발생하였습니다.');
+                                    }
+                                  }
+                                }
                               },
                               child: Text(
                                 isWaiting ? '참여 취소' : '참여하기',

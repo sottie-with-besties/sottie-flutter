@@ -7,7 +7,7 @@ import 'package:sottie_flutter/provider/auth/verification_provider.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
-import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 
 class EmailChangeScreen extends StatefulWidget {
   const EmailChangeScreen({super.key});
@@ -56,7 +56,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
           currentStep += 1;
           setState(() {});
         } else {
-          if (mounted) showSnackBar(context, errorCode);
+          if (mounted) showCustomSnackBar(context, errorCode);
         }
       }
     } else if (currentStep == 1) {
@@ -70,7 +70,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
         currentStep += 1;
         setState(() {});
       } else {
-        if (mounted) showSnackBar(context, errorCode);
+        if (mounted) showCustomSnackBar(context, errorCode);
       }
       isNextLoading = false;
       setState(() {});
@@ -86,7 +86,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
             currentStep += 1;
             await verificationProvider.sendEmailVerification();
           } else {
-            showSnackBar(context, errorCode);
+            showCustomSnackBar(context, errorCode);
           }
           isNextLoading = false;
           setState(() {});
@@ -103,7 +103,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
         currentStep += 1;
         myInfoEntity.email = email!;
       } else {
-        if (mounted) showSnackBar(context, "이메일을 인증해주세요");
+        if (mounted) showCustomSnackBar(context, "이메일을 인증해주세요");
       }
       isNextLoading = false;
       setState(() {});
@@ -126,7 +126,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       if (errorCode == null) {
         currentStep -= 1;
       } else {
-        if (mounted) showSnackBar(context, errorCode);
+        if (mounted) showCustomSnackBar(context, errorCode);
       }
       isCancelLoading = false;
       setState(() {});
@@ -213,7 +213,8 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                       final errorCode = await verificationProvider
                           .signInWithPhoneNumber(phoneNumber!);
                       if (errorCode != null) {
-                        if (context.mounted) showSnackBar(context, errorCode);
+                        if (context.mounted)
+                          showCustomSnackBar(context, errorCode);
                       }
                     },
                     child: const Text("인증코드 재전송"),
@@ -338,7 +339,8 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                                   setState(() {});
                                   // Todo: 이메일 변경 백엔드로 알림
                                   if (context.mounted) {
-                                    showSnackBar(context, '이메일을 변경하였습니다.');
+                                    showCustomSnackBar(
+                                        context, '이메일을 변경하였습니다.');
                                     // 확실하게 다이얼로그를 닫는 코드. ChatGPT가 알려줌
                                     Navigator.of(context, rootNavigator: true)
                                         .pop();

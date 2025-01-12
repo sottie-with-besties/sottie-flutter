@@ -6,7 +6,7 @@ import 'package:sottie_flutter/data/auth/model/email_sign_up_model.dart';
 import 'package:sottie_flutter/provider/auth/verification_provider.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
-import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -60,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               currentStep += 1;
               await verificationProvider.sendEmailVerification();
             } else {
-              showSnackBar(context, errorCode);
+              showCustomSnackBar(context, errorCode);
             }
           }
           isNextLoading = false;
@@ -78,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         emailSignUp.email = email!;
         currentStep += 1;
       } else {
-        if (mounted) showSnackBar(context, "이메일을 인증해주세요");
+        if (mounted) showCustomSnackBar(context, "이메일을 인증해주세요");
       }
       isNextLoading = false;
       setState(() {});
@@ -107,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       if (errorCode == null) {
         currentStep -= 1;
       } else {
-        if (mounted) showSnackBar(context, errorCode);
+        if (mounted) showCustomSnackBar(context, errorCode);
       }
       isCancelLoading = false;
       setState(() {});

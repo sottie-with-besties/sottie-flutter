@@ -51,13 +51,13 @@ class _PostPaginationListViewState
       widget.postProvider.runtimeType ==
       NotifierProvider<HomeLatestPost, PostPaginationEntity>;
 
-  bool _noMorePagination = false;
+  bool _canPagination = true;
 
   /// 스크롤을 내려서 자동으로 페이지네이션
   void _cursorPagination() {
     if (_paginationController.offset >
             _paginationController.position.maxScrollExtent - 200 &&
-        !_noMorePagination) {
+        _canPagination) {
       EasyThrottle.throttle(
         'postPagination',
         const Duration(seconds: 1),
@@ -121,7 +121,7 @@ class _PostPaginationListViewState
             } else {
               /// 데이터가 더 이상 없을 때
               if (postPaginationModel.errorCode == "데이터가 더 이상 존재하지 않습니다") {
-                _noMorePagination = true;
+                _canPagination = false;
                 return const Center(
                   child: Text("데이터가 더 이상 존재하지 않습니다"),
                 );

@@ -13,7 +13,7 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/auth/model/email_sign_up_model.dart';
 import 'package:sottie_flutter/data/auth/model/oauth_sign_up_model.dart';
 import 'package:sottie_flutter/domain/user/entity/my_info_entity.dart';
-import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 
 class CertificationScreen extends StatelessWidget {
   const CertificationScreen({
@@ -52,7 +52,7 @@ class CertificationScreen extends StatelessWidget {
 
           // 본인인증 스크린 예외 처리
           if (result['imp_success'] == 'false') {
-            showSnackBar(context, "본인인증 에러가 발생하였습니다.");
+            showCustomSnackBar(context, "본인인증 에러가 발생하였습니다.");
             return;
           }
 
@@ -102,13 +102,13 @@ class CertificationScreen extends StatelessWidget {
             }
           } on Exception catch (_) {
             if (context.mounted) {
-              showSnackBar(context, "본인인증 도중 에러가 발생하였습니다.");
+              showCustomSnackBar(context, "본인인증 도중 에러가 발생하였습니다.");
             }
           }
 
           if (context.mounted) {
             if (isModifyInfo) {
-              showSnackBar(context, '정보 수정 완료');
+              showCustomSnackBar(context, '정보 수정 완료');
               context.go(
                   '${CustomRouter.morePath}/${CustomRouter.infoModifyPath}');
             } else {

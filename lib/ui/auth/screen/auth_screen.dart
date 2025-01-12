@@ -12,7 +12,7 @@ import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -134,7 +134,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                     if (context.mounted) {
                                       errorCode == null
                                           ? context.go(CustomRouter.homePath)
-                                          : showSnackBar(context, errorCode);
+                                          : showCustomSnackBar(
+                                              context, errorCode);
                                     }
                                   }
                                 },

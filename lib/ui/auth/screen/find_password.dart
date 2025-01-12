@@ -5,7 +5,7 @@ import 'package:sottie_flutter/provider/auth/verification_provider.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
-import 'package:sottie_flutter/ui/common/controller/show_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 
 class FindPasswordScreen extends StatefulWidget {
   const FindPasswordScreen({super.key});
@@ -63,7 +63,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
               currentStep += 1;
               await verificationProvider.sendEmailVerification();
             } else {
-              showSnackBar(context, errorCode);
+              showCustomSnackBar(context, errorCode);
             }
           }
           isNextLoading = false;
@@ -80,7 +80,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
         await verificationProvider.deleteEmailUser(email!, _dummyPassword);
         currentStep += 1;
       } else {
-        if (mounted) showSnackBar(context, "이메일을 인증해주세요");
+        if (mounted) showCustomSnackBar(context, "이메일을 인증해주세요");
       }
       isNextLoading = false;
       setState(() {});
@@ -99,7 +99,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
       if (errorCode == null) {
         currentStep -= 1;
       } else {
-        if (mounted) showSnackBar(context, errorCode);
+        if (mounted) showCustomSnackBar(context, errorCode);
       }
       isCancelLoading = false;
       setState(() {});
@@ -267,7 +267,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                                               setState(() {});
                                               // Todo: 백엔드로 정보 수정 알림 보내야함
                                               if (context.mounted) {
-                                                showSnackBar(
+                                                showCustomSnackBar(
                                                     context, '비밀번호를 변경하였습니다.');
                                                 Navigator.of(context,
                                                         rootNavigator: true)
