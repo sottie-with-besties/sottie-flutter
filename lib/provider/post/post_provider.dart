@@ -4,17 +4,21 @@ import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 
 final _repo = PostRepositoryImpl(cleanDio);
 
-Future<bool> makePostSend() async {
-  try {
-    final resp =
-        await _repo.makePost(postSetting: postOptions.toJsonForMakePostSend());
+final class PostProvider {
+  Future<bool> makePost() async {
+    try {
+      final resp = await _repo.makePost(
+          postSetting: postOptions.toJsonForMakePostSend());
 
-    // Todo: resp status code에 따른 예외처리
-    return true;
-  } catch (_, __) {
-    return false;
+      // Todo: resp status code에 따른 예외처리
+      return true;
+    } catch (_, __) {
+      return false;
+    }
   }
 }
+
+final postProvider = PostProvider();
 
 // FormData _formData;
 //

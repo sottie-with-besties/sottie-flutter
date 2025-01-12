@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/provider/home/home_search_post_provider.dart';
-import 'package:sottie_flutter/provider/home/home_state_provider.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_expansion_tile.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
+import 'package:sottie_flutter/ui/home/controller/home_state_controller.dart';
 import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/category_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/gender_option.dart';
@@ -63,7 +63,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   onFieldSubmitted: (searchContent) async {
                     postOptions.title = searchContent;
                     ref
-                        .read(homeStateProvider.notifier)
+                        .read(homeStateControllerProvider.notifier)
                         .changeHomeState(HomePostState.search);
                     context.pop();
                     ref
@@ -119,7 +119,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     ElevatedButton(
                       onPressed: () {
                         ref
-                            .read(homeStateProvider.notifier)
+                            .read(homeStateControllerProvider.notifier)
                             .changeHomeState(HomePostState.home);
                         context.pop();
                       },
@@ -131,7 +131,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     ElevatedButton(
                       onPressed: () async {
                         ref
-                            .read(homeStateProvider.notifier)
+                            .read(homeStateControllerProvider.notifier)
                             .changeHomeState(HomePostState.search);
                         context.pop();
                         ref

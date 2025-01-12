@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'home_state_provider.g.dart';
+part 'home_state_controller.g.dart';
 
 enum HomePostState {
   /// 최신 모집글, 추천 모집글 보여주는 상태
@@ -11,7 +11,7 @@ enum HomePostState {
 }
 
 @Riverpod(keepAlive: true)
-final class HomeState extends _$HomeState {
+final class HomeStateController extends _$HomeStateController {
   @override
   HomePostState build() {
     return HomePostState.home;
