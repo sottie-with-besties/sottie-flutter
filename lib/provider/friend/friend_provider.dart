@@ -1,12 +1,12 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sottie_flutter/core/dio/dio_interceptor.dart';
-import 'package:sottie_flutter/data/friend/repository_impl/friend_dummy.dart';
-import 'package:sottie_flutter/data/friend/repository_impl/friend_repository_impl.dart';
+import 'package:sottie_flutter/data/friend/data_source/friend_data_source.dart';
+import 'package:sottie_flutter/data/friend/data_source/friend_dummy.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
 
 part 'friend_provider.g.dart';
 
-final _repo = FriendRepositoryImpl(cleanDio);
+final _repo = FriendDataSource(cleanDio);
 
 @Riverpod(keepAlive: true)
 final class FriendState extends _$FriendState {

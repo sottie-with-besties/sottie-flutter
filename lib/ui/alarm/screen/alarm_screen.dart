@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/data/alarm/data_source/alarm_dummy.dart';
 import 'package:sottie_flutter/data/alarm/model/alarm_model.dart';
-import 'package:sottie_flutter/data/alarm/repository_impl/alarm_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 

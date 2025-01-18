@@ -3,12 +3,12 @@ import 'package:retrofit/retrofit.dart';
 import 'package:sottie_flutter/core/dio/server_ip.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 
-part 'post_repository_impl.g.dart';
+part 'post_data_source.g.dart';
 
 /// Authentication 관련 Rest Api 통신 코드
 @RestApi(baseUrl: serverIp)
-abstract class PostRepositoryImpl {
-  factory PostRepositoryImpl(Dio dio, {String baseUrl}) = _PostRepositoryImpl;
+abstract class PostDataSource {
+  factory PostDataSource(Dio dio, {String baseUrl}) = _PostDataSource;
 
   /// 최신 포스트 불러오기
   @GET('/sottie/gatherings')

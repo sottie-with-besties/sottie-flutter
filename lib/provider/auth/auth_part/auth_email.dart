@@ -7,7 +7,7 @@ Future<void> _emailLogin(
 
   // Todo: 이메일 비번 암호화 코드
 
-  final tokenModel = await AuthTokenRepositoryImpl(cleanDio)
+  final tokenModel = await AuthTokenDataSource(cleanDio)
       .emailLogin(emailAndPassword: 'Basic $base64String');
 
   // 토큰들 저장

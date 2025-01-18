@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:sottie_flutter/core/local_database/secure_storage.dart';
-import 'package:sottie_flutter/data/auth/repository_impl/auth_repository_impl.dart';
+import 'package:sottie_flutter/data/auth/data_source/auth_data_source.dart';
 import 'package:sottie_flutter/domain/auth/entity/access_token_entity.dart';
 
 class _CustomInterceptor extends Interceptor {
@@ -46,7 +46,7 @@ class _CustomInterceptor extends Interceptor {
 
 /// 액세스 토큰 만료되었을 때 호출
 Future<void> _refreshAccessToken({required String refreshToken}) async {
-  final newAccessTokenModel = await AuthTokenRepositoryImpl(customDio)
+  final newAccessTokenModel = await AuthTokenDataSource(customDio)
       .refreshAccessToken(refreshToken: 'Bearer $refreshToken');
 
   accessTokenEntity.changeToken(newAccessTokenModel.accessToken);
