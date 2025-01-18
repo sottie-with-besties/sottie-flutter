@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sottie_flutter/data/chat/data_source/dm_dummy.dart';
 import 'package:sottie_flutter/data/chat/model/dm_model.dart';
+import 'package:sottie_flutter/data/chat/repository_impl/dm_dummy.dart';
 
 part 'dm_provider.g.dart';
 
