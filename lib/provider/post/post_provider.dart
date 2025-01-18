@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:sottie_flutter/core/rest_api/dio_interceptor.dart';
-import 'package:sottie_flutter/data/post/repository_impl/post_repository_impl.dart';
+import 'package:sottie_flutter/data/post/repository_impl/post_dev_repository_impl.dart';
 import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 
-final _repo = PostRepositoryImpl(cleanDio);
+final _repo = PostDevRepositoryImpl(cleanDio);
 
 final class PostProvider {
   Future<bool> makePost() async {
