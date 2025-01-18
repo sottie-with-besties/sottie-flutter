@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
-import 'package:sottie_flutter/core/dio/server_ip.dart';
+import 'package:sottie_flutter/core/rest_api/repository_env.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 
 part 'post_repository_impl.g.dart';
 
 /// Authentication 관련 Rest Api 통신 코드
-@RestApi(baseUrl: serverIp)
+@RestApi(baseUrl: devServerIp)
 abstract class PostRepositoryImpl {
   factory PostRepositoryImpl(Dio dio, {String baseUrl}) = _PostRepositoryImpl;
 

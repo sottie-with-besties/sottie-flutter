@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
-import 'package:sottie_flutter/core/dio/server_ip.dart';
+import 'package:sottie_flutter/core/rest_api/repository_env.dart';
 import 'package:sottie_flutter/data/auth/model/email_sign_up_model.dart';
 import 'package:sottie_flutter/data/auth/model/token_model.dart';
 
 part 'auth_repository_impl.g.dart';
 
 /// Authentication 관련 Rest Api 통신 코드
-@RestApi(baseUrl: serverIp)
+@RestApi(baseUrl: devServerIp)
 abstract class AuthTokenRepositoryImpl {
   factory AuthTokenRepositoryImpl(Dio dio, {String baseUrl}) =
       _AuthTokenRepositoryImpl;

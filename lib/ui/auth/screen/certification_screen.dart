@@ -8,7 +8,7 @@ import 'package:portone_flutter/Iamport_certification.dart';
 import 'package:portone_flutter/model/certification_data.dart';
 /* 아임포트 휴대폰 본인인증 모듈을 불러옵니다. */
 /* 아임포트 휴대폰 본인인증 데이터 모델을 불러옵니다. */
-import 'package:sottie_flutter/core/dio/server_ip.dart';
+import 'package:sottie_flutter/core/rest_api/repository_env.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/auth/model/email_sign_up_model.dart';
 import 'package:sottie_flutter/data/auth/model/oauth_sign_up_model.dart';
@@ -60,7 +60,7 @@ class CertificationScreen extends StatelessWidget {
             // result를 그대로 백엔드로 보내 response를 전달받는다.
 
             final res = await Dio().post(
-              "$serverIp/sottie/certifications",
+              "$devServerIp/sottie/certifications",
               data: jsonEncode(result),
               options: Options(
                 headers: <String, String>{
