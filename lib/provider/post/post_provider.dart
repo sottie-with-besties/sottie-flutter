@@ -21,11 +21,11 @@ final class PostProvider {
 
   Future<bool> postJoin({required int postId, int userId = 7}) async {
     try {
-      log(postId.toString());
       final resp = await _repo.postJoin(postJoinInfo: {
-        'gatheringId': 17,
-        'userId': userId,
+        'gatheringId': 18,
+        'userId': 7,
       });
+      log("성공");
       return true;
     } catch (e, stackTrace) {
       log(e.toString());
