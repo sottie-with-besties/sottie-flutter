@@ -2,16 +2,18 @@ import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
 import 'package:sottie_flutter/core/rest_api/repository_env.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
+import 'package:sottie_flutter/domain/post/repository_interface/post_repository.dart';
 
 part 'post_dev_repository_impl.g.dart';
 
 /// Authentication 관련 Rest Api 통신 코드
 @RestApi(baseUrl: devServerIp)
-abstract class PostDevRepositoryImpl {
+abstract class PostDevRepositoryImpl implements PostRepository {
   factory PostDevRepositoryImpl(Dio dio, {String baseUrl}) =
       _PostDevRepositoryImpl;
 
   /// 최신 포스트 불러오기
+  @override
   @GET('/sottie/gatherings')
   @Headers(<String, dynamic>{
     'Content-Type': 'application/json',
@@ -19,6 +21,7 @@ abstract class PostDevRepositoryImpl {
   Future<List<PostModel>> getLatestPostModelList({required int lastPostId});
 
   /// 검색 포스트 불러오기
+  @override
   @GET('/sottie/home/search')
   @Headers(<String, dynamic>{
     'Content-Type': 'application/json',
@@ -29,18 +32,21 @@ abstract class PostDevRepositoryImpl {
   });
 
   /// 포스트 만들기
+  @override
   @POST('/sottie/gathering')
   @Headers(<String, dynamic>{'Content-Type': "application/json"})
   Future<HttpResponse> makePost(
       {@Body() required Map<String, dynamic> postSetting});
 
   /// 포스트 모집 참가
+  @override
   @POST('/sottie/gathering/join')
   @Headers(<String, dynamic>{'Content-Type': "application/json"})
   Future<HttpResponse> postJoin(
       {@Body() required Map<String, dynamic> postJoinInfo});
 
   /// 포스트 모집 나가기
+  @override
   @POST('/sottie/gathering/exit')
   @Headers(<String, dynamic>{'Content-Type': "application/json"})
   Future<HttpResponse> postExit();

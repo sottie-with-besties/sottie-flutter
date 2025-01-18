@@ -177,8 +177,9 @@ class _FindIdScreenState extends State<FindIdScreen> {
                         final errorCode = await verificationProvider
                             .signInWithPhoneNumber(phoneNumber!);
                         if (errorCode != null) {
-                          if (context.mounted)
+                          if (context.mounted) {
                             showCustomSnackBar(context, errorCode);
+                          }
                         }
                       },
                       child: const Text("인증코드 재전송"),
