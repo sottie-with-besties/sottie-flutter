@@ -17,7 +17,7 @@ final class PostEntity {
   final PostLocation postLocation;
 
   /// 모임 날짜
-  final DateTime gatheringDate;
+  final DateTime postDate;
 
   /// 포스트를 설명하는 구체적 내용
   final String contents;
@@ -54,7 +54,7 @@ final class PostEntity {
     required this.postCategory,
     required this.title,
     required this.postLocation,
-    required this.gatheringDate,
+    required this.postDate,
     required this.contents,
     required this.numOfCurrentPeople,
     required this.numOfPeople,
@@ -76,7 +76,7 @@ final class PostEntity {
       postCategory: PostCategory.values.byName(model.gatheringCategory),
       title: model.title,
       postLocation: PostLocation.values[model.locationId],
-      gatheringDate: model.gatheringDate,
+      postDate: model.gatheringDate.toLocal(),
       contents: model.contents,
       numOfCurrentPeople: model.currentPeopleNum,
       numOfPeople: model.peopleNum,
