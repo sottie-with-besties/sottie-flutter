@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_category.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_gender_restriction.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_category.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_gender_restriction.dart';
 
 final class PostOptionsEntity {
   /// 포스트 제목
@@ -10,7 +10,7 @@ final class PostOptionsEntity {
   String contents;
 
   /// 포스트 카테고리(번개, 친목, 게임 등)
-  SottieCategory gatheringCategory;
+  PostCategory gatheringCategory;
 
   /// 시간도 포함, non-null 타입으로 안됨
   DateTime? gatheringDate;
@@ -31,7 +31,7 @@ final class PostOptionsEntity {
   int peopleNum;
 
   /// 성비 제한 여부
-  SottieGenderRestriction genderRestriction;
+  PostGenderRestriction genderRestriction;
 
   /// 성비 제한이 있을 경우의 남자 수
   int maleNum;
@@ -57,14 +57,14 @@ final class PostOptionsEntity {
   PostOptionsEntity({
     this.title = '',
     this.contents = '',
-    this.gatheringCategory = SottieCategory.ALL,
+    this.gatheringCategory = PostCategory.ALL,
     this.gatheringDate, // date와 time은 null로 못받게 프론트에서 예외 처리
     this.dateTimeRange,
     this.timeStart,
     this.timeEnd,
     this.locationId = 0,
     this.peopleNum = 1,
-    this.genderRestriction = SottieGenderRestriction.NONE,
+    this.genderRestriction = PostGenderRestriction.NONE,
     this.maleNum = 0,
     this.femaleNum = 0,
     this.ageFrom = 0,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_location.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_location.dart';
 import 'package:sottie_flutter/provider/post/post_provider.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
@@ -111,7 +111,8 @@ class PostDetailScreen extends StatelessWidget {
                               style: _conditionTextStyle,
                             ),
                             Text(
-                              SottieLocation.values[postModel.locationId].name,
+                              PostLocation
+                                  .values[postModel.locationId].koreanName,
                               style: _conditionTextStyle,
                             ),
                             postModel.ageRestriction

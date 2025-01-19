@@ -1,4 +1,4 @@
-enum SottieLocation {
+enum PostLocation {
   all("전국"),
   seoul("서울"),
   suwon("수원"),
@@ -20,7 +20,7 @@ enum SottieLocation {
   sungnam234("성남"),
   sungnam123("234성남");
 
-  final String name;
+  final String koreanName;
 
-  const SottieLocation(this.name);
+  const PostLocation(this.koreanName);
 }

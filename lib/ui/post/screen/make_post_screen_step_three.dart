@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_gender_restriction.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_location.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_gender_restriction.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_location.dart';
 import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/provider/post/post_provider.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
@@ -49,7 +49,7 @@ class MakePostScreenStepThree extends StatelessWidget {
                   Text(
                       "날짜: ${postOptions.gatheringDate == null ? "날짜 정보 없음" : convertDateTimeIntoString(postOptions.gatheringDate!.toLocal())}"),
                   Text(
-                      "장소: ${SottieLocation.values[postOptions.locationId].name}"),
+                      "장소: ${PostLocation.values[postOptions.locationId].koreanName}"),
                   postOptions.ageRestriction
                       ? Text(
                           "나이: ${convertAgeRangeToString(postOptions.ageFrom, postOptions.ageTo)}")
@@ -57,7 +57,7 @@ class MakePostScreenStepThree extends StatelessWidget {
                   Text(
                       "참여 인원: ${postOptions.peopleNum == 0 ? "제한 없음" : postOptions.peopleNum}"),
                   if (postOptions.genderRestriction !=
-                      SottieGenderRestriction.NONE)
+                      PostGenderRestriction.NONE)
                     Text(
                         "남자: ${postOptions.maleNum}명 / 여자: ${postOptions.femaleNum}명"),
                   if (postOptions.mannerRestriction)

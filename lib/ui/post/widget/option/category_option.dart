@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_category.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_category.dart';
 import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
@@ -40,7 +40,7 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
     return Expanded(
       child: Wrap(
         spacing: 10,
-        children: SottieCategory.values
+        children: PostCategory.values
             .where((category) => category.index != 0)
             .map((category) {
           final isSelected = category == postOptions.gatheringCategory;
@@ -55,7 +55,7 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
             selected: isSelected,
             onSelected: (_) {
               postOptions.gatheringCategory == category
-                  ? postOptions.gatheringCategory = SottieCategory.ALL
+                  ? postOptions.gatheringCategory = PostCategory.ALL
                   : postOptions.gatheringCategory = category;
               setState(() {});
             },

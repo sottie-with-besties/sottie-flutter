@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-enum SottieCategory {
+enum PostCategory {
   ALL('전체'),
   THUNDER('번개'),
   FRIENDSHIP('친목'),
@@ -12,7 +12,7 @@ enum SottieCategory {
 
   final String koreanName;
 
-  const SottieCategory(
+  const PostCategory(
     this.koreanName,
   );
 }

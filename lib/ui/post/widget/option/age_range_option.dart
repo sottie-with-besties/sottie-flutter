@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_age_range.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_age_range.dart';
 import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
@@ -65,7 +65,7 @@ class _AgeRange extends StatefulWidget {
 
 class _AgeRangeState extends State<_AgeRange> {
   List<bool> selectedList = List<bool>.generate(
-    SottieAgeRange.values.length,
+    PostAgeRange.values.length,
     (index) => false,
   );
 
@@ -105,7 +105,7 @@ class _AgeRangeState extends State<_AgeRange> {
         children: [
           FittedBox(
             child: Row(
-              children: SottieAgeRange.values.map((age) {
+              children: PostAgeRange.values.map((age) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: ChoiceChip(

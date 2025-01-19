@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-enum SottieGenderRestriction {
+enum PostGenderRestriction {
   NONE,
   MIX,
   MALE,

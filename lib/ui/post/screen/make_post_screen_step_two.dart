@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_category.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_category.dart';
 import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
@@ -33,7 +33,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
       checkList.add("날짜 및 시간을 선택해주세요.");
     }
 
-    if (postOptions.gatheringCategory == SottieCategory.ALL) {
+    if (postOptions.gatheringCategory == PostCategory.ALL) {
       checkList.add("카테고리를 하나 선택해주세요.");
     }
 

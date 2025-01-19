@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_gender_restriction.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_gender_restriction.dart';
 import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
@@ -18,13 +18,13 @@ class _GenderClassState extends ConsumerState<GenderOption> {
   bool _peopleNumIsSelected = false;
 
   bool _sliderCondition() =>
-      postOptions.genderRestriction != SottieGenderRestriction.NONE &&
+      postOptions.genderRestriction != PostGenderRestriction.NONE &&
       _peopleNumIsSelected;
 
   @override
   void initState() {
     super.initState();
-    postOptions.genderRestriction == SottieGenderRestriction.NONE
+    postOptions.genderRestriction == PostGenderRestriction.NONE
         ? _peopleNumIsSelected = false
         : _peopleNumIsSelected = true;
   }
@@ -34,13 +34,13 @@ class _GenderClassState extends ConsumerState<GenderOption> {
     ref.listen(numOfMemberProvider, (_, peopleNum) {
       if (peopleNum == 1) {
         _peopleNumIsSelected = false;
-        postOptions.genderRestriction = SottieGenderRestriction.NONE;
+        postOptions.genderRestriction = PostGenderRestriction.NONE;
         postOptions.maleNum = 0;
         postOptions.femaleNum = 0;
       } else {
         _peopleNumIsSelected = true;
 
-        if (postOptions.genderRestriction != SottieGenderRestriction.NONE) {
+        if (postOptions.genderRestriction != PostGenderRestriction.NONE) {
           /// 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
           postOptions.maleNum = (peopleNum / 2).floorToDouble().toInt();
           postOptions.femaleNum = peopleNum - postOptions.maleNum;
@@ -51,7 +51,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
     });
 
     double animatedContainerHeight =
-        postOptions.genderRestriction != SottieGenderRestriction.NONE
+        postOptions.genderRestriction != PostGenderRestriction.NONE
             ? 80 * hu
             : 0;
 
@@ -67,7 +67,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
               onChanged: (val) {
                 if (_peopleNumIsSelected) {
                   if (val == true) {
-                    postOptions.genderRestriction = SottieGenderRestriction.MIX;
+                    postOptions.genderRestriction = PostGenderRestriction.MIX;
 
                     /// 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
                     postOptions.maleNum =
@@ -75,8 +75,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                     postOptions.femaleNum =
                         postOptions.peopleNum - postOptions.maleNum;
                   } else {
-                    postOptions.genderRestriction =
-                        SottieGenderRestriction.NONE;
+                    postOptions.genderRestriction = PostGenderRestriction.NONE;
                     postOptions.maleNum = 0;
                     postOptions.femaleNum = 0;
                   }
@@ -110,14 +109,14 @@ class _GenderClassState extends ConsumerState<GenderOption> {
 
                             if (postOptions.maleNum == postOptions.peopleNum) {
                               postOptions.genderRestriction =
-                                  SottieGenderRestriction.MALE;
+                                  PostGenderRestriction.MALE;
                             } else if (postOptions.femaleNum ==
                                 postOptions.peopleNum) {
                               postOptions.genderRestriction =
-                                  SottieGenderRestriction.FEMALE;
+                                  PostGenderRestriction.FEMALE;
                             } else {
                               postOptions.genderRestriction =
-                                  SottieGenderRestriction.MIX;
+                                  PostGenderRestriction.MIX;
                             }
 
                             setState(() {});
@@ -158,7 +157,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                         ),
                       ),
                       if (postOptions.genderRestriction ==
-                          SottieGenderRestriction.MALE)
+                          PostGenderRestriction.MALE)
                         Text(
                           '남자만 입장 가능',
                           style: TextStyle(
@@ -168,7 +167,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                           ),
                         ),
                       if (postOptions.genderRestriction ==
-                          SottieGenderRestriction.FEMALE)
+                          PostGenderRestriction.FEMALE)
                         Text(
                           '여자만 입장 가능',
                           style: TextStyle(

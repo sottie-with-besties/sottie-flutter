@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/sottie_location.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_location.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/chat_room_destroying_timer.dart';
@@ -125,7 +125,7 @@ class ChatRoomInfo extends StatelessWidget {
                         ),
                         Text(
                           overflow: TextOverflow.ellipsis,
-                          SottieLocation.values[locationId].name,
+                          PostLocation.values[locationId].koreanName,
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],

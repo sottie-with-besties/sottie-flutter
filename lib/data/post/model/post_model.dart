@@ -9,16 +9,16 @@ class PostModel with _$PostModel {
     /// 포스트 ID
     required int id,
 
-    /// 포스트의 카테고리
+    /// 모임 카테고리
     required String gatheringCategory,
 
     /// 포스트 제목
     required String title,
 
-    /// 모집 장소
+    /// 모임 장소
     required int locationId,
 
-    /// 모집 날짜
+    /// 모임 날짜
     required DateTime gatheringDate,
 
     /// 포스트를 설명하는 구체적 내용
