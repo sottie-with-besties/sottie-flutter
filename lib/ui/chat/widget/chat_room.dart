@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_category.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_gender_restriction.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
@@ -104,7 +106,8 @@ class ChatRoom extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SottieCategoryUi(sottieCategory: model.gatheringCategory),
+                      SottieCategoryUi(
+                          postCategory: PostCategory.values.byName('THUNDER')),
                       CurrentNumOfMember(
                         currentPeopleNum: model.currentPeopleNum,
                         peopleNum: model.peopleNum,
@@ -112,7 +115,8 @@ class ChatRoom extends StatelessWidget {
                         maleNum: model.maleNum,
                         currentFemaleNum: model.currentFemaleNum,
                         femaleNum: model.femaleNum,
-                        genderRestriction: model.genderRestriction,
+                        genderRestriction: PostGenderRestriction.values
+                            .byName(model.genderRestriction),
                       ),
                     ],
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_gender_restriction.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class CurrentNumOfMember extends StatelessWidget {
@@ -20,11 +21,11 @@ class CurrentNumOfMember extends StatelessWidget {
   final int maleNum;
   final int currentFemaleNum;
   final int femaleNum;
-  final String genderRestriction;
+  final PostGenderRestriction genderRestriction;
 
   @override
   Widget build(BuildContext context) {
-    if (genderRestriction == 'NONE') {
+    if (genderRestriction == PostGenderRestriction.NONE) {
       return Row(
         children: [
           Icon(

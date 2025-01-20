@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/post/model/post_model.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_location.dart';
+import 'package:sottie_flutter/domain/post/entity/post_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
@@ -12,22 +11,20 @@ import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 class Post extends StatelessWidget {
   const Post({
     super.key,
-    required this.model,
+    required this.entity,
     required this.isWaiting,
   });
 
-  final PostModel model;
+  final PostEntity entity;
   final bool isWaiting;
 
   @override
   Widget build(BuildContext context) {
-    final date = model.gatheringDate.toLocal();
-
     return GestureDetector(
       onTap: () => context.push(
         CustomRouter.postDetailPath,
         extra: {
-          'postModel': model,
+          'postEntity': entity,
           'isWaiting': isWaiting,
         },
       ),
@@ -44,10 +41,10 @@ class Post extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SottieCategoryUi(sottieCategory: model.gatheringCategory),
+            SottieCategoryUi(postCategory: entity.postCategory),
             SizedBox(height: 5 * hu),
             Text(
-              model.title,
+              entity.title,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               style: TextStyle(
@@ -58,7 +55,7 @@ class Post extends StatelessWidget {
             ),
             SizedBox(height: 3 * hu),
             Text(
-              convertDateTimeIntoString(date),
+              convertDateTimeIntoString(entity.postDate),
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 10 * hu,
@@ -71,7 +68,7 @@ class Post extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  PostLocation.values[model.locationId].koreanName,
+                  entity.postLocation.koreanName,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 10 * hu,
@@ -80,13 +77,13 @@ class Post extends StatelessWidget {
                   ),
                 ),
                 CurrentNumOfMember(
-                  currentPeopleNum: model.currentPeopleNum,
-                  peopleNum: model.peopleNum,
-                  currentMaleNum: model.currentMaleNum,
-                  maleNum: model.maleNum,
-                  currentFemaleNum: model.currentFemaleNum,
-                  femaleNum: model.femaleNum,
-                  genderRestriction: model.genderRestriction,
+                  currentPeopleNum: entity.numOfCurrentPeople,
+                  peopleNum: entity.numOfPeople,
+                  currentMaleNum: entity.numOfCurrentMale,
+                  maleNum: entity.numOfMale,
+                  currentFemaleNum: entity.numOfCurrentFemale,
+                  femaleNum: entity.numOfFemale,
+                  genderRestriction: entity.genderRestriction,
                 ),
               ],
             ),

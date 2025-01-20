@@ -1,55 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_category.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class SottieCategoryUi extends StatelessWidget {
   const SottieCategoryUi({
     super.key,
-    required this.sottieCategory,
+    required this.postCategory,
     this.color = mainBlackColor,
   });
 
-  final String sottieCategory;
+  final PostCategory postCategory;
   final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return _categoryClassify(sottieCategory, color);
+    return _categoryClassify(postCategory, color);
   }
 }
 
-Widget _categoryClassify(String category, Color color) {
+Widget _categoryClassify(PostCategory postCategory, Color color) {
   Widget sottieCategory = Container();
 
-  if (category == '번개') {
+  if (postCategory == PostCategory.THUNDER) {
     sottieCategory = _renderCategory(Icons.bolt, '번개', color);
   }
 
-  if (category == '친목') {
+  if (postCategory == PostCategory.FRIENDSHIP) {
     sottieCategory = _renderCategory(FontAwesomeIcons.userGroup, '친목', color);
   }
 
-  if (category == '공부') {
+  if (postCategory == PostCategory.STUDY) {
     sottieCategory = _renderCategory(FontAwesomeIcons.pencil, '공부', color);
   }
 
-  if (category == '구인/구직') {
+  if (postCategory == PostCategory.HIRING) {
     sottieCategory = _renderCategory(Icons.note_alt, '구인/구직', color);
   }
 
-  if (category == '게임') {
+  if (postCategory == PostCategory.GAME) {
     sottieCategory = _renderCategory(Icons.gamepad, '게임', color);
   }
 
-  if (category == '운동') {
+  if (postCategory == PostCategory.EXERCISE) {
     sottieCategory = _renderCategory(FontAwesomeIcons.dumbbell, '운동', color);
   }
 
-  if (category == '기타') {
+  if (postCategory == PostCategory.OTHERS) {
     sottieCategory = _renderCategory(Icons.more_horiz, '기타', color);
-  } else {
-    sottieCategory = _renderCategory(Icons.more_horiz, '알 수 없음', color);
   }
 
   return sottieCategory;

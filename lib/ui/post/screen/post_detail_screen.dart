@@ -3,8 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/post/model/post_model.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_location.dart';
+import 'package:sottie_flutter/domain/post/entity/post_entity.dart';
 import 'package:sottie_flutter/provider/post/post_provider.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
@@ -15,19 +14,17 @@ import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 class PostDetailScreen extends StatelessWidget {
   const PostDetailScreen({
     super.key,
-    required this.postModel,
+    required this.postEntity,
     required this.isWaiting,
     required this.isCheckInfo,
   });
 
-  final PostModel postModel;
+  final PostEntity postEntity;
   final bool isWaiting;
   final bool isCheckInfo;
 
   @override
   Widget build(BuildContext context) {
-    final date = postModel.gatheringDate.toLocal();
-
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -65,7 +62,7 @@ class PostDetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      postModel.title,
+                      postEntity.title,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -76,25 +73,25 @@ class PostDetailScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10 * hu),
                     SottieCategoryUi(
-                      sottieCategory: postModel.gatheringCategory,
+                      postCategory: postEntity.postCategory,
                       color: mainWhiteSilverColor,
                     ),
                     SizedBox(height: 5 * hu),
                     CurrentNumOfMember(
-                      currentPeopleNum: postModel.currentPeopleNum,
-                      peopleNum: postModel.peopleNum,
-                      currentMaleNum: postModel.currentMaleNum,
-                      maleNum: postModel.maleNum,
-                      currentFemaleNum: postModel.currentFemaleNum,
-                      femaleNum: postModel.femaleNum,
-                      genderRestriction: postModel.genderRestriction,
+                      currentPeopleNum: postEntity.numOfCurrentPeople,
+                      peopleNum: postEntity.numOfPeople,
+                      currentMaleNum: postEntity.numOfCurrentMale,
+                      maleNum: postEntity.numOfMale,
+                      currentFemaleNum: postEntity.numOfCurrentFemale,
+                      femaleNum: postEntity.numOfFemale,
+                      genderRestriction: postEntity.genderRestriction,
                     ),
                     SizedBox(height: 10 * hu),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          postModel.contents,
+                          postEntity.contents,
                           style: TextStyle(
                             fontSize: 11 * hu,
                             color: mainWhiteSilverColor,
@@ -107,30 +104,29 @@ class PostDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              convertDateTimeIntoString(date),
+                              convertDateTimeIntoString(postEntity.postDate),
                               style: _conditionTextStyle,
                             ),
                             Text(
-                              PostLocation
-                                  .values[postModel.locationId].koreanName,
+                              postEntity.postLocation.koreanName,
                               style: _conditionTextStyle,
                             ),
-                            postModel.ageRestriction
+                            postEntity.ageRestriction
                                 ? Text(
                                     convertAgeRangeToString(
-                                        postModel.ageFrom, postModel.ageTo),
+                                        postEntity.ageFrom, postEntity.ageTo),
                                     style: _conditionTextStyle,
                                   )
                                 : Text(
                                     "나이 제한 없음",
                                     style: _conditionTextStyle,
                                   ),
-                            if (postModel.mannerRestriction)
+                            if (postEntity.mannerRestriction)
                               Text(
                                 "36.5°C 이상",
                                 style: _conditionTextStyle,
                               ),
-                            if (postModel.onlyMyFriends)
+                            if (postEntity.onlyMyFriends)
                               Text(
                                 "내 친구만",
                                 style: _conditionTextStyle,
@@ -170,7 +166,7 @@ class PostDetailScreen extends StatelessWidget {
                                   log("참여하기");
 
                                   final result = await postProvider.postJoin(
-                                    postId: postModel.id,
+                                    postId: postEntity.id,
                                   );
 
                                   if (context.mounted) {

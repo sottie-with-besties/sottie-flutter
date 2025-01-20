@@ -170,7 +170,7 @@ final _routes = [
 
                       return CustomTransitionPage(
                         child: PostDetailScreen(
-                          postModel: params['postModel'],
+                          postEntity: params['postEntity'],
                           isWaiting: false,
                           isCheckInfo: true,
                         ),
@@ -295,7 +295,7 @@ final _routes = [
 
       return CustomTransitionPage(
         child: PostDetailScreen(
-          postModel: params['postModel'],
+          postEntity: params['postEntity'],
           isWaiting: params['isWaiting'] ?? false,
           isCheckInfo: false,
         ),
