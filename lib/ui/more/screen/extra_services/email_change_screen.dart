@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -32,6 +33,8 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
   final emailKey = GlobalKey<FormState>();
   final phoneNumberKey = GlobalKey<FormState>();
 
+  final _verificationProvider = GetIt.I.get<VerificationProvider>();
+
   bool _anyButtonLoading() {
     return isNextLoading || isCancelLoading;
   }
@@ -51,7 +54,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       // 핸드폰 번호 입력하는 화면
       if (phoneNumberKey.currentState!.validate()) {
         final errorCode =
-            await verificationProvider.signInWithPhoneNumber(phoneNumber!);
+            await _verificationProvider.signInWithPhoneNumber(phoneNumber!);
         if (errorCode == null) {
           currentStep += 1;
           setState(() {});
@@ -64,9 +67,9 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       isNextLoading = true;
       setState(() {});
       final errorCode =
-          await verificationProvider.signInWithSmsCode(verificationCode!);
+          await _verificationProvider.signInWithSmsCode(verificationCode!);
       if (errorCode == null) {
-        await verificationProvider.deletePhoneUser();
+        await _verificationProvider.deletePhoneUser();
         currentStep += 1;
         setState(() {});
       } else {
@@ -79,12 +82,12 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       if (emailKey.currentState!.validate()) {
         isNextLoading = true;
         setState(() {});
-        String? errorCode = await verificationProvider.createEmailAndPassword(
+        String? errorCode = await _verificationProvider.createEmailAndPassword(
             email!, dummyPassword);
         if (mounted) {
           if (errorCode == null) {
             currentStep += 1;
-            await verificationProvider.sendEmailVerification();
+            await _verificationProvider.sendEmailVerification();
           } else {
             showCustomSnackBar(context, errorCode);
           }
@@ -96,10 +99,10 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       // 이메일 인증 화면 -> 이메일 인증 성공 후 파이어베이스 유저 이메일 정보 삭제
       isNextLoading = true;
       setState(() {});
-      final emailVerification =
-          await verificationProvider.isEmailVerification(email!, dummyPassword);
+      final emailVerification = await _verificationProvider.isEmailVerification(
+          email!, dummyPassword);
       if (emailVerification) {
-        await verificationProvider.deleteEmailUser(email!, dummyPassword);
+        await _verificationProvider.deleteEmailUser(email!, dummyPassword);
         currentStep += 1;
         myInfoEntity.email = email!;
       } else {
@@ -122,7 +125,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       isCancelLoading = true;
       setState(() {});
       final String? errorCode =
-          await verificationProvider.deleteEmailUser(email!, dummyPassword);
+          await _verificationProvider.deleteEmailUser(email!, dummyPassword);
       if (errorCode == null) {
         currentStep -= 1;
       } else {
@@ -210,7 +213,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                   const SizedBox(height: 30),
                   OutlinedButton(
                     onPressed: () async {
-                      final errorCode = await verificationProvider
+                      final errorCode = await _verificationProvider
                           .signInWithPhoneNumber(phoneNumber!);
                       if (errorCode != null) {
                         if (context.mounted) {
@@ -279,7 +282,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                   const SizedBox(height: 20),
                   OutlinedButton(
                       onPressed: () async {
-                        await verificationProvider.sendEmailVerification();
+                        await _verificationProvider.sendEmailVerification();
                       },
                       child: const Text("이메일 인증 재발송")),
                   const SizedBox(

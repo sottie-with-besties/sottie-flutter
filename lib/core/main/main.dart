@@ -6,13 +6,15 @@ import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:sottie_flutter/core/Firebase/firebase_options.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/constant/native_key.dart';
+import 'package:sottie_flutter/core/rest_api/repository_env.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/core/util/init_instances.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await _initSdks();
+  await _initApp();
 
   runApp(const Sottie());
 }
@@ -37,7 +39,7 @@ class Sottie extends StatelessWidget {
   }
 }
 
-Future<void> _initSdks() async {
+Future<void> _initApp() async {
   // 파이어베이스
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -48,6 +50,10 @@ Future<void> _initSdks() async {
     nativeAppKey: nativeAppKey,
     javaScriptAppKey: javaScriptKey,
   );
+
+  initRepositories(RepositoryEnvironment.dev);
+
+  initInstances();
 }
 
 final _customTheme = ThemeData(

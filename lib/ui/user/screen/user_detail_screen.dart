@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/provider/friend/friend_manage_provider.dart';
@@ -21,6 +22,9 @@ class UserDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final friendManageProvider = GetIt.I.get<FriendManageProvider>();
+    final userManageProvider = GetIt.I.get<UserManageProvider>();
+
     return Scaffold(
       appBar: AppBar(backgroundColor: mainWhiteSilverColor),
       backgroundColor: mainWhiteSilverColor,

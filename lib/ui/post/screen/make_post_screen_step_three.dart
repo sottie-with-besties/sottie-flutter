@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_gender_restriction.dart';
@@ -15,6 +16,8 @@ class MakePostScreenStepThree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final postProvider = GetIt.I.get<PostProvider>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("미리 보기"),

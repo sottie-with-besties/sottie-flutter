@@ -116,5 +116,3 @@ final class VerificationProvider {
     await _auth.currentUser!.delete();
   }
 }
-
-final verificationProvider = VerificationProvider();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/data/user/repository_impl/user_unblock_dummy.dart';
 import 'package:sottie_flutter/provider/user/user_manage_provider.dart';
@@ -15,6 +16,8 @@ class UserBlockScreen extends StatefulWidget {
 
 class _UserBlockScreenState extends State<UserBlockScreen>
     with AutomaticKeepAliveClientMixin {
+  final _userManageProvider = GetIt.I.get<UserManageProvider>();
+
   @override
   bool get wantKeepAlive => true;
 
@@ -45,7 +48,7 @@ class _UserBlockScreenState extends State<UserBlockScreen>
                           ),
                           ElevatedButton(
                               onPressed: () {
-                                userManageProvider.userUnblock(context);
+                                _userManageProvider.userUnblock(context);
                               },
                               child: const Text("차단 해제")),
                         ],

@@ -1,5 +1,6 @@
 import 'package:auth_button_kit/auth_button_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
@@ -27,6 +28,8 @@ class _AuthScreenState extends State<AuthScreen> {
   final _passwordFocusNode = FocusNode();
 
   final _formKey = GlobalKey<FormState>();
+
+  final _authProvider = GetIt.I.get<AuthProvider>();
 
   EmailLoginEntity emailLoginModel = EmailLoginEntity();
 
@@ -125,7 +128,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
                                     // signIn에 백엔드로 이메일 코드 전송 포함
-                                    final errorCode = await authProvider.signIn(
+                                    final errorCode =
+                                        await _authProvider.signIn(
                                       authType: AuthType.email,
                                       email: emailLoginModel.email,
                                       password: emailLoginModel.password,
@@ -180,7 +184,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 OAuthButton(
                   imgPath: AssetPath.kakaoLogin,
                   onPressed: () async {
-                    await authProvider.oauthLogin(
+                    await _authProvider.oauthLogin(
                       context: context,
                       oauthType: AuthType.kakao,
                     );
@@ -190,7 +194,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 /// 구글 로그인
                 AuthButton(
                   onPressed: (_) async {
-                    await authProvider.oauthLogin(
+                    await _authProvider.oauthLogin(
                       context: context,
                       oauthType: AuthType.google,
                     );

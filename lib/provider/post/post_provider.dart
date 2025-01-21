@@ -46,8 +46,6 @@ final class PostProvider {
   }
 }
 
-final postProvider = PostProvider();
-
 // FormData _formData;
 //
 // if (_selectedFiles.isEmpty) {//단일사진 전달

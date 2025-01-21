@@ -15,5 +15,3 @@ final class FriendManageProvider {
     log("friendSendDm");
   }
 }
-
-final friendManageProvider = FriendManageProvider();

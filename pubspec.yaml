@@ -49,6 +49,9 @@ dependencies:
   flutter_riverpod:
   riverpod_annotation:
 
+  # 의존성 주입 및 객체 관리
+  get_it: ^8.0.3
+
   # Network
   dio:
   retrofit: ^4.4.1

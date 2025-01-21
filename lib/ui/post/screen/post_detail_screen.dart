@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/domain/post/entity/post_entity.dart';
@@ -25,6 +26,8 @@ class PostDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final postProvider = GetIt.I.get<PostProvider>();
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(

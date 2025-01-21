@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
 import 'package:sottie_flutter/provider/friend/friend_manage_provider.dart';
@@ -24,6 +25,9 @@ class Friend extends StatefulWidget {
 }
 
 class _FriendState extends State<Friend> {
+  final _friendManageProvider = GetIt.I.get<FriendManageProvider>();
+  final _userManageProvider = GetIt.I.get<UserManageProvider>();
+
   void _deleteAction(bool withSlide) {
     showCustomDialog(
       context,
@@ -42,7 +46,7 @@ class _FriendState extends State<Friend> {
           Navigator.of(context, rootNavigator: true).pop();
           withSlide ? null : Navigator.of(context, rootNavigator: true).pop();
 
-          friendManageProvider.friendDelete(context);
+          _friendManageProvider.friendDelete(context);
         },
         child: const Text("삭제"),
       ),
@@ -69,7 +73,7 @@ class _FriendState extends State<Friend> {
           OnLongPressOption(
             color: Colors.green,
             onTap: () {
-              friendManageProvider.friendSendDm(context);
+              _friendManageProvider.friendSendDm(context);
             },
             icon: Icons.messenger_outline,
             optionTitle: "DM 보내기",
@@ -87,7 +91,7 @@ class _FriendState extends State<Friend> {
           OnLongPressOption(
             color: Colors.blueAccent,
             onTap: () {
-              userManageProvider.userReport(context);
+              _userManageProvider.userReport(context);
             },
             icon: Icons.report_gmailerrorred_outlined,
             optionTitle: "신고",
@@ -96,7 +100,7 @@ class _FriendState extends State<Friend> {
       ),
       slideActions: [
         SlidableAction(
-          onPressed: (context) => friendManageProvider.friendSendDm(context),
+          onPressed: (context) => _friendManageProvider.friendSendDm(context),
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           autoClose: true,
@@ -114,7 +118,7 @@ class _FriendState extends State<Friend> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
         SlidableAction(
-          onPressed: (context) => userManageProvider.userReport(context),
+          onPressed: (context) => _userManageProvider.userReport(context),
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
           autoClose: true,

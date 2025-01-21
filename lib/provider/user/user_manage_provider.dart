@@ -15,5 +15,3 @@ final class UserManageProvider {
     log("userReport");
   }
 }
-
-final userManageProvider = UserManageProvider();

@@ -146,5 +146,3 @@ final class AuthProvider {
     return errorCode;
   }
 }
-
-final authProvider = AuthProvider();
