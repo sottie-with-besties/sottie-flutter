@@ -2,7 +2,6 @@ import 'package:easy_debounce/easy_throttle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/entity/post_entity.dart';
 import 'package:sottie_flutter/domain/post/entity/post_pagination_entity.dart';
 import 'package:sottie_flutter/provider/home/home_latest_post_provider.dart';
 import 'package:sottie_flutter/provider/home/home_search_post_provider.dart';
@@ -107,9 +106,9 @@ class _PostPaginationListViewState
     return Expanded(
       child: ListView.builder(
         controller: _paginationController,
-        itemCount: postPaginationModel.postModelList.length + 1,
+        itemCount: postPaginationModel.postEntityList.length + 1,
         itemBuilder: (_, index) {
-          if (index == postPaginationModel.postModelList.length) {
+          if (index == postPaginationModel.postEntityList.length) {
             final paginationState = postPaginationModel.postPaginationState;
 
             if (paginationState == PostPaginationState.firstLoading) {
@@ -141,7 +140,7 @@ class _PostPaginationListViewState
                                   PostPaginationEntity>;
                           ref.read(provider.notifier).latestPagination(
                               firstFetch:
-                                  postPaginationModel.postModelList.isEmpty
+                                  postPaginationModel.postEntityList.isEmpty
                                       ? true
                                       : false);
                         } else {
@@ -150,7 +149,7 @@ class _PostPaginationListViewState
                                   PostPaginationEntity>;
                           ref.read(provider.notifier).searchPagination(
                                 firstFetch:
-                                    postPaginationModel.postModelList.isEmpty
+                                    postPaginationModel.postEntityList.isEmpty
                                         ? true
                                         : false,
                               );
@@ -164,8 +163,7 @@ class _PostPaginationListViewState
             }
           } else {
             return Post(
-              entity: PostEntity.fromModel(
-                  model: postPaginationModel.postModelList[index]),
+              entity: postPaginationModel.postEntityList[index],
               // Todo: 모집글 구분 기준 필요
               // 1. 내가 만든 모집글인가?
               // 2. 현재 참여 대기중 또는 참여하고 있는 모집글인가?

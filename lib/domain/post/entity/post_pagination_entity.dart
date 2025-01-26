@@ -1,4 +1,4 @@
-import 'package:sottie_flutter/data/post/model/post_model.dart';
+import 'package:sottie_flutter/domain/post/entity/post_entity.dart';
 
 enum PostPaginationState {
   fetch,
@@ -8,12 +8,12 @@ enum PostPaginationState {
 }
 
 class PostPaginationEntity {
-  final List<PostModel> postModelList;
+  final List<PostEntity> postEntityList;
   final PostPaginationState postPaginationState;
   final String? errorCode;
 
   PostPaginationEntity({
-    required this.postModelList,
+    required this.postEntityList,
     required this.postPaginationState,
     this.errorCode,
   });

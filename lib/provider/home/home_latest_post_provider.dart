@@ -1,20 +1,20 @@
 import 'dart:developer';
 
+import 'package:get_it/get_it.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sottie_flutter/core/rest_api/dio_interceptor.dart';
-import 'package:sottie_flutter/data/post/repository_impl/post_dev_repository_impl.dart';
 import 'package:sottie_flutter/domain/post/entity/post_pagination_entity.dart';
+import 'package:sottie_flutter/domain/post/use_case/post_use_case.dart';
 
 part 'home_latest_post_provider.g.dart';
 
-final _repo = PostDevRepositoryImpl(customDio);
+final _useCase = GetIt.I.get<PostUseCase>();
 
 @Riverpod(keepAlive: true)
 final class HomeLatestPost extends _$HomeLatestPost {
   @override
   PostPaginationEntity build() {
     return PostPaginationEntity(
-      postModelList: [],
+      postEntityList: [],
       postPaginationState: PostPaginationState.firstLoading,
     );
   }
@@ -23,27 +23,27 @@ final class HomeLatestPost extends _$HomeLatestPost {
     try {
       if (!firstFetch) {
         state = PostPaginationEntity(
-          postModelList: state.postModelList,
+          postEntityList: state.postEntityList,
           postPaginationState: PostPaginationState.loading,
         );
       }
 
-      final postList = await _repo.getLatestPostModelList(
-        lastPostId: firstFetch ? 0 : state.postModelList.last.id,
+      final entityList = await _useCase.getLatestPostEntityList(
+        lastPostId: firstFetch ? 0 : state.postEntityList.last.id,
       );
 
       // final postList = await getLatestPostDummy("123");
 
-      if (postList.isEmpty) {
+      if (entityList.isEmpty) {
         state = PostPaginationEntity(
-            postModelList: postList,
+            postEntityList: entityList,
             postPaginationState: PostPaginationState.error,
             errorCode: '데이터가 더 이상 존재하지 않습니다');
       } else {
         state = PostPaginationEntity(
-          postModelList: [
-            ...state.postModelList,
-            ...postList,
+          postEntityList: [
+            ...state.postEntityList,
+            ...entityList,
           ],
           postPaginationState: PostPaginationState.fetch,
         );
@@ -52,7 +52,7 @@ final class HomeLatestPost extends _$HomeLatestPost {
       log(e.toString());
       log(stack.toString());
       state = PostPaginationEntity(
-        postModelList: state.postModelList,
+        postEntityList: state.postEntityList,
         postPaginationState: PostPaginationState.error,
         errorCode: '모집글을 불러오는 도중 에러가 발생했습니다.',
       );
