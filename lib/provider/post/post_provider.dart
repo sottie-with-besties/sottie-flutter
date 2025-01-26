@@ -1,15 +1,15 @@
 import 'dart:developer';
 
-import 'package:sottie_flutter/core/rest_api/dio_interceptor.dart';
-import 'package:sottie_flutter/data/post/repository_impl/post_dev_repository_impl.dart';
+import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
+import 'package:sottie_flutter/domain/post/use_case/post_use_case.dart';
 
-final _repo = PostDevRepositoryImpl(cleanDio);
+final _useCase = GetIt.I.get<PostUseCase>();
 
 final class PostProvider {
   Future<bool> makePost() async {
     try {
-      final resp = await _repo.makePost(
+      final resp = await _useCase.makePost(
           postSetting: postOptions.toJsonForMakePostSend());
 
       // Todo: resp status code에 따른 예외처리
@@ -21,7 +21,7 @@ final class PostProvider {
 
   Future<bool> postJoin({required int postId, int userId = 7}) async {
     try {
-      final resp = await _repo.postJoin(postJoinInfo: {
+      final resp = await _useCase.postJoin(postJoinInfo: {
         'gatheringId': 18,
         'userId': 7,
       });
@@ -36,7 +36,7 @@ final class PostProvider {
 
   Future<bool> postExit() async {
     try {
-      final resp = await _repo.postExit();
+      final resp = await _useCase.postExit();
       return true;
     } catch (e, stackTrace) {
       log(e.toString());

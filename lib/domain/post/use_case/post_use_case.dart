@@ -37,4 +37,19 @@ final class PostUseCase {
 
     return postEntityList;
   }
+
+  /// 포스트 만들기
+  Future<void> makePost({required Map<String, dynamic> postSetting}) async {
+    await _repo.makePost(postSetting: postSetting);
+  }
+
+  /// 포스트 모집 참가
+  Future<void> postJoin({required Map<String, dynamic> postJoinInfo}) async {
+    await _repo.postJoin(postJoinInfo: postJoinInfo);
+  }
+
+  /// 포스트 모집 나가기
+  Future<void> postExit() async {
+    await _repo.postExit();
+  }
 }
