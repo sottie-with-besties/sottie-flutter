@@ -68,7 +68,7 @@ String convertGenderToString(String gender) => gender == 'MALE' ? '남성' : '�
 String convertAgeRangeToString(int ageFrom, int ageTo) {
   String ageRangeString = '';
 
-  for (int i = ageFrom; i <= ageTo; i++) {
+  for (int i = (ageFrom / 10).toInt(); i <= (ageTo / 10).toInt(); i++) {
     ageRangeString = '$ageRangeString, ${i}0대';
   }
 
