@@ -12,7 +12,5 @@ enum PostCategory {
 
   final String koreanName;
 
-  const PostCategory(
-    this.koreanName,
-  );
+  const PostCategory(this.koreanName);
 }

@@ -7,10 +7,12 @@ final _repo = GetIt.I.get<PostRepository>();
 
 final class PostUseCase {
   /// 최신 모집글 불러오기
-  Future<List<PostEntity>> getLatestPostEntityList(
-      {required int lastPostId}) async {
-    final postModelList =
-        await _repo.getLatestPostModelList(lastPostId: lastPostId);
+  Future<List<PostEntity>> getLatestPostEntityList({
+    required int lastPostId,
+  }) async {
+    final postModelList = await _repo.getLatestPostModelList(
+      lastPostId: lastPostId,
+    );
 
     final postEntityList = <PostEntity>[];
 
@@ -27,7 +29,9 @@ final class PostUseCase {
     required int lastPostId,
   }) async {
     final postModelList = await _repo.getSearchPostModelList(
-        searchSetting: searchSetting, lastPostId: lastPostId);
+      searchSetting: searchSetting,
+      lastPostId: lastPostId,
+    );
 
     final postEntityList = <PostEntity>[];
 

@@ -7,8 +7,10 @@ import 'package:sottie_flutter/ui/friend/widget/friend.dart';
 
 class FriendService {
   Future<List<Friend>> getFriends(String userId, {String? alias}) async {
-    final friends =
-        await DioApi.call(path: '/sottie/friends/$userId', method: 'GET');
+    final friends = await DioApi.call(
+      path: '/sottie/friends/$userId',
+      method: 'GET',
+    );
 
     log('friends $friends', name: 'getFriends');
 

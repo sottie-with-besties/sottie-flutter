@@ -90,96 +90,98 @@ class _GenderClassState extends ConsumerState<GenderOption> {
           curve: Curves.easeOutCubic,
           height: animatedContainerHeight,
           padding: EdgeInsets.only(top: 12 * hu),
-          child: _peopleNumIsSelected
-              ? SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Slider(
-                        value: postOptions.maleNum.toDouble(),
-                        max: postOptions.peopleNum.toDouble(),
-                        divisions: postOptions.peopleNum,
-                        activeColor: mainBlueColor,
-                        inactiveColor: mainRedColor,
-                        thumbColor: mainBlackColor,
-                        onChanged: (val) {
-                          if (_sliderCondition()) {
-                            postOptions.maleNum = val.toInt();
-                            postOptions.femaleNum =
-                                (postOptions.peopleNum - val).toInt();
+          child:
+              _peopleNumIsSelected
+                  ? SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Slider(
+                          value: postOptions.maleNum.toDouble(),
+                          max: postOptions.peopleNum.toDouble(),
+                          divisions: postOptions.peopleNum,
+                          activeColor: mainBlueColor,
+                          inactiveColor: mainRedColor,
+                          thumbColor: mainBlackColor,
+                          onChanged: (val) {
+                            if (_sliderCondition()) {
+                              postOptions.maleNum = val.toInt();
+                              postOptions.femaleNum =
+                                  (postOptions.peopleNum - val).toInt();
 
-                            if (postOptions.maleNum == postOptions.peopleNum) {
-                              postOptions.genderRestriction =
-                                  PostGenderRestriction.MALE;
-                            } else if (postOptions.femaleNum ==
-                                postOptions.peopleNum) {
-                              postOptions.genderRestriction =
-                                  PostGenderRestriction.FEMALE;
-                            } else {
-                              postOptions.genderRestriction =
-                                  PostGenderRestriction.MIX;
+                              if (postOptions.maleNum ==
+                                  postOptions.peopleNum) {
+                                postOptions.genderRestriction =
+                                    PostGenderRestriction.MALE;
+                              } else if (postOptions.femaleNum ==
+                                  postOptions.peopleNum) {
+                                postOptions.genderRestriction =
+                                    PostGenderRestriction.FEMALE;
+                              } else {
+                                postOptions.genderRestriction =
+                                    PostGenderRestriction.MIX;
+                              }
+
+                              setState(() {});
                             }
-
-                            setState(() {});
-                          }
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: SizedBox(
-                                child: Text(
-                                  "남자 ${postOptions.maleNum}",
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.bold,
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: SizedBox(
+                                  child: Text(
+                                    "남자 ${postOptions.maleNum}",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              child: SizedBox(
-                                child: Text(
-                                  "${postOptions.peopleNum - postOptions.maleNum} 여자",
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.end,
-                                  style: const TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold,
+                              Expanded(
+                                child: SizedBox(
+                                  child: Text(
+                                    "${postOptions.peopleNum - postOptions.maleNum} 여자",
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.end,
+                                    style: const TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
+                            ],
+                          ),
+                        ),
+                        if (postOptions.genderRestriction ==
+                            PostGenderRestriction.MALE)
+                          Text(
+                            '남자만 입장 가능',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10 * hu,
+                              color: mainBlueColor,
                             ),
-                          ],
-                        ),
-                      ),
-                      if (postOptions.genderRestriction ==
-                          PostGenderRestriction.MALE)
-                        Text(
-                          '남자만 입장 가능',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 10 * hu,
-                            color: mainBlueColor,
                           ),
-                        ),
-                      if (postOptions.genderRestriction ==
-                          PostGenderRestriction.FEMALE)
-                        Text(
-                          '여자만 입장 가능',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 10 * hu,
-                            color: mainRedColor,
+                        if (postOptions.genderRestriction ==
+                            PostGenderRestriction.FEMALE)
+                          Text(
+                            '여자만 입장 가능',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10 * hu,
+                              color: mainRedColor,
+                            ),
                           ),
-                        ),
-                    ],
-                  ),
-                )
-              : Container(),
+                      ],
+                    ),
+                  )
+                  : Container(),
         ),
       ],
     );

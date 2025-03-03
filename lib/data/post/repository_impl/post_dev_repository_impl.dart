@@ -15,17 +15,13 @@ abstract class PostDevRepositoryImpl implements PostRepository {
   /// 최신 포스트 불러오기
   @override
   @GET('/sottie/gatherings')
-  @Headers(<String, dynamic>{
-    'Content-Type': 'application/json',
-  })
+  @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future<List<PostModel>> getLatestPostModelList({required int lastPostId});
 
   /// 검색 포스트 불러오기
   @override
   @GET('/sottie/home/search')
-  @Headers(<String, dynamic>{
-    'Content-Type': 'application/json',
-  })
+  @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future<List<PostModel>> getSearchPostModelList({
     required Map<String, dynamic> searchSetting,
     required int lastPostId,
@@ -35,15 +31,17 @@ abstract class PostDevRepositoryImpl implements PostRepository {
   @override
   @POST('/sottie/gathering')
   @Headers(<String, dynamic>{'Content-Type': "application/json"})
-  Future<HttpResponse> makePost(
-      {@Body() required Map<String, dynamic> postSetting});
+  Future<HttpResponse> makePost({
+    @Body() required Map<String, dynamic> postSetting,
+  });
 
   /// 포스트 모집 참가
   @override
   @POST('/sottie/gathering/join')
   @Headers(<String, dynamic>{'Content-Type': "application/json"})
-  Future<HttpResponse> postJoin(
-      {@Body() required Map<String, dynamic> postJoinInfo});
+  Future<HttpResponse> postJoin({
+    @Body() required Map<String, dynamic> postJoinInfo,
+  });
 
   /// 포스트 모집 나가기
   @override

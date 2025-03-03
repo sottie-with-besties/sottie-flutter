@@ -131,9 +131,7 @@ final _routes = [
 
   /// Main Layout: 바텀 네비게이션 + 첫 화면
   StatefulShellRoute.indexedStack(
-    builder: (context, state, shell) => NavigationScreen(
-      shell: shell,
-    ),
+    builder: (context, state, shell) => NavigationScreen(shell: shell),
     branches: <StatefulShellBranch>[
       // 홈 화면: 최신 글, 추천 글 등
       StatefulShellBranch(
@@ -141,7 +139,7 @@ final _routes = [
           GoRoute(
             path: CustomRouter.homePath,
             builder: (_, __) => const HomeScreen(),
-          )
+          ),
         ],
       ),
 
@@ -194,7 +192,7 @@ final _routes = [
                 ],
               ),
             ],
-          )
+          ),
         ],
       ),
 
@@ -208,7 +206,7 @@ final _routes = [
               GoRoute(
                 path: CustomRouter.friendUtilPath,
                 builder: (_, __) => const FriendUtilScreen(),
-              )
+              ),
             ],
           ),
         ],
@@ -258,7 +256,7 @@ final _routes = [
                 builder: (_, __) => const ExtraSettingScreen(),
               ),
             ],
-          )
+          ),
         ],
       ),
     ],
@@ -283,7 +281,7 @@ final _routes = [
             builder: (_, __) => const MakePostScreenStepThree(),
           ),
         ],
-      )
+      ),
     ],
   ),
 
@@ -300,10 +298,7 @@ final _routes = [
           isCheckInfo: false,
         ),
         transitionsBuilder: (_, animation, __, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
+          return FadeTransition(opacity: animation, child: child);
         },
       );
     },
@@ -322,10 +317,7 @@ final _routes = [
           isMyFriend: params['isMyFriend'],
         ),
         transitionsBuilder: (_, animation, __, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
+          return FadeTransition(opacity: animation, child: child);
         },
       );
     },
@@ -336,9 +328,7 @@ final _routes = [
     path: CustomRouter.photoMagnificationPath,
     builder: (_, state) {
       final params = state.extra as Map<String, dynamic>;
-      return PhotoMagnificationScreen(
-        imageUrl: params['imageUrl'],
-      );
+      return PhotoMagnificationScreen(imageUrl: params['imageUrl']);
     },
   ),
 ];

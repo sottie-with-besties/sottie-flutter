@@ -18,15 +18,13 @@ class DmScreen extends ConsumerWidget {
         final dmList = data.where((data) {
           final searched =
               data.userModel.nickname.toString().contains(inputText) ||
-                  data.latestMsg.toString().contains(inputText);
+              data.latestMsg.toString().contains(inputText);
 
           return searched;
         });
 
         if (dmList.isEmpty) {
-          return const Center(
-            child: Text("채팅방이 존재하지 않습니다"),
-          );
+          return const Center(child: Text("채팅방이 존재하지 않습니다"));
         }
 
         return ListView(
@@ -34,9 +32,7 @@ class DmScreen extends ConsumerWidget {
         );
       },
       error: (_, __) {
-        return const Center(
-          child: Text("데이터를 가져올 수 없습니다."),
-        );
+        return const Center(child: Text("데이터를 가져올 수 없습니다."));
       },
       loading: () => const LoadingSkeleton(),
     );

@@ -13,9 +13,7 @@ void showCustomBottomSheet(BuildContext context, Widget screen) {
       return Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          color: mainWhiteSilverColor,
-        ),
+        decoration: const BoxDecoration(color: mainWhiteSilverColor),
         child: screen,
       );
     },

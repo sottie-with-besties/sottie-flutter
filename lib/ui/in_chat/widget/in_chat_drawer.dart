@@ -10,10 +10,7 @@ import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_photo.dart';
 
 class InChatDrawer extends StatelessWidget {
-  const InChatDrawer({
-    super.key,
-    required this.chatRoomModel,
-  });
+  const InChatDrawer({super.key, required this.chatRoomModel});
 
   final ChatRoomModel chatRoomModel;
 
@@ -29,43 +26,38 @@ class InChatDrawer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _subTitle(
-                  '채팅방 정보',
-                  () {
-                    context.push(
-                      "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatInfoPath}",
-                      extra: {
-                        'postModel': PostModel(
-                          id: chatRoomModel.id,
-                          gatheringCategory: chatRoomModel.gatheringCategory,
-                          title: chatRoomModel.title,
-                          locationId: chatRoomModel.locationId,
-                          gatheringDate: chatRoomModel.gatheringDate,
-                          contents: chatRoomModel.contents,
-                          currentPeopleNum: chatRoomModel.currentPeopleNum,
-                          peopleNum: chatRoomModel.peopleNum,
-                          currentMaleNum: chatRoomModel.currentMaleNum,
-                          maleNum: chatRoomModel.maleNum,
-                          currentFemaleNum: chatRoomModel.currentFemaleNum,
-                          femaleNum: chatRoomModel.femaleNum,
-                          ageFrom: chatRoomModel.ageFrom,
-                          ageTo: chatRoomModel.ageTo,
-                          onlyMyFriends: chatRoomModel.onlyMyFriends,
-                          genderRestriction: chatRoomModel.genderRestriction,
-                          mannerRestriction: chatRoomModel.mannerRestriction,
-                          ageRestriction: chatRoomModel.ageRestriction,
-                        )
-                      },
-                    );
-                  },
-                ),
-                _subTitle(
-                  '사진, 동영상',
-                  () {
-                    context.push(
-                        "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatPhotoListPath}");
-                  },
-                ),
+                _subTitle('채팅방 정보', () {
+                  context.push(
+                    "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatInfoPath}",
+                    extra: {
+                      'postModel': PostModel(
+                        id: chatRoomModel.id,
+                        gatheringCategory: chatRoomModel.gatheringCategory,
+                        title: chatRoomModel.title,
+                        locationId: chatRoomModel.locationId,
+                        gatheringDate: chatRoomModel.gatheringDate,
+                        contents: chatRoomModel.contents,
+                        currentPeopleNum: chatRoomModel.currentPeopleNum,
+                        peopleNum: chatRoomModel.peopleNum,
+                        currentMaleNum: chatRoomModel.currentMaleNum,
+                        maleNum: chatRoomModel.maleNum,
+                        currentFemaleNum: chatRoomModel.currentFemaleNum,
+                        femaleNum: chatRoomModel.femaleNum,
+                        ageFrom: chatRoomModel.ageFrom,
+                        ageTo: chatRoomModel.ageTo,
+                        onlyMyFriends: chatRoomModel.onlyMyFriends,
+                        genderRestriction: chatRoomModel.genderRestriction,
+                        mannerRestriction: chatRoomModel.mannerRestriction,
+                        ageRestriction: chatRoomModel.ageRestriction,
+                      ),
+                    },
+                  );
+                }),
+                _subTitle('사진, 동영상', () {
+                  context.push(
+                    "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatPhotoListPath}",
+                  );
+                }),
                 Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: SizedBox(
@@ -74,22 +66,20 @@ class InChatDrawer extends StatelessWidget {
                       physics: const ClampingScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 5,
-                        crossAxisSpacing: 5,
-                        crossAxisCount: 3,
-                      ),
+                            mainAxisSpacing: 5,
+                            crossAxisSpacing: 5,
+                            crossAxisCount: 3,
+                          ),
                       itemBuilder: (context, index) => const InChatPhoto(),
                       itemCount: 6, // 예시로 8개의 아이템을 생성합니다.
                     ),
                   ),
                 ),
-                _subTitle(
-                  '공지사항',
-                  () {
-                    context.push(
-                        "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatNotificationListPath}");
-                  },
-                ),
+                _subTitle('공지사항', () {
+                  context.push(
+                    "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatNotificationListPath}",
+                  );
+                }),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
@@ -99,11 +89,7 @@ class InChatDrawer extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                _subTitle(
-                  '참여자',
-                  null,
-                  tapInto: false,
-                ),
+                _subTitle('참여자', null, tapInto: false),
                 _inChatParticipant(context, 13461234567, "김진표", null),
                 _inChatParticipant(context, 123423142413, "김진표", null),
                 _inChatParticipant(context, 568344568, "김진표", null),
@@ -118,11 +104,7 @@ class InChatDrawer extends StatelessWidget {
   }
 }
 
-Widget _subTitle(
-  String title,
-  VoidCallback? onTap, {
-  bool tapInto = true,
-}) {
+Widget _subTitle(String title, VoidCallback? onTap, {bool tapInto = true}) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 15),
     child: InkWell(
@@ -134,10 +116,7 @@ Widget _subTitle(
           children: [
             Text(
               title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 12 * hu,
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12 * hu),
             ),
             tapInto ? const Icon(Icons.arrow_right_alt) : Container(),
           ],
@@ -148,7 +127,11 @@ Widget _subTitle(
 }
 
 Widget _inChatParticipant(
-    BuildContext context, int id, String nickName, String? profileUrl) {
+  BuildContext context,
+  int id,
+  String nickName,
+  String? profileUrl,
+) {
   return InkWell(
     onTap: () {
       context.push(

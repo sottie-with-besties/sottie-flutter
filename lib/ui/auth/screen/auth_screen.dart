@@ -58,8 +58,10 @@ class _AuthScreenState extends State<AuthScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                   child: Row(
                     children: [
                       const AppLogo(),
@@ -88,8 +90,10 @@ class _AuthScreenState extends State<AuthScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 8,
+                            horizontal: 20,
+                          ),
                           child: Text(
                             "로그인",
                             style: TextStyle(
@@ -128,18 +132,20 @@ class _AuthScreenState extends State<AuthScreen> {
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
                                     // signIn에 백엔드로 이메일 코드 전송 포함
-                                    final errorCode =
-                                        await _authProvider.signIn(
-                                      authType: AuthType.email,
-                                      email: emailLoginModel.email,
-                                      password: emailLoginModel.password,
-                                    );
+                                    final errorCode = await _authProvider
+                                        .signIn(
+                                          authType: AuthType.email,
+                                          email: emailLoginModel.email,
+                                          password: emailLoginModel.password,
+                                        );
 
                                     if (context.mounted) {
                                       errorCode == null
                                           ? context.go(CustomRouter.homePath)
                                           : showCustomSnackBar(
-                                              context, errorCode);
+                                            context,
+                                            errorCode,
+                                          );
                                     }
                                   }
                                 },
@@ -150,30 +156,35 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               _authUtilButton('회원가입', () async {
-                                await context
-                                    .push('/auth/${CustomRouter.signUpPath}');
+                                await context.push(
+                                  '/auth/${CustomRouter.signUpPath}',
+                                );
                               }),
                               Row(
                                 children: [
                                   _authUtilButton('ID 찾기', () async {
                                     await context.push(
-                                        '/auth/${CustomRouter.findIdPath}');
+                                      '/auth/${CustomRouter.findIdPath}',
+                                    );
                                   }),
                                   const SizedBox(width: 10),
                                   _authUtilButton('비밀번호 찾기/변경', () async {
                                     await context.push(
-                                        '/auth/${CustomRouter.findPasswordPath}');
+                                      '/auth/${CustomRouter.findPasswordPath}',
+                                    );
                                   }),
                                 ],
-                              )
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -247,10 +258,5 @@ class _AuthScreenState extends State<AuthScreen> {
 }
 
 Widget _authUtilButton(String text, VoidCallback onTap) {
-  return GestureDetector(
-    onTap: onTap,
-    child: Text(
-      text,
-    ),
-  );
+  return GestureDetector(onTap: onTap, child: Text(text));
 }

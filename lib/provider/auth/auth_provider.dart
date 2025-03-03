@@ -27,8 +27,11 @@ part 'auth_part/oauth_kakao.dart';
 final _oauthLoginEntity = OauthLoginEntity();
 
 final class AuthProvider {
-  Future<String?> signIn(
-      {required AuthType authType, String? email, String? password}) async {
+  Future<String?> signIn({
+    required AuthType authType,
+    String? email,
+    String? password,
+  }) async {
     String? errorCode;
 
     switch (authType) {
@@ -82,16 +85,16 @@ final class AuthProvider {
 
             context.push(
               '${CustomRouter.authPath}/${CustomRouter.certificationPath}',
-              extra: {
-                'isOauthSignUp': true,
-              },
+              extra: {'isOauthSignUp': true},
             );
             // Todo: 백엔드로 OAuthSignUpEntity 보내기
             log(oauthSignUp.toJson().toString());
 
             // OAuthSignUpEntity 보내고 받은 토큰
             final receivedToken2 = TokenModel(
-                refreshToken: 'refreshToken', accessToken: 'accessToken');
+              refreshToken: 'refreshToken',
+              accessToken: 'accessToken',
+            );
             oauthToken = receivedToken2;
           } else {
             oauthToken = receivedTokens;
@@ -99,9 +102,13 @@ final class AuthProvider {
 
           /// 시큐어 스토리지에 토큰 저장
           await tokenStorage.write(
-              key: refreshTokenKey, value: oauthToken.refreshToken);
+            key: refreshTokenKey,
+            value: oauthToken.refreshToken,
+          );
           await tokenStorage.write(
-              key: accessTokenKey, value: oauthToken.accessToken);
+            key: accessTokenKey,
+            value: oauthToken.accessToken,
+          );
 
           accessTokenEntity.changeToken(oauthToken.accessToken);
 

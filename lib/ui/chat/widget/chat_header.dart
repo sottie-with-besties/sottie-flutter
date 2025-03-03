@@ -4,10 +4,7 @@ import 'package:sottie_flutter/ui/chat/controller/chat_header_controller.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
 class ChatHeader extends ConsumerWidget {
-  const ChatHeader({
-    super.key,
-    required this.focusNode,
-  });
+  const ChatHeader({super.key, required this.focusNode});
 
   final FocusNode focusNode;
 

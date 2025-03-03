@@ -61,16 +61,17 @@ AppBar? _renderAppbar(String? appBarTitle, List<Widget>? appBarActions) {
     backgroundColor: mainWhiteSilverColor,
     title: Padding(
       padding: const EdgeInsets.only(left: 5),
-      child: appBarTitle != null
-          ? Text(
-              appBarTitle,
-              style: GoogleFonts.jua(
-                fontWeight: FontWeight.bold,
-                fontSize: 38,
-                color: mainBlackColor,
-              ),
-            )
-          : Container(),
+      child:
+          appBarTitle != null
+              ? Text(
+                appBarTitle,
+                style: GoogleFonts.jua(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 38,
+                  color: mainBlackColor,
+                ),
+              )
+              : Container(),
     ),
     actions: appBarActions,
   );

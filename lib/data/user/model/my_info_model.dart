@@ -4,7 +4,7 @@ part 'my_info_model.freezed.dart';
 part 'my_info_model.g.dart';
 
 @unfreezed
-class MyInfoModel with _$MyInfoModel {
+sealed class MyInfoModel with _$MyInfoModel {
   factory MyInfoModel({
     /// ID
     @Default(45152341245) int id,

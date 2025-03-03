@@ -5,7 +5,7 @@ part 'dm_model.freezed.dart';
 part 'dm_model.g.dart';
 
 @freezed
-class DmModel with _$DmModel {
+sealed class DmModel with _$DmModel {
   factory DmModel({
     required int id,
 

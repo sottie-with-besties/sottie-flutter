@@ -16,10 +16,7 @@ class OAuthButton extends StatelessWidget {
       onTap: onPressed,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: Image.asset(
-          imgPath,
-          fit: BoxFit.cover,
-        ),
+        child: Image.asset(imgPath, fit: BoxFit.cover),
       ),
     );
   }

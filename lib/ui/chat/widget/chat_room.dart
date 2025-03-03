@@ -18,10 +18,7 @@ import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
 class ChatRoom extends StatelessWidget {
-  const ChatRoom({
-    super.key,
-    required this.model,
-  });
+  const ChatRoom({super.key, required this.model});
 
   final ChatRoomModel model;
 
@@ -88,17 +85,16 @@ class ChatRoom extends StatelessWidget {
         onTap: () {
           context.push(
             '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
-            extra: {
-              'chatRoomModel': model,
-              'isChattingOver': isChattingOver,
-            },
+            extra: {'chatRoomModel': model, 'isChattingOver': isChattingOver},
           );
         },
         child: Container(
           color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
           child: Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: 3 * wu, vertical: 12 * hu),
+            padding: EdgeInsets.symmetric(
+              horizontal: 3 * wu,
+              vertical: 12 * hu,
+            ),
             child: Column(
               children: [
                 Padding(
@@ -107,7 +103,8 @@ class ChatRoom extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SottieCategoryUi(
-                          postCategory: PostCategory.values.byName('THUNDER')),
+                        postCategory: PostCategory.values.byName('THUNDER'),
+                      ),
                       CurrentNumOfMember(
                         currentPeopleNum: model.currentPeopleNum,
                         peopleNum: model.peopleNum,
@@ -115,8 +112,9 @@ class ChatRoom extends StatelessWidget {
                         maleNum: model.maleNum,
                         currentFemaleNum: model.currentFemaleNum,
                         femaleNum: model.femaleNum,
-                        genderRestriction: PostGenderRestriction.values
-                            .byName(model.genderRestriction),
+                        genderRestriction: PostGenderRestriction.values.byName(
+                          model.genderRestriction,
+                        ),
                       ),
                     ],
                   ),
@@ -126,9 +124,10 @@ class ChatRoom extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ChatRoomProfiles(
-                      profileCount: model.profileThumbnailsUrl.length > 4
-                          ? 4
-                          : model.profileThumbnailsUrl.length,
+                      profileCount:
+                          model.profileThumbnailsUrl.length > 4
+                              ? 4
+                              : model.profileThumbnailsUrl.length,
                       profileSize:
                           model.profileThumbnailsUrl.length < 2 ? 45.0 : 30.0,
                     ),
@@ -143,7 +142,7 @@ class ChatRoom extends StatelessWidget {
                       chatRoomDisappearingTime: chatRoomDisappearingTime,
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

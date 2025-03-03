@@ -13,10 +13,7 @@ import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 
 class Friend extends StatefulWidget {
-  const Friend({
-    super.key,
-    required this.model,
-  });
+  const Friend({super.key, required this.model});
 
   final UserModel model;
 
@@ -38,9 +35,7 @@ class _FriendState extends State<Friend> {
         ),
       ),
       extraButton: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          minimumSize: const Size(100, 50),
-        ),
+        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 50)),
         onPressed: () {
           // 꾹 누른건 팝 두번, 슬라이드는 한번만
           Navigator.of(context, rootNavigator: true).pop();
@@ -95,7 +90,7 @@ class _FriendState extends State<Friend> {
             },
             icon: Icons.report_gmailerrorred_outlined,
             optionTitle: "신고",
-          )
+          ),
         ],
       ),
       slideActions: [

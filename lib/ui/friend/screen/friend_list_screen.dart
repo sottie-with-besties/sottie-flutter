@@ -54,13 +54,12 @@ class _FriendListScreenState extends ConsumerState<FriendListScreen> {
 
     return friendState.when(
       data: (data) {
-        final friendList =
-            data.where((data) => data.nickname.toString().contains(inputText));
+        final friendList = data.where(
+          (data) => data.nickname.toString().contains(inputText),
+        );
 
         if (friendList.isEmpty) {
-          return const Center(
-            child: Text("모임에 참여하고 친구를 만들어보세요"),
-          );
+          return const Center(child: Text("모임에 참여하고 친구를 만들어보세요"));
         }
 
         return Column(
@@ -68,9 +67,7 @@ class _FriendListScreenState extends ConsumerState<FriendListScreen> {
               friendList.map<Widget>((data) => Friend(model: data)).toList(),
         );
       },
-      error: (_, __) => const Center(
-        child: Text("친구를 불러오는 도중 에러가 발생했습니다"),
-      ),
+      error: (_, __) => const Center(child: Text("친구를 불러오는 도중 에러가 발생했습니다")),
       loading: () => const LoadingSkeleton(),
     );
   }

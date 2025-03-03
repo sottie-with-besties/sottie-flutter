@@ -14,10 +14,7 @@ import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 
 class FriendAddScreen extends StatefulWidget {
-  const FriendAddScreen({
-    super.key,
-    required this.focusNode,
-  });
+  const FriendAddScreen({super.key, required this.focusNode});
 
   final FocusNode focusNode;
 
@@ -81,24 +78,28 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 20 * hu),
               child: Center(
-                child: userSearching
-                    ? const CircularProgressIndicator(color: mainBlackColor)
-                    : userFound != null
+                child:
+                    userSearching
+                        ? const CircularProgressIndicator(color: mainBlackColor)
+                        : userFound != null
                         ? Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SottieUser(
-                                model: userFound!,
-                                heroTag: 'friendAddSearch',
-                                isMyFriend: false,
-                                textWidth: 100,
-                              ),
-                              _renderFriendManageButton(
-                                  mainBlueColor, FontAwesomeIcons.userPlus, () {
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SottieUser(
+                              model: userFound!,
+                              heroTag: 'friendAddSearch',
+                              isMyFriend: false,
+                              textWidth: 100,
+                            ),
+                            _renderFriendManageButton(
+                              mainBlueColor,
+                              FontAwesomeIcons.userPlus,
+                              () {
                                 _friendManageProvider.friendAdd(context);
-                              }),
-                            ],
-                          )
+                              },
+                            ),
+                          ],
+                        )
                         : Text(userSearchText),
               ),
             ),
@@ -110,8 +111,9 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                 Center(
                   child: CustomFutureBuilder(
                     futureFunction: getFriendRequestDummy,
-                    loadingWidget:
-                        const CircularProgressIndicator(color: mainBlackColor),
+                    loadingWidget: const CircularProgressIndicator(
+                      color: mainBlackColor,
+                    ),
                     callBack: (futureData) {
                       final friendRequestList = futureData as List<UserModel>;
 
@@ -135,18 +137,24 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                                   Row(
                                     children: [
                                       _renderFriendManageButton(
-                                          mainRedColor, FontAwesomeIcons.xmark,
-                                          () {
-                                        log("friend request refuse");
-                                      }),
+                                        mainRedColor,
+                                        FontAwesomeIcons.xmark,
+                                        () {
+                                          log("friend request refuse");
+                                        },
+                                      ),
                                       SizedBox(width: 10 * wu),
-                                      _renderFriendManageButton(mainBlueColor,
-                                          FontAwesomeIcons.userPlus, () {
-                                        _friendManageProvider
-                                            .friendAdd(context);
-                                      }),
+                                      _renderFriendManageButton(
+                                        mainBlueColor,
+                                        FontAwesomeIcons.userPlus,
+                                        () {
+                                          _friendManageProvider.friendAdd(
+                                            context,
+                                          );
+                                        },
+                                      ),
                                     ],
-                                  )
+                                  ),
                                 ],
                               ),
                             );
@@ -165,15 +173,14 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
   }
 }
 
-Text _renderSubTitle(String title) => Text(
-      title,
-      style: const TextStyle(
-        fontWeight: FontWeight.bold,
-      ),
-    );
+Text _renderSubTitle(String title) =>
+    Text(title, style: const TextStyle(fontWeight: FontWeight.bold));
 
 InkWell _renderFriendManageButton(
-    Color color, IconData iconData, VoidCallback callback) {
+  Color color,
+  IconData iconData,
+  VoidCallback callback,
+) {
   return InkWell(
     onTap: callback,
     child: Container(
@@ -184,12 +191,7 @@ InkWell _renderFriendManageButton(
       padding: const EdgeInsets.all(8),
       width: 40 * wu,
       height: 30 * wu,
-      child: FittedBox(
-        child: Icon(
-          iconData,
-          color: mainWhiteSilverColor,
-        ),
-      ),
+      child: FittedBox(child: Icon(iconData, color: mainWhiteSilverColor)),
     ),
   );
 }

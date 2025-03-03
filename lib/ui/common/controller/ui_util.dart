@@ -3,7 +3,9 @@
 /// 오늘이 아닌 시간은 월 + 일
 /// 오늘의 시간은 오전/오후 + 시 : 분(0~9분 => 00분, 01분, 02분...)
 String renderCustomStringTime(
-    DateTime utcTimeString, DateTime compareDateUtcTimeString) {
+  DateTime utcTimeString,
+  DateTime compareDateUtcTimeString,
+) {
   final timeDifference = compareDateUtcTimeString.difference(utcTimeString);
 
   late String customTime;
@@ -15,9 +17,10 @@ String renderCustomStringTime(
     customTime = '${utcTimeString.month}월 ${utcTimeString.day}일';
   } else {
     final dayString = utcTimeString.hour < 12 ? '오전' : '오후';
-    final hour = utcTimeString.hour > 12
-        ? '${utcTimeString.hour - 12}'
-        : '${utcTimeString.hour}';
+    final hour =
+        utcTimeString.hour > 12
+            ? '${utcTimeString.hour - 12}'
+            : '${utcTimeString.hour}';
 
     customTime =
         '$dayString $hour : ${utcTimeString.minute.toString().padLeft(2, '0')}';

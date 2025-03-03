@@ -32,8 +32,10 @@ class UserDetailScreen extends StatelessWidget {
         children: [
           // 계속 디테일 스크린으로 들어가는 것을 방지
           Padding(
-            padding:
-                EdgeInsets.symmetric(vertical: 5 * hu, horizontal: 16 * wu),
+            padding: EdgeInsets.symmetric(
+              vertical: 5 * hu,
+              horizontal: 16 * wu,
+            ),
             child: SottieUser(
               model: model,
               isMyFriend: isMyFriend,
@@ -49,34 +51,18 @@ class UserDetailScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   isMyFriend!
-                      ? _utilButton(
-                          FontAwesomeIcons.message,
-                          'DM',
-                          () {
-                            friendManageProvider.friendSendDm(context);
-                          },
-                        )
-                      : _utilButton(
-                          FontAwesomeIcons.userPlus,
-                          '추가',
-                          () {
-                            friendManageProvider.friendAdd(context);
-                          },
-                        ),
-                  _utilButton(
-                    FontAwesomeIcons.ban,
-                    '차단',
-                    () {
-                      userManageProvider.userBlock(context);
-                    },
-                  ),
-                  _utilButton(
-                    FontAwesomeIcons.circleExclamation,
-                    '신고',
-                    () {
-                      userManageProvider.userReport(context);
-                    },
-                  ),
+                      ? _utilButton(FontAwesomeIcons.message, 'DM', () {
+                        friendManageProvider.friendSendDm(context);
+                      })
+                      : _utilButton(FontAwesomeIcons.userPlus, '추가', () {
+                        friendManageProvider.friendAdd(context);
+                      }),
+                  _utilButton(FontAwesomeIcons.ban, '차단', () {
+                    userManageProvider.userBlock(context);
+                  }),
+                  _utilButton(FontAwesomeIcons.circleExclamation, '신고', () {
+                    userManageProvider.userReport(context);
+                  }),
                 ],
               ),
             ),
@@ -95,7 +81,7 @@ class UserDetailScreen extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -108,18 +94,12 @@ Widget _utilButton(IconData icon, String desc, VoidCallback onTap) {
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        FaIcon(
-          icon,
-          size: 16 * hu,
-        ),
+        FaIcon(icon, size: 16 * hu),
         SizedBox(height: 2 * hu),
         Text(
           desc,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 10 * hu,
-          ),
-        )
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10 * hu),
+        ),
       ],
     ),
   );

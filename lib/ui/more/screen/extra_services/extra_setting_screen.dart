@@ -11,9 +11,7 @@ class ExtraSettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("환경설정"),
-      ),
+      appBar: AppBar(title: const Text("환경설정")),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: SingleChildScrollView(
@@ -70,10 +68,7 @@ class ExtraSettingScreen extends StatelessWidget {
 }
 
 class _SettingSwitch extends StatefulWidget {
-  const _SettingSwitch({
-    required this.title,
-    this.explanation,
-  });
+  const _SettingSwitch({required this.title, this.explanation});
 
   final String title;
   final String? explanation;
@@ -113,7 +108,7 @@ class _SettingSwitchState extends State<_SettingSwitch> {
               ),
             ],
           ),
-          if (widget.explanation != null) Text(widget.explanation!)
+          if (widget.explanation != null) Text(widget.explanation!),
         ],
       ),
     );

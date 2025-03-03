@@ -56,20 +56,11 @@ class _InChatReviewState extends State<InChatReview> {
   /// 프로필의 위치에 따른 컨테이너 그라디언트
   List<Color> _renderGradient() {
     if (_profilePosition < _centerOfProfile) {
-      return <Color>[
-        mainGreenColor,
-        mainWhiteSilverColor,
-      ];
+      return <Color>[mainGreenColor, mainWhiteSilverColor];
     } else if (_profilePosition > _centerOfProfile) {
-      return <Color>[
-        mainWhiteSilverColor,
-        mainRedColor,
-      ];
+      return <Color>[mainWhiteSilverColor, mainRedColor];
     } else {
-      return <Color>[
-        mainWhiteSilverColor,
-        mainWhiteSilverColor,
-      ];
+      return <Color>[mainWhiteSilverColor, mainWhiteSilverColor];
     }
   }
 
@@ -80,31 +71,19 @@ class _InChatReviewState extends State<InChatReview> {
 
     /// 좋아요
     if (_profilePosition == _leftOfProfile) {
-      return <double>[
-        0,
-        0.99,
-      ];
+      return <double>[0, 0.99];
     }
-
     /// 싫어요
     else if (_profilePosition == _rightOfProfile) {
-      return <double>[
-        0.01,
-        1,
-      ];
+      return <double>[0.01, 1];
     }
-
     /// 좋아요 < 중간
     else if (_profilePosition < _centerOfProfile) {
       if (stop > 0.99) {
         stop = 0.99;
       }
-      return <double>[
-        0,
-        stop,
-      ];
+      return <double>[0, stop];
     }
-
     /// 중간 < 싫어요
     else if (_profilePosition > _centerOfProfile) {
       if (stop < 0.01) {
@@ -115,7 +94,6 @@ class _InChatReviewState extends State<InChatReview> {
         1,
       ];
     }
-
     /// 중간
     else {
       return <double>[0, 1];
@@ -140,10 +118,20 @@ class _InChatReviewState extends State<InChatReview> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _renderReviewPoint(_boxOpacity, _duration, mainGreenColor.shade400,
-                Icons.thumb_up_alt_outlined, '좋아요'),
-            _renderReviewPoint(_boxOpacity, _duration, mainRedColor,
-                Icons.thumb_down_alt_outlined, '싫어요'),
+            _renderReviewPoint(
+              _boxOpacity,
+              _duration,
+              mainGreenColor.shade400,
+              Icons.thumb_up_alt_outlined,
+              '좋아요',
+            ),
+            _renderReviewPoint(
+              _boxOpacity,
+              _duration,
+              mainRedColor,
+              Icons.thumb_down_alt_outlined,
+              '싫어요',
+            ),
           ],
         ),
         _renderReviewExplanation(
@@ -216,14 +204,12 @@ class _InChatReviewState extends State<InChatReview> {
                 _boxOpacity = 0;
                 _badExplanationBoxOpacity = 1;
               }
-
               /// 좋아요
               else if (endDx < wu * 60) {
                 _profilePosition = _leftOfProfile;
                 _boxOpacity = 0;
                 _goodExplanationBoxOpacity = 1;
               }
-
               /// 보통
               else {
                 _profilePosition = _centerOfProfile;
@@ -265,9 +251,7 @@ class _InChatReviewState extends State<InChatReview> {
                   onTap: () {
                     showCustomDialog(
                       context,
-                      Center(
-                        child: Text("${widget.nickName}에게 친구 신청 하시겠습니까?"),
-                      ),
+                      Center(child: Text("${widget.nickName}에게 친구 신청 하시겠습니까?")),
                       extraButton: ElevatedButton(
                         onPressed: () {
                           context.pop();
@@ -318,10 +302,7 @@ AnimatedOpacity _renderReviewPoint(
       child: FittedBox(
         child: Column(
           children: [
-            Icon(
-              iconData,
-              color: mainWhiteSilverColor,
-            ),
+            Icon(iconData, color: mainWhiteSilverColor),
             const SizedBox(height: 5),
             Text(
               label,
@@ -339,7 +320,10 @@ AnimatedOpacity _renderReviewPoint(
 
 /// 좋아요 또는 싫어요를 선택 시 부연 설명 위젯
 Positioned _renderReviewExplanation(
-    double position, double opacity, String explanation) {
+  double position,
+  double opacity,
+  String explanation,
+) {
   return Positioned(
     left: position,
     child: AnimatedOpacity(
@@ -397,21 +381,18 @@ class _GuideArrowState extends State<_GuideArrow> {
       _lightOn[0] = true;
     }
 
-    _timer = Timer.periodic(
-      const Duration(milliseconds: 500),
-      (timer) {
-        if (widget.iconData == Icons.keyboard_arrow_left) {
-          _lightOn[_lightIndex] = false;
-          _lightIndex == 0 ? _lightIndex = 2 : _lightIndex--;
-          _lightOn[_lightIndex] = true;
-        } else {
-          _lightOn[_lightIndex] = false;
-          _lightIndex == 2 ? _lightIndex = 0 : _lightIndex++;
-          _lightOn[_lightIndex] = true;
-        }
-        setState(() {});
-      },
-    );
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
+      if (widget.iconData == Icons.keyboard_arrow_left) {
+        _lightOn[_lightIndex] = false;
+        _lightIndex == 0 ? _lightIndex = 2 : _lightIndex--;
+        _lightOn[_lightIndex] = true;
+      } else {
+        _lightOn[_lightIndex] = false;
+        _lightIndex == 2 ? _lightIndex = 0 : _lightIndex++;
+        _lightOn[_lightIndex] = true;
+      }
+      setState(() {});
+    });
   }
 
   @override
@@ -428,12 +409,13 @@ class _GuideArrowState extends State<_GuideArrow> {
         opacity: widget.opacity,
         duration: const Duration(milliseconds: 300),
         child: Row(
-          children: _lightOn.map<Widget>((light) {
-            return Icon(
-              widget.iconData,
-              color: light ? mainBlueColor : mainGreyColor,
-            );
-          }).toList(),
+          children:
+              _lightOn.map<Widget>((light) {
+                return Icon(
+                  widget.iconData,
+                  color: light ? mainBlueColor : mainGreyColor,
+                );
+              }).toList(),
         ),
       ),
     );

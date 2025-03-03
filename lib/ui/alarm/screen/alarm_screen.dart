@@ -30,24 +30,16 @@ class _AlarmScreenState extends State<AlarmScreen> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingSkeleton();
         } else if (!snapshot.hasData) {
-          return const Center(
-            child: Text("알람이 없습니다."),
-          );
+          return const Center(child: Text("알람이 없습니다."));
         } else if (snapshot.hasData) {
           final alarms =
               snapshot.data!.map((e) => _AlarmBox(model: e)).toList();
           return Padding(
             padding: const EdgeInsets.only(top: 12),
-            child: SingleChildScrollView(
-              child: Column(
-                children: alarms,
-              ),
-            ),
+            child: SingleChildScrollView(child: Column(children: alarms)),
           );
         } else {
-          return const Center(
-            child: Text("에러가 발생했습니다"),
-          );
+          return const Center(child: Text("에러가 발생했습니다"));
         }
       },
     );
@@ -55,9 +47,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
 }
 
 class _AlarmBox extends StatelessWidget {
-  const _AlarmBox({
-    required this.model,
-  });
+  const _AlarmBox({required this.model});
 
   final AlarmModel model;
 
@@ -89,10 +79,7 @@ class _AlarmBox extends StatelessWidget {
                     width: 35 * wu,
                     child: Column(
                       children: [
-                        FaIcon(
-                          size: 24 * hu,
-                          alarmIcon,
-                        ),
+                        FaIcon(size: 24 * hu, alarmIcon),
                         SizedBox(height: 3 * hu),
                         Text(
                           model.alarmType.name,
@@ -100,7 +87,7 @@ class _AlarmBox extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 10 * hu,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -125,10 +112,7 @@ class _AlarmBox extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 5 * hu),
-                        Text(
-                          model.content,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                        Text(model.content, overflow: TextOverflow.ellipsis),
                       ],
                     ),
                   ),
@@ -136,10 +120,8 @@ class _AlarmBox extends StatelessWidget {
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(model.date),
-                ],
-              )
+                children: [Text(model.date)],
+              ),
             ],
           ),
         ),

@@ -57,16 +57,19 @@ class LocalTextField extends StatelessWidget {
         ),
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.black54),
-        prefixIcon: prefixIcon
-            ? Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 12 * wu, vertical: 10),
-                child: const FaIcon(
-                  FontAwesomeIcons.magnifyingGlass,
-                  color: Colors.black,
-                ),
-              )
-            : null,
+        prefixIcon:
+            prefixIcon
+                ? Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12 * wu,
+                    vertical: 10,
+                  ),
+                  child: const FaIcon(
+                    FontAwesomeIcons.magnifyingGlass,
+                    color: Colors.black,
+                  ),
+                )
+                : null,
         suffixIcon: suffixIcon,
       ),
       onChanged: onChanged,

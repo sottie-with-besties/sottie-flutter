@@ -16,9 +16,7 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: const Text("문의하기"),
-      ),
+      appBar: AppBar(title: const Text("문의하기")),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: SingleChildScrollView(

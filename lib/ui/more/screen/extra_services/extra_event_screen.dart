@@ -9,9 +9,7 @@ class ExtraEventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("이벤트"),
-      ),
+      appBar: AppBar(title: const Text("이벤트")),
       body: const SingleChildScrollView(
         child: Column(
           children: [
@@ -26,10 +24,7 @@ class ExtraEventScreen extends StatelessWidget {
 }
 
 class _EventFeed extends StatelessWidget {
-  const _EventFeed({
-    required this.title,
-    required this.subTitle,
-  });
+  const _EventFeed({required this.title, required this.subTitle});
 
   final String title;
   final String subTitle;
@@ -52,12 +47,7 @@ class _EventFeed extends StatelessWidget {
               ),
               height: 100,
               child: const Center(
-                child: Text(
-                  "이벤트 이미지",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
+                child: Text("이벤트 이미지", style: TextStyle(color: Colors.white)),
               ),
             ),
             const SizedBox(height: 10),
@@ -66,12 +56,7 @@ class _EventFeed extends StatelessWidget {
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
             const SizedBox(height: 5),
-            Text(
-              subTitle,
-              style: const TextStyle(
-                fontSize: 11,
-              ),
-            ),
+            Text(subTitle, style: const TextStyle(fontSize: 11)),
           ],
         ),
       ),

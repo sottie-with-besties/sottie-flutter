@@ -26,18 +26,19 @@ class SottieUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: goToDetailPath
-          ? () {
-              context.push(
-                CustomRouter.userDetailPath,
-                extra: {
-                  'model': model,
-                  'heroTag': heroTag,
-                  'isMyFriend': isMyFriend,
-                },
-              );
-            }
-          : null,
+      onTap:
+          goToDetailPath
+              ? () {
+                context.push(
+                  CustomRouter.userDetailPath,
+                  extra: {
+                    'model': model,
+                    'heroTag': heroTag,
+                    'isMyFriend': isMyFriend,
+                  },
+                );
+              }
+              : null,
       child: Container(
         color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
         child: Row(

@@ -1,11 +1,6 @@
 import 'package:sottie_flutter/domain/post/entity/post_entity.dart';
 
-enum PostPaginationState {
-  fetch,
-  firstLoading,
-  loading,
-  error,
-}
+enum PostPaginationState { fetch, firstLoading, loading, error }
 
 class PostPaginationEntity {
   final List<PostEntity> postEntityList;

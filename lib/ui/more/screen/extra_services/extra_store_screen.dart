@@ -17,9 +17,7 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("골드 충전"),
-      ),
+      appBar: AppBar(title: const Text("골드 충전")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -32,10 +30,7 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
                 const SizedBox(height: 30),
                 const Text(
                   " 골드 구매",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 const SizedBox(height: 15),
                 _goldPurchase(1000, 1400),
@@ -55,7 +50,7 @@ class _ExtraStoreScreenState extends State<ExtraStoreScreen> {
                 _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
                 _termsAndConditions("골드 충전 후 7일 이내, 사용하지 않은 골드만 결제 취소가 가능합니다."),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -86,10 +81,7 @@ final _myGold = Padding(
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             const SizedBox(width: 10),
-            const FaIcon(
-              FontAwesomeIcons.coins,
-              color: Colors.amber,
-            ),
+            const FaIcon(FontAwesomeIcons.coins, color: Colors.amber),
           ],
         ),
       ],
@@ -115,10 +107,7 @@ Widget _goldPurchase(int gold, int price) {
           children: [
             Row(
               children: [
-                const FaIcon(
-                  FontAwesomeIcons.coins,
-                  color: Colors.amber,
-                ),
+                const FaIcon(FontAwesomeIcons.coins, color: Colors.amber),
                 const SizedBox(width: 10),
                 Text(gold.toString()),
               ],
@@ -127,9 +116,7 @@ Widget _goldPurchase(int gold, int price) {
               children: [
                 Text(
                   price.toString(),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const Text("  원"),
               ],
@@ -146,10 +133,7 @@ Widget _termsAndConditions(String content) {
     padding: const EdgeInsets.symmetric(vertical: 5),
     child: Text(
       "* $content",
-      style: const TextStyle(
-        color: mainGreyColor,
-        fontSize: 12,
-      ),
+      style: const TextStyle(color: mainGreyColor, fontSize: 12),
     ),
   );
 }

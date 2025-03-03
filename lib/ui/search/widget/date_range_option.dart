@@ -26,36 +26,35 @@ class _DateRangeClassState extends ConsumerState<DateRangeOption> {
     ref.watch(dateTimeResetProvider);
     makeDateString();
 
-    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          minimumSize: const Size(0, 50),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(minimumSize: const Size(0, 50)),
+          onPressed: () async {
+            DateTimeRange? tempDateTimeRange = await showDateRangePicker(
+              context: context,
+              initialDateRange:
+                  postOptions.dateTimeRange ??
+                  DateTimeRange(start: DateTime.now(), end: DateTime.now()),
+              firstDate: DateTime.now(),
+              lastDate: DateTime(DateTime.now().year + 1),
+              cancelText: "취소",
+              confirmText: "저장하기",
+              saveText: "저장하기",
+              barrierDismissible: false,
+            );
+
+            if (tempDateTimeRange == null) return;
+
+            postOptions.dateTimeRange = tempDateTimeRange;
+
+            makeDateString();
+            setState(() {});
+          },
+          child: Text(dateString, style: const TextStyle(color: Colors.black)),
         ),
-        onPressed: () async {
-          DateTimeRange? tempDateTimeRange = await showDateRangePicker(
-            context: context,
-            initialDateRange: postOptions.dateTimeRange ??
-                DateTimeRange(start: DateTime.now(), end: DateTime.now()),
-            firstDate: DateTime.now(),
-            lastDate: DateTime(DateTime.now().year + 1),
-            cancelText: "취소",
-            confirmText: "저장하기",
-            saveText: "저장하기",
-            barrierDismissible: false,
-          );
-
-          if (tempDateTimeRange == null) return;
-
-          postOptions.dateTimeRange = tempDateTimeRange;
-
-          makeDateString();
-          setState(() {});
-        },
-        child: Text(
-          dateString,
-          style: const TextStyle(color: Colors.black),
-        ),
-      ),
-    ]);
+      ],
+    );
   }
 }

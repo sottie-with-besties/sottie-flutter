@@ -26,63 +26,63 @@ class ChatRoomWaitingScreen extends ConsumerWidget {
     return chatRoomWaitingState.when(
       data: (data) {
         final chatRoomWaitingList = data.where((data) {
-          final dateString =
-              convertDateTimeIntoString(data.gatheringDate.toLocal());
-          final searched = data.title.toString().contains(inputText) ||
+          final dateString = convertDateTimeIntoString(
+            data.gatheringDate.toLocal(),
+          );
+          final searched =
+              data.title.toString().contains(inputText) ||
               dateString.toString().contains(inputText) ||
-              PostLocation.values[data.locationId].koreanName
-                  .contains(inputText);
+              PostLocation.values[data.locationId].koreanName.contains(
+                inputText,
+              );
 
           return searched;
         });
 
         if (chatRoomWaitingList.isEmpty) {
-          return const Center(
-            child: Text("채팅방이 존재하지 않습니다"),
-          );
+          return const Center(child: Text("채팅방이 존재하지 않습니다"));
         }
 
         return ListView(
-          children: chatRoomWaitingList
-              .map(
-                (e) => SlideLongPressWidget(
-                  groupTag: 'chat',
-                  onLongPressWidget: Column(
-                    children: [
-                      OnLongPressOption(
-                        color: mainRedColor,
-                        onTap: () {
-                          _chatRoomOutAction(false);
-                        },
-                        icon: FontAwesomeIcons.outdent,
-                        optionTitle: "채팅방 나가기",
+          children:
+              chatRoomWaitingList
+                  .map(
+                    (e) => SlideLongPressWidget(
+                      groupTag: 'chat',
+                      onLongPressWidget: Column(
+                        children: [
+                          OnLongPressOption(
+                            color: mainRedColor,
+                            onTap: () {
+                              _chatRoomOutAction(false);
+                            },
+                            icon: FontAwesomeIcons.outdent,
+                            optionTitle: "채팅방 나가기",
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  slideActions: [
-                    SlidableAction(
-                      onPressed: (context) => _chatRoomOutAction(true),
-                      backgroundColor: mainRedColor,
-                      foregroundColor: Colors.white,
-                      autoClose: true,
-                      icon: FontAwesomeIcons.outdent,
-                      label: '나가기',
-                      padding: const EdgeInsets.symmetric(horizontal: 1),
+                      slideActions: [
+                        SlidableAction(
+                          onPressed: (context) => _chatRoomOutAction(true),
+                          backgroundColor: mainRedColor,
+                          foregroundColor: Colors.white,
+                          autoClose: true,
+                          icon: FontAwesomeIcons.outdent,
+                          label: '나가기',
+                          padding: const EdgeInsets.symmetric(horizontal: 1),
+                        ),
+                      ],
+                      child: Post(
+                        entity: PostEntity.fromModel(model: e),
+                        isWaiting: true,
+                      ),
                     ),
-                  ],
-                  child: Post(
-                    entity: PostEntity.fromModel(model: e),
-                    isWaiting: true,
-                  ),
-                ),
-              )
-              .toList(),
+                  )
+                  .toList(),
         );
       },
       error: (_, __) {
-        return const Center(
-          child: Text("데이터를 가져올 수 없습니다."),
-        );
+        return const Center(child: Text("데이터를 가져올 수 없습니다."));
       },
       loading: () => const LoadingSkeleton(),
     );

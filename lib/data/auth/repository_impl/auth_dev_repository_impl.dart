@@ -15,12 +15,8 @@ abstract class AuthTokenDevRepositoryImpl implements AuthRepository {
 
   @override
   @POST('/sottie/users/signup')
-  @Headers(<String, dynamic>{
-    'Content-Type': 'application/json',
-  })
-  Future<HttpResponse> signUp({
-    @Body() required EmailSignUpModel signUpModel,
-  });
+  @Headers(<String, dynamic>{'Content-Type': 'application/json'})
+  Future<HttpResponse> signUp({@Body() required EmailSignUpModel signUpModel});
 
   @override
   @POST('/auth/emailLogin')

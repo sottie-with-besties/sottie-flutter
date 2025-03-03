@@ -8,7 +8,7 @@ part 'in_chat_message_model.g.dart';
 /// 채팅방 들어간 후에는 해당 채팅방의 소켓을 끊지 않고(?) Stream 데이터 유지하여 계속 변경(cache)
 /// domain에 List<InChatMessageModel> 형태로 entity 남겨두기
 @unfreezed
-class InChatMessageModel with _$InChatMessageModel {
+sealed class InChatMessageModel with _$InChatMessageModel {
   factory InChatMessageModel({
     required int id,
     required List<InChatMessageDataModel> inChatMessageData,
@@ -19,7 +19,7 @@ class InChatMessageModel with _$InChatMessageModel {
 }
 
 @unfreezed
-class InChatMessageDataModel with _$InChatMessageDataModel {
+sealed class InChatMessageDataModel with _$InChatMessageDataModel {
   factory InChatMessageDataModel({
     required int id,
 
@@ -38,7 +38,7 @@ class InChatMessageDataModel with _$InChatMessageDataModel {
 }
 
 @freezed
-class InChatMessageDataEntityModel with _$InChatMessageDataEntityModel {
+sealed class InChatMessageDataEntityModel with _$InChatMessageDataEntityModel {
   factory InChatMessageDataEntityModel({
     /// 실질적인 데이터 -> 문장, 이미지 및 동영상 url
     required String entity,

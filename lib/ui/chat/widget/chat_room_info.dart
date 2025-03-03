@@ -43,117 +43,114 @@ class ChatRoomInfo extends StatelessWidget {
             child: Text(
               overflow: TextOverflow.ellipsis,
               chatTitle,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 12 * hu,
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12 * hu),
             ),
           ),
           SizedBox(height: 3 * hu),
           isChattingOver
               ? Text(
-                  "채팅이 종료되었습니다",
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 10 * hu,
-                    fontWeight: FontWeight.bold,
-                    color: mainGreyColor2,
-                  ),
-                )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 150 * wu,
-                      child: Text(
-                        overflow: TextOverflow.ellipsis,
-                        latestMsg,
-                        style: TextStyle(
-                          fontSize: 10 * hu,
-                          fontWeight: FontWeight.bold,
-                          color: mainGreyColor2,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 50 * wu,
-                      child: Text(
-                        renderCustomStringTime(
-                          latestTime.toLocal(),
-                          DateTime.now().toLocal(),
-                        ),
-                        style: TextStyle(
-                          fontSize: 8 * hu,
-                          color: mainGreyColor2,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
+                "채팅이 종료되었습니다",
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 10 * hu,
+                  fontWeight: FontWeight.bold,
+                  color: mainGreyColor2,
                 ),
-          SizedBox(height: 10 * hu),
-          isChattingOver
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "채팅방이 자동으로 종료됩니다",
+              )
+              : Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 150 * wu,
+                    child: Text(
                       overflow: TextOverflow.ellipsis,
+                      latestMsg,
                       style: TextStyle(
-                        fontSize: 10 * wu,
+                        fontSize: 10 * hu,
                         fontWeight: FontWeight.bold,
                         color: mainGreyColor2,
                       ),
                     ),
-                    ChatRoomDestroyingTimer(
-                      timeLeft:
-                          chatRoomDisappearingTime ?? const Duration(hours: 23),
+                  ),
+                  SizedBox(
+                    width: 50 * wu,
+                    child: Text(
+                      renderCustomStringTime(
+                        latestTime.toLocal(),
+                        DateTime.now().toLocal(),
+                      ),
+                      style: TextStyle(
+                        fontSize: 8 * hu,
+                        color: mainGreyColor2,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    Container(),
-                  ],
-                )
+                  ),
+                ],
+              ),
+          SizedBox(height: 10 * hu),
+          isChattingOver
+              ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "채팅방이 자동으로 종료됩니다",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 10 * wu,
+                      fontWeight: FontWeight.bold,
+                      color: mainGreyColor2,
+                    ),
+                  ),
+                  ChatRoomDestroyingTimer(
+                    timeLeft:
+                        chatRoomDisappearingTime ?? const Duration(hours: 23),
+                  ),
+                  Container(),
+                ],
+              )
               : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          convertDateTimeIntoString(date),
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        convertDateTimeIntoString(date),
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        overflow: TextOverflow.ellipsis,
+                        PostLocation.values[locationId].koreanName,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  if (notReadMsg != 0)
+                    Padding(
+                      padding: EdgeInsets.only(right: 12 * wu),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: mainRedColor.withValues(alpha: 0.8),
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        Text(
-                          overflow: TextOverflow.ellipsis,
-                          PostLocation.values[locationId].koreanName,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    if (notReadMsg != 0)
-                      Padding(
-                        padding: EdgeInsets.only(right: 12 * wu),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: mainRedColor.withValues(alpha: 0.8),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          width: 40 * wu,
-                          height: 20 * hu,
-                          padding: EdgeInsets.all(3 * hu),
-                          child: FittedBox(
-                            child: Text(
-                              numOfNotReadMsg,
-                              style: const TextStyle(
-                                color: mainWhiteSilverColor,
-                                fontWeight: FontWeight.bold,
-                              ),
+                        width: 40 * wu,
+                        height: 20 * hu,
+                        padding: EdgeInsets.all(3 * hu),
+                        child: FittedBox(
+                          child: Text(
+                            numOfNotReadMsg,
+                            style: const TextStyle(
+                              color: mainWhiteSilverColor,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                       ),
-                  ],
-                ),
+                    ),
+                ],
+              ),
         ],
       ),
     );

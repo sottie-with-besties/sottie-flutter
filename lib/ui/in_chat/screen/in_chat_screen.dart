@@ -68,7 +68,9 @@ class _InChatScreenState extends State<InChatScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       showCustomBottomSheet(
-                          context, const InChatReviewScreen());
+                        context,
+                        const InChatReviewScreen(),
+                      );
                     },
                     child: const Text("리뷰하세요!"),
                   ),

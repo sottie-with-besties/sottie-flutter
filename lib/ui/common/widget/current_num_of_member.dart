@@ -28,47 +28,29 @@ class CurrentNumOfMember extends StatelessWidget {
     if (genderRestriction == PostGenderRestriction.NONE) {
       return Row(
         children: [
-          Icon(
-            Icons.person,
-            color: mainBlackColor,
-            size: 12 * hu,
-          ),
+          Icon(Icons.person, color: mainBlackColor, size: 12 * hu),
           SizedBox(width: 1 * wu),
           Text(
             "$currentPeopleNum/$peopleNum",
-            style: const TextStyle(
-              color: mainBlackColor,
-            ),
+            style: const TextStyle(color: mainBlackColor),
           ),
         ],
       );
     } else {
       return Row(
         children: [
-          Icon(
-            Icons.person,
-            color: Colors.blue,
-            size: 12 * hu,
-          ),
+          Icon(Icons.person, color: Colors.blue, size: 12 * hu),
           SizedBox(width: 1 * wu),
           Text(
             "$currentMaleNum/$maleNum",
-            style: const TextStyle(
-              color: mainBlackColor,
-            ),
+            style: const TextStyle(color: mainBlackColor),
           ),
           SizedBox(width: 3 * wu),
-          Icon(
-            Icons.person,
-            color: Colors.pinkAccent,
-            size: 12 * hu,
-          ),
+          Icon(Icons.person, color: Colors.pinkAccent, size: 12 * hu),
           SizedBox(width: 1 * wu),
           Text(
             "$currentFemaleNum/$femaleNum",
-            style: const TextStyle(
-              color: mainBlackColor,
-            ),
+            style: const TextStyle(color: mainBlackColor),
           ),
         ],
       );

@@ -36,15 +36,13 @@ final class HomeLatestPost extends _$HomeLatestPost {
 
       if (entityList.isEmpty) {
         state = PostPaginationEntity(
-            postEntityList: entityList,
-            postPaginationState: PostPaginationState.error,
-            errorCode: '데이터가 더 이상 존재하지 않습니다');
+          postEntityList: entityList,
+          postPaginationState: PostPaginationState.error,
+          errorCode: '데이터가 더 이상 존재하지 않습니다',
+        );
       } else {
         state = PostPaginationEntity(
-          postEntityList: [
-            ...state.postEntityList,
-            ...entityList,
-          ],
+          postEntityList: [...state.postEntityList, ...entityList],
           postPaginationState: PostPaginationState.fetch,
         );
       }

@@ -116,24 +116,17 @@ class PostDetailScreen extends StatelessWidget {
                             ),
                             postEntity.ageRestriction
                                 ? Text(
-                                    convertAgeRangeToString(
-                                        postEntity.ageFrom, postEntity.ageTo),
-                                    style: _conditionTextStyle,
-                                  )
-                                : Text(
-                                    "나이 제한 없음",
-                                    style: _conditionTextStyle,
+                                  convertAgeRangeToString(
+                                    postEntity.ageFrom,
+                                    postEntity.ageTo,
                                   ),
+                                  style: _conditionTextStyle,
+                                )
+                                : Text("나이 제한 없음", style: _conditionTextStyle),
                             if (postEntity.mannerRestriction)
-                              Text(
-                                "36.5°C 이상",
-                                style: _conditionTextStyle,
-                              ),
+                              Text("36.5°C 이상", style: _conditionTextStyle),
                             if (postEntity.onlyMyFriends)
-                              Text(
-                                "내 친구만",
-                                style: _conditionTextStyle,
-                              ),
+                              Text("내 친구만", style: _conditionTextStyle),
                           ],
                         ),
                       ],
@@ -162,7 +155,9 @@ class PostDetailScreen extends StatelessWidget {
                                     if (result) {
                                     } else {
                                       showCustomSnackBar(
-                                          context, '에러가 발생하였습니다.');
+                                        context,
+                                        '에러가 발생하였습니다.',
+                                      );
                                     }
                                   }
                                 } else {
@@ -176,7 +171,9 @@ class PostDetailScreen extends StatelessWidget {
                                     if (result) {
                                     } else {
                                       showCustomSnackBar(
-                                          context, '참여하기 도중 에러가 발생하였습니다.');
+                                        context,
+                                        '참여하기 도중 에러가 발생하였습니다.',
+                                      );
                                     }
                                   }
                                 }

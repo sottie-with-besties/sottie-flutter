@@ -4,7 +4,7 @@ part 'email_sign_up_model.freezed.dart';
 part 'email_sign_up_model.g.dart';
 
 @unfreezed
-class EmailSignUpModel with _$EmailSignUpModel {
+sealed class EmailSignUpModel with _$EmailSignUpModel {
   factory EmailSignUpModel({
     String? email,
     String? password,

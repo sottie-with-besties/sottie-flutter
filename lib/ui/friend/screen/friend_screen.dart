@@ -22,14 +22,12 @@ class FriendScreen extends StatelessWidget {
           GestureDetector(
             onTap: () {
               context.push(
-                  '${CustomRouter.friendPath}/${CustomRouter.friendUtilPath}');
+                '${CustomRouter.friendPath}/${CustomRouter.friendUtilPath}',
+              );
             },
             child: const Padding(
               padding: EdgeInsets.only(right: 24),
-              child: FaIcon(
-                FontAwesomeIcons.userPlus,
-                color: mainBlackColor,
-              ),
+              child: FaIcon(FontAwesomeIcons.userPlus, color: mainBlackColor),
             ),
           ),
         ],

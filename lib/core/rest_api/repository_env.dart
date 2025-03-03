@@ -13,10 +13,7 @@ import 'package:sottie_flutter/domain/post/repository_interface/post_repository.
 const devServerIp = 'http://15.165.99.45:8080/';
 const productionServerIp = '';
 
-enum RepositoryEnvironment {
-  dev,
-  production,
-}
+enum RepositoryEnvironment { dev, production }
 
 void initRepositories(RepositoryEnvironment repoEnv) {
   switch (repoEnv) {
@@ -31,19 +28,24 @@ void initRepositories(RepositoryEnvironment repoEnv) {
 
 /// 개발 서버 세팅
 void _initDevRepositories() {
-  GetIt.I
-      .registerSingleton<AuthRepository>(AuthTokenDevRepositoryImpl(cleanDio));
+  GetIt.I.registerSingleton<AuthRepository>(
+    AuthTokenDevRepositoryImpl(cleanDio),
+  );
   GetIt.I.registerSingleton<PostRepository>(PostDevRepositoryImpl(cleanDio));
-  GetIt.I
-      .registerSingleton<FriendRepository>(FriendDevRepositoryImpl(cleanDio));
+  GetIt.I.registerSingleton<FriendRepository>(
+    FriendDevRepositoryImpl(cleanDio),
+  );
 }
 
 /// 프로덕션 서버 세팅
 void _initProductionRepositories() {
   GetIt.I.registerSingleton<AuthRepository>(
-      AuthTokenProductionRepositoryImpl(cleanDio));
+    AuthTokenProductionRepositoryImpl(cleanDio),
+  );
   GetIt.I.registerSingleton<PostRepository>(
-      PostProductionRepositoryImpl(cleanDio));
+    PostProductionRepositoryImpl(cleanDio),
+  );
   GetIt.I.registerSingleton<FriendRepository>(
-      FriendProductionRepositoryImpl(cleanDio));
+    FriendProductionRepositoryImpl(cleanDio),
+  );
 }

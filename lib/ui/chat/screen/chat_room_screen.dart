@@ -18,33 +18,33 @@ class ChatRoomScreen extends ConsumerWidget {
     return chatRoomState.when(
       data: (data) {
         final chatRoomList = data.where((data) {
-          final dateString =
-              convertDateTimeIntoString(data.gatheringDate.toLocal());
-          final searched = data.title.toString().contains(inputText) ||
+          final dateString = convertDateTimeIntoString(
+            data.gatheringDate.toLocal(),
+          );
+          final searched =
+              data.title.toString().contains(inputText) ||
               data.latestMsg.toString().contains(inputText) ||
               dateString.toString().contains(inputText) ||
-              PostLocation.values[data.locationId].koreanName
-                  .contains(inputText);
+              PostLocation.values[data.locationId].koreanName.contains(
+                inputText,
+              );
 
           return searched;
         });
 
         if (chatRoomList.isEmpty) {
-          return const Center(
-            child: Text("채팅방이 존재하지 않습니다"),
-          );
+          return const Center(child: Text("채팅방이 존재하지 않습니다"));
         }
 
         return ListView(
-          children: chatRoomList
-              .map<Widget>((data) => ChatRoom(model: data))
-              .toList(),
+          children:
+              chatRoomList
+                  .map<Widget>((data) => ChatRoom(model: data))
+                  .toList(),
         );
       },
       error: (_, __) {
-        return const Center(
-          child: Text("채팅방을 불러오는 도중 에러가 발생했습니다"),
-        );
+        return const Center(child: Text("채팅방을 불러오는 도중 에러가 발생했습니다"));
       },
       loading: () => const LoadingSkeleton(),
     );

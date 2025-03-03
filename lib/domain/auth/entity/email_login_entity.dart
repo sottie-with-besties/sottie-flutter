@@ -3,8 +3,5 @@ final class EmailLoginEntity {
 
   String? password;
 
-  EmailLoginEntity({
-    this.email = '',
-    this.password = '',
-  });
+  EmailLoginEntity({this.email = '', this.password = ''});
 }

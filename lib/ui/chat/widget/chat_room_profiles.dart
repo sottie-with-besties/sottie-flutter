@@ -21,10 +21,7 @@ class ChatRoomProfiles extends StatelessWidget {
         runSpacing: 5 * hu,
         alignment: WrapAlignment.center,
         runAlignment: WrapAlignment.center,
-        children: List.generate(
-          profileCount,
-          (_) => const UserProfile(),
-        ),
+        children: List.generate(profileCount, (_) => const UserProfile()),
       ),
     );
   }

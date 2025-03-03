@@ -5,10 +5,7 @@ import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
 class CategoryOption extends StatelessWidget {
-  const CategoryOption({
-    super.key,
-    this.renderAtMakePostScreen = true,
-  });
+  const CategoryOption({super.key, this.renderAtMakePostScreen = true});
 
   final bool renderAtMakePostScreen;
 
@@ -40,27 +37,28 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
     return Expanded(
       child: Wrap(
         spacing: 10,
-        children: PostCategory.values
-            .where((category) => category.index != 0)
-            .map((category) {
-          final isSelected = category == postOptions.gatheringCategory;
+        children:
+            PostCategory.values.where((category) => category.index != 0).map((
+              category,
+            ) {
+              final isSelected = category == postOptions.gatheringCategory;
 
-          return ChoiceChip(
-            label: Text(
-              category.koreanName,
-              style: TextStyle(
-                color: isSelected ? mainWhiteSilverColor : mainBlackColor,
-              ),
-            ),
-            selected: isSelected,
-            onSelected: (_) {
-              postOptions.gatheringCategory == category
-                  ? postOptions.gatheringCategory = PostCategory.ALL
-                  : postOptions.gatheringCategory = category;
-              setState(() {});
-            },
-          );
-        }).toList(),
+              return ChoiceChip(
+                label: Text(
+                  category.koreanName,
+                  style: TextStyle(
+                    color: isSelected ? mainWhiteSilverColor : mainBlackColor,
+                  ),
+                ),
+                selected: isSelected,
+                onSelected: (_) {
+                  postOptions.gatheringCategory == category
+                      ? postOptions.gatheringCategory = PostCategory.ALL
+                      : postOptions.gatheringCategory = category;
+                  setState(() {});
+                },
+              );
+            }).toList(),
       ),
     );
   }

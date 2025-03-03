@@ -7,9 +7,7 @@ class InChatNotificationListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("공지사항"),
-      ),
+      appBar: AppBar(title: const Text("공지사항")),
       body: const Column(
         children: [
           InChatNotification(),

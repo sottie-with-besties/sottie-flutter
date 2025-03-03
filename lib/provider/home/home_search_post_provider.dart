@@ -29,8 +29,9 @@ final class HomeSearchPost extends _$HomeSearchPost {
         );
       }
 
-      final postList =
-          await getSearchPostDummy(postOptions.toJsonForSearchFiltering());
+      final postList = await getSearchPostDummy(
+        postOptions.toJsonForSearchFiltering(),
+      );
 
       // final postList = await _useCase.getSearchPostEntityList(
       //   searchSetting: postOptions.toJsonForSearchFiltering(),
@@ -39,15 +40,13 @@ final class HomeSearchPost extends _$HomeSearchPost {
 
       if (postList.isEmpty) {
         state = PostPaginationEntity(
-            postEntityList: postList,
-            postPaginationState: PostPaginationState.error,
-            errorCode: '데이터가 더 이상 존재하지 않습니다');
+          postEntityList: postList,
+          postPaginationState: PostPaginationState.error,
+          errorCode: '데이터가 더 이상 존재하지 않습니다',
+        );
       } else {
         state = PostPaginationEntity(
-          postEntityList: [
-            ...state.postEntityList,
-            ...postList,
-          ],
+          postEntityList: [...state.postEntityList, ...postList],
           postPaginationState: PostPaginationState.fetch,
         );
       }

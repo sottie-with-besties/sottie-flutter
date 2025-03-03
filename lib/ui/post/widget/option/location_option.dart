@@ -4,10 +4,7 @@ import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
 class LocationOption extends StatelessWidget {
-  const LocationOption({
-    super.key,
-    this.renderAtMakePostScreen = true,
-  });
+  const LocationOption({super.key, this.renderAtMakePostScreen = true});
 
   final bool renderAtMakePostScreen;
 
@@ -22,13 +19,17 @@ class LocationOption extends StatelessWidget {
         ],
         Expanded(
           child: DropdownMenu(
-              initialSelection: postOptions.locationId,
-              expandedInsets: const EdgeInsets.all(0),
-              onSelected: (location) => postOptions.locationId = location!,
-              dropdownMenuEntries: PostLocation.values.map((location) {
-                return DropdownMenuEntry(
-                    value: location.index, label: location.koreanName);
-              }).toList()),
+            initialSelection: postOptions.locationId,
+            expandedInsets: const EdgeInsets.all(0),
+            onSelected: (location) => postOptions.locationId = location!,
+            dropdownMenuEntries:
+                PostLocation.values.map((location) {
+                  return DropdownMenuEntry(
+                    value: location.index,
+                    label: location.koreanName,
+                  );
+                }).toList(),
+          ),
         ),
       ],
     );

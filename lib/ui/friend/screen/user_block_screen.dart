@@ -33,29 +33,31 @@ class _UserBlockScreenState extends State<UserBlockScreen>
 
           return SingleChildScrollView(
             child: Column(
-              children: userBlockList
-                  .map(
-                    (userBlock) => Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10 * hu),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SottieUser(
-                            model: userBlock,
-                            heroTag: 'userBlock',
-                            isMyFriend: false, // Todo: 친구인지 아닌지 확인하는 로직 필요
-                            textWidth: 100,
+              children:
+                  userBlockList
+                      .map(
+                        (userBlock) => Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10 * hu),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SottieUser(
+                                model: userBlock,
+                                heroTag: 'userBlock',
+                                isMyFriend: false, // Todo: 친구인지 아닌지 확인하는 로직 필요
+                                textWidth: 100,
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  _userManageProvider.userUnblock(context);
+                                },
+                                child: const Text("차단 해제"),
+                              ),
+                            ],
                           ),
-                          ElevatedButton(
-                              onPressed: () {
-                                _userManageProvider.userUnblock(context);
-                              },
-                              child: const Text("차단 해제")),
-                        ],
-                      ),
-                    ),
-                  )
-                  .toList(),
+                        ),
+                      )
+                      .toList(),
             ),
           );
         },

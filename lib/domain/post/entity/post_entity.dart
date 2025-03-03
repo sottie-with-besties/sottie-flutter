@@ -87,8 +87,9 @@ final class PostEntity {
       ageFrom: model.ageFrom,
       ageTo: model.ageTo,
       onlyMyFriends: model.onlyMyFriends,
-      genderRestriction:
-          PostGenderRestriction.values.byName(model.genderRestriction),
+      genderRestriction: PostGenderRestriction.values.byName(
+        model.genderRestriction,
+      ),
       mannerRestriction: model.mannerRestriction,
       ageRestriction: model.ageRestriction,
     );

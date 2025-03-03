@@ -19,8 +19,11 @@ class _MoreContentScreenState extends State<MoreContentScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding:
-              EdgeInsets.only(bottom: 10 * hu, right: 16 * wu, left: 16 * wu),
+          padding: EdgeInsets.only(
+            bottom: 10 * hu,
+            right: 16 * wu,
+            left: 16 * wu,
+          ),
           child: SottieUser(
             model: UserModel(
               id: myInfoEntity.id,
@@ -33,9 +36,7 @@ class _MoreContentScreenState extends State<MoreContentScreen> {
             isMyFriend: null,
           ),
         ),
-        ExtraServiceList(
-          setStateProfile: setState,
-        ),
+        ExtraServiceList(setStateProfile: setState),
       ],
     );
   }

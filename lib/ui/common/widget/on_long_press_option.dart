@@ -37,11 +37,7 @@ class OnLongPressOption extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              Icon(
-                icon,
-                color: mainWhiteSilverColor,
-                size: 24 * hu,
-              ),
+              Icon(icon, color: mainWhiteSilverColor, size: 24 * hu),
             ],
           ),
         ),

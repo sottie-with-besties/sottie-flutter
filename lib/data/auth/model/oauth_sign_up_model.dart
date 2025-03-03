@@ -4,7 +4,7 @@ part 'oauth_sign_up_model.freezed.dart';
 part 'oauth_sign_up_model.g.dart';
 
 @unfreezed
-class OauthSignUpModel with _$OauthSignUpModel {
+sealed class OauthSignUpModel with _$OauthSignUpModel {
   factory OauthSignUpModel({
     String? idToken,
     String? accessToken,

@@ -54,25 +54,12 @@ Widget _categoryClassify(PostCategory postCategory, Color color) {
   return sottieCategory;
 }
 
-Widget _renderCategory(
-  IconData icon,
-  String category,
-  Color color,
-) {
+Widget _renderCategory(IconData icon, String category, Color color) {
   return Row(
     children: [
-      FaIcon(
-        icon,
-        size: 10 * hu,
-        color: color,
-      ),
+      FaIcon(icon, size: 10 * hu, color: color),
       const SizedBox(width: 5),
-      Text(
-        category,
-        style: TextStyle(
-          color: color,
-        ),
-      ),
+      Text(category, style: TextStyle(color: color)),
     ],
   );
 }

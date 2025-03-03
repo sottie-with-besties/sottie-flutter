@@ -105,56 +105,59 @@ class _AgeRangeState extends State<_AgeRange> {
         children: [
           FittedBox(
             child: Row(
-              children: PostAgeRange.values.map((age) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: ChoiceChip(
-                    label: Text(age.name),
-                    selected: selectedList[age.index],
-                    onSelected: (onSelected) {
-                      /// 칩을 눌렀을 때 최소와 최대 사이의 칩이 모두 선택되어야 한다.
-                      /// ex) 10대, 40대 선택 -> 10대, 20대, 30대, 40대
+              children:
+                  PostAgeRange.values.map((age) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: ChoiceChip(
+                        label: Text(age.name),
+                        selected: selectedList[age.index],
+                        onSelected: (onSelected) {
+                          /// 칩을 눌렀을 때 최소와 최대 사이의 칩이 모두 선택되어야 한다.
+                          /// ex) 10대, 40대 선택 -> 10대, 20대, 30대, 40대
 
-                      if (onSelected) {
-                        /// 칩을 on 했을 때
-                        /// index + 1이 ageFrom보다 작다면 ageFrom = index + 1
-                        /// index + 1이 ageTo보다 크다면 ageTo = index + 1
+                          if (onSelected) {
+                            /// 칩을 on 했을 때
+                            /// index + 1이 ageFrom보다 작다면 ageFrom = index + 1
+                            /// index + 1이 ageTo보다 크다면 ageTo = index + 1
 
-                        if (age.index + 1 < postOptions.ageFrom) {
-                          postOptions.ageFrom = age.index + 1;
-                        } else if (age.index + 1 > postOptions.ageTo) {
-                          postOptions.ageTo = age.index + 1;
-                        }
-                      } else {
-                        /// 칩을 off 했을 때
-                        /// index + 1이 ageFrom과 ageTo 사이에 있다면 동작하지 않는다.
-                        /// ageTo와 ageFrom이 같다면 동작하지 않는다.(하나는 선택되게)
-                        /// index + 1이 ageFrom라면 ageFrom++
-                        /// index + 1이 ageTo라면 ageTo--
+                            if (age.index + 1 < postOptions.ageFrom) {
+                              postOptions.ageFrom = age.index + 1;
+                            } else if (age.index + 1 > postOptions.ageTo) {
+                              postOptions.ageTo = age.index + 1;
+                            }
+                          } else {
+                            /// 칩을 off 했을 때
+                            /// index + 1이 ageFrom과 ageTo 사이에 있다면 동작하지 않는다.
+                            /// ageTo와 ageFrom이 같다면 동작하지 않는다.(하나는 선택되게)
+                            /// index + 1이 ageFrom라면 ageFrom++
+                            /// index + 1이 ageTo라면 ageTo--
 
-                        if (age.index + 1 > postOptions.ageFrom &&
-                                age.index + 1 < postOptions.ageTo ||
-                            postOptions.ageFrom == postOptions.ageTo) {
-                          return;
-                        } else if (age.index + 1 == postOptions.ageFrom) {
-                          selectedList[age.index] = false;
-                          postOptions.ageFrom++;
-                        } else if (age.index + 1 == postOptions.ageTo) {
-                          selectedList[age.index] = false;
-                          postOptions.ageTo--;
-                        }
-                      }
+                            if (age.index + 1 > postOptions.ageFrom &&
+                                    age.index + 1 < postOptions.ageTo ||
+                                postOptions.ageFrom == postOptions.ageTo) {
+                              return;
+                            } else if (age.index + 1 == postOptions.ageFrom) {
+                              selectedList[age.index] = false;
+                              postOptions.ageFrom++;
+                            } else if (age.index + 1 == postOptions.ageTo) {
+                              selectedList[age.index] = false;
+                              postOptions.ageTo--;
+                            }
+                          }
 
-                      for (int i = postOptions.ageFrom;
-                          i <= postOptions.ageTo;
-                          i++) {
-                        selectedList[i - 1] = true;
-                      }
-                      setState(() {});
-                    },
-                  ),
-                );
-              }).toList(),
+                          for (
+                            int i = postOptions.ageFrom;
+                            i <= postOptions.ageTo;
+                            i++
+                          ) {
+                            selectedList[i - 1] = true;
+                          }
+                          setState(() {});
+                        },
+                      ),
+                    );
+                  }).toList(),
             ),
           ),
         ],

@@ -98,7 +98,9 @@ final class VerificationProvider {
     try {
       if (_verificationId != null) {
         PhoneAuthCredential phoneCredential = PhoneAuthProvider.credential(
-            verificationId: _verificationId!, smsCode: code);
+          verificationId: _verificationId!,
+          smsCode: code,
+        );
         await _auth.signInWithCredential(phoneCredential);
         errorCode = null;
       } else {

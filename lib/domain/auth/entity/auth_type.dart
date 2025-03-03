@@ -1,8 +1,3 @@
-enum AuthType {
-  email,
-  kakao,
-  google,
-  apple,
-}
+enum AuthType { email, kakao, google, apple }
 
 AuthType? authType;

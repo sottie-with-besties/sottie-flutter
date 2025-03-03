@@ -40,9 +40,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
   }
 
   final loadingCircle = const Center(
-    child: CircularProgressIndicator(
-      color: mainWhiteSilverColor,
-    ),
+    child: CircularProgressIndicator(color: mainWhiteSilverColor),
   );
 
   StepState _setStepState(int step) {
@@ -53,8 +51,9 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
     if (currentStep == 0) {
       // 핸드폰 번호 입력하는 화면
       if (phoneNumberKey.currentState!.validate()) {
-        final errorCode =
-            await _verificationProvider.signInWithPhoneNumber(phoneNumber!);
+        final errorCode = await _verificationProvider.signInWithPhoneNumber(
+          phoneNumber!,
+        );
         if (errorCode == null) {
           currentStep += 1;
           setState(() {});
@@ -66,8 +65,9 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       // 핸드폰 인증하는 화면 -> 인증 성공하면 파이어베이스 유저 핸드폰 번호 정보 삭제
       isNextLoading = true;
       setState(() {});
-      final errorCode =
-          await _verificationProvider.signInWithSmsCode(verificationCode!);
+      final errorCode = await _verificationProvider.signInWithSmsCode(
+        verificationCode!,
+      );
       if (errorCode == null) {
         await _verificationProvider.deletePhoneUser();
         currentStep += 1;
@@ -83,7 +83,9 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
         isNextLoading = true;
         setState(() {});
         String? errorCode = await _verificationProvider.createEmailAndPassword(
-            email!, dummyPassword);
+          email!,
+          dummyPassword,
+        );
         if (mounted) {
           if (errorCode == null) {
             currentStep += 1;
@@ -100,7 +102,9 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       isNextLoading = true;
       setState(() {});
       final emailVerification = await _verificationProvider.isEmailVerification(
-          email!, dummyPassword);
+        email!,
+        dummyPassword,
+      );
       if (emailVerification) {
         await _verificationProvider.deleteEmailUser(email!, dummyPassword);
         currentStep += 1;
@@ -124,8 +128,10 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       // 이메일 인증 스크린에서 뒤로가기 했을 경우 -> 이메일 생성을 다시 해야하기 때문에 삭제해주어야 한다.
       isCancelLoading = true;
       setState(() {});
-      final String? errorCode =
-          await _verificationProvider.deleteEmailUser(email!, dummyPassword);
+      final String? errorCode = await _verificationProvider.deleteEmailUser(
+        email!,
+        dummyPassword,
+      );
       if (errorCode == null) {
         currentStep -= 1;
       } else {
@@ -189,18 +195,10 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                 children: [
                   const Text(
                     "문자를 확인하세요!",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    "인증코드를 발송하였습니다",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
+                  const Text("인증코드를 발송하였습니다", style: TextStyle(fontSize: 16)),
                   const SizedBox(height: 30),
                   Pinput(
                     length: 6,
@@ -243,9 +241,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                         fontSize: 24,
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     AuthTextField(
                       hint: "이메일을 입력해주세요.",
                       keyboardType: TextInputType.emailAddress,
@@ -267,27 +263,21 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                 children: [
                   const Text(
                     "이메일을 확인하세요!",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                   ),
                   const SizedBox(height: 10),
                   const Text(
                     "인증코드를 발송하였습니다. 이메일을 인증 하신 후 다음 버튼을 눌러주세요.",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(fontSize: 16),
                   ),
                   const SizedBox(height: 20),
                   OutlinedButton(
-                      onPressed: () async {
-                        await _verificationProvider.sendEmailVerification();
-                      },
-                      child: const Text("이메일 인증 재발송")),
-                  const SizedBox(
-                    height: 30,
+                    onPressed: () async {
+                      await _verificationProvider.sendEmailVerification();
+                    },
+                    child: const Text("이메일 인증 재발송"),
                   ),
+                  const SizedBox(height: 30),
                 ],
               ),
               isActive: currentStep > 3,
@@ -300,59 +290,49 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                 children: [
                   const Text(
                     "기존 이메일",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     myInfoEntity.email,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
+                    style: const TextStyle(fontSize: 16),
                   ),
                   const SizedBox(height: 25),
                   const Text(
                     "변경 이메일",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                    email ?? "알 수 없음",
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
+                  Text(email ?? "알 수 없음", style: const TextStyle(fontSize: 16)),
+                  const SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
                       showCustomDialog(
                         context,
                         const Text("이메일을 변경하시겠습니까?"),
                         extraButton: ElevatedButton(
-                          onPressed: _anyButtonLoading()
-                              ? null
-                              : () async {
-                                  isNextLoading = true;
-                                  setState(() {});
-                                  // Todo: 이메일 변경 백엔드로 알림
-                                  if (context.mounted) {
-                                    showCustomSnackBar(
-                                        context, '이메일을 변경하였습니다.');
-                                    // 확실하게 다이얼로그를 닫는 코드. ChatGPT가 알려줌
-                                    Navigator.of(context, rootNavigator: true)
-                                        .pop();
-                                    context.pop();
-                                  }
-                                  isNextLoading = false;
-                                  setState(() {});
-                                },
+                          onPressed:
+                              _anyButtonLoading()
+                                  ? null
+                                  : () async {
+                                    isNextLoading = true;
+                                    setState(() {});
+                                    // Todo: 이메일 변경 백엔드로 알림
+                                    if (context.mounted) {
+                                      showCustomSnackBar(
+                                        context,
+                                        '이메일을 변경하였습니다.',
+                                      );
+                                      // 확실하게 다이얼로그를 닫는 코드. ChatGPT가 알려줌
+                                      Navigator.of(
+                                        context,
+                                        rootNavigator: true,
+                                      ).pop();
+                                      context.pop();
+                                    }
+                                    isNextLoading = false;
+                                    setState(() {});
+                                  },
                           child: const Text("변경"),
                         ),
                       );
@@ -374,10 +354,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
           ],
           controlsBuilder: (context, details) {
             return Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 12,
-                horizontal: 12,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -390,15 +367,16 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                       minimumSize: const Size(100, 50),
                     ),
                     onPressed: _anyButtonLoading() ? null : _onStepCancel,
-                    child: isCancelLoading
-                        ? loadingCircle
-                        : const Text(
-                            "뒤로가기",
-                            style: TextStyle(
-                              color: mainWhiteSilverColor,
-                              fontWeight: FontWeight.bold,
+                    child:
+                        isCancelLoading
+                            ? loadingCircle
+                            : const Text(
+                              "뒤로가기",
+                              style: TextStyle(
+                                color: mainWhiteSilverColor,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
                   ),
                   const SizedBox(width: 20),
                   if (currentStep < 4)
@@ -410,15 +388,16 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                         minimumSize: const Size(100, 50),
                       ),
                       onPressed: _anyButtonLoading() ? null : _onStepContinue,
-                      child: isNextLoading
-                          ? loadingCircle
-                          : const Text(
-                              "다음",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: mainWhiteSilverColor,
+                      child:
+                          isNextLoading
+                              ? loadingCircle
+                              : const Text(
+                                "다음",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: mainWhiteSilverColor,
+                                ),
                               ),
-                            ),
                     ),
                 ],
               ),

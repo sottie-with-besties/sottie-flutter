@@ -13,8 +13,6 @@ abstract class FriendProductionRepositoryImpl implements FriendRepository {
 
   @override
   @GET('/sottie/friends')
-  @Headers(<String, dynamic>{
-    'Content-Type': 'application/json',
-  })
+  @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future<List<UserModel>> getFriends();
 }

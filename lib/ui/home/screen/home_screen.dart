@@ -26,10 +26,7 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 borderRadius: BorderRadius.circular(5),
                 onTap: () {
-                  showCustomBottomSheet(
-                    context,
-                    const SearchScreen(),
-                  );
+                  showCustomBottomSheet(context, const SearchScreen());
                 },
                 child: const FaIcon(
                   FontAwesomeIcons.magnifyingGlass,
@@ -37,16 +34,11 @@ class HomeScreen extends StatelessWidget {
                   size: 28,
                 ),
               ),
-              const SizedBox(
-                width: 25,
-              ),
+              const SizedBox(width: 25),
               InkWell(
                 borderRadius: BorderRadius.circular(5),
                 onTap: () {
-                  showCustomBottomSheet(
-                    context,
-                    const AlarmScreen(),
-                  );
+                  showCustomBottomSheet(context, const AlarmScreen());
                 },
                 child: const FaIcon(
                   FontAwesomeIcons.bell,
@@ -54,14 +46,13 @@ class HomeScreen extends StatelessWidget {
                   size: 28,
                 ),
               ),
-              const SizedBox(
-                width: 25,
-              ),
+              const SizedBox(width: 25),
               InkWell(
                 borderRadius: BorderRadius.circular(5),
                 onTap: () async {
                   await context.push(
-                      "${CustomRouter.morePath}/${CustomRouter.settingPath}");
+                    "${CustomRouter.morePath}/${CustomRouter.settingPath}",
+                  );
                 },
                 child: const FaIcon(
                   FontAwesomeIcons.gear,
@@ -79,10 +70,7 @@ class HomeScreen extends StatelessWidget {
           postOptions = PostOptionsEntity();
           await context.push(CustomRouter.makePostStepOnePath);
         },
-        child: const Icon(
-          Icons.post_add,
-          color: mainWhiteSilverColor,
-        ),
+        child: const Icon(Icons.post_add, color: mainWhiteSilverColor),
       ),
       contentChild: const HomeContentScreen(),
     );

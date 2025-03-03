@@ -7,8 +7,9 @@ class _CustomInterceptor extends Interceptor {
   /// 디오가 네트워크 요청 할 때
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers
-        .addAll({'authorization': 'Bearer ${accessTokenEntity.accessToken}'});
+    options.headers.addAll({
+      'authorization': 'Bearer ${accessTokenEntity.accessToken}',
+    });
     super.onRequest(options, handler);
   }
 
@@ -32,8 +33,9 @@ class _CustomInterceptor extends Interceptor {
 
         final dio = Dio();
         final options = err.requestOptions;
-        options.headers.addAll(
-            {'authorization': 'Bearer ${accessTokenEntity.accessToken}'});
+        options.headers.addAll({
+          'authorization': 'Bearer ${accessTokenEntity.accessToken}',
+        });
 
         final resp = await dio.fetch(options);
         handler.resolve(resp);
@@ -46,13 +48,16 @@ class _CustomInterceptor extends Interceptor {
 
 /// 액세스 토큰 만료되었을 때 호출
 Future<void> _refreshAccessToken({required String refreshToken}) async {
-  final newAccessTokenModel = await AuthTokenDevRepositoryImpl(customDio)
-      .refreshAccessToken(refreshToken: 'Bearer $refreshToken');
+  final newAccessTokenModel = await AuthTokenDevRepositoryImpl(
+    customDio,
+  ).refreshAccessToken(refreshToken: 'Bearer $refreshToken');
 
   accessTokenEntity.changeToken(newAccessTokenModel.accessToken);
 
   await tokenStorage.write(
-      key: accessTokenKey, value: newAccessTokenModel.accessToken);
+    key: accessTokenKey,
+    value: newAccessTokenModel.accessToken,
+  );
 }
 
 final customDio = Dio()..interceptors.add(_CustomInterceptor());

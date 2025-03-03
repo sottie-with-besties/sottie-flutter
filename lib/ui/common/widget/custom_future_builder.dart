@@ -47,8 +47,10 @@ class _CustomFutureBuilderState extends State<CustomFutureBuilder> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
-              child: Text(widget.errorMessage,
-                  style: const TextStyle(color: Colors.black)),
+              child: Text(
+                widget.errorMessage,
+                style: const TextStyle(color: Colors.black),
+              ),
             ),
           );
         }

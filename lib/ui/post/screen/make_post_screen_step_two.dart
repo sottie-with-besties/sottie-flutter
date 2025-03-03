@@ -54,9 +54,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
       onTap: focusNode.unfocus,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: const Text("채팅방 환경 설정"),
-        ),
+        appBar: AppBar(title: const Text("채팅방 환경 설정")),
         body: Padding(
           padding: const EdgeInsets.all(32.0),
           child: SingleChildScrollView(
@@ -88,28 +86,31 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
 
                     checkList.isEmpty
                         ? context.push(
-                            "${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}/${CustomRouter.makePostStepThreePath}/")
+                          "${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}/${CustomRouter.makePostStepThreePath}/",
+                        )
                         : showCustomDialog(
-                            context,
-                            Column(
-                              children: [
-                                const Text(
-                                  "설정을 다시 확인해주세요",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
+                          context,
+                          Column(
+                            children: [
+                              const Text(
+                                "설정을 다시 확인해주세요",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
                                 ),
-                                ...checkList.map((errorString) {
-                                  return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 32, horizontal: 16),
-                                    child: Text(errorString),
-                                  );
-                                }),
-                              ],
-                            ),
-                          );
+                              ),
+                              ...checkList.map((errorString) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 32,
+                                    horizontal: 16,
+                                  ),
+                                  child: Text(errorString),
+                                );
+                              }),
+                            ],
+                          ),
+                        );
                   },
                   child: const Text("다음 2/3"),
                 ),

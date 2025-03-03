@@ -50,7 +50,7 @@ class _DateOptionState extends State<DateOption> {
               style: const TextStyle(color: Colors.black),
             ),
           ),
-        )
+        ),
       ],
     );
   }

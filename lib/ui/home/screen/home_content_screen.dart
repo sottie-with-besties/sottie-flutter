@@ -58,21 +58,19 @@ class _PostPaginationListViewState
     if (_paginationController.offset >
             _paginationController.position.maxScrollExtent - 200 &&
         _canPagination) {
-      EasyThrottle.throttle(
-        'postPagination',
-        const Duration(seconds: 1),
-        () {
-          if (_isLatestProvider()) {
-            final provider = widget.postProvider
-                as NotifierProvider<HomeLatestPost, PostPaginationEntity>;
-            ref.read(provider.notifier).latestPagination();
-          } else {
-            final provider = widget.postProvider
-                as NotifierProvider<HomeSearchPost, PostPaginationEntity>;
-            ref.read(provider.notifier).searchPagination();
-          }
-        },
-      );
+      EasyThrottle.throttle('postPagination', const Duration(seconds: 1), () {
+        if (_isLatestProvider()) {
+          final provider =
+              widget.postProvider
+                  as NotifierProvider<HomeLatestPost, PostPaginationEntity>;
+          ref.read(provider.notifier).latestPagination();
+        } else {
+          final provider =
+              widget.postProvider
+                  as NotifierProvider<HomeSearchPost, PostPaginationEntity>;
+          ref.read(provider.notifier).searchPagination();
+        }
+      });
     }
   }
 
@@ -83,8 +81,9 @@ class _PostPaginationListViewState
     /// 홈 화면 들어가자 마자 최신 모집글 불러오기
     if (widget.postProvider.runtimeType ==
         NotifierProvider<HomeLatestPost, PostPaginationEntity>) {
-      final provider = widget.postProvider
-          as NotifierProvider<HomeLatestPost, PostPaginationEntity>;
+      final provider =
+          widget.postProvider
+              as NotifierProvider<HomeLatestPost, PostPaginationEntity>;
 
       ref.read(provider.notifier).latestPagination(firstFetch: true);
     }
@@ -115,16 +114,15 @@ class _PostPaginationListViewState
               return const LoadingSkeleton();
             } else if (paginationState == PostPaginationState.loading) {
               return const Center(
-                  child: CircularProgressIndicator(color: mainBlackColor));
+                child: CircularProgressIndicator(color: mainBlackColor),
+              );
             } else if (paginationState == PostPaginationState.fetch) {
               return Container();
             } else {
               /// 데이터가 더 이상 없을 때
               if (postPaginationModel.errorCode == "데이터가 더 이상 존재하지 않습니다") {
                 _canPagination = false;
-                return const Center(
-                  child: Text("데이터가 더 이상 존재하지 않습니다"),
-                );
+                return const Center(child: Text("데이터가 더 이상 존재하지 않습니다"));
               } else {
                 /// 그 외 다른 오류
                 return Column(
@@ -135,19 +133,30 @@ class _PostPaginationListViewState
                     TextButton(
                       onPressed: () async {
                         if (_isLatestProvider()) {
-                          final provider = widget.postProvider
-                              as NotifierProvider<HomeLatestPost,
-                                  PostPaginationEntity>;
-                          ref.read(provider.notifier).latestPagination(
-                              firstFetch:
-                                  postPaginationModel.postEntityList.isEmpty
-                                      ? true
-                                      : false);
+                          final provider =
+                              widget.postProvider
+                                  as NotifierProvider<
+                                    HomeLatestPost,
+                                    PostPaginationEntity
+                                  >;
+                          ref
+                              .read(provider.notifier)
+                              .latestPagination(
+                                firstFetch:
+                                    postPaginationModel.postEntityList.isEmpty
+                                        ? true
+                                        : false,
+                              );
                         } else {
-                          final provider = widget.postProvider
-                              as NotifierProvider<HomeSearchPost,
-                                  PostPaginationEntity>;
-                          ref.read(provider.notifier).searchPagination(
+                          final provider =
+                              widget.postProvider
+                                  as NotifierProvider<
+                                    HomeSearchPost,
+                                    PostPaginationEntity
+                                  >;
+                          ref
+                              .read(provider.notifier)
+                              .searchPagination(
                                 firstFetch:
                                     postPaginationModel.postEntityList.isEmpty
                                         ? true
@@ -181,10 +190,7 @@ Widget _subTitle(String title) {
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     child: Text(
       title,
-      style: const TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 16,
-      ),
+      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
     ),
   );
 }

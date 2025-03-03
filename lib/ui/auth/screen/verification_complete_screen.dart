@@ -38,13 +38,14 @@ class VerificationCompleteScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                        onPressed: () {
-                          context.go(CustomRouter.authPath);
-                        },
-                        child: const Text("로그인 화면으로")),
+                      onPressed: () {
+                        context.go(CustomRouter.authPath);
+                      },
+                      child: const Text("로그인 화면으로"),
+                    ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),

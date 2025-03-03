@@ -6,10 +6,7 @@ import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
 class InChatTypeBox extends StatelessWidget {
-  const InChatTypeBox({
-    super.key,
-    required this.focusNode,
-  });
+  const InChatTypeBox({super.key, required this.focusNode});
 
   final FocusNode focusNode;
 
@@ -33,9 +30,7 @@ class InChatTypeBox extends StatelessWidget {
                   onTap: () {
                     log("사진 및 동영상 고르기");
                   },
-                  child: const Icon(
-                    Icons.photo,
-                  ),
+                  child: const Icon(Icons.photo),
                 ),
                 SizedBox(width: 15 * wu),
                 GestureDetector(
@@ -49,10 +44,7 @@ class InChatTypeBox extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.all(5),
                     child: const FittedBox(
-                      child: Icon(
-                        Icons.send,
-                        color: mainWhiteSilverColor,
-                      ),
+                      child: Icon(Icons.send, color: mainWhiteSilverColor),
                     ),
                   ),
                 ),

@@ -4,7 +4,7 @@ part 'chat_room_model.freezed.dart';
 part 'chat_room_model.g.dart';
 
 @freezed
-class ChatRoomModel with _$ChatRoomModel {
+sealed class ChatRoomModel with _$ChatRoomModel {
   factory ChatRoomModel({
     required int id,
 

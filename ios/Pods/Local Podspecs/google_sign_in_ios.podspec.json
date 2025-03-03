@@ -14,9 +14,9 @@
   "source": {
     "http": "https://github.com/flutter/packages/tree/main/packages/google_sign_in/google_sign_in_ios"
   },
-  "source_files": "Classes/**/*.{h,m}",
-  "public_header_files": "Classes/**/*.h",
-  "module_map": "Classes/FLTGoogleSignInPlugin.modulemap",
+  "source_files": "google_sign_in_ios/Sources/google_sign_in_ios/**/*.{h,m}",
+  "public_header_files": "google_sign_in_ios/Sources/google_sign_in_ios/include/**/*.h",
+  "module_map": "google_sign_in_ios/Sources/google_sign_in_ios/include/FLTGoogleSignInPlugin.modulemap",
   "dependencies": {
     "AppAuth": [
       ">= 1.7.4"
@@ -53,7 +53,7 @@
   "swift_versions": "5.0",
   "resource_bundles": {
     "google_sign_in_ios_privacy": [
-      "Resources/PrivacyInfo.xcprivacy"
+      "google_sign_in_ios/Sources/google_sign_in_ios/Resources/PrivacyInfo.xcprivacy"
     ]
   },
   "swift_version": "5.0"

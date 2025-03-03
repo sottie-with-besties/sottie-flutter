@@ -37,9 +37,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: const Text("모집글 작성"),
-        ),
+        appBar: AppBar(title: const Text("모집글 작성")),
         body: Padding(
           padding: const EdgeInsets.all(32.0),
           child: Column(
@@ -76,13 +74,14 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                         postOptions.title = _titleController.text;
                         postOptions.contents = _contentController.text;
                         context.push(
-                            '${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}');
+                          '${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}',
+                        );
                       }
                     },
                     child: const Text("다음 1/3"),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),

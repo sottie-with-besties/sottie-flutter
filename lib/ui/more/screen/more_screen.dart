@@ -19,8 +19,9 @@ class MoreScreen extends StatelessWidget {
           padding: const EdgeInsets.only(right: 24),
           child: GestureDetector(
             onTap: () {
-              context
-                  .push("${CustomRouter.morePath}/${CustomRouter.storePath}");
+              context.push(
+                "${CustomRouter.morePath}/${CustomRouter.storePath}",
+              );
             },
             child: Container(
               color: Colors.transparent,
@@ -31,15 +32,12 @@ class MoreScreen extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 10),
-                  const FaIcon(
-                    FontAwesomeIcons.coins,
-                    color: Colors.amber,
-                  ),
+                  const FaIcon(FontAwesomeIcons.coins, color: Colors.amber),
                 ],
               ),
             ),
           ),
-        )
+        ),
       ],
       contentChild: const MoreContentScreen(),
     );

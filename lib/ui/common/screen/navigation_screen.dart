@@ -4,10 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 
 class NavigationScreen extends StatelessWidget {
-  const NavigationScreen({
-    super.key,
-    required this.shell,
-  });
+  const NavigationScreen({super.key, required this.shell});
 
   final StatefulNavigationShell shell;
 

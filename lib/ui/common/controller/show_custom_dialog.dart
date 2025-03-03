@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
-Future<void> showCustomDialog(BuildContext context, Widget customChild,
-    {Color? color, Widget? extraButton}) async {
+Future<void> showCustomDialog(
+  BuildContext context,
+  Widget customChild, {
+  Color? color,
+  Widget? extraButton,
+}) async {
   await showGeneralDialog(
     context: context,
     pageBuilder: (context, a1, a2) => Container(),
@@ -23,9 +27,7 @@ Future<void> showCustomDialog(BuildContext context, Widget customChild,
           ),
           actions: [
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: mainGreyColor,
-              ),
+              style: ElevatedButton.styleFrom(backgroundColor: mainGreyColor),
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop();
               },

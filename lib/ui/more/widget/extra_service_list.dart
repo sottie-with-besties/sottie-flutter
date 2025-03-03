@@ -5,10 +5,7 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class ExtraServiceList extends StatelessWidget {
-  const ExtraServiceList({
-    super.key,
-    required this.setStateProfile,
-  });
+  const ExtraServiceList({super.key, required this.setStateProfile});
 
   final void Function(VoidCallback) setStateProfile;
 
@@ -18,49 +15,31 @@ class ExtraServiceList extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12 * wu),
       child: Column(
         children: [
-          _extraService(
-            '내 정보 수정',
-            () async {
-              await context.push(
-                  "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}");
-              setStateProfile(() {});
-            },
-          ),
-          _extraService(
-            '골드 충전소',
-            () {
-              context
-                  .push("${CustomRouter.morePath}/${CustomRouter.storePath}");
-            },
-          ),
-          _extraService(
-            '이벤트',
-            () {
-              context
-                  .push("${CustomRouter.morePath}/${CustomRouter.eventPath}");
-            },
-          ),
-          _extraService(
-            '공지사항',
-            () {
-              context
-                  .push("${CustomRouter.morePath}/${CustomRouter.noticePath}");
-            },
-          ),
-          _extraService(
-            '고객센터',
-            () {
-              context.push(
-                  "${CustomRouter.morePath}/${CustomRouter.customerServicePath}");
-            },
-          ),
-          _extraService(
-            '환경설정',
-            () {
-              context
-                  .push("${CustomRouter.morePath}/${CustomRouter.settingPath}");
-            },
-          ),
+          _extraService('내 정보 수정', () async {
+            await context.push(
+              "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}",
+            );
+            setStateProfile(() {});
+          }),
+          _extraService('골드 충전소', () {
+            context.push("${CustomRouter.morePath}/${CustomRouter.storePath}");
+          }),
+          _extraService('이벤트', () {
+            context.push("${CustomRouter.morePath}/${CustomRouter.eventPath}");
+          }),
+          _extraService('공지사항', () {
+            context.push("${CustomRouter.morePath}/${CustomRouter.noticePath}");
+          }),
+          _extraService('고객센터', () {
+            context.push(
+              "${CustomRouter.morePath}/${CustomRouter.customerServicePath}",
+            );
+          }),
+          _extraService('환경설정', () {
+            context.push(
+              "${CustomRouter.morePath}/${CustomRouter.settingPath}",
+            );
+          }),
         ],
       ),
     );
@@ -77,18 +56,13 @@ Widget _extraService(String serviceTitle, VoidCallback onTap) {
         children: [
           TextButton(
             onPressed: onTap,
-            style: TextButton.styleFrom(
-              foregroundColor: mainBlackColor,
-            ),
+            style: TextButton.styleFrom(foregroundColor: mainBlackColor),
             child: Text(
               serviceTitle,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12 * hu),
             ),
           ),
-          const Icon(
-            Icons.keyboard_arrow_right,
-            color: mainBlackColor,
-          ),
+          const Icon(Icons.keyboard_arrow_right, color: mainBlackColor),
         ],
       ),
     ),

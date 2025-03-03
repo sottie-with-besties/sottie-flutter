@@ -24,10 +24,7 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
   Text _renderSubTitle(String title) {
     return Text(
       title,
-      style: const TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 16,
-      ),
+      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
     );
   }
 
@@ -84,12 +81,13 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                 ),
                 Center(
                   child: TextButton(
-                      onPressed: () {
-                        myInfoEntity.profileUrl = null;
-                        myInfoEntity.myProfilePath = null;
-                        setState(() {});
-                      },
-                      child: const Text("프로필 사진 초기화")),
+                    onPressed: () {
+                      myInfoEntity.profileUrl = null;
+                      myInfoEntity.myProfilePath = null;
+                      setState(() {});
+                    },
+                    child: const Text("프로필 사진 초기화"),
+                  ),
                 ),
                 SizedBox(height: 5 * hu),
                 Center(
@@ -127,27 +125,30 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextButton(
-                        onPressed: () {
-                          context.push(
-                              "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}/${CustomRouter.emailChangePath}");
-                        },
-                        child: const Text("이메일 변경")),
+                      onPressed: () {
+                        context.push(
+                          "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}/${CustomRouter.emailChangePath}",
+                        );
+                      },
+                      child: const Text("이메일 변경"),
+                    ),
                     TextButton(
-                        onPressed: () {
-                          context.push(
-                              "${CustomRouter.authPath}/${CustomRouter.findPasswordPath}");
-                        },
-                        child: const Text("비밀번호 변경")),
+                      onPressed: () {
+                        context.push(
+                          "${CustomRouter.authPath}/${CustomRouter.findPasswordPath}",
+                        );
+                      },
+                      child: const Text("비밀번호 변경"),
+                    ),
                     TextButton(
-                        onPressed: () {
-                          context.push(
-                            "${CustomRouter.authPath}/${CustomRouter.certificationPath}",
-                            extra: {
-                              'isModifyInfo': true,
-                            },
-                          );
-                        },
-                        child: const Text("개인정보 변경 (이름, 성별, 전화번호 등)")),
+                      onPressed: () {
+                        context.push(
+                          "${CustomRouter.authPath}/${CustomRouter.certificationPath}",
+                          extra: {'isModifyInfo': true},
+                        );
+                      },
+                      child: const Text("개인정보 변경 (이름, 성별, 전화번호 등)"),
+                    ),
                   ],
                 ),
               ],

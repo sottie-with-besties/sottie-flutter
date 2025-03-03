@@ -19,9 +19,7 @@ class _TimeOptionState extends State<TimeOption> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const OptionTitle(title: "시간"),
-        const SizedBox(
-          width: 20,
-        ),
+        const SizedBox(width: 20),
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
@@ -37,9 +35,9 @@ class _TimeOptionState extends State<TimeOption> {
 
               postOptions.gatheringDate =
                   (postOptions.gatheringDate ?? DateTime.now()).copyWith(
-                hour: selectedTime.hour,
-                minute: selectedTime.minute,
-              );
+                    hour: selectedTime.hour,
+                    minute: selectedTime.minute,
+                  );
 
               int hour = selectedTime.hour;
               String temp = selectedTime.hour < 12 ? "AM" : "PM";
@@ -58,7 +56,7 @@ class _TimeOptionState extends State<TimeOption> {
               style: const TextStyle(color: Colors.black),
             ),
           ),
-        )
+        ),
       ],
     );
   }

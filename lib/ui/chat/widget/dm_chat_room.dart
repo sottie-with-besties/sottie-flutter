@@ -13,10 +13,7 @@ import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 
 class DmChatRoom extends StatefulWidget {
-  const DmChatRoom({
-    super.key,
-    required this.model,
-  });
+  const DmChatRoom({super.key, required this.model});
 
   final DmModel model;
 
@@ -74,17 +71,16 @@ class _DmChatRoomState extends State<DmChatRoom> {
         onTap: () {
           context.push(
             '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
-            extra: {
-              'dmModel': widget.model,
-              'isChattingOver': false,
-            },
+            extra: {'dmModel': widget.model, 'isChattingOver': false},
           );
         },
         child: Container(
           color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
           child: Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: 12 * wu, vertical: 12 * hu),
+            padding: EdgeInsets.symmetric(
+              horizontal: 12 * wu,
+              vertical: 12 * hu,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -127,7 +123,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

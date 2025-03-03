@@ -4,7 +4,7 @@ part 'alarm_model.freezed.dart';
 part 'alarm_model.g.dart';
 
 @freezed
-class AlarmModel with _$AlarmModel {
+sealed class AlarmModel with _$AlarmModel {
   factory AlarmModel({
     required String id,
     required AlarmType alarmType,

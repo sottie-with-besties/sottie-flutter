@@ -12,17 +12,13 @@ class InChatPhoto extends StatelessWidget {
           CustomRouter.photoMagnificationPath,
           extra: {
             'imageUrl':
-                'https://engineering.linecorp.com/wp-content/uploads/2019/08/flutter1.png'
+                'https://engineering.linecorp.com/wp-content/uploads/2019/08/flutter1.png',
           },
         );
       },
       child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(),
-        ),
-        child: const Center(
-          child: Text("사진"),
-        ),
+        decoration: BoxDecoration(border: Border.all()),
+        child: const Center(child: Text("사진")),
       ),
     );
   }

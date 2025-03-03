@@ -9,9 +9,7 @@ class ExtraCustomerServiceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("고객센터"),
-      ),
+      appBar: AppBar(title: const Text("고객센터")),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -19,10 +17,7 @@ class ExtraCustomerServiceScreen extends StatelessWidget {
             padding: EdgeInsets.all(16.0),
             child: Text(
               "자주 묻는 질문",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
           ),
           const CustomExpansionTile(
@@ -54,12 +49,13 @@ class ExtraCustomerServiceScreen extends StatelessWidget {
               child: OutlinedButton(
                 onPressed: () async {
                   await context.push(
-                      '${CustomRouter.morePath}/${CustomRouter.customerServicePath}/${CustomRouter.contactPath}');
+                    '${CustomRouter.morePath}/${CustomRouter.customerServicePath}/${CustomRouter.contactPath}',
+                  );
                 },
                 child: const Text("문의하기"),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

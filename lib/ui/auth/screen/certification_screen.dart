@@ -30,9 +30,7 @@ class CertificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IamportCertification(
-        appBar: AppBar(
-          title: const Text('Sottie 본인인증'),
-        ),
+        appBar: AppBar(title: const Text('Sottie 본인인증')),
         /* 웹뷰 로딩 컴포넌트 */
         initialChild: const Center(
           child: Text('잠시만 기다려주세요...', style: TextStyle(fontSize: 20)),
@@ -110,7 +108,8 @@ class CertificationScreen extends StatelessWidget {
             if (isModifyInfo) {
               showCustomSnackBar(context, '정보 수정 완료');
               context.go(
-                  '${CustomRouter.morePath}/${CustomRouter.infoModifyPath}');
+                '${CustomRouter.morePath}/${CustomRouter.infoModifyPath}',
+              );
             } else {
               context.go(CustomRouter.verificationCompletePath);
             }

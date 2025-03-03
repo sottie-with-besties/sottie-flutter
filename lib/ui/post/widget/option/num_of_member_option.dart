@@ -32,10 +32,15 @@ class _NumOfMemberSelector extends ConsumerWidget {
       initialSelection: postOptions.peopleNum,
       menuHeight: 200,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-      dropdownMenuEntries: entries
-          .map((val) => DropdownMenuEntry(
-              value: val, label: val == 1 ? '설정' : val.toString()))
-          .toList(),
+      dropdownMenuEntries:
+          entries
+              .map(
+                (val) => DropdownMenuEntry(
+                  value: val,
+                  label: val == 1 ? '설정' : val.toString(),
+                ),
+              )
+              .toList(),
       onSelected: (val) {
         postOptions.peopleNum = val!;
         ref

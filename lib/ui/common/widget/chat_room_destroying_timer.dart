@@ -61,9 +61,7 @@ class _ChatRoomDestroyingTimerState extends State<ChatRoomDestroyingTimer> {
   Widget build(BuildContext context) {
     return Text(
       formatDuration(timeLeftNow),
-      style: const TextStyle(
-        fontWeight: FontWeight.bold,
-      ),
+      style: const TextStyle(fontWeight: FontWeight.bold),
     );
   }
 }

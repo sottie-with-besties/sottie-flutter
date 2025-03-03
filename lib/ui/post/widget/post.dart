@@ -9,11 +9,7 @@ import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
 import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
 class Post extends StatelessWidget {
-  const Post({
-    super.key,
-    required this.entity,
-    required this.isWaiting,
-  });
+  const Post({super.key, required this.entity, required this.isWaiting});
 
   final PostEntity entity;
   final bool isWaiting;
@@ -21,21 +17,14 @@ class Post extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push(
-        CustomRouter.postDetailPath,
-        extra: {
-          'postEntity': entity,
-          'isWaiting': isWaiting,
-        },
-      ),
+      onTap:
+          () => context.push(
+            CustomRouter.postDetailPath,
+            extra: {'postEntity': entity, 'isWaiting': isWaiting},
+          ),
       child: Container(
         decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: mainGreyColor,
-              width: 0.5,
-            ),
-          ),
+          border: Border(top: BorderSide(color: mainGreyColor, width: 0.5)),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16 * wu, vertical: 8 * hu),
         child: Column(

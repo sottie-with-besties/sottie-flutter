@@ -10,7 +10,8 @@ final class PostProvider {
   Future<bool> makePost() async {
     try {
       final resp = await _useCase.makePost(
-          postSetting: postOptions.toJsonForMakePostSend());
+        postSetting: postOptions.toJsonForMakePostSend(),
+      );
 
       // Todo: resp status code에 따른 예외처리
       return true;
@@ -21,10 +22,9 @@ final class PostProvider {
 
   Future<bool> postJoin({required int postId, int userId = 7}) async {
     try {
-      final resp = await _useCase.postJoin(postJoinInfo: {
-        'gatheringId': 18,
-        'userId': 7,
-      });
+      final resp = await _useCase.postJoin(
+        postJoinInfo: {'gatheringId': 18, 'userId': 7},
+      );
       log("성공");
       return true;
     } catch (e, stackTrace) {

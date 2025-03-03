@@ -19,9 +19,7 @@ class MakePostScreenStepThree extends StatelessWidget {
     final postProvider = GetIt.I.get<PostProvider>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("미리 보기"),
-      ),
+      appBar: AppBar(title: const Text("미리 보기")),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
         child: SingleChildScrollView(
@@ -38,31 +36,31 @@ class MakePostScreenStepThree extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30 * hu),
-              Text(
-                postOptions.contents,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
+              Text(postOptions.contents, style: const TextStyle(fontSize: 14)),
               SizedBox(height: 30 * hu),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("카테고리: ${postOptions.gatheringCategory.koreanName}"),
                   Text(
-                      "날짜: ${postOptions.gatheringDate == null ? "날짜 정보 없음" : convertDateTimeIntoString(postOptions.gatheringDate!.toLocal())}"),
+                    "날짜: ${postOptions.gatheringDate == null ? "날짜 정보 없음" : convertDateTimeIntoString(postOptions.gatheringDate!.toLocal())}",
+                  ),
                   Text(
-                      "장소: ${PostLocation.values[postOptions.locationId].koreanName}"),
+                    "장소: ${PostLocation.values[postOptions.locationId].koreanName}",
+                  ),
                   postOptions.ageRestriction
                       ? Text(
-                          "나이: ${convertAgeRangeToString(postOptions.ageFrom, postOptions.ageTo)}")
+                        "나이: ${convertAgeRangeToString(postOptions.ageFrom, postOptions.ageTo)}",
+                      )
                       : const Text("나이 제한 없음"),
                   Text(
-                      "참여 인원: ${postOptions.peopleNum == 0 ? "제한 없음" : postOptions.peopleNum}"),
+                    "참여 인원: ${postOptions.peopleNum == 0 ? "제한 없음" : postOptions.peopleNum}",
+                  ),
                   if (postOptions.genderRestriction !=
                       PostGenderRestriction.NONE)
                     Text(
-                        "남자: ${postOptions.maleNum}명 / 여자: ${postOptions.femaleNum}명"),
+                      "남자: ${postOptions.maleNum}명 / 여자: ${postOptions.femaleNum}명",
+                    ),
                   if (postOptions.mannerRestriction)
                     const Text("매너 온도 제한: 매너온도가 36.5°C 이상인 유저만 입장할 수 있습니다."),
                   if (postOptions.onlyMyFriends)
@@ -83,9 +81,7 @@ class MakePostScreenStepThree extends StatelessWidget {
                           if (makePostSuccess) {
                             await showCustomDialog(
                               context,
-                              const Center(
-                                child: Text('모집글을 작성했습니다'),
-                              ),
+                              const Center(child: Text('모집글을 작성했습니다')),
                             );
                             context.mounted
                                 ? context.go(CustomRouter.homePath)

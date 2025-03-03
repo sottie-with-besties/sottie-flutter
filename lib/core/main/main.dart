@@ -41,15 +41,10 @@ class Sottie extends StatelessWidget {
 
 Future<void> _initApp() async {
   // 파이어베이스
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // 카카오
-  KakaoSdk.init(
-    nativeAppKey: nativeAppKey,
-    javaScriptAppKey: javaScriptKey,
-  );
+  KakaoSdk.init(nativeAppKey: nativeAppKey, javaScriptAppKey: javaScriptKey);
 
   initRepositories(RepositoryEnvironment.dev);
 
@@ -83,9 +78,7 @@ final _customTheme = ThemeData(
         borderRadius: BorderRadius.circular(8),
       ),
       minimumSize: const Size(80, 40),
-      textStyle: const TextStyle(
-        fontWeight: FontWeight.bold,
-      ),
+      textStyle: const TextStyle(fontWeight: FontWeight.bold),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
@@ -108,10 +101,12 @@ final _customTheme = ThemeData(
   datePickerTheme: DatePickerThemeData(
     backgroundColor: mainWhiteSilverColor,
     dayShape: WidgetStateProperty.resolveWith(
-        (_) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+      (_) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+    ),
     // 하이라이트된 날짜의 색을 바꾸는 것이나 코드 동작 안됨. 현재 보라색.
-    dayOverlayColor:
-        WidgetStateProperty.resolveWith((_) => mainWhiteSilverColor),
+    dayOverlayColor: WidgetStateProperty.resolveWith(
+      (_) => mainWhiteSilverColor,
+    ),
   ),
   timePickerTheme: const TimePickerThemeData(
     backgroundColor: mainWhiteSilverColor,
@@ -121,7 +116,7 @@ final _customTheme = ThemeData(
     inactiveTrackColor: mainGreyColor,
     thumbColor: mainBlueColor,
   ),
-  dialogBackgroundColor: mainWhiteSilverColor,
+  dialogTheme: const DialogThemeData(backgroundColor: mainWhiteSilverColor),
   snackBarTheme: const SnackBarThemeData(
     backgroundColor: mainBlueColor,
     contentTextStyle: TextStyle(
@@ -137,8 +132,6 @@ final _customTheme = ThemeData(
       side: const BorderSide(width: 0),
       borderRadius: BorderRadius.circular(32),
     ),
-    labelStyle: const TextStyle(
-      color: Colors.black,
-    ),
+    labelStyle: const TextStyle(color: Colors.black),
   ),
 );

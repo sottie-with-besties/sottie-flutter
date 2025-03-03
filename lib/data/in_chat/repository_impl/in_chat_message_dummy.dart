@@ -10,10 +10,7 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         userIdWhoSent: '12345',
         sentTime: DateTime(2024, 9, 14, 8, 0),
         entity: [
-          InChatMessageDataEntityModel(
-            entity: '안녕하세요.',
-            entityType: 'string',
-          ),
+          InChatMessageDataEntityModel(entity: '안녕하세요.', entityType: 'string'),
         ],
       ),
       InChatMessageDataModel(
@@ -21,10 +18,7 @@ Future<InChatMessageModel> getInChatMessageDummy() async {
         userIdWhoSent: '54321',
         sentTime: DateTime(2024, 9, 14, 8, 1),
         entity: [
-          InChatMessageDataEntityModel(
-            entity: '반갑습니다.',
-            entityType: 'string',
-          ),
+          InChatMessageDataEntityModel(entity: '반갑습니다.', entityType: 'string'),
           InChatMessageDataEntityModel(
             entity: '성함이 어떻게 되세요?',
             entityType: 'string',

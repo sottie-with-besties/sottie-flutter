@@ -36,9 +36,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
   final _verificationProvider = GetIt.I.get<VerificationProvider>();
 
   final loadingCircle = const Center(
-    child: CircularProgressIndicator(
-      color: mainWhiteSilverColor,
-    ),
+    child: CircularProgressIndicator(color: mainWhiteSilverColor),
   );
 
   bool _anyButtonLoading() {
@@ -78,7 +76,9 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
       isNextLoading = true;
       setState(() {});
       final emailVerification = await _verificationProvider.isEmailVerification(
-          email!, _dummyPassword);
+        email!,
+        _dummyPassword,
+      );
       if (emailVerification) {
         await _verificationProvider.deleteEmailUser(email!, _dummyPassword);
         currentStep += 1;
@@ -97,8 +97,10 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
       /// 이메일 인증 스크린에서 뒤로가기 했을 경우
       isCancelLoading = true;
       setState(() {});
-      final String? errorCode =
-          await _verificationProvider.deleteEmailUser(email!, _dummyPassword);
+      final String? errorCode = await _verificationProvider.deleteEmailUser(
+        email!,
+        _dummyPassword,
+      );
       if (errorCode == null) {
         currentStep -= 1;
       } else {
@@ -136,14 +138,12 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
             elevation: 1,
             type: StepperType.horizontal,
             currentStep: currentStep,
-            connectorColor: WidgetStateColor.resolveWith(
-              (state) {
-                if (state.contains(WidgetState.selected)) {
-                  return mainBlueColor;
-                }
-                return mainGreyColor;
-              },
-            ),
+            connectorColor: WidgetStateColor.resolveWith((state) {
+              if (state.contains(WidgetState.selected)) {
+                return mainBlueColor;
+              }
+              return mainGreyColor;
+            }),
             steps: <Step>[
               Step(
                 title: Container(),
@@ -159,9 +159,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                           fontSize: 24,
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       AuthTextField(
                         focusNode: _emailFocusNode,
                         hint: "이메일 입력",
@@ -188,26 +186,19 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                         fontSize: 24,
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     const Text(
                       "인증코드를 발송하였습니다. 이메일을 인증 하신 후 다음 버튼을 눌러주세요.",
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(fontSize: 16),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     OutlinedButton(
-                        onPressed: () async {
-                          await _verificationProvider.sendEmailVerification();
-                        },
-                        child: const Text("이메일 인증 재발송")),
-                    const SizedBox(
-                      height: 30,
+                      onPressed: () async {
+                        await _verificationProvider.sendEmailVerification();
+                      },
+                      child: const Text("이메일 인증 재발송"),
                     ),
+                    const SizedBox(height: 30),
                   ],
                 ),
                 isActive: currentStep > 1,
@@ -227,9 +218,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                           fontSize: 24,
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       AuthTextField(
                         focusNode: _passwordFocusNode,
                         obscure: true,
@@ -243,10 +232,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                         focusNode: _passwordConfirmFocusNode,
                         obscure: true,
                         hint: "한번 더 입력해주세요",
-                        validator: (val) => confirmPassword(
-                          val!,
-                          password!,
-                        ),
+                        validator: (val) => confirmPassword(val!, password!),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -263,23 +249,27 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                                     context,
                                     const Text("비밀번호를 변경하시겠습니까?"),
                                     extraButton: ElevatedButton(
-                                      onPressed: _anyButtonLoading()
-                                          ? null
-                                          : () async {
-                                              isNextLoading = true;
-                                              setState(() {});
-                                              // Todo: 백엔드로 정보 수정 알림 보내야함
-                                              if (context.mounted) {
-                                                showCustomSnackBar(
-                                                    context, '비밀번호를 변경하였습니다.');
-                                                Navigator.of(context,
-                                                        rootNavigator: true)
-                                                    .pop();
-                                                context.pop();
-                                              }
-                                              isNextLoading = false;
-                                              setState(() {});
-                                            },
+                                      onPressed:
+                                          _anyButtonLoading()
+                                              ? null
+                                              : () async {
+                                                isNextLoading = true;
+                                                setState(() {});
+                                                // Todo: 백엔드로 정보 수정 알림 보내야함
+                                                if (context.mounted) {
+                                                  showCustomSnackBar(
+                                                    context,
+                                                    '비밀번호를 변경하였습니다.',
+                                                  );
+                                                  Navigator.of(
+                                                    context,
+                                                    rootNavigator: true,
+                                                  ).pop();
+                                                  context.pop();
+                                                }
+                                                isNextLoading = false;
+                                                setState(() {});
+                                              },
                                       child: const Text("변경"),
                                     ),
                                   );
@@ -310,17 +300,19 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: mainGreyColor,
                       ),
-                      onPressed: () =>
-                          _anyButtonLoading() ? null : _onStepCancel(),
-                      child: isCancelLoading
-                          ? loadingCircle
-                          : const Icon(Icons.arrow_back),
+                      onPressed:
+                          () => _anyButtonLoading() ? null : _onStepCancel(),
+                      child:
+                          isCancelLoading
+                              ? loadingCircle
+                              : const Icon(Icons.arrow_back),
                     ),
                     const SizedBox(width: 20),
                     if (currentStep < 2)
                       ElevatedButton(
-                        onPressed: () =>
-                            _anyButtonLoading() ? null : _onStepContinue(),
+                        onPressed:
+                            () =>
+                                _anyButtonLoading() ? null : _onStepContinue(),
                         child: isNextLoading ? loadingCircle : const Text("다음"),
                       ),
                   ],

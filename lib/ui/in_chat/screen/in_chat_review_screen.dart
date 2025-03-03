@@ -60,14 +60,8 @@ class InChatReviewScreen extends StatelessWidget {
               nickName: '닉네임1',
               guideArrowOn: true,
             ),
-            InChatReview(
-              profileUrl: '12345',
-              nickName: '닉네임2',
-            ),
-            InChatReview(
-              profileUrl: '12346',
-              nickName: '닉네임3',
-            ),
+            InChatReview(profileUrl: '12345', nickName: '닉네임2'),
+            InChatReview(profileUrl: '12346', nickName: '닉네임3'),
           ],
         ),
       ),

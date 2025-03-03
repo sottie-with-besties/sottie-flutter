@@ -37,9 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   final loadingCircle = const Center(
-    child: CircularProgressIndicator(
-      color: mainWhiteSilverColor,
-    ),
+    child: CircularProgressIndicator(color: mainWhiteSilverColor),
   );
 
   final emailKey = GlobalKey<FormState>();
@@ -75,7 +73,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       isNextLoading = true;
       setState(() {});
       final emailVerification = await _verificationProvider.isEmailVerification(
-          email!, _dummyPassword);
+        email!,
+        _dummyPassword,
+      );
       if (emailVerification) {
         await _verificationProvider.deleteEmailUser(email!, _dummyPassword);
         emailSignUp.email = email!;
@@ -90,9 +90,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         emailSignUp.password = password!;
         context.push(
           '${CustomRouter.authPath}/${CustomRouter.certificationPath}',
-          extra: {
-            'isModifyInfo': false,
-          },
+          extra: {'isModifyInfo': false},
         );
       }
     }
@@ -105,8 +103,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
       /// 이메일 인증 스크린에서 뒤로가기 했을 경우
       isCancelLoading = true;
       setState(() {});
-      final String? errorCode =
-          await _verificationProvider.deleteEmailUser(email!, _dummyPassword);
+      final String? errorCode = await _verificationProvider.deleteEmailUser(
+        email!,
+        _dummyPassword,
+      );
       if (errorCode == null) {
         currentStep -= 1;
       } else {
@@ -143,14 +143,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             elevation: 1,
             type: StepperType.horizontal,
             currentStep: currentStep,
-            connectorColor: WidgetStateColor.resolveWith(
-              (state) {
-                if (state.contains(WidgetState.selected)) {
-                  return mainBlueColor;
-                }
-                return mainGreyColor;
-              },
-            ),
+            connectorColor: WidgetStateColor.resolveWith((state) {
+              if (state.contains(WidgetState.selected)) {
+                return mainBlueColor;
+              }
+              return mainGreyColor;
+            }),
             steps: <Step>[
               Step(
                 title: Container(),
@@ -166,9 +164,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           fontSize: 24,
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       AuthTextField(
                         focusNode: _emailFocusNode,
                         hint: "이메일을 입력해주세요.",
@@ -196,26 +192,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         fontSize: 24,
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     const Text(
                       "인증코드를 발송하였습니다. 이메일을 인증 하신 후 다음 버튼을 눌러주세요.",
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(fontSize: 16),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     OutlinedButton(
-                        onPressed: () async {
-                          await _verificationProvider.sendEmailVerification();
-                        },
-                        child: const Text("이메일 인증 재발송")),
-                    const SizedBox(
-                      height: 30,
+                      onPressed: () async {
+                        await _verificationProvider.sendEmailVerification();
+                      },
+                      child: const Text("이메일 인증 재발송"),
                     ),
+                    const SizedBox(height: 30),
                   ],
                 ),
                 isActive: currentStep > 1,
@@ -235,9 +224,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           fontSize: 24,
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       AuthTextField(
                         focusNode: _passwordFocusNode,
                         obscure: true,
@@ -251,10 +238,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         focusNode: _passwordConfirmFocusNode,
                         obscure: true,
                         hint: "한번 더 입력해주세요",
-                        validator: (val) => confirmPassword(
-                          val!,
-                          password!,
-                        ),
+                        validator: (val) => confirmPassword(val!, password!),
                       ),
                     ],
                   ),
@@ -277,22 +261,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         backgroundColor: mainGreyColor,
                       ),
                       onPressed: _anyButtonLoading() ? null : _onStepCancel,
-                      child: isCancelLoading
-                          ? loadingCircle
-                          : const Icon(Icons.arrow_back),
+                      child:
+                          isCancelLoading
+                              ? loadingCircle
+                              : const Icon(Icons.arrow_back),
                     ),
                     const SizedBox(width: 20),
                     ElevatedButton(
                       onPressed: _anyButtonLoading() ? null : _onStepContinue,
-                      child: isNextLoading
-                          ? loadingCircle
-                          : const Text(
-                              "다음",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: mainWhiteSilverColor,
+                      child:
+                          isNextLoading
+                              ? loadingCircle
+                              : const Text(
+                                "다음",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: mainWhiteSilverColor,
+                                ),
                               ),
-                            ),
                     ),
                   ],
                 ),

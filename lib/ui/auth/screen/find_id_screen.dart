@@ -31,9 +31,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
   final _verificationProvider = GetIt.I.get<VerificationProvider>();
 
   final loadingCircle = const Center(
-    child: CircularProgressIndicator(
-      color: mainWhiteSilverColor,
-    ),
+    child: CircularProgressIndicator(color: mainWhiteSilverColor),
   );
 
   bool _anyButtonLoading() {
@@ -50,8 +48,9 @@ class _FindIdScreenState extends State<FindIdScreen> {
 
     if (currentStep == 0) {
       if (phoneNumberKey.currentState!.validate()) {
-        final errorCode =
-            await _verificationProvider.signInWithPhoneNumber(phoneNumber!);
+        final errorCode = await _verificationProvider.signInWithPhoneNumber(
+          phoneNumber!,
+        );
         if (errorCode == null) {
           currentStep += 1;
           setState(() {});
@@ -61,8 +60,9 @@ class _FindIdScreenState extends State<FindIdScreen> {
       }
     } else if (currentStep == 1) {
       /// 번호 인증 화면 -> 인증 성공 후 파이어베이스 유저 폰 번호 정보 삭제
-      final errorCode =
-          await _verificationProvider.signInWithSmsCode(verificationCode!);
+      final errorCode = await _verificationProvider.signInWithSmsCode(
+        verificationCode!,
+      );
       if (errorCode == null) {
         await _verificationProvider.deletePhoneUser();
         currentStep += 1;
@@ -105,14 +105,12 @@ class _FindIdScreenState extends State<FindIdScreen> {
             elevation: 1,
             type: StepperType.horizontal,
             currentStep: currentStep,
-            connectorColor: WidgetStateColor.resolveWith(
-              (state) {
-                if (state.contains(WidgetState.selected)) {
-                  return mainBlueColor;
-                }
-                return mainGreyColor;
-              },
-            ),
+            connectorColor: WidgetStateColor.resolveWith((state) {
+              if (state.contains(WidgetState.selected)) {
+                return mainBlueColor;
+              }
+              return mainGreyColor;
+            }),
             steps: <Step>[
               Step(
                 title: Container(),
@@ -157,12 +155,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      "인증코드를 발송하였습니다",
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
+                    const Text("인증코드를 발송하였습니다", style: TextStyle(fontSize: 16)),
                     const SizedBox(height: 30),
                     Pinput(
                       length: 6,
@@ -172,9 +165,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                         return null;
                       },
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    const SizedBox(height: 30),
                     OutlinedButton(
                       onPressed: () async {
                         final errorCode = await _verificationProvider
@@ -256,17 +247,19 @@ class _FindIdScreenState extends State<FindIdScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: mainGreyColor,
                       ),
-                      onPressed: () =>
-                          _anyButtonLoading() ? null : _onStepCancel(),
-                      child: isCancelLoading
-                          ? loadingCircle
-                          : const Icon(Icons.arrow_back),
+                      onPressed:
+                          () => _anyButtonLoading() ? null : _onStepCancel(),
+                      child:
+                          isCancelLoading
+                              ? loadingCircle
+                              : const Icon(Icons.arrow_back),
                     ),
                     const SizedBox(width: 20),
                     if (currentStep < 2)
                       ElevatedButton(
-                        onPressed: () =>
-                            _anyButtonLoading() ? null : _onStepContinue(),
+                        onPressed:
+                            () =>
+                                _anyButtonLoading() ? null : _onStepContinue(),
                         child: isNextLoading ? loadingCircle : const Text("다음"),
                       ),
                   ],

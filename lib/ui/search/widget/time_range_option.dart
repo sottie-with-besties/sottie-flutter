@@ -53,9 +53,7 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         OutlinedButton(
-          style: OutlinedButton.styleFrom(
-            minimumSize: const Size(0, 50),
-          ),
+          style: OutlinedButton.styleFrom(minimumSize: const Size(0, 50)),
           onPressed: () async {
             TimeRange? tempTime = await showTimeRangePicker(
               context: context,
@@ -70,24 +68,29 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
               ticksColor: Colors.black38,
               strokeColor: Colors.deepPurple.shade200,
               snap: true,
-              labels: [
-                "12 am",
-                "3 am",
-                "6 am",
-                "9 am",
-                "12 pm",
-                "3 pm",
-                "6 pm",
-                "9 pm",
-              ].asMap().entries.map((e) {
-                return ClockLabel.fromIndex(
-                    idx: e.key, length: 8, text: e.value);
-              }).toList(),
+              labels:
+                  [
+                    "12 am",
+                    "3 am",
+                    "6 am",
+                    "9 am",
+                    "12 pm",
+                    "3 pm",
+                    "6 pm",
+                    "9 pm",
+                  ].asMap().entries.map((e) {
+                    return ClockLabel.fromIndex(
+                      idx: e.key,
+                      length: 8,
+                      text: e.value,
+                    );
+                  }).toList(),
               labelOffset: -30,
               labelStyle: const TextStyle(
-                  fontSize: 16,
-                  color: mainGreyColor,
-                  fontWeight: FontWeight.bold),
+                fontSize: 16,
+                color: mainGreyColor,
+                fontWeight: FontWeight.bold,
+              ),
             );
 
             if (tempTime == null) return;
@@ -98,11 +101,8 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
             makeTimeString();
             setState(() {});
           },
-          child: Text(
-            timeString,
-            style: const TextStyle(color: Colors.black),
-          ),
-        )
+          child: Text(timeString, style: const TextStyle(color: Colors.black)),
+        ),
       ],
     );
   }

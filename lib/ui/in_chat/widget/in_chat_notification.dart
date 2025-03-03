@@ -17,21 +17,15 @@ class InChatNotification extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10 * hu),
           ),
           const SizedBox(height: 5),
-          Text(
-            "공지사항 내용입니다.",
-            style: TextStyle(fontSize: 10 * hu),
-          ),
+          Text("공지사항 내용입니다.", style: TextStyle(fontSize: 10 * hu)),
           const SizedBox(height: 5),
           Align(
             alignment: Alignment.centerRight,
             child: Text(
               "12월 4일 수요일 오전 8시 30분",
-              style: TextStyle(
-                color: mainGreyColor,
-                fontSize: 9 * hu,
-              ),
+              style: TextStyle(color: mainGreyColor, fontSize: 9 * hu),
             ),
-          )
+          ),
         ],
       ),
     );
