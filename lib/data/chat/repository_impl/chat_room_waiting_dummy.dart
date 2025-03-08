@@ -5,7 +5,7 @@ Future<List<PostModel>> getChatRoomWaitingDummy() async {
   return [
     PostModel(
       id: 3,
-      gatheringCategory: '번개',
+      gatheringCategory: 'THUNDER',
       title: '안녕하세요',
       locationId: 2,
       gatheringDate: DateTime(2024),
@@ -25,7 +25,7 @@ Future<List<PostModel>> getChatRoomWaitingDummy() async {
     ),
     PostModel(
       id: 3,
-      gatheringCategory: '번개',
+      gatheringCategory: 'THUNDER',
       title: '안녕하세요',
       locationId: 2,
       gatheringDate: DateTime(2024),
@@ -45,7 +45,7 @@ Future<List<PostModel>> getChatRoomWaitingDummy() async {
     ),
     PostModel(
       id: 3,
-      gatheringCategory: '번개',
+      gatheringCategory: 'THUNDER',
       title: '안녕하세요',
       locationId: 2,
       gatheringDate: DateTime(2024),
@@ -59,7 +59,7 @@ Future<List<PostModel>> getChatRoomWaitingDummy() async {
       ageFrom: 2,
       ageTo: 5,
       onlyMyFriends: true,
-      genderRestriction: 'GENERAL',
+      genderRestriction: 'MIX',
       mannerRestriction: true,
       ageRestriction: true,
     ),
