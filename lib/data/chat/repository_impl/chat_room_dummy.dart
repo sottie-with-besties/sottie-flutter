@@ -5,7 +5,7 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
   return [
     ChatRoomModel(
       id: 1,
-      gatheringCategory: '번개',
+      gatheringCategory: 'THUNDER',
       gatheringDate: DateTime(2025, 1, 3, 8, 50),
       locationId: 2,
       title: '친목 모임: 가벼운 저녁 식사',
@@ -29,7 +29,7 @@ Future<List<ChatRoomModel>> getChatRoomDummy() async {
     ),
     ChatRoomModel(
       id: 2,
-      gatheringCategory: '구인/구직',
+      gatheringCategory: 'EXERCISE',
       gatheringDate: _renderDeletingDate(),
       locationId: 2,
       title: '플러터 개발자 구합니다',

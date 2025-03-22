@@ -23,32 +23,31 @@ class SottieCategoryUi extends StatelessWidget {
 Widget _categoryClassify(PostCategory postCategory, Color color) {
   Widget sottieCategory = Container();
 
-  if (postCategory == PostCategory.THUNDER) {
-    sottieCategory = _renderCategory(Icons.bolt, '번개', color);
-  }
-
-  if (postCategory == PostCategory.FRIENDSHIP) {
-    sottieCategory = _renderCategory(FontAwesomeIcons.userGroup, '친목', color);
-  }
-
-  if (postCategory == PostCategory.STUDY) {
-    sottieCategory = _renderCategory(FontAwesomeIcons.pencil, '공부', color);
-  }
-
-  if (postCategory == PostCategory.HIRING) {
-    sottieCategory = _renderCategory(Icons.note_alt, '구인/구직', color);
-  }
-
-  if (postCategory == PostCategory.GAME) {
-    sottieCategory = _renderCategory(Icons.gamepad, '게임', color);
-  }
-
-  if (postCategory == PostCategory.EXERCISE) {
-    sottieCategory = _renderCategory(FontAwesomeIcons.dumbbell, '운동', color);
-  }
-
-  if (postCategory == PostCategory.OTHERS) {
-    sottieCategory = _renderCategory(Icons.more_horiz, '기타', color);
+  switch (postCategory) {
+    case PostCategory.THUNDER:
+      sottieCategory = _renderCategory(Icons.bolt, '번개', color);
+      break;
+    case PostCategory.FRIENDSHIP:
+      sottieCategory = _renderCategory(FontAwesomeIcons.userGroup, '친목', color);
+      break;
+    case PostCategory.STUDY:
+      sottieCategory = _renderCategory(FontAwesomeIcons.pencil, '공부', color);
+      break;
+    case PostCategory.HIRING:
+      sottieCategory = _renderCategory(Icons.note_alt, '구인/구직', color);
+      break;
+    case PostCategory.GAME:
+      sottieCategory = _renderCategory(Icons.gamepad, '게임', color);
+      break;
+    case PostCategory.EXERCISE:
+      sottieCategory = _renderCategory(FontAwesomeIcons.dumbbell, '운동', color);
+      break;
+    case PostCategory.OTHERS:
+      sottieCategory = _renderCategory(Icons.more_horiz, '기타', color);
+      break;
+    default:
+      sottieCategory = Container();
+      break;
   }
 
   return sottieCategory;

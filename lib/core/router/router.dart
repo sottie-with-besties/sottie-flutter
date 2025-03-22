@@ -13,8 +13,6 @@ import 'package:sottie_flutter/ui/common/screen/photo_magnification_screen.dart'
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_util_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
-import 'package:sottie_flutter/ui/in_chat/screen/in_chat_notification_list_screen.dart';
-import 'package:sottie_flutter/ui/in_chat/screen/in_chat_photo_list_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/email_change_screen.dart';
@@ -54,9 +52,6 @@ sealed class CustomRouter {
   static const chatPath = "/chat";
   static const inChatPath = "inChat";
   static const inChatInfoPath = "inChatInfo";
-  static const inChatPhotoListPath = "inChatPhotoList";
-  static const inChatNotificationListPath = "inChatNotificationList";
-  static const inChatParticipationListPath = "inChatParticipationList";
 
   /// Friend
   static const friendPath = "/friend";
@@ -180,14 +175,6 @@ final _routes = [
                         },
                       );
                     },
-                  ),
-                  GoRoute(
-                    path: CustomRouter.inChatPhotoListPath,
-                    builder: (_, __) => const InChatPhotoListScreen(),
-                  ),
-                  GoRoute(
-                    path: CustomRouter.inChatNotificationListPath,
-                    builder: (_, __) => const InChatNotificationListScreen(),
                   ),
                 ],
               ),

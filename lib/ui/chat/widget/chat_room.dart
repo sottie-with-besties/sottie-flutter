@@ -103,7 +103,9 @@ class ChatRoom extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SottieCategoryUi(
-                        postCategory: PostCategory.values.byName('THUNDER'),
+                        postCategory: PostCategory.values.byName(
+                          model.gatheringCategory,
+                        ),
                       ),
                       CurrentNumOfMember(
                         currentPeopleNum: model.currentPeopleNum,

@@ -1,6 +1,6 @@
 {
   "name": "kakao_flutter_sdk_common",
-  "version": "1.9.6",
+  "version": "1.9.7-2",
   "summary": "A new flutter plugin project.",
   "description": "A new flutter plugin project.",
   "homepage": "https://github.com/kakao/kakao_flutter_sdk",
@@ -20,7 +20,7 @@
     ]
   },
   "platforms": {
-    "ios": "11.0"
+    "ios": "13.0"
   },
   "swift_versions": "5.0",
   "resource_bundles": {
