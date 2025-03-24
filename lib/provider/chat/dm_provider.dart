@@ -1,13 +1,15 @@
+import 'package:get_it/get_it.dart' show GetIt;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sottie_flutter/data/chat/model/dm_model.dart';
-import 'package:sottie_flutter/data/chat/repository_impl/dm_dummy.dart';
+import 'package:sottie_flutter/domain/chat/entity/dm_entity.dart';
+import 'package:sottie_flutter/domain/chat/use_case/chat_use_case.dart';
 
 part 'dm_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 final class DmState extends _$DmState {
   @override
-  FutureOr<List<DmModel>> build() {
-    return getDmDummy();
+  FutureOr<List<DmEntity>> build() {
+    final useCase = GetIt.I.get<ChatUseCase>();
+    return useCase.getDmList();
   }
 }

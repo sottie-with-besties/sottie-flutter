@@ -86,7 +86,7 @@ PODS:
     - Flutter
   - image_picker_ios (0.0.1):
     - Flutter
-  - kakao_flutter_sdk_common (1.9.7-2):
+  - kakao_flutter_sdk_common (1.9.7-3):
     - Flutter
   - path_provider_foundation (0.0.1):
     - Flutter
@@ -195,7 +195,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   iamport_webview_flutter: 70dbc31045e4cf7a0c829b76c6f8319dc94b299e
   image_picker_ios: c560581cceedb403a6ff17f2f816d7fea1421fc1
-  kakao_flutter_sdk_common: 33bdad33c76e63101b03a497aedf42e7ea68549a
+  kakao_flutter_sdk_common: 3dc8492c202af7853585d151490b1c5c6b7576cb
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   portone_flutter: 6b8c0e0eb2ef1f8c3108ae50af2016359fd7573c
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21

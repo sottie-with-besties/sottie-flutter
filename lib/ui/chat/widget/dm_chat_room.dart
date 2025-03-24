@@ -5,7 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/chat/model/dm_model.dart';
+import 'package:sottie_flutter/domain/chat/entity/dm_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
@@ -13,9 +13,9 @@ import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 
 class DmChatRoom extends StatefulWidget {
-  const DmChatRoom({super.key, required this.model});
+  const DmChatRoom({super.key, required this.entity});
 
-  final DmModel model;
+  final DmEntity entity;
 
   @override
   State<DmChatRoom> createState() => _DmChatRoomState();
@@ -71,7 +71,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
         onTap: () {
           context.push(
             '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
-            extra: {'dmModel': widget.model, 'isChattingOver': false},
+            extra: {'dmEntity': widget.entity, 'isChattingOver': false},
           );
         },
         child: Container(
@@ -85,8 +85,8 @@ class _DmChatRoomState extends State<DmChatRoom> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SottieUser(
-                  model: widget.model.userModel,
-                  heroTag: widget.model.userModel.id.toString(),
+                  model: widget.entity.userModel,
+                  heroTag: widget.entity.userModel.id.toString(),
                   isMyFriend: true,
                   goToDetailPath: false,
                   textWidth: 150,
@@ -95,7 +95,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
                   children: [
                     Text(
                       renderCustomStringTime(
-                        widget.model.latestTime.toLocal(),
+                        widget.entity.latestTime.toLocal(),
                         DateTime.now().toLocal(),
                       ),
                       style: TextStyle(
@@ -113,7 +113,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
                       ),
                       child: Center(
                         child: Text(
-                          widget.model.notReadMsg.toString(),
+                          widget.entity.notReadMsg.toString(),
                           style: const TextStyle(
                             color: mainWhiteSilverColor,
                             fontWeight: FontWeight.bold,

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/data/post/model/post_model.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart';
+import 'package:sottie_flutter/domain/chat/entity/chat_room_entity.dart';
 import 'package:sottie_flutter/domain/post/entity/post_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
 class InChatDrawer extends StatelessWidget {
-  const InChatDrawer({super.key, required this.chatRoomModel});
+  const InChatDrawer({super.key, required this.chatRoomEntity});
 
-  final ChatRoomModel chatRoomModel;
+  final ChatRoomEntity chatRoomEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -32,24 +32,24 @@ class InChatDrawer extends StatelessWidget {
                     extra: {
                       'postEntity': PostEntity.fromModel(
                         model: PostModel(
-                          id: chatRoomModel.id,
-                          gatheringCategory: chatRoomModel.gatheringCategory,
-                          title: chatRoomModel.title,
-                          locationId: chatRoomModel.locationId,
-                          gatheringDate: chatRoomModel.gatheringDate,
-                          contents: chatRoomModel.contents,
-                          currentPeopleNum: chatRoomModel.currentPeopleNum,
-                          peopleNum: chatRoomModel.peopleNum,
-                          currentMaleNum: chatRoomModel.currentMaleNum,
-                          maleNum: chatRoomModel.maleNum,
-                          currentFemaleNum: chatRoomModel.currentFemaleNum,
-                          femaleNum: chatRoomModel.femaleNum,
-                          ageFrom: chatRoomModel.ageFrom,
-                          ageTo: chatRoomModel.ageTo,
-                          onlyMyFriends: chatRoomModel.onlyMyFriends,
-                          genderRestriction: chatRoomModel.genderRestriction,
-                          mannerRestriction: chatRoomModel.mannerRestriction,
-                          ageRestriction: chatRoomModel.ageRestriction,
+                          id: chatRoomEntity.id,
+                          gatheringCategory: chatRoomEntity.gatheringCategory,
+                          title: chatRoomEntity.title,
+                          locationId: chatRoomEntity.locationId,
+                          gatheringDate: chatRoomEntity.gatheringDate,
+                          contents: chatRoomEntity.contents,
+                          currentPeopleNum: chatRoomEntity.currentPeopleNum,
+                          peopleNum: chatRoomEntity.peopleNum,
+                          currentMaleNum: chatRoomEntity.currentMaleNum,
+                          maleNum: chatRoomEntity.maleNum,
+                          currentFemaleNum: chatRoomEntity.currentFemaleNum,
+                          femaleNum: chatRoomEntity.femaleNum,
+                          ageFrom: chatRoomEntity.ageFrom,
+                          ageTo: chatRoomEntity.ageTo,
+                          onlyMyFriends: chatRoomEntity.onlyMyFriends,
+                          genderRestriction: chatRoomEntity.genderRestriction,
+                          mannerRestriction: chatRoomEntity.mannerRestriction,
+                          ageRestriction: chatRoomEntity.ageRestriction,
                         ),
                       ),
                     },

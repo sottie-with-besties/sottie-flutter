@@ -1,3 +1,5 @@
+import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
+
 final class ChatRoomEntity {
   final int id;
 
@@ -80,7 +82,7 @@ final class ChatRoomEntity {
     required this.ageRestriction,
   });
 
-  factory ChatRoomEntity.fromModel({required ChatRoomEntity model}) {
+  factory ChatRoomEntity.fromModel({required ChatRoomModel model}) {
     return ChatRoomEntity(
       id: model.id,
       gatheringCategory: model.gatheringCategory,

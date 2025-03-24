@@ -6,7 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_category.dart';
 import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_gender_restriction.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
@@ -17,10 +16,12 @@ import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
-class ChatRoom extends StatelessWidget {
-  const ChatRoom({super.key, required this.model});
+import '../../../domain/chat/entity/chat_room_entity.dart';
 
-  final ChatRoomModel model;
+class ChatRoom extends StatelessWidget {
+  const ChatRoom({super.key, required this.entity});
+
+  final ChatRoomEntity entity;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class ChatRoom extends StatelessWidget {
     /// 채팅 모임 날짜 기준 24시간 경과 후 채팅방이 사라지기 시작함. 24시간 후 완전히 사라짐.
     /// 모임 날짜 + 24시간 까지 채팅 가능, 그 이후 24시간 채팅방 삭제 대기
     final now = DateTime.now().toLocal();
-    final du = now.difference(model.gatheringDate);
+    final du = now.difference(entity.gatheringDate);
 
     /// inDays == 1은 시간 차이가 24시간 이상 48시간 미만을 의미
     if (du.inDays >= 1) {
@@ -85,7 +86,7 @@ class ChatRoom extends StatelessWidget {
         onTap: () {
           context.push(
             '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
-            extra: {'chatRoomModel': model, 'isChattingOver': isChattingOver},
+            extra: {'chatRoomEntity': entity, 'isChattingOver': isChattingOver},
           );
         },
         child: Container(
@@ -104,18 +105,18 @@ class ChatRoom extends StatelessWidget {
                     children: [
                       SottieCategoryUi(
                         postCategory: PostCategory.values.byName(
-                          model.gatheringCategory,
+                          entity.gatheringCategory,
                         ),
                       ),
                       CurrentNumOfMember(
-                        currentPeopleNum: model.currentPeopleNum,
-                        peopleNum: model.peopleNum,
-                        currentMaleNum: model.currentMaleNum,
-                        maleNum: model.maleNum,
-                        currentFemaleNum: model.currentFemaleNum,
-                        femaleNum: model.femaleNum,
+                        currentPeopleNum: entity.currentPeopleNum,
+                        peopleNum: entity.peopleNum,
+                        currentMaleNum: entity.currentMaleNum,
+                        maleNum: entity.maleNum,
+                        currentFemaleNum: entity.currentFemaleNum,
+                        femaleNum: entity.femaleNum,
                         genderRestriction: PostGenderRestriction.values.byName(
-                          model.genderRestriction,
+                          entity.genderRestriction,
                         ),
                       ),
                     ],
@@ -127,19 +128,19 @@ class ChatRoom extends StatelessWidget {
                   children: [
                     ChatRoomProfiles(
                       profileCount:
-                          model.profileThumbnailsUrl.length > 4
+                          entity.profileThumbnailsUrl.length > 4
                               ? 4
-                              : model.profileThumbnailsUrl.length,
+                              : entity.profileThumbnailsUrl.length,
                       profileSize:
-                          model.profileThumbnailsUrl.length < 2 ? 45.0 : 30.0,
+                          entity.profileThumbnailsUrl.length < 2 ? 45.0 : 30.0,
                     ),
                     ChatRoomInfo(
-                      gatheringDate: model.gatheringDate,
-                      locationId: model.locationId,
-                      chatTitle: model.title,
-                      latestMsg: model.latestMsg,
-                      latestTime: model.latestTime,
-                      notReadMsg: model.notReadMsg,
+                      gatheringDate: entity.gatheringDate,
+                      locationId: entity.locationId,
+                      chatTitle: entity.title,
+                      latestMsg: entity.latestMsg,
+                      latestTime: entity.latestTime,
+                      notReadMsg: entity.notReadMsg,
                       isChattingOver: isChattingOver,
                       chatRoomDisappearingTime: chatRoomDisappearingTime,
                     ),

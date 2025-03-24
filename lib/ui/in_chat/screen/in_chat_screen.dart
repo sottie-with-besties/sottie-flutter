@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/chat/model/chat_room_model.dart';
-import 'package:sottie_flutter/data/chat/model/dm_model.dart';
+import 'package:sottie_flutter/domain/chat/entity/chat_room_entity.dart';
+import 'package:sottie_flutter/domain/chat/entity/dm_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_review_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_box.dart';
@@ -11,13 +11,13 @@ import 'package:sottie_flutter/ui/in_chat/widget/in_chat_type_box.dart';
 class InChatScreen extends StatefulWidget {
   const InChatScreen({
     super.key,
-    this.chatRoomModel,
-    this.dmModel,
+    this.chatRoomEntity,
+    this.dmEntity,
     required this.isChattingOver,
   });
 
-  final ChatRoomModel? chatRoomModel;
-  final DmModel? dmModel;
+  final ChatRoomEntity? chatRoomEntity;
+  final DmEntity? dmEntity;
   final bool isChattingOver;
 
   @override
@@ -35,7 +35,7 @@ class _InChatScreenState extends State<InChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDm = widget.chatRoomModel == null;
+    final isDm = widget.chatRoomEntity == null;
 
     return GestureDetector(
       onTap: _focusNode.unfocus,
@@ -43,8 +43,8 @@ class _InChatScreenState extends State<InChatScreen> {
         appBar: AppBar(
           title: Text(
             isDm
-                ? widget.dmModel!.userModel.nickname
-                : widget.chatRoomModel!.title,
+                ? widget.dmEntity!.userModel.nickname
+                : widget.chatRoomEntity!.title,
             style: const TextStyle(color: mainWhiteSilverColor),
           ),
           backgroundColor: mainBlueColor,
@@ -52,13 +52,13 @@ class _InChatScreenState extends State<InChatScreen> {
         ),
         backgroundColor: mainWhiteSilverColor,
         endDrawer:
-            isDm ? null : InChatDrawer(chatRoomModel: widget.chatRoomModel!),
+            isDm ? null : InChatDrawer(chatRoomEntity: widget.chatRoomEntity!),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InChatBox(
               isChattingOver: widget.isChattingOver,
-              date: widget.chatRoomModel?.gatheringDate ?? DateTime(2000),
+              date: widget.chatRoomEntity?.gatheringDate ?? DateTime(2000),
             ),
             if (!widget.isChattingOver) InChatTypeBox(focusNode: _focusNode),
             if (widget.isChattingOver)

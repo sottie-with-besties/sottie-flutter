@@ -88,13 +88,6 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-
-    /// 최근 채팅이 보이도록 채팅방 입장하기
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_scrollController.hasClients) {
-        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-      }
-    });
   }
 
   @override
@@ -107,13 +100,14 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
   /// 키보드가 올라왔을 때 채팅창 스크롤을 맨 아래로 내려서 마지막 대화내용이 보일 수 있도록 한다.
   /// if문의 _viewInsetsBottom(이전의 바텀 뷰 인셋) != bottom(현재 바텀 뷰 인셋) 조건은
   /// 키보드가 올라오는 중 및 내려가는 중을 의미하는 것이며 그 이외에는 유저가 스크롤 할 수 있게 한다.
+  /// ListView의 reverse를 true로 하면 맨 아래가 포지션 값이 0이 된다.
   @override
   void didChangeMetrics() {
     final bottom = View.of(context).viewInsets.bottom;
 
     if (_viewInsetsBottom != bottom) {
       _viewInsetsBottom = bottom;
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      _scrollController.jumpTo(_scrollController.position.minScrollExtent);
     }
   }
 
@@ -125,6 +119,7 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
 
         /// ListView.builder => 메모리 동적 해제
         child: ListView.builder(
+          reverse: true,
           controller: _scrollController,
           physics: const ClampingScrollPhysics(),
           itemCount: widget.model.inChatMessageData.length + 1,

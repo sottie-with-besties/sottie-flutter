@@ -39,7 +39,7 @@ class ChatRoomScreen extends ConsumerWidget {
         return ListView(
           children:
               chatRoomList
-                  .map<Widget>((data) => ChatRoom(model: data))
+                  .map<Widget>((data) => ChatRoom(entity: data))
                   .toList(),
         );
       },

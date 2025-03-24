@@ -150,8 +150,8 @@ final _routes = [
                 builder: (_, state) {
                   final params = state.extra as Map<String, dynamic>;
                   return InChatScreen(
-                    chatRoomModel: params['chatRoomModel'],
-                    dmModel: params['dmModel'],
+                    chatRoomEntity: params['chatRoomEntity'],
+                    dmEntity: params['dmEntity'],
                     isChattingOver: params['isChattingOver'] ?? false,
                   );
                 },

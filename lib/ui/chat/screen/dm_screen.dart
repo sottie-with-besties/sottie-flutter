@@ -28,7 +28,7 @@ class DmScreen extends ConsumerWidget {
         }
 
         return ListView(
-          children: dmList.map((e) => DmChatRoom(model: e)).toList(),
+          children: dmList.map((e) => DmChatRoom(entity: e)).toList(),
         );
       },
       error: (_, __) {

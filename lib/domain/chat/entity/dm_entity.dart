@@ -1,3 +1,4 @@
+import 'package:sottie_flutter/data/chat/model/dm_model.dart';
 import 'package:sottie_flutter/data/user/model/user_model.dart' show UserModel;
 
 final class DmEntity {
@@ -23,7 +24,7 @@ final class DmEntity {
     required this.notReadMsg,
   });
 
-  factory DmEntity.fromModel({required DmEntity model}) {
+  factory DmEntity.fromModel({required DmModel model}) {
     return DmEntity(
       id: model.id,
       userModel: model.userModel,

@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:sottie_flutter/domain/chat/use_case/chat_use_case.dart';
 import 'package:sottie_flutter/domain/post/use_case/post_use_case.dart';
 import 'package:sottie_flutter/provider/auth/auth_provider.dart';
 import 'package:sottie_flutter/provider/auth/verification_provider.dart';
@@ -16,4 +17,5 @@ void initInstances() {
 
   /// 유스 케이스
   GetIt.I.registerSingleton<PostUseCase>(PostUseCase());
+  GetIt.I.registerSingleton<ChatUseCase>(ChatUseCase());
 }
