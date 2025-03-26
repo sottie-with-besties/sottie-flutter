@@ -39,7 +39,7 @@ sealed class InChatDataModel with _$InChatDataModel {
     required int userId,
 
     required String messageId,
-    
+
     required String inChatDataType,
 
     required String inChatMessageType,
