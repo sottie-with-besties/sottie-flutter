@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/in_chat/model/in_chat_message_model.dart';
+import 'package:sottie_flutter/data/in_chat/model/in_chat_event_model.dart';
 import 'package:sottie_flutter/data/in_chat/repository_impl/in_chat_message_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
@@ -45,7 +45,7 @@ class InChatBox extends StatelessWidget {
         ),
       ),
       callBack: (futureData) {
-        final data = futureData as InChatMessageModel;
+        final data = futureData as InChatEventListModel;
 
         return _ChatBox(
           model: data,
@@ -64,7 +64,7 @@ class _ChatBox extends StatefulWidget {
     required this.date,
   });
 
-  final InChatMessageModel model;
+  final InChatEventListModel model;
   final bool isChattingOver;
   final DateTime date; // 모임 날짜
 
@@ -122,10 +122,10 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
           reverse: true,
           controller: _scrollController,
           physics: const ClampingScrollPhysics(),
-          itemCount: widget.model.inChatMessageData.length + 1,
-          cacheExtent: widget.model.inChatMessageData.length.toDouble() * 100,
+          itemCount: widget.model.inChatEventList.length + 1,
+          cacheExtent: widget.model.inChatEventList.length.toDouble() * 100,
           itemBuilder: (_, index) {
-            if (index == widget.model.inChatMessageData.length) {
+            if (index == widget.model.inChatEventList.length) {
               Duration? du;
 
               final gatheringDate = widget.date.toLocal();
@@ -162,7 +162,7 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
                   : Container();
             } else {
               /// 날짜 구분 ui 코드
-              final sentTime = widget.model.inChatMessageData[index].sentTime;
+              final sentTime = widget.model.inChatEventList[index].timeStamp;
               final dateSentTime = sentTime.toLocal();
 
               final isAnotherDay = latestSentTime.day != dateSentTime.day;
@@ -192,7 +192,7 @@ class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
                   /// ListView.builder의 특성으로 인해 메모리에서 해제 되면 날짜도 사라진다.
                   /// 위로 올릴 때 날짜의 차이가 -1이 된다.
                   if (isAnotherDay) _renderSentTime(latestSentTime),
-                  _renderDmChatBox(widget.model.inChatMessageData[index]),
+                  _renderDmChatBox(widget.model.inChatEventList[index]),
                 ],
               );
             }
@@ -220,10 +220,10 @@ Widget _renderSentTime(DateTime sentTime) {
   );
 }
 
-Widget _renderDmChatBox(InChatMessageDataModel model) {
+Widget _renderDmChatBox(InChatEventModel model) {
   /// 내가 보낸 메세지이면 true
   /// 추후 내 정보의 id와 바꾸는 코드로 변경해야 함
-  final myMsg = model.userIdWhoSent == '12345';
+  final myMsg = model.inChatData.userId == 12345;
 
   return Padding(
     padding: const EdgeInsets.only(left: 8),
@@ -240,40 +240,40 @@ Widget _renderDmChatBox(InChatMessageDataModel model) {
               crossAxisAlignment:
                   myMsg ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
-                ...model.entity.map((entityData) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxHeight: 150 * hu,
-                        maxWidth: 150 * wu,
-                      ),
-                      child: SingleChildScrollView(
-                        physics: const ClampingScrollPhysics(),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: myMsg ? mainBlueColor : mainWhiteSilverColor,
-                            borderRadius: BorderRadius.circular(5),
-                            border: myMsg ? null : Border.all(width: 0.5),
-                          ),
-                          padding: const EdgeInsets.all(12),
-                          child: Text(
-                            entityData.entity,
-                            style: TextStyle(
-                              color:
-                                  myMsg ? mainWhiteSilverColor : Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-                const SizedBox(height: 5),
-                Text(
-                  renderCustomStringTime(model.sentTime, model.sentTime),
-                  style: TextStyle(fontSize: 8 * hu),
-                ),
+                // ...model.entity.map((entityData) {
+                //   return Padding(
+                //     padding: const EdgeInsets.only(bottom: 8),
+                //     child: ConstrainedBox(
+                //       constraints: BoxConstraints(
+                //         maxHeight: 150 * hu,
+                //         maxWidth: 150 * wu,
+                //       ),
+                //       child: SingleChildScrollView(
+                //         physics: const ClampingScrollPhysics(),
+                //         child: Container(
+                //           decoration: BoxDecoration(
+                //             color: myMsg ? mainBlueColor : mainWhiteSilverColor,
+                //             borderRadius: BorderRadius.circular(5),
+                //             border: myMsg ? null : Border.all(width: 0.5),
+                //           ),
+                //           padding: const EdgeInsets.all(12),
+                //           child: Text(
+                //             entityData.entity,
+                //             style: TextStyle(
+                //               color:
+                //                   myMsg ? mainWhiteSilverColor : Colors.black,
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //   );
+                // }),
+                // const SizedBox(height: 5),
+                // Text(
+                //   renderCustomStringTime(model.inChatData, model.sentTime),
+                //   style: TextStyle(fontSize: 8 * hu),
+                // ),
               ],
             ),
           ],

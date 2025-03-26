@@ -2,8 +2,8 @@
 
 enum InChatEvent { INITIAL_ENTRANCE, ENTRANCE, SEND_MESSAGE }
 
+enum InChatEventStatus { SUCCESS, FAIL }
+
 enum InChatMessageType { TEXT, IMAGE, VIDEO, FILE }
 
-enum InChatChatType { ENTRANCE, CHAT, EXIT }
-
-enum InChatStatus { SUCCESS, FAIL }
+enum InChatDataType { ENTRANCE, CHAT, EXIT }
