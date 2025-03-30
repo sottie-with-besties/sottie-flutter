@@ -4,8 +4,8 @@ import 'package:sottie_flutter/domain/chat/entity/chat_room_entity.dart';
 import 'package:sottie_flutter/domain/chat/entity/dm_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_review_screen.dart';
-import 'package:sottie_flutter/ui/in_chat/widget/in_chat_box.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_drawer.dart';
+import 'package:sottie_flutter/ui/in_chat/widget/in_chat_events_layout.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_type_box.dart';
 
 class InChatScreen extends StatefulWidget {
@@ -56,7 +56,7 @@ class _InChatScreenState extends State<InChatScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            InChatBox(
+            InChatEventsLayout(
               isChattingOver: widget.isChattingOver,
               date: widget.chatRoomEntity?.gatheringDate ?? DateTime(2000),
             ),

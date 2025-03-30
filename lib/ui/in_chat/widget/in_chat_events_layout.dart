@@ -8,8 +8,8 @@ import 'package:sottie_flutter/ui/common/widget/chat_room_destroying_timer.dart'
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
-class InChatBox extends StatelessWidget {
-  const InChatBox({
+class InChatEventsLayout extends StatelessWidget {
+  const InChatEventsLayout({
     super.key,
     required this.isChattingOver,
     required this.date,
@@ -47,7 +47,7 @@ class InChatBox extends StatelessWidget {
       callBack: (futureData) {
         final data = futureData as InChatEventListModel;
 
-        return _ChatBox(
+        return _EventsList(
           model: data,
           isChattingOver: isChattingOver,
           date: date,
@@ -57,8 +57,8 @@ class InChatBox extends StatelessWidget {
   }
 }
 
-class _ChatBox extends StatefulWidget {
-  const _ChatBox({
+class _EventsList extends StatefulWidget {
+  const _EventsList({
     required this.model,
     required this.isChattingOver,
     required this.date,
@@ -69,10 +69,10 @@ class _ChatBox extends StatefulWidget {
   final DateTime date; // 모임 날짜
 
   @override
-  State<_ChatBox> createState() => _ChatBoxState();
+  State<_EventsList> createState() => _EventsListState();
 }
 
-class _ChatBoxState extends State<_ChatBox> with WidgetsBindingObserver {
+class _EventsListState extends State<_EventsList> with WidgetsBindingObserver {
   // didChangeMetrics
   double _viewInsetsBottom = 0;
 

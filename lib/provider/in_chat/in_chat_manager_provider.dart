@@ -3,6 +3,7 @@ import 'package:sottie_flutter/core/rest_api/repository_env.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
 final class InChatManagerProvider {
+  /// STOMP 웹소켓 생성
   final StompClient stompClient = StompClient(
     config: StompConfig(
       url: '$devServerIp/chat',
@@ -25,13 +26,17 @@ final class InChatManagerProvider {
     ),
   );
 
+  /// 소켓 구독 취소
+  /// subscribe 함수를 호출 시 unSubscribe 함수를 반환한다.
+  Function? unSubscribeFn;
+
   /// 소켓 초기화
   void initStompClientSocket({required String roomId}) {
     try {
       if (!stompClient.isActive) {
         stompClient.activate();
       }
-      stompClient.subscribe(
+      unSubscribeFn = stompClient.subscribe(
         destination: '/exchange/sottie.chat.exchange/*.room.$roomId',
         callback: (StompFrame frame) {},
         headers: <String, String>{
@@ -46,9 +51,23 @@ final class InChatManagerProvider {
     }
   }
 
+  /// 소켓 구독 취소
+  void unSubscribe() {
+    if (unSubscribeFn != null) {
+      unSubscribeFn!();
+      unSubscribeFn = null;
+    }
+  }
+
+  /// 소켓 비활성화
   void deactivateStompClientSocket() {
     if (stompClient.isActive) {
       stompClient.deactivate();
     }
+  }
+  
+  /// 소켓이 잘 연결되어있는지 확인
+  bool canSendData() {
+    return stompClient.isActive && stompClient.connected;
   }
 }
