@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sottie_flutter/data/user/model/user_model.dart';
 
 part 'in_chat_event_model.freezed.dart';
 part 'in_chat_event_model.g.dart';
@@ -7,6 +8,8 @@ part 'in_chat_event_model.g.dart';
 sealed class InChatEventListModel with _$InChatEventListModel {
   factory InChatEventListModel({
     required String roomId,
+
+    required List<UserModel> userList,
 
     required List<InChatEventModel> inChatEventList,
   }) = _InChatEventListModel;
@@ -18,7 +21,9 @@ sealed class InChatEventListModel with _$InChatEventListModel {
 @freezed
 sealed class InChatEventModel with _$InChatEventModel {
   factory InChatEventModel({
-    required String id,
+    required String eventId,
+
+    required int userId,
 
     required String inChatEventType,
 
@@ -36,13 +41,9 @@ sealed class InChatEventModel with _$InChatEventModel {
 @freezed
 sealed class InChatDataModel with _$InChatDataModel {
   factory InChatDataModel({
-    required int userId,
-
-    required String messageId,
+    required String dataId,
 
     required String inChatDataType,
-
-    required String inChatMessageType,
 
     required String contents,
   }) = _InChatDataModel;

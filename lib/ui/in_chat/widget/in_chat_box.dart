@@ -223,7 +223,7 @@ Widget _renderSentTime(DateTime sentTime) {
 Widget _renderDmChatBox(InChatEventModel model) {
   /// 내가 보낸 메세지이면 true
   /// 추후 내 정보의 id와 바꾸는 코드로 변경해야 함
-  final myMsg = model.inChatData.userId == 12345;
+  final myMsg = model.userId == 12345;
 
   return Padding(
     padding: const EdgeInsets.only(left: 8),
