@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sottie_flutter/data/user/model/user_model.dart';
-import 'package:sottie_flutter/data/user/repository_impl/user_unblock_dummy.dart';
-import 'package:sottie_flutter/provider/user/user_manage_provider.dart';
+import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/repository/user/implements/user_unblock_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
+import 'package:sottie_flutter/use_case/user/user_use_case.dart';
 
 class UserBlockScreen extends StatefulWidget {
   const UserBlockScreen({super.key});
@@ -16,7 +16,7 @@ class UserBlockScreen extends StatefulWidget {
 
 class _UserBlockScreenState extends State<UserBlockScreen>
     with AutomaticKeepAliveClientMixin {
-  final _userManageProvider = GetIt.I.get<UserManageProvider>();
+  final _userManageProvider = GetIt.I.get<UserUseCase>();
 
   @override
   bool get wantKeepAlive => true;
@@ -29,7 +29,7 @@ class _UserBlockScreenState extends State<UserBlockScreen>
       child: CustomFutureBuilder(
         futureFunction: getUserBlockDummy,
         callBack: (futureData) {
-          final userBlockList = futureData as List<UserModel>;
+          final userBlockList = futureData as List<UserDTO>;
 
           return SingleChildScrollView(
             child: Column(

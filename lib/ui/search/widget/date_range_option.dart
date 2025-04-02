@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
+import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/search/controller/date_time_reset.dart';
 

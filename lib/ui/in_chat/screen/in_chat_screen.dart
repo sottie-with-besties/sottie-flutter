@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/chat/entity/chat_room_entity.dart';
-import 'package:sottie_flutter/domain/chat/entity/dm_entity.dart';
+import 'package:sottie_flutter/model/chat/entity/chat_room_entity.dart';
+import 'package:sottie_flutter/model/chat/entity/dm_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_review_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_drawer.dart';
@@ -43,7 +43,7 @@ class _InChatScreenState extends State<InChatScreen> {
         appBar: AppBar(
           title: Text(
             isDm
-                ? widget.dmEntity!.userModel.nickname
+                ? widget.dmEntity!.userDTO.nickname
                 : widget.chatRoomEntity!.title,
             style: const TextStyle(color: mainWhiteSilverColor),
           ),

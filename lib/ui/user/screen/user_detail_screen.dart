@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/user/model/user_model.dart';
-import 'package:sottie_flutter/provider/friend/friend_manage_provider.dart';
-import 'package:sottie_flutter/provider/user/user_manage_provider.dart';
+import 'package:sottie_flutter/model/user/dto/user_dto.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
+import 'package:sottie_flutter/use_case/friend/friend_use_case.dart';
+import 'package:sottie_flutter/use_case/user/user_use_case.dart';
 
 class UserDetailScreen extends StatelessWidget {
   const UserDetailScreen({
@@ -16,14 +16,14 @@ class UserDetailScreen extends StatelessWidget {
     required this.isMyFriend,
   });
 
-  final UserModel model;
+  final UserDTO model;
   final String heroTag;
   final bool? isMyFriend;
 
   @override
   Widget build(BuildContext context) {
-    final friendManageProvider = GetIt.I.get<FriendManageProvider>();
-    final userManageProvider = GetIt.I.get<UserManageProvider>();
+    final friendManageProvider = GetIt.I.get<FriendUseCase>();
+    final userManageProvider = GetIt.I.get<UserUseCase>();
 
     return Scaffold(
       appBar: AppBar(backgroundColor: mainWhiteSilverColor),

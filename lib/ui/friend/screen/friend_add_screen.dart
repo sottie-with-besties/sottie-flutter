@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/friend/repository_impl/friend_request_dummy.dart';
-import 'package:sottie_flutter/data/user/model/user_model.dart';
-import 'package:sottie_flutter/data/user/repository_impl/user_search_dummy.dart';
-import 'package:sottie_flutter/provider/friend/friend_manage_provider.dart';
+import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/repository/friend/implements/friend_request_dummy.dart';
+import 'package:sottie_flutter/repository/user/implements/user_search_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
+import 'package:sottie_flutter/use_case/friend/friend_use_case.dart';
 
 class FriendAddScreen extends StatefulWidget {
   const FriendAddScreen({super.key, required this.focusNode});
@@ -24,12 +24,12 @@ class FriendAddScreen extends StatefulWidget {
 
 class _FriendAddScreenState extends State<FriendAddScreen> {
   bool userSearching = false;
-  UserModel? userFound;
+  UserDTO? userFound;
   String userSearchText = '';
 
   final _textController = TextEditingController();
 
-  final _friendManageProvider = GetIt.I.get<FriendManageProvider>();
+  final _friendManageProvider = GetIt.I.get<FriendUseCase>();
 
   Future<void> _searchUser(String searchString) async {
     userSearching = true;
@@ -115,7 +115,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                       color: mainBlackColor,
                     ),
                     callBack: (futureData) {
-                      final friendRequestList = futureData as List<UserModel>;
+                      final friendRequestList = futureData as List<UserDTO>;
 
                       return SizedBox(
                         height: 250 * hu,

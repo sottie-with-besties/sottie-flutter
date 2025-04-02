@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/in_chat/model/in_chat_event_model.dart';
-import 'package:sottie_flutter/data/in_chat/repository_impl/in_chat_message_dummy.dart';
+import 'package:sottie_flutter/model/in_chat/dto/in_chat_event_dto.dart';
+import 'package:sottie_flutter/repository/in_chat/implements/in_chat_message_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/chat_room_destroying_timer.dart';
@@ -45,7 +45,7 @@ class InChatEventsLayout extends StatelessWidget {
         ),
       ),
       callBack: (futureData) {
-        final data = futureData as InChatEventListModel;
+        final data = futureData as InChatEventListDTO;
 
         return _EventsList(
           model: data,
@@ -64,7 +64,7 @@ class _EventsList extends StatefulWidget {
     required this.date,
   });
 
-  final InChatEventListModel model;
+  final InChatEventListDTO model;
   final bool isChattingOver;
   final DateTime date; // 모임 날짜
 
@@ -220,7 +220,7 @@ Widget _renderSentTime(DateTime sentTime) {
   );
 }
 
-Widget _renderDmChatBox(InChatEventModel model) {
+Widget _renderDmChatBox(InChatEventDTO model) {
   /// 내가 보낸 메세지이면 true
   /// 추후 내 정보의 id와 바꾸는 코드로 변경해야 함
   final myMsg = model.userId == 12345;

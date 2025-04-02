@@ -2,28 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/data/user/model/user_model.dart';
-import 'package:sottie_flutter/provider/friend/friend_manage_provider.dart';
-import 'package:sottie_flutter/provider/user/user_manage_provider.dart';
+import 'package:sottie_flutter/model/user/dto/user_dto.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
+import 'package:sottie_flutter/use_case/friend/friend_use_case.dart';
+import 'package:sottie_flutter/use_case/user/user_use_case.dart';
 
 class Friend extends StatefulWidget {
   const Friend({super.key, required this.model});
 
-  final UserModel model;
+  final UserDTO model;
 
   @override
   State<Friend> createState() => _FriendState();
 }
 
 class _FriendState extends State<Friend> {
-  final _friendManageProvider = GetIt.I.get<FriendManageProvider>();
-  final _userManageProvider = GetIt.I.get<UserManageProvider>();
+  final _friendManageProvider = GetIt.I.get<FriendUseCase>();
+  final _userManageProvider = GetIt.I.get<UserUseCase>();
 
   void _deleteAction(bool withSlide) {
     showCustomDialog(

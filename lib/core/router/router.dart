@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sottie_flutter/domain/post/entity/post_options_entity.dart';
+import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/find_id_screen.dart';

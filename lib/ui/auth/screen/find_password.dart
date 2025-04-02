@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/provider/auth/verification_provider.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
+import 'package:sottie_flutter/use_case/auth/verification_use_case.dart';
 
 class FindPasswordScreen extends StatefulWidget {
   const FindPasswordScreen({super.key});
@@ -33,7 +33,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
   final emailKey = GlobalKey<FormState>();
   final passwordKey = GlobalKey<FormState>();
 
-  final _verificationProvider = GetIt.I.get<VerificationProvider>();
+  final _verificationProvider = GetIt.I.get<VerificationUseCase>();
 
   final loadingCircle = const Center(
     child: CircularProgressIndicator(color: mainWhiteSilverColor),

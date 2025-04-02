@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/data/user/model/user_model.dart';
-import 'package:sottie_flutter/domain/user/entity/my_info_entity.dart';
+import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 
@@ -17,7 +17,7 @@ class SottieUser extends StatelessWidget {
     this.textWidth = 200,
   });
 
-  final UserModel model;
+  final UserDTO model;
   final String heroTag;
   final bool? isMyFriend;
   final bool goToDetailPath;

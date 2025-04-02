@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:get_it/get_it.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sottie_flutter/domain/post/entity/post_pagination_entity.dart';
-import 'package:sottie_flutter/domain/post/use_case/post_use_case.dart';
+import 'package:sottie_flutter/model/post/entity/post_pagination_entity.dart';
+import 'package:sottie_flutter/use_case/post/post_use_case.dart';
 
 part 'home_latest_post_provider.g.dart';
 

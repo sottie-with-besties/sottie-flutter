@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/dio/dio_api.dart';
-import 'package:sottie_flutter/data/user/model/user_model.dart';
+import 'package:sottie_flutter/model/user/dto/user_dto.dart';
 import 'package:sottie_flutter/ui/friend/widget/friend.dart';
 
 class FriendService {
@@ -17,7 +17,7 @@ class FriendService {
     return friends.map<Friend>((data) {
       return Friend(
         key: UniqueKey(),
-        model: UserModel(
+        model: UserDTO(
           id: data['userId'],
           nickname: data['alias'],
           stateMsg: data['stateMsg'],

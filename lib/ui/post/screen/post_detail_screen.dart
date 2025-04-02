@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/entity/post_entity.dart';
-import 'package:sottie_flutter/provider/post/post_provider.dart';
+import 'package:sottie_flutter/model/post/entity/post_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/current_num_of_member.dart';
 import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
+import 'package:sottie_flutter/use_case/post/post_use_case.dart';
 
 class PostDetailScreen extends StatelessWidget {
   const PostDetailScreen({
@@ -26,7 +26,7 @@ class PostDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final postProvider = GetIt.I.get<PostProvider>();
+    final postProvider = GetIt.I.get<PostUseCase>();
 
     return Scaffold(
       body: Container(
@@ -164,7 +164,10 @@ class PostDetailScreen extends StatelessWidget {
                                   log("참여하기");
 
                                   final result = await postProvider.postJoin(
-                                    postId: postEntity.id,
+                                    postJoinInfo: {
+                                      'gatheringId': 18,
+                                      'userId': 7,
+                                    },
                                   );
 
                                   if (context.mounted) {

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:sottie_flutter/core/local_database/secure_storage.dart';
-import 'package:sottie_flutter/data/auth/repository_impl/auth_dev_repository_impl.dart';
-import 'package:sottie_flutter/domain/auth/entity/access_token_entity.dart';
+import 'package:sottie_flutter/repository/auth/implements/auth_dev_repository_impl.dart';
+import 'package:sottie_flutter/model/auth/entity/access_token_entity.dart';
 
 class _CustomInterceptor extends Interceptor {
   /// 디오가 네트워크 요청 할 때

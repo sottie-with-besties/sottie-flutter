@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_category.dart';
+import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_category.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class SottieCategoryUi extends StatelessWidget {

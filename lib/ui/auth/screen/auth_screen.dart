@@ -6,15 +6,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/domain/auth/entity/auth_type.dart';
-import 'package:sottie_flutter/domain/auth/entity/email_login_entity.dart';
-import 'package:sottie_flutter/provider/auth/auth_provider.dart';
+import 'package:sottie_flutter/model/auth/entity/auth_type.dart';
+import 'package:sottie_flutter/model/auth/entity/email_login_entity.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
+import 'package:sottie_flutter/use_case/auth/auth_use_case.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -29,7 +29,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final _authProvider = GetIt.I.get<AuthProvider>();
+  final _authProvider = GetIt.I.get<AuthUseCase>();
 
   EmailLoginEntity emailLoginModel = EmailLoginEntity();
 

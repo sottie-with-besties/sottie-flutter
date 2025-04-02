@@ -6,8 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_category.dart';
-import 'package:sottie_flutter/domain/post/entity/post_detail_enum/post_gender_restriction.dart';
+import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_category.dart';
+import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_gender_restriction.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
@@ -16,7 +16,7 @@ import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
-import '../../../domain/chat/entity/chat_room_entity.dart';
+import '../../../model/chat/entity/chat_room_entity.dart';
 
 class ChatRoom extends StatelessWidget {
   const ChatRoom({super.key, required this.entity});

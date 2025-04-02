@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/domain/user/entity/my_info_entity.dart';
+import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/more/screen/more_content_screen.dart';
 

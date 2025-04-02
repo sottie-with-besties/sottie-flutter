@@ -4,10 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/provider/auth/verification_provider.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
+import 'package:sottie_flutter/use_case/auth/verification_use_case.dart';
 
 class FindIdScreen extends StatefulWidget {
   const FindIdScreen({super.key});
@@ -28,7 +28,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
 
   final phoneNumberKey = GlobalKey<FormState>();
 
-  final _verificationProvider = GetIt.I.get<VerificationProvider>();
+  final _verificationProvider = GetIt.I.get<VerificationUseCase>();
 
   final loadingCircle = const Center(
     child: CircularProgressIndicator(color: mainWhiteSilverColor),
