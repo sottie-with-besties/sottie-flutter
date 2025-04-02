@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_age_range.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
 class AgeOption extends StatefulWidget {
@@ -15,7 +15,8 @@ class AgeOption extends StatefulWidget {
 class _AgeOptionState extends State<AgeOption> {
   @override
   Widget build(BuildContext context) {
-    double animatedContainerHeight = postOptions.ageRestriction ? 50 * hu : 0;
+    double animatedContainerHeight =
+        postOptionsSetting.ageRestriction ? 50 * hu : 0;
 
     return Column(
       children: [
@@ -25,17 +26,17 @@ class _AgeOptionState extends State<AgeOption> {
             const OptionTitle(title: '나이 제한'),
             Switch(
               activeColor: mainBlueColor,
-              value: postOptions.ageRestriction,
+              value: postOptionsSetting.ageRestriction,
               onChanged: (val) {
-                postOptions.ageRestriction = val;
+                postOptionsSetting.ageRestriction = val;
 
                 /// 나이 제한 off 일 때
                 if (val == true) {
-                  postOptions.ageFrom = 1;
-                  postOptions.ageTo = 1;
+                  postOptionsSetting.ageFrom = 1;
+                  postOptionsSetting.ageTo = 1;
                 } else {
-                  postOptions.ageFrom = 0;
-                  postOptions.ageTo = 0;
+                  postOptionsSetting.ageFrom = 0;
+                  postOptionsSetting.ageTo = 0;
                 }
                 setState(() {});
               },
@@ -47,7 +48,7 @@ class _AgeOptionState extends State<AgeOption> {
           curve: Curves.easeOutCubic,
           height: animatedContainerHeight,
           padding: EdgeInsets.only(top: 12 * hu),
-          child: _AgeRange(isSelected: postOptions.ageRestriction),
+          child: _AgeRange(isSelected: postOptionsSetting.ageRestriction),
         ),
       ],
     );
@@ -75,7 +76,11 @@ class _AgeRangeState extends State<_AgeRange> {
 
     /// 검색 스크린에서 필터링 시 데이터 유지
     if (widget.isSelected == true) {
-      for (int i = postOptions.ageFrom; i <= postOptions.ageTo; i++) {
+      for (
+        int i = postOptionsSetting.ageFrom;
+        i <= postOptionsSetting.ageTo;
+        i++
+      ) {
         selectedList[i - 1] = true;
       }
       setState(() {});
@@ -121,10 +126,11 @@ class _AgeRangeState extends State<_AgeRange> {
                             /// index + 1이 ageFrom보다 작다면 ageFrom = index + 1
                             /// index + 1이 ageTo보다 크다면 ageTo = index + 1
 
-                            if (age.index + 1 < postOptions.ageFrom) {
-                              postOptions.ageFrom = age.index + 1;
-                            } else if (age.index + 1 > postOptions.ageTo) {
-                              postOptions.ageTo = age.index + 1;
+                            if (age.index + 1 < postOptionsSetting.ageFrom) {
+                              postOptionsSetting.ageFrom = age.index + 1;
+                            } else if (age.index + 1 >
+                                postOptionsSetting.ageTo) {
+                              postOptionsSetting.ageTo = age.index + 1;
                             }
                           } else {
                             /// 칩을 off 했을 때
@@ -133,22 +139,25 @@ class _AgeRangeState extends State<_AgeRange> {
                             /// index + 1이 ageFrom라면 ageFrom++
                             /// index + 1이 ageTo라면 ageTo--
 
-                            if (age.index + 1 > postOptions.ageFrom &&
-                                    age.index + 1 < postOptions.ageTo ||
-                                postOptions.ageFrom == postOptions.ageTo) {
+                            if (age.index + 1 > postOptionsSetting.ageFrom &&
+                                    age.index + 1 < postOptionsSetting.ageTo ||
+                                postOptionsSetting.ageFrom ==
+                                    postOptionsSetting.ageTo) {
                               return;
-                            } else if (age.index + 1 == postOptions.ageFrom) {
+                            } else if (age.index + 1 ==
+                                postOptionsSetting.ageFrom) {
                               selectedList[age.index] = false;
-                              postOptions.ageFrom++;
-                            } else if (age.index + 1 == postOptions.ageTo) {
+                              postOptionsSetting.ageFrom++;
+                            } else if (age.index + 1 ==
+                                postOptionsSetting.ageTo) {
                               selectedList[age.index] = false;
-                              postOptions.ageTo--;
+                              postOptionsSetting.ageTo--;
                             }
                           }
 
                           for (
-                            int i = postOptions.ageFrom;
-                            i <= postOptions.ageTo;
+                            int i = postOptionsSetting.ageFrom;
+                            i <= postOptionsSetting.ageTo;
                             i++
                           ) {
                             selectedList[i - 1] = true;

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/provider/home/home_search_post_provider.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_expansion_tile.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/home/controller/home_state_controller.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/category_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/gender_option.dart';
@@ -61,7 +61,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   focusNode: searchFocusNode,
                   controller: searchController,
                   onFieldSubmitted: (searchContent) async {
-                    postOptions.title = searchContent;
+                    postOptionsSetting.title = searchContent;
                     ref
                         .read(homeStateControllerProvider.notifier)
                         .changeHomeState(HomePostState.search);

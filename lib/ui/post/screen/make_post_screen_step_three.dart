@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_gender_restriction.dart';
 import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_location.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/use_case/post/post_use_case.dart';
 
 class MakePostScreenStepThree extends StatelessWidget {
@@ -27,7 +27,7 @@ class MakePostScreenStepThree extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                postOptions.title,
+                postOptionsSetting.title,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
@@ -36,34 +36,39 @@ class MakePostScreenStepThree extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30 * hu),
-              Text(postOptions.contents, style: const TextStyle(fontSize: 14)),
+              Text(
+                postOptionsSetting.contents,
+                style: const TextStyle(fontSize: 14),
+              ),
               SizedBox(height: 30 * hu),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("카테고리: ${postOptions.gatheringCategory.koreanName}"),
                   Text(
-                    "날짜: ${postOptions.gatheringDate == null ? "날짜 정보 없음" : convertDateTimeIntoString(postOptions.gatheringDate!.toLocal())}",
+                    "카테고리: ${postOptionsSetting.gatheringCategory.koreanName}",
                   ),
                   Text(
-                    "장소: ${PostLocation.values[postOptions.locationId].koreanName}",
+                    "날짜: ${postOptionsSetting.gatheringDate == null ? "날짜 정보 없음" : convertDateTimeIntoString(postOptionsSetting.gatheringDate!.toLocal())}",
                   ),
-                  postOptions.ageRestriction
+                  Text(
+                    "장소: ${PostLocation.values[postOptionsSetting.locationId].koreanName}",
+                  ),
+                  postOptionsSetting.ageRestriction
                       ? Text(
-                        "나이: ${convertAgeRangeToString(postOptions.ageFrom, postOptions.ageTo)}",
+                        "나이: ${convertAgeRangeToString(postOptionsSetting.ageFrom, postOptionsSetting.ageTo)}",
                       )
                       : const Text("나이 제한 없음"),
                   Text(
-                    "참여 인원: ${postOptions.peopleNum == 0 ? "제한 없음" : postOptions.peopleNum}",
+                    "참여 인원: ${postOptionsSetting.peopleNum == 0 ? "제한 없음" : postOptionsSetting.peopleNum}",
                   ),
-                  if (postOptions.genderRestriction !=
+                  if (postOptionsSetting.genderRestriction !=
                       PostGenderRestriction.NONE)
                     Text(
-                      "남자: ${postOptions.maleNum}명 / 여자: ${postOptions.femaleNum}명",
+                      "남자: ${postOptionsSetting.maleNum}명 / 여자: ${postOptionsSetting.femaleNum}명",
                     ),
-                  if (postOptions.mannerRestriction)
+                  if (postOptionsSetting.mannerRestriction)
                     const Text("매너 온도 제한: 매너온도가 36.5°C 이상인 유저만 입장할 수 있습니다."),
-                  if (postOptions.onlyMyFriends)
+                  if (postOptionsSetting.onlyMyFriends)
                     const Text("내 친구만 입장: 작성자의 친구만 입장할 수 있습니다."),
                 ],
               ),

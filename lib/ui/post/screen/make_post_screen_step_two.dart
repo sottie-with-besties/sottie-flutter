@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_category.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/category_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/date_option.dart';
@@ -29,15 +29,15 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
 
   /// 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
   void checkIfSettingHasError() {
-    if (postOptions.gatheringDate == null) {
+    if (postOptionsSetting.gatheringDate == null) {
       checkList.add("날짜 및 시간을 선택해주세요.");
     }
 
-    if (postOptions.gatheringCategory == PostCategory.ALL) {
+    if (postOptionsSetting.gatheringCategory == PostCategory.ALL) {
       checkList.add("카테고리를 하나 선택해주세요.");
     }
 
-    if (postOptions.peopleNum == 1) {
+    if (postOptionsSetting.peopleNum == 1) {
       checkList.add("인원 수를 설정해주세요");
     }
   }

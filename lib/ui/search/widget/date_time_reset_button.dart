@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/search/controller/date_time_reset.dart';
 
 class DateTimeResetButton extends ConsumerWidget {
@@ -12,9 +12,9 @@ class DateTimeResetButton extends ConsumerWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          postOptions.dateTimeRange = null;
-          postOptions.timeStart = null;
-          postOptions.timeEnd = null;
+          postOptionsSetting.dateTimeRange = null;
+          postOptionsSetting.timeStart = null;
+          postOptionsSetting.timeEnd = null;
           ref.read(dateTimeResetProvider.notifier).changeResetValue();
         },
         child: const Text("날짜 및 시간 초기화"),

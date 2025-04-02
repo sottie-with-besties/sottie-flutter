@@ -3,11 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/alarm/screen/alarm_screen.dart';
 import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/home/screen/home_content_screen.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: mainBlueColor,
         onPressed: () async {
-          postOptions = PostOptionsEntity();
+          postOptionsSetting = PostOptionsSetting();
           await context.push(CustomRouter.makePostStepOnePath);
         },
         child: const Icon(Icons.post_add, color: mainWhiteSilverColor),

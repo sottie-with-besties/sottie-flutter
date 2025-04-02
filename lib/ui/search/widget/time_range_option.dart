@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/search/controller/date_time_reset.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 
@@ -16,12 +16,13 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
   String timeString = '시간 범위 선택';
 
   void makeTimeString() {
-    if (postOptions.timeStart == null || postOptions.timeEnd == null) {
+    if (postOptionsSetting.timeStart == null ||
+        postOptionsSetting.timeEnd == null) {
       timeString = "시간 범위 선택";
       return;
     }
 
-    int startHour = postOptions.timeStart!.hour;
+    int startHour = postOptionsSetting.timeStart!.hour;
     String startTemp = startHour < 12 ? "AM" : "PM";
 
     startTemp == "PM"
@@ -30,7 +31,7 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
             : null
         : null;
 
-    int endHour = postOptions.timeEnd!.hour;
+    int endHour = postOptionsSetting.timeEnd!.hour;
     String endTemp = endHour < 12 ? "AM" : "PM";
 
     endTemp == "PM"
@@ -40,7 +41,7 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
         : null;
 
     timeString =
-        "$startTemp $startHour시 ${postOptions.timeStart!.minute}분 ~ $endTemp $endHour시 ${postOptions.timeEnd!.minute}분";
+        "$startTemp $startHour시 ${postOptionsSetting.timeStart!.minute}분 ~ $endTemp $endHour시 ${postOptionsSetting.timeEnd!.minute}분";
   }
 
   @override
@@ -58,8 +59,11 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
             TimeRange? tempTime = await showTimeRangePicker(
               context: context,
               start:
-                  postOptions.timeStart ?? const TimeOfDay(hour: 0, minute: 0),
-              end: postOptions.timeEnd ?? const TimeOfDay(hour: 0, minute: 0),
+                  postOptionsSetting.timeStart ??
+                  const TimeOfDay(hour: 0, minute: 0),
+              end:
+                  postOptionsSetting.timeEnd ??
+                  const TimeOfDay(hour: 0, minute: 0),
               barrierDismissible: false,
               interval: const Duration(minutes: 30),
               strokeWidth: 24,
@@ -95,8 +99,8 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
 
             if (tempTime == null) return;
 
-            postOptions.timeStart = tempTime.startTime;
-            postOptions.timeEnd = tempTime.endTime;
+            postOptionsSetting.timeStart = tempTime.startTime;
+            postOptionsSetting.timeEnd = tempTime.endTime;
 
             makeTimeString();
             setState(() {});

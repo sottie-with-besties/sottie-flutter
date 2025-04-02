@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/model/post/entity/post_pagination_entity.dart';
 import 'package:sottie_flutter/repository/post/implements/search_post_dummy.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/use_case/post/post_use_case.dart';
 
 part 'home_search_post_provider.g.dart';
@@ -30,7 +30,7 @@ final class HomeSearchPost extends _$HomeSearchPost {
       }
 
       final postList = await getSearchPostDummy(
-        postOptions.toJsonForSearchFiltering(),
+        postOptionsSetting.toJsonForSearchFiltering(),
       );
 
       // final postList = await _useCase.getSearchPostEntityList(

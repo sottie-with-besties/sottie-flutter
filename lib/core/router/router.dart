@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
 import 'package:sottie_flutter/ui/auth/screen/find_id_screen.dart';
@@ -23,6 +22,7 @@ import 'package:sottie_flutter/ui/more/screen/extra_services/extra_setting_scree
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_store_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/info_modify_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/more_screen.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_one.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_three.dart';
 import 'package:sottie_flutter/ui/post/screen/make_post_screen_step_two.dart';
@@ -254,7 +254,7 @@ final _routes = [
     path: CustomRouter.makePostStepOnePath,
     onExit: (_, __) {
       /// 첫번째 모집글 생성 화면에서 뒤로가기 또는 모집글 생성 완료 시(pop, go) postSetting 초기화하여 검색에 영향 X
-      postOptions = PostOptionsEntity();
+      postOptionsSetting = PostOptionsSetting();
       return true;
     },
     builder: (_, __) => const MakePostScreenStepOne(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
 class MannerOption extends StatefulWidget {
@@ -22,9 +22,9 @@ class _MannerOptionState extends State<MannerOption> {
             const OptionTitle(title: "매너 온도 제한"),
             Switch(
               activeColor: mainBlueColor,
-              value: postOptions.mannerRestriction,
+              value: postOptionsSetting.mannerRestriction,
               onChanged: (val) {
-                postOptions.mannerRestriction = val;
+                postOptionsSetting.mannerRestriction = val;
                 setState(() {});
               },
             ),

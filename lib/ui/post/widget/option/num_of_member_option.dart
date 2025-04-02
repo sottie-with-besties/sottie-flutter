@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
 class NumOfMemberOption extends StatelessWidget {
@@ -29,7 +29,7 @@ class _NumOfMemberSelector extends ConsumerWidget {
     final entries = <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     return DropdownMenu(
-      initialSelection: postOptions.peopleNum,
+      initialSelection: postOptionsSetting.peopleNum,
       menuHeight: 200,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       dropdownMenuEntries:
@@ -42,10 +42,10 @@ class _NumOfMemberSelector extends ConsumerWidget {
               )
               .toList(),
       onSelected: (val) {
-        postOptions.peopleNum = val!;
+        postOptionsSetting.peopleNum = val!;
         ref
             .read(numOfMemberProvider.notifier)
-            .changeNumOfMember(postOptions.peopleNum);
+            .changeNumOfMember(postOptionsSetting.peopleNum);
       },
     );
   }

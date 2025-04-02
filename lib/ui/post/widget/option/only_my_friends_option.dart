@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
 class OnlyMyFriendsOption extends StatefulWidget {
@@ -22,9 +22,9 @@ class _OnlyMyFriendsOptionState extends State<OnlyMyFriendsOption> {
             const OptionTitle(title: "내 친구만 입장"),
             Switch(
               activeColor: mainBlueColor,
-              value: postOptions.onlyMyFriends,
+              value: postOptionsSetting.onlyMyFriends,
               onChanged: (val) {
-                postOptions.onlyMyFriends = val;
+                postOptionsSetting.onlyMyFriends = val;
                 setState(() {});
               },
             ),

@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/model/post/dto/post_dto.dart';
 import 'package:sottie_flutter/model/post/entity/post_entity.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/repository/post/interface/post_repository.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 
 final _repo = GetIt.I.get<PostRepository>();
 
@@ -47,7 +47,7 @@ final class PostUseCase {
   Future<bool> makePost() async {
     try {
       final resp = await _repo.makePost(
-        postSetting: postOptions.toJsonForMakePostSend(),
+        postSetting: postOptionsSetting.toJsonForMakePostSend(),
       );
       return true;
     } catch (_, __) {

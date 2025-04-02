@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/model/post/entity/post_options_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
+import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/search/controller/date_time_reset.dart';
 
 class DateRangeOption extends ConsumerStatefulWidget {
@@ -15,10 +15,10 @@ class _DateRangeClassState extends ConsumerState<DateRangeOption> {
   String dateString = '날짜 범위 선택';
 
   void makeDateString() {
-    postOptions.dateTimeRange == null
+    postOptionsSetting.dateTimeRange == null
         ? dateString = "날짜 범위 선택"
         : dateString =
-            "${postOptions.dateTimeRange!.start.year}년 ${postOptions.dateTimeRange!.start.month}월 ${postOptions.dateTimeRange!.start.day}일 ${convertIntToWeekday(postOptions.dateTimeRange!.start.weekday)} ~ ${postOptions.dateTimeRange!.end.year}년 ${postOptions.dateTimeRange!.end.month}월 ${postOptions.dateTimeRange!.end.day}일 ${convertIntToWeekday(postOptions.dateTimeRange!.end.weekday)}";
+            "${postOptionsSetting.dateTimeRange!.start.year}년 ${postOptionsSetting.dateTimeRange!.start.month}월 ${postOptionsSetting.dateTimeRange!.start.day}일 ${convertIntToWeekday(postOptionsSetting.dateTimeRange!.start.weekday)} ~ ${postOptionsSetting.dateTimeRange!.end.year}년 ${postOptionsSetting.dateTimeRange!.end.month}월 ${postOptionsSetting.dateTimeRange!.end.day}일 ${convertIntToWeekday(postOptionsSetting.dateTimeRange!.end.weekday)}";
   }
 
   @override
@@ -35,7 +35,7 @@ class _DateRangeClassState extends ConsumerState<DateRangeOption> {
             DateTimeRange? tempDateTimeRange = await showDateRangePicker(
               context: context,
               initialDateRange:
-                  postOptions.dateTimeRange ??
+                  postOptionsSetting.dateTimeRange ??
                   DateTimeRange(start: DateTime.now(), end: DateTime.now()),
               firstDate: DateTime.now(),
               lastDate: DateTime(DateTime.now().year + 1),
@@ -47,7 +47,7 @@ class _DateRangeClassState extends ConsumerState<DateRangeOption> {
 
             if (tempDateTimeRange == null) return;
 
-            postOptions.dateTimeRange = tempDateTimeRange;
+            postOptionsSetting.dateTimeRange = tempDateTimeRange;
 
             makeDateString();
             setState(() {});
