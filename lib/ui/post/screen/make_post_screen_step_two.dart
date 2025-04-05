@@ -75,8 +75,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                 const AgeOption(),
                 const SizedBox(height: 20),
                 const MannerOption(),
-                const SizedBox(height: 20),
-                const SizedBox(height: 80),
+                const SizedBox(height: 50),
                 ElevatedButton(
                   onPressed: () {
                     checkList.clear();

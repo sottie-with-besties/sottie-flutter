@@ -38,34 +38,38 @@ class MakePostScreenStepThree extends StatelessWidget {
                 style: const TextStyle(fontSize: 14),
               ),
               SizedBox(height: 30 * hu),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "카테고리: ${postOptionsSetting.gatheringCategory.koreanName}",
-                  ),
-                  Text(
-                    "날짜: ${postOptionsSetting.gatheringDate == null ? "날짜 정보 없음" : convertDateTimeIntoString(postOptionsSetting.gatheringDate!.toLocal())}",
-                  ),
-                  Text(
-                    "장소: ${PostLocation.values[postOptionsSetting.locationId].koreanName}",
-                  ),
-                  postOptionsSetting.ageRestriction
-                      ? Text(
-                        "나이: ${convertAgeRangeToString(postOptionsSetting.ageFrom, postOptionsSetting.ageTo)}",
-                      )
-                      : const Text("나이 제한 없음"),
-                  Text(
-                    "참여 인원: ${postOptionsSetting.peopleNum == 0 ? "제한 없음" : postOptionsSetting.peopleNum}",
-                  ),
-                  if (postOptionsSetting.genderRestriction !=
-                      PostGenderRestriction.NONE)
+              SizedBox(
+                height: 150 * hu,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
-                      "남자: ${postOptionsSetting.maleNum}명 / 여자: ${postOptionsSetting.femaleNum}명",
+                      "카테고리: ${postOptionsSetting.gatheringCategory.koreanName}",
                     ),
-                  if (postOptionsSetting.mannerRestriction)
-                    const Text("매너 온도 제한: 매너온도가 36.5°C 이상인 유저만 입장할 수 있습니다."),
-                ],
+                    Text(
+                      "날짜: ${postOptionsSetting.gatheringDate == null ? "날짜 정보 없음" : convertDateTimeIntoString(postOptionsSetting.gatheringDate!.toLocal())}",
+                    ),
+                    Text(
+                      "장소: ${PostLocation.values[postOptionsSetting.locationId].koreanName}",
+                    ),
+                    postOptionsSetting.ageRestriction
+                        ? Text(
+                          "나이: ${convertAgeRangeToString(postOptionsSetting.ageFrom, postOptionsSetting.ageTo)}",
+                        )
+                        : const Text("나이 제한 없음"),
+                    Text(
+                      "참여 인원: ${postOptionsSetting.peopleNum == 0 ? "제한 없음" : postOptionsSetting.peopleNum}",
+                    ),
+                    if (postOptionsSetting.genderRestriction !=
+                        PostGenderRestriction.NONE)
+                      Text(
+                        "남자: ${postOptionsSetting.maleNum}명 / 여자: ${postOptionsSetting.femaleNum}명",
+                      ),
+                    if (postOptionsSetting.mannerRestriction)
+                      const Text("매너 온도 제한: 매너온도가 36.5°C 이상인 유저만 입장할 수 있습니다."),
+                  ],
+                ),
               ),
               SizedBox(height: 15 * hu),
               Column(

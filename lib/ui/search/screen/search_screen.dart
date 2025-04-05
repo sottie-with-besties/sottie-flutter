@@ -87,7 +87,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   TimeRangeOption(),
                   SizedBox(height: 10),
                   DateTimeResetButton(),
-                  SizedBox(height: 10),
                 ],
               ),
               const CustomExpansionTile(
@@ -98,12 +97,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   GenderOption(),
                   SizedBox(height: 20),
                   AgeOption(),
-                  SizedBox(height: 20),
                 ],
               ),
               const CustomExpansionTile(
                 title: "기타 옵션",
-                children: <Widget>[MannerOption(), SizedBox(height: 80)],
+                children: <Widget>[MannerOption()],
               ),
               Padding(
                 padding: const EdgeInsets.all(32),
