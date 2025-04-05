@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'post_dto.freezed.dart';
-
 part 'post_dto.g.dart';
 
 @freezed
@@ -39,9 +38,6 @@ sealed class PostDTO with _$PostDTO {
 
     /// 최대 나이대
     required int ageTo,
-
-    /// 내 친구만 입장 가능 여부
-    required bool onlyMyFriends,
 
     /// 성비 제한
     required String genderRestriction,

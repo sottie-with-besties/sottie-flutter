@@ -3,33 +3,33 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart' show GetIt;
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:sottie_flutter/core/constant/native_key.dart';
-import 'package:sottie_flutter/core/local_database/secure_storage.dart';
 import 'package:sottie_flutter/core/rest_api/dio_interceptor.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/model/auth/dto/oauth_sign_up_dto.dart';
 import 'package:sottie_flutter/model/auth/dto/token_dto.dart';
-import 'package:sottie_flutter/model/auth/entity/access_token_entity.dart';
 import 'package:sottie_flutter/model/auth/entity/auth_type.dart';
 import 'package:sottie_flutter/model/auth/entity/oauth_login_entity.dart';
 import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
 import 'package:sottie_flutter/repository/auth/implements/auth_dev_repository_impl.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 
+import '../../core/local_database/token_storage.dart';
+
 part 'auth_part/auth_email.dart';
-
 part 'auth_part/oauth_apple.dart';
-
 part 'auth_part/oauth_google.dart';
-
 part 'auth_part/oauth_kakao.dart';
 
 final _oauthLoginEntity = OauthLoginEntity();
 
 final class AuthUseCase {
+  final _tokenStorage = GetIt.I.get<TokenStorage>();
+
   Future<String?> signIn({
     required AuthType authType,
     String? email,
@@ -104,16 +104,16 @@ final class AuthUseCase {
           }
 
           /// 시큐어 스토리지에 토큰 저장
-          await tokenStorage.write(
-            key: refreshTokenKey,
-            value: oauthToken.refreshToken,
+          await _tokenStorage.writeRefreshToken(
+            newRefreshToken: oauthToken.refreshToken,
           );
-          await tokenStorage.write(
-            key: accessTokenKey,
-            value: oauthToken.accessToken,
+          await _tokenStorage.writeAccessToken(
+            newAccessToken: oauthToken.accessToken,
           );
 
-          accessTokenEntity.changeToken(oauthToken.accessToken);
+          _tokenStorage.changeAccessToken(
+            newAcessToken: oauthToken.accessToken,
+          );
 
           /// 회원가입 또는 로그인 완료 후 홈으로 넘어가기
           if (context.mounted) {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
@@ -30,8 +29,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _passwordFocusNode = FocusNode();
   final _passwordConfirmFocusNode = FocusNode();
 
-  final _verificationProvider = GetIt.I.get<VerificationUseCase>();
-
   bool _anyButtonLoading() {
     return isNextLoading || isCancelLoading;
   }
@@ -54,12 +51,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (email != null) {
           isNextLoading = true;
           setState(() {});
-          String? errorCode = await _verificationProvider
+          String? errorCode = await VerificationUseCase()
               .createEmailAndPassword(email!, _dummyPassword);
           if (mounted) {
             if (errorCode == null) {
               currentStep += 1;
-              await _verificationProvider.sendEmailVerification();
+              await VerificationUseCase().sendEmailVerification();
             } else {
               showCustomSnackBar(context, errorCode);
             }
@@ -72,12 +69,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       /// 이메일 인증 화면 -> 이메일 인증 성공 후 파이어베이스 유저 이메일 정보 삭제
       isNextLoading = true;
       setState(() {});
-      final emailVerification = await _verificationProvider.isEmailVerification(
+      final emailVerification = await VerificationUseCase().isEmailVerification(
         email!,
         _dummyPassword,
       );
       if (emailVerification) {
-        await _verificationProvider.deleteEmailUser(email!, _dummyPassword);
+        await VerificationUseCase().deleteEmailUser(email!, _dummyPassword);
         emailSignUp.email = email!;
         currentStep += 1;
       } else {
@@ -103,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       /// 이메일 인증 스크린에서 뒤로가기 했을 경우
       isCancelLoading = true;
       setState(() {});
-      final String? errorCode = await _verificationProvider.deleteEmailUser(
+      final String? errorCode = await VerificationUseCase().deleteEmailUser(
         email!,
         _dummyPassword,
       );
@@ -200,7 +197,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 20),
                     OutlinedButton(
                       onPressed: () async {
-                        await _verificationProvider.sendEmailVerification();
+                        await VerificationUseCase().sendEmailVerification();
                       },
                       child: const Text("이메일 인증 재발송"),
                     ),

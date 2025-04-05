@@ -37,9 +37,6 @@ final class PostEntity {
   /// 최대 나이대
   final int ageTo;
 
-  /// 내 친구만 입장 가능 여부
-  final bool onlyMyFriends;
-
   /// 성비 제한
   final PostGenderRestriction genderRestriction;
 
@@ -64,7 +61,6 @@ final class PostEntity {
     required this.numOfFemale,
     required this.ageFrom,
     required this.ageTo,
-    required this.onlyMyFriends,
     required this.genderRestriction,
     required this.mannerRestriction,
     required this.ageRestriction,
@@ -86,7 +82,6 @@ final class PostEntity {
       numOfFemale: model.femaleNum,
       ageFrom: model.ageFrom,
       ageTo: model.ageTo,
-      onlyMyFriends: model.onlyMyFriends,
       genderRestriction: PostGenderRestriction.values.byName(
         model.genderRestriction,
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -33,8 +32,6 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
   final emailKey = GlobalKey<FormState>();
   final phoneNumberKey = GlobalKey<FormState>();
 
-  final _verificationProvider = GetIt.I.get<VerificationUseCase>();
-
   bool _anyButtonLoading() {
     return isNextLoading || isCancelLoading;
   }
@@ -51,7 +48,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
     if (currentStep == 0) {
       // 핸드폰 번호 입력하는 화면
       if (phoneNumberKey.currentState!.validate()) {
-        final errorCode = await _verificationProvider.signInWithPhoneNumber(
+        final errorCode = await VerificationUseCase().signInWithPhoneNumber(
           phoneNumber!,
         );
         if (errorCode == null) {
@@ -65,11 +62,11 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       // 핸드폰 인증하는 화면 -> 인증 성공하면 파이어베이스 유저 핸드폰 번호 정보 삭제
       isNextLoading = true;
       setState(() {});
-      final errorCode = await _verificationProvider.signInWithSmsCode(
+      final errorCode = await VerificationUseCase().signInWithSmsCode(
         verificationCode!,
       );
       if (errorCode == null) {
-        await _verificationProvider.deletePhoneUser();
+        await VerificationUseCase().deletePhoneUser();
         currentStep += 1;
         setState(() {});
       } else {
@@ -82,14 +79,14 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       if (emailKey.currentState!.validate()) {
         isNextLoading = true;
         setState(() {});
-        String? errorCode = await _verificationProvider.createEmailAndPassword(
+        String? errorCode = await VerificationUseCase().createEmailAndPassword(
           email!,
           dummyPassword,
         );
         if (mounted) {
           if (errorCode == null) {
             currentStep += 1;
-            await _verificationProvider.sendEmailVerification();
+            await VerificationUseCase().sendEmailVerification();
           } else {
             showCustomSnackBar(context, errorCode);
           }
@@ -101,12 +98,12 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       // 이메일 인증 화면 -> 이메일 인증 성공 후 파이어베이스 유저 이메일 정보 삭제
       isNextLoading = true;
       setState(() {});
-      final emailVerification = await _verificationProvider.isEmailVerification(
+      final emailVerification = await VerificationUseCase().isEmailVerification(
         email!,
         dummyPassword,
       );
       if (emailVerification) {
-        await _verificationProvider.deleteEmailUser(email!, dummyPassword);
+        await VerificationUseCase().deleteEmailUser(email!, dummyPassword);
         currentStep += 1;
         myInfoEntity.email = email!;
       } else {
@@ -128,7 +125,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       // 이메일 인증 스크린에서 뒤로가기 했을 경우 -> 이메일 생성을 다시 해야하기 때문에 삭제해주어야 한다.
       isCancelLoading = true;
       setState(() {});
-      final String? errorCode = await _verificationProvider.deleteEmailUser(
+      final String? errorCode = await VerificationUseCase().deleteEmailUser(
         email!,
         dummyPassword,
       );
@@ -211,7 +208,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                   const SizedBox(height: 30),
                   OutlinedButton(
                     onPressed: () async {
-                      final errorCode = await _verificationProvider
+                      final errorCode = await VerificationUseCase()
                           .signInWithPhoneNumber(phoneNumber!);
                       if (errorCode != null) {
                         if (context.mounted) {
@@ -273,7 +270,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                   const SizedBox(height: 20),
                   OutlinedButton(
                     onPressed: () async {
-                      await _verificationProvider.sendEmailVerification();
+                      await VerificationUseCase().sendEmailVerification();
                     },
                     child: const Text("이메일 인증 재발송"),
                   ),

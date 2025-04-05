@@ -5,6 +5,8 @@ Future<void> _emailLogin({
   required String email,
   required String password,
 }) async {
+  final tokenStorage = GetIt.I.get<TokenStorage>();
+
   final base64String = utf8.fuse(base64).encode('$email:$password');
 
   // Todo: 이메일 비번 암호화 코드
@@ -15,11 +17,11 @@ Future<void> _emailLogin({
 
   // 토큰들 저장
   await Future.wait([
-    tokenStorage.write(key: refreshTokenKey, value: tokenModel.refreshToken),
-    tokenStorage.write(key: accessTokenKey, value: tokenModel.accessToken),
+    tokenStorage.writeRefreshToken(newRefreshToken: tokenModel.refreshToken),
+    tokenStorage.writeAccessToken(newAccessToken: tokenModel.accessToken),
   ]);
 
-  accessTokenEntity.changeToken(tokenModel.accessToken);
+  tokenStorage.changeAccessToken(newAcessToken: tokenModel.accessToken);
 }
 
 Future<String?> _signOutEmail() async {

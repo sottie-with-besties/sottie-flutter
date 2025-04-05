@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/model/user/dto/user_dto.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
@@ -22,9 +21,6 @@ class UserDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final friendManageProvider = GetIt.I.get<FriendUseCase>();
-    final userManageProvider = GetIt.I.get<UserUseCase>();
-
     return Scaffold(
       appBar: AppBar(backgroundColor: mainWhiteSilverColor),
       backgroundColor: mainWhiteSilverColor,
@@ -52,16 +48,16 @@ class UserDetailScreen extends StatelessWidget {
                 children: [
                   isMyFriend!
                       ? _utilButton(FontAwesomeIcons.message, 'DM', () {
-                        friendManageProvider.friendSendDm(context);
+                        FriendUseCase().friendSendDm(context);
                       })
                       : _utilButton(FontAwesomeIcons.userPlus, '추가', () {
-                        friendManageProvider.friendAdd(context);
+                        FriendUseCase().friendAdd(context);
                       }),
                   _utilButton(FontAwesomeIcons.ban, '차단', () {
-                    userManageProvider.userBlock(context);
+                    UserUseCase().userBlock(context);
                   }),
                   _utilButton(FontAwesomeIcons.circleExclamation, '신고', () {
-                    userManageProvider.userReport(context);
+                    UserUseCase().userReport(context);
                   }),
                 ],
               ),

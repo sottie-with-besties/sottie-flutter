@@ -46,7 +46,6 @@ class InChatDrawer extends StatelessWidget {
                           femaleNum: chatRoomEntity.femaleNum,
                           ageFrom: chatRoomEntity.ageFrom,
                           ageTo: chatRoomEntity.ageTo,
-                          onlyMyFriends: chatRoomEntity.onlyMyFriends,
                           genderRestriction: chatRoomEntity.genderRestriction,
                           mannerRestriction: chatRoomEntity.mannerRestriction,
                           ageRestriction: chatRoomEntity.ageRestriction,

@@ -4,9 +4,9 @@ import 'package:sottie_flutter/model/post/entity/post_entity.dart';
 import 'package:sottie_flutter/repository/post/interface/post_repository.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 
-final _repo = GetIt.I.get<PostRepository>();
-
 final class PostUseCase {
+  final _repo = GetIt.I.get<PostRepository>();
+
   /// 최신 모집글 불러오기
   Future<List<PostEntity>> getLatestPostEntityList({
     required int lastPostId,
@@ -50,7 +50,7 @@ final class PostUseCase {
         postSetting: postOptionsSetting.toJsonForMakePostSend(),
       );
       return true;
-    } catch (_, __) {
+    } catch (_, stackTrace) {
       // Todo: resp status code에 따른 예외처리
       return false;
     }

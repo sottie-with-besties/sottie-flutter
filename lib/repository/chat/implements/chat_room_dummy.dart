@@ -22,7 +22,7 @@ Future<List<ChatRoomDTO>> getChatRoomDummy() async {
       femaleNum: 2,
       ageFrom: 2,
       ageTo: 5,
-      onlyMyFriends: true,
+
       genderRestriction: 'NONE',
       mannerRestriction: true,
       ageRestriction: true,
@@ -46,7 +46,7 @@ Future<List<ChatRoomDTO>> getChatRoomDummy() async {
       femaleNum: 0,
       ageFrom: 2,
       ageTo: 5,
-      onlyMyFriends: true,
+
       genderRestriction: 'MIX',
       mannerRestriction: true,
       ageRestriction: true,

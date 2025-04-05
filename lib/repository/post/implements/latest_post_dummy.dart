@@ -18,7 +18,7 @@ Future<List<PostDTO>> getLatestPostDummy(String? lastPostId) async {
       femaleNum: 2,
       ageFrom: 1,
       ageTo: 1,
-      onlyMyFriends: true,
+
       genderRestriction: 'NONE',
       mannerRestriction: true,
       ageRestriction: true,
@@ -38,7 +38,7 @@ Future<List<PostDTO>> getLatestPostDummy(String? lastPostId) async {
       femaleNum: 0,
       ageFrom: 2,
       ageTo: 5,
-      onlyMyFriends: true,
+
       genderRestriction: 'MALE',
       mannerRestriction: true,
       ageRestriction: true,
@@ -58,7 +58,7 @@ Future<List<PostDTO>> getLatestPostDummy(String? lastPostId) async {
       femaleNum: 2,
       ageFrom: 5,
       ageTo: 6,
-      onlyMyFriends: true,
+
       genderRestriction: 'GENERAL',
       mannerRestriction: true,
       ageRestriction: false,

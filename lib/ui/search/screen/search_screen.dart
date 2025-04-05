@@ -13,7 +13,6 @@ import 'package:sottie_flutter/ui/post/widget/option/gender_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/location_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/manner_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/num_of_member_option.dart';
-import 'package:sottie_flutter/ui/post/widget/option/only_my_friends_option.dart';
 import 'package:sottie_flutter/ui/search/widget/date_range_option.dart';
 import 'package:sottie_flutter/ui/search/widget/date_time_reset_button.dart';
 import 'package:sottie_flutter/ui/search/widget/time_range_option.dart';
@@ -104,12 +103,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               ),
               const CustomExpansionTile(
                 title: "기타 옵션",
-                children: <Widget>[
-                  MannerOption(),
-                  SizedBox(height: 20),
-                  OnlyMyFriendsOption(),
-                  SizedBox(height: 80),
-                ],
+                children: <Widget>[MannerOption(), SizedBox(height: 80)],
               ),
               Padding(
                 padding: const EdgeInsets.all(32),

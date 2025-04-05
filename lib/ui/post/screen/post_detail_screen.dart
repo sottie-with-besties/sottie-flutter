@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/model/post/entity/post_entity.dart';
@@ -26,8 +25,6 @@ class PostDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final postProvider = GetIt.I.get<PostUseCase>();
-
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -125,8 +122,6 @@ class PostDetailScreen extends StatelessWidget {
                                 : Text("나이 제한 없음", style: _conditionTextStyle),
                             if (postEntity.mannerRestriction)
                               Text("36.5°C 이상", style: _conditionTextStyle),
-                            if (postEntity.onlyMyFriends)
-                              Text("내 친구만", style: _conditionTextStyle),
                           ],
                         ),
                       ],
@@ -149,7 +144,7 @@ class PostDetailScreen extends StatelessWidget {
                                 if (isWaiting) {
                                   log("참여취소");
 
-                                  final result = await postProvider.postExit();
+                                  final result = await PostUseCase().postExit();
 
                                   if (context.mounted) {
                                     if (result) {
@@ -163,7 +158,7 @@ class PostDetailScreen extends StatelessWidget {
                                 } else {
                                   log("참여하기");
 
-                                  final result = await postProvider.postJoin(
+                                  final result = await PostUseCase().postJoin(
                                     postJoinInfo: {
                                       'gatheringId': 18,
                                       'userId': 7,

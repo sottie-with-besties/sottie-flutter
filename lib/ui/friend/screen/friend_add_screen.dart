@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/model/user/dto/user_dto.dart';
 import 'package:sottie_flutter/repository/friend/implements/friend_request_dummy.dart';
@@ -28,8 +27,6 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
   String userSearchText = '';
 
   final _textController = TextEditingController();
-
-  final _friendManageProvider = GetIt.I.get<FriendUseCase>();
 
   Future<void> _searchUser(String searchString) async {
     userSearching = true;
@@ -95,7 +92,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                               mainBlueColor,
                               FontAwesomeIcons.userPlus,
                               () {
-                                _friendManageProvider.friendAdd(context);
+                                FriendUseCase().friendAdd(context);
                               },
                             ),
                           ],
@@ -148,9 +145,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                                         mainBlueColor,
                                         FontAwesomeIcons.userPlus,
                                         () {
-                                          _friendManageProvider.friendAdd(
-                                            context,
-                                          );
+                                          FriendUseCase().friendAdd(context);
                                         },
                                       ),
                                     ],

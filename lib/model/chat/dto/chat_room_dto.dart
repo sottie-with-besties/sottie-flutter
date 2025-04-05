@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'chat_room_dto.freezed.dart';
-
 part 'chat_room_dto.g.dart';
 
 @freezed
@@ -50,9 +49,6 @@ sealed class ChatRoomDTO with _$ChatRoomDTO {
 
     /// 최대 나이대
     required int ageTo,
-
-    /// 내 친구만 입장 가능 여부
-    required bool onlyMyFriends,
 
     /// 성비 제한
     required String genderRestriction,

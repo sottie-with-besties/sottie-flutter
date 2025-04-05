@@ -51,9 +51,6 @@ final class PostOptionsSetting {
   /// 사용자의 매너 온도 제한
   bool mannerRestriction;
 
-  /// 내 친구만 포스트 참여 가능
-  bool onlyMyFriends;
-
   PostOptionsSetting({
     this.title = '',
     this.contents = '',
@@ -71,7 +68,6 @@ final class PostOptionsSetting {
     this.ageTo = 0,
     this.ageRestriction = false,
     this.mannerRestriction = false,
-    this.onlyMyFriends = false,
   });
 
   Map<String, dynamic> toJsonForMakePostSend() {
@@ -111,7 +107,6 @@ final class PostOptionsSetting {
       'ageFrom': ageFrom * 10,
       'ageRestriction': ageRestriction,
       'mannerRestriction': mannerRestriction,
-      'onlyMyFriends': onlyMyFriends,
     };
 
     return searchFilteringData;

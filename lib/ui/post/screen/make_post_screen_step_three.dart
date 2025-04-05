@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_gender_restriction.dart';
@@ -16,8 +15,6 @@ class MakePostScreenStepThree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final postProvider = GetIt.I.get<PostUseCase>();
-
     return Scaffold(
       appBar: AppBar(title: const Text("미리 보기")),
       body: Padding(
@@ -68,8 +65,6 @@ class MakePostScreenStepThree extends StatelessWidget {
                     ),
                   if (postOptionsSetting.mannerRestriction)
                     const Text("매너 온도 제한: 매너온도가 36.5°C 이상인 유저만 입장할 수 있습니다."),
-                  if (postOptionsSetting.onlyMyFriends)
-                    const Text("내 친구만 입장: 작성자의 친구만 입장할 수 있습니다."),
                 ],
               ),
               SizedBox(height: 15 * hu),
@@ -80,7 +75,7 @@ class MakePostScreenStepThree extends StatelessWidget {
                     padding: const EdgeInsets.all(12.0),
                     child: ElevatedButton(
                       onPressed: () async {
-                        final makePostSuccess = await postProvider.makePost();
+                        final makePostSuccess = await PostUseCase().makePost();
 
                         if (context.mounted) {
                           if (makePostSuccess) {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
@@ -28,8 +27,6 @@ class _FindIdScreenState extends State<FindIdScreen> {
 
   final phoneNumberKey = GlobalKey<FormState>();
 
-  final _verificationProvider = GetIt.I.get<VerificationUseCase>();
-
   final loadingCircle = const Center(
     child: CircularProgressIndicator(color: mainWhiteSilverColor),
   );
@@ -48,7 +45,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
 
     if (currentStep == 0) {
       if (phoneNumberKey.currentState!.validate()) {
-        final errorCode = await _verificationProvider.signInWithPhoneNumber(
+        final errorCode = await VerificationUseCase().signInWithPhoneNumber(
           phoneNumber!,
         );
         if (errorCode == null) {
@@ -60,11 +57,11 @@ class _FindIdScreenState extends State<FindIdScreen> {
       }
     } else if (currentStep == 1) {
       /// 번호 인증 화면 -> 인증 성공 후 파이어베이스 유저 폰 번호 정보 삭제
-      final errorCode = await _verificationProvider.signInWithSmsCode(
+      final errorCode = await VerificationUseCase().signInWithSmsCode(
         verificationCode!,
       );
       if (errorCode == null) {
-        await _verificationProvider.deletePhoneUser();
+        await VerificationUseCase().deletePhoneUser();
         currentStep += 1;
         setState(() {});
       } else {
@@ -168,7 +165,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                     const SizedBox(height: 30),
                     OutlinedButton(
                       onPressed: () async {
-                        final errorCode = await _verificationProvider
+                        final errorCode = await VerificationUseCase()
                             .signInWithPhoneNumber(phoneNumber!);
                         if (errorCode != null) {
                           if (context.mounted) {
