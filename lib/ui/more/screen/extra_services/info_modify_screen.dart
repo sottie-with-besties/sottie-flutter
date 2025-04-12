@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/more/controller/modify_image.dart';
@@ -92,7 +91,7 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                 SizedBox(height: 5 * hu),
                 Center(
                   child: Text(
-                    "${myInfoEntity.birthYear}  |  ${convertGenderToString(myInfoEntity.gender)}  |  ${myInfoEntity.name}",
+                    "${myInfoEntity.birthYear}  |  ${myInfoEntity.gender == "MAIL" ? "남성" : "여성"}  |  ${myInfoEntity.name}",
                     textAlign: TextAlign.center,
                   ),
                 ),

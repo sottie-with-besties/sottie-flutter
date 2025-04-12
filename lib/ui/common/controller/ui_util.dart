@@ -1,33 +1,32 @@
-/// 시간 관련 데이터는 UTC로 관리
-/// 올해 이전의 시간은 연 + 월 + 일
-/// 오늘이 아닌 시간은 월 + 일
-/// 오늘의 시간은 오전/오후 + 시 : 분(0~9분 => 00분, 01분, 02분...)
-String renderCustomStringTime(
-  DateTime utcTimeString,
-  DateTime compareDateUtcTimeString,
-) {
-  final timeDifference = compareDateUtcTimeString.difference(utcTimeString);
-
-  late String customTime;
-
-  if (utcTimeString.year != compareDateUtcTimeString.year) {
-    customTime =
-        '${utcTimeString.year}년 ${utcTimeString.month}월 ${utcTimeString.day}일';
-  } else if (timeDifference.inDays > 0) {
-    customTime = '${utcTimeString.month}월 ${utcTimeString.day}일';
-  } else {
-    final dayString = utcTimeString.hour < 12 ? '오전' : '오후';
-    final hour =
-        utcTimeString.hour > 12
-            ? '${utcTimeString.hour - 12}'
-            : '${utcTimeString.hour}';
-
-    customTime =
-        '$dayString $hour : ${utcTimeString.minute.toString().padLeft(2, '0')}';
-  }
-
-  return customTime;
-}
+// /// 올해 이전의 시간은 연 + 월 + 일
+// /// 오늘이 아닌 시간은 월 + 일
+// /// 오늘의 시간은 오전/오후 + 시 : 분(0~9분 => 00분, 01분, 02분...)
+// String renderCustomStringTime(
+//   DateTime utcTimeString,
+//   DateTime compareDateUtcTimeString,
+// ) {
+//   final timeDifference = compareDateUtcTimeString.difference(utcTimeString);
+//
+//   late String customTime;
+//
+//   if (utcTimeString.year != compareDateUtcTimeString.year) {
+//     customTime =
+//         '${utcTimeString.year}년 ${utcTimeString.month}월 ${utcTimeString.day}일';
+//   } else if (timeDifference.inDays > 0) {
+//     customTime = '${utcTimeString.month}월 ${utcTimeString.day}일';
+//   } else {
+//     final dayString = utcTimeString.hour < 12 ? '오전' : '오후';
+//     final hour =
+//         utcTimeString.hour > 12
+//             ? '${utcTimeString.hour - 12}'
+//             : '${utcTimeString.hour}';
+//
+//     customTime =
+//         '$dayString $hour : ${utcTimeString.minute.toString().padLeft(2, '0')}';
+//   }
+//
+//   return customTime;
+// }
 
 /// int weekday => String 요일
 String convertIntToWeekday(int weekday) {
@@ -64,9 +63,6 @@ String convertDateTimeIntoString(DateTime datetime) {
       '${datetime.month}월 ${datetime.day}일 ${convertIntToWeekday(datetime.weekday)} $customTime';
   return dateString;
 }
-
-/// 남성: MALE, 여성: FEMALE
-String convertGenderToString(String gender) => gender == 'MALE' ? '남성' : '여성';
 
 String convertAgeRangeToString(int ageFrom, int ageTo) {
   String ageRangeString = '';

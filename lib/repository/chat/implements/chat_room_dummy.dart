@@ -6,7 +6,7 @@ Future<List<ChatRoomDTO>> getChatRoomDummy() async {
     ChatRoomDTO(
       id: 1,
       gatheringCategory: 'THUNDER',
-      gatheringDate: DateTime(2025, 1, 3, 8, 50),
+      gatheringDate: DateTime(2025, 4, 12, 8, 50),
       locationId: 2,
       title: '친목 모임: 가벼운 저녁 식사',
       profileThumbnailsUrl: ['1', '32', '42', '123'],

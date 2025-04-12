@@ -75,10 +75,7 @@ class ChatRoomInfo extends StatelessWidget {
                   SizedBox(
                     width: 50 * wu,
                     child: Text(
-                      renderCustomStringTime(
-                        latestTime.toLocal(),
-                        DateTime.now().toLocal(),
-                      ),
+                      convertDateTimeIntoString(latestTime),
                       style: TextStyle(
                         fontSize: 8 * hu,
                         color: mainGreyColor2,

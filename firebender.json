@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "imageReader": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-image-reader"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/kimjinpyo/FlutterProjects/sottie-flutter/lib/"
+      ]
+    }
+  }
+}

@@ -82,47 +82,50 @@ class _DmChatRoomState extends State<DmChatRoom> {
               vertical: 12 * hu,
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SottieUser(
-                  model: widget.entity.userDTO,
-                  heroTag: widget.entity.userDTO.id.toString(),
-                  isMyFriend: true,
-                  goToDetailPath: false,
-                  textWidth: 150,
+                Expanded(
+                  child: SottieUser(
+                    model: widget.entity.userDTO,
+                    heroTag: widget.entity.userDTO.id.toString(),
+                    isMyFriend: true,
+                    goToDetailPath: false,
+                    textWidth: 120,
+                  ),
                 ),
-                Column(
-                  children: [
-                    Text(
-                      renderCustomStringTime(
-                        widget.entity.latestTime.toLocal(),
-                        DateTime.now().toLocal(),
+                SizedBox(width: 10 * wu),
+                Padding(
+                  padding: EdgeInsets.only(right: 8 * wu),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        convertDateTimeIntoString(widget.entity.latestTime),
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 9 * hu,
+                        ),
                       ),
-                      style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 10 * hu,
-                      ),
-                    ),
-                    SizedBox(height: 5 * hu),
-                    Container(
-                      width: 40 * wu,
-                      height: 20 * hu,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: mainRedColor.withValues(alpha: 0.8),
-                      ),
-                      child: Center(
-                        child: Text(
-                          widget.entity.notReadMsg.toString(),
-                          style: const TextStyle(
-                            color: mainWhiteSilverColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
+                      SizedBox(height: 5 * hu),
+                      Container(
+                        width: 40 * wu,
+                        height: 20 * hu,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: mainRedColor.withValues(alpha: 0.8),
+                        ),
+                        child: Center(
+                          child: Text(
+                            widget.entity.notReadMsg.toString(),
+                            style: const TextStyle(
+                              color: mainWhiteSilverColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
