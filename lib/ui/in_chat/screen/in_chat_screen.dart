@@ -43,7 +43,7 @@ class _InChatScreenState extends State<InChatScreen> {
         appBar: AppBar(
           title: Text(
             isDm
-                ? widget.dmEntity!.userDTO.nickname
+                ? widget.dmEntity!.userEntity.nickname
                 : widget.chatRoomEntity!.title,
             style: const TextStyle(color: mainWhiteSilverColor),
           ),

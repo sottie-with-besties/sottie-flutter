@@ -7,7 +7,7 @@ import 'package:sottie_flutter/model/post/dto/post_dto.dart';
 import 'package:sottie_flutter/model/post/entity/post_entity.dart';
 import 'package:sottie_flutter/model/user/dto/user_dto.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
+import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
 class InChatDrawer extends StatelessWidget {
   const InChatDrawer({super.key, required this.chatRoomEntity});

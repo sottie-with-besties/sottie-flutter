@@ -9,4 +9,4 @@ enum InChatEventType { ENTRANCE, CHAT_IN, CHAT, CHAT_OUT, EXIT }
 
 enum InChatEventStatus { SUCCESS, FAIL }
 
-enum InChatDataType { TEXT, IMAGE, VIDEO, FILE }
+enum InChatDataType { TEXT, IMAGE, VIDEO }

@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/model/user/entity/user_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
-import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
+import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 import 'package:sottie_flutter/use_case/friend/friend_use_case.dart';
 import 'package:sottie_flutter/use_case/user/user_use_case.dart';
 
@@ -121,7 +122,7 @@ class _FriendState extends State<Friend> {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 10 * hu, horizontal: 16 * wu),
         child: SottieUser(
-          model: widget.model,
+          entity: UserEntity.fromDTO(model: widget.model),
           heroTag: 'friend',
           isMyFriend: true,
         ),

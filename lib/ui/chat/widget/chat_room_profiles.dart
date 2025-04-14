@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
+import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
 class ChatRoomProfiles extends StatelessWidget {
   const ChatRoomProfiles({

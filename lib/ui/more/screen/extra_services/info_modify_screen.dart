@@ -4,8 +4,8 @@ import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
-import 'package:sottie_flutter/ui/common/widget/user_profile.dart';
 import 'package:sottie_flutter/ui/more/controller/modify_image.dart';
+import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
 class InfoModifyScreen extends StatefulWidget {
   const InfoModifyScreen({super.key});

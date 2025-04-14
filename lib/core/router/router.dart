@@ -299,7 +299,7 @@ final _routes = [
 
       return CustomTransitionPage(
         child: UserDetailScreen(
-          model: params['model'],
+          entity: params['entity'],
           heroTag: params['heroTag'],
           isMyFriend: params['isMyFriend'],
         ),

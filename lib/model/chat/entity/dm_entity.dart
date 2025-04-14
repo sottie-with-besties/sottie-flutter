@@ -1,11 +1,11 @@
 import 'package:sottie_flutter/model/chat/dto/dm_dto.dart';
-import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/model/user/entity/user_entity.dart';
 
 final class DmEntity {
   final int id;
 
   /// DM을 주고받는 상대방의 정보
-  final UserDTO userDTO;
+  final UserEntity userEntity;
 
   /// 최근 받은 DM 내용
   final String latestMsg;
@@ -18,7 +18,7 @@ final class DmEntity {
 
   DmEntity({
     required this.id,
-    required this.userDTO,
+    required this.userEntity,
     required this.latestMsg,
     required this.latestTime,
     required this.notReadMsg,
@@ -27,7 +27,7 @@ final class DmEntity {
   factory DmEntity.fromDTO({required DmDTO model}) {
     return DmEntity(
       id: model.id,
-      userDTO: model.userDTO,
+      userEntity: UserEntity.fromDTO(model: model.userDTO),
       latestMsg: model.latestMsg,
       latestTime: model.latestTime,
       notReadMsg: model.notReadMsg,

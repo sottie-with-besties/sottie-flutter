@@ -85,8 +85,8 @@ class _DmChatRoomState extends State<DmChatRoom> {
               children: [
                 Expanded(
                   child: SottieUser(
-                    model: widget.entity.userDTO,
-                    heroTag: widget.entity.userDTO.id.toString(),
+                    entity: widget.entity.userEntity,
+                    heroTag: widget.entity.userEntity.id.toString(),
                     isMyFriend: true,
                     goToDetailPath: false,
                     textWidth: 120,

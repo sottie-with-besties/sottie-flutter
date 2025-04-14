@@ -17,7 +17,7 @@ class DmScreen extends ConsumerWidget {
       data: (data) {
         final dmList = data.where((data) {
           final searched =
-              data.userDTO.nickname.toString().contains(inputText) ||
+              data.userEntity.nickname.toString().contains(inputText) ||
               data.latestMsg.toString().contains(inputText);
 
           return searched;

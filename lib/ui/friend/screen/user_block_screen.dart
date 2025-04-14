@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/model/user/entity/user_entity.dart';
 import 'package:sottie_flutter/repository/user/implements/user_unblock_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
@@ -39,7 +40,7 @@ class _UserBlockScreenState extends State<UserBlockScreen>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SottieUser(
-                                model: userBlock,
+                                entity: UserEntity.fromDTO(model: userBlock),
                                 heroTag: 'userBlock',
                                 isMyFriend: false, // Todo: 친구인지 아닌지 확인하는 로직 필요
                                 textWidth: 100,

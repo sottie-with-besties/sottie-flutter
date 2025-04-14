@@ -90,7 +90,7 @@ final class InChatDataEntity {
   /// 데이터 아이디
   final String dataId;
 
-  /// { TEXT, IMAGE, VIDEO, FILE }
+  /// { TEXT, IMAGE, VIDEO }
   final InChatDataType inChatDataType;
 
   /// 내용 => 텍스트일 경우 단순 String, 사진 및 동영상은 URL
