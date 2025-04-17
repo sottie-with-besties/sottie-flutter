@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/in_chat/dto/in_chat_event_dto.dart';
 import 'package:sottie_flutter/model/in_chat/entity/in_chat_enum.dart';
 import 'package:sottie_flutter/model/in_chat/entity/in_chat_event_entity.dart';
 import 'package:sottie_flutter/model/user/entity/user_entity.dart';
-import 'package:sottie_flutter/repository/in_chat/implements/in_chat_message_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_events/in_chat_event_box.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_events/in_chat_read_receipts.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_events/in_chat_system_message.dart';
+import 'package:sottie_flutter/use_case/in_chat/in_chat_use_case.dart';
 
 class InChatEventsLayout extends StatelessWidget {
   const InChatEventsLayout({
@@ -27,7 +26,7 @@ class InChatEventsLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomFutureBuilder(
-      futureFunction: getInChatMessageDummy,
+      futureFunction: InChatUseCase().getInChatEventList,
       loadingWidget: Expanded(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -50,10 +49,9 @@ class InChatEventsLayout extends StatelessWidget {
           ],
         ),
       ),
-      callBack: (futureData) {
-        final data = futureData as InChatEventListDTO;
+      callBack: (futureDataEntity) {
         return _EventsList(
-          model: data,
+          entity: futureDataEntity,
           isChattingOver: isChattingOver,
           date: date,
         );
@@ -64,13 +62,13 @@ class InChatEventsLayout extends StatelessWidget {
 
 class _EventsList extends StatefulWidget {
   const _EventsList({
-    required this.model,
+    required this.entity,
     required this.isChattingOver,
     required this.date,
   });
 
   /// 서버로부터 받은 이벤트 리스트
-  final InChatEventListDTO model;
+  final InChatEventListEntity entity;
 
   /// 채팅 종료 여부
   final bool isChattingOver;
@@ -107,11 +105,10 @@ class _EventsListState extends State<_EventsList> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    /// DTO를 엔티티로 변환
-    final entity = InChatEventListEntity.fromDTO(model: widget.model);
-
-    _groupEvents.addAll(_groupConsecutiveMessages(entity.inChatEventList));
-    _users.addAll(entity.userList);
+    _groupEvents.addAll(
+      _groupConsecutiveMessages(widget.entity.inChatEventList),
+    );
+    _users.addAll(widget.entity.userList);
 
     for (UserEntity user in _users) {
       userChatStatus[user.id.toString()] = null;
@@ -167,7 +164,7 @@ class _EventsListState extends State<_EventsList> with WidgetsBindingObserver {
               /// 실제 메시지 그룹 처리
               final eventGroup = _groupEvents[index - 1];
 
-              // 날짜 변경 확인
+              /// 날짜 변경 확인
               Widget dateDivider = const SizedBox();
               if (index > 1) {
                 final prevGroup = _groupEvents[index - 2];
