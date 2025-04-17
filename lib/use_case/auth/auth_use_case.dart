@@ -28,6 +28,12 @@ part 'auth_part/oauth_kakao.dart';
 final _oauthLoginEntity = OauthLoginEntity();
 
 final class AuthUseCase {
+  static final AuthUseCase _instance = AuthUseCase._();
+
+  factory AuthUseCase() => _instance;
+
+  AuthUseCase._();
+
   final _tokenStorage = GetIt.I.get<TokenStorage>();
 
   Future<String?> signIn({

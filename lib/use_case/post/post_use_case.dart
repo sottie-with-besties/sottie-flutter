@@ -5,6 +5,12 @@ import 'package:sottie_flutter/repository/post/interface/post_repository.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 
 final class PostUseCase {
+  static final PostUseCase _instance = PostUseCase._();
+
+  factory PostUseCase() => _instance;
+
+  PostUseCase._();
+
   final _repo = GetIt.I.get<PostRepository>();
 
   /// 최신 모집글 불러오기

@@ -4,6 +4,12 @@ import 'package:sottie_flutter/repository/chat/implements/chat_room_dummy.dart';
 import 'package:sottie_flutter/repository/chat/implements/dm_dummy.dart';
 
 final class ChatUseCase {
+  static final ChatUseCase _instance = ChatUseCase._();
+
+  factory ChatUseCase() => _instance;
+
+  ChatUseCase._(); // 이름만 다르고 동일
+
   /// 채팅방 가져오기
   Future<List<ChatRoomEntity>> getChatList() async {
     final chatRoomModelList = await getChatRoomDummy();

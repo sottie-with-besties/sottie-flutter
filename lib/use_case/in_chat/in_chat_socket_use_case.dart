@@ -3,6 +3,12 @@ import 'package:sottie_flutter/core/rest_api/repository_env.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
 final class InChatSocketUseCase {
+  static final InChatSocketUseCase _instance = InChatSocketUseCase._();
+
+  factory InChatSocketUseCase() => _instance;
+
+  InChatSocketUseCase._();
+
   /// STOMP 웹소켓 생성
   final StompClient stompClient = StompClient(
     config: StompConfig(

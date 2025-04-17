@@ -5,6 +5,12 @@ final _auth = FirebaseAuth.instance;
 String? _verificationId;
 
 final class VerificationUseCase {
+  static final VerificationUseCase _instance = VerificationUseCase._();
+
+  factory VerificationUseCase() => _instance;
+
+  VerificationUseCase._();
+
   /// 이메일 인증
   /// 이메일 인증읠 위해서 먼저 계정을 만들어야함
   Future<String?> createEmailAndPassword(String email, String password) async {

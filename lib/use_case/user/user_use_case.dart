@@ -3,6 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 final class UserUseCase {
+  static final UserUseCase _instance = UserUseCase._();
+
+  factory UserUseCase() => _instance;
+
+  UserUseCase._();
+
   void userBlock(BuildContext context) {
     log("userBlock");
   }
