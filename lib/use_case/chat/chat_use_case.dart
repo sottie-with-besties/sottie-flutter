@@ -8,7 +8,7 @@ final class ChatUseCase {
 
   factory ChatUseCase() => _instance;
 
-  ChatUseCase._(); // 이름만 다르고 동일
+  ChatUseCase._();
 
   /// 채팅방 가져오기
   Future<List<ChatRoomEntity>> getChatList() async {

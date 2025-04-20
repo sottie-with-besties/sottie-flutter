@@ -1,13 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:sottie_flutter/core/Firebase/firebase_options.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/constant/native_key.dart';
-import 'package:sottie_flutter/core/local_database/token_storage.dart';
 import 'package:sottie_flutter/core/rest_api/repository_env.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
@@ -49,9 +47,6 @@ Future<void> _initApp() async {
 
   /// 서버 환경 초기화
   initRepositories(RepositoryEnvironment.dev);
-
-  /// 토큰 관리
-  GetIt.I.registerSingleton<TokenStorage>(TokenStorage());
 }
 
 final _customTheme = ThemeData(

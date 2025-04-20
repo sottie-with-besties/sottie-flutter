@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/core/local_database/token_storage.dart';
 import 'package:sottie_flutter/repository/auth/implements/auth_dev_repository_impl.dart';
 
 class _CustomInterceptor extends Interceptor {
-  final _tokenStorage = GetIt.I.get<TokenStorage>();
+  final _tokenStorage = TokenStorage();
 
   /// 디오가 네트워크 요청 할 때
   @override
