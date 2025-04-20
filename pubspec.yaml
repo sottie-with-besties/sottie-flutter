@@ -36,7 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
-  # UI
+  #UI
   font_awesome_flutter: # 아이콘
   google_fonts: # 구글 폰트
   auth_button_kit: # OAuth 소셜 로그인 버튼, 카카오는 없음
@@ -53,9 +53,18 @@ dependencies:
   get_it: ^8.0.3
 
   # Network
-  dio:
+  dio: ^5.8.0
   retrofit: ^4.4.1
   stomp_dart_client: ^2.1.3 # 실시간 채팅
+
+  # Json Serialization
+  freezed_annotation:
+  json_annotation: ^4.9.0
+
+  # Local Database
+  flutter_secure_storage: ^9.2.2
+  objectbox: ^4.1.0
+  objectbox_flutter_libs:
 
   # Router
   go_router:
@@ -64,11 +73,8 @@ dependencies:
   portone_flutter: ^0.12.0
 
   # 이미지
-  image_picker: 1.1.2
+  image_picker: ^1.1.2
   cached_network_image:
-
-  # 로컬 데이터베이스
-  flutter_secure_storage: 9.2.2
 
   # OAuth
   google_sign_in: # 구글
@@ -76,13 +82,9 @@ dependencies:
   kakao_flutter_sdk_user: # 카카오
 
   # 파이어베이스
-  firebase_core: 3.6.0
+  firebase_core: ^3.6.0
   # 이메일 인증, 핸드폰 번호 인증용
-  firebase_auth: 5.3.1
-
-  # Json Serialization
-  freezed_annotation:
-  json_annotation: 4.9.0
+  firebase_auth: ^5.3.1
 
   # 기타 유틸리티
   easy_debounce:
@@ -99,7 +101,7 @@ dev_dependencies:
   flutter_lints: ^4.0.0
 
   # Build Runner
-  build_runner:
+  build_runner: ^2.4.11
 
   # Riverpod
   riverpod_generator:
@@ -111,8 +113,14 @@ dev_dependencies:
   freezed:
   json_serializable:
 
+  # Local Database
+  objectbox_generator:
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+objectbox:
+  output_dir: core/local_database
 
 # The following section is specific to Flutter packages.
 flutter:

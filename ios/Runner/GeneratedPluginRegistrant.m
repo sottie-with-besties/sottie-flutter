@@ -60,6 +60,12 @@
 @import kakao_flutter_sdk_common;
 #endif
 
+#if __has_include(<objectbox_flutter_libs/ObjectboxFlutterLibsPlugin.h>)
+#import <objectbox_flutter_libs/ObjectboxFlutterLibsPlugin.h>
+#else
+@import objectbox_flutter_libs;
+#endif
+
 #if __has_include(<path_provider_foundation/PathProviderPlugin.h>)
 #import <path_provider_foundation/PathProviderPlugin.h>
 #else
@@ -108,6 +114,7 @@
   [FLTIamportWebViewFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTIamportWebViewFlutterPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [KakaoFlutterSdkPlugin registerWithRegistrar:[registry registrarForPlugin:@"KakaoFlutterSdkPlugin"]];
+  [ObjectboxFlutterLibsPlugin registerWithRegistrar:[registry registrarForPlugin:@"ObjectboxFlutterLibsPlugin"]];
   [PathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"PathProviderPlugin"]];
   [IamportFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"IamportFlutterPlugin"]];
   [SharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"SharedPreferencesPlugin"]];
