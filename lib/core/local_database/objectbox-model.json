@@ -1,0 +1,175 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:6929589078566451250",
+      "lastPropertyId": "4:2368925187953414032",
+      "name": "InChatDataLocalDTO",
+      "properties": [
+        {
+          "id": "1:7934234719201775379",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5350857677561821740",
+          "name": "dataId",
+          "type": 9
+        },
+        {
+          "id": "3:477196866431152592",
+          "name": "inChatDataType",
+          "type": 9
+        },
+        {
+          "id": "4:2368925187953414032",
+          "name": "contents",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:1727238836425246089",
+      "lastPropertyId": "2:7958415430520320432",
+      "name": "InChatEventListLocalDTO",
+      "properties": [
+        {
+          "id": "1:8102268948635172208",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7958415430520320432",
+          "name": "roomId",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "4:3575284087082992589",
+          "name": "userList",
+          "targetId": "4:5115315628866282220"
+        },
+        {
+          "id": "5:9169392636316638828",
+          "name": "inChatEventList",
+          "targetId": "3:5310278417568448237"
+        }
+      ]
+    },
+    {
+      "id": "3:5310278417568448237",
+      "lastPropertyId": "9:1585148969300346690",
+      "name": "InChatEventLocalDTO",
+      "properties": [
+        {
+          "id": "1:1186900153388184028",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8496729147045889852",
+          "name": "eventId",
+          "type": 9
+        },
+        {
+          "id": "3:8212661422156682553",
+          "name": "userId",
+          "type": 6
+        },
+        {
+          "id": "4:1224763139463649506",
+          "name": "inChatEventType",
+          "type": 9
+        },
+        {
+          "id": "5:8284527198821110264",
+          "name": "timeStamp",
+          "type": 10
+        },
+        {
+          "id": "6:4266158725092122896",
+          "name": "inChatEventStatus",
+          "type": 9
+        },
+        {
+          "id": "7:2268845606986151022",
+          "name": "inChatDataId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:3218224958239779237",
+          "relationTarget": "InChatDataLocalDTO"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:5115315628866282220",
+      "lastPropertyId": "7:6015609694460064215",
+      "name": "UserLocalDTO",
+      "properties": [
+        {
+          "id": "1:4378815629329486973",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:680523836483137508",
+          "name": "userId",
+          "type": 6
+        },
+        {
+          "id": "3:8631333855054858109",
+          "name": "nickname",
+          "type": 9
+        },
+        {
+          "id": "4:4860547670405281381",
+          "name": "stateMsg",
+          "type": 9
+        },
+        {
+          "id": "5:5689427324582082290",
+          "name": "profileUrl",
+          "type": 9
+        },
+        {
+          "id": "6:1345729936813278579",
+          "name": "mannerTemperature",
+          "type": 8
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:5115315628866282220",
+  "lastIndexId": "4:1320994640446253503",
+  "lastRelationId": "5:9169392636316638828",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [
+    5776297819287639768,
+    6481614098286429565,
+    1320994640446253503
+  ],
+  "retiredPropertyUids": [
+    4690822206809723124,
+    1585148969300346690,
+    6015609694460064215
+  ],
+  "retiredRelationUids": [
+    2580727865079716615,
+    3448847052248615661,
+    6655875872615273825
+  ],
+  "version": 1
+}

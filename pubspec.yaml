@@ -88,6 +88,8 @@ dependencies:
 
   # 기타 유틸리티
   easy_debounce:
+  path_provider:
+  path:
 
 dev_dependencies:
   flutter_test:
