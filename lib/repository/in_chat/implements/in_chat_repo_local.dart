@@ -12,11 +12,11 @@ final class InChatRepoLocal {
   InChatRepoLocal._();
 
   /// 로컬 데이터 가져오기
-  InChatEventListLocalDTO? getInChatEventList({required String rooId}) {
+  InChatEventListLocalDTO? getInChatEventList({required String roomId}) {
     try {
       final box = ObjectBoxStore().getBox<InChatEventListLocalDTO>();
       final query =
-          box.query(InChatEventListLocalDTO_.roomId.equals(rooId)).build();
+          box.query(InChatEventListLocalDTO_.roomId.equals(roomId)).build();
       final result = query.findUnique();
       query.close();
       return result;

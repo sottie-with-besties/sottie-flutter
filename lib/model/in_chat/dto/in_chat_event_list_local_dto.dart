@@ -51,9 +51,9 @@ final class InChatEventLocalDTO {
   @Id()
   int id = 0;
 
-  final String eventId;
+  final int eventId;
 
-  final int userId;
+  final String userId;
 
   final String inChatEventType;
 

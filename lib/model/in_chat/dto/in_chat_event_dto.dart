@@ -2,7 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sottie_flutter/model/user/dto/user_dto.dart';
 
 part 'in_chat_event_dto.freezed.dart';
-
 part 'in_chat_event_dto.g.dart';
 
 @freezed

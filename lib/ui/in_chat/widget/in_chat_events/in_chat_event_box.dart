@@ -25,7 +25,7 @@ class InChatEventBox extends StatelessWidget {
   final bool isMyMessage;
 
   /// 메시지를 보낸 유저의 ID
-  final int userId;
+  final String userId;
 
   /// 프로필 이미지 URL
   final String? profileUrl;

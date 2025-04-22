@@ -247,9 +247,9 @@ class _EventsListState extends State<_EventsList> with WidgetsBindingObserver {
   }
 
   /// 사용자 ID로 사용자 정보 찾기
-  UserEntity? _findUserById(int userId) {
+  UserEntity? _findUserById(String userId) {
     try {
-      return _users.firstWhere((user) => user.id == userId);
+      return _users.firstWhere((user) => user.id.toString() == userId);
     } catch (e) {
       return null;
     }

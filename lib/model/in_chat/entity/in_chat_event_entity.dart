@@ -46,10 +46,10 @@ final class InChatEventListEntity {
 /// 그 이후 InChatEventEntity를 소켓으로 통신
 final class InChatEventEntity {
   /// 이벤트의 아이디 => 순서 정보 포함 ex) 이벤트가 100개 발생했을 최신 eventId == 100
-  final String eventId;
+  final int eventId;
 
   /// 이벤트를 발생시킨 유저 아이디
-  final int userId;
+  final String userId;
 
   /// 이벤트 타입 { ENTRANCE, CHAT_IN, CHAT, CHAT_OUT, EXIT }
   final InChatEventType inChatEventType;
@@ -74,8 +74,8 @@ final class InChatEventEntity {
 
   factory InChatEventEntity.fromDTO({required InChatEventDTO model}) {
     return InChatEventEntity(
-      eventId: model.eventId,
-      userId: model.userId,
+      eventId: int.parse(model.eventId),
+      userId: model.userId.toString(),
       inChatEventType: InChatEventType.values.byName(model.inChatEventType),
       timeStamp: model.timeStamp.toLocal(),
       inChatEventStatus: InChatEventStatus.values.byName(
@@ -87,7 +87,7 @@ final class InChatEventEntity {
 }
 
 final class InChatDataEntity {
-  /// 데이터 아이디
+  /// 데이터 아이디 (필요 없어보임)
   final String dataId;
 
   /// { TEXT, IMAGE, VIDEO }
