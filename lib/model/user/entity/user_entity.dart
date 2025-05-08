@@ -1,5 +1,3 @@
-import 'package:sottie_flutter/model/user/dto/user_dto.dart';
-
 final class UserEntity {
   /// 유저 ID
   final int id;
@@ -23,14 +21,4 @@ final class UserEntity {
     required this.profileUrl,
     required this.mannerTemperature,
   });
-
-  factory UserEntity.fromDTO({required UserDTO model}) {
-    return UserEntity(
-      id: model.id,
-      nickname: model.nickname,
-      stateMsg: model.stateMsg,
-      profileUrl: model.profileUrl,
-      mannerTemperature: model.mannerTemperature,
-    );
-  }
 }

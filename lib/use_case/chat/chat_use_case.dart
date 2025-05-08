@@ -14,9 +14,7 @@ final class ChatUseCase {
   Future<List<ChatRoomEntity>> getChatList() async {
     final chatRoomModelList = await getChatRoomDummy();
     final chatRoomEntityList =
-        chatRoomModelList
-            .map((model) => ChatRoomEntity.fromDTO(model: model))
-            .toList();
+        chatRoomModelList.map((model) => model.toEntity()).toList();
 
     return chatRoomEntityList;
   }
@@ -24,8 +22,7 @@ final class ChatUseCase {
   /// Dm 가져오기
   Future<List<DmEntity>> getDmList() async {
     final dmModelList = await getDmDummy();
-    final dmEntityList =
-        dmModelList.map((model) => DmEntity.fromDTO(model: model)).toList();
+    final dmEntityList = dmModelList.map((model) => model.toEntity()).toList();
 
     return dmEntityList;
   }

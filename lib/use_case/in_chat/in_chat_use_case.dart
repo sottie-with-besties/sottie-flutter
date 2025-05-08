@@ -11,6 +11,6 @@ final class InChatUseCase {
   Future<InChatEventListEntity> getInChatEventList() async {
     final inChatEventListDTO = await getInChatMessageDummy();
 
-    return InChatEventListEntity.fromDTO(model: inChatEventListDTO);
+    return inChatEventListDTO.toEntity();
   }
 }

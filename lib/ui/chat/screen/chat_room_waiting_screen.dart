@@ -6,7 +6,6 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_location.dart';
-import 'package:sottie_flutter/model/post/entity/post_entity.dart';
 import 'package:sottie_flutter/provider/chat/chat_room_waiting_provider.dart';
 import 'package:sottie_flutter/ui/chat/controller/chat_header_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
@@ -47,7 +46,7 @@ class ChatRoomWaitingScreen extends ConsumerWidget {
           children:
               chatRoomWaitingList
                   .map(
-                    (e) => SlideLongPressWidget(
+                    (model) => SlideLongPressWidget(
                       groupTag: 'chat',
                       onLongPressWidget: Column(
                         children: [
@@ -72,10 +71,7 @@ class ChatRoomWaitingScreen extends ConsumerWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 1),
                         ),
                       ],
-                      child: Post(
-                        entity: PostEntity.fromDTO(model: e),
-                        isWaiting: true,
-                      ),
+                      child: Post(entity: model.toEntity(), isWaiting: true),
                     ),
                   )
                   .toList(),

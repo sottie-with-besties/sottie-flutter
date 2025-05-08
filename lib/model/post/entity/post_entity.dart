@@ -1,4 +1,3 @@
-import 'package:sottie_flutter/model/post/dto/post_dto.dart';
 import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_category.dart';
 import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_gender_restriction.dart';
 import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_location.dart';
@@ -65,28 +64,4 @@ final class PostEntity {
     required this.mannerRestriction,
     required this.ageRestriction,
   });
-
-  factory PostEntity.fromDTO({required PostDTO model}) {
-    return PostEntity(
-      id: model.id,
-      postCategory: PostCategory.values.byName(model.gatheringCategory),
-      title: model.title,
-      postLocation: PostLocation.values[model.locationId],
-      postDate: model.gatheringDate.toLocal(),
-      contents: model.contents,
-      numOfCurrentPeople: model.currentPeopleNum,
-      numOfPeople: model.peopleNum,
-      numOfCurrentMale: model.currentMaleNum,
-      numOfMale: model.maleNum,
-      numOfCurrentFemale: model.currentFemaleNum,
-      numOfFemale: model.femaleNum,
-      ageFrom: model.ageFrom,
-      ageTo: model.ageTo,
-      genderRestriction: PostGenderRestriction.values.byName(
-        model.genderRestriction,
-      ),
-      mannerRestriction: model.mannerRestriction,
-      ageRestriction: model.ageRestriction,
-    );
-  }
 }

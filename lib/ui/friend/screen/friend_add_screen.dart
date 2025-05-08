@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/model/user/dto/user_dto.dart';
-import 'package:sottie_flutter/model/user/entity/user_entity.dart';
 import 'package:sottie_flutter/repository/friend/implements/friend_request_dummy.dart';
 import 'package:sottie_flutter/repository/user/implements/user_search_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
@@ -84,7 +83,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SottieUser(
-                              entity: UserEntity.fromDTO(model: userFound!),
+                              entity: userFound!.toEntity(),
                               heroTag: 'friendAddSearch',
                               isMyFriend: false,
                               textWidth: 100,
@@ -127,9 +126,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SottieUser(
-                                    entity: UserEntity.fromDTO(
-                                      model: futureData[index],
-                                    ),
+                                    entity: futureData[index].toEntity(),
                                     heroTag: 'friendAddRequest',
                                     isMyFriend: false,
                                     textWidth: 100,

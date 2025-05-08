@@ -1,5 +1,3 @@
-import 'package:sottie_flutter/model/chat/dto/chat_room_dto.dart';
-
 final class ChatRoomEntity {
   final int id;
 
@@ -77,30 +75,4 @@ final class ChatRoomEntity {
     required this.mannerRestriction,
     required this.ageRestriction,
   });
-
-  factory ChatRoomEntity.fromDTO({required ChatRoomDTO model}) {
-    return ChatRoomEntity(
-      id: model.id,
-      gatheringCategory: model.gatheringCategory,
-      gatheringDate: model.gatheringDate.toLocal(),
-      locationId: model.locationId,
-      title: model.title,
-      profileThumbnailsUrl: model.profileThumbnailsUrl,
-      latestMsg: model.latestMsg,
-      latestTime: model.latestTime,
-      notReadMsg: model.notReadMsg,
-      contents: model.contents,
-      currentPeopleNum: model.currentPeopleNum,
-      peopleNum: model.peopleNum,
-      currentMaleNum: model.currentMaleNum,
-      maleNum: model.maleNum,
-      currentFemaleNum: model.currentFemaleNum,
-      femaleNum: model.femaleNum,
-      ageFrom: model.ageFrom,
-      ageTo: model.ageTo,
-      genderRestriction: model.genderRestriction,
-      mannerRestriction: model.mannerRestriction,
-      ageRestriction: model.ageRestriction,
-    );
-  }
 }

@@ -1,4 +1,3 @@
-import 'package:sottie_flutter/model/in_chat/dto/in_chat_event_dto.dart';
 import 'package:sottie_flutter/model/in_chat/entity/in_chat_enum.dart';
 import 'package:sottie_flutter/model/user/entity/user_entity.dart';
 
@@ -23,23 +22,6 @@ final class InChatEventListEntity {
     required this.userList,
     required this.inChatEventList,
   });
-
-  factory InChatEventListEntity.fromDTO({required InChatEventListDTO model}) {
-    return InChatEventListEntity(
-      roomId: model.roomId,
-      userList:
-          model.userList
-              .map((userDTO) => UserEntity.fromDTO(model: userDTO))
-              .toList(),
-      inChatEventList:
-          model.inChatEventList
-              .map(
-                (inChatEventDTO) =>
-                    InChatEventEntity.fromDTO(model: inChatEventDTO),
-              )
-              .toList(),
-    );
-  }
 }
 
 /// 최초 입장 및 InChatEventListEntity를 한 번 받았다면
@@ -71,19 +53,6 @@ final class InChatEventEntity {
     required this.inChatEventStatus,
     required this.inChatData,
   });
-
-  factory InChatEventEntity.fromDTO({required InChatEventDTO model}) {
-    return InChatEventEntity(
-      eventId: int.parse(model.eventId),
-      userId: model.userId.toString(),
-      inChatEventType: InChatEventType.values.byName(model.inChatEventType),
-      timeStamp: model.timeStamp.toLocal(),
-      inChatEventStatus: InChatEventStatus.values.byName(
-        model.inChatEventStatus,
-      ),
-      inChatData: InChatDataEntity.fromDTO(model: model.inChatData),
-    );
-  }
 }
 
 final class InChatDataEntity {
@@ -101,12 +70,4 @@ final class InChatDataEntity {
     required this.inChatDataType,
     required this.contents,
   });
-
-  factory InChatDataEntity.fromDTO({required InChatDataDTO model}) {
-    return InChatDataEntity(
-      dataId: model.dataId,
-      inChatDataType: InChatDataType.values.byName(model.inChatDataType),
-      contents: model.contents,
-    );
-  }
 }

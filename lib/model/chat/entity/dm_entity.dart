@@ -1,4 +1,3 @@
-import 'package:sottie_flutter/model/chat/dto/dm_dto.dart';
 import 'package:sottie_flutter/model/user/entity/user_entity.dart';
 
 final class DmEntity {
@@ -23,14 +22,4 @@ final class DmEntity {
     required this.latestTime,
     required this.notReadMsg,
   });
-
-  factory DmEntity.fromDTO({required DmDTO model}) {
-    return DmEntity(
-      id: model.id,
-      userEntity: UserEntity.fromDTO(model: model.userDTO),
-      latestMsg: model.latestMsg,
-      latestTime: model.latestTime,
-      notReadMsg: model.notReadMsg,
-    );
-  }
 }

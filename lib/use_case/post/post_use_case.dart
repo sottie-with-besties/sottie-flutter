@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:sottie_flutter/model/common/dto_interface.dart';
 import 'package:sottie_flutter/model/post/dto/post_dto.dart';
 import 'package:sottie_flutter/model/post/entity/post_entity.dart';
 import 'package:sottie_flutter/repository/post/interface/post_repository.dart';
@@ -23,8 +24,8 @@ final class PostUseCase {
 
     final postEntityList = <PostEntity>[];
 
-    for (PostDTO model in postModelList) {
-      postEntityList.add(PostEntity.fromDTO(model: model));
+    for (DTO model in postModelList) {
+      postEntityList.add((model as PostDTO).toEntity());
     }
 
     return postEntityList;
@@ -42,8 +43,8 @@ final class PostUseCase {
 
     final postEntityList = <PostEntity>[];
 
-    for (PostDTO model in postModelList) {
-      postEntityList.add(PostEntity.fromDTO(model: model));
+    for (DTO model in postModelList) {
+      postEntityList.add((model as PostDTO).toEntity());
     }
 
     return postEntityList;

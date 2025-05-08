@@ -1,9 +1,11 @@
 import 'package:objectbox/objectbox.dart';
+import 'package:sottie_flutter/model/common/dto_interface.dart';
+import 'package:sottie_flutter/model/in_chat/entity/in_chat_enum.dart';
 import 'package:sottie_flutter/model/in_chat/entity/in_chat_event_entity.dart';
 import 'package:sottie_flutter/model/user/dto/user_local_dto.dart';
 
 @Entity()
-final class InChatEventListLocalDTO {
+final class InChatEventListLocalDTO implements DTO {
   @Id()
   int id = 0;
 
@@ -44,10 +46,23 @@ final class InChatEventListLocalDTO {
     this.userList.addAll(userList);
     this.inChatEventList.addAll(inChatEventList);
   }
+
+  @override
+  InChatEventListEntity toEntity() {
+    final userEntityList = userList.map((user) => user.toEntity()).toList();
+    final eventEntityList =
+        inChatEventList.map((event) => event.toEntity()).toList();
+
+    return InChatEventListEntity(
+      roomId: roomId,
+      userList: userEntityList,
+      inChatEventList: eventEntityList,
+    );
+  }
 }
 
 @Entity()
-final class InChatEventLocalDTO {
+final class InChatEventLocalDTO implements DTO {
   @Id()
   int id = 0;
 
@@ -85,10 +100,29 @@ final class InChatEventLocalDTO {
   void setInChatData(InChatDataLocalDTO inChatData) {
     this.inChatData.target = inChatData;
   }
+
+  @override
+  InChatEventEntity toEntity() {
+    return InChatEventEntity(
+      eventId: eventId,
+      userId: userId,
+      inChatEventType: InChatEventType.values.byName(inChatEventType),
+      timeStamp: timeStamp,
+      inChatEventStatus: InChatEventStatus.values.byName(inChatEventStatus),
+      inChatData:
+          inChatData.target?.toEntity() ??
+          // Fallback empty data entity in case the relation is null
+          const InChatDataEntity(
+            dataId: '',
+            inChatDataType: InChatDataType.TEXT,
+            contents: '',
+          ),
+    );
+  }
 }
 
 @Entity()
-final class InChatDataLocalDTO {
+final class InChatDataLocalDTO implements DTO {
   @Id()
   int id = 0;
 
@@ -109,6 +143,15 @@ final class InChatDataLocalDTO {
       dataId: entity.dataId,
       inChatDataType: entity.inChatDataType.name,
       contents: entity.contents,
+    );
+  }
+
+  @override
+  InChatDataEntity toEntity() {
+    return InChatDataEntity(
+      dataId: dataId,
+      inChatDataType: InChatDataType.values.byName(inChatDataType),
+      contents: contents,
     );
   }
 }

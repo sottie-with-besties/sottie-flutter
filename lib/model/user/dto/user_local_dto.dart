@@ -1,8 +1,9 @@
 import 'package:objectbox/objectbox.dart';
+import 'package:sottie_flutter/model/common/dto_interface.dart';
 import 'package:sottie_flutter/model/user/entity/user_entity.dart';
 
 @Entity()
-final class UserLocalDTO {
+class UserLocalDTO implements DTO {
   @Id()
   int id = 0;
 
@@ -24,8 +25,8 @@ final class UserLocalDTO {
   UserLocalDTO({
     required this.userId,
     required this.nickname,
-    required this.stateMsg,
-    required this.profileUrl,
+    this.stateMsg,
+    this.profileUrl,
     required this.mannerTemperature,
   });
 
@@ -36,6 +37,22 @@ final class UserLocalDTO {
       stateMsg: entity.stateMsg,
       profileUrl: entity.profileUrl,
       mannerTemperature: entity.mannerTemperature,
+    );
+  }
+
+  @override
+  Map<String, dynamic> fromEntity({required Object entity}) {
+    throw UnimplementedError('This method is not required for local DTOs');
+  }
+
+  @override
+  UserEntity toEntity() {
+    return UserEntity(
+      id: userId,
+      nickname: nickname,
+      stateMsg: stateMsg,
+      profileUrl: profileUrl,
+      mannerTemperature: mannerTemperature,
     );
   }
 }

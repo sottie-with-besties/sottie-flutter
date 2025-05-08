@@ -43,13 +43,13 @@ final class InChatRepoLocal {
   }
 
   /// 로컬 데이터 삭제
-  bool removeLocalEventData({required String rooId}) {
+  bool removeLocalEventData({required String roomId}) {
     try {
       final inChatEventListLocalDTOBox =
           ObjectBoxStore().getBox<InChatEventListLocalDTO>();
       final query =
           inChatEventListLocalDTOBox
-              .query(InChatEventListLocalDTO_.roomId.equals(rooId))
+              .query(InChatEventListLocalDTO_.roomId.equals(roomId))
               .build();
       final inChatEventListLocalDTO = query.findUnique();
       query.close();

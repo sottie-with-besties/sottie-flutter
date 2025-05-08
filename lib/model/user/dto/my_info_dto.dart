@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'my_info_dto.freezed.dart';
-
 part 'my_info_dto.g.dart';
 
 @unfreezed
@@ -14,7 +13,7 @@ sealed class MyInfoDTO with _$MyInfoDTO {
     @Default('김진표') String name,
 
     /// 이메일
-    @Default('kjp00552277@gmail.com') String email,
+    @Default('kasdasdasd7@gmail.com') String email,
 
     /// 닉네임
     @Default('나의 닉네임') String nickName,
@@ -23,7 +22,7 @@ sealed class MyInfoDTO with _$MyInfoDTO {
     @Default('12343456778') String password,
 
     /// 핸드폰 번호
-    @Default('01035361901') String phoneNumber,
+    @Default('01011111111') String phoneNumber,
 
     /// 성별
     @Default('MALE') String gender,
@@ -32,7 +31,7 @@ sealed class MyInfoDTO with _$MyInfoDTO {
     @Default('123123123') String identifier,
 
     /// 생일
-    @Default('2000년 5월 27일') String birthYear,
+    @Default('1111년 1월 1일') String birthYear,
 
     /// 본인 인증 여부
     @Default(false) bool phoneAuthenticated,
