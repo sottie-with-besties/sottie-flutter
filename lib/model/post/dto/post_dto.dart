@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sottie_flutter/model/common/dto_interface.dart';
 
 import '../entity/post_detail_enum/post_category.dart';
 import '../entity/post_detail_enum/post_gender_restriction.dart';
@@ -9,7 +8,7 @@ import '../entity/post_entity.dart';
 part 'post_dto.g.dart';
 
 @JsonSerializable()
-final class PostDTO implements DTO {
+final class PostDTO {
   /// 포스트 ID
   final int id;
 
@@ -77,48 +76,7 @@ final class PostDTO implements DTO {
 
   Map<String, dynamic> toJson() => _$PostDTOToJson(this);
 
-  factory PostDTO.fromEntity({required PostEntity entity}) {
-    return PostDTO(
-      id: entity.id,
-      gatheringCategory: entity.postCategory.name,
-      title: entity.title,
-      locationId: entity.postLocation.index,
-      gatheringDate: entity.postDate,
-      contents: entity.contents,
-      currentPeopleNum: entity.numOfCurrentPeople,
-      peopleNum: entity.numOfPeople,
-      currentMaleNum: entity.numOfCurrentMale,
-      maleNum: entity.numOfMale,
-      currentFemaleNum: entity.numOfCurrentFemale,
-      femaleNum: entity.numOfFemale,
-      ageFrom: entity.ageFrom,
-      ageTo: entity.ageTo,
-      genderRestriction: entity.genderRestriction.name,
-      mannerRestriction: entity.mannerRestriction,
-      ageRestriction: entity.ageRestriction,
-    );
-  }
+  factory PostDTO.fromEntity(PostEntity entity) => _$PostDTOFromEntity(entity);
 
-  @override
-  PostEntity toEntity() {
-    return PostEntity(
-      id: id,
-      postCategory: PostCategory.values.byName(gatheringCategory),
-      title: title,
-      postLocation: PostLocation.values[locationId],
-      postDate: gatheringDate.toLocal(),
-      contents: contents,
-      numOfCurrentPeople: currentPeopleNum,
-      numOfPeople: peopleNum,
-      numOfCurrentMale: currentMaleNum,
-      numOfMale: maleNum,
-      numOfCurrentFemale: currentFemaleNum,
-      numOfFemale: femaleNum,
-      ageFrom: ageFrom,
-      ageTo: ageTo,
-      genderRestriction: PostGenderRestriction.values.byName(genderRestriction),
-      mannerRestriction: mannerRestriction,
-      ageRestriction: ageRestriction,
-    );
-  }
+  PostEntity toEntity() => _$PostDTOToEntity(this);
 }

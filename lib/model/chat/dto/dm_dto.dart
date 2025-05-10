@@ -1,12 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:sottie_flutter/model/chat/entity/dm_entity.dart';
-import 'package:sottie_flutter/model/common/dto_interface.dart';
 import 'package:sottie_flutter/model/user/dto/user_dto.dart';
 
 part 'dm_dto.g.dart';
 
 @JsonSerializable()
-final class DmDTO implements DTO {
+final class DmDTO {
   final int id;
 
   /// DM을 주고받는 상대방의 정보
@@ -33,24 +32,7 @@ final class DmDTO implements DTO {
 
   Map<String, dynamic> toJson() => _$DmDTOToJson(this);
 
-  factory DmDTO.fromEntity({required DmEntity entity}) {
-    return DmDTO(
-      id: entity.id,
-      userDTO: UserDTO.fromEntity(entity: entity.userEntity),
-      latestMsg: entity.latestMsg,
-      latestTime: entity.latestTime,
-      notReadMsg: entity.notReadMsg,
-    );
-  }
+  factory DmDTO.fromEntity(DmEntity entity) => _$DmDTOFromEntity(entity);
 
-  @override
-  DmEntity toEntity() {
-    return DmEntity(
-      id: id,
-      userEntity: userDTO.toEntity(),
-      latestMsg: latestMsg,
-      latestTime: latestTime,
-      notReadMsg: notReadMsg,
-    );
-  }
+  DmEntity toEntity() => _$DmDTOToEntity(this);
 }

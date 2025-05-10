@@ -1,11 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:sottie_flutter/model/chat/entity/chat_room_entity.dart';
-import 'package:sottie_flutter/model/common/dto_interface.dart';
 
 part 'chat_room_dto.g.dart';
 
 @JsonSerializable()
-final class ChatRoomDTO implements DTO {
+final class ChatRoomDTO {
   final int id;
 
   /// 채팅의 카테고리(친목, 번개, 구인/구직 등)
@@ -88,56 +87,8 @@ final class ChatRoomDTO implements DTO {
 
   Map<String, dynamic> toJson() => _$ChatRoomDTOToJson(this);
 
-  factory ChatRoomDTO.fromEntity({required ChatRoomEntity entity}) {
-    return ChatRoomDTO(
-      id: entity.id,
-      gatheringCategory: entity.gatheringCategory,
-      gatheringDate: entity.gatheringDate,
-      locationId: entity.locationId,
-      title: entity.title,
-      profileThumbnailsUrl: entity.profileThumbnailsUrl,
-      latestMsg: entity.latestMsg,
-      latestTime: entity.latestTime,
-      notReadMsg: entity.notReadMsg,
-      contents: entity.contents,
-      currentPeopleNum: entity.currentPeopleNum,
-      peopleNum: entity.peopleNum,
-      currentMaleNum: entity.currentMaleNum,
-      maleNum: entity.maleNum,
-      currentFemaleNum: entity.currentFemaleNum,
-      femaleNum: entity.femaleNum,
-      ageFrom: entity.ageFrom,
-      ageTo: entity.ageTo,
-      genderRestriction: entity.genderRestriction,
-      mannerRestriction: entity.mannerRestriction,
-      ageRestriction: entity.ageRestriction,
-    );
-  }
+  factory ChatRoomDTO.fromEntity(ChatRoomEntity entity) =>
+      _$ChatRoomDTOFromEntity(entity);
 
-  @override
-  ChatRoomEntity toEntity() {
-    return ChatRoomEntity(
-      id: id,
-      gatheringCategory: gatheringCategory,
-      gatheringDate: gatheringDate.toLocal(),
-      locationId: locationId,
-      title: title,
-      profileThumbnailsUrl: profileThumbnailsUrl,
-      latestMsg: latestMsg,
-      latestTime: latestTime,
-      notReadMsg: notReadMsg,
-      contents: contents,
-      currentPeopleNum: currentPeopleNum,
-      peopleNum: peopleNum,
-      currentMaleNum: currentMaleNum,
-      maleNum: maleNum,
-      currentFemaleNum: currentFemaleNum,
-      femaleNum: femaleNum,
-      ageFrom: ageFrom,
-      ageTo: ageTo,
-      genderRestriction: genderRestriction,
-      mannerRestriction: mannerRestriction,
-      ageRestriction: ageRestriction,
-    );
-  }
+  ChatRoomEntity toEntity() => _$ChatRoomDTOToEntity(this);
 }

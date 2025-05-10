@@ -1,11 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sottie_flutter/model/common/dto_interface.dart';
 import 'package:sottie_flutter/model/user/entity/user_entity.dart';
 
 part 'user_dto.g.dart';
 
 @JsonSerializable()
-final class UserDTO implements DTO {
+final class UserDTO {
   /// 유저 ID
   final int id;
 
@@ -34,24 +33,7 @@ final class UserDTO implements DTO {
 
   Map<String, dynamic> toJson() => _$UserDTOToJson(this);
 
-  factory UserDTO.fromEntity({required UserEntity entity}) {
-    return UserDTO(
-      id: entity.id,
-      nickname: entity.nickname,
-      stateMsg: entity.stateMsg,
-      profileUrl: entity.profileUrl,
-      mannerTemperature: entity.mannerTemperature,
-    );
-  }
+  factory UserDTO.fromEntity(UserEntity entity) => _$UserDTOFromEntity(entity);
 
-  @override
-  UserEntity toEntity() {
-    return UserEntity(
-      id: id,
-      nickname: nickname,
-      stateMsg: stateMsg,
-      profileUrl: profileUrl,
-      mannerTemperature: mannerTemperature,
-    );
-  }
+  UserEntity toEntity() => _$UserDTOToEntity(this);
 }

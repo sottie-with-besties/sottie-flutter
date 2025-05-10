@@ -1,9 +1,8 @@
 import 'package:objectbox/objectbox.dart';
-import 'package:sottie_flutter/model/common/dto_interface.dart';
 import 'package:sottie_flutter/model/user/entity/user_entity.dart';
 
 @Entity()
-class UserLocalDTO implements DTO {
+class UserLocalDTO {
   @Id()
   int id = 0;
 
@@ -40,12 +39,6 @@ class UserLocalDTO implements DTO {
     );
   }
 
-  @override
-  Map<String, dynamic> fromEntity({required Object entity}) {
-    throw UnimplementedError('This method is not required for local DTOs');
-  }
-
-  @override
   UserEntity toEntity() {
     return UserEntity(
       id: userId,

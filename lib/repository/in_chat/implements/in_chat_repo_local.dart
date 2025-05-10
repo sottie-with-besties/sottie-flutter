@@ -32,7 +32,7 @@ final class InChatRepoLocal {
     try {
       final box = ObjectBoxStore().getBox<InChatEventListLocalDTO>();
       final inChatEventListLocalDTO = InChatEventListLocalDTO.fromEntity(
-        entity: inChatEventListEntity,
+        inChatEventListEntity,
       );
 
       box.put(inChatEventListLocalDTO);

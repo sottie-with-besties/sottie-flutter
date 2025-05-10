@@ -1,11 +1,10 @@
 import 'package:objectbox/objectbox.dart';
-import 'package:sottie_flutter/model/common/dto_interface.dart';
 import 'package:sottie_flutter/model/in_chat/entity/in_chat_enum.dart';
 import 'package:sottie_flutter/model/in_chat/entity/in_chat_event_entity.dart';
 import 'package:sottie_flutter/model/user/dto/user_local_dto.dart';
 
 @Entity()
-final class InChatEventListLocalDTO implements DTO {
+final class InChatEventListLocalDTO {
   @Id()
   int id = 0;
 
@@ -17,18 +16,16 @@ final class InChatEventListLocalDTO implements DTO {
 
   InChatEventListLocalDTO({required this.roomId});
 
-  factory InChatEventListLocalDTO.fromEntity({
-    required InChatEventListEntity entity,
-  }) {
+  factory InChatEventListLocalDTO.fromEntity(InChatEventListEntity entity) {
     final roomId = entity.roomId;
     final userList =
         entity.userList.map((e) => UserLocalDTO.fromEntity(e)).toList();
     final inChatEventList =
         entity.inChatEventList.map((e) {
           final inChatDataLocalDTO = InChatDataLocalDTO.fromEntity(
-            entity: e.inChatData,
+            e.inChatData,
           );
-          final inChatEventLocalDTO = InChatEventLocalDTO.fromEntity(entity: e)
+          final inChatEventLocalDTO = InChatEventLocalDTO.fromEntity(e)
             ..setInChatData(inChatDataLocalDTO);
           return inChatEventLocalDTO;
         }).toList();
@@ -47,7 +44,6 @@ final class InChatEventListLocalDTO implements DTO {
     this.inChatEventList.addAll(inChatEventList);
   }
 
-  @override
   InChatEventListEntity toEntity() {
     final userEntityList = userList.map((user) => user.toEntity()).toList();
     final eventEntityList =
@@ -62,7 +58,7 @@ final class InChatEventListLocalDTO implements DTO {
 }
 
 @Entity()
-final class InChatEventLocalDTO implements DTO {
+final class InChatEventLocalDTO {
   @Id()
   int id = 0;
 
@@ -87,7 +83,7 @@ final class InChatEventLocalDTO implements DTO {
     required this.inChatEventStatus,
   });
 
-  factory InChatEventLocalDTO.fromEntity({required InChatEventEntity entity}) {
+  factory InChatEventLocalDTO.fromEntity(InChatEventEntity entity) {
     return InChatEventLocalDTO(
       eventId: entity.eventId,
       userId: entity.userId,
@@ -101,7 +97,6 @@ final class InChatEventLocalDTO implements DTO {
     this.inChatData.target = inChatData;
   }
 
-  @override
   InChatEventEntity toEntity() {
     return InChatEventEntity(
       eventId: eventId,
@@ -122,7 +117,7 @@ final class InChatEventLocalDTO implements DTO {
 }
 
 @Entity()
-final class InChatDataLocalDTO implements DTO {
+final class InChatDataLocalDTO {
   @Id()
   int id = 0;
 
@@ -138,7 +133,7 @@ final class InChatDataLocalDTO implements DTO {
     required this.contents,
   });
 
-  factory InChatDataLocalDTO.fromEntity({required InChatDataEntity entity}) {
+  factory InChatDataLocalDTO.fromEntity(InChatDataEntity entity) {
     return InChatDataLocalDTO(
       dataId: entity.dataId,
       inChatDataType: entity.inChatDataType.name,
@@ -146,7 +141,6 @@ final class InChatDataLocalDTO implements DTO {
     );
   }
 
-  @override
   InChatDataEntity toEntity() {
     return InChatDataEntity(
       dataId: dataId,
