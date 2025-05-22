@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portone_flutter/Iamport_certification.dart';
 import 'package:portone_flutter/model/certification_data.dart';
-
 /* 아임포트 휴대폰 본인인증 모듈을 불러옵니다. */
 /* 아임포트 휴대폰 본인인증 데이터 모델을 불러옵니다. */
-import 'package:sottie_flutter/core/rest_api/repository_env.dart';
+import 'package:sottie_flutter/core/rest_api/api_env.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/model/auth/dto/email_sign_up_dto.dart';
 import 'package:sottie_flutter/model/auth/dto/oauth_sign_up_dto.dart';

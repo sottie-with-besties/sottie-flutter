@@ -7,7 +7,7 @@ import 'package:sottie_flutter/core/Firebase/firebase_options.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/constant/native_key.dart';
 import 'package:sottie_flutter/core/local_database/object_box_store.dart';
-import 'package:sottie_flutter/core/rest_api/repository_env.dart';
+import 'package:sottie_flutter/core/rest_api/api_env.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
@@ -47,7 +47,7 @@ Future<void> _initApp() async {
   KakaoSdk.init(nativeAppKey: nativeAppKey, javaScriptAppKey: javaScriptKey);
 
   /// 서버 환경 초기화
-  initRepositories(RepositoryEnvironment.dev);
+  initRepositories(ServerEnvironment.dev);
 
   /// local db 초기화
   await ObjectBoxStore().initObjectBox();

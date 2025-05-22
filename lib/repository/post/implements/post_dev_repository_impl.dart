@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
-import 'package:sottie_flutter/core/rest_api/repository_env.dart';
+import 'package:sottie_flutter/core/rest_api/api_env.dart';
 import 'package:sottie_flutter/model/post/dto/post_dto.dart';
 import 'package:sottie_flutter/repository/post/interface/post_repository.dart';
 
@@ -9,8 +9,8 @@ part 'post_dev_repository_impl.g.dart';
 /// Authentication 관련 Rest Api 통신 코드
 @RestApi(baseUrl: devServerIp)
 abstract class PostDevRepositoryImpl implements PostRepository {
-  factory PostDevRepositoryImpl(Dio dio, {String baseUrl}) =
-      _PostDevRepositoryImpl;
+  factory PostDevRepositoryImpl(Dio dio, {String? baseUrl}) =>
+      _PostDevRepositoryImpl(dio, baseUrl: baseUrl);
 
   /// 최신 포스트 불러오기
   @override

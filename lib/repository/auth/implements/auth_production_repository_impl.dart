@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
-import 'package:sottie_flutter/core/rest_api/repository_env.dart';
+import 'package:sottie_flutter/core/rest_api/api_env.dart';
 import 'package:sottie_flutter/model/auth/dto/email_sign_up_dto.dart';
 import 'package:sottie_flutter/model/auth/dto/token_dto.dart';
 import 'package:sottie_flutter/repository/auth/interface/auth_repository.dart';

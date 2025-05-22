@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart';
 import 'package:sottie_flutter/core/rest_api/dio_interceptor.dart';
+import 'package:sottie_flutter/core/rest_api/http_clients.dart';
 import 'package:sottie_flutter/repository/auth/implements/auth_dev_repository_impl.dart';
 import 'package:sottie_flutter/repository/auth/implements/auth_production_repository_impl.dart';
 import 'package:sottie_flutter/repository/auth/interface/auth_repository.dart';
@@ -13,14 +15,30 @@ import 'package:sottie_flutter/repository/post/interface/post_repository.dart';
 const devServerIp = 'http://15.165.99.45:8080/';
 const productionServerIp = '';
 
-enum RepositoryEnvironment { dev, production }
+enum ServerEnvironment { dev, production }
 
-void initRepositories(RepositoryEnvironment repoEnv) {
+final class ApiEnv {
+  ApiEnv._();
+
+  static final _instance = ApiEnv._();
+
+  factory ApiEnv() => _instance;
+
+  final devServerIp = 'http://15.165.99.45:8080/';
+  final productionServerIp = '';
+
+  final serverEnvironment = ServerEnvironment.dev;
+
+  final cleanClient = Client();
+  final authClient = AuthClient();
+}
+
+void initRepositories(ServerEnvironment repoEnv) {
   switch (repoEnv) {
-    case RepositoryEnvironment.dev:
+    case ServerEnvironment.dev:
       _initDevRepositories();
       break;
-    case RepositoryEnvironment.production:
+    case ServerEnvironment.production:
       _initProductionRepositories();
       break;
   }

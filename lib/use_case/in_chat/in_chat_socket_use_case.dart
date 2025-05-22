@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sottie_flutter/core/rest_api/repository_env.dart';
+import 'package:sottie_flutter/core/rest_api/api_env.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
 final class InChatSocketUseCase {
