@@ -1,12 +1,12 @@
 import 'package:retrofit/retrofit.dart';
-import 'package:sottie_flutter/model/post/dto/post_dto.dart';
+import 'package:sottie_flutter/model/post/post_model.dart';
 
 abstract interface class PostRepository {
   /// 최신 포스트 불러오기
-  Future<List<PostDTO>> getLatestPostModelList({required int lastPostId});
+  Future<List<PostModel>> getLatestPostModelList({required int lastPostId});
 
   /// 검색 포스트 불러오기
-  Future<List<PostDTO>> getSearchPostModelList({
+  Future<List<PostModel>> getSearchPostModelList({
     required Map<String, dynamic> searchSetting,
     required int lastPostId,
   });

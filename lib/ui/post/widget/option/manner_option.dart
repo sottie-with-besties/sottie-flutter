@@ -21,7 +21,7 @@ class _MannerOptionState extends State<MannerOption> {
           children: [
             const OptionTitle(title: "매너 온도 제한"),
             Switch(
-              activeColor: mainBlueColor,
+              activeColor: AppColors.blueColor,
               value: postOptionsSetting.mannerRestriction,
               onChanged: (val) {
                 postOptionsSetting.mannerRestriction = val;

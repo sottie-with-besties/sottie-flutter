@@ -3,8 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/use_case/auth/verification_use_case.dart';
 
 class FindPasswordScreen extends StatefulWidget {
@@ -33,7 +32,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
   final passwordKey = GlobalKey<FormState>();
 
   final loadingCircle = const Center(
-    child: CircularProgressIndicator(color: mainWhiteSilverColor),
+    child: CircularProgressIndicator(color: AppColors.whiteSilverColor),
   );
 
   bool _anyButtonLoading() {
@@ -54,14 +53,16 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
         if (email != null) {
           isNextLoading = true;
           setState(() {});
-          String? errorCode = await VerificationUseCase()
-              .createEmailAndPassword(email!, _dummyPassword);
+          String? errorCode = await VerificationUseCase.createEmailAndPassword(
+            email!,
+            _dummyPassword,
+          );
           if (mounted) {
             if (errorCode == null) {
               currentStep += 1;
-              await VerificationUseCase().sendEmailVerification();
+              await VerificationUseCase.sendEmailVerification();
             } else {
-              showCustomSnackBar(context, errorCode);
+              ModalController.showCustomSnackBar(context, errorCode);
             }
           }
           isNextLoading = false;
@@ -72,15 +73,15 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
       /// 이메일 인증 화면 -> 이메일 인증 성공 후 파이어베이스 유저 이메일 정보 삭제
       isNextLoading = true;
       setState(() {});
-      final emailVerification = await VerificationUseCase().isEmailVerification(
+      final emailVerification = await VerificationUseCase.isEmailVerification(
         email!,
         _dummyPassword,
       );
       if (emailVerification) {
-        await VerificationUseCase().deleteEmailUser(email!, _dummyPassword);
+        await VerificationUseCase.deleteEmailUser(email!, _dummyPassword);
         currentStep += 1;
       } else {
-        if (mounted) showCustomSnackBar(context, "이메일을 인증해주세요");
+        if (mounted) ModalController.showCustomSnackBar(context, "이메일을 인증해주세요");
       }
       isNextLoading = false;
       setState(() {});
@@ -94,14 +95,14 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
       /// 이메일 인증 스크린에서 뒤로가기 했을 경우
       isCancelLoading = true;
       setState(() {});
-      final String? errorCode = await VerificationUseCase().deleteEmailUser(
+      final String? errorCode = await VerificationUseCase.deleteEmailUser(
         email!,
         _dummyPassword,
       );
       if (errorCode == null) {
         currentStep -= 1;
       } else {
-        if (mounted) showCustomSnackBar(context, errorCode);
+        if (mounted) ModalController.showCustomSnackBar(context, errorCode);
       }
       isCancelLoading = false;
       setState(() {});
@@ -137,9 +138,9 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
             currentStep: currentStep,
             connectorColor: WidgetStateColor.resolveWith((state) {
               if (state.contains(WidgetState.selected)) {
-                return mainBlueColor;
+                return AppColors.blueColor;
               }
-              return mainGreyColor;
+              return AppColors.greyColor;
             }),
             steps: <Step>[
               Step(
@@ -162,7 +163,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                         hint: "이메일 입력",
                         validator: (val) {
                           email = val;
-                          return validateEmail(val!);
+                          return AuthValidator.validateEmail(val!);
                         },
                       ),
                     ],
@@ -191,7 +192,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                     const SizedBox(height: 20),
                     OutlinedButton(
                       onPressed: () async {
-                        await VerificationUseCase().sendEmailVerification();
+                        await VerificationUseCase.sendEmailVerification();
                       },
                       child: const Text("이메일 인증 재발송"),
                     ),
@@ -222,14 +223,16 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                         hint: "특수문자, 대소문자, 숫자 포함 8~15자",
                         validator: (val) {
                           password = val;
-                          return validatePassword(val!);
+                          return AuthValidator.validatePassword(val!);
                         },
                       ),
                       AuthTextField(
                         focusNode: _passwordConfirmFocusNode,
                         obscure: true,
                         hint: "한번 더 입력해주세요",
-                        validator: (val) => confirmPassword(val!, password!),
+                        validator:
+                            (val) =>
+                                AuthValidator.confirmPassword(val!, password!),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -242,7 +245,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 if (passwordKey.currentState!.validate()) {
-                                  showCustomDialog(
+                                  ModalController.showCustomDialog(
                                     context,
                                     const Text("비밀번호를 변경하시겠습니까?"),
                                     extraButton: ElevatedButton(
@@ -254,7 +257,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                                                 setState(() {});
                                                 // Todo: 백엔드로 정보 수정 알림 보내야함
                                                 if (context.mounted) {
-                                                  showCustomSnackBar(
+                                                  ModalController.showCustomSnackBar(
                                                     context,
                                                     '비밀번호를 변경하였습니다.',
                                                   );
@@ -295,7 +298,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainGreyColor,
+                        backgroundColor: AppColors.greyColor,
                       ),
                       onPressed:
                           () => _anyButtonLoading() ? null : _onStepCancel(),

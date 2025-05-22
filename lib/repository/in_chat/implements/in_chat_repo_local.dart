@@ -1,8 +1,8 @@
 import 'package:sottie_flutter/core/local_database/object_box_store.dart';
 import 'package:sottie_flutter/core/local_database/objectbox.g.dart';
-import 'package:sottie_flutter/model/in_chat/dto/in_chat_event_list_local_dto.dart';
-import 'package:sottie_flutter/model/in_chat/entity/in_chat_event_entity.dart';
-import 'package:sottie_flutter/model/user/dto/user_local_dto.dart';
+import 'package:sottie_flutter/model/in_chat/in_chat_event_local_model.dart';
+import 'package:sottie_flutter/model/in_chat/in_chat_event_model.dart';
+import 'package:sottie_flutter/model/user/user_local_model.dart';
 
 final class InChatRepoLocal {
   static final InChatRepoLocal _instance = InChatRepoLocal._();
@@ -12,11 +12,11 @@ final class InChatRepoLocal {
   InChatRepoLocal._();
 
   /// 로컬 데이터 가져오기
-  InChatEventListLocalDTO? getInChatEventList({required String roomId}) {
+  InChatEventListLocalModel? getInChatEventList({required String roomId}) {
     try {
-      final box = ObjectBoxStore().getBox<InChatEventListLocalDTO>();
+      final box = ObjectBoxStore().getBox<InChatEventListLocalModel>();
       final query =
-          box.query(InChatEventListLocalDTO_.roomId.equals(roomId)).build();
+          box.query(InChatEventListLocalModel_.roomId.equals(roomId)).build();
       final result = query.findUnique();
       query.close();
       return result;
@@ -26,16 +26,14 @@ final class InChatRepoLocal {
   }
 
   /// 로컬 데이터 저장
-  bool putLocalEventData({
-    required InChatEventListEntity inChatEventListEntity,
-  }) {
+  bool putLocalEventData({required InChatEventListModel inChatEventListModel}) {
     try {
-      final box = ObjectBoxStore().getBox<InChatEventListLocalDTO>();
-      final inChatEventListLocalDTO = InChatEventListLocalDTO.fromEntity(
-        inChatEventListEntity,
+      final box = ObjectBoxStore().getBox<InChatEventListLocalModel>();
+      final inChatEventListLocalModel = InChatEventListLocalModel.fromModel(
+        inChatEventListModel,
       );
 
-      box.put(inChatEventListLocalDTO);
+      box.put(inChatEventListLocalModel);
       return true;
     } catch (_) {
       return false;
@@ -45,38 +43,31 @@ final class InChatRepoLocal {
   /// 로컬 데이터 삭제
   bool removeLocalEventData({required String roomId}) {
     try {
-      final inChatEventListLocalDTOBox =
-          ObjectBoxStore().getBox<InChatEventListLocalDTO>();
+      final inChatEventListLocalModelBox =
+          ObjectBoxStore().getBox<InChatEventListLocalModel>();
       final query =
-          inChatEventListLocalDTOBox
-              .query(InChatEventListLocalDTO_.roomId.equals(roomId))
+          inChatEventListLocalModelBox
+              .query(InChatEventListLocalModel_.roomId.equals(roomId))
               .build();
-      final inChatEventListLocalDTO = query.findUnique();
+      final inChatEventListLocalModel = query.findUnique();
       query.close();
 
       /// 존재할 경우
-      if (inChatEventListLocalDTO != null) {
+      if (inChatEventListLocalModel != null) {
         final inChatEventLocalDTOBox =
-            ObjectBoxStore().getBox<InChatEventLocalDTO>();
-        final inChatDataLocalDTOBox =
-            ObjectBoxStore().getBox<InChatDataLocalDTO>();
-        final userLocalDTOBox = ObjectBoxStore().getBox<UserLocalDTO>();
+            ObjectBoxStore().getBox<InChatEventLocalModel>();
+        final userLocalDTOBox = ObjectBoxStore().getBox<UserLocalModel>();
 
         /// Id 수집
-        final inChatDataIds = <int>[];
         final eventListIds =
-            inChatEventListLocalDTO.inChatEventList.map((e) {
-              inChatDataIds.add(e.inChatData.targetId);
-              return e.id;
-            }).toList();
+            inChatEventListLocalModel.inChatEventList.map((e) => e.id).toList();
         final userIds =
-            inChatEventListLocalDTO.userList.map((e) => e.id).toList();
+            inChatEventListLocalModel.userList.map((e) => e.id).toList();
 
         /// 삭제하기
         inChatEventLocalDTOBox.removeMany(eventListIds);
-        inChatDataLocalDTOBox.removeMany(inChatDataIds);
         userLocalDTOBox.removeMany(userIds);
-        inChatEventListLocalDTOBox.remove(inChatEventListLocalDTO.id);
+        inChatEventListLocalModelBox.remove(inChatEventListLocalModel.id);
       }
       return true;
     } catch (_) {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/alarm/dto/alarm_dto.dart';
+import 'package:sottie_flutter/model/alarm/alarm_enum.dart';
+import 'package:sottie_flutter/model/alarm/alarm_model.dart';
 import 'package:sottie_flutter/repository/alarm/implements/alarm_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
@@ -14,7 +15,7 @@ class AlarmScreen extends StatefulWidget {
 }
 
 class _AlarmScreenState extends State<AlarmScreen> {
-  late Future<List<AlarmDTO>> alarmData;
+  late Future<List<AlarmModel>> alarmData;
 
   @override
   void initState() {
@@ -49,7 +50,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
 class _AlarmBox extends StatelessWidget {
   const _AlarmBox({required this.model});
 
-  final AlarmDTO model;
+  final AlarmModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +67,7 @@ class _AlarmBox extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: SizedBox(
-        height: 60 * hu,
+        height: 60 * ScreenSize.hu,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -76,30 +77,30 @@ class _AlarmBox extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(
-                    width: 35 * wu,
+                    width: 35 * ScreenSize.wu,
                     child: Column(
                       children: [
-                        FaIcon(size: 24 * hu, alarmIcon),
-                        SizedBox(height: 3 * hu),
+                        FaIcon(size: 24 * ScreenSize.hu, alarmIcon),
+                        SizedBox(height: 3 * ScreenSize.hu),
                         Text(
                           model.alarmType.name,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 10 * hu,
+                            fontSize: 10 * ScreenSize.hu,
                           ),
                         ),
                       ],
                     ),
                   ),
                   VerticalDivider(
-                    color: mainGreyColor.withValues(alpha: 0.3),
-                    width: 30 * wu,
+                    color: AppColors.greyColor.withValues(alpha: 0.3),
+                    width: 30 * ScreenSize.wu,
                     indent: 3,
                     endIndent: 3,
                     thickness: 3,
                   ),
                   SizedBox(
-                    width: 160 * wu,
+                    width: 160 * ScreenSize.wu,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -108,10 +109,10 @@ class _AlarmBox extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 12 * hu,
+                            fontSize: 12 * ScreenSize.hu,
                           ),
                         ),
-                        SizedBox(height: 5 * hu),
+                        SizedBox(height: 5 * ScreenSize.hu),
                         Text(model.content, overflow: TextOverflow.ellipsis),
                       ],
                     ),

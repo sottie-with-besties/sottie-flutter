@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
 class InChatReview extends StatefulWidget {
@@ -26,13 +26,13 @@ class InChatReview extends StatefulWidget {
 
 class _InChatReviewState extends State<InChatReview> {
   /// 프로필 중앙 위치
-  final _centerOfProfile = 135 * wu;
+  final _centerOfProfile = 135 * ScreenSize.wu;
 
   /// 프로필 좋아요 위치
-  final _leftOfProfile = 20 * wu;
+  final _leftOfProfile = 20 * ScreenSize.wu;
 
   /// 프로필 싫어요 위치
-  final _rightOfProfile = 250 * wu;
+  final _rightOfProfile = 250 * ScreenSize.wu;
 
   /// 업데이트 중일땐 애니메이션이 빠르게, 끝날땐 느리게 변함
   /// onHorizontalDragUpdate => 10, Curves.linear
@@ -51,16 +51,16 @@ class _InChatReviewState extends State<InChatReview> {
   double _guideArrowOpacity = 1;
 
   /// 프로필의 처음 위치 == _centerOfProfile
-  double _profilePosition = 135 * wu;
+  double _profilePosition = 135 * ScreenSize.wu;
 
   /// 프로필의 위치에 따른 컨테이너 그라디언트
   List<Color> _renderGradient() {
     if (_profilePosition < _centerOfProfile) {
-      return <Color>[mainGreenColor, mainWhiteSilverColor];
+      return <Color>[AppColors.greenColor, AppColors.whiteSilverColor];
     } else if (_profilePosition > _centerOfProfile) {
-      return <Color>[mainWhiteSilverColor, mainRedColor];
+      return <Color>[AppColors.whiteSilverColor, AppColors.redColor];
     } else {
-      return <Color>[mainWhiteSilverColor, mainWhiteSilverColor];
+      return <Color>[AppColors.whiteSilverColor, AppColors.whiteSilverColor];
     }
   }
 
@@ -113,7 +113,7 @@ class _InChatReviewState extends State<InChatReview> {
               stops: _renderStops(),
             ),
           ),
-          height: 80 * hu,
+          height: 80 * ScreenSize.hu,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,38 +121,38 @@ class _InChatReviewState extends State<InChatReview> {
             _renderReviewPoint(
               _boxOpacity,
               _duration,
-              mainGreenColor.shade400,
+              AppColors.greenColor.shade400,
               Icons.thumb_up_alt_outlined,
               '좋아요',
             ),
             _renderReviewPoint(
               _boxOpacity,
               _duration,
-              mainRedColor,
+              AppColors.redColor,
               Icons.thumb_down_alt_outlined,
               '싫어요',
             ),
           ],
         ),
         _renderReviewExplanation(
-          90 * wu,
+          90 * ScreenSize.wu,
           _goodExplanationBoxOpacity,
           "${widget.nickName}님의 매너온도가 1°C 상승합니다",
         ),
         _renderReviewExplanation(
-          20 * wu,
+          20 * ScreenSize.wu,
           _badExplanationBoxOpacity,
           "${widget.nickName}님의 매너온도가 1°C 하락합니다",
         ),
         if (widget.guideArrowOn) ...[
           _GuideArrow(
             iconData: Icons.keyboard_arrow_left,
-            position: _centerOfProfile - (65 * wu),
+            position: _centerOfProfile - (65 * ScreenSize.wu),
             opacity: _guideArrowOpacity,
           ),
           _GuideArrow(
             iconData: Icons.keyboard_arrow_right,
-            position: _centerOfProfile + (50 * wu),
+            position: _centerOfProfile + (50 * ScreenSize.wu),
             opacity: _guideArrowOpacity,
           ),
         ],
@@ -179,11 +179,11 @@ class _InChatReviewState extends State<InChatReview> {
 
               /// 일정 변위 만큼 움직이면 더이상 움직일 수 없게 한 후 좋아요 또는 싫어요 선택
               if (move.isNegative) {
-                if (_profilePosition < wu * 45) {
+                if (_profilePosition < ScreenSize.wu * 45) {
                   return;
                 }
               } else {
-                if (_profilePosition > wu * 235) {
+                if (_profilePosition > ScreenSize.wu * 235) {
                   return;
                 }
               }
@@ -199,13 +199,13 @@ class _InChatReviewState extends State<InChatReview> {
               final endDx = details.globalPosition.dx;
 
               /// 싫어요
-              if (endDx > wu * 230) {
+              if (endDx > ScreenSize.wu * 230) {
                 _profilePosition = _rightOfProfile;
                 _boxOpacity = 0;
                 _badExplanationBoxOpacity = 1;
               }
               /// 좋아요
-              else if (endDx < wu * 60) {
+              else if (endDx < ScreenSize.wu * 60) {
                 _profilePosition = _leftOfProfile;
                 _boxOpacity = 0;
                 _goodExplanationBoxOpacity = 1;
@@ -236,20 +236,20 @@ class _InChatReviewState extends State<InChatReview> {
                   offset: const Offset(5, -5),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: mainBlackColor,
+                      color: AppColors.blackColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     padding: const EdgeInsets.all(5),
                     child: const FaIcon(
                       FontAwesomeIcons.userPlus,
-                      color: mainWhiteSilverColor,
+                      color: AppColors.whiteSilverColor,
                       size: 10,
                     ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    showCustomDialog(
+                    ModalController.showCustomDialog(
                       context,
                       Center(child: Text("${widget.nickName}에게 친구 신청 하시겠습니까?")),
                       extraButton: ElevatedButton(
@@ -261,8 +261,8 @@ class _InChatReviewState extends State<InChatReview> {
                     );
                   },
                   child: Container(
-                    width: 30 * wu,
-                    height: 30 * hu,
+                    width: 30 * ScreenSize.wu,
+                    height: 30 * ScreenSize.hu,
                     color: Colors.transparent,
                   ),
                 ),
@@ -296,19 +296,19 @@ AnimatedOpacity _renderReviewPoint(
     duration: Duration(milliseconds: duration),
     child: Container(
       color: color,
-      padding: EdgeInsets.all(16 * hu),
-      width: 60 * wu,
-      height: 80 * hu,
+      padding: EdgeInsets.all(16 * ScreenSize.hu),
+      width: 60 * ScreenSize.wu,
+      height: 80 * ScreenSize.hu,
       child: FittedBox(
         child: Column(
           children: [
-            Icon(iconData, color: mainWhiteSilverColor),
+            Icon(iconData, color: AppColors.whiteSilverColor),
             const SizedBox(height: 5),
             Text(
               label,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                color: mainWhiteSilverColor,
+                color: AppColors.whiteSilverColor,
               ),
             ),
           ],
@@ -332,14 +332,14 @@ Positioned _renderReviewExplanation(
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: mainBlackColor.withValues(alpha: 0.5),
+          color: AppColors.blackColor.withValues(alpha: 0.5),
         ),
         padding: const EdgeInsets.all(12),
         child: Text(
           explanation,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            color: mainWhiteSilverColor,
+            color: AppColors.whiteSilverColor,
           ),
         ),
       ),
@@ -413,7 +413,7 @@ class _GuideArrowState extends State<_GuideArrow> {
               _lightOn.map<Widget>((light) {
                 return Icon(
                   widget.iconData,
-                  color: light ? mainBlueColor : mainGreyColor,
+                  color: light ? AppColors.blueColor : AppColors.greyColor,
                 );
               }).toList(),
         ),

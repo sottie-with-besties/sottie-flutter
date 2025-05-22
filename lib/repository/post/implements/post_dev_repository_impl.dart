@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
 import 'package:sottie_flutter/core/rest_api/api_env.dart';
-import 'package:sottie_flutter/model/post/dto/post_dto.dart';
+import 'package:sottie_flutter/model/post/post_model.dart';
 import 'package:sottie_flutter/repository/post/interface/post_repository.dart';
 
 part 'post_dev_repository_impl.g.dart';
@@ -16,13 +16,13 @@ abstract class PostDevRepositoryImpl implements PostRepository {
   @override
   @GET('/sottie/gatherings')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
-  Future<List<PostDTO>> getLatestPostModelList({required int lastPostId});
+  Future<List<PostModel>> getLatestPostModelList({required int lastPostId});
 
   /// 검색 포스트 불러오기
   @override
   @GET('/sottie/home/search')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
-  Future<List<PostDTO>> getSearchPostModelList({
+  Future<List<PostModel>> getSearchPostModelList({
     required Map<String, dynamic> searchSetting,
     required int lastPostId,
   });

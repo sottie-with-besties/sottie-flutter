@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_gender_restriction.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class CurrentNumOfMember extends StatelessWidget {
@@ -28,29 +28,37 @@ class CurrentNumOfMember extends StatelessWidget {
     if (genderRestriction == PostGenderRestriction.NONE) {
       return Row(
         children: [
-          Icon(Icons.person, color: mainBlackColor, size: 12 * hu),
-          SizedBox(width: 1 * wu),
+          Icon(
+            Icons.person,
+            color: AppColors.blackColor,
+            size: 12 * ScreenSize.hu,
+          ),
+          SizedBox(width: 1 * ScreenSize.wu),
           Text(
             "$currentPeopleNum/$peopleNum",
-            style: const TextStyle(color: mainBlackColor),
+            style: const TextStyle(color: AppColors.blackColor),
           ),
         ],
       );
     } else {
       return Row(
         children: [
-          Icon(Icons.person, color: Colors.blue, size: 12 * hu),
-          SizedBox(width: 1 * wu),
+          Icon(Icons.person, color: Colors.blue, size: 12 * ScreenSize.hu),
+          SizedBox(width: 1 * ScreenSize.wu),
           Text(
             "$currentMaleNum/$maleNum",
-            style: const TextStyle(color: mainBlackColor),
+            style: const TextStyle(color: AppColors.blackColor),
           ),
-          SizedBox(width: 3 * wu),
-          Icon(Icons.person, color: Colors.pinkAccent, size: 12 * hu),
-          SizedBox(width: 1 * wu),
+          SizedBox(width: 3 * ScreenSize.wu),
+          Icon(
+            Icons.person,
+            color: Colors.pinkAccent,
+            size: 12 * ScreenSize.hu,
+          ),
+          SizedBox(width: 1 * ScreenSize.wu),
           Text(
             "$currentFemaleNum/$femaleNum",
-            style: const TextStyle(color: mainBlackColor),
+            style: const TextStyle(color: AppColors.blackColor),
           ),
         ],
       );

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-const mainWhiteSilverColor = Color(0xffF5F5F5);
+sealed class AppColors {
+  static const whiteSilverColor = Color(0xffF5F5F5);
 
-const mainBlueColor = Colors.blue;
+  static const blueColor = Colors.blue;
 
-const mainBlackColor = Colors.black;
+  static const blackColor = Colors.black;
 
-const mainGreyColor = Colors.grey;
+  static const greyColor = Colors.grey;
 
-Color mainGreyColor2 = Colors.black.withValues(alpha: 0.5);
+  static final greyColor2 = Colors.black.withValues(alpha: 0.5);
 
-const mainGreenColor = Colors.greenAccent;
+  static const greenColor = Colors.greenAccent;
 
-const mainRedColor = Colors.redAccent;
+  static const redColor = Colors.redAccent;
+}

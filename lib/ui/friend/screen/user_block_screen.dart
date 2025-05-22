@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/model/user/user_model.dart';
 import 'package:sottie_flutter/repository/user/implements/user_unblock_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
@@ -22,11 +22,11 @@ class _UserBlockScreenState extends State<UserBlockScreen>
   Widget build(BuildContext context) {
     super.build(context);
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16 * wu),
+      padding: EdgeInsets.symmetric(horizontal: 16 * ScreenSize.wu),
       child: CustomFutureBuilder(
         futureFunction: getUserBlockDummy,
         callBack: (futureData) {
-          final userBlockList = futureData as List<UserDTO>;
+          final userBlockList = futureData as List<UserModel>;
 
           return SingleChildScrollView(
             child: Column(
@@ -34,19 +34,21 @@ class _UserBlockScreenState extends State<UserBlockScreen>
                   userBlockList
                       .map(
                         (userBlock) => Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10 * hu),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10 * ScreenSize.hu,
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SottieUser(
-                                entity: userBlock.toEntity(),
+                                model: userBlock,
                                 heroTag: 'userBlock',
                                 isMyFriend: false, // Todo: 친구인지 아닌지 확인하는 로직 필요
                                 textWidth: 100,
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  UserUseCase().userUnblock(context);
+                                  UserUseCase.userUnblock(context);
                                 },
                                 child: const Text("차단 해제"),
                               ),

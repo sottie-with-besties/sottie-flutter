@@ -1,16 +1,10 @@
-import 'package:sottie_flutter/model/in_chat/entity/in_chat_event_entity.dart';
+import 'package:sottie_flutter/model/in_chat/in_chat_event_model.dart';
 import 'package:sottie_flutter/repository/in_chat/implements/in_chat_message_dummy.dart';
 
-final class InChatUseCase {
-  static final InChatUseCase _instance = InChatUseCase._();
+sealed class InChatUseCase {
+  static Future<InChatEventListModel> getInChatEventList() async {
+    final inChatEventListModel = await getInChatMessageDummy();
 
-  factory InChatUseCase() => _instance;
-
-  InChatUseCase._();
-
-  Future<InChatEventListEntity> getInChatEventList() async {
-    final inChatEventListDTO = await getInChatMessageDummy();
-
-    return inChatEventListDTO.toEntity();
+    return inChatEventListModel;
   }
 }

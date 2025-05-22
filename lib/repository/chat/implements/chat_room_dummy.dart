@@ -1,11 +1,11 @@
-import 'package:sottie_flutter/model/chat/dto/chat_room_dto.dart';
+import 'package:sottie_flutter/model/chat/chat_room_model.dart';
 
-Future<List<ChatRoomDTO>> getChatRoomDummy() async {
+Future<List<ChatRoomModel>> getChatRoomDummy() async {
   await Future.delayed(const Duration(seconds: 1), null);
   return [
-    ChatRoomDTO(
+    ChatRoomModel(
       id: 1,
-      gatheringCategory: 'THUNDER',
+      sottieCategory: 'THUNDER',
       gatheringDate: DateTime(2025, 4, 12, 8, 50),
       locationId: 2,
       title: '친목 모임: 가벼운 저녁 식사',
@@ -27,9 +27,9 @@ Future<List<ChatRoomDTO>> getChatRoomDummy() async {
       mannerRestriction: true,
       ageRestriction: true,
     ),
-    ChatRoomDTO(
+    ChatRoomModel(
       id: 2,
-      gatheringCategory: 'EXERCISE',
+      sottieCategory: 'EXERCISE',
       gatheringDate: _renderDeletingDate(),
       locationId: 2,
       title: '플러터 개발자 구합니다',

@@ -5,7 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/chat/entity/dm_entity.dart';
+import 'package:sottie_flutter/model/chat/dm_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
@@ -13,9 +13,9 @@ import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 
 class DmChatRoom extends StatefulWidget {
-  const DmChatRoom({super.key, required this.entity});
+  const DmChatRoom({super.key, required this.model});
 
-  final DmEntity entity;
+  final DmModel model;
 
   @override
   State<DmChatRoom> createState() => _DmChatRoomState();
@@ -29,16 +29,16 @@ class _DmChatRoomState extends State<DmChatRoom> {
       onLongPressWidget: Column(
         children: [
           OnLongPressOption(
-            color: mainGreyColor,
+            color: AppColors.greyColor,
             onTap: () {
               _alarmOnOffAction(false);
             },
             icon: Icons.messenger_outline,
             optionTitle: "알람 Off",
           ),
-          SizedBox(height: 10 * hu),
+          SizedBox(height: 10 * ScreenSize.hu),
           OnLongPressOption(
-            color: mainRedColor,
+            color: AppColors.redColor,
             onTap: () {
               _chatRoomOutAction(false);
             },
@@ -50,7 +50,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
       slideActions: [
         SlidableAction(
           onPressed: (context) => _alarmOnOffAction(true),
-          backgroundColor: mainGreyColor,
+          backgroundColor: AppColors.greyColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.messenger_outline,
@@ -59,7 +59,7 @@ class _DmChatRoomState extends State<DmChatRoom> {
         ),
         SlidableAction(
           onPressed: (context) => _chatRoomOutAction(true),
-          backgroundColor: mainRedColor,
+          backgroundColor: AppColors.redColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.delete,
@@ -71,53 +71,53 @@ class _DmChatRoomState extends State<DmChatRoom> {
         onTap: () {
           context.push(
             '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
-            extra: {'dmEntity': widget.entity, 'isChattingOver': false},
+            extra: {'dmModel': widget.model, 'isChattingOver': false},
           );
         },
         child: Container(
           color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: 12 * wu,
-              vertical: 12 * hu,
+              horizontal: 12 * ScreenSize.wu,
+              vertical: 12 * ScreenSize.hu,
             ),
             child: Row(
               children: [
                 Expanded(
                   child: SottieUser(
-                    entity: widget.entity.userEntity,
-                    heroTag: widget.entity.userEntity.id.toString(),
+                    model: widget.model.userModel,
+                    heroTag: widget.model.userModel.id.toString(),
                     isMyFriend: true,
                     goToDetailPath: false,
                     textWidth: 120,
                   ),
                 ),
-                SizedBox(width: 10 * wu),
+                SizedBox(width: 10 * ScreenSize.wu),
                 Padding(
-                  padding: EdgeInsets.only(right: 8 * wu),
+                  padding: EdgeInsets.only(right: 8 * ScreenSize.wu),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        convertDateTimeIntoString(widget.entity.latestTime),
+                        convertDateTimeIntoString(widget.model.latestTime),
                         style: TextStyle(
                           color: Colors.black54,
-                          fontSize: 9 * hu,
+                          fontSize: 9 * ScreenSize.hu,
                         ),
                       ),
-                      SizedBox(height: 5 * hu),
+                      SizedBox(height: 5 * ScreenSize.hu),
                       Container(
-                        width: 40 * wu,
-                        height: 20 * hu,
+                        width: 40 * ScreenSize.wu,
+                        height: 20 * ScreenSize.hu,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: mainRedColor.withValues(alpha: 0.8),
+                          color: AppColors.redColor.withValues(alpha: 0.8),
                         ),
                         child: Center(
                           child: Text(
-                            widget.entity.notReadMsg.toString(),
+                            widget.model.notReadMsg.toString(),
                             style: const TextStyle(
-                              color: mainWhiteSilverColor,
+                              color: AppColors.whiteSilverColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
                             ),

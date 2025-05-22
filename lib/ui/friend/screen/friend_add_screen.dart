@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/model/user/user_model.dart';
 import 'package:sottie_flutter/repository/friend/implements/friend_request_dummy.dart';
 import 'package:sottie_flutter/repository/user/implements/user_search_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
@@ -23,7 +23,7 @@ class FriendAddScreen extends StatefulWidget {
 
 class _FriendAddScreenState extends State<FriendAddScreen> {
   bool userSearching = false;
-  UserDTO? userFound;
+  UserModel? userFound;
   String userSearchText = '';
 
   final _textController = TextEditingController();
@@ -46,7 +46,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16 * wu),
+      padding: EdgeInsets.symmetric(horizontal: 16 * ScreenSize.wu),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +64,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 10 * hu),
+            SizedBox(height: 10 * ScreenSize.hu),
             LocalTextField(
               hint: "전화번호를 입력하세요",
               focusNode: widget.focusNode,
@@ -73,26 +73,28 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
               onFieldSubmitted: _searchUser,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 20 * hu),
+              padding: EdgeInsets.symmetric(vertical: 20 * ScreenSize.hu),
               child: Center(
                 child:
                     userSearching
-                        ? const CircularProgressIndicator(color: mainBlackColor)
+                        ? const CircularProgressIndicator(
+                          color: AppColors.blackColor,
+                        )
                         : userFound != null
                         ? Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SottieUser(
-                              entity: userFound!.toEntity(),
+                              model: userFound!,
                               heroTag: 'friendAddSearch',
                               isMyFriend: false,
                               textWidth: 100,
                             ),
                             _renderFriendManageButton(
-                              mainBlueColor,
+                              AppColors.blueColor,
                               FontAwesomeIcons.userPlus,
                               () {
-                                FriendUseCase().friendAdd(context);
+                                FriendUseCase.friendAdd(context);
                               },
                             ),
                           ],
@@ -104,29 +106,31 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _renderSubTitle("친구 요청"),
-                SizedBox(height: 10 * hu),
+                SizedBox(height: 10 * ScreenSize.hu),
                 Center(
                   child: CustomFutureBuilder(
                     futureFunction: getFriendRequestDummy,
                     loadingWidget: const CircularProgressIndicator(
-                      color: mainBlackColor,
+                      color: AppColors.blackColor,
                     ),
                     callBack: (futureData) {
-                      final friendRequestList = futureData as List<UserDTO>;
+                      final friendRequestList = futureData as List<UserModel>;
 
                       return SizedBox(
-                        height: 250 * hu,
+                        height: 250 * ScreenSize.hu,
                         child: ListView.builder(
                           itemCount: friendRequestList.length,
                           itemBuilder: (_, index) {
                             return Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10 * hu),
+                              padding: EdgeInsets.symmetric(
+                                vertical: 10 * ScreenSize.hu,
+                              ),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SottieUser(
-                                    entity: futureData[index].toEntity(),
+                                    model: futureData[index],
                                     heroTag: 'friendAddRequest',
                                     isMyFriend: false,
                                     textWidth: 100,
@@ -134,18 +138,18 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                                   Row(
                                     children: [
                                       _renderFriendManageButton(
-                                        mainRedColor,
+                                        AppColors.redColor,
                                         FontAwesomeIcons.xmark,
                                         () {
                                           log("friend request refuse");
                                         },
                                       ),
-                                      SizedBox(width: 10 * wu),
+                                      SizedBox(width: 10 * ScreenSize.wu),
                                       _renderFriendManageButton(
-                                        mainBlueColor,
+                                        AppColors.blueColor,
                                         FontAwesomeIcons.userPlus,
                                         () {
-                                          FriendUseCase().friendAdd(context);
+                                          FriendUseCase.friendAdd(context);
                                         },
                                       ),
                                     ],
@@ -184,9 +188,11 @@ InkWell _renderFriendManageButton(
         color: color,
       ),
       padding: const EdgeInsets.all(8),
-      width: 40 * wu,
-      height: 30 * wu,
-      child: FittedBox(child: Icon(iconData, color: mainWhiteSilverColor)),
+      width: 40 * ScreenSize.wu,
+      height: 30 * ScreenSize.wu,
+      child: FittedBox(
+        child: Icon(iconData, color: AppColors.whiteSilverColor),
+      ),
     ),
   );
 }

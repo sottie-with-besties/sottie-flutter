@@ -1,12 +1,12 @@
-import 'package:sottie_flutter/model/chat/dto/dm_dto.dart';
-import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/model/chat/dm_model.dart';
+import 'package:sottie_flutter/model/user/user_model.dart';
 
-Future<List<DmDTO>> getDmDummy() async {
+Future<List<DmModel>> getDmDummy() async {
   await Future.delayed(const Duration(seconds: 1), null);
   return [
-    DmDTO(
+    DmModel(
       id: 123451346,
-      userDTO: UserDTO(
+      userModel: UserModel(
         id: 527,
         nickname: '김진표',
         stateMsg: '아아아아아아',
@@ -17,9 +17,9 @@ Future<List<DmDTO>> getDmDummy() async {
       latestTime: DateTime(2024),
       notReadMsg: 234,
     ),
-    DmDTO(
+    DmModel(
       id: 123451347,
-      userDTO: UserDTO(
+      userModel: UserModel(
         id: 2323,
         nickname: '박수영',
         stateMsg: 'ㅁㅁㄴㅇㄴㅇㄹㅁ',
@@ -30,9 +30,9 @@ Future<List<DmDTO>> getDmDummy() async {
       latestTime: DateTime(2024),
       notReadMsg: 12,
     ),
-    DmDTO(
+    DmModel(
       id: 123451348,
-      userDTO: UserDTO(
+      userModel: UserModel(
         id: 112,
         nickname: '이민호',
         stateMsg: 'ㅁㄴㅇㄹㅁㄴㅇㄹㄴㅇㅁ',

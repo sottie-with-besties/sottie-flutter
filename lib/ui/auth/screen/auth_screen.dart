@@ -5,13 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sottie_flutter/core/constant/asset_path.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/auth/entity/auth_type.dart';
-import 'package:sottie_flutter/model/auth/entity/email_login_entity.dart';
+import 'package:sottie_flutter/model/auth/auth_type.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/auth/widget/oauth_button.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
 import 'package:sottie_flutter/use_case/auth/auth_use_case.dart';
 
@@ -28,7 +27,8 @@ class _AuthScreenState extends State<AuthScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  EmailLoginEntity emailLoginModel = EmailLoginEntity();
+  String? _email;
+  String? _password;
 
   @override
   void dispose() {
@@ -46,7 +46,7 @@ class _AuthScreenState extends State<AuthScreen> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: mainWhiteSilverColor,
+        backgroundColor: AppColors.whiteSilverColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: SafeArea(
@@ -68,7 +68,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         style: GoogleFonts.jua(
                           fontWeight: FontWeight.bold,
                           fontSize: 38,
-                          color: mainBlackColor,
+                          color: AppColors.blackColor,
                         ),
                       ),
                     ],
@@ -76,9 +76,9 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: mainWhiteSilverColor,
+                    color: AppColors.whiteSilverColor,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: mainGreyColor, width: 0.7),
+                    border: Border.all(color: AppColors.greyColor, width: 0.7),
                   ),
                   padding: const EdgeInsets.all(8),
                   child: Form(
@@ -104,8 +104,8 @@ class _AuthScreenState extends State<AuthScreen> {
                           hint: "이메일 입력",
                           keyboardType: TextInputType.emailAddress,
                           validator: (val) {
-                            emailLoginModel.email = val;
-                            return validateEmail(val!);
+                            _email = val;
+                            return AuthValidator.validateEmail(val!);
                           },
                         ),
                         AuthTextField(
@@ -113,8 +113,8 @@ class _AuthScreenState extends State<AuthScreen> {
                           obscure: true,
                           hint: "비밀번호 입력",
                           validator: (val) {
-                            emailLoginModel.password = val;
-                            return validatePassword(val!);
+                            _password = val;
+                            return AuthValidator.validatePassword(val!);
                           },
                         ),
                         Column(
@@ -129,19 +129,19 @@ class _AuthScreenState extends State<AuthScreen> {
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
                                     // signIn에 백엔드로 이메일 코드 전송 포함
-                                    final errorCode = await AuthUseCase()
-                                        .signIn(
+                                    final loginSuccess =
+                                        await AuthUseCase.signIn(
                                           authType: AuthType.email,
-                                          email: emailLoginModel.email,
-                                          password: emailLoginModel.password,
+                                          email: _email,
+                                          password: _password,
                                         );
 
                                     if (context.mounted) {
-                                      errorCode == null
+                                      loginSuccess
                                           ? context.go(CustomRouter.homePath)
-                                          : showCustomSnackBar(
+                                          : ModalController.showCustomSnackBar(
                                             context,
-                                            errorCode,
+                                            "로그인에 실패하였습니다",
                                           );
                                     }
                                   }
@@ -186,26 +186,42 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20 * hu),
+                SizedBox(height: 20 * ScreenSize.hu),
 
                 /// 카카오 로그인
                 OAuthButton(
                   imgPath: AssetPath.kakaoLogin,
                   onPressed: () async {
-                    await AuthUseCase().oauthLogin(
-                      context: context,
-                      oauthType: AuthType.kakao,
+                    final loginSuccess = await AuthUseCase.signIn(
+                      authType: AuthType.kakao,
                     );
+
+                    if (context.mounted) {
+                      loginSuccess
+                          ? context.go(CustomRouter.homePath)
+                          : ModalController.showCustomSnackBar(
+                            context,
+                            "로그인에 실패하였습니다",
+                          );
+                    }
                   },
                 ),
 
                 /// 구글 로그인
                 AuthButton(
                   onPressed: (_) async {
-                    await AuthUseCase().oauthLogin(
-                      context: context,
-                      oauthType: AuthType.google,
+                    final loginSuccess = await AuthUseCase.signIn(
+                      authType: AuthType.google,
                     );
+
+                    if (context.mounted) {
+                      loginSuccess
+                          ? context.go(CustomRouter.homePath)
+                          : ModalController.showCustomSnackBar(
+                            context,
+                            "로그인에 실패하였습니다",
+                          );
+                    }
                   },
                   brand: Method.google,
                   shape: RoundedRectangleBorder(
@@ -221,22 +237,16 @@ class _AuthScreenState extends State<AuthScreen> {
                     context.go(CustomRouter.homePath);
 
                     /// 애플 로그인 코드
-                    // await _oauthLogin(
-                    //   context: context,
-                    //   oauthType: AuthType.apple,
-                    // );
+                    // final loginSuccess =  await AuthUseCase.signIn(authType: AuthType.apple);
 
-                    /// 아래 레트로핏 코드 정상 작동
-                    // await AuthTokenRetrofit(dioWithNoInterceptor).signUp(signUpModel: SignUpModel(
-                    //     name: null,
-                    //     phoneNumber: "01094908151",
-                    //     gender: 'MALE',
-                    //     identifier: null,
-                    //     birthYear: null,
-                    //     phoneAuthenticated: true,
-                    //     email: "arisongha1022@gmail.com",
-                    //     password: "asap0302!!"
-                    // ));
+                    // if (context.mounted) {
+                    //   loginSuccess
+                    //       ? context.go(CustomRouter.homePath)
+                    //       : ModalController.showCustomSnackBar(
+                    //     context,
+                    //     "로그인에 실패하였습니다",
+                    //   );
+                    // }
                   },
                   brand: Method.apple,
                   shape: RoundedRectangleBorder(

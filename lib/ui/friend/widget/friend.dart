@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/model/user/user_model.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
 import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
@@ -14,7 +14,7 @@ import 'package:sottie_flutter/use_case/user/user_use_case.dart';
 class Friend extends StatefulWidget {
   const Friend({super.key, required this.model});
 
-  final UserDTO model;
+  final UserModel model;
 
   @override
   State<Friend> createState() => _FriendState();
@@ -22,7 +22,7 @@ class Friend extends StatefulWidget {
 
 class _FriendState extends State<Friend> {
   void _deleteAction(bool withSlide) {
-    showCustomDialog(
+    ModalController.showCustomDialog(
       context,
       Center(
         child: Text(
@@ -37,7 +37,7 @@ class _FriendState extends State<Friend> {
           Navigator.of(context, rootNavigator: true).pop();
           withSlide ? null : Navigator.of(context, rootNavigator: true).pop();
 
-          FriendUseCase().friendDelete(context);
+          FriendUseCase.friendDelete(context);
         },
         child: const Text("삭제"),
       ),
@@ -51,38 +51,38 @@ class _FriendState extends State<Friend> {
       onLongPressWidget: Column(
         children: [
           UserProfile(profileUrl: widget.model.profileUrl),
-          SizedBox(height: 10 * hu),
+          SizedBox(height: 10 * ScreenSize.hu),
           Text(
             widget.model.nickname,
             style: const TextStyle(
-              color: mainWhiteSilverColor,
+              color: AppColors.whiteSilverColor,
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),
           ),
-          SizedBox(height: 10 * hu),
+          SizedBox(height: 10 * ScreenSize.hu),
           OnLongPressOption(
             color: Colors.green,
             onTap: () {
-              FriendUseCase().friendSendDm(context);
+              FriendUseCase.friendSendDm(context);
             },
             icon: Icons.messenger_outline,
             optionTitle: "DM 보내기",
           ),
-          SizedBox(height: 10 * hu),
+          SizedBox(height: 10 * ScreenSize.hu),
           OnLongPressOption(
-            color: mainRedColor,
+            color: AppColors.redColor,
             onTap: () {
               _deleteAction(false);
             },
             icon: Icons.delete_forever,
             optionTitle: "친구 삭제",
           ),
-          SizedBox(height: 10 * hu),
+          SizedBox(height: 10 * ScreenSize.hu),
           OnLongPressOption(
             color: Colors.blueAccent,
             onTap: () {
-              UserUseCase().userReport(context);
+              UserUseCase.userReport(context);
             },
             icon: Icons.report_gmailerrorred_outlined,
             optionTitle: "신고",
@@ -91,7 +91,7 @@ class _FriendState extends State<Friend> {
       ),
       slideActions: [
         SlidableAction(
-          onPressed: (context) => FriendUseCase().friendSendDm(context),
+          onPressed: (context) => FriendUseCase.friendSendDm(context),
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           autoClose: true,
@@ -101,7 +101,7 @@ class _FriendState extends State<Friend> {
         ),
         SlidableAction(
           onPressed: (context) => _deleteAction(true),
-          backgroundColor: mainRedColor,
+          backgroundColor: AppColors.redColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.delete,
@@ -109,7 +109,7 @@ class _FriendState extends State<Friend> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
         SlidableAction(
-          onPressed: (context) => UserUseCase().userReport(context),
+          onPressed: (context) => UserUseCase.userReport(context),
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
           autoClose: true,
@@ -119,9 +119,12 @@ class _FriendState extends State<Friend> {
         ),
       ],
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 10 * hu, horizontal: 16 * wu),
+        padding: EdgeInsets.symmetric(
+          vertical: 10 * ScreenSize.hu,
+          horizontal: 16 * ScreenSize.wu,
+        ),
         child: SottieUser(
-          entity: widget.model.toEntity(),
+          model: widget.model,
           heroTag: 'friend',
           isMyFriend: true,
         ),

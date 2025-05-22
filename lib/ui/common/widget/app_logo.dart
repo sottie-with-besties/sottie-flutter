@@ -7,14 +7,14 @@ class AppLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: mainBlueColor,
+      color: AppColors.blueColor,
       width: 40,
       height: 40,
       child: const Center(
         child: Text(
           "로고",
           style: TextStyle(
-            color: mainBlackColor,
+            color: AppColors.blackColor,
             fontWeight: FontWeight.bold,
             fontSize: 12,
           ),

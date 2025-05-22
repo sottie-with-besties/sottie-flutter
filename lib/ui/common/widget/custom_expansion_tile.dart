@@ -21,12 +21,18 @@ class CustomExpansionTile extends StatelessWidget {
         title: Text(
           title,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11 * hu),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 11 * ScreenSize.hu,
+          ),
         ),
         subtitle:
             subTitle == null
                 ? null
-                : Text(subTitle!, style: TextStyle(fontSize: 9 * hu)),
+                : Text(
+                  subTitle!,
+                  style: TextStyle(fontSize: 9 * ScreenSize.hu),
+                ),
         trailing: const Icon(Icons.arrow_drop_down),
         expandedAlignment: Alignment.topLeft,
         expandedCrossAxisAlignment: CrossAxisAlignment.start,

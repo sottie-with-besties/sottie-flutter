@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/in_chat/entity/in_chat_enum.dart';
+import 'package:sottie_flutter/model/in_chat/in_chat_enum.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/chat_room_destroying_timer.dart';
@@ -22,19 +22,22 @@ class InChatUserAccessMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10 * hu),
+      padding: EdgeInsets.symmetric(vertical: 10 * ScreenSize.hu),
       child: Container(
         decoration: BoxDecoration(
-          color: mainBlueColor.withValues(alpha: 0.2),
+          color: AppColors.blueColor.withValues(alpha: 0.2),
           borderRadius: BorderRadius.circular(12),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 16 * wu, vertical: 8 * hu),
+        padding: EdgeInsets.symmetric(
+          horizontal: 16 * ScreenSize.wu,
+          vertical: 8 * ScreenSize.hu,
+        ),
         child: Text(
           _buildMessage(),
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 12 * hu,
-            color: mainBlackColor.withValues(alpha: 0.7),
+            fontSize: 12 * ScreenSize.hu,
+            color: AppColors.blackColor.withValues(alpha: 0.7),
           ),
         ),
       ),
@@ -68,18 +71,21 @@ class InChatStartMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 12 * hu),
+      margin: EdgeInsets.symmetric(vertical: 12 * ScreenSize.hu),
       width: double.infinity,
       child: Container(
         decoration: BoxDecoration(
-          color: backgroundColor ?? mainBlueColor.withValues(alpha: 0.3),
+          color: backgroundColor ?? AppColors.blueColor.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(8),
         ),
-        padding: EdgeInsets.all(12 * hu),
+        padding: EdgeInsets.all(12 * ScreenSize.hu),
         child: Text(
           message,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 13 * hu, color: mainBlackColor),
+          style: TextStyle(
+            fontSize: 13 * ScreenSize.hu,
+            color: AppColors.blackColor,
+          ),
         ),
       ),
     );
@@ -102,7 +108,7 @@ class InChatEndMessage extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: Container(
         decoration: BoxDecoration(
-          color: mainBlueColor.withValues(alpha: 0.3),
+          color: AppColors.blueColor.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(8),
         ),
         padding: const EdgeInsets.all(12),
@@ -113,7 +119,7 @@ class InChatEndMessage extends StatelessWidget {
               textAlign: TextAlign.center,
               '채팅이 종료되었습니다.\n시간이 경과하기 전에 참여자들을 리뷰하면 당신의 매너온도가 1°C 상승합니다.',
             ),
-            SizedBox(height: 10 * hu),
+            SizedBox(height: 10 * ScreenSize.hu),
             ChatRoomDestroyingTimer(key: UniqueKey(), timeLeft: timeLeft),
           ],
         ),
@@ -134,20 +140,23 @@ class InChatDateDivider extends StatelessWidget {
         "${date.month}월 ${date.day}일 ${convertIntToWeekday(date.weekday)}";
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16 * hu),
+      padding: EdgeInsets.symmetric(vertical: 16 * ScreenSize.hu),
       child: Container(
         width: double.infinity,
         alignment: Alignment.center,
         child: Container(
           decoration: BoxDecoration(
-            color: mainGreenColor.withValues(alpha: 0.8),
+            color: AppColors.greenColor.withValues(alpha: 0.8),
             borderRadius: BorderRadius.circular(12),
           ),
-          padding: EdgeInsets.symmetric(horizontal: 16 * wu, vertical: 8 * hu),
+          padding: EdgeInsets.symmetric(
+            horizontal: 16 * ScreenSize.wu,
+            vertical: 8 * ScreenSize.hu,
+          ),
           child: Text(
             sentTimeString,
             style: TextStyle(
-              fontSize: 13 * hu,
+              fontSize: 13 * ScreenSize.hu,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),

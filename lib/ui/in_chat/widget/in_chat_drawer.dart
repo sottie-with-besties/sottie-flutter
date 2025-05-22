@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/chat/entity/chat_room_entity.dart';
-import 'package:sottie_flutter/model/post/dto/post_dto.dart';
-import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/model/chat/chat_room_model.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
+import 'package:sottie_flutter/model/post/post_model.dart';
+import 'package:sottie_flutter/model/user/user_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
 class InChatDrawer extends StatelessWidget {
-  const InChatDrawer({super.key, required this.chatRoomEntity});
+  const InChatDrawer({super.key, required this.chatRoomModel});
 
-  final ChatRoomEntity chatRoomEntity;
+  final ChatRoomModel chatRoomModel;
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: 200 * wu,
-      backgroundColor: mainWhiteSilverColor,
+      width: 200 * ScreenSize.wu,
+      backgroundColor: AppColors.whiteSilverColor,
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 6),
@@ -29,26 +30,25 @@ class InChatDrawer extends StatelessWidget {
                   context.push(
                     "${CustomRouter.chatPath}/${CustomRouter.inChatPath}/${CustomRouter.inChatInfoPath}",
                     extra: {
-                      'postEntity':
-                          PostDTO(
-                            id: chatRoomEntity.id,
-                            gatheringCategory: chatRoomEntity.gatheringCategory,
-                            title: chatRoomEntity.title,
-                            locationId: chatRoomEntity.locationId,
-                            gatheringDate: chatRoomEntity.gatheringDate,
-                            contents: chatRoomEntity.contents,
-                            currentPeopleNum: chatRoomEntity.currentPeopleNum,
-                            peopleNum: chatRoomEntity.peopleNum,
-                            currentMaleNum: chatRoomEntity.currentMaleNum,
-                            maleNum: chatRoomEntity.maleNum,
-                            currentFemaleNum: chatRoomEntity.currentFemaleNum,
-                            femaleNum: chatRoomEntity.femaleNum,
-                            ageFrom: chatRoomEntity.ageFrom,
-                            ageTo: chatRoomEntity.ageTo,
-                            genderRestriction: chatRoomEntity.genderRestriction,
-                            mannerRestriction: chatRoomEntity.mannerRestriction,
-                            ageRestriction: chatRoomEntity.ageRestriction,
-                          ).toEntity(),
+                      'postModel': PostModel(
+                        id: chatRoomModel.id,
+                        postCategory: PostCategory.EXERCISE,
+                        title: chatRoomModel.title,
+                        postLocation: PostLocation.seoul,
+                        postDate: chatRoomModel.gatheringDate,
+                        contents: chatRoomModel.contents,
+                        numOfCurrentPeople: chatRoomModel.currentPeopleNum,
+                        numOfPeople: chatRoomModel.peopleNum,
+                        numOfCurrentMale: chatRoomModel.currentMaleNum,
+                        numOfMale: chatRoomModel.maleNum,
+                        numOfCurrentFemale: chatRoomModel.currentFemaleNum,
+                        numOfFemale: chatRoomModel.femaleNum,
+                        ageFrom: chatRoomModel.ageFrom,
+                        ageTo: chatRoomModel.ageTo,
+                        genderRestriction: PostGenderRestriction.MIX,
+                        mannerRestriction: chatRoomModel.mannerRestriction,
+                        ageRestriction: chatRoomModel.ageRestriction,
+                      ),
                     },
                   );
                 }),
@@ -80,7 +80,10 @@ Widget _subTitle(String title, VoidCallback? onTap, {bool tapInto = true}) {
           children: [
             Text(
               title,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12 * hu),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 12 * ScreenSize.hu,
+              ),
             ),
             tapInto ? const Icon(Icons.arrow_right_alt) : Container(),
           ],
@@ -101,7 +104,7 @@ Widget _inChatParticipant(
       context.push(
         CustomRouter.userDetailPath,
         extra: {
-          'model': UserDTO(
+          'model': UserModel(
             id: id,
             nickname: nickName,
             stateMsg: '',
@@ -118,7 +121,7 @@ Widget _inChatParticipant(
       child: Row(
         children: [
           const UserProfile(),
-          SizedBox(width: 10 * wu),
+          SizedBox(width: 10 * ScreenSize.wu),
           Text(nickName, style: const TextStyle(fontWeight: FontWeight.bold)),
         ],
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
+import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/more/controller/modify_image.dart';
@@ -30,8 +30,9 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
   @override
   void initState() {
     super.initState();
-    _nicknameController.text = myInfoEntity.nickName;
-    _stateMessageController.text = myInfoEntity.stateMessage ?? '';
+    _nicknameController.text = MyInfoController.myInfoModel.nickName!;
+    _stateMessageController.text =
+        MyInfoController.myInfoModel.stateMessage ?? '';
   }
 
   @override
@@ -47,8 +48,9 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        myInfoEntity.nickName = _nicknameController.text;
-        myInfoEntity.stateMessage = _stateMessageController.text;
+        MyInfoController.myInfoModel.nickName = _nicknameController.text;
+        MyInfoController.myInfoModel.stateMessage =
+            _stateMessageController.text;
         _nicknameFocusNode.unfocus();
         _stateMessageFocusNode.unfocus();
         // Todo: 디바운스 -> 서버로 수정한 정보 보내기
@@ -69,11 +71,12 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   },
                   child: Center(
                     child: Hero(
-                      tag: '${myInfoEntity.id}/me',
+                      tag: '${MyInfoController.myInfoModel.id}/me',
                       child: UserProfile(
-                        profileUrl: myInfoEntity.profileUrl,
+                        profileUrl: MyInfoController.myInfoModel.profileUrl,
                         profileSize: 50,
-                        myProfileXFilePath: myInfoEntity.myProfilePath,
+                        myProfileXFilePath:
+                            MyInfoController.myInfoModel.myProfilePath,
                       ),
                     ),
                   ),
@@ -81,43 +84,43 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      myInfoEntity.profileUrl = null;
-                      myInfoEntity.myProfilePath = null;
+                      MyInfoController.myInfoModel.profileUrl = null;
+                      MyInfoController.myInfoModel.myProfilePath = null;
                       setState(() {});
                     },
                     child: const Text("프로필 사진 초기화"),
                   ),
                 ),
-                SizedBox(height: 5 * hu),
+                SizedBox(height: 5 * ScreenSize.hu),
                 Center(
                   child: Text(
-                    "${myInfoEntity.birthYear}  |  ${myInfoEntity.gender == "MAIL" ? "남성" : "여성"}  |  ${myInfoEntity.name}",
+                    "${MyInfoController.myInfoModel.birthYear}  |  ${MyInfoController.myInfoModel.gender == "MAIL" ? "남성" : "여성"}  |  ${MyInfoController.myInfoModel.name}",
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: 20 * hu),
+                SizedBox(height: 20 * ScreenSize.hu),
                 _renderSubTitle("닉네임"),
-                SizedBox(height: 5 * hu),
+                SizedBox(height: 5 * ScreenSize.hu),
                 LocalTextField(
                   controller: _nicknameController,
                   focusNode: _nicknameFocusNode,
                   prefixIcon: false,
-                  hint: myInfoEntity.nickName,
+                  hint: MyInfoController.myInfoModel.nickName,
                   maxLength: 10,
                   onFieldSubmitted: (value) {
-                    myInfoEntity.nickName = value;
+                    MyInfoController.myInfoModel.nickName = value;
                   },
                 ),
                 _renderSubTitle("상태 메세지"),
-                SizedBox(height: 5 * hu),
+                SizedBox(height: 5 * ScreenSize.hu),
                 LocalTextField(
                   controller: _stateMessageController,
                   focusNode: _stateMessageFocusNode,
                   prefixIcon: false,
-                  hint: myInfoEntity.stateMessage,
+                  hint: MyInfoController.myInfoModel.stateMessage,
                   maxLength: 30,
                   onFieldSubmitted: (value) {
-                    myInfoEntity.stateMessage = value;
+                    MyInfoController.myInfoModel.stateMessage = value;
                   },
                 ),
                 Column(

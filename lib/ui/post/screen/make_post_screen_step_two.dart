@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_category.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/category_option.dart';
@@ -85,7 +85,7 @@ class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
                         ? context.push(
                           "${CustomRouter.makePostStepOnePath}/${CustomRouter.makePostStepTwoPath}/${CustomRouter.makePostStepThreePath}/",
                         )
-                        : showCustomDialog(
+                        : ModalController.showCustomDialog(
                           context,
                           Column(
                             children: [

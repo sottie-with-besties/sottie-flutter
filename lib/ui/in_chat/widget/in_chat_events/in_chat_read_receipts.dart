@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/model/user/entity/user_entity.dart';
+import 'package:sottie_flutter/model/user/user_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
@@ -9,7 +9,7 @@ class InChatReadReceipts extends StatelessWidget {
   const InChatReadReceipts({super.key, required this.userList});
 
   /// 채팅방 사용자 목록
-  final List<UserEntity> userList;
+  final List<UserModel> userList;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class InChatReadReceipts extends StatelessWidget {
         children:
             userList.map((user) {
               return Padding(
-                padding: EdgeInsets.only(left: 2 * wu),
+                padding: EdgeInsets.only(left: 2 * ScreenSize.wu),
                 child: UserProfile(
                   profileUrl: user.profileUrl,
                   profileSize: 20,

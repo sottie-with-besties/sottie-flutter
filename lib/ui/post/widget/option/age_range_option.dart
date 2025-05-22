@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_age_range.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
@@ -16,7 +16,7 @@ class _AgeOptionState extends State<AgeOption> {
   @override
   Widget build(BuildContext context) {
     double animatedContainerHeight =
-        postOptionsSetting.ageRestriction ? 50 * hu : 0;
+        postOptionsSetting.ageRestriction ? 50 * ScreenSize.hu : 0;
 
     return Column(
       children: [
@@ -25,7 +25,7 @@ class _AgeOptionState extends State<AgeOption> {
           children: [
             const OptionTitle(title: '나이 제한'),
             Switch(
-              activeColor: mainBlueColor,
+              activeColor: AppColors.blueColor,
               value: postOptionsSetting.ageRestriction,
               onChanged: (val) {
                 postOptionsSetting.ageRestriction = val;
@@ -47,7 +47,7 @@ class _AgeOptionState extends State<AgeOption> {
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeOutCubic,
           height: animatedContainerHeight,
-          padding: EdgeInsets.only(top: 12 * hu),
+          padding: EdgeInsets.only(top: 12 * ScreenSize.hu),
           child: _AgeRange(isSelected: postOptionsSetting.ageRestriction),
         ),
       ],

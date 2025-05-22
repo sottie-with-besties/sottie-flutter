@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
-import 'package:sottie_flutter/model/user/entity/user_entity.dart';
+import 'package:sottie_flutter/model/user/user_model.dart';
+import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/more/widget/extra_service_list.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
@@ -20,16 +20,16 @@ class _MoreContentScreenState extends State<MoreContentScreen> {
       children: [
         Padding(
           padding: EdgeInsets.only(
-            bottom: 10 * hu,
-            right: 16 * wu,
-            left: 16 * wu,
+            bottom: 10 * ScreenSize.hu,
+            right: 16 * ScreenSize.wu,
+            left: 16 * ScreenSize.wu,
           ),
           child: SottieUser(
-            entity: UserEntity(
-              id: myInfoEntity.id,
-              nickname: myInfoEntity.nickName,
-              stateMsg: myInfoEntity.stateMessage,
-              profileUrl: myInfoEntity.profileUrl,
+            model: UserModel(
+              id: MyInfoController.myInfoModel.id!,
+              nickname: MyInfoController.myInfoModel.nickName!,
+              stateMsg: MyInfoController.myInfoModel.stateMessage,
+              profileUrl: MyInfoController.myInfoModel.profileUrl,
               mannerTemperature: 42.1,
             ),
             heroTag: 'me',

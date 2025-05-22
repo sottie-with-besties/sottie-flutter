@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/chat/entity/chat_room_entity.dart';
-import 'package:sottie_flutter/model/chat/entity/dm_entity.dart';
-import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
+import 'package:sottie_flutter/model/chat/chat_room_model.dart';
+import 'package:sottie_flutter/model/chat/dm_model.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_review_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_drawer.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_events_layout.dart';
@@ -11,13 +11,13 @@ import 'package:sottie_flutter/ui/in_chat/widget/in_chat_type_box.dart';
 class InChatScreen extends StatefulWidget {
   const InChatScreen({
     super.key,
-    this.chatRoomEntity,
-    this.dmEntity,
+    this.chatRoomModel,
+    this.dmModel,
     required this.isChattingOver,
   });
 
-  final ChatRoomEntity? chatRoomEntity;
-  final DmEntity? dmEntity;
+  final ChatRoomModel? chatRoomModel;
+  final DmModel? dmModel;
   final bool isChattingOver;
 
   @override
@@ -35,7 +35,7 @@ class _InChatScreenState extends State<InChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDm = widget.chatRoomEntity == null;
+    final isDm = widget.chatRoomModel == null;
 
     return GestureDetector(
       onTap: _focusNode.unfocus,
@@ -43,22 +43,22 @@ class _InChatScreenState extends State<InChatScreen> {
         appBar: AppBar(
           title: Text(
             isDm
-                ? widget.dmEntity!.userEntity.nickname
-                : widget.chatRoomEntity!.title,
-            style: const TextStyle(color: mainWhiteSilverColor),
+                ? widget.dmModel!.userModel.nickname
+                : widget.chatRoomModel!.title,
+            style: const TextStyle(color: AppColors.whiteSilverColor),
           ),
-          backgroundColor: mainBlueColor,
-          iconTheme: const IconThemeData(color: mainWhiteSilverColor),
+          backgroundColor: AppColors.blueColor,
+          iconTheme: const IconThemeData(color: AppColors.whiteSilverColor),
         ),
-        backgroundColor: mainWhiteSilverColor,
+        backgroundColor: AppColors.whiteSilverColor,
         endDrawer:
-            isDm ? null : InChatDrawer(chatRoomEntity: widget.chatRoomEntity!),
+            isDm ? null : InChatDrawer(chatRoomModel: widget.chatRoomModel!),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InChatEventsLayout(
               isChattingOver: widget.isChattingOver,
-              date: widget.chatRoomEntity?.gatheringDate ?? DateTime(2000),
+              date: widget.chatRoomModel?.gatheringDate ?? DateTime(2000),
             ),
             if (!widget.isChattingOver) InChatTypeBox(focusNode: _focusNode),
             if (widget.isChattingOver)
@@ -67,7 +67,7 @@ class _InChatScreenState extends State<InChatScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      showCustomBottomSheet(
+                      ModalController.showCustomModalBottomSheet(
                         context,
                         const InChatReviewScreen(),
                       );

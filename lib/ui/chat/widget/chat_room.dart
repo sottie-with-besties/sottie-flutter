@@ -6,8 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_category.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_gender_restriction.dart';
+import 'package:sottie_flutter/model/chat/chat_room_model.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
@@ -16,12 +16,10 @@ import 'package:sottie_flutter/ui/common/widget/on_long_press_option.dart';
 import 'package:sottie_flutter/ui/common/widget/slide_long_press_widget.dart';
 import 'package:sottie_flutter/ui/common/widget/sottie_category_ui.dart';
 
-import '../../../model/chat/entity/chat_room_entity.dart';
-
 class ChatRoom extends StatelessWidget {
-  const ChatRoom({super.key, required this.entity});
+  const ChatRoom({super.key, required this.model});
 
-  final ChatRoomEntity entity;
+  final ChatRoomModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,7 @@ class ChatRoom extends StatelessWidget {
     /// 채팅 모임 날짜 기준 24시간 경과 후 채팅방이 사라지기 시작함. 24시간 후 완전히 사라짐.
     /// 모임 날짜 + 24시간 까지 채팅 가능, 그 이후 24시간 채팅방 삭제 대기
     final now = DateTime.now().toLocal();
-    final du = now.difference(entity.gatheringDate);
+    final du = now.difference(model.gatheringDate);
 
     /// inDays == 1은 시간 차이가 24시간 이상 48시간 미만을 의미
     if (du.inDays >= 1) {
@@ -44,16 +42,16 @@ class ChatRoom extends StatelessWidget {
       onLongPressWidget: Column(
         children: [
           OnLongPressOption(
-            color: mainGreyColor,
+            color: AppColors.greyColor,
             onTap: () {
               _alarmOnOffAction(false);
             },
             icon: Icons.alarm_off,
             optionTitle: "알람 끄기",
           ),
-          SizedBox(height: 10 * hu),
+          SizedBox(height: 10 * ScreenSize.hu),
           OnLongPressOption(
-            color: mainRedColor,
+            color: AppColors.redColor,
             onTap: () {
               _chatRoomOutAction(false);
             },
@@ -65,7 +63,7 @@ class ChatRoom extends StatelessWidget {
       slideActions: [
         SlidableAction(
           onPressed: (context) => _alarmOnOffAction(true),
-          backgroundColor: mainGreyColor,
+          backgroundColor: AppColors.greyColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: Icons.alarm_off,
@@ -74,7 +72,7 @@ class ChatRoom extends StatelessWidget {
         ),
         SlidableAction(
           onPressed: (context) => _chatRoomOutAction(true),
-          backgroundColor: mainRedColor,
+          backgroundColor: AppColors.redColor,
           foregroundColor: Colors.white,
           autoClose: true,
           icon: FontAwesomeIcons.outdent,
@@ -86,61 +84,61 @@ class ChatRoom extends StatelessWidget {
         onTap: () {
           context.push(
             '${CustomRouter.chatPath}/${CustomRouter.inChatPath}',
-            extra: {'chatRoomEntity': entity, 'isChattingOver': isChattingOver},
+            extra: {'chatRoomModel': model, 'isChattingOver': isChattingOver},
           );
         },
         child: Container(
           color: Colors.transparent, // GestureDetector에 모든 영역이 감지되기 위함
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: 3 * wu,
-              vertical: 12 * hu,
+              horizontal: 3 * ScreenSize.wu,
+              vertical: 12 * ScreenSize.hu,
             ),
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12 * wu),
+                  padding: EdgeInsets.symmetric(horizontal: 12 * ScreenSize.wu),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SottieCategoryUi(
                         postCategory: PostCategory.values.byName(
-                          entity.gatheringCategory,
+                          model.sottieCategory,
                         ),
                       ),
                       CurrentNumOfMember(
-                        currentPeopleNum: entity.currentPeopleNum,
-                        peopleNum: entity.peopleNum,
-                        currentMaleNum: entity.currentMaleNum,
-                        maleNum: entity.maleNum,
-                        currentFemaleNum: entity.currentFemaleNum,
-                        femaleNum: entity.femaleNum,
+                        currentPeopleNum: model.currentPeopleNum,
+                        peopleNum: model.peopleNum,
+                        currentMaleNum: model.currentMaleNum,
+                        maleNum: model.maleNum,
+                        currentFemaleNum: model.currentFemaleNum,
+                        femaleNum: model.femaleNum,
                         genderRestriction: PostGenderRestriction.values.byName(
-                          entity.genderRestriction,
+                          model.genderRestriction,
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 10 * hu),
+                SizedBox(height: 10 * ScreenSize.hu),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ChatRoomProfiles(
                       profileCount:
-                          entity.profileThumbnailsUrl.length > 4
+                          model.profileThumbnailsUrl.length > 4
                               ? 4
-                              : entity.profileThumbnailsUrl.length,
+                              : model.profileThumbnailsUrl.length,
                       profileSize:
-                          entity.profileThumbnailsUrl.length < 2 ? 45.0 : 30.0,
+                          model.profileThumbnailsUrl.length < 2 ? 45.0 : 30.0,
                     ),
                     ChatRoomInfo(
-                      gatheringDate: entity.gatheringDate,
-                      locationId: entity.locationId,
-                      chatTitle: entity.title,
-                      latestMsg: entity.latestMsg,
-                      latestTime: entity.latestTime,
-                      notReadMsg: entity.notReadMsg,
+                      gatheringDate: model.gatheringDate,
+                      locationId: model.locationId,
+                      chatTitle: model.title,
+                      latestMsg: model.latestMsg,
+                      latestTime: model.latestTime,
+                      notReadMsg: model.notReadMsg,
                       isChattingOver: isChattingOver,
                       chatRoomDisappearingTime: chatRoomDisappearingTime,
                     ),

@@ -92,7 +92,7 @@ class _TimeRangeClassState extends ConsumerState<TimeRangeOption> {
               labelOffset: -30,
               labelStyle: const TextStyle(
                 fontSize: 16,
-                color: mainGreyColor,
+                color: AppColors.greyColor,
                 fontWeight: FontWeight.bold,
               ),
             );

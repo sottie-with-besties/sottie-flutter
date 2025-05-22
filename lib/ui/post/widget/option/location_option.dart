@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_location.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 

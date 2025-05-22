@@ -1,8 +1,8 @@
-import 'package:sottie_flutter/model/user/dto/user_dto.dart';
+import 'package:sottie_flutter/model/user/user_model.dart';
 
-Future<UserDTO?> getUserSearchDummy() async {
+Future<UserModel?> getUserSearchDummy() async {
   await Future.delayed(const Duration(seconds: 1), null);
-  return UserDTO(
+  return UserModel(
     id: 32,
     nickname: 'nickname',
     stateMsg: 'stateMsg',

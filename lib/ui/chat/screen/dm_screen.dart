@@ -17,7 +17,7 @@ class DmScreen extends ConsumerWidget {
       data: (data) {
         final dmList = data.where((data) {
           final searched =
-              data.userEntity.nickname.toString().contains(inputText) ||
+              data.userModel.nickname.toString().contains(inputText) ||
               data.latestMsg.toString().contains(inputText);
 
           return searched;
@@ -28,7 +28,7 @@ class DmScreen extends ConsumerWidget {
         }
 
         return ListView(
-          children: dmList.map((e) => DmChatRoom(entity: e)).toList(),
+          children: dmList.map((e) => DmChatRoom(model: e)).toList(),
         );
       },
       error: (_, __) {

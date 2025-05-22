@@ -10,7 +10,7 @@ class OptionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: TextStyle(fontSize: 14 * wu, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 14 * ScreenSize.wu, fontWeight: FontWeight.bold),
     );
   }
 }

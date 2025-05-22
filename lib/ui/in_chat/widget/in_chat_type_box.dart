@@ -32,7 +32,7 @@ class InChatTypeBox extends StatelessWidget {
                   },
                   child: const Icon(Icons.photo),
                 ),
-                SizedBox(width: 15 * wu),
+                SizedBox(width: 15 * ScreenSize.wu),
                 GestureDetector(
                   onTap: () {
                     log("메세지 전송");
@@ -40,15 +40,18 @@ class InChatTypeBox extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: mainBlueColor,
+                      color: AppColors.blueColor,
                     ),
                     padding: const EdgeInsets.all(5),
                     child: const FittedBox(
-                      child: Icon(Icons.send, color: mainWhiteSilverColor),
+                      child: Icon(
+                        Icons.send,
+                        color: AppColors.whiteSilverColor,
+                      ),
                     ),
                   ),
                 ),
-                SizedBox(width: 10 * wu),
+                SizedBox(width: 10 * ScreenSize.wu),
               ],
             ),
           ),

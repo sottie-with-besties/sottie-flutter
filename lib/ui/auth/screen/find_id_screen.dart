@@ -5,7 +5,7 @@ import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/use_case/auth/verification_use_case.dart';
 
 class FindIdScreen extends StatefulWidget {
@@ -28,7 +28,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
   final phoneNumberKey = GlobalKey<FormState>();
 
   final loadingCircle = const Center(
-    child: CircularProgressIndicator(color: mainWhiteSilverColor),
+    child: CircularProgressIndicator(color: AppColors.whiteSilverColor),
   );
 
   bool _anyButtonLoading() {
@@ -45,27 +45,27 @@ class _FindIdScreenState extends State<FindIdScreen> {
 
     if (currentStep == 0) {
       if (phoneNumberKey.currentState!.validate()) {
-        final errorCode = await VerificationUseCase().signInWithPhoneNumber(
+        final errorCode = await VerificationUseCase.signInWithPhoneNumber(
           phoneNumber!,
         );
         if (errorCode == null) {
           currentStep += 1;
           setState(() {});
         } else {
-          if (mounted) showCustomSnackBar(context, errorCode);
+          if (mounted) ModalController.showCustomSnackBar(context, errorCode);
         }
       }
     } else if (currentStep == 1) {
       /// 번호 인증 화면 -> 인증 성공 후 파이어베이스 유저 폰 번호 정보 삭제
-      final errorCode = await VerificationUseCase().signInWithSmsCode(
+      final errorCode = await VerificationUseCase.signInWithSmsCode(
         verificationCode!,
       );
       if (errorCode == null) {
-        await VerificationUseCase().deletePhoneUser();
+        await VerificationUseCase.deletePhoneUser();
         currentStep += 1;
         setState(() {});
       } else {
-        if (mounted) showCustomSnackBar(context, errorCode);
+        if (mounted) ModalController.showCustomSnackBar(context, errorCode);
       }
     }
     isNextLoading = false;
@@ -104,9 +104,9 @@ class _FindIdScreenState extends State<FindIdScreen> {
             currentStep: currentStep,
             connectorColor: WidgetStateColor.resolveWith((state) {
               if (state.contains(WidgetState.selected)) {
-                return mainBlueColor;
+                return AppColors.blueColor;
               }
-              return mainGreyColor;
+              return AppColors.greyColor;
             }),
             steps: <Step>[
               Step(
@@ -130,7 +130,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                         keyboardType: TextInputType.number,
                         validator: (val) {
                           phoneNumber = val;
-                          return validatePhoneNumber(val!);
+                          return AuthValidator.validatePhoneNumber(val!);
                         },
                       ),
                     ],
@@ -165,11 +165,16 @@ class _FindIdScreenState extends State<FindIdScreen> {
                     const SizedBox(height: 30),
                     OutlinedButton(
                       onPressed: () async {
-                        final errorCode = await VerificationUseCase()
-                            .signInWithPhoneNumber(phoneNumber!);
+                        final errorCode =
+                            await VerificationUseCase.signInWithPhoneNumber(
+                              phoneNumber!,
+                            );
                         if (errorCode != null) {
                           if (context.mounted) {
-                            showCustomSnackBar(context, errorCode);
+                            ModalController.showCustomSnackBar(
+                              context,
+                              errorCode,
+                            );
                           }
                         }
                       },
@@ -211,7 +216,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                           ),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: mainWhiteSilverColor,
+                              backgroundColor: AppColors.whiteSilverColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -242,7 +247,7 @@ class _FindIdScreenState extends State<FindIdScreen> {
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainGreyColor,
+                        backgroundColor: AppColors.greyColor,
                       ),
                       onPressed:
                           () => _anyButtonLoading() ? null : _onStepCancel(),

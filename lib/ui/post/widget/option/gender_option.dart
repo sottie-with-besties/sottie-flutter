@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_gender_restriction.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/post/controller/num_of_member.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
@@ -53,7 +53,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
 
     double animatedContainerHeight =
         postOptionsSetting.genderRestriction != PostGenderRestriction.NONE
-            ? 80 * hu
+            ? 80 * ScreenSize.hu
             : 0;
 
     return Column(
@@ -63,7 +63,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
           children: [
             const OptionTitle(title: '성비 제한'),
             Switch(
-              activeColor: mainBlueColor,
+              activeColor: AppColors.blueColor,
               value: _sliderCondition(),
               onChanged: (val) {
                 if (_peopleNumIsSelected) {
@@ -95,7 +95,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeOutCubic,
           height: animatedContainerHeight,
-          padding: EdgeInsets.only(top: 12 * hu),
+          padding: EdgeInsets.only(top: 12 * ScreenSize.hu),
           child:
               _peopleNumIsSelected
                   ? SingleChildScrollView(
@@ -105,9 +105,9 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                           value: postOptionsSetting.maleNum.toDouble(),
                           max: postOptionsSetting.peopleNum.toDouble(),
                           divisions: postOptionsSetting.peopleNum,
-                          activeColor: mainBlueColor,
-                          inactiveColor: mainRedColor,
-                          thumbColor: mainBlackColor,
+                          activeColor: AppColors.blueColor,
+                          inactiveColor: AppColors.redColor,
+                          thumbColor: AppColors.blackColor,
                           onChanged: (val) {
                             if (_sliderCondition()) {
                               postOptionsSetting.maleNum = val.toInt();
@@ -170,8 +170,8 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                             '남자만 입장 가능',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 10 * hu,
-                              color: mainBlueColor,
+                              fontSize: 10 * ScreenSize.hu,
+                              color: AppColors.blueColor,
                             ),
                           ),
                         if (postOptionsSetting.genderRestriction ==
@@ -180,8 +180,8 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                             '여자만 입장 가능',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 10 * hu,
-                              color: mainRedColor,
+                              fontSize: 10 * ScreenSize.hu,
+                              color: AppColors.redColor,
                             ),
                           ),
                       ],

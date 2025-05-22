@@ -67,7 +67,7 @@ class _FriendUtilScreenState extends State<FriendUtilScreen>
                 ],
               ),
             ),
-            SizedBox(height: 5 * hu),
+            SizedBox(height: 5 * ScreenSize.hu),
             Expanded(
               child: TabBarView(
                 controller: _tabController,

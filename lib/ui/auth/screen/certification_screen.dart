@@ -10,10 +10,8 @@ import 'package:portone_flutter/model/certification_data.dart';
 /* 아임포트 휴대폰 본인인증 데이터 모델을 불러옵니다. */
 import 'package:sottie_flutter/core/rest_api/api_env.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/auth/dto/email_sign_up_dto.dart';
-import 'package:sottie_flutter/model/auth/dto/oauth_sign_up_dto.dart';
-import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
+import 'package:sottie_flutter/ui/auth/controller/sign_up_controller.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 
 class CertificationScreen extends StatelessWidget {
   const CertificationScreen({
@@ -50,7 +48,7 @@ class CertificationScreen extends StatelessWidget {
 
           // 본인인증 스크린 예외 처리
           if (result['imp_success'] == 'false') {
-            showCustomSnackBar(context, "본인인증 에러가 발생하였습니다.");
+            ModalController.showCustomSnackBar(context, "본인인증 에러가 발생하였습니다.");
             return;
           }
 
@@ -71,42 +69,53 @@ class CertificationScreen extends StatelessWidget {
             log(res.toString(), name: "Response");
 
             if (isModifyInfo) {
-              myInfoEntity.name = res.data['name'];
-              myInfoEntity.gender = res.data['gender'];
-              myInfoEntity.phoneNumber = res.data['phoneNumber'];
-              myInfoEntity.identifier = res.data['identifier'];
-              myInfoEntity.birthYear = res.data['birthYear'];
-              myInfoEntity.phoneAuthenticated = res.data['phoneAuthenticated'];
+              SignUpController.signUpModel.name = res.data['name'];
+              SignUpController.signUpModel.gender = res.data['gender'];
+              SignUpController.signUpModel.phoneNumber =
+                  res.data['phoneNumber'];
+              SignUpController.signUpModel.identifier = res.data['identifier'];
+              SignUpController.signUpModel.birthYear = res.data['birthYear'];
+              SignUpController.signUpModel.phoneAuthenticated =
+                  res.data['phoneAuthenticated'];
 
               /// Todo: 내 정보를 로컬DB(ISAR)에 저장 및 서버 전송
             } else {
               // 소셜 로그인
               if (isOauthSignUp) {
-                oauthSignUp.name = res.data['name'];
-                oauthSignUp.gender = res.data['gender'];
-                oauthSignUp.phoneNumber = res.data['phoneNumber'];
-                oauthSignUp.identifier = res.data['identifier'];
-                oauthSignUp.birthYear = res.data['birthYear'];
-                oauthSignUp.phoneAuthenticated = res.data['phoneAuthenticated'];
+                SignUpController.signUpModel.name = res.data['name'];
+                SignUpController.signUpModel.gender = res.data['gender'];
+                SignUpController.signUpModel.phoneNumber =
+                    res.data['phoneNumber'];
+                SignUpController.signUpModel.identifier =
+                    res.data['identifier'];
+                SignUpController.signUpModel.birthYear = res.data['birthYear'];
+                SignUpController.signUpModel.phoneAuthenticated =
+                    res.data['phoneAuthenticated'];
               } else {
                 // 이메일 로그인
-                emailSignUp.name = res.data['name'];
-                emailSignUp.gender = res.data['gender'];
-                emailSignUp.phoneNumber = res.data['phoneNumber'];
-                emailSignUp.identifier = res.data['identifier'];
-                emailSignUp.birthYear = res.data['birthYear'];
-                emailSignUp.phoneAuthenticated = res.data['phoneAuthenticated'];
+                SignUpController.signUpModel.name = res.data['name'];
+                SignUpController.signUpModel.gender = res.data['gender'];
+                SignUpController.signUpModel.phoneNumber =
+                    res.data['phoneNumber'];
+                SignUpController.signUpModel.identifier =
+                    res.data['identifier'];
+                SignUpController.signUpModel.birthYear = res.data['birthYear'];
+                SignUpController.signUpModel.phoneAuthenticated =
+                    res.data['phoneAuthenticated'];
               }
             }
           } on Exception catch (_) {
             if (context.mounted) {
-              showCustomSnackBar(context, "본인인증 도중 에러가 발생하였습니다.");
+              ModalController.showCustomSnackBar(
+                context,
+                "본인인증 도중 에러가 발생하였습니다.",
+              );
             }
           }
 
           if (context.mounted) {
             if (isModifyInfo) {
-              showCustomSnackBar(context, '정보 수정 완료');
+              ModalController.showCustomSnackBar(context, '정보 수정 완료');
               context.go(
                 '${CustomRouter.morePath}/${CustomRouter.infoModifyPath}',
               );

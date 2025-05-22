@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 
 class SlideLongPressWidget extends StatefulWidget {
   const SlideLongPressWidget({
@@ -50,10 +50,10 @@ class _SlideLongPressWidgetState extends State<SlideLongPressWidget>
         children: widget.slideActions,
       ),
       child: Material(
-        color: mainWhiteSilverColor,
+        color: AppColors.whiteSilverColor,
         child: InkWell(
           onLongPress: () {
-            showCustomDialog(
+            ModalController.showCustomDialog(
               context,
               widget.onLongPressWidget,
               color: Colors.transparent,

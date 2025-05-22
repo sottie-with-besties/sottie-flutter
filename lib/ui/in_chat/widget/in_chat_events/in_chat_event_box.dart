@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/in_chat/entity/in_chat_enum.dart';
-import 'package:sottie_flutter/model/in_chat/entity/in_chat_event_entity.dart';
+import 'package:sottie_flutter/model/in_chat/in_chat_enum.dart';
+import 'package:sottie_flutter/model/in_chat/in_chat_event_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_events/in_chat_contents.dart';
 import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
@@ -19,7 +19,7 @@ class InChatEventBox extends StatelessWidget {
   });
 
   /// 동일 시간대에 동일 유저가 보낸 메시지 목록 (연속 메시지)
-  final List<InChatEventEntity> events;
+  final List<InChatEventModel> events;
 
   /// 내 메시지인지 여부
   final bool isMyMessage;
@@ -36,7 +36,10 @@ class InChatEventBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12 * hu, horizontal: 8 * wu),
+      padding: EdgeInsets.symmetric(
+        vertical: 12 * ScreenSize.hu,
+        horizontal: 8 * ScreenSize.wu,
+      ),
       child: Row(
         mainAxisAlignment:
             isMyMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
@@ -45,7 +48,7 @@ class InChatEventBox extends StatelessWidget {
           /// 상대방 메시지일 때만 왼쪽에 프로필 표시
           if (!isMyMessage) ...[
             UserProfile(profileUrl: profileUrl),
-            SizedBox(width: 8 * wu),
+            SizedBox(width: 8 * ScreenSize.wu),
           ],
 
           /// 프로필 너비 + 간격
@@ -57,12 +60,15 @@ class InChatEventBox extends StatelessWidget {
               /// 상대방 메시지일 때 닉네임 표시
               if (!isMyMessage)
                 Padding(
-                  padding: EdgeInsets.only(left: 4 * wu, bottom: 4 * hu),
+                  padding: EdgeInsets.only(
+                    left: 4 * ScreenSize.wu,
+                    bottom: 4 * ScreenSize.hu,
+                  ),
                   child: Text(
                     nickname,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 12 * hu,
+                      fontSize: 12 * ScreenSize.hu,
                     ),
                   ),
                 ),
@@ -70,15 +76,14 @@ class InChatEventBox extends StatelessWidget {
               /// 메시지 컨텐츠 목록
               ...events.map(
                 (event) => Padding(
-                  padding: EdgeInsets.only(bottom: 2 * hu),
+                  padding: EdgeInsets.only(bottom: 2 * ScreenSize.hu),
                   child: InChatContents(
-                    inChatData: event.inChatData,
+                    inChatEventModel: event,
                     isMyMessage: isMyMessage,
                     onTap: () {
                       /// 이미지, 비디오 등 특별한 컨텐츠 처리
-                      if (event.inChatData.inChatDataType !=
-                          InChatDataType.TEXT) {
-                        _handleSpecialContentTap(context, event.inChatData);
+                      if (event.inChatDataType != InChatDataType.TEXT) {
+                        _handleSpecialContentTap(context, event);
                       }
                     },
                   ),
@@ -88,13 +93,16 @@ class InChatEventBox extends StatelessWidget {
               /// 시간 표시
               Padding(
                 padding: EdgeInsets.only(
-                  top: 4 * hu,
-                  right: isMyMessage ? 4 * wu : 0,
-                  left: isMyMessage ? 0 : 4 * wu,
+                  top: 4 * ScreenSize.hu,
+                  right: isMyMessage ? 4 * ScreenSize.wu : 0,
+                  left: isMyMessage ? 0 : 4 * ScreenSize.wu,
                 ),
                 child: Text(
                   _formatMessageTime(events.last.timeStamp),
-                  style: TextStyle(fontSize: 10 * hu, color: mainGreyColor),
+                  style: TextStyle(
+                    fontSize: 10 * ScreenSize.hu,
+                    color: AppColors.greyColor,
+                  ),
                 ),
               ),
             ],
@@ -138,8 +146,8 @@ class InChatEventBox extends StatelessWidget {
   }
 
   /// 특별한 컨텐츠(이미지, 비디오)를 탭했을 때 처리
-  void _handleSpecialContentTap(BuildContext context, InChatDataEntity data) {
-    switch (data.inChatDataType) {
+  void _handleSpecialContentTap(BuildContext context, InChatEventModel model) {
+    switch (model.inChatDataType) {
       case InChatDataType.IMAGE:
 
         /// TODO: 이미지 확대 보기 구현

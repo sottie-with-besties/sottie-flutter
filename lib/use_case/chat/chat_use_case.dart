@@ -1,29 +1,20 @@
-import 'package:sottie_flutter/model/chat/entity/chat_room_entity.dart';
-import 'package:sottie_flutter/model/chat/entity/dm_entity.dart';
+import 'package:sottie_flutter/model/chat/chat_room_model.dart';
+import 'package:sottie_flutter/model/chat/dm_model.dart';
 import 'package:sottie_flutter/repository/chat/implements/chat_room_dummy.dart';
 import 'package:sottie_flutter/repository/chat/implements/dm_dummy.dart';
 
-final class ChatUseCase {
-  static final ChatUseCase _instance = ChatUseCase._();
-
-  factory ChatUseCase() => _instance;
-
-  ChatUseCase._();
-
+sealed class ChatUseCase {
   /// 채팅방 가져오기
-  Future<List<ChatRoomEntity>> getChatList() async {
+  static Future<List<ChatRoomModel>> getChatList() async {
     final chatRoomModelList = await getChatRoomDummy();
-    final chatRoomEntityList =
-        chatRoomModelList.map((model) => model.toEntity()).toList();
 
-    return chatRoomEntityList;
+    return chatRoomModelList;
   }
 
   /// Dm 가져오기
-  Future<List<DmEntity>> getDmList() async {
+  static Future<List<DmModel>> getDmList() async {
     final dmModelList = await getDmDummy();
-    final dmEntityList = dmModelList.map((model) => model.toEntity()).toList();
 
-    return dmEntityList;
+    return dmModelList;
   }
 }

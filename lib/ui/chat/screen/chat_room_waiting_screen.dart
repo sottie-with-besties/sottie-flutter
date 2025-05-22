@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_location.dart';
 import 'package:sottie_flutter/provider/chat/chat_room_waiting_provider.dart';
 import 'package:sottie_flutter/ui/chat/controller/chat_header_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
@@ -25,15 +24,11 @@ class ChatRoomWaitingScreen extends ConsumerWidget {
     return chatRoomWaitingState.when(
       data: (data) {
         final chatRoomWaitingList = data.where((data) {
-          final dateString = convertDateTimeIntoString(
-            data.gatheringDate.toLocal(),
-          );
+          final dateString = convertDateTimeIntoString(data.postDate);
           final searched =
               data.title.toString().contains(inputText) ||
               dateString.toString().contains(inputText) ||
-              PostLocation.values[data.locationId].koreanName.contains(
-                inputText,
-              );
+              data.postLocation.koreanName.contains(inputText);
 
           return searched;
         });
@@ -51,7 +46,7 @@ class ChatRoomWaitingScreen extends ConsumerWidget {
                       onLongPressWidget: Column(
                         children: [
                           OnLongPressOption(
-                            color: mainRedColor,
+                            color: AppColors.redColor,
                             onTap: () {
                               _chatRoomOutAction(false);
                             },
@@ -63,7 +58,7 @@ class ChatRoomWaitingScreen extends ConsumerWidget {
                       slideActions: [
                         SlidableAction(
                           onPressed: (context) => _chatRoomOutAction(true),
-                          backgroundColor: mainRedColor,
+                          backgroundColor: AppColors.redColor,
                           foregroundColor: Colors.white,
                           autoClose: true,
                           icon: FontAwesomeIcons.outdent,
@@ -71,7 +66,7 @@ class ChatRoomWaitingScreen extends ConsumerWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 1),
                         ),
                       ],
-                      child: Post(entity: model.toEntity(), isWaiting: true),
+                      child: Post(model: model, isWaiting: true),
                     ),
                   )
                   .toList(),

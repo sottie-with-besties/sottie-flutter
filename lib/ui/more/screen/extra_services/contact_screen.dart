@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 
 class ContactScreen extends StatefulWidget {
@@ -29,10 +29,13 @@ class _ContactScreenState extends State<ContactScreen> {
                 lines: 12,
                 maxLength: 250,
               ),
-              SizedBox(height: 30 * hu),
+              SizedBox(height: 30 * ScreenSize.hu),
               ElevatedButton(
                 onPressed: () {
-                  showCustomSnackBar(context, "문의 내역을 전송하였습니다.");
+                  ModalController.showCustomSnackBar(
+                    context,
+                    "문의 내역을 전송하였습니다.",
+                  );
                   context.pop();
                 },
                 child: const Text("문의하기"),

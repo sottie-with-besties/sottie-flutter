@@ -78,7 +78,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                 ],
               ),
             ),
-            SizedBox(height: 5 * hu),
+            SizedBox(height: 5 * ScreenSize.hu),
             Expanded(
               child: TabBarView(
                 controller: _tabController,

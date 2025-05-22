@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
+import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 class ExtraStoreScreen extends StatefulWidget {
@@ -66,18 +66,21 @@ final _myGold = Padding(
       border: Border.all(width: 0.5),
     ),
     padding: const EdgeInsets.symmetric(horizontal: 24),
-    height: 50 * hu,
+    height: 50 * ScreenSize.hu,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           '내 골드',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14 * hu),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 14 * ScreenSize.hu,
+          ),
         ),
         Row(
           children: [
             Text(
-              "${myInfoEntity.gold}",
+              "${MyInfoController.myInfoModel.gold}",
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             const SizedBox(width: 10),
@@ -101,7 +104,7 @@ Widget _goldPurchase(int gold, int price) {
           borderRadius: BorderRadius.circular(8),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        height: 30 * hu,
+        height: 30 * ScreenSize.hu,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -133,7 +136,7 @@ Widget _termsAndConditions(String content) {
     padding: const EdgeInsets.symmetric(vertical: 5),
     child: Text(
       "* $content",
-      style: const TextStyle(color: mainGreyColor, fontSize: 12),
+      style: const TextStyle(color: AppColors.greyColor, fontSize: 12),
     ),
   );
 }

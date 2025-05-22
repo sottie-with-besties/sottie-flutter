@@ -116,7 +116,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         context.pop();
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: mainGreenColor.shade700,
+                        backgroundColor: AppColors.greenColor.shade700,
                       ),
                       child: const Text("검색 초기화"),
                     ),

@@ -23,13 +23,13 @@ class _FriendProductionRepositoryImpl
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<UserDTO>> getFriends() async {
+  Future<List<UserModel>> getFriends() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Content-Type': 'application/json'};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<UserDTO>>(Options(
+    final _options = _setStreamType<List<UserModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -47,10 +47,10 @@ class _FriendProductionRepositoryImpl
           baseUrl,
         )));
     final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<UserDTO> _value;
+    late List<UserModel> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => UserDTO.fromJson(i as Map<String, dynamic>))
+          .map((dynamic i) => UserModel.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);

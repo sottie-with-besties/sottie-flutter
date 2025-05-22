@@ -28,7 +28,7 @@ class _RenderBone extends StatelessWidget {
       child: Skeletonizer(
         effect: ShimmerEffect(
           baseColor: Colors.black12,
-          highlightColor: mainWhiteSilverColor,
+          highlightColor: AppColors.whiteSilverColor,
         ),
         ignoreContainers: true,
         enabled: true,

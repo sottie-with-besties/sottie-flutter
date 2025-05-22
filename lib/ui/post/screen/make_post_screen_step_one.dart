@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 
@@ -66,7 +66,7 @@ class _MakePostScreenStepOneState extends State<MakePostScreenStepOne> {
                     onPressed: () {
                       if (_titleController.text == '' ||
                           _contentController.text == '') {
-                        showCustomDialog(
+                        ModalController.showCustomDialog(
                           context,
                           const Text("제목 및 내용을 한 글자 이상 입력해주세요."),
                         );

@@ -2,18 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 final _auth = FirebaseAuth.instance;
 
-String? _verificationId;
-
-final class VerificationUseCase {
-  static final VerificationUseCase _instance = VerificationUseCase._();
-
-  factory VerificationUseCase() => _instance;
-
-  VerificationUseCase._();
+sealed class VerificationUseCase {
+  static String? _verificationId;
 
   /// 이메일 인증
   /// 이메일 인증읠 위해서 먼저 계정을 만들어야함
-  Future<String?> createEmailAndPassword(String email, String password) async {
+  static Future<String?> createEmailAndPassword(
+    String email,
+    String password,
+  ) async {
     try {
       await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -43,7 +40,7 @@ final class VerificationUseCase {
   }
 
   /// 이메일 인증 보내기
-  Future<String?> sendEmailVerification() async {
+  static Future<String?> sendEmailVerification() async {
     try {
       await _auth.currentUser!.sendEmailVerification();
       return null;
@@ -53,7 +50,7 @@ final class VerificationUseCase {
   }
 
   /// 이메일 인증 여부
-  Future<bool> isEmailVerification(String email, String password) async {
+  static Future<bool> isEmailVerification(String email, String password) async {
     /// 파이어베이스의 속성값이 업데이트 되기 위해서는 한번 더 로그인을 진행해주어야 한다.
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
@@ -64,7 +61,7 @@ final class VerificationUseCase {
   }
 
   /// 이메일 인증만 하면 되기 때문에 유저를 파이어베이스에 저장하지 않고 삭제한다.
-  Future<String?> deleteEmailUser(String email, String password) async {
+  static Future<String?> deleteEmailUser(String email, String password) async {
     try {
       /// 한번 더 로그인을 진행해주어야 삭제 가능.
       await _auth.signInWithEmailAndPassword(email: email, password: password);
@@ -77,7 +74,7 @@ final class VerificationUseCase {
 
   /// 핸드폰 인증
   /// 이 함수를 실행하면 로봇인지 아닌지 체크하는 웹 사이트가 열리고 다시 웹이 닫히면 SMS 코드 문자 발송
-  Future<String?> signInWithPhoneNumber(String number) async {
+  static Future<String?> signInWithPhoneNumber(String number) async {
     String? errorCode;
 
     await _auth.verifyPhoneNumber(
@@ -98,7 +95,7 @@ final class VerificationUseCase {
   }
 
   /// 발송된 SMS 코드와 함께 로그인 하여 문제가 없으면 폰 인증 완료.
-  Future<String?> signInWithSmsCode(String code) async {
+  static Future<String?> signInWithSmsCode(String code) async {
     String? errorCode;
 
     try {
@@ -120,7 +117,7 @@ final class VerificationUseCase {
   }
 
   /// 핸드폰 인증만 하면 되기 때문에 유저를 파이어베이스에 저장하지 않고 삭제한다.
-  Future<void> deletePhoneUser() async {
+  static Future<void> deletePhoneUser() async {
     await _auth.currentUser!.delete();
   }
 }

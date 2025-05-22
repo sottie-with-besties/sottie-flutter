@@ -14,35 +14,83 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import '../../model/in_chat/dto/in_chat_event_list_local_dto.dart';
-import '../../model/user/dto/user_local_dto.dart';
+import '../../model/in_chat/in_chat_event_local_model.dart';
+import '../../model/user/user_local_model.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 6929589078566451250),
-      name: 'InChatDataLocalDTO',
-      lastPropertyId: const obx_int.IdUid(4, 2368925187953414032),
+      id: const obx_int.IdUid(5, 4845530301754659331),
+      name: 'InChatEventListLocalModel',
+      lastPropertyId: const obx_int.IdUid(2, 4954984804503805202),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 7934234719201775379),
+            id: const obx_int.IdUid(1, 8659746807929622588),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 5350857677561821740),
-            name: 'dataId',
+            id: const obx_int.IdUid(2, 4954984804503805202),
+            name: 'roomId',
+            type: 9,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[
+        obx_int.ModelRelation(
+            id: const obx_int.IdUid(6, 9057946629568338737),
+            name: 'userList',
+            targetId: const obx_int.IdUid(7, 2162950591639727561)),
+        obx_int.ModelRelation(
+            id: const obx_int.IdUid(7, 6996817470426085957),
+            name: 'inChatEventList',
+            targetId: const obx_int.IdUid(6, 3809310181766185692))
+      ],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(6, 3809310181766185692),
+      name: 'InChatEventLocalModel',
+      lastPropertyId: const obx_int.IdUid(8, 7633051907808077844),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 7427529025827963760),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 3017685483779597778),
+            name: 'eventId',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 7788753136344461548),
+            name: 'userId',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 477196866431152592),
+            id: const obx_int.IdUid(4, 4904119018813539197),
+            name: 'inChatEventType',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 8399342918056977816),
+            name: 'timeStamp',
+            type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 5465786975602217154),
+            name: 'inChatEventStatus',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 4721959164366037513),
             name: 'inChatDataType',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 2368925187953414032),
+            id: const obx_int.IdUid(8, 7633051907808077844),
             name: 'contents',
             type: 9,
             flags: 0)
@@ -50,112 +98,38 @@ final _entities = <obx_int.ModelEntity>[
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(2, 1727238836425246089),
-      name: 'InChatEventListLocalDTO',
-      lastPropertyId: const obx_int.IdUid(2, 7958415430520320432),
+      id: const obx_int.IdUid(7, 2162950591639727561),
+      name: 'UserLocalModel',
+      lastPropertyId: const obx_int.IdUid(6, 6029311725726979911),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 8102268948635172208),
+            id: const obx_int.IdUid(1, 2197656364406372462),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 7958415430520320432),
-            name: 'roomId',
-            type: 9,
-            flags: 0)
-      ],
-      relations: <obx_int.ModelRelation>[
-        obx_int.ModelRelation(
-            id: const obx_int.IdUid(4, 3575284087082992589),
-            name: 'userList',
-            targetId: const obx_int.IdUid(4, 5115315628866282220)),
-        obx_int.ModelRelation(
-            id: const obx_int.IdUid(5, 9169392636316638828),
-            name: 'inChatEventList',
-            targetId: const obx_int.IdUid(3, 5310278417568448237))
-      ],
-      backlinks: <obx_int.ModelBacklink>[]),
-  obx_int.ModelEntity(
-      id: const obx_int.IdUid(3, 5310278417568448237),
-      name: 'InChatEventLocalDTO',
-      lastPropertyId: const obx_int.IdUid(9, 1585148969300346690),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 1186900153388184028),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 8496729147045889852),
-            name: 'eventId',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 8212661422156682553),
-            name: 'userId',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 1224763139463649506),
-            name: 'inChatEventType',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 8284527198821110264),
-            name: 'timeStamp',
-            type: 10,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 4266158725092122896),
-            name: 'inChatEventStatus',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 2268845606986151022),
-            name: 'inChatDataId',
-            type: 11,
-            flags: 520,
-            indexId: const obx_int.IdUid(1, 3218224958239779237),
-            relationTarget: 'InChatDataLocalDTO')
-      ],
-      relations: <obx_int.ModelRelation>[],
-      backlinks: <obx_int.ModelBacklink>[]),
-  obx_int.ModelEntity(
-      id: const obx_int.IdUid(4, 5115315628866282220),
-      name: 'UserLocalDTO',
-      lastPropertyId: const obx_int.IdUid(7, 6015609694460064215),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 4378815629329486973),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 680523836483137508),
+            id: const obx_int.IdUid(2, 4580093391664745405),
             name: 'userId',
             type: 6,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 8631333855054858109),
+            id: const obx_int.IdUid(3, 2619630098406388811),
             name: 'nickname',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 4860547670405281381),
+            id: const obx_int.IdUid(4, 4138693514792561227),
             name: 'stateMsg',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 5689427324582082290),
+            id: const obx_int.IdUid(5, 2681261557897654243),
             name: 'profileUrl',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 1345729936813278579),
+            id: const obx_int.IdUid(6, 6029311725726979911),
             name: 'mannerTemperature',
             type: 8,
             flags: 0)
@@ -199,11 +173,16 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(4, 5115315628866282220),
+      lastEntityId: const obx_int.IdUid(7, 2162950591639727561),
       lastIndexId: const obx_int.IdUid(4, 1320994640446253503),
-      lastRelationId: const obx_int.IdUid(5, 9169392636316638828),
+      lastRelationId: const obx_int.IdUid(7, 6996817470426085957),
       lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [],
+      retiredEntityUids: const [
+        6929589078566451250,
+        1727238836425246089,
+        5310278417568448237,
+        5115315628866282220
+      ],
       retiredIndexUids: const [
         5776297819287639768,
         6481614098286429565,
@@ -212,7 +191,26 @@ obx_int.ModelDefinition getObjectBoxModel() {
       retiredPropertyUids: const [
         4690822206809723124,
         1585148969300346690,
-        6015609694460064215
+        6015609694460064215,
+        7934234719201775379,
+        5350857677561821740,
+        477196866431152592,
+        2368925187953414032,
+        8102268948635172208,
+        7958415430520320432,
+        1186900153388184028,
+        8496729147045889852,
+        8212661422156682553,
+        1224763139463649506,
+        8284527198821110264,
+        4266158725092122896,
+        2268845606986151022,
+        4378815629329486973,
+        680523836483137508,
+        8631333855054858109,
+        4860547670405281381,
+        5689427324582082290,
+        1345729936813278579
       ],
       retiredRelationUids: const [
         2580727865079716615,
@@ -224,58 +222,21 @@ obx_int.ModelDefinition getObjectBoxModel() {
       version: 1);
 
   final bindings = <Type, obx_int.EntityDefinition>{
-    InChatDataLocalDTO: obx_int.EntityDefinition<InChatDataLocalDTO>(
+    InChatEventListLocalModel: obx_int.EntityDefinition<
+            InChatEventListLocalModel>(
         model: _entities[0],
-        toOneRelations: (InChatDataLocalDTO object) => [],
-        toManyRelations: (InChatDataLocalDTO object) => {},
-        getId: (InChatDataLocalDTO object) => object.id,
-        setId: (InChatDataLocalDTO object, int id) {
-          object.id = id;
-        },
-        objectToFB: (InChatDataLocalDTO object, fb.Builder fbb) {
-          final dataIdOffset = fbb.writeString(object.dataId);
-          final inChatDataTypeOffset = fbb.writeString(object.inChatDataType);
-          final contentsOffset = fbb.writeString(object.contents);
-          fbb.startTable(5);
-          fbb.addInt64(0, object.id);
-          fbb.addOffset(1, dataIdOffset);
-          fbb.addOffset(2, inChatDataTypeOffset);
-          fbb.addOffset(3, contentsOffset);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-          final dataIdParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 6, '');
-          final inChatDataTypeParam =
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 8, '');
-          final contentsParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 10, '');
-          final object = InChatDataLocalDTO(
-              dataId: dataIdParam,
-              inChatDataType: inChatDataTypeParam,
-              contents: contentsParam)
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-
-          return object;
-        }),
-    InChatEventListLocalDTO: obx_int.EntityDefinition<InChatEventListLocalDTO>(
-        model: _entities[1],
-        toOneRelations: (InChatEventListLocalDTO object) => [],
-        toManyRelations: (InChatEventListLocalDTO object) => {
-              obx_int.RelInfo<InChatEventListLocalDTO>.toMany(4, object.id):
+        toOneRelations: (InChatEventListLocalModel object) => [],
+        toManyRelations: (InChatEventListLocalModel object) => {
+              obx_int.RelInfo<InChatEventListLocalModel>.toMany(6, object.id):
                   object.userList,
-              obx_int.RelInfo<InChatEventListLocalDTO>.toMany(5, object.id):
+              obx_int.RelInfo<InChatEventListLocalModel>.toMany(7, object.id):
                   object.inChatEventList
             },
-        getId: (InChatEventListLocalDTO object) => object.id,
-        setId: (InChatEventListLocalDTO object, int id) {
+        getId: (InChatEventListLocalModel object) => object.id,
+        setId: (InChatEventListLocalModel object, int id) {
           object.id = id;
         },
-        objectToFB: (InChatEventListLocalDTO object, fb.Builder fbb) {
+        objectToFB: (InChatEventListLocalModel object, fb.Builder fbb) {
           final roomIdOffset = fbb.writeString(object.roomId);
           fbb.startTable(3);
           fbb.addInt64(0, object.id);
@@ -288,39 +249,42 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final rootOffset = buffer.derefObject(0);
           final roomIdParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
-          final object = InChatEventListLocalDTO(roomId: roomIdParam)
+          final object = InChatEventListLocalModel(roomId: roomIdParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-          obx_int.InternalToManyAccess.setRelInfo<InChatEventListLocalDTO>(
+          obx_int.InternalToManyAccess.setRelInfo<InChatEventListLocalModel>(
               object.userList,
               store,
-              obx_int.RelInfo<InChatEventListLocalDTO>.toMany(4, object.id));
-          obx_int.InternalToManyAccess.setRelInfo<InChatEventListLocalDTO>(
+              obx_int.RelInfo<InChatEventListLocalModel>.toMany(6, object.id));
+          obx_int.InternalToManyAccess.setRelInfo<InChatEventListLocalModel>(
               object.inChatEventList,
               store,
-              obx_int.RelInfo<InChatEventListLocalDTO>.toMany(5, object.id));
+              obx_int.RelInfo<InChatEventListLocalModel>.toMany(7, object.id));
           return object;
         }),
-    InChatEventLocalDTO: obx_int.EntityDefinition<InChatEventLocalDTO>(
-        model: _entities[2],
-        toOneRelations: (InChatEventLocalDTO object) => [object.inChatData],
-        toManyRelations: (InChatEventLocalDTO object) => {},
-        getId: (InChatEventLocalDTO object) => object.id,
-        setId: (InChatEventLocalDTO object, int id) {
+    InChatEventLocalModel: obx_int.EntityDefinition<InChatEventLocalModel>(
+        model: _entities[1],
+        toOneRelations: (InChatEventLocalModel object) => [],
+        toManyRelations: (InChatEventLocalModel object) => {},
+        getId: (InChatEventLocalModel object) => object.id,
+        setId: (InChatEventLocalModel object, int id) {
           object.id = id;
         },
-        objectToFB: (InChatEventLocalDTO object, fb.Builder fbb) {
+        objectToFB: (InChatEventLocalModel object, fb.Builder fbb) {
           final userIdOffset = fbb.writeString(object.userId);
           final inChatEventTypeOffset = fbb.writeString(object.inChatEventType);
           final inChatEventStatusOffset =
               fbb.writeString(object.inChatEventStatus);
-          fbb.startTable(10);
+          final inChatDataTypeOffset = fbb.writeString(object.inChatDataType);
+          final contentsOffset = fbb.writeString(object.contents);
+          fbb.startTable(9);
           fbb.addInt64(0, object.id);
           fbb.addInt64(1, object.eventId);
           fbb.addOffset(2, userIdOffset);
           fbb.addOffset(3, inChatEventTypeOffset);
           fbb.addInt64(4, object.timeStamp.millisecondsSinceEpoch);
           fbb.addOffset(5, inChatEventStatusOffset);
-          fbb.addInt64(6, object.inChatData.targetId);
+          fbb.addOffset(6, inChatDataTypeOffset);
+          fbb.addOffset(7, contentsOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -339,27 +303,32 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final inChatEventStatusParam =
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 14, '');
-          final object = InChatEventLocalDTO(
+          final inChatDataTypeParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 16, '');
+          final contentsParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 18, '');
+          final object = InChatEventLocalModel(
               eventId: eventIdParam,
               userId: userIdParam,
               inChatEventType: inChatEventTypeParam,
               timeStamp: timeStampParam,
-              inChatEventStatus: inChatEventStatusParam)
+              inChatEventStatus: inChatEventStatusParam,
+              inChatDataType: inChatDataTypeParam,
+              contents: contentsParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-          object.inChatData.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0);
-          object.inChatData.attach(store);
+
           return object;
         }),
-    UserLocalDTO: obx_int.EntityDefinition<UserLocalDTO>(
-        model: _entities[3],
-        toOneRelations: (UserLocalDTO object) => [],
-        toManyRelations: (UserLocalDTO object) => {},
-        getId: (UserLocalDTO object) => object.id,
-        setId: (UserLocalDTO object, int id) {
+    UserLocalModel: obx_int.EntityDefinition<UserLocalModel>(
+        model: _entities[2],
+        toOneRelations: (UserLocalModel object) => [],
+        toManyRelations: (UserLocalModel object) => {},
+        getId: (UserLocalModel object) => object.id,
+        setId: (UserLocalModel object, int id) {
           object.id = id;
         },
-        objectToFB: (UserLocalDTO object, fb.Builder fbb) {
+        objectToFB: (UserLocalModel object, fb.Builder fbb) {
           final nicknameOffset = fbb.writeString(object.nickname);
           final stateMsgOffset = object.stateMsg == null
               ? null
@@ -367,7 +336,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final profileUrlOffset = object.profileUrl == null
               ? null
               : fbb.writeString(object.profileUrl!);
-          fbb.startTable(8);
+          fbb.startTable(7);
           fbb.addInt64(0, object.id);
           fbb.addInt64(1, object.userId);
           fbb.addOffset(2, nicknameOffset);
@@ -390,7 +359,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
               .vTableGetNullable(buffer, rootOffset, 12);
           final mannerTemperatureParam =
               const fb.Float64Reader().vTableGet(buffer, rootOffset, 14, 0);
-          final object = UserLocalDTO(
+          final object = UserLocalModel(
               userId: userIdParam,
               nickname: nicknameParam,
               stateMsg: stateMsgParam,
@@ -405,101 +374,86 @@ obx_int.ModelDefinition getObjectBoxModel() {
   return obx_int.ModelDefinition(model, bindings);
 }
 
-/// [InChatDataLocalDTO] entity fields to define ObjectBox queries.
-class InChatDataLocalDTO_ {
-  /// See [InChatDataLocalDTO.id].
-  static final id =
-      obx.QueryIntegerProperty<InChatDataLocalDTO>(_entities[0].properties[0]);
+/// [InChatEventListLocalModel] entity fields to define ObjectBox queries.
+class InChatEventListLocalModel_ {
+  /// See [InChatEventListLocalModel.id].
+  static final id = obx.QueryIntegerProperty<InChatEventListLocalModel>(
+      _entities[0].properties[0]);
 
-  /// See [InChatDataLocalDTO.dataId].
-  static final dataId =
-      obx.QueryStringProperty<InChatDataLocalDTO>(_entities[0].properties[1]);
+  /// See [InChatEventListLocalModel.roomId].
+  static final roomId = obx.QueryStringProperty<InChatEventListLocalModel>(
+      _entities[0].properties[1]);
 
-  /// See [InChatDataLocalDTO.inChatDataType].
-  static final inChatDataType =
-      obx.QueryStringProperty<InChatDataLocalDTO>(_entities[0].properties[2]);
+  /// see [InChatEventListLocalModel.userList]
+  static final userList =
+      obx.QueryRelationToMany<InChatEventListLocalModel, UserLocalModel>(
+          _entities[0].relations[0]);
 
-  /// See [InChatDataLocalDTO.contents].
-  static final contents =
-      obx.QueryStringProperty<InChatDataLocalDTO>(_entities[0].properties[3]);
+  /// see [InChatEventListLocalModel.inChatEventList]
+  static final inChatEventList =
+      obx.QueryRelationToMany<InChatEventListLocalModel, InChatEventLocalModel>(
+          _entities[0].relations[1]);
 }
 
-/// [InChatEventListLocalDTO] entity fields to define ObjectBox queries.
-class InChatEventListLocalDTO_ {
-  /// See [InChatEventListLocalDTO.id].
-  static final id = obx.QueryIntegerProperty<InChatEventListLocalDTO>(
+/// [InChatEventLocalModel] entity fields to define ObjectBox queries.
+class InChatEventLocalModel_ {
+  /// See [InChatEventLocalModel.id].
+  static final id = obx.QueryIntegerProperty<InChatEventLocalModel>(
       _entities[1].properties[0]);
 
-  /// See [InChatEventListLocalDTO.roomId].
-  static final roomId = obx.QueryStringProperty<InChatEventListLocalDTO>(
+  /// See [InChatEventLocalModel.eventId].
+  static final eventId = obx.QueryIntegerProperty<InChatEventLocalModel>(
       _entities[1].properties[1]);
 
-  /// see [InChatEventListLocalDTO.userList]
-  static final userList =
-      obx.QueryRelationToMany<InChatEventListLocalDTO, UserLocalDTO>(
-          _entities[1].relations[0]);
+  /// See [InChatEventLocalModel.userId].
+  static final userId = obx.QueryStringProperty<InChatEventLocalModel>(
+      _entities[1].properties[2]);
 
-  /// see [InChatEventListLocalDTO.inChatEventList]
-  static final inChatEventList =
-      obx.QueryRelationToMany<InChatEventListLocalDTO, InChatEventLocalDTO>(
-          _entities[1].relations[1]);
-}
+  /// See [InChatEventLocalModel.inChatEventType].
+  static final inChatEventType = obx.QueryStringProperty<InChatEventLocalModel>(
+      _entities[1].properties[3]);
 
-/// [InChatEventLocalDTO] entity fields to define ObjectBox queries.
-class InChatEventLocalDTO_ {
-  /// See [InChatEventLocalDTO.id].
-  static final id =
-      obx.QueryIntegerProperty<InChatEventLocalDTO>(_entities[2].properties[0]);
-
-  /// See [InChatEventLocalDTO.eventId].
-  static final eventId =
-      obx.QueryIntegerProperty<InChatEventLocalDTO>(_entities[2].properties[1]);
-
-  /// See [InChatEventLocalDTO.userId].
-  static final userId =
-      obx.QueryStringProperty<InChatEventLocalDTO>(_entities[2].properties[2]);
-
-  /// See [InChatEventLocalDTO.inChatEventType].
-  static final inChatEventType =
-      obx.QueryStringProperty<InChatEventLocalDTO>(_entities[2].properties[3]);
-
-  /// See [InChatEventLocalDTO.timeStamp].
+  /// See [InChatEventLocalModel.timeStamp].
   static final timeStamp =
-      obx.QueryDateProperty<InChatEventLocalDTO>(_entities[2].properties[4]);
+      obx.QueryDateProperty<InChatEventLocalModel>(_entities[1].properties[4]);
 
-  /// See [InChatEventLocalDTO.inChatEventStatus].
+  /// See [InChatEventLocalModel.inChatEventStatus].
   static final inChatEventStatus =
-      obx.QueryStringProperty<InChatEventLocalDTO>(_entities[2].properties[5]);
+      obx.QueryStringProperty<InChatEventLocalModel>(
+          _entities[1].properties[5]);
 
-  /// See [InChatEventLocalDTO.inChatData].
-  static final inChatData =
-      obx.QueryRelationToOne<InChatEventLocalDTO, InChatDataLocalDTO>(
-          _entities[2].properties[6]);
+  /// See [InChatEventLocalModel.inChatDataType].
+  static final inChatDataType = obx.QueryStringProperty<InChatEventLocalModel>(
+      _entities[1].properties[6]);
+
+  /// See [InChatEventLocalModel.contents].
+  static final contents = obx.QueryStringProperty<InChatEventLocalModel>(
+      _entities[1].properties[7]);
 }
 
-/// [UserLocalDTO] entity fields to define ObjectBox queries.
-class UserLocalDTO_ {
-  /// See [UserLocalDTO.id].
+/// [UserLocalModel] entity fields to define ObjectBox queries.
+class UserLocalModel_ {
+  /// See [UserLocalModel.id].
   static final id =
-      obx.QueryIntegerProperty<UserLocalDTO>(_entities[3].properties[0]);
+      obx.QueryIntegerProperty<UserLocalModel>(_entities[2].properties[0]);
 
-  /// See [UserLocalDTO.userId].
+  /// See [UserLocalModel.userId].
   static final userId =
-      obx.QueryIntegerProperty<UserLocalDTO>(_entities[3].properties[1]);
+      obx.QueryIntegerProperty<UserLocalModel>(_entities[2].properties[1]);
 
-  /// See [UserLocalDTO.nickname].
+  /// See [UserLocalModel.nickname].
   static final nickname =
-      obx.QueryStringProperty<UserLocalDTO>(_entities[3].properties[2]);
+      obx.QueryStringProperty<UserLocalModel>(_entities[2].properties[2]);
 
-  /// See [UserLocalDTO.stateMsg].
+  /// See [UserLocalModel.stateMsg].
   static final stateMsg =
-      obx.QueryStringProperty<UserLocalDTO>(_entities[3].properties[3]);
+      obx.QueryStringProperty<UserLocalModel>(_entities[2].properties[3]);
 
-  /// See [UserLocalDTO.profileUrl].
+  /// See [UserLocalModel.profileUrl].
   static final profileUrl =
-      obx.QueryStringProperty<UserLocalDTO>(_entities[3].properties[4]);
+      obx.QueryStringProperty<UserLocalModel>(_entities[2].properties[4]);
 
-  /// See [UserLocalDTO.mannerTemperature].
+  /// See [UserLocalModel.mannerTemperature].
   static final mannerTemperature =
-      obx.QueryDoubleProperty<UserLocalDTO>(_entities[3].properties[5]);
+      obx.QueryDoubleProperty<UserLocalModel>(_entities[2].properties[5]);
 }

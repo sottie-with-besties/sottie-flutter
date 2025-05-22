@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_location.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
 import 'package:sottie_flutter/provider/chat/chat_room_provider.dart';
 import 'package:sottie_flutter/ui/chat/controller/chat_header_controller.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room.dart';
@@ -18,9 +18,7 @@ class ChatRoomScreen extends ConsumerWidget {
     return chatRoomState.when(
       data: (data) {
         final chatRoomList = data.where((data) {
-          final dateString = convertDateTimeIntoString(
-            data.gatheringDate.toLocal(),
-          );
+          final dateString = convertDateTimeIntoString(data.gatheringDate);
           final searched =
               data.title.toString().contains(inputText) ||
               data.latestMsg.toString().contains(inputText) ||
@@ -39,7 +37,7 @@ class ChatRoomScreen extends ConsumerWidget {
         return ListView(
           children:
               chatRoomList
-                  .map<Widget>((data) => ChatRoom(entity: data))
+                  .map<Widget>((data) => ChatRoom(model: data))
                   .toList(),
         );
       },

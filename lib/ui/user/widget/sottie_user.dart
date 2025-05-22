@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
-import 'package:sottie_flutter/model/user/entity/user_entity.dart';
+import 'package:sottie_flutter/model/user/user_model.dart';
+import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
 class SottieUser extends StatelessWidget {
   const SottieUser({
     super.key,
-    required this.entity,
+    required this.model,
     required this.heroTag,
     required this.isMyFriend,
     this.goToDetailPath = true,
     this.textWidth = 200,
   });
 
-  final UserEntity entity;
+  final UserModel model;
   final String heroTag;
   final bool? isMyFriend;
   final bool goToDetailPath;
@@ -32,7 +32,7 @@ class SottieUser extends StatelessWidget {
                 context.push(
                   CustomRouter.userDetailPath,
                   extra: {
-                    'entity': entity,
+                    'model': model,
                     'heroTag': heroTag,
                     'isMyFriend': isMyFriend,
                   },
@@ -44,39 +44,41 @@ class SottieUser extends StatelessWidget {
         child: Row(
           children: [
             Hero(
-              tag: '${entity.id}/$heroTag',
+              tag: '${model.id}/$heroTag',
               child: UserProfile(
-                profileUrl: entity.profileUrl,
+                profileUrl: model.profileUrl,
                 myProfileXFilePath:
-                    isMyFriend == null ? myInfoEntity.myProfilePath : null,
+                    isMyFriend == null
+                        ? MyInfoController.myInfoModel.myProfilePath
+                        : null,
               ),
             ),
-            SizedBox(width: 15 * wu),
+            SizedBox(width: 15 * ScreenSize.wu),
             SizedBox(
-              width: textWidth * wu,
+              width: textWidth * ScreenSize.wu,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     overflow: TextOverflow.ellipsis,
-                    entity.nickname,
+                    model.nickname,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(height: 5 * hu),
+                  SizedBox(height: 5 * ScreenSize.hu),
 
                   /// Todo: stateMsg가 아닌 그냥 message로 바꾸기(?)
                   /// Todo: DM 아래에는 최근 메세지가 오는 게 좋겠음
                   Text(
                     overflow: TextOverflow.ellipsis,
-                    entity.stateMsg ?? '',
+                    model.stateMsg ?? '',
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
-                      color: mainGreyColor2,
+                      color: AppColors.greyColor2,
                     ),
                   ),
                 ],

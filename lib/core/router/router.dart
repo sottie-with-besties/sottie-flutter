@@ -150,8 +150,8 @@ final _routes = [
                 builder: (_, state) {
                   final params = state.extra as Map<String, dynamic>;
                   return InChatScreen(
-                    chatRoomEntity: params['chatRoomEntity'],
-                    dmEntity: params['dmEntity'],
+                    chatRoomModel: params['chatRoomModel'],
+                    dmModel: params['dmModel'],
                     isChattingOver: params['isChattingOver'] ?? false,
                   );
                 },
@@ -163,7 +163,7 @@ final _routes = [
 
                       return CustomTransitionPage(
                         child: PostDetailScreen(
-                          postEntity: params['postEntity'],
+                          postModel: params['postModel'],
                           isWaiting: false,
                           isCheckInfo: true,
                         ),
@@ -280,7 +280,7 @@ final _routes = [
 
       return CustomTransitionPage(
         child: PostDetailScreen(
-          postEntity: params['postEntity'],
+          postModel: params['postModel'],
           isWaiting: params['isWaiting'] ?? false,
           isCheckInfo: false,
         ),
@@ -299,7 +299,7 @@ final _routes = [
 
       return CustomTransitionPage(
         child: UserDetailScreen(
-          entity: params['entity'],
+          model: params['model'],
           heroTag: params['heroTag'],
           isMyFriend: params['isMyFriend'],
         ),

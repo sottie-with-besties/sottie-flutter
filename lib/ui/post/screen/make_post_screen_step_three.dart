@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_gender_restriction.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_location.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/use_case/post/post_use_case.dart';
@@ -32,14 +30,14 @@ class MakePostScreenStepThree extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
-              SizedBox(height: 30 * hu),
+              SizedBox(height: 30 * ScreenSize.hu),
               Text(
                 postOptionsSetting.contents,
                 style: const TextStyle(fontSize: 14),
               ),
-              SizedBox(height: 30 * hu),
+              SizedBox(height: 30 * ScreenSize.hu),
               SizedBox(
-                height: 150 * hu,
+                height: 150 * ScreenSize.hu,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +69,7 @@ class MakePostScreenStepThree extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 15 * hu),
+              SizedBox(height: 15 * ScreenSize.hu),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -79,11 +77,11 @@ class MakePostScreenStepThree extends StatelessWidget {
                     padding: const EdgeInsets.all(12.0),
                     child: ElevatedButton(
                       onPressed: () async {
-                        final makePostSuccess = await PostUseCase().makePost();
+                        final makePostSuccess = await PostUseCase.makePost();
 
                         if (context.mounted) {
                           if (makePostSuccess) {
-                            await showCustomDialog(
+                            await ModalController.showCustomDialog(
                               context,
                               const Center(child: Text('모집글을 작성했습니다')),
                             );
@@ -93,7 +91,10 @@ class MakePostScreenStepThree extends StatelessWidget {
 
                             // Todo: 유저 골드 차감
                           } else {
-                            showCustomSnackBar(context, '모집글 생성 실패');
+                            ModalController.showCustomSnackBar(
+                              context,
+                              '모집글 생성 실패',
+                            );
                           }
                         }
                       },

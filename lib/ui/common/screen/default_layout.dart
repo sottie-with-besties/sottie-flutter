@@ -30,14 +30,14 @@ class DefaultLayout extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: _renderAppbar(appBarTitle, appBarActions),
       body: ColoredBox(
-        color: mainWhiteSilverColor,
+        color: AppColors.whiteSilverColor,
         child: CustomScrollView(
           physics: const ClampingScrollPhysics(),
           slivers: [
             if (header != null)
               SliverAppBar(
                 toolbarHeight: 70,
-                backgroundColor: mainWhiteSilverColor,
+                backgroundColor: AppColors.whiteSilverColor,
                 floating: true,
                 snap: true,
                 flexibleSpace: header,
@@ -58,7 +58,7 @@ AppBar? _renderAppbar(String? appBarTitle, List<Widget>? appBarActions) {
   return AppBar(
     centerTitle: false,
     toolbarHeight: 80,
-    backgroundColor: mainWhiteSilverColor,
+    backgroundColor: AppColors.whiteSilverColor,
     title: Padding(
       padding: const EdgeInsets.only(left: 5),
       child:
@@ -68,7 +68,7 @@ AppBar? _renderAppbar(String? appBarTitle, List<Widget>? appBarActions) {
                 style: GoogleFonts.jua(
                   fontWeight: FontWeight.bold,
                   fontSize: 38,
-                  color: mainBlackColor,
+                  color: AppColors.blackColor,
                 ),
               )
               : Container(),

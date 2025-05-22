@@ -2,20 +2,20 @@ import 'package:cached_network_image/cached_network_image.dart'
     show CachedNetworkImage;
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/in_chat/entity/in_chat_enum.dart';
-import 'package:sottie_flutter/model/in_chat/entity/in_chat_event_entity.dart';
+import 'package:sottie_flutter/model/in_chat/in_chat_enum.dart';
+import 'package:sottie_flutter/model/in_chat/in_chat_event_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
 /// 채팅방 컨텐츠 위젯 (텍스트, 이미지, 동영상 등)
 class InChatContents extends StatelessWidget {
   const InChatContents({
     super.key,
-    required this.inChatData,
+    required this.inChatEventModel,
     required this.isMyMessage,
     this.onTap,
   });
 
-  final InChatDataEntity inChatData;
+  final InChatEventModel inChatEventModel;
   final bool isMyMessage;
   final VoidCallback? onTap;
 
@@ -26,16 +26,19 @@ class InChatContents extends StatelessWidget {
       child: ConstrainedBox(
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * 0.7,
-          minWidth: 50 * wu,
+          minWidth: 50 * ScreenSize.wu,
         ),
         child: Container(
           decoration: BoxDecoration(
-            color: isMyMessage ? mainBlueColor : mainWhiteSilverColor,
+            color:
+                isMyMessage ? AppColors.blueColor : AppColors.whiteSilverColor,
             borderRadius: BorderRadius.circular(8),
             border:
                 isMyMessage
                     ? null
-                    : Border.all(color: mainGreyColor.withValues(alpha: 0.3)),
+                    : Border.all(
+                      color: AppColors.greyColor.withValues(alpha: 0.3),
+                    ),
           ),
           padding: const EdgeInsets.all(12),
           child: _buildContentByType(),
@@ -45,15 +48,18 @@ class InChatContents extends StatelessWidget {
   }
 
   Widget _buildContentByType() {
-    switch (inChatData.inChatDataType) {
+    switch (inChatEventModel.inChatDataType) {
       case InChatDataType.TEXT:
         return ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: 100 * hu),
+          constraints: BoxConstraints(maxHeight: 100 * ScreenSize.hu),
           child: SingleChildScrollView(
             child: Text(
-              inChatData.contents,
+              inChatEventModel.contents,
               style: TextStyle(
-                color: isMyMessage ? mainWhiteSilverColor : mainBlackColor,
+                color:
+                    isMyMessage
+                        ? AppColors.whiteSilverColor
+                        : AppColors.blackColor,
               ),
             ),
           ),
@@ -64,26 +70,31 @@ class InChatContents extends StatelessWidget {
         return ClipRRect(
           borderRadius: BorderRadius.circular(6),
           child: CachedNetworkImage(
-            imageUrl: inChatData.contents,
+            imageUrl: inChatEventModel.contents,
             placeholder:
                 (context, url) => SizedBox(
-                  height: 150 * hu,
+                  height: 150 * ScreenSize.hu,
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: isMyMessage ? mainWhiteSilverColor : mainBlueColor,
+                      color:
+                          isMyMessage
+                              ? AppColors.whiteSilverColor
+                              : AppColors.blueColor,
                     ),
                   ),
                 ),
             errorWidget:
                 (context, url, error) => Container(
-                  height: 100 * hu,
-                  width: 150 * wu,
-                  color: mainGreyColor.withValues(alpha: 0.3),
+                  height: 100 * ScreenSize.hu,
+                  width: 150 * ScreenSize.wu,
+                  color: AppColors.greyColor.withValues(alpha: 0.3),
                   child: Center(
                     child: Icon(
                       Icons.broken_image,
                       color:
-                          isMyMessage ? mainWhiteSilverColor : mainBlackColor,
+                          isMyMessage
+                              ? AppColors.whiteSilverColor
+                              : AppColors.blackColor,
                     ),
                   ),
                 ),
@@ -101,36 +112,36 @@ class InChatContents extends StatelessWidget {
                   borderRadius: BorderRadius.circular(6),
                   child: CachedNetworkImage(
                     // 실제 구현 시 영상의 썸네일 URL로 변경해야 합니다
-                    imageUrl: inChatData.contents,
+                    imageUrl: inChatEventModel.contents,
                     fit: BoxFit.cover,
-                    height: 150 * hu,
-                    width: 200 * wu,
+                    height: 150 * ScreenSize.hu,
+                    width: 200 * ScreenSize.wu,
                     placeholder:
                         (context, url) => Container(
-                          height: 150 * hu,
-                          width: 200 * wu,
-                          color: mainGreyColor.withValues(alpha: 0.3),
+                          height: 150 * ScreenSize.hu,
+                          width: 200 * ScreenSize.wu,
+                          color: AppColors.greyColor.withValues(alpha: 0.3),
                           child: Center(
                             child: CircularProgressIndicator(
                               color:
                                   isMyMessage
-                                      ? mainWhiteSilverColor
-                                      : mainBlueColor,
+                                      ? AppColors.whiteSilverColor
+                                      : AppColors.blueColor,
                             ),
                           ),
                         ),
                     errorWidget:
                         (context, url, error) => Container(
-                          height: 150 * hu,
-                          width: 200 * wu,
-                          color: mainGreyColor.withValues(alpha: 0.3),
+                          height: 150 * ScreenSize.hu,
+                          width: 200 * ScreenSize.wu,
+                          color: AppColors.greyColor.withValues(alpha: 0.3),
                           child: Center(
                             child: Icon(
                               Icons.videocam_off,
                               color:
                                   isMyMessage
-                                      ? mainWhiteSilverColor
-                                      : mainBlackColor,
+                                      ? AppColors.whiteSilverColor
+                                      : AppColors.blackColor,
                             ),
                           ),
                         ),
@@ -138,14 +149,14 @@ class InChatContents extends StatelessWidget {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: mainBlackColor.withValues(alpha: 0.5),
+                    color: AppColors.blackColor.withValues(alpha: 0.5),
                     shape: BoxShape.circle,
                   ),
                   padding: const EdgeInsets.all(8),
                   child: Icon(
                     Icons.play_arrow,
-                    color: mainWhiteSilverColor,
-                    size: 24 * hu,
+                    color: AppColors.whiteSilverColor,
+                    size: 24 * ScreenSize.hu,
                   ),
                 ),
               ],

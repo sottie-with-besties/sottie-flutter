@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_category.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_gender_restriction.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
 
 final class PostOptionsSetting {
   /// 포스트 제목

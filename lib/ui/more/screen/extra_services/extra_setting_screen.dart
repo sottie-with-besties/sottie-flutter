@@ -99,7 +99,7 @@ class _SettingSwitchState extends State<_SettingSwitch> {
               ),
               Switch(
                 value: settingValue,
-                activeColor: mainBlueColor,
+                activeColor: AppColors.blueColor,
                 onChanged: (val) {
                   settingValue = val;
                   setState(() {});

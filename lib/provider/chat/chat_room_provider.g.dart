@@ -6,12 +6,12 @@ part of 'chat_room_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$chatRoomStateHash() => r'e40d437a1b5d3f9e8b84891bf9090161d007c18b';
+String _$chatRoomStateHash() => r'69ba6a3dc5715e3bf78e1a122e520b2450cad6b1';
 
 /// See also [ChatRoomState].
 @ProviderFor(ChatRoomState)
 final chatRoomStateProvider =
-    AsyncNotifierProvider<ChatRoomState, List<ChatRoomEntity>>.internal(
+    AsyncNotifierProvider<ChatRoomState, List<ChatRoomModel>>.internal(
   ChatRoomState.new,
   name: r'chatRoomStateProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,6 +21,6 @@ final chatRoomStateProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$ChatRoomState = AsyncNotifier<List<ChatRoomEntity>>;
+typedef _$ChatRoomState = AsyncNotifier<List<ChatRoomModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

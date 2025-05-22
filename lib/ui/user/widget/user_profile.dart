@@ -40,8 +40,8 @@ ClipRRect _defaultProfile(
   return ClipRRect(
     borderRadius: BorderRadius.circular(14),
     child: SizedBox(
-      width: size * hu,
-      height: size * hu,
+      width: size * ScreenSize.hu,
+      height: size * ScreenSize.hu,
       child:
           hasAssetPath
               ? AspectRatio(
@@ -49,12 +49,12 @@ ClipRRect _defaultProfile(
                 child: Image.asset(assetPath, fit: BoxFit.cover),
               )
               : ColoredBox(
-                color: mainBlueColor,
+                color: AppColors.blueColor,
                 child: FittedBox(
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: FaIcon(icon, color: mainWhiteSilverColor),
+                      child: FaIcon(icon, color: AppColors.whiteSilverColor),
                     ),
                   ),
                 ),
@@ -66,8 +66,8 @@ ClipRRect _defaultProfile(
 /// 프로필 설정한 경우
 SizedBox _hasProfile(String imageUrl, double size) {
   return SizedBox(
-    width: size * hu,
-    height: size * hu,
+    width: size * ScreenSize.hu,
+    height: size * ScreenSize.hu,
     child: CachedNetworkImage(
       imageUrl: imageUrl,
       imageBuilder:

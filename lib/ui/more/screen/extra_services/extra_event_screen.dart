@@ -42,7 +42,7 @@ class _EventFeed extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: mainGreyColor.withValues(alpha: 0.5),
+                color: AppColors.greyColor.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(8),
               ),
               height: 100,

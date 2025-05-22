@@ -46,7 +46,7 @@ class LocalTextField extends StatelessWidget {
       inputFormatters: inputFormatter,
       decoration: InputDecoration(
         filled: true,
-        fillColor: mainGreyColor.withValues(alpha: 0.25),
+        fillColor: AppColors.greyColor.withValues(alpha: 0.25),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(borderRadius),
@@ -58,18 +58,18 @@ class LocalTextField extends StatelessWidget {
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.black54),
         prefixIcon:
-            prefixIcon
-                ? Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 12 * wu,
-                    vertical: 10,
-                  ),
-                  child: const FaIcon(
-                    FontAwesomeIcons.magnifyingGlass,
-                    color: Colors.black,
-                  ),
-                )
-                : null,
+        prefixIcon
+            ? Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 12 * ScreenSize.wu,
+            vertical: 10,
+          ),
+          child: const FaIcon(
+            FontAwesomeIcons.magnifyingGlass,
+            color: Colors.black,
+          ),
+        )
+            : null,
         suffixIcon: suffixIcon,
       ),
       onChanged: onChanged,

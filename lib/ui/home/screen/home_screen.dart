@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/alarm/screen/alarm_screen.dart';
-import 'package:sottie_flutter/ui/common/controller/show_actions_sheet.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/home/screen/home_content_screen.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
@@ -26,11 +26,14 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 borderRadius: BorderRadius.circular(5),
                 onTap: () {
-                  showCustomBottomSheet(context, const SearchScreen());
+                  ModalController.showCustomModalBottomSheet(
+                    context,
+                    const SearchScreen(),
+                  );
                 },
                 child: const FaIcon(
                   FontAwesomeIcons.magnifyingGlass,
-                  color: mainBlackColor,
+                  color: AppColors.blackColor,
                   size: 28,
                 ),
               ),
@@ -38,11 +41,14 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 borderRadius: BorderRadius.circular(5),
                 onTap: () {
-                  showCustomBottomSheet(context, const AlarmScreen());
+                  ModalController.showCustomModalBottomSheet(
+                    context,
+                    const AlarmScreen(),
+                  );
                 },
                 child: const FaIcon(
                   FontAwesomeIcons.bell,
-                  color: mainBlackColor,
+                  color: AppColors.blackColor,
                   size: 28,
                 ),
               ),
@@ -56,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                 },
                 child: const FaIcon(
                   FontAwesomeIcons.gear,
-                  color: mainBlackColor,
+                  color: AppColors.blackColor,
                   size: 28,
                 ),
               ),
@@ -65,12 +71,12 @@ class HomeScreen extends StatelessWidget {
         ),
       ],
       floatingActionButton: FloatingActionButton(
-        backgroundColor: mainBlueColor,
+        backgroundColor: AppColors.blueColor,
         onPressed: () async {
           postOptionsSetting = PostOptionsSetting();
           await context.push(CustomRouter.makePostStepOnePath);
         },
-        child: const Icon(Icons.post_add, color: mainWhiteSilverColor),
+        child: const Icon(Icons.post_add, color: AppColors.whiteSilverColor),
       ),
       contentChild: const HomeContentScreen(),
     );

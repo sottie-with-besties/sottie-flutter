@@ -12,7 +12,7 @@ class ExtraServiceList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12 * wu),
+      padding: EdgeInsets.symmetric(horizontal: 12 * ScreenSize.wu),
       child: Column(
         children: [
           _extraService('내 정보 수정', () async {
@@ -56,13 +56,16 @@ Widget _extraService(String serviceTitle, VoidCallback onTap) {
         children: [
           TextButton(
             onPressed: onTap,
-            style: TextButton.styleFrom(foregroundColor: mainBlackColor),
+            style: TextButton.styleFrom(foregroundColor: AppColors.blackColor),
             child: Text(
               serviceTitle,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12 * hu),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 12 * ScreenSize.hu,
+              ),
             ),
           ),
-          const Icon(Icons.keyboard_arrow_right, color: mainBlackColor),
+          const Icon(Icons.keyboard_arrow_right, color: AppColors.blackColor),
         ],
       ),
     ),

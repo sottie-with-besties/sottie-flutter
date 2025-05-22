@@ -24,9 +24,8 @@ class Sottie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 단위 길이 초기화
-    wu = MediaQuery.of(context).size.width / 320;
-    hu = MediaQuery.of(context).size.height / 690;
+    /// 단위 길이 초기화
+    ScreenSize.initScreenSize(context);
 
     return ProviderScope(
       child: MaterialApp.router(
@@ -44,7 +43,10 @@ Future<void> _initApp() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   /// 카카오
-  KakaoSdk.init(nativeAppKey: nativeAppKey, javaScriptAppKey: javaScriptKey);
+  KakaoSdk.init(
+    nativeAppKey: NativeKey.nativeAppKey,
+    javaScriptAppKey: NativeKey.javaScriptKey,
+  );
 
   /// 서버 환경 초기화
   initRepositories(ServerEnvironment.dev);
@@ -56,25 +58,25 @@ Future<void> _initApp() async {
 final _customTheme = ThemeData(
   textTheme: GoogleFonts.nanumGothicTextTheme(),
   appBarTheme: AppBarTheme(
-    color: mainWhiteSilverColor,
+    color: AppColors.whiteSilverColor,
     centerTitle: true,
     titleTextStyle: TextStyle(
       fontWeight: FontWeight.bold,
-      color: mainBlackColor,
-      fontSize: 15 * hu,
+      color: AppColors.blackColor,
+      fontSize: 15 * ScreenSize.hu,
       overflow: TextOverflow.ellipsis,
     ),
     scrolledUnderElevation: 0,
   ),
-  scaffoldBackgroundColor: mainWhiteSilverColor,
+  scaffoldBackgroundColor: AppColors.whiteSilverColor,
   navigationBarTheme: const NavigationBarThemeData(
-    backgroundColor: mainWhiteSilverColor,
-    indicatorColor: mainBlueColor,
+    backgroundColor: AppColors.whiteSilverColor,
+    indicatorColor: AppColors.blueColor,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: mainBlueColor,
-      foregroundColor: mainWhiteSilverColor,
+      backgroundColor: AppColors.blueColor,
+      foregroundColor: AppColors.whiteSilverColor,
       shape: RoundedRectangleBorder(
         side: BorderSide.none,
         borderRadius: BorderRadius.circular(8),
@@ -85,9 +87,9 @@ final _customTheme = ThemeData(
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      foregroundColor: mainBlackColor,
+      foregroundColor: AppColors.blackColor,
       shape: RoundedRectangleBorder(
-        side: const BorderSide(color: mainBlackColor),
+        side: const BorderSide(color: AppColors.blackColor),
         borderRadius: BorderRadius.circular(8),
       ),
       minimumSize: const Size(60, 40),
@@ -96,40 +98,42 @@ final _customTheme = ThemeData(
   dropdownMenuTheme: DropdownMenuThemeData(
     menuStyle: MenuStyle(
       backgroundColor: WidgetStateProperty.resolveWith((state) {
-        return mainWhiteSilverColor;
+        return AppColors.whiteSilverColor;
       }),
     ),
   ),
   datePickerTheme: DatePickerThemeData(
-    backgroundColor: mainWhiteSilverColor,
+    backgroundColor: AppColors.whiteSilverColor,
     dayShape: WidgetStateProperty.resolveWith(
       (_) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
     ),
     // 하이라이트된 날짜의 색을 바꾸는 것이나 코드 동작 안됨. 현재 보라색.
     dayOverlayColor: WidgetStateProperty.resolveWith(
-      (_) => mainWhiteSilverColor,
+      (_) => AppColors.whiteSilverColor,
     ),
   ),
   timePickerTheme: const TimePickerThemeData(
-    backgroundColor: mainWhiteSilverColor,
+    backgroundColor: AppColors.whiteSilverColor,
   ),
   sliderTheme: const SliderThemeData(
-    activeTrackColor: mainBlueColor,
-    inactiveTrackColor: mainGreyColor,
-    thumbColor: mainBlueColor,
+    activeTrackColor: AppColors.blueColor,
+    inactiveTrackColor: AppColors.greyColor,
+    thumbColor: AppColors.blueColor,
   ),
-  dialogTheme: const DialogThemeData(backgroundColor: mainWhiteSilverColor),
+  dialogTheme: const DialogThemeData(
+    backgroundColor: AppColors.whiteSilverColor,
+  ),
   snackBarTheme: const SnackBarThemeData(
-    backgroundColor: mainBlueColor,
+    backgroundColor: AppColors.blueColor,
     contentTextStyle: TextStyle(
-      color: mainWhiteSilverColor,
+      color: AppColors.whiteSilverColor,
       fontWeight: FontWeight.bold,
     ),
   ),
   chipTheme: ChipThemeData(
-    selectedColor: mainBlueColor,
-    backgroundColor: mainWhiteSilverColor,
-    checkmarkColor: mainWhiteSilverColor,
+    selectedColor: AppColors.blueColor,
+    backgroundColor: AppColors.whiteSilverColor,
+    checkmarkColor: AppColors.whiteSilverColor,
     shape: RoundedRectangleBorder(
       side: const BorderSide(width: 0),
       borderRadius: BorderRadius.circular(32),

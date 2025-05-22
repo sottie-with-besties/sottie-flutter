@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:sottie_flutter/core/local_database/token_storage.dart';
-import 'package:sottie_flutter/repository/auth/implements/auth_dev_repository_impl.dart';
 
 class _CustomInterceptor extends Interceptor {
   final _tokenStorage = TokenStorage();
@@ -30,7 +29,7 @@ class _CustomInterceptor extends Interceptor {
 
     try {
       if (isStatus401 && !isPathRefresh) {
-        await _refreshAccessToken(refreshToken: refreshToken);
+        // await _refreshAccessToken(refreshToken: refreshToken);
 
         final options = err.requestOptions;
         options.headers.addAll({
@@ -46,19 +45,19 @@ class _CustomInterceptor extends Interceptor {
   }
 
   /// 액세스 토큰 만료되었을 때 호출
-  Future<void> _refreshAccessToken({required String refreshToken}) async {
-    final newAccessTokenModel = await AuthTokenDevRepositoryImpl(
-      customDio,
-    ).refreshAccessToken(refreshToken: 'Bearer $refreshToken');
-
-    _tokenStorage.changeAccessToken(
-      newAcessToken: newAccessTokenModel.accessToken,
-    );
-
-    await _tokenStorage.writeAccessToken(
-      newAccessToken: newAccessTokenModel.accessToken,
-    );
-  }
+  // Future<void> _refreshAccessToken({required String refreshToken}) async {
+  //   final newAccessTokenModel = await AuthRepository().(
+  //     customDio,
+  //   ).refreshAccessToken(refreshToken: 'Bearer $refreshToken');
+  //
+  //   _tokenStorage.changeAccessToken(
+  //     newAcessToken: newAccessTokenModel.accessToken,
+  //   );
+  //
+  //   await _tokenStorage.writeAccessToken(
+  //     newAccessToken: newAccessTokenModel.accessToken,
+  //   );
+  // }
 }
 
 final customDio = Dio()..interceptors.add(_CustomInterceptor());

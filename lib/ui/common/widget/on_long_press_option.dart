@@ -32,12 +32,16 @@ class OnLongPressOption extends StatelessWidget {
                 optionTitle,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: mainWhiteSilverColor,
+                  color: AppColors.whiteSilverColor,
                   fontSize: 18,
                 ),
               ),
               const SizedBox(height: 10),
-              Icon(icon, color: mainWhiteSilverColor, size: 24 * hu),
+              Icon(
+                icon,
+                color: AppColors.whiteSilverColor,
+                size: 24 * ScreenSize.hu,
+              ),
             ],
           ),
         ),

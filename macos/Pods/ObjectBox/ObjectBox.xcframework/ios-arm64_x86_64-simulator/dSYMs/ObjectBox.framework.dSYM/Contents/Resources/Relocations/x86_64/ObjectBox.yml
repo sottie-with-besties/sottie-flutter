@@ -1,0 +1,5 @@
+---
+triple:          'x86_64-apple-darwin'
+binary-path:     '/Users/markus/dev/objectbox-swift/ios-framework/DerivedData/Build/Products/Release-iphonesimulator/ObjectBox.framework/ObjectBox'
+relocations:     []
+...

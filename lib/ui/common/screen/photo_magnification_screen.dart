@@ -19,7 +19,7 @@ class PhotoMagnificationScreen extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new_outlined,
-            color: mainWhiteSilverColor,
+            color: AppColors.whiteSilverColor,
           ),
         ),
       ),
@@ -34,12 +34,12 @@ class PhotoMagnificationScreen extends StatelessWidget {
           placeholder:
               (_, __) => const Text(
                 "이미지를 불러오는 중...",
-                style: TextStyle(color: mainWhiteSilverColor),
+                style: TextStyle(color: AppColors.whiteSilverColor),
               ),
           errorWidget: (_, __, ___) {
             return const Text(
               "이미지를 불러올 수 없습니다.",
-              style: TextStyle(color: mainWhiteSilverColor),
+              style: TextStyle(color: AppColors.whiteSilverColor),
             );
           },
         ),

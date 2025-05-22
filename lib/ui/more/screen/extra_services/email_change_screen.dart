@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
+import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/use_case/auth/verification_use_case.dart';
 
 class EmailChangeScreen extends StatefulWidget {
@@ -37,7 +36,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
   }
 
   final loadingCircle = const Center(
-    child: CircularProgressIndicator(color: mainWhiteSilverColor),
+    child: CircularProgressIndicator(color: AppColors.whiteSilverColor),
   );
 
   StepState _setStepState(int step) {
@@ -48,29 +47,29 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
     if (currentStep == 0) {
       // 핸드폰 번호 입력하는 화면
       if (phoneNumberKey.currentState!.validate()) {
-        final errorCode = await VerificationUseCase().signInWithPhoneNumber(
+        final errorCode = await VerificationUseCase.signInWithPhoneNumber(
           phoneNumber!,
         );
         if (errorCode == null) {
           currentStep += 1;
           setState(() {});
         } else {
-          if (mounted) showCustomSnackBar(context, errorCode);
+          if (mounted) ModalController.showCustomSnackBar(context, errorCode);
         }
       }
     } else if (currentStep == 1) {
       // 핸드폰 인증하는 화면 -> 인증 성공하면 파이어베이스 유저 핸드폰 번호 정보 삭제
       isNextLoading = true;
       setState(() {});
-      final errorCode = await VerificationUseCase().signInWithSmsCode(
+      final errorCode = await VerificationUseCase.signInWithSmsCode(
         verificationCode!,
       );
       if (errorCode == null) {
-        await VerificationUseCase().deletePhoneUser();
+        await VerificationUseCase.deletePhoneUser();
         currentStep += 1;
         setState(() {});
       } else {
-        if (mounted) showCustomSnackBar(context, errorCode);
+        if (mounted) ModalController.showCustomSnackBar(context, errorCode);
       }
       isNextLoading = false;
       setState(() {});
@@ -79,16 +78,16 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       if (emailKey.currentState!.validate()) {
         isNextLoading = true;
         setState(() {});
-        String? errorCode = await VerificationUseCase().createEmailAndPassword(
+        String? errorCode = await VerificationUseCase.createEmailAndPassword(
           email!,
           dummyPassword,
         );
         if (mounted) {
           if (errorCode == null) {
             currentStep += 1;
-            await VerificationUseCase().sendEmailVerification();
+            await VerificationUseCase.sendEmailVerification();
           } else {
-            showCustomSnackBar(context, errorCode);
+            ModalController.showCustomSnackBar(context, errorCode);
           }
           isNextLoading = false;
           setState(() {});
@@ -98,16 +97,16 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       // 이메일 인증 화면 -> 이메일 인증 성공 후 파이어베이스 유저 이메일 정보 삭제
       isNextLoading = true;
       setState(() {});
-      final emailVerification = await VerificationUseCase().isEmailVerification(
+      final emailVerification = await VerificationUseCase.isEmailVerification(
         email!,
         dummyPassword,
       );
       if (emailVerification) {
-        await VerificationUseCase().deleteEmailUser(email!, dummyPassword);
+        await VerificationUseCase.deleteEmailUser(email!, dummyPassword);
         currentStep += 1;
-        myInfoEntity.email = email!;
+        MyInfoController.myInfoModel.email = email!;
       } else {
-        if (mounted) showCustomSnackBar(context, "이메일을 인증해주세요");
+        if (mounted) ModalController.showCustomSnackBar(context, "이메일을 인증해주세요");
       }
       isNextLoading = false;
       setState(() {});
@@ -125,14 +124,14 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
       // 이메일 인증 스크린에서 뒤로가기 했을 경우 -> 이메일 생성을 다시 해야하기 때문에 삭제해주어야 한다.
       isCancelLoading = true;
       setState(() {});
-      final String? errorCode = await VerificationUseCase().deleteEmailUser(
+      final String? errorCode = await VerificationUseCase.deleteEmailUser(
         email!,
         dummyPassword,
       );
       if (errorCode == null) {
         currentStep -= 1;
       } else {
-        if (mounted) showCustomSnackBar(context, errorCode);
+        if (mounted) ModalController.showCustomSnackBar(context, errorCode);
       }
       isCancelLoading = false;
       setState(() {});
@@ -176,7 +175,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                       keyboardType: TextInputType.number,
                       validator: (val) {
                         phoneNumber = val;
-                        return validatePhoneNumber(val!);
+                        return AuthValidator.validatePhoneNumber(val!);
                       },
                     ),
                   ],
@@ -208,11 +207,16 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                   const SizedBox(height: 30),
                   OutlinedButton(
                     onPressed: () async {
-                      final errorCode = await VerificationUseCase()
-                          .signInWithPhoneNumber(phoneNumber!);
+                      final errorCode =
+                          await VerificationUseCase.signInWithPhoneNumber(
+                            phoneNumber!,
+                          );
                       if (errorCode != null) {
                         if (context.mounted) {
-                          showCustomSnackBar(context, errorCode);
+                          ModalController.showCustomSnackBar(
+                            context,
+                            errorCode,
+                          );
                         }
                       }
                     },
@@ -244,7 +248,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                       keyboardType: TextInputType.emailAddress,
                       validator: (val) {
                         email = val;
-                        return validateEmail(val!);
+                        return AuthValidator.validateEmail(val!);
                       },
                     ),
                   ],
@@ -270,7 +274,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                   const SizedBox(height: 20),
                   OutlinedButton(
                     onPressed: () async {
-                      await VerificationUseCase().sendEmailVerification();
+                      await VerificationUseCase.sendEmailVerification();
                     },
                     child: const Text("이메일 인증 재발송"),
                   ),
@@ -291,7 +295,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    myInfoEntity.email,
+                    MyInfoController.myInfoModel.email!,
                     style: const TextStyle(fontSize: 16),
                   ),
                   const SizedBox(height: 25),
@@ -304,7 +308,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                   const SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
-                      showCustomDialog(
+                      ModalController.showCustomDialog(
                         context,
                         const Text("이메일을 변경하시겠습니까?"),
                         extraButton: ElevatedButton(
@@ -316,7 +320,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                                     setState(() {});
                                     // Todo: 이메일 변경 백엔드로 알림
                                     if (context.mounted) {
-                                      showCustomSnackBar(
+                                      ModalController.showCustomSnackBar(
                                         context,
                                         '이메일을 변경하였습니다.',
                                       );
@@ -337,7 +341,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                     child: const Text(
                       "이메일 변경하기",
                       style: TextStyle(
-                        color: mainWhiteSilverColor,
+                        color: AppColors.whiteSilverColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -357,7 +361,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: mainGreyColor,
+                      backgroundColor: AppColors.greyColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -370,7 +374,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                             : const Text(
                               "뒤로가기",
                               style: TextStyle(
-                                color: mainWhiteSilverColor,
+                                color: AppColors.whiteSilverColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -392,7 +396,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                                 "다음",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: mainWhiteSilverColor,
+                                  color: AppColors.whiteSilverColor,
                                 ),
                               ),
                     ),
@@ -402,9 +406,9 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
           },
           connectorColor: WidgetStateColor.resolveWith((state) {
             if (state.contains(WidgetState.selected)) {
-              return mainWhiteSilverColor;
+              return AppColors.whiteSilverColor;
             }
-            return mainGreyColor;
+            return AppColors.greyColor;
           }),
         ),
       ),

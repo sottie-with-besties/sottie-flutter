@@ -27,7 +27,10 @@ class FriendScreen extends StatelessWidget {
             },
             child: const Padding(
               padding: EdgeInsets.only(right: 24),
-              child: FaIcon(FontAwesomeIcons.userPlus, color: mainBlackColor),
+              child: FaIcon(
+                FontAwesomeIcons.userPlus,
+                color: AppColors.blackColor,
+              ),
             ),
           ),
         ],

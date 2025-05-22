@@ -10,14 +10,14 @@ class AuthClient extends BaseClient {
     StreamedResponse response = await request.send();
 
     /// 2. 토큰 만료 시(401 Unauthorized), 리프레시 시도 후 재요청
-    if (response.statusCode == 401 && request.url.path == '/auth/token') {
+    if (response.statusCode == 401 && response.reasonPhrase == 'Unauthorized') {
       final refreshToken = await TokenStorage().getRefreshToken();
 
       if (refreshToken == null) {
         return response;
       }
 
-      await _refreshAccessToken(refreshToken: refreshToken);
+      // await _refreshAccessToken(refreshToken: refreshToken);
 
       request.headers.addAll({
         'authorization': 'Bearer ${TokenStorage().accessToken}',
@@ -29,19 +29,15 @@ class AuthClient extends BaseClient {
     /// 3. 최종 리스폰스 반환
     return response;
   }
-}
 
-/// 액세스 토큰 만료되었을 때 호출
-Future<void> _refreshAccessToken({required String refreshToken}) async {
-  // final newAccessTokenModel = await AuthTokenDevRepositoryImpl(
-  //   customDio,
-  // ).refreshAccessToken(refreshToken: 'Bearer $refreshToken');
+  /// 액세스 토큰 만료되었을 때 호출
+  // Future<void> _refreshAccessToken({required String refreshToken}) async {
+  //   final newAccessToken = await AuthRepository().refreshAccessToken(
+  //     refreshToken: refreshToken,
+  //   );
   //
-  // TokenStorage.sgt().changeAccessToken(
-  //   newAcessToken: newAccessTokenModel.accessToken,
-  // );
+  //   TokenStorage().changeAccessToken(newAcessToken: newAccessToken);
   //
-  // await TokenStorage.sgt().writeAccessToken(
-  //   newAccessToken: newAccessTokenModel.accessToken,
-  // );
+  //   await TokenStorage().writeAccessToken(newAccessToken: newAccessToken);
+  // }
 }

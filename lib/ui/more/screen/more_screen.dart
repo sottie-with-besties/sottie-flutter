@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
+import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/more/screen/more_content_screen.dart';
 
@@ -28,7 +28,7 @@ class MoreScreen extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    myInfoEntity.gold.toString(),
+                    MyInfoController.myInfoModel.gold.toString(),
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 10),

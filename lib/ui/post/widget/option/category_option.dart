@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/post/entity/post_detail_enum/post_category.dart';
+import 'package:sottie_flutter/model/post/post_enum.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/option_title.dart';
 
@@ -48,7 +48,10 @@ class _CategoryButtonsState extends State<_CategoryButtons> {
                 label: Text(
                   category.koreanName,
                   style: TextStyle(
-                    color: isSelected ? mainWhiteSilverColor : mainBlackColor,
+                    color:
+                        isSelected
+                            ? AppColors.whiteSilverColor
+                            : AppColors.blackColor,
                   ),
                 ),
                 selected: isSelected,

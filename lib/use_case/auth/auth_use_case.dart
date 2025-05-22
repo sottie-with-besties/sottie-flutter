@@ -1,21 +1,11 @@
-import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:sottie_flutter/core/constant/native_key.dart';
-import 'package:sottie_flutter/core/rest_api/dio_interceptor.dart';
-import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/model/auth/dto/oauth_sign_up_dto.dart';
-import 'package:sottie_flutter/model/auth/dto/token_dto.dart';
-import 'package:sottie_flutter/model/auth/entity/auth_type.dart';
-import 'package:sottie_flutter/model/auth/entity/oauth_login_entity.dart';
-import 'package:sottie_flutter/model/user/entity/my_info_entity.dart';
-import 'package:sottie_flutter/repository/auth/implements/auth_dev_repository_impl.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_snackbar.dart';
+import 'package:sottie_flutter/model/auth/auth_type.dart';
+import 'package:sottie_flutter/repository/auth/interface/auth_repository.dart';
 
 import '../../core/local_database/token_storage.dart';
 
@@ -24,140 +14,106 @@ part 'auth_part/oauth_apple.dart';
 part 'auth_part/oauth_google.dart';
 part 'auth_part/oauth_kakao.dart';
 
-final _oauthLoginEntity = OauthLoginEntity();
+sealed class AuthUseCase {
+  static final _tokenStorage = TokenStorage();
 
-final class AuthUseCase {
-  static final AuthUseCase _instance = AuthUseCase._();
-
-  factory AuthUseCase() => _instance;
-
-  AuthUseCase._();
-
-  final _tokenStorage = TokenStorage();
-
-  Future<String?> signIn({
+  static Future<bool> signIn({
     required AuthType authType,
     String? email,
     String? password,
   }) async {
-    String? errorCode;
+    List<dynamic> result = [];
 
     switch (authType) {
       case AuthType.email:
-        try {
-          await _emailLogin(email: email!, password: password!);
-          errorCode = null;
-        } catch (_) {
-          errorCode = "이메일 로그인 에러가 발생하였습니다";
-        }
-        break;
+        final loginSuccess = await _EmailAuth.emailLogin(
+          email: email!,
+          password: password!,
+        );
+
+        return loginSuccess;
       case AuthType.kakao:
-        errorCode = await _signInWithKakao();
+        result = await _KakaoAuth.signInWithKakao();
         break;
       case AuthType.google:
-        errorCode = await _signInWithGoogle();
+        result = await _GoogleAuth.signInWithGoogle();
         break;
       case AuthType.apple:
-        errorCode = await _signInWithApple();
+        result = await _AppleAuth.signInWithApple();
         break;
+      default:
+        return false;
     }
 
-    return errorCode;
+    /// 아래 로직은 OAuth만 해당
+    final [bool isSuccess, String idToken, String accessToken] = result;
+
+    if (isSuccess) {
+      final oauthSuccess = await _oauthLogin(
+        oauthType: authType,
+        idToken: idToken,
+        accessToken: accessToken,
+      );
+
+      return oauthSuccess;
+    } else {
+      return false;
+    }
   }
 
   /// OAuth로 로그인하기 (카카오, 구글, 애플)
-  Future<void> oauthLogin({
-    required BuildContext context,
+  static Future<bool> _oauthLogin({
     required AuthType oauthType,
+    required String idToken,
+    required String accessToken,
   }) async {
     try {
-      final errorCode = await signIn(authType: oauthType);
+      log('백엔드로 토큰 전송');
 
-      if (context.mounted) {
-        if (errorCode == null) {
-          // Todo: 백엔드로 ID 토큰과 액세스 토큰 전송
-          log(_oauthLoginEntity.toJson().toString(), name: '백엔드로 토큰 전송');
+      /// 백엔드로 ID 토큰과 액세스 토큰 전송
+      final tokenModel = await AuthRepository().socialLogin(
+        idToken: idToken,
+        accessToken: accessToken,
+      );
 
-          late TokenDTO oauthToken;
+      /// 시큐어 스토리지에 토큰 저장
+      await _tokenStorage.writeRefreshToken(
+        newRefreshToken: tokenModel.refreshToken,
+      );
+      await _tokenStorage.writeAccessToken(
+        newAccessToken: tokenModel.accessToken,
+      );
 
-          // 이걸로 받았다고 가정
-          final receivedTokens = TokenDTO(
-            refreshToken: 'refreshToken',
-            accessToken: 'accessToken',
-          );
+      /// 액세스 토큰 체인지
+      _tokenStorage.changeAccessToken(newAcessToken: tokenModel.accessToken);
 
-          /// 유저가 OAuth로 로그인 시도하였으나 회원가입이 안되어 있음
-          if (receivedTokens.refreshToken == '') {
-            oauthSignUp.idToken = _oauthLoginEntity.idToken;
-            oauthSignUp.accessToken = _oauthLoginEntity.accessToken;
-
-            context.push(
-              '${CustomRouter.authPath}/${CustomRouter.certificationPath}',
-              extra: {'isOauthSignUp': true},
-            );
-            // Todo: 백엔드로 OAuthSignUpEntity 보내기
-            log(oauthSignUp.toJson().toString());
-
-            // OAuthSignUpEntity 보내고 받은 토큰
-            final receivedToken2 = TokenDTO(
-              refreshToken: 'refreshToken',
-              accessToken: 'accessToken',
-            );
-            oauthToken = receivedToken2;
-          } else {
-            oauthToken = receivedTokens;
-          }
-
-          /// 시큐어 스토리지에 토큰 저장
-          await _tokenStorage.writeRefreshToken(
-            newRefreshToken: oauthToken.refreshToken,
-          );
-          await _tokenStorage.writeAccessToken(
-            newAccessToken: oauthToken.accessToken,
-          );
-
-          _tokenStorage.changeAccessToken(
-            newAcessToken: oauthToken.accessToken,
-          );
-
-          /// 회원가입 또는 로그인 완료 후 홈으로 넘어가기
-          if (context.mounted) {
-            context.go(CustomRouter.homePath);
-          }
-        } else {
-          /// 알 수 없는 에러
-          showCustomSnackBar(context, errorCode);
-        }
-      }
-    } on Exception catch (_) {
-      if (context.mounted) {
-        showCustomSnackBar(context, "알 수 없는 에러가 발생하였습니다");
-      }
+      return true;
+    } catch (_) {
+      return false;
     }
   }
 
   /// 로그아웃
-  Future<String?> signOut() async {
-    String? errorCode;
+  static Future<bool> signOut({required AuthType authType}) async {
+    bool signOutSuccess;
 
     switch (authType) {
       case AuthType.email:
-        errorCode = await _signOutEmail();
+        signOutSuccess = await _EmailAuth.signOutEmail();
         break;
       case AuthType.kakao:
-        errorCode = await _signOutKakao();
+        signOutSuccess = await _KakaoAuth.signOutKakao();
         break;
       case AuthType.google:
-        errorCode = await _signOutGoogle();
+        signOutSuccess = await _GoogleAuth.signOutGoogle();
         break;
       case AuthType.apple:
-        errorCode = await _signOutApple();
+        signOutSuccess = await _AppleAuth.signOutApple();
         break;
       default:
-        errorCode = null;
-        break;
+        return false;
     }
 
-    return errorCode;
+    return signOutSuccess;
   }
 }

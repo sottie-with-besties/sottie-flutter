@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/ui/common/controller/show_custom_dialog.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/in_chat/widget/in_chat_review.dart';
 
 class InChatReviewScreen extends StatelessWidget {
@@ -23,7 +23,7 @@ class InChatReviewScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
-              showCustomDialog(
+              ModalController.showCustomDialog(
                 context,
                 const Column(
                   children: [
@@ -45,7 +45,7 @@ class InChatReviewScreen extends StatelessWidget {
               "완료",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: mainBlackColor,
+                color: AppColors.blackColor,
               ),
             ),
           ),

@@ -15,10 +15,10 @@ class ChatRoomProfiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80 * wu,
+      width: 80 * ScreenSize.wu,
       child: Wrap(
-        spacing: 5 * wu,
-        runSpacing: 5 * hu,
+        spacing: 5 * ScreenSize.wu,
+        runSpacing: 5 * ScreenSize.hu,
         alignment: WrapAlignment.center,
         runAlignment: WrapAlignment.center,
         children: List.generate(profileCount, (_) => const UserProfile()),

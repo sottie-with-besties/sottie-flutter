@@ -1,31 +1,41 @@
 part of '../auth_use_case.dart';
 
-/// 이메일로 로그인 => base64로 변환
-Future<void> _emailLogin({
-  required String email,
-  required String password,
-}) async {
-  final tokenStorage = TokenStorage();
+sealed class _EmailAuth {
+  /// 이메일로 로그인 => base64로 변환
+  static Future<bool> emailLogin({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final tokenStorage = TokenStorage();
 
-  final base64String = utf8.fuse(base64).encode('$email:$password');
+      /// 서버로 이메일 비번 전송하기
+      final tokenModel = await AuthRepository().emailLogin(
+        email: email,
+        password: password,
+      );
 
-  // Todo: 이메일 비번 암호화 코드
+      // 토큰들 저장
+      await Future.wait([
+        tokenStorage.writeRefreshToken(
+          newRefreshToken: tokenModel.refreshToken,
+        ),
+        tokenStorage.writeAccessToken(newAccessToken: tokenModel.accessToken),
+      ]);
 
-  final tokenModel = await AuthTokenDevRepositoryImpl(
-    cleanDio,
-  ).emailLogin(emailAndPassword: 'Basic $base64String');
+      tokenStorage.changeAccessToken(newAcessToken: tokenModel.accessToken);
 
-  // 토큰들 저장
-  await Future.wait([
-    tokenStorage.writeRefreshToken(newRefreshToken: tokenModel.refreshToken),
-    tokenStorage.writeAccessToken(newAccessToken: tokenModel.accessToken),
-  ]);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 
-  tokenStorage.changeAccessToken(newAcessToken: tokenModel.accessToken);
-}
-
-Future<String?> _signOutEmail() async {
-  /// Todo: 백엔드로 이메일 유저 로그아웃
-  authType = null;
-  return null;
+  static Future<bool> signOutEmail() async {
+    try {
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 }

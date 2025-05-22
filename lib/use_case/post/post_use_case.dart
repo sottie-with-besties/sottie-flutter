@@ -1,37 +1,24 @@
 import 'package:get_it/get_it.dart';
-import 'package:sottie_flutter/model/post/dto/post_dto.dart';
-import 'package:sottie_flutter/model/post/entity/post_entity.dart';
+import 'package:sottie_flutter/model/post/post_model.dart';
 import 'package:sottie_flutter/repository/post/interface/post_repository.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 
-final class PostUseCase {
-  static final PostUseCase _instance = PostUseCase._();
-
-  factory PostUseCase() => _instance;
-
-  PostUseCase._();
-
-  final _repo = GetIt.I.get<PostRepository>();
+sealed class PostUseCase {
+  static final _repo = GetIt.I.get<PostRepository>();
 
   /// 최신 모집글 불러오기
-  Future<List<PostEntity>> getLatestPostEntityList({
+  static Future<List<PostModel>> getLatestPostEntityList({
     required int lastPostId,
   }) async {
     final postModelList = await _repo.getLatestPostModelList(
       lastPostId: lastPostId,
     );
 
-    final postEntityList = <PostEntity>[];
-
-    for (PostDTO model in postModelList) {
-      postEntityList.add((model).toEntity());
-    }
-
-    return postEntityList;
+    return postModelList;
   }
 
   /// 검색 모집글 불러오기
-  Future<List<PostEntity>> getSearchPostEntityList({
+  static Future<List<PostModel>> getSearchPostEntityList({
     required Map<String, dynamic> searchSetting,
     required int lastPostId,
   }) async {
@@ -40,17 +27,11 @@ final class PostUseCase {
       lastPostId: lastPostId,
     );
 
-    final postEntityList = <PostEntity>[];
-
-    for (PostDTO model in postModelList) {
-      postEntityList.add((model).toEntity());
-    }
-
-    return postEntityList;
+    return postModelList;
   }
 
   /// 포스트 만들기
-  Future<bool> makePost() async {
+  static Future<bool> makePost() async {
     try {
       final resp = await _repo.makePost(
         postSetting: postOptionsSetting.toJsonForMakePostSend(),
@@ -63,7 +44,9 @@ final class PostUseCase {
   }
 
   /// 포스트 모집 참가
-  Future<bool> postJoin({required Map<String, dynamic> postJoinInfo}) async {
+  static Future<bool> postJoin({
+    required Map<String, dynamic> postJoinInfo,
+  }) async {
     try {
       final resp = await _repo.postJoin(postJoinInfo: postJoinInfo);
       return true;
@@ -74,7 +57,7 @@ final class PostUseCase {
   }
 
   /// 포스트 모집 나가기
-  Future<bool> postExit() async {
+  static Future<bool> postExit() async {
     try {
       final resp = await _repo.postExit();
       return true;

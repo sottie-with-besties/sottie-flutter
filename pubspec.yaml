@@ -42,7 +42,7 @@ dependencies:
   auth_button_kit: # OAuth 소셜 로그인 버튼, 카카오는 없음
   pinput: # 이메일, 전화번호 인증
   flutter_slidable: # IOS 인터페이스
-  skeletonizer: # 로딩 스켈레톤
+  skeletonizer: ^2.0.1 # 로딩 스켈레톤
   time_range_picker: # 검색 스크린에서 시간 범위 고르기
 
   # Riverpod
