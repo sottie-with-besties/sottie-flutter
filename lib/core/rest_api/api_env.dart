@@ -18,7 +18,7 @@ final class ApiEnv {
   static const devPort = 8080;
   static const productionPort = 8080;
 
-  final serverEnvironment = ServerEnvironment.dev;
+  static const serverEnvironment = ServerEnvironment.dev;
 
   final cleanClient = Client();
   final authClient = AuthClient();

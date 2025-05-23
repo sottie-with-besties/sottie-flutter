@@ -8,7 +8,7 @@ abstract interface class AuthRepository {
   // Future<HttpResponse> signUp({required EmailSignUpDTO signUpModel});
 
   factory AuthRepository() {
-    return switch (ApiEnv().serverEnvironment) {
+    return switch (ApiEnv.serverEnvironment) {
       ServerEnvironment.dev => AuthRepoImplDev(),
       ServerEnvironment.production => AuthRepoImplProduction(),
     };
