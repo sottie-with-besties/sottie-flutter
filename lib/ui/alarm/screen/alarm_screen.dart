@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/model/alarm/alarm_enum.dart';
 import 'package:sottie_flutter/model/alarm/alarm_model.dart';
-import 'package:sottie_flutter/repository/alarm/implements/alarm_dummy.dart';
+import 'package:sottie_flutter/repository/alarm/interface/alarm_repository.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
 
@@ -20,7 +20,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
   @override
   void initState() {
     super.initState();
-    alarmData = getAlarmDummy();
+    alarmData = AlarmRepository().getAlarmList();
   }
 
   @override

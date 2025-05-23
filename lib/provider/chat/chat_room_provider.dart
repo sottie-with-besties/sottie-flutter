@@ -8,6 +8,6 @@ part 'chat_room_provider.g.dart';
 final class ChatRoomState extends _$ChatRoomState {
   @override
   Future<List<ChatRoomModel>> build() {
-    return ChatUseCase.getChatList();
+    return ChatUseCase.getChatRoomList();
   }
 }

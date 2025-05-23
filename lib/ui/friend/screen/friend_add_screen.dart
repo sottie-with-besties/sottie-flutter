@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/model/user/user_model.dart';
-import 'package:sottie_flutter/repository/friend/implements/friend_request_dummy.dart';
 import 'package:sottie_flutter/repository/user/implements/user_search_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
@@ -109,7 +108,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                 SizedBox(height: 10 * ScreenSize.hu),
                 Center(
                   child: CustomFutureBuilder(
-                    futureFunction: getFriendRequestDummy,
+                    futureFunction: FriendUseCase.getFriendRequestsList,
                     loadingWidget: const CircularProgressIndicator(
                       color: AppColors.blackColor,
                     ),

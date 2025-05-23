@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
@@ -7,7 +8,6 @@ import 'package:sottie_flutter/core/Firebase/firebase_options.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/constant/native_key.dart';
 import 'package:sottie_flutter/core/local_database/object_box_store.dart';
-import 'package:sottie_flutter/core/rest_api/api_env.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
@@ -48,8 +48,8 @@ Future<void> _initApp() async {
     javaScriptAppKey: NativeKey.javaScriptKey,
   );
 
-  /// 서버 환경 초기화
-  initRepositories(ServerEnvironment.dev);
+  /// 화면 세로 고정
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   /// local db 초기화
   await ObjectBoxStore().initObjectBox();

@@ -295,7 +295,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    MyInfoController.myInfoModel.email!,
+                    MyInfoController.myInfoModel.email,
                     style: const TextStyle(fontSize: 16),
                   ),
                   const SizedBox(height: 25),

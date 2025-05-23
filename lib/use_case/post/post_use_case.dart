@@ -1,13 +1,12 @@
-import 'package:get_it/get_it.dart';
 import 'package:sottie_flutter/model/post/post_model.dart';
 import 'package:sottie_flutter/repository/post/interface/post_repository.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 
 sealed class PostUseCase {
-  static final _repo = GetIt.I.get<PostRepository>();
+  static final _repo = PostRepository();
 
   /// 최신 모집글 불러오기
-  static Future<List<PostModel>> getLatestPostEntityList({
+  static Future<List<PostModel>> getLatestPostModelList({
     required int lastPostId,
   }) async {
     final postModelList = await _repo.getLatestPostModelList(
@@ -18,7 +17,7 @@ sealed class PostUseCase {
   }
 
   /// 검색 모집글 불러오기
-  static Future<List<PostModel>> getSearchPostEntityList({
+  static Future<List<PostModel>> getSearchPostModelList({
     required Map<String, dynamic> searchSetting,
     required int lastPostId,
   }) async {
@@ -37,7 +36,7 @@ sealed class PostUseCase {
         postSetting: postOptionsSetting.toJsonForMakePostSend(),
       );
       return true;
-    } catch (_, stackTrace) {
+    } catch (_) {
       // Todo: resp status code에 따른 예외처리
       return false;
     }
@@ -50,7 +49,7 @@ sealed class PostUseCase {
     try {
       final resp = await _repo.postJoin(postJoinInfo: postJoinInfo);
       return true;
-    } catch (e, stackTrace) {
+    } catch (e) {
       // Todo: resp status code에 따른 예외처리
       return false;
     }
@@ -61,7 +60,7 @@ sealed class PostUseCase {
     try {
       final resp = await _repo.postExit();
       return true;
-    } catch (e, stackTrace) {
+    } catch (e) {
       // Todo: resp status code에 따른 예외처리
       return false;
     }

@@ -30,9 +30,8 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
   @override
   void initState() {
     super.initState();
-    _nicknameController.text = MyInfoController.myInfoModel.nickName!;
-    _stateMessageController.text =
-        MyInfoController.myInfoModel.stateMessage ?? '';
+    _nicknameController.text = MyInfoController.myInfoModel.nickName;
+    _stateMessageController.text = MyInfoController.myInfoModel.stateMessage;
   }
 
   @override

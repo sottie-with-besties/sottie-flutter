@@ -25,7 +25,7 @@ final class HomeLatestPost extends _$HomeLatestPost {
         );
       }
 
-      final entityList = await PostUseCase.getLatestPostEntityList(
+      final entityList = await PostUseCase.getLatestPostModelList(
         lastPostId: firstFetch ? 0 : state.postModelList.last.id,
       );
 

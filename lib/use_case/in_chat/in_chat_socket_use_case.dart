@@ -12,7 +12,8 @@ final class InChatSocketUseCase {
   /// STOMP 웹소켓 생성
   final StompClient stompClient = StompClient(
     config: StompConfig(
-      url: '$devServerIp/chat',
+      url: '${ApiEnv.devHost}/chat',
+      // todo: url 점검
       // 웹소켓 접속 URL
       stompConnectHeaders: <String, String>{
         'accessToken': '12312',

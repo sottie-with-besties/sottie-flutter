@@ -106,7 +106,7 @@ class MyInfoModel {
       'myProfilePath': myProfilePath,
       'gold': gold,
       'mannerPoint': mannerPoint,
-      'authType': authType!.name,
+      'authType': authType.name,
     };
   }
 }

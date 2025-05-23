@@ -25,8 +25,9 @@ Future<List<XFile>?> imageSelection(BuildContext context) async {
     }
     return null;
   } catch (_) {
-    if (context.mounted)
+    if (context.mounted) {
       ModalController.showCustomSnackBar(context, "알 수 없는 에러가 발생했습니다.");
+    }
     return null;
   }
 }

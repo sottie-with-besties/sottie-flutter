@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portone_flutter/Iamport_certification.dart';
@@ -55,53 +54,51 @@ class CertificationScreen extends StatelessWidget {
           try {
             // result를 그대로 백엔드로 보내 response를 전달받는다.
 
-            final res = await Dio().post(
-              "$devServerIp/sottie/certifications",
-              data: jsonEncode(result),
-              options: Options(
-                headers: <String, String>{
-                  'Content-Type': 'application/json; charset=UTF-8',
-                },
-                receiveTimeout: const Duration(seconds: 10),
-              ),
+            final uri = Uri(
+              scheme: ApiEnv.scheme,
+              host: ApiEnv.devHost,
+              port: ApiEnv.devPort,
+              path: '/sottie/certifications',
             );
 
-            log(res.toString(), name: "Response");
+            final res = await ApiEnv().cleanClient.post(
+              uri,
+              body: jsonEncode(result),
+            );
+
+            final data = jsonDecode(res.body) as Map<String, dynamic>;
+
+            log(data.toString(), name: "Response");
 
             if (isModifyInfo) {
-              SignUpController.signUpModel.name = res.data['name'];
-              SignUpController.signUpModel.gender = res.data['gender'];
-              SignUpController.signUpModel.phoneNumber =
-                  res.data['phoneNumber'];
-              SignUpController.signUpModel.identifier = res.data['identifier'];
-              SignUpController.signUpModel.birthYear = res.data['birthYear'];
+              SignUpController.signUpModel.name = data['name'];
+              SignUpController.signUpModel.gender = data['gender'];
+              SignUpController.signUpModel.phoneNumber = data['phoneNumber'];
+              SignUpController.signUpModel.identifier = data['identifier'];
+              SignUpController.signUpModel.birthYear = data['birthYear'];
               SignUpController.signUpModel.phoneAuthenticated =
-                  res.data['phoneAuthenticated'];
+                  data['phoneAuthenticated'];
 
               /// Todo: 내 정보를 로컬DB(ISAR)에 저장 및 서버 전송
             } else {
               // 소셜 로그인
               if (isOauthSignUp) {
-                SignUpController.signUpModel.name = res.data['name'];
-                SignUpController.signUpModel.gender = res.data['gender'];
-                SignUpController.signUpModel.phoneNumber =
-                    res.data['phoneNumber'];
-                SignUpController.signUpModel.identifier =
-                    res.data['identifier'];
-                SignUpController.signUpModel.birthYear = res.data['birthYear'];
+                SignUpController.signUpModel.name = data['name'];
+                SignUpController.signUpModel.gender = data['gender'];
+                SignUpController.signUpModel.phoneNumber = data['phoneNumber'];
+                SignUpController.signUpModel.identifier = data['identifier'];
+                SignUpController.signUpModel.birthYear = data['birthYear'];
                 SignUpController.signUpModel.phoneAuthenticated =
-                    res.data['phoneAuthenticated'];
+                    data['phoneAuthenticated'];
               } else {
                 // 이메일 로그인
-                SignUpController.signUpModel.name = res.data['name'];
-                SignUpController.signUpModel.gender = res.data['gender'];
-                SignUpController.signUpModel.phoneNumber =
-                    res.data['phoneNumber'];
-                SignUpController.signUpModel.identifier =
-                    res.data['identifier'];
-                SignUpController.signUpModel.birthYear = res.data['birthYear'];
+                SignUpController.signUpModel.name = data['name'];
+                SignUpController.signUpModel.gender = data['gender'];
+                SignUpController.signUpModel.phoneNumber = data['phoneNumber'];
+                SignUpController.signUpModel.identifier = data['identifier'];
+                SignUpController.signUpModel.birthYear = data['birthYear'];
                 SignUpController.signUpModel.phoneAuthenticated =
-                    res.data['phoneAuthenticated'];
+                    data['phoneAuthenticated'];
               }
             }
           } on Exception catch (_) {
