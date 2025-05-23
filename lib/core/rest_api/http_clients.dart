@@ -1,5 +1,6 @@
 import 'package:http/http.dart';
 import 'package:sottie_flutter/core/local_database/token_storage.dart';
+import 'package:sottie_flutter/repository/auth/interface/auth_repository.dart';
 
 class AuthClient extends BaseClient {
   @override
@@ -17,7 +18,7 @@ class AuthClient extends BaseClient {
         return response;
       }
 
-      // await _refreshAccessToken(refreshToken: refreshToken);
+      await _refreshAccessToken(refreshToken: refreshToken);
 
       request.headers.addAll({
         'authorization': 'Bearer ${TokenStorage().accessToken}',
@@ -31,13 +32,13 @@ class AuthClient extends BaseClient {
   }
 
   /// 액세스 토큰 만료되었을 때 호출
-  // Future<void> _refreshAccessToken({required String refreshToken}) async {
-  //   final newAccessToken = await AuthRepository().refreshAccessToken(
-  //     refreshToken: refreshToken,
-  //   );
-  //
-  //   TokenStorage().changeAccessToken(newAcessToken: newAccessToken);
-  //
-  //   await TokenStorage().writeAccessToken(newAccessToken: newAccessToken);
-  // }
+  Future<void> _refreshAccessToken({required String refreshToken}) async {
+    final newAccessToken = await AuthRepository().refreshAccessToken(
+      refreshToken: refreshToken,
+    );
+
+    TokenStorage().changeAccessToken(newAcessToken: newAccessToken);
+
+    await TokenStorage().writeAccessToken(newAccessToken: newAccessToken);
+  }
 }
