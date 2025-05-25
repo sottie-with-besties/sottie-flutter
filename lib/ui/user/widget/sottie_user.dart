@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/model/user/user_model.dart';
-import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/user/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
 class SottieUser extends StatelessWidget {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/more/controller/modify_image.dart';
+import 'package:sottie_flutter/ui/user/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
 class InfoModifyScreen extends StatefulWidget {

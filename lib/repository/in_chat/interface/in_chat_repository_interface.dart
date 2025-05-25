@@ -1,4 +1,4 @@
-abstract interface class InChatRepoInterface {
+abstract interface class InChatRepository {
   /// 채팅방 첫 입장시 이벤트 리스트 불러오기
   Future<dynamic> getInChatEventList({required String rooId});
 

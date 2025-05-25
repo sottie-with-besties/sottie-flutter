@@ -1,5 +1,5 @@
-import 'package:sottie_flutter/model/user/my_info_model.dart';
+import 'package:sottie_flutter/model/auth/sign_up_model.dart';
 
 sealed class SignUpController {
-  static final signUpModel = MyInfoModel();
+  static final signUpModel = SignUpModel();
 }

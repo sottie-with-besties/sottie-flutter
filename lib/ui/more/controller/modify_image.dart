@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
+import 'package:sottie_flutter/ui/user/controller/my_info_controller.dart';
 
 final _picker = ImagePicker();
 

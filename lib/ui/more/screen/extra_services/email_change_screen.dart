@@ -3,9 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/ui/auth/controller/auth_validator.dart';
-import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/auth/widget/auth_text_field.dart';
 import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
+import 'package:sottie_flutter/ui/user/controller/my_info_controller.dart';
 import 'package:sottie_flutter/use_case/auth/verification_use_case.dart';
 
 class EmailChangeScreen extends StatefulWidget {

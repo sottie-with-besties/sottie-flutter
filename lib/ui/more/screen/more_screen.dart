@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
-import 'package:sottie_flutter/ui/auth/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/more/screen/more_content_screen.dart';
+import 'package:sottie_flutter/ui/user/controller/my_info_controller.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
