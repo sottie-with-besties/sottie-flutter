@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_latest_post_provider.dart';
+part of 'in_chat_event_list_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homeLatestPostHash() => r'f786616073056edf98cb9dfd4f4b69d5aa848d90';
+String _$inChatEventListHash() => r'db4cf74440e892118b8e65467529d7f54c17ff79';
 
-/// See also [HomeLatestPost].
-@ProviderFor(HomeLatestPost)
-final homeLatestPostProvider =
-    NotifierProvider<HomeLatestPost, PostPaginationModel>.internal(
-  HomeLatestPost.new,
-  name: r'homeLatestPostProvider',
+/// See also [InChatEventList].
+@ProviderFor(InChatEventList)
+final inChatEventListProvider = AutoDisposeNotifierProvider<InChatEventList,
+    InChatEventListModel?>.internal(
+  InChatEventList.new,
+  name: r'inChatEventListProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$homeLatestPostHash,
+      : _$inChatEventListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$HomeLatestPost = Notifier<PostPaginationModel>;
+typedef _$InChatEventList = AutoDisposeNotifier<InChatEventListModel?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -7,7 +7,7 @@ part of 'chat_room_waiting_provider.dart';
 // **************************************************************************
 
 String _$chatRoomWaitingStateHash() =>
-    r'f08edae6b85e6e7a9a3296d446317becf16cd38a';
+    r'21275a0821633e8355efeea1d4c60416770c99cb';
 
 /// See also [ChatRoomWaitingState].
 @ProviderFor(ChatRoomWaitingState)

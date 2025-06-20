@@ -6,7 +6,7 @@ part of 'friend_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$friendStateHash() => r'6e9dfdb88199561ef2666ad367cdc748d678ef4a';
+String _$friendStateHash() => r'0a87f2b9d6fddd0706b830f8db8b900e847a2045';
 
 /// See also [FriendState].
 @ProviderFor(FriendState)

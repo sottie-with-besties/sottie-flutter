@@ -6,7 +6,7 @@ part of 'dm_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dmStateHash() => r'e3fb626876c7b5863f9fe8f4f7cf51f4082b72c3';
+String _$dmStateHash() => r'a78e8a75965d7972f5dc45ac9ed62ea9f6918085';
 
 /// See also [DmState].
 @ProviderFor(DmState)
