@@ -9,7 +9,6 @@ import 'package:sottie_flutter/repository/auth/interface/auth_repository.dart';
 
 import '../../core/local_database/token_storage.dart';
 
-part 'auth_part/auth_email.dart';
 part 'auth_part/oauth_apple.dart';
 part 'auth_part/oauth_google.dart';
 part 'auth_part/oauth_kakao.dart';
@@ -25,13 +24,6 @@ sealed class AuthUseCase {
     List<dynamic> result = [];
 
     switch (authType) {
-      case AuthType.email:
-        final loginSuccess = await _EmailAuth.emailLogin(
-          email: email!,
-          password: password!,
-        );
-
-        return loginSuccess;
       case AuthType.kakao:
         result = await _KakaoAuth.signInWithKakao();
         break;
@@ -45,12 +37,10 @@ sealed class AuthUseCase {
         return false;
     }
 
-    /// 아래 로직은 OAuth만 해당
     final [bool isSuccess, String idToken, String accessToken] = result;
 
     if (isSuccess) {
       final oauthSuccess = await _oauthLogin(
-        oauthType: authType,
         idToken: idToken,
         accessToken: accessToken,
       );
@@ -63,7 +53,6 @@ sealed class AuthUseCase {
 
   /// OAuth로 로그인하기 (카카오, 구글, 애플)
   static Future<bool> _oauthLogin({
-    required AuthType oauthType,
     required String idToken,
     required String accessToken,
   }) async {
@@ -98,9 +87,6 @@ sealed class AuthUseCase {
     bool signOutSuccess;
 
     switch (authType) {
-      case AuthType.email:
-        signOutSuccess = await _EmailAuth.signOutEmail();
-        break;
       case AuthType.kakao:
         signOutSuccess = await _KakaoAuth.signOutKakao();
         break;

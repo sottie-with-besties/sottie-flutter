@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
-import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
-import 'package:sottie_flutter/ui/auth/screen/find_id_screen.dart';
-import 'package:sottie_flutter/ui/auth/screen/find_password.dart';
-import 'package:sottie_flutter/ui/auth/screen/sign_up_screen.dart';
-import 'package:sottie_flutter/ui/auth/screen/verification_complete_screen.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/photo_magnification_screen.dart';
@@ -14,7 +9,6 @@ import 'package:sottie_flutter/ui/friend/screen/friend_util_screen.dart';
 import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
-import 'package:sottie_flutter/ui/more/screen/extra_services/email_change_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_event_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_notice_screen.dart';
@@ -37,10 +31,7 @@ sealed class CustomRouter {
 
   /// Auth Screens
   static const authPath = "/auth";
-  static const signUpPath = "signUp";
   static const certificationPath = "certification";
-  static const findIdPath = "findId";
-  static const findPasswordPath = "findPassword";
   static const verificationCompletePath = "verificationComplete";
 
   /// Main Layout Screens
@@ -92,36 +83,24 @@ final _routes = [
   GoRoute(
     path: CustomRouter.authPath,
     builder: (_, __) => const AuthScreen(),
-    routes: <GoRoute>[
-      GoRoute(
-        path: CustomRouter.signUpPath,
-        builder: (_, __) => const SignUpScreen(),
-      ),
-      GoRoute(
-        path: CustomRouter.findIdPath,
-        builder: (_, __) => const FindIdScreen(),
-      ),
-      GoRoute(
-        path: CustomRouter.findPasswordPath,
-        builder: (_, __) => const FindPasswordScreen(),
-      ),
-      GoRoute(
-        path: CustomRouter.certificationPath,
-        builder: (_, state) {
-          final params = state.extra as Map<String, bool>;
-          final isModifyInfo = params['isModifyInfo'] ?? false;
-          final isOauthSignUp = params['isOauthSignUp'] ?? false;
-          return CertificationScreen(
-            isModifyInfo: isModifyInfo,
-            isOauthSignUp: isOauthSignUp,
-          );
-        },
-      ),
-      GoRoute(
-        path: CustomRouter.verificationCompletePath,
-        builder: (_, __) => const VerificationCompleteScreen(),
-      ),
-    ],
+    // routes: <GoRoute>[
+    //   GoRoute(
+    //     path: CustomRouter.certificationPath,
+    //     builder: (_, state) {
+    //       final params = state.extra as Map<String, bool>;
+    //       final isModifyInfo = params['isModifyInfo'] ?? false;
+    //       final isOauthSignUp = params['isOauthSignUp'] ?? false;
+    //       return CertificationScreen(
+    //         isModifyInfo: isModifyInfo,
+    //         isOauthSignUp: isOauthSignUp,
+    //       );
+    //     },
+    //   ),
+    //   GoRoute(
+    //     path: CustomRouter.verificationCompletePath,
+    //     builder: (_, __) => const VerificationCompleteScreen(),
+    //   ),
+    // ],
   ),
 
   /// Main Layout: 바텀 네비게이션 + 첫 화면
@@ -209,12 +188,6 @@ final _routes = [
               GoRoute(
                 path: CustomRouter.infoModifyPath,
                 builder: (_, __) => const InfoModifyScreen(),
-                routes: <GoRoute>[
-                  GoRoute(
-                    path: CustomRouter.emailChangePath,
-                    builder: (_, __) => const EmailChangeScreen(),
-                  ),
-                ],
               ),
               GoRoute(
                 path: CustomRouter.storePath,

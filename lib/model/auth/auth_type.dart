@@ -1,1 +1,1 @@
-enum AuthType { logout, email, kakao, google, apple }
+enum AuthType { logout, kakao, google, apple }

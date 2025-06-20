@@ -128,22 +128,6 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                     TextButton(
                       onPressed: () {
                         context.push(
-                          "${CustomRouter.morePath}/${CustomRouter.infoModifyPath}/${CustomRouter.emailChangePath}",
-                        );
-                      },
-                      child: const Text("이메일 변경"),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        context.push(
-                          "${CustomRouter.authPath}/${CustomRouter.findPasswordPath}",
-                        );
-                      },
-                      child: const Text("비밀번호 변경"),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        context.push(
                           "${CustomRouter.authPath}/${CustomRouter.certificationPath}",
                           extra: {'isModifyInfo': true},
                         );
