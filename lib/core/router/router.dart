@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/ui/auth/screen/auth_screen.dart';
+import 'package:sottie_flutter/ui/auth/screen/certification_screen.dart';
 import 'package:sottie_flutter/ui/chat/screen/chat_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/photo_magnification_screen.dart';
@@ -25,7 +26,7 @@ import 'package:sottie_flutter/ui/user/screen/user_detail_screen.dart';
 
 sealed class CustomRouter {
   static final router = GoRouter(
-    initialLocation: CustomRouter.authPath,
+    initialLocation: '/auth/certification',
     routes: _routes,
   );
 
@@ -83,24 +84,16 @@ final _routes = [
   GoRoute(
     path: CustomRouter.authPath,
     builder: (_, __) => const AuthScreen(),
-    // routes: <GoRoute>[
-    //   GoRoute(
-    //     path: CustomRouter.certificationPath,
-    //     builder: (_, state) {
-    //       final params = state.extra as Map<String, bool>;
-    //       final isModifyInfo = params['isModifyInfo'] ?? false;
-    //       final isOauthSignUp = params['isOauthSignUp'] ?? false;
-    //       return CertificationScreen(
-    //         isModifyInfo: isModifyInfo,
-    //         isOauthSignUp: isOauthSignUp,
-    //       );
-    //     },
-    //   ),
-    //   GoRoute(
-    //     path: CustomRouter.verificationCompletePath,
-    //     builder: (_, __) => const VerificationCompleteScreen(),
-    //   ),
-    // ],
+    routes: <GoRoute>[
+      GoRoute(
+        path: CustomRouter.certificationPath,
+        builder: (_, state) => const CertificationScreen(),
+      ),
+      // GoRoute(
+      //   path: CustomRouter.verificationCompletePath,
+      //   builder: (_, __) => const VerificationCompleteScreen(),
+      // ),
+    ],
   ),
 
   /// Main Layout: 바텀 네비게이션 + 첫 화면

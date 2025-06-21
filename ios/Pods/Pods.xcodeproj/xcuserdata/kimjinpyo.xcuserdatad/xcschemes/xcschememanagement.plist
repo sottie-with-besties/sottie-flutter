@@ -154,17 +154,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>app_links-app_links_ios_privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>app_links.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>auth_button_kit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>bootpay_webview_flutter_wkwebview-bootpay_webview_flutter_wkwebview_privacy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>bootpay_webview_flutter_wkwebview.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -189,17 +189,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>fluttertoast-fluttertoast_privacy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>fluttertoast.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>google_sign_in_ios-google_sign_in_ios_privacy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>google_sign_in_ios.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>iamport_webview_flutter.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -229,17 +234,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>package_info_plus-package_info_plus_privacy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>package_info_plus.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>path_provider_foundation-path_provider_foundation_privacy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>path_provider_foundation.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>portone_flutter.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -265,16 +275,6 @@
 			<false/>
 		</dict>
 		<key>sqflite_darwin.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>url_launcher_ios-url_launcher_ios_privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>url_launcher_ios.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
