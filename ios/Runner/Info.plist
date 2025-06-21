@@ -52,6 +52,16 @@
 				<string>kakao4f5a3c6a2a120255f06bc88a94d92d1f</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>bootpay</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>sottiebootpay</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>

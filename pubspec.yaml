@@ -61,8 +61,8 @@ dependencies:
   # Router
   go_router:
 
-  # 포트원 본인인증
-  portone_flutter: ^0.12.0
+  # 부트페이 본인인증
+  bootpay: ^5.0.13
 
   # 이미지
   image_picker: ^1.1.2
@@ -82,6 +82,9 @@ dependencies:
   easy_debounce:
   path_provider:
   path:
+
+dependency_overrides:
+  js: 0.6.4 # 부트페이 버전 충돌나는 패키지에 대해 강제로 버전 지정
 
 dev_dependencies:
   flutter_test:
