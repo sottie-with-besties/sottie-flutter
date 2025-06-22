@@ -5,6 +5,7 @@ import 'package:bootpay/model/payload.dart';
 import 'package:bootpay/model/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:sottie_flutter/use_case/auth/verification_use_case.dart';
 
 class CertificationScreen extends StatelessWidget {
   const CertificationScreen({super.key});
@@ -18,7 +19,7 @@ class CertificationScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: TextButton(
-            onPressed: () => bootpayTest(context),
+            onPressed: () => VerificationUseCase.bootpayAuthentication(context),
             child: const Text('본인인증 테스트', style: TextStyle(fontSize: 16.0)),
           ),
         ),
@@ -76,6 +77,8 @@ class CertificationScreen extends StatelessWidget {
 }
 
 Payload getPayload() {
+  /// 부트페이 콘솔에 프로젝트 생성하여 해당 아이디를 넣어야함
+  /// 본인인증은 그냥 id 넣지 않아도 동작은 되는듯?
   const webApplicationId = '5b8f6a4d396fa665fdc2b5e7';
   const androidApplicationId = '5b8f6a4d396fa665fdc2b5e8';
   const iosApplicationId = '5b8f6a4d396fa665fdc2b5e9';
@@ -124,7 +127,7 @@ Payload getPayload() {
   user.addr = '서울시 동작구 상도로 222';
 
   Extra extra = Extra(); // 결제 옵션
-  extra.appScheme = 'bootpayFlutterExample';
+  extra.appScheme = 'sottiebootpay';
   extra.cardQuota = '3';
   // extra.openType = 'popup';
 

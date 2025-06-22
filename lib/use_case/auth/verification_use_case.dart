@@ -1,123 +1,77 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
-final _auth = FirebaseAuth.instance;
+import 'package:bootpay/bootpay.dart';
+import 'package:bootpay/model/extra.dart';
+import 'package:bootpay/model/payload.dart';
+import 'package:flutter/material.dart' show BuildContext;
+import 'package:sottie_flutter/core/constant/native_key.dart';
 
 sealed class VerificationUseCase {
-  static String? _verificationId;
-
-  /// 이메일 인증
-  /// 이메일 인증읠 위해서 먼저 계정을 만들어야함
-  static Future<String?> createEmailAndPassword(
-    String email,
-    String password,
-  ) async {
-    try {
-      await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return null;
-    } on FirebaseAuthException catch (error) {
-      late String errorCode;
-      switch (error.code) {
-        case "email-already-in-use":
-          errorCode = '이미 사용중인 이메일입니다.';
-          break;
-        case "invalid-email":
-          errorCode = '유효하지 않는 이메일입니다.';
-          break;
-        case "weak-password":
-          errorCode = '패스워드 안전성이 낮습니다.';
-          break;
-        case "operation-not-allowed":
-          errorCode = error.code;
-          break;
-        default:
-          errorCode = '알 수 없는 에러가 발생했습니다.';
-      }
-      return errorCode;
-    }
-  }
-
-  /// 이메일 인증 보내기
-  static Future<String?> sendEmailVerification() async {
-    try {
-      await _auth.currentUser!.sendEmailVerification();
-      return null;
-    } on FirebaseAuthException catch (e) {
-      return "이메일 인증 과정 중 에러가 발생했습니다. 다시 시도해주세요. Error Code: ${e.code}";
-    }
-  }
-
-  /// 이메일 인증 여부
-  static Future<bool> isEmailVerification(String email, String password) async {
-    /// 파이어베이스의 속성값이 업데이트 되기 위해서는 한번 더 로그인을 진행해주어야 한다.
-    try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } on Exception catch (_) {
-      return false;
-    }
-    return _auth.currentUser == null ? false : _auth.currentUser!.emailVerified;
-  }
-
-  /// 이메일 인증만 하면 되기 때문에 유저를 파이어베이스에 저장하지 않고 삭제한다.
-  static Future<String?> deleteEmailUser(String email, String password) async {
-    try {
-      /// 한번 더 로그인을 진행해주어야 삭제 가능.
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-      await _auth.currentUser!.delete();
-      return null;
-    } on FirebaseAuthException catch (e) {
-      return "알 수 없는 에러 Error Code: ${e.code}";
-    }
-  }
-
-  /// 핸드폰 인증
-  /// 이 함수를 실행하면 로봇인지 아닌지 체크하는 웹 사이트가 열리고 다시 웹이 닫히면 SMS 코드 문자 발송
-  static Future<String?> signInWithPhoneNumber(String number) async {
-    String? errorCode;
-
-    await _auth.verifyPhoneNumber(
-      phoneNumber: "+82 $number",
-      verificationCompleted: (PhoneAuthCredential credential) {},
-      verificationFailed: (FirebaseAuthException exception) {
-        errorCode = "에러가 발생했습니다. Error Code: ${exception.code}";
+  static void bootpayAuthentication(BuildContext context) {
+    Bootpay().requestAuthentication(
+      context: context,
+      payload: _getPayload(),
+      showCloseButton: false,
+      // closeButton: Icon(Icons.close, size: 35.0, color: Colors.black54),
+      onCancel: (String data) {
+        print('------- onCancel: $data');
       },
-      codeSent: (String verificationId, int? resendToken) {
-        _verificationId = verificationId;
+      onError: (String data) {
+        print('------- onError: $data');
       },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        errorCode = "시간 경과로 인해 실패하였습니다.";
+      onClose: () {
+        print('------- onClose');
+        Bootpay().dismiss(context); //명시적으로 부트페이 뷰 종료 호출
+      },
+      onIssued: (String data) {
+        print('------- onIssued: $data');
+      },
+      onConfirm: (String data) {
+        /**
+            1. 바로 승인하고자 할 때
+            return true;
+         **/
+        /***
+            2. 비동기 승인 하고자 할 때
+            checkQtyFromServer(data);
+            return false;
+         ***/
+        /***
+            3. 서버승인을 하고자 하실 때 (클라이언트 승인 X)
+            return false; 후에 서버에서 결제승인 수행
+         */
+        // checkQtyFromServer(data);
+        print("------- onConfirm: $data");
+        // context.go(CustomRouter.homePath);
+
+        return true;
+      },
+      onDone: (String data) {
+        print('------- onDone: $data');
       },
     );
-
-    return errorCode;
   }
 
-  /// 발송된 SMS 코드와 함께 로그인 하여 문제가 없으면 폰 인증 완료.
-  static Future<String?> signInWithSmsCode(String code) async {
-    String? errorCode;
+  static Payload _getPayload() {
+    final payload = Payload();
 
-    try {
-      if (_verificationId != null) {
-        PhoneAuthCredential phoneCredential = PhoneAuthProvider.credential(
-          verificationId: _verificationId!,
-          smsCode: code,
-        );
-        await _auth.signInWithCredential(phoneCredential);
-        errorCode = null;
-      } else {
-        errorCode = "핸드폰 인증을 다시 진행해주세요.";
-      }
-    } on FirebaseAuthException catch (error) {
-      errorCode = "에러가 발생하였습니다. Error Code: ${error.code}";
-    }
+    /// 부트페이 콘솔에 프로젝트 생성하여 해당 아이디를 넣어야함
+    /// 본인인증은 그냥 id 넣지 않아도 동작은 되는듯?
+    payload.webApplicationId =
+        NativeKey.bootpayWebApplicationId; // web application id
+    payload.androidApplicationId =
+        NativeKey.bootpayAndroidApplicationId; // android application id
+    payload.iosApplicationId =
+        NativeKey.bootpayIosApplicationId; // ios application id
 
-    return errorCode;
-  }
+    payload.pg = '다날';
+    payload.method = '본인인증';
+    payload.orderName = "본인인증";
+    payload.authenticationId =
+        DateTime.now().millisecondsSinceEpoch
+            .toString(); //주문번호, 개발사에서 고유값으로 지정해야함
 
-  /// 핸드폰 인증만 하면 되기 때문에 유저를 파이어베이스에 저장하지 않고 삭제한다.
-  static Future<void> deletePhoneUser() async {
-    await _auth.currentUser!.delete();
+    Extra extra = Extra(); // 결제 옵션
+    extra.appScheme = 'sottiebootpay';
+    payload.extra = extra;
+    return payload;
   }
 }

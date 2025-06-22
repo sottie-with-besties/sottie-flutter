@@ -75,8 +75,6 @@ dependencies:
 
   # 파이어베이스
   firebase_core: ^3.6.0
-  # 이메일 인증, 핸드폰 번호 인증용
-  firebase_auth: ^5.3.1
 
   # 기타 유틸리티
   easy_debounce:
