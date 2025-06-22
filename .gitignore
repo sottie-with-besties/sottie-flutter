@@ -44,3 +44,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+/lib/core/constant/native_key.dart
+/android/app/src/main/AndroidManifest.xml
+/ios/Runner/Info.plist
