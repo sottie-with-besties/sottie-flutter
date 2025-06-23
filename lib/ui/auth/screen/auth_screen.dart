@@ -12,14 +12,9 @@ import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/app_logo.dart';
 import 'package:sottie_flutter/use_case/auth/auth_use_case.dart';
 
-class AuthScreen extends StatefulWidget {
+class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
 
-  @override
-  State<AuthScreen> createState() => _AuthScreenState();
-}
-
-class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,36 +58,14 @@ class _AuthScreenState extends State<AuthScreen> {
                   OAuthButton(
                     imgPath: AssetPath.kakaoLogin,
                     onPressed: () async {
-                      final loginSuccess = await AuthUseCase.signIn(
-                        authType: AuthType.kakao,
-                      );
-
-                      if (context.mounted) {
-                        loginSuccess
-                            ? context.go(CustomRouter.homePath)
-                            : ModalController.showCustomSnackBar(
-                              context,
-                              "로그인에 실패하였습니다",
-                            );
-                      }
+                      await _socialLogin(context, AuthType.kakao);
                     },
                   ),
 
                   /// 구글 로그인
                   AuthButton(
                     onPressed: (_) async {
-                      final loginSuccess = await AuthUseCase.signIn(
-                        authType: AuthType.google,
-                      );
-
-                      if (context.mounted) {
-                        loginSuccess
-                            ? context.go(CustomRouter.homePath)
-                            : ModalController.showCustomSnackBar(
-                              context,
-                              "로그인에 실패하였습니다",
-                            );
-                      }
+                      await _socialLogin(context, AuthType.google);
                     },
                     brand: Method.google,
                     shape: RoundedRectangleBorder(
@@ -108,16 +81,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       context.go(CustomRouter.homePath);
 
                       /// 애플 로그인 코드
-                      // final loginSuccess =  await AuthUseCase.signIn(authType: AuthType.apple);
-
-                      // if (context.mounted) {
-                      //   loginSuccess
-                      //       ? context.go(CustomRouter.homePath)
-                      //       : ModalController.showCustomSnackBar(
-                      //     context,
-                      //     "로그인에 실패하였습니다",
-                      //   );
-                      // }
+                      // await _socialLogin(context, AuthType.apple);
                     },
                     brand: Method.apple,
                     shape: RoundedRectangleBorder(
@@ -133,5 +97,15 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _socialLogin(BuildContext context, AuthType authType) async {
+    final loginSuccess = await AuthUseCase.signIn(authType: authType);
+
+    if (context.mounted) {
+      loginSuccess
+          ? context.go(CustomRouter.homePath)
+          : ModalController.showCustomSnackBar(context, "로그인에 실패하였습니다");
+    }
   }
 }
