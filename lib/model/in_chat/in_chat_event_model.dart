@@ -57,6 +57,5 @@ final class InChatEventModel {
     required this.inChatEventStatus,
     required this.inChatDataType,
     required this.contents,
-    required
   });
 }
