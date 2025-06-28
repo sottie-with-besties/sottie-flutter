@@ -1,7 +1,7 @@
 import 'package:sottie_flutter/model/in_chat/in_chat_enum.dart';
 import 'package:sottie_flutter/model/user/user_model.dart';
 
-/// 채팅방에 입장하면 InChatEventListEntity 데이터를 한 번 받음
+/// 채팅방에 입장하면 InChatEventListModel 데이터를 한 번 받음
 /// 그 후 채팅방 별로 관리
 /// {roomId: inChatEventList} 로 InChatManager에서 관리
 /// 포그라운드 상태에서 메세지가 도착했을 때, 채팅방에 대한 데이터 리스트가 존재한다면
@@ -24,8 +24,8 @@ final class InChatEventListModel {
   });
 }
 
-/// 최초 입장 및 InChatEventListEntity를 한 번 받았다면
-/// 그 이후 InChatEventEntity를 소켓으로 통신
+/// 최초 입장 및 InChatEventListModel을 한 번 받았다면
+/// 그 이후 InChatEventModel을 소켓으로 통신
 final class InChatEventModel {
   /// 이벤트의 아이디 => 순서 정보 포함 ex) 이벤트가 100개 발생했을 최신 eventId == 100
   final int eventId;
