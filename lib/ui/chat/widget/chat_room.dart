@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/model/chat/chat_room_model.dart';
-import 'package:sottie_flutter/model/post/post_enum.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_info.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room_profiles.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
@@ -101,11 +100,7 @@ class ChatRoom extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SottieCategoryUi(
-                        postCategory: PostCategory.values.byName(
-                          model.sottieCategory,
-                        ),
-                      ),
+                      SottieCategoryUi(postCategory: model.sottieCategory),
                       CurrentNumOfMember(
                         currentPeopleNum: model.currentPeopleNum,
                         peopleNum: model.peopleNum,
@@ -113,9 +108,7 @@ class ChatRoom extends StatelessWidget {
                         maleNum: model.maleNum,
                         currentFemaleNum: model.currentFemaleNum,
                         femaleNum: model.femaleNum,
-                        genderRestriction: PostGenderRestriction.values.byName(
-                          model.genderRestriction,
-                        ),
+                        genderRestriction: model.genderRestriction,
                       ),
                     ],
                   ),
@@ -134,7 +127,7 @@ class ChatRoom extends StatelessWidget {
                     ),
                     ChatRoomInfo(
                       gatheringDate: model.gatheringDate,
-                      locationId: model.locationId,
+                      location: model.location,
                       chatTitle: model.title,
                       latestMsg: model.latestMsg,
                       latestTime: model.latestTime,

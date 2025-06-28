@@ -12,9 +12,9 @@ final class ChatRepoImplDev implements ChatRepository {
     return [
       ChatRoomModel(
         id: 1,
-        sottieCategory: 'THUNDER',
+        sottieCategory: PostCategory.THUNDER,
         gatheringDate: DateTime(2025, 4, 12, 8, 50),
-        locationId: 2,
+        location: PostLocation.seoul,
         title: '친목 모임: 가벼운 저녁 식사',
         profileThumbnailsUrl: ['1', '32', '42', '123'],
         latestMsg: '출발 시간은 7시 맞죠?',
@@ -29,16 +29,15 @@ final class ChatRepoImplDev implements ChatRepository {
         femaleNum: 2,
         ageFrom: 2,
         ageTo: 5,
-
-        genderRestriction: 'NONE',
+        genderRestriction: PostGenderRestriction.NONE,
         mannerRestriction: true,
         ageRestriction: true,
       ),
       ChatRoomModel(
         id: 2,
-        sottieCategory: 'EXERCISE',
+        sottieCategory: PostCategory.EXERCISE,
         gatheringDate: _renderDeletingDate(),
-        locationId: 2,
+        location: PostLocation.seoul,
         title: '플러터 개발자 구합니다',
         profileThumbnailsUrl: ['1', '32', '42', '123'],
         latestMsg: '리버팟 사용할 줄 아시나요?',
@@ -53,8 +52,7 @@ final class ChatRepoImplDev implements ChatRepository {
         femaleNum: 0,
         ageFrom: 2,
         ageTo: 5,
-
-        genderRestriction: 'MIX',
+        genderRestriction: PostGenderRestriction.MIX,
         mannerRestriction: true,
         ageRestriction: true,
       ),

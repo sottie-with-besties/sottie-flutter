@@ -1,14 +1,16 @@
+import 'package:sottie_flutter/model/post/post_enum.dart';
+
 final class ChatRoomModel {
   final int id;
 
   /// 채팅의 카테고리(친목, 번개, 구인/구직 등)
-  final String sottieCategory;
+  final PostCategory sottieCategory;
 
   /// 모임 날짜
   final DateTime gatheringDate;
 
   /// 모임 장소
-  final int locationId;
+  final PostLocation location;
 
   /// 채팅 제목
   final String title;
@@ -22,7 +24,7 @@ final class ChatRoomModel {
   /// 최근 전송 받은 메세지의 시각
   final DateTime latestTime;
 
-  /// 유저가 해당하는 채팅방의 읽지 않은 메세지 수
+  /// 읽지 않은 메세지 수
   final int notReadMsg;
 
   /// 채팅방을 설명하는 구체적 내용
@@ -44,7 +46,7 @@ final class ChatRoomModel {
   final int ageTo;
 
   /// 성비 제한
-  final String genderRestriction;
+  final PostGenderRestriction genderRestriction;
 
   /// 매너 제한
   final bool mannerRestriction;
@@ -56,7 +58,7 @@ final class ChatRoomModel {
     required this.id,
     required this.sottieCategory,
     required this.gatheringDate,
-    required this.locationId,
+    required this.location,
     required this.title,
     required this.profileThumbnailsUrl,
     required this.latestMsg,
@@ -81,7 +83,8 @@ final class ChatRoomModel {
       id: json['id'],
       sottieCategory: json['gatheringCategory'],
       gatheringDate: DateTime.parse(json['gatheringDate']),
-      locationId: json['locationId'],
+      location:
+          PostLocation.values.where((e) => e.index == json['locationId']).first,
       title: json['title'],
       profileThumbnailsUrl: List<String>.from(json['profileThumbnailsUrl']),
       latestMsg: json['latestMsg'],
@@ -96,7 +99,9 @@ final class ChatRoomModel {
       femaleNum: json['femaleNum'],
       ageFrom: json['ageFrom'],
       ageTo: json['ageTo'],
-      genderRestriction: json['genderRestriction'],
+      genderRestriction: PostGenderRestriction.values.byName(
+        json['genderRestriction'],
+      ),
       mannerRestriction: json['mannerRestriction'],
       ageRestriction: json['ageRestriction'],
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sottie_flutter/model/post/post_enum.dart';
 import 'package:sottie_flutter/provider/chat/chat_room_provider.dart';
 import 'package:sottie_flutter/ui/chat/controller/chat_header_controller.dart';
 import 'package:sottie_flutter/ui/chat/widget/chat_room.dart';
@@ -23,9 +22,7 @@ class ChatRoomScreen extends ConsumerWidget {
               data.title.toString().contains(inputText) ||
               data.latestMsg.toString().contains(inputText) ||
               dateString.toString().contains(inputText) ||
-              PostLocation.values[data.locationId].koreanName.contains(
-                inputText,
-              );
+              data.location.koreanName.contains(inputText);
 
           return searched;
         });

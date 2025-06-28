@@ -9,7 +9,7 @@ class ChatRoomInfo extends StatelessWidget {
   const ChatRoomInfo({
     super.key,
     required this.gatheringDate,
-    required this.locationId,
+    required this.location,
     required this.chatTitle,
     required this.latestMsg,
     required this.latestTime,
@@ -19,7 +19,7 @@ class ChatRoomInfo extends StatelessWidget {
   });
 
   final DateTime gatheringDate;
-  final int locationId;
+  final PostLocation location;
   final String chatTitle;
   final String latestMsg;
   final DateTime latestTime;
@@ -122,7 +122,7 @@ class ChatRoomInfo extends StatelessWidget {
                       ),
                       Text(
                         overflow: TextOverflow.ellipsis,
-                        PostLocation.values[locationId].koreanName,
+                        location.koreanName,
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
