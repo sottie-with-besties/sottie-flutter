@@ -51,67 +51,6 @@ final class PostRepoImplDev implements PostRepository {
     return jsonList
         .map((json) => PostModel.fromJson(json as Map<String, dynamic>))
         .toList();
-
-    // await Future.delayed(const Duration(seconds: 1), null);
-    // return [
-    //   PostModel(
-    //     id: 3,
-    //     postCategory: PostCategory.THUNDER,
-    //     title: '안녕하세요',
-    //     postLocation: PostLocation.seoul,
-    //     postDate: DateTime(2024),
-    //     contents: '안녕하세요안녕하세요',
-    //     numOfCurrentPeople: 3,
-    //     numOfPeople: 5,
-    //     numOfCurrentMale: 1,
-    //     numOfMale: 3,
-    //     numOfCurrentFemale: 2,
-    //     numOfFemale: 2,
-    //     ageFrom: 1,
-    //     ageTo: 1,
-    //     genderRestriction: PostGenderRestriction.NONE,
-    //     mannerRestriction: true,
-    //     ageRestriction: true,
-    //   ),
-    //   PostModel(
-    //     id: 3,
-    //     postCategory: PostCategory.THUNDER,
-    //     title: '안녕하세요',
-    //     postLocation: PostLocation.seoul,
-    //     postDate: DateTime(2024),
-    //     contents: '안녕하세요안녕하세요',
-    //     numOfCurrentPeople: 4,
-    //     numOfPeople: 5,
-    //     numOfCurrentMale: 4,
-    //     numOfMale: 5,
-    //     numOfCurrentFemale: 0,
-    //     numOfFemale: 0,
-    //     ageFrom: 2,
-    //     ageTo: 5,
-    //     genderRestriction: PostGenderRestriction.MALE,
-    //     mannerRestriction: true,
-    //     ageRestriction: true,
-    //   ),
-    //   PostModel(
-    //     id: 3,
-    //     postCategory: PostCategory.THUNDER,
-    //     title: '안녕하세요',
-    //     postLocation: PostLocation.seoul,
-    //     postDate: DateTime(2024),
-    //     contents: '안녕하세요안녕하세요',
-    //     numOfCurrentPeople: 3,
-    //     numOfPeople: 5,
-    //     numOfCurrentMale: 2,
-    //     numOfMale: 3,
-    //     numOfCurrentFemale: 2,
-    //     numOfFemale: 2,
-    //     ageFrom: 5,
-    //     ageTo: 6,
-    //     genderRestriction: PostGenderRestriction.MIX,
-    //     mannerRestriction: true,
-    //     ageRestriction: false,
-    //   ),
-    // ];
   }
 
   @override
@@ -150,7 +89,7 @@ final class PostRepoImplDev implements PostRepository {
       headers: headers,
       body: jsonEncode(postJoinInfo),
     );
-    
+
     return true;
   }
 

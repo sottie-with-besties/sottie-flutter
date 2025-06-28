@@ -1,7 +1,7 @@
 import 'package:http/http.dart';
 import 'package:sottie_flutter/core/rest_api/http_clients.dart';
 
-enum ServerEnvironment { dev, production }
+enum ServerEnvironment { dummy, dev, production }
 
 final class ApiEnv {
   ApiEnv._();
@@ -18,7 +18,7 @@ final class ApiEnv {
   static const devPort = 8080;
   static const productionPort = 8080;
 
-  static const serverEnvironment = ServerEnvironment.dev;
+  static const serverEnvironment = ServerEnvironment.dummy;
 
   final cleanClient = Client();
   final authClient = AuthClient();

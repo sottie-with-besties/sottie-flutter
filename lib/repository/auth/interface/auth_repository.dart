@@ -11,6 +11,7 @@ abstract interface class AuthRepository {
     return switch (ApiEnv.serverEnvironment) {
       ServerEnvironment.dev => AuthRepoImplDev(),
       ServerEnvironment.production => AuthRepoImplProduction(),
+      _ => throw UnimplementedError(),
     };
   }
 

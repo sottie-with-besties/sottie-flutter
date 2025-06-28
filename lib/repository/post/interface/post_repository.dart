@@ -1,9 +1,15 @@
+import 'package:sottie_flutter/core/rest_api/api_env.dart';
 import 'package:sottie_flutter/model/post/post_model.dart';
 import 'package:sottie_flutter/repository/post/implements/post_repo_impl_dev.dart';
+import 'package:sottie_flutter/repository/post/implements/post_repo_impl_dummy.dart';
 
 abstract interface class PostRepository {
   factory PostRepository() {
-    return PostRepoImplDev();
+    return switch (ApiEnv.serverEnvironment) {
+      ServerEnvironment.dummy => PostRepoImplDummy(),
+      ServerEnvironment.dev => PostRepoImplDev(),
+      _ => throw UnimplementedError(),
+    };
   }
 
   /// 최신 포스트 불러오기

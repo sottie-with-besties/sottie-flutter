@@ -1,9 +1,15 @@
+import 'package:sottie_flutter/core/rest_api/api_env.dart';
 import 'package:sottie_flutter/model/in_chat/in_chat_event_model.dart';
 import 'package:sottie_flutter/repository/in_chat/implements/in_chat_repo_impl_dev.dart';
+import 'package:sottie_flutter/repository/in_chat/implements/in_chat_repo_impl_dummy.dart';
 
 abstract interface class InChatRepository {
   factory InChatRepository() {
-    return InChatRepoImplDev();
+    return switch (ApiEnv.serverEnvironment) {
+      ServerEnvironment.dummy => InChatRepoImplDummy(),
+      ServerEnvironment.dev => InChatRepoImplDev(),
+      _ => throw UnimplementedError(),
+    };
   }
 
   /// 채팅방 첫 입장시 이벤트 리스트 불러오기
