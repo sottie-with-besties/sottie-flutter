@@ -66,6 +66,7 @@
 		0D1C1B6AFB79AC3D89EB8F8887E11426 /* OIDAuthState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F9098D7E21E2B75B1DF95DDFFC1342B /* OIDAuthState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0DBF2D6C9021EB1CB0C18E5901292C58 /* FBLPromise+Catch.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A19471CB9E95BFCCE413D9A8AEAC1C /* FBLPromise+Catch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0DF863DBDB48223C475B8901F4F5179F /* SignInWithAppleUnavailablePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79BF8CC1E870373ABA0723066308F6 /* SignInWithAppleUnavailablePlugin.swift */; };
+		0E591CE6435169B70BD9172F40D8EC3A /* FLTGoogleSignInPlugin_Test.h in Headers */ = {isa = PBXBuildFile; fileRef = 50072FA2EEC0F82960485CC15D1E1D70 /* FLTGoogleSignInPlugin_Test.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0E9F5D6074FB2EE93D0F0B29FB758113 /* GTMSessionFetcherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D56AB532899A21344B022A8F09774F /* GTMSessionFetcherService.m */; };
 		0EB0EC827F25051D4BF411E34D8C6D65 /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 4ED33017B83C2256EAAD215F273AA6F1 /* zh_CN.lproj */; };
 		0ED9E6B4E4A1BEFC4771C89BE884E41B /* GIDAuthStateMigration.h in Headers */ = {isa = PBXBuildFile; fileRef = E14E6E910D4CFD139D1A556809C86D35 /* GIDAuthStateMigration.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -78,7 +79,6 @@
 		11C78773A859235B073C093FA27A6536 /* GULLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 484F2D2516DE0625168F9F0F2380F49C /* GULLogger.m */; };
 		129D260C9362180AD87F9898E45749D3 /* GIDSignInResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C95BB267D08B22DB79EF3E208EE84D /* GIDSignInResult.m */; };
 		12E3674FA26DD9E88C925E517C7CFBCF /* tr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7B4381CD220C7D849B7C5F6427C63 /* tr.lproj */; };
-		1323B7F3DB228C6410180F85B7889AF5 /* messages.g.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DB6C2C4225C5576A2AE45BF852DBF1 /* messages.g.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1358536637B3AE4BB24F448C4FAA340E /* _ObjC_HeartbeatsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE543E7000C3C2D51C1810330CB7E5F /* _ObjC_HeartbeatsPayload.swift */; };
 		139C55D46634D6B7DBFD77EF1DA956E2 /* FLTImagePickerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AEE4842BCAEF7FE7EB01CE90E9E5AC /* FLTImagePickerPlugin.m */; };
 		14120A16B4BD1218B03B4D4FF2A3BBCF /* FBLPromise+Then.h in Headers */ = {isa = PBXBuildFile; fileRef = F3FB92F27E7EE720541E6F2BD2B7201F /* FBLPromise+Then.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -105,6 +105,8 @@
 		1CAF2A260DB4CA4F1ED1941A750ADF25 /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 29A38B493B285349C7A9F85BC22F7D33 /* da.lproj */; };
 		1CAF35BD6844FCDFDFA75CBC81817594 /* GIDToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D5590D2D8C70820F39E1EF3D3E6288D9 /* GIDToken.m */; };
 		1E633E28665F276A283FCC0FCB1E7802 /* FIRComponentContainerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E07279880BDDCE0C2C1145ED93C8701 /* FIRComponentContainerInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1EB2A22D6D03BA0BA276063BA43D00D4 /* FLTGoogleSignInPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D3D799CBC02D820E7815054A5F3E99 /* FLTGoogleSignInPlugin.m */; };
+		1F02858047A4A98E36785B74B28BD224 /* messages.g.h in Headers */ = {isa = PBXBuildFile; fileRef = A211CAD503C55EB1DF8089F01FAB7042 /* messages.g.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F28F2AA0663E1E9FCAE7704088A3D03 /* PathProviderPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A41FD37D4D23F40BE8A14D99129FD5A /* PathProviderPlugin.swift */; };
 		1F70E507EEFC23CF1C1047313F8BA04D /* package_info_plus-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A530426E0A20FE8CC7E2C1ECB4E7565F /* package_info_plus-dummy.m */; };
 		200D38B2B9C3D57B1832AA3FA7648DC5 /* OIDServiceConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5F148768D436A10134F11D5AE608D0 /* OIDServiceConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -140,6 +142,7 @@
 		298D2A002AD428D8F0A78D8B831B6FE8 /* FBLPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = CB4EF648B39BD3FB95A6DBA37552CC7C /* FBLPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		299375271BFAA4E66BF6DF83A6513CFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDF7BA831C40DEAB1BE5219F96D63CD /* Foundation.framework */; };
 		2A35087954DF41926D6E08723E8CE006 /* SwiftSignInWithApplePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA2B55A5CFEB68B3E48580B9F7971B /* SwiftSignInWithApplePlugin.swift */; };
+		2AE17D48C1A77A8403D22FDAE041525B /* FLTGoogleSignInPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 63FAB60392546680360C0A2B9F5F94F1 /* FLTGoogleSignInPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2AF6257BE3A77FD9A57ADA5D8B5E7774 /* FLTFirebasePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2034E491E73F9398D52E6D1922B9E4 /* FLTFirebasePlugin.m */; };
 		2B5B0F628F0FE3CD032B8CA1FA3A9902 /* image_picker_ios-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C86B5B697A597A895F74E03BE25B0 /* image_picker_ios-dummy.m */; };
 		2BD4928E1FA1B2DD6D47493DE19175A5 /* FLTImagePickerMetaDataUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6771ACDA9089E816A35DF1D5C1C4EF02 /* FLTImagePickerMetaDataUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -169,7 +172,6 @@
 		3470A0D6F3B46ABF0B991825AFF99FD4 /* SqfliteDarwinImport.h in Headers */ = {isa = PBXBuildFile; fileRef = 834BEB13DD195197C7F87355B9ED97B2 /* SqfliteDarwinImport.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		34A625301DF71A90B80154DAB0D7F72D /* OIDAuthorizationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 833E1B7C368523D1CE5EE898A726D442 /* OIDAuthorizationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		352F6E9FB08E8BCD480B04C78EFE4962 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDF7BA831C40DEAB1BE5219F96D63CD /* Foundation.framework */; };
-		3557BF9EB0B449AC9273C31D47104ACA /* FLTGoogleSignInPlugin_Test.h in Headers */ = {isa = PBXBuildFile; fileRef = C4CFCFBB4BC136EDA95453112B65ADF9 /* FLTGoogleSignInPlugin_Test.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35ED8DE6F654B4A9B0D34786717BF4DD /* GIDAppCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = F67B8C4DA19B1E38778DD425E768714E /* GIDAppCheck.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		362212755EABF5E897000B06B81445F7 /* FIRTimestamp.h in Headers */ = {isa = PBXBuildFile; fileRef = CB869EE4AAB0897258C5C57C8540D7CB /* FIRTimestamp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3665E8852247BA98EBCCBFDA32E3E2D6 /* BTUIViewHostApi.h in Headers */ = {isa = PBXBuildFile; fileRef = D62150D071925F46EAF7A4E30A93E86B /* BTUIViewHostApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -227,14 +229,12 @@
 		4D11C92F9C934591EC52A2C3D40D46AD /* BTURLAuthenticationChallengeHostApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F9D1FA819F2EDEFC49DC32417BCB01 /* BTURLAuthenticationChallengeHostApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D41D45E25B77356AFDBAC4F80BB8B05 /* GIDSignInButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 108376F9C04B5ADE108FFB50746BBC92 /* GIDSignInButton.m */; };
 		4D8AA34BA754D59633C7F10E71F440AB /* GIDSignInResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 359778F66AA891CCBFD1CDF1B1757F30 /* GIDSignInResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4FA5F4A5CB202BAAB6E138C8C2396482 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 635C38E4A4A64C3E416D5F79A512CAD6 /* PrivacyInfo.xcprivacy */; };
 		4FFBDC89FAE67C920BF1E18BF2826DAD /* FBLPromise+Then.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67BFB0AF7167D7D2B5521EF53B4778 /* FBLPromise+Then.m */; };
 		50D23CEDD059CDD95DECCBCD2FB72C29 /* BTDataConverters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA84F00CD13F406ADC94B0965F883A7 /* BTDataConverters.m */; };
 		514030E96C488784FEC1EC21E4AA410C /* OIDExternalUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DCF483E4A984BF6C8034B9951EE0246 /* OIDExternalUserAgent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		514F7A5E4DE5D59FB006B160BE63F0D7 /* GoogleSignIn.h in Headers */ = {isa = PBXBuildFile; fileRef = B7855FAD94F447CD6D9A74248DF236C6 /* GoogleSignIn.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		51B27613E72418CF2705400408F2750C /* GACAppCheckTokenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 327779A12FCF2069B094892D14A7DA89 /* GACAppCheckTokenDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		51F408E62AEF10AD2EDF9AF103F031BA /* GIDCallbackQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 95295FEFDED28B7A728531B88DFBC67C /* GIDCallbackQueue.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		521005D128E13857685322278B9D1717 /* FLTGoogleSignInPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 704F111375F45960B8572356784DA7E6 /* FLTGoogleSignInPlugin.m */; };
 		537EF37C8C218043179E53EC22EAE960 /* FBLPromise+Validate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D27E83D14F6EF16A56602D4959D2BC2 /* FBLPromise+Validate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53A7B5CBAB5FE35CA8DEBA296892DF26 /* GULKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AB42089A1EB5A69ADF16DC915152EF /* GULKeychainUtils.m */; };
 		548AA8213AB61396A029AC3D407E2043 /* OIDTokenUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A8501EC67DFD5C26C787D80D6AE7093 /* OIDTokenUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -359,7 +359,6 @@
 		8F7E93E6A03FA94FBC710A12584C2CC5 /* FIRAppInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = D0EE9AA92520845E15AB7DF724B47E29 /* FIRAppInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8FA77493A08FD3AC87B1F0B5FA84EDCB /* FLTFirebaseCorePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B44BD893EA90559531B63B663BA2EE /* FLTFirebaseCorePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FC76DD302DB2786D7367A5ECE2CE46E /* OIDAuthState.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D5995EB94E05B53B3427B2E7EC92E0 /* OIDAuthState.m */; };
-		8FED5901AD78174866E6902CC2B811BE /* FLTGoogleSignInPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = BBAE25EA0820A2BB2FA6D37BA969D18F /* FLTGoogleSignInPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FF1A4B85BE39E39A1ACEF0DB1027DC3 /* es_MX.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 76967A76C671889E91D92FA329BDF145 /* es_MX.lproj */; };
 		9021D3D3B028895A0ECC9791DBE13929 /* GoogleUtilities-GoogleUtilities_Privacy in Resources */ = {isa = PBXBuildFile; fileRef = 44E291D18340EAC3F761346198515323 /* GoogleUtilities-GoogleUtilities_Privacy */; };
 		904AA1F41479FEAF6982AA4377E13904 /* FBLPromise+Delay.h in Headers */ = {isa = PBXBuildFile; fileRef = CD6D2EB3EFE169CD0B0EA7AD2CBC8DB3 /* FBLPromise+Delay.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -430,9 +429,11 @@
 		A7CFD137712DEE4513AC3FFCBB245D4E /* WeakContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBD0C067FBB8F3677937A3D22F0AE2 /* WeakContainer.swift */; };
 		A8ECD0765398D636CF4557626B5B86FE /* SqfliteDarwinDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3401C59A4E3555D2140BC03797C41 /* SqfliteDarwinDatabaseAdditions.m */; };
 		A900F3DD256D9BB2E93C48FA2CE61265 /* SwiftFlutterSecureStoragePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883DC5A598A52B0E2E7B5F3CF8A7D2B4 /* SwiftFlutterSecureStoragePlugin.swift */; };
+		A97293757412D896B75EF01B91AE2B0C /* messages.g.m in Sources */ = {isa = PBXBuildFile; fileRef = DA08CEA22F31502DF6B43709B0327083 /* messages.g.m */; };
 		A98D6CB56341CB34C14FB32235FA3BDA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16D388B6EB24173D5B29EEDA23EB4A4 /* CoreText.framework */; };
 		A9C2AAC0C813D90230B603EBC4B2100F /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = B91EE276ACE95AE41CCD207D261A63CE /* ja.lproj */; };
 		AAD65B08E06D919EC926887ED188E3D5 /* GIDConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2EC40A9BD188ED01B987572A1FC271 /* GIDConfiguration.m */; };
+		AC6E7DB6CA29A2032E41B2D08C8F80A9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8C22A88E5921E2841F73BACB060452DC /* PrivacyInfo.xcprivacy */; };
 		AD41A70712BD587E84963E0D87B6A197 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0CAF1DE811007BBC61816404DC84A9EA /* PrivacyInfo.xcprivacy */; };
 		AD9185B531763C80DDEFE0F94BBEE984 /* BTObjectHostApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB80F924F92CCB6962E6CFA0CB81531 /* BTObjectHostApi.m */; };
 		AE544C5C6438155FBEAF4303606B2F98 /* GACURLSessionDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE273BFF2695137CB51ABE168E504A5 /* GACURLSessionDataResponse.m */; };
@@ -463,6 +464,7 @@
 		B7C67D475D63B3D6501863172F8AD35F /* shared_preferences_foundation-shared_preferences_foundation_privacy in Resources */ = {isa = PBXBuildFile; fileRef = 0652FCE3FC19056983AABE058B3CC45B /* shared_preferences_foundation-shared_preferences_foundation_privacy */; };
 		B7CC9AA9B52972EFF88A911C4970C46F /* OIDAuthorizationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 053ECA0390EA096C1F542E2D79C2476C /* OIDAuthorizationResponse.m */; };
 		B7FBBBE3381736F0FB7884A0D0A06A3E /* FIRComponentContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0968FDEE90422CE02397948611661 /* FIRComponentContainer.m */; };
+		B8A917502F7EAE6C5E40D7C20682A5DF /* google_sign_in_ios-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AA2F9DB0A6910D6E69A00FB12961313 /* google_sign_in_ios-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8BF2F3F4ED4EBFEB148840471548019 /* OIDResponseTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C88CD94D6C9792E5800E40640325A6B /* OIDResponseTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B92C03F4F16A95D0BEAD02C98310C0D7 /* OIDScopeUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 470F52132443139DB71DB87D4FE4B177 /* OIDScopeUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA582B8FC100119E53525F87B43AD8DC /* sqflite_darwin-sqflite_darwin_privacy in Resources */ = {isa = PBXBuildFile; fileRef = 071549DBDD4BFC0BD7D2715539015DC2 /* sqflite_darwin-sqflite_darwin_privacy */; };
@@ -473,7 +475,7 @@
 		BB7E332709226F01483180544D71BDF0 /* OIDRegistrationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4957D6D96CF69E453AE81AE400F6E568 /* OIDRegistrationResponse.m */; };
 		BBC16C6FDC7CF8843BC036AEFE785C78 /* GoogleSignIn-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A2636AE65757BFEDC39D8DF4D2D3861 /* GoogleSignIn-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBCEE2193E2C264095FFB7145B1365C4 /* GACAppCheckStoredToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FA6782819AE2D3A83C834C3CBC953D3 /* GACAppCheckStoredToken.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BC1B5D298E6A95312775E255ABB531DF /* google_sign_in_ios-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A68BE6420C22895B6016392056081 /* google_sign_in_ios-dummy.m */; };
+		BC1B5D298E6A95312775E255ABB531DF /* google_sign_in_ios-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F19D607BF2DEF259820AEAAF764477 /* google_sign_in_ios-dummy.m */; };
 		BC66124EB1307C8EA9507750ACABBE8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDF7BA831C40DEAB1BE5219F96D63CD /* Foundation.framework */; };
 		BC92832A8D46B587D15261F0FDCC722B /* GIDConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B38F38CA80FDD923BE0E96F1B9EA737 /* GIDConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BD0F53EAB1BDA7F7B5CB7452B185A03B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDF7BA831C40DEAB1BE5219F96D63CD /* Foundation.framework */; };
@@ -481,7 +483,6 @@
 		BD3F77DB6A69036D40C272889674B5EA /* StorageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC593AFCCB439B62EBB7DD84FBBC559 /* StorageFactory.swift */; };
 		BD4AA0C47F052B57D171F2E7566CFC8F /* messages.g.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA3E1EB731446EFF052F079CE3A4D2 /* messages.g.m */; };
 		BF787B2C1F0237805C0FD9EC49368957 /* GTMSessionUploadFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71E7639F74C2F556722800EA79BEDC /* GTMSessionUploadFetcher.m */; };
-		BFEC1713BB167A2B03FFCD1220B04362 /* messages.g.m in Sources */ = {isa = PBXBuildFile; fileRef = FB821E797D177223F95980C95F9C3BF7 /* messages.g.m */; };
 		C02564EB66BDED9778C958286DFB1647 /* OIDAuthorizationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F7AEF2E37507DC30F97CE658F4410D3 /* OIDAuthorizationService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0B9117B0CE538886275E248E19346B7 /* firebase_core-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A5BDE421CF904EBADD940898A8C0824E /* firebase_core-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0C7416C1A7E21A52E68D67E1ACD0AE9 /* dummy.h in Headers */ = {isa = PBXBuildFile; fileRef = 56ECD665B49BFB99A0C6E77737F7D6A2 /* dummy.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -612,7 +613,6 @@
 		EFE66ACDEA384EE2D5686EE9CC87255E /* BTURLProtectionSpaceHostApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D4A2740DD52EACA154C5936CFC81E2 /* BTURLProtectionSpaceHostApi.m */; };
 		F0E6FF4F2EEC08921E738A0F95C39DB0 /* GACAppAttestArtifactStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 28544B2431B0ADC8C34AB9541E5D4305 /* GACAppAttestArtifactStorage.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F0F944ECE79C35CF769AE60570497078 /* OIDEndSessionResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 83002B5A3EDA5D49DFD191281E2E6594 /* OIDEndSessionResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F120C624C3513F9A44F3A811055D736F /* google_sign_in_ios-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E49C3F4C534692652A71DFB760BBF2D /* google_sign_in_ios-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F171757D9D7466519BBC133A1EEDB4F3 /* HeartbeatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788C8F8B11411B79C423BACC8ACA4EB4 /* HeartbeatController.swift */; };
 		F20154057E297FC72ED62EAFF54AB41B /* OIDTokenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 33251FFC83186AD345935F1A783E99E1 /* OIDTokenRequest.m */; };
 		F2114AC3CA863603BDD01521DBAEF8C9 /* AppCheckCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F57313621D57E5480B04B726A37A4EAB /* AppCheckCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1224,6 +1224,7 @@
 		09A9B9576CFB32214EE700FBD9EFC3B4 /* FBLPromise+Reduce.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Reduce.h"; path = "Sources/FBLPromises/include/FBLPromise+Reduce.h"; sourceTree = "<group>"; };
 		0AC593AFCCB439B62EBB7DD84FBBC559 /* StorageFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StorageFactory.swift; path = FirebaseCore/Internal/Sources/HeartbeatLogging/StorageFactory.swift; sourceTree = "<group>"; };
 		0AF0520751BC906F7493339A88624FBE /* package_info_plus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = package_info_plus.release.xcconfig; sourceTree = "<group>"; };
+		0B22C90C6DB050E670FE273911449004 /* google_sign_in_ios-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "google_sign_in_ios-Info.plist"; sourceTree = "<group>"; };
 		0B39A898EC58C93A0DE0F6EFEFC87D95 /* en_GB.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en_GB.lproj; path = GoogleSignIn/Sources/Strings/en_GB.lproj; sourceTree = "<group>"; };
 		0BA0D18C04C80A2948B0BDEC89843DBF /* GACAppCheckTokenRefreshResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GACAppCheckTokenRefreshResult.h; path = AppCheckCore/Sources/Core/TokenRefresh/GACAppCheckTokenRefreshResult.h; sourceTree = "<group>"; };
 		0BA7BD56214C9B2FFC7CC96575B7E867 /* ResourceBundle-kakao_flutter_sdk_common_privacy-kakao_flutter_sdk_common-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-kakao_flutter_sdk_common_privacy-kakao_flutter_sdk_common-Info.plist"; sourceTree = "<group>"; };
@@ -1251,7 +1252,6 @@
 		13CFC3F866401E4AE8F804723DC8ADF8 /* FIRApp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRApp.h; path = FirebaseCore/Sources/Public/FirebaseCore/FIRApp.h; sourceTree = "<group>"; };
 		13D5810AFA8EC892FF319C43B9B35218 /* AppAuth.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AppAuth.h; path = Sources/AppAuth.h; sourceTree = "<group>"; };
 		148D0F9E8C7373FEAF40D800FC5F1BAA /* FirebaseCoreInternal */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FirebaseCoreInternal; path = FirebaseCoreInternal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		14DB6C2C4225C5576A2AE45BF852DBF1 /* messages.g.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = messages.g.h; path = "../../../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/include/google_sign_in_ios/messages.g.h"; sourceTree = "<group>"; };
 		1573B05B485C736BED20901F83B279CD /* image_picker_ios-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "image_picker_ios-umbrella.h"; path = "../../../../../../../../../../../.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+2/ios/image_picker_ios/Sources/image_picker_ios/include/image_picker_ios-umbrella.h"; sourceTree = "<group>"; };
 		161AF4D7380612D0F5CFB9C5842203EA /* OIDExternalUserAgentRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OIDExternalUserAgentRequest.h; path = Sources/AppAuthCore/OIDExternalUserAgentRequest.h; sourceTree = "<group>"; };
 		161D9952C71BEFD6F59D4B07ABDD289C /* BTScrollViewDelegateHostApi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BTScrollViewDelegateHostApi.h; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTScrollViewDelegateHostApi.h"; sourceTree = "<group>"; };
@@ -1362,6 +1362,7 @@
 		3347A1AB6546F0A3977529B8F199DC41 /* PromisesObjC */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PromisesObjC; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33818CE642BF481B3D93ABDE7B3686EE /* OIDError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDError.m; path = Sources/AppAuthCore/OIDError.m; sourceTree = "<group>"; };
 		344937BCC27340AF69198C6259845808 /* AppAuth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AppAuth.debug.xcconfig; sourceTree = "<group>"; };
+		3484920123FD3E473DE87E3302D82A9B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = "../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/LICENSE"; sourceTree = "<group>"; };
 		34FE3B0B949373EA23915C47AA2F22E5 /* GIDTimedLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GIDTimedLoader.m; path = GoogleSignIn/Sources/GIDTimedLoader/GIDTimedLoader.m; sourceTree = "<group>"; };
 		359778F66AA891CCBFD1CDF1B1757F30 /* GIDSignInResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GIDSignInResult.h; path = GoogleSignIn/Sources/Public/GoogleSignIn/GIDSignInResult.h; sourceTree = "<group>"; };
 		3597AE81D7255765D3EFE33250B6E3B7 /* GACAppCheckLogger+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GACAppCheckLogger+Internal.h"; path = "AppCheckCore/Sources/Core/GACAppCheckLogger+Internal.h"; sourceTree = "<group>"; };
@@ -1373,6 +1374,7 @@
 		36C13DAF73DC2173C3FACCF1632635B4 /* NSBundle+GID3PAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+GID3PAdditions.m"; path = "GoogleSignIn/Sources/NSBundle+GID3PAdditions.m"; sourceTree = "<group>"; };
 		3712D216AC63B2F32E4E6BB88E6F415D /* GACAppCheckHTTPError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GACAppCheckHTTPError.m; path = AppCheckCore/Sources/Core/Errors/GACAppCheckHTTPError.m; sourceTree = "<group>"; };
 		377B4F30A67BC5851B38DAEAB206A454 /* GACAppCheckToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GACAppCheckToken.m; path = AppCheckCore/Sources/Core/GACAppCheckToken.m; sourceTree = "<group>"; };
+		37BE3EF335EB9B7204185997782FBA8A /* google_sign_in_ios.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = google_sign_in_ios.modulemap; sourceTree = "<group>"; };
 		3842BE95C1A3736D78EFD778A0B9DF00 /* GIDEMMSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GIDEMMSupport.h; path = GoogleSignIn/Sources/GIDEMMSupport.h; sourceTree = "<group>"; };
 		384EAB3CA1C1F996C77AFC622C6E5F04 /* path_provider_foundation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = path_provider_foundation.debug.xcconfig; sourceTree = "<group>"; };
 		38A51CA0AD1F5E6BA5137CB5A689452D /* SqflitePlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SqflitePlugin.h; path = "../../../../../../../../../../.pub-cache/hosted/pub.dev/sqflite_darwin-2.4.2/darwin/sqflite_darwin/Sources/sqflite_darwin/SqflitePlugin.h"; sourceTree = "<group>"; };
@@ -1402,7 +1404,6 @@
 		3F9CCDB9E01BDBBCDC15FA7A50819B91 /* shared_preferences_foundation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "shared_preferences_foundation-dummy.m"; sourceTree = "<group>"; };
 		3FD1B4C1246D643E9476438C28048FA8 /* AppAuth */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AppAuth; path = AppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FEAC06B9D4A6E85FDDD80C64CFDCBA3 /* SignInWithApplePlugin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SignInWithApplePlugin.m; path = "../../../../../../../../.pub-cache/hosted/pub.dev/sign_in_with_apple-7.0.1/ios/Classes/SignInWithApplePlugin.m"; sourceTree = "<group>"; };
-		40857A2022ACED006930A85E8FF03DF8 /* google_sign_in_ios-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "google_sign_in_ios-Info.plist"; sourceTree = "<group>"; };
 		40A419FA2CBE001D9CCA1591D966E905 /* FirebaseCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FirebaseCore.release.xcconfig; sourceTree = "<group>"; };
 		40B0DB8CE6FAF977576F4F7D3F248FD2 /* FBLPromise+Async.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Async.m"; path = "Sources/FBLPromises/FBLPromise+Async.m"; sourceTree = "<group>"; };
 		40D62E748BB7794964B9CA15E7AC3496 /* fluttertoast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = fluttertoast.debug.xcconfig; sourceTree = "<group>"; };
@@ -1443,7 +1444,6 @@
 		4DC4A70DA753DBDC895E185ADA09FC8B /* GIDEMMSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GIDEMMSupport.m; path = GoogleSignIn/Sources/GIDEMMSupport.m; sourceTree = "<group>"; };
 		4DC84DE58D454233E83325633750B359 /* GTMSessionUploadFetcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMSessionUploadFetcher.h; path = Sources/Core/Public/GTMSessionFetcher/GTMSessionUploadFetcher.h; sourceTree = "<group>"; };
 		4E011AB73FC6A8095CB6D4A2AFD24AD1 /* GACAppCheckErrorUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GACAppCheckErrorUtil.m; path = AppCheckCore/Sources/Core/Errors/GACAppCheckErrorUtil.m; sourceTree = "<group>"; };
-		4E49C3F4C534692652A71DFB760BBF2D /* google_sign_in_ios-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "google_sign_in_ios-umbrella.h"; path = "../../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/include/google_sign_in_ios-umbrella.h"; sourceTree = "<group>"; };
 		4E5ACD5B7A277E42A67E8B445B5D9F0F /* GIDAppCheck.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GIDAppCheck.m; path = GoogleSignIn/Sources/GIDAppCheck/Implementations/GIDAppCheck.m; sourceTree = "<group>"; };
 		4E60962D70EFBA670A5159361148F852 /* AuthSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthSession.swift; path = GTMAppAuth/Sources/AuthSession.swift; sourceTree = "<group>"; };
 		4E79639654FE548574780429CE272EE2 /* DCDevice+GACDeviceCheckTokenGenerator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "DCDevice+GACDeviceCheckTokenGenerator.m"; path = "AppCheckCore/Sources/DeviceCheckProvider/DCDevice+GACDeviceCheckTokenGenerator.m"; sourceTree = "<group>"; };
@@ -1454,6 +1454,7 @@
 		4EF5566D34BD5C0F3C9AB4ABED455EB3 /* GACAppCheckDebugProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GACAppCheckDebugProvider.m; path = AppCheckCore/Sources/DebugProvider/GACAppCheckDebugProvider.m; sourceTree = "<group>"; };
 		4FADD70996D153C337519CB0D0B95499 /* GIDAppCheckProviderFake.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GIDAppCheckProviderFake.h; path = GoogleSignIn/Sources/GIDAppCheck/Implementations/Fake/GIDAppCheckProviderFake.h; sourceTree = "<group>"; };
 		4FE20B1CF8B318A8D9591ED1587D7592 /* sqflite_darwin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = sqflite_darwin; path = sqflite_darwin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50072FA2EEC0F82960485CC15D1E1D70 /* FLTGoogleSignInPlugin_Test.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLTGoogleSignInPlugin_Test.h; path = "../../../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/include/google_sign_in_ios/FLTGoogleSignInPlugin_Test.h"; sourceTree = "<group>"; };
 		5055652AEC1F3DFE3BC9C31988FAF1FF /* BTScrollViewDelegateHostApi.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BTScrollViewDelegateHostApi.m; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTScrollViewDelegateHostApi.m"; sourceTree = "<group>"; };
 		508887777D19741915E71BB1294FDC14 /* BTNavigationDelegateHostApi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BTNavigationDelegateHostApi.h; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTNavigationDelegateHostApi.h"; sourceTree = "<group>"; };
 		50D16F0A4DAAA0D54571C1A5F0218192 /* google.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = google.png; path = GoogleSignIn/Sources/Resources/google.png; sourceTree = "<group>"; };
@@ -1463,6 +1464,7 @@
 		520210F3ADAB1D6F41623BE32227DFD5 /* GTMGatherInputStream.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GTMGatherInputStream.m; path = Sources/Full/GTMGatherInputStream.m; sourceTree = "<group>"; };
 		5273C271AAAA4D7EC0466B8EF8157750 /* ResourceBundle-GoogleUtilities_Privacy-GoogleUtilities-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-GoogleUtilities_Privacy-GoogleUtilities-Info.plist"; sourceTree = "<group>"; };
 		53171D4B96BE44A6912C056C6B16AF63 /* GACAppCheckLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GACAppCheckLogger.h; path = AppCheckCore/Sources/Public/AppCheckCore/GACAppCheckLogger.h; sourceTree = "<group>"; };
+		5329B6BBA170B7AE16A29026BA1F79D4 /* ResourceBundle-google_sign_in_ios_privacy-google_sign_in_ios-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-google_sign_in_ios_privacy-google_sign_in_ios-Info.plist"; sourceTree = "<group>"; };
 		53EF9FE423B186FC0451D34DF6FE5C86 /* SqfliteImportPublic.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SqfliteImportPublic.h; path = "../../../../../../../../../../../../.pub-cache/hosted/pub.dev/sqflite_darwin-2.4.2/darwin/sqflite_darwin/Sources/sqflite_darwin/include/sqflite_darwin/SqfliteImportPublic.h"; sourceTree = "<group>"; };
 		546B74B5F48FFEF27B24E818B47C57AB /* ko.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ko.lproj; path = GoogleSignIn/Sources/Strings/ko.lproj; sourceTree = "<group>"; };
 		54978384C3CAC4FA6A2E756D2ECD8B40 /* DCDevice+GACDeviceCheckTokenGenerator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "DCDevice+GACDeviceCheckTokenGenerator.h"; path = "AppCheckCore/Sources/DeviceCheckProvider/DCDevice+GACDeviceCheckTokenGenerator.h"; sourceTree = "<group>"; };
@@ -1520,11 +1522,12 @@
 		62DBAA17FB5C2CC0995CAF0BAD556356 /* GACAppAttestAttestationResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GACAppAttestAttestationResponse.m; path = AppCheckCore/Sources/AppAttestProvider/API/GACAppAttestAttestationResponse.m; sourceTree = "<group>"; };
 		633D89F558CB26E5121BB755CFA7F6B6 /* auth_button_kit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "auth_button_kit-Info.plist"; sourceTree = "<group>"; };
 		634F8E98E965FF930AEBFBA1BD0DEA6F /* HeartbeatsBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeartbeatsBundle.swift; path = FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsBundle.swift; sourceTree = "<group>"; };
-		635C38E4A4A64C3E416D5F79A512CAD6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = "../../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/Resources/PrivacyInfo.xcprivacy"; sourceTree = "<group>"; };
 		63AAA0C3FCA5E65E8D9F6FC055380543 /* messages.g.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = messages.g.h; path = "../../../../../../../../../../../../.pub-cache/hosted/pub.dev/firebase_core-3.14.0/ios/firebase_core/Sources/firebase_core/include/firebase_core/messages.g.h"; sourceTree = "<group>"; };
 		63BB6ED8EAAC371F82DBC33461ACAA4B /* sign_in_with_apple.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = sign_in_with_apple.debug.xcconfig; sourceTree = "<group>"; };
 		63DB0D255EFFD30C65D46923DD2EBE38 /* FirebaseCore-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FirebaseCore-umbrella.h"; sourceTree = "<group>"; };
+		63FAB60392546680360C0A2B9F5F94F1 /* FLTGoogleSignInPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLTGoogleSignInPlugin.h; path = "../../../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/include/google_sign_in_ios/FLTGoogleSignInPlugin.h"; sourceTree = "<group>"; };
 		647147D149E10718A4FA210AE278B262 /* GULNetworkInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULNetworkInfo.h; path = GoogleUtilities/Environment/Public/GoogleUtilities/GULNetworkInfo.h; sourceTree = "<group>"; };
+		64D3D799CBC02D820E7815054A5F3E99 /* FLTGoogleSignInPlugin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLTGoogleSignInPlugin.m; path = "../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/FLTGoogleSignInPlugin.m"; sourceTree = "<group>"; };
 		64DF96C15FD80DB9D866D45DE844AA25 /* OIDIDToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OIDIDToken.h; path = Sources/AppAuthCore/OIDIDToken.h; sourceTree = "<group>"; };
 		64DFA18FCF025E96D8801447C3D8B102 /* path_provider_foundation.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = path_provider_foundation.podspec; path = "../../../../../../../.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/darwin/path_provider_foundation.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		64F98FD698FEE051D74D517671319805 /* UIView+Toast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+Toast.h"; path = "../../../../../../../../.pub-cache/hosted/pub.dev/fluttertoast-8.2.12/ios/Classes/UIView+Toast.h"; sourceTree = "<group>"; };
@@ -1561,6 +1564,7 @@
 		6DBF810DC2662CA6E8235836E69DB476 /* BTURLHostApi.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BTURLHostApi.m; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTURLHostApi.m"; sourceTree = "<group>"; };
 		6DCF39BE0CA27B095ED9F0E38A7002FF /* AtomicBox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomicBox.swift; path = FirebaseCore/Internal/Sources/Utilities/AtomicBox.swift; sourceTree = "<group>"; };
 		6E00CFEB506932D689AD34B1E3839271 /* SwiftKakaoFlutterSdkPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftKakaoFlutterSdkPlugin.swift; path = "../../../../../../../../.pub-cache/hosted/pub.dev/kakao_flutter_sdk_common-1.9.7+3/ios/Classes/SwiftKakaoFlutterSdkPlugin.swift"; sourceTree = "<group>"; };
+		6E29EA8E104E7CB1AA451E482BB1D9CB /* google_sign_in_ios-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "google_sign_in_ios-prefix.pch"; sourceTree = "<group>"; };
 		6E76AFE3F36B945B5CBCFA2714D25183 /* GIDGoogleUser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GIDGoogleUser.m; path = GoogleSignIn/Sources/GIDGoogleUser.m; sourceTree = "<group>"; };
 		6E82639F8632CF2A045118B83484C009 /* pt_BR.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pt_BR.lproj; path = GoogleSignIn/Sources/Strings/pt_BR.lproj; sourceTree = "<group>"; };
 		6EB23E2648FBF7F95C468AD69753CF5A /* FirebaseCore.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FirebaseCore.modulemap; sourceTree = "<group>"; };
@@ -1570,17 +1574,15 @@
 		6F7AEF2E37507DC30F97CE658F4410D3 /* OIDAuthorizationService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OIDAuthorizationService.h; path = Sources/AppAuthCore/OIDAuthorizationService.h; sourceTree = "<group>"; };
 		6FD122EA0AB9AB2A8FFA5F676C795DF0 /* GTMAppAuth */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GTMAppAuth; path = GTMAppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FE273BFF2695137CB51ABE168E504A5 /* GACURLSessionDataResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GACURLSessionDataResponse.m; path = AppCheckCore/Sources/Core/APIService/GACURLSessionDataResponse.m; sourceTree = "<group>"; };
-		704F111375F45960B8572356784DA7E6 /* FLTGoogleSignInPlugin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLTGoogleSignInPlugin.m; path = "../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/FLTGoogleSignInPlugin.m"; sourceTree = "<group>"; };
 		70EF4FE3317AA2D63DC74CCA2C91DFFE /* GACAppCheckStoredToken+GACAppCheckToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GACAppCheckStoredToken+GACAppCheckToken.h"; path = "AppCheckCore/Sources/Core/Storage/GACAppCheckStoredToken+GACAppCheckToken.h"; sourceTree = "<group>"; };
 		70F72EAA10734289F239CE80CC3A1B6F /* ResourceBundle-GoogleSignIn-GoogleSignIn-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-GoogleSignIn-GoogleSignIn-Info.plist"; sourceTree = "<group>"; };
 		712B26F4EEAD3D558F8588203F5F369E /* GULNSData+zlib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GULNSData+zlib.h"; path = "GoogleUtilities/NSData+zlib/Public/GoogleUtilities/GULNSData+zlib.h"; sourceTree = "<group>"; };
-		7173E34BBB01CD80BA31996908E35819 /* google_sign_in_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = google_sign_in_ios.debug.xcconfig; sourceTree = "<group>"; };
 		71792053F096F6EF882A23BC5B1873ED /* FBLPromise+Retry.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Retry.m"; path = "Sources/FBLPromises/FBLPromise+Retry.m"; sourceTree = "<group>"; };
 		728392CB45FEA07EADC7E246073BB55A /* GTMSessionFetcherService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMSessionFetcherService.h; path = Sources/Core/Public/GTMSessionFetcher/GTMSessionFetcherService.h; sourceTree = "<group>"; };
-		7287D000FD8BB16FD77606C3AD4F11DA /* ResourceBundle-google_sign_in_ios_privacy-google_sign_in_ios-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-google_sign_in_ios_privacy-google_sign_in_ios-Info.plist"; sourceTree = "<group>"; };
 		733126FDE1370F28A4963E5F9FD9422E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = "../../../../../../../../../../../.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/darwin/shared_preferences_foundation/Sources/shared_preferences_foundation/Resources/PrivacyInfo.xcprivacy"; sourceTree = "<group>"; };
 		7355D3B5C4FA554A2061A2FEFD099A08 /* kakao_flutter_sdk_common-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "kakao_flutter_sdk_common-umbrella.h"; sourceTree = "<group>"; };
 		736BB93E9EABAA2290014BF2C3D62CE2 /* GACAppCheckHTTPError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GACAppCheckHTTPError.h; path = AppCheckCore/Sources/Core/Errors/GACAppCheckHTTPError.h; sourceTree = "<group>"; };
+		73F19D607BF2DEF259820AEAAF764477 /* google_sign_in_ios-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "google_sign_in_ios-dummy.m"; sourceTree = "<group>"; };
 		74C2AD9D2AC51CAEFEDD6F3DD53FC92E /* GTMMIMEDocument.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GTMMIMEDocument.m; path = Sources/Full/GTMMIMEDocument.m; sourceTree = "<group>"; };
 		74FCC14AD40E5C4FD89182FE322F988B /* ResourceBundle-AppAuthCore_Privacy-AppAuth-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-AppAuthCore_Privacy-AppAuth-Info.plist"; sourceTree = "<group>"; };
 		7526997858A8E5B64B88C2C20D5E9662 /* KeychainAttribute.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainAttribute.swift; path = GTMAppAuth/Sources/KeychainStore/KeychainAttribute.swift; sourceTree = "<group>"; };
@@ -1602,9 +1604,9 @@
 		78D1A2A9AE867A4206245B1FC81941A3 /* FLTImagePickerPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLTImagePickerPlugin.h; path = "../../../../../../../../../../../../.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+2/ios/image_picker_ios/Sources/image_picker_ios/include/image_picker_ios/FLTImagePickerPlugin.h"; sourceTree = "<group>"; };
 		7969DF7ACEFF52A956555E1F2C9F64BE /* BTUserContentControllerHostApi.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BTUserContentControllerHostApi.m; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTUserContentControllerHostApi.m"; sourceTree = "<group>"; };
 		798D72A0FB7F6B9B19FCC8A7D7EBD890 /* BTHTTPCookieStoreHostApi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BTHTTPCookieStoreHostApi.h; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTHTTPCookieStoreHostApi.h"; sourceTree = "<group>"; };
-		799E44F48A87AB611EB27CB7DE31E2E8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = "../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/LICENSE"; sourceTree = "<group>"; };
 		79D38C5E4B84970AF7857655FF3D9B55 /* shared_preferences_foundation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = shared_preferences_foundation.modulemap; sourceTree = "<group>"; };
 		7A41FD37D4D23F40BE8A14D99129FD5A /* PathProviderPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PathProviderPlugin.swift; path = "../../../../../../../../../../.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/darwin/path_provider_foundation/Sources/path_provider_foundation/PathProviderPlugin.swift"; sourceTree = "<group>"; };
+		7A9ED3F035C83DB39C6BE64AD63B2189 /* FLTGoogleSignInPlugin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = FLTGoogleSignInPlugin.modulemap; path = "../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/include/FLTGoogleSignInPlugin.modulemap"; sourceTree = "<group>"; };
 		7AC128EDBFA1D5DE1A75B757214A6DCC /* bootpay_webview_flutter_wkwebview.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = bootpay_webview_flutter_wkwebview.modulemap; sourceTree = "<group>"; };
 		7BBCE5765C0C3134A1282F8C6C7B8A74 /* id.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = id.lproj; path = GoogleSignIn/Sources/Strings/id.lproj; sourceTree = "<group>"; };
 		7CE94F34A7704E5F74375D77B038ABF1 /* sign_in_with_apple */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = sign_in_with_apple; path = sign_in_with_apple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1659,7 +1661,9 @@
 		8A2DDEA5F8E7BCBF93FA0700BA85661B /* OIDEndSessionRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDEndSessionRequest.m; path = Sources/AppAuthCore/OIDEndSessionRequest.m; sourceTree = "<group>"; };
 		8A415014EC2157EED9F2107B6AC6DCD0 /* BTWebViewFlutterPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BTWebViewFlutterPlugin.h; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTWebViewFlutterPlugin.h"; sourceTree = "<group>"; };
 		8A432929F7E93D3E1AA06A4A8668C699 /* Pods-RunnerTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RunnerTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8AA2F9DB0A6910D6E69A00FB12961313 /* google_sign_in_ios-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "google_sign_in_ios-umbrella.h"; path = "../../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/include/google_sign_in_ios-umbrella.h"; sourceTree = "<group>"; };
 		8BB937B1C0DFFCF92F41861C2BC54DDA /* FirebaseCore-FirebaseCore_Privacy */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "FirebaseCore-FirebaseCore_Privacy"; path = FirebaseCore_Privacy.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C22A88E5921E2841F73BACB060452DC /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = "../../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/Resources/PrivacyInfo.xcprivacy"; sourceTree = "<group>"; };
 		8D1AB3AC5C19C58234E310801D9B12E6 /* GACAppAttestAPIService.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GACAppAttestAPIService.m; path = AppCheckCore/Sources/AppAttestProvider/API/GACAppAttestAPIService.m; sourceTree = "<group>"; };
 		8D892BAA1C56AD79355C6A50458D855F /* GIDEMMErrorHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GIDEMMErrorHandler.h; path = GoogleSignIn/Sources/GIDEMMErrorHandler.h; sourceTree = "<group>"; };
 		8DBA037B0D16AB3F842FCCAFA6DEDC65 /* Storage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Storage.swift; path = FirebaseCore/Internal/Sources/HeartbeatLogging/Storage.swift; sourceTree = "<group>"; };
@@ -1671,6 +1675,7 @@
 		90E5C891E0D930AD7D26E5A7CD4A2ECA /* FIRFirebaseUserAgent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRFirebaseUserAgent.m; path = FirebaseCore/Sources/FIRFirebaseUserAgent.m; sourceTree = "<group>"; };
 		90ED11E670B1D46A5DC3C92B531BDEBF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Sources/Full/Resources/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		91355D74814DD4AB3EF2B8EF2F84AF2F /* flutter_secure_storage-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "flutter_secure_storage-Info.plist"; sourceTree = "<group>"; };
+		913661B81292D0676AAA26D56030205C /* google_sign_in_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = google_sign_in_ios.release.xcconfig; sourceTree = "<group>"; };
 		913938B57CE3BADCD98E8503EB91664F /* kakao_flutter_sdk_common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = kakao_flutter_sdk_common.podspec; path = "../../../../../../../.pub-cache/hosted/pub.dev/kakao_flutter_sdk_common-1.9.7+3/ios/kakao_flutter_sdk_common.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		91D2ED2D905484BCD361471256D9AAB3 /* OIDResponseTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDResponseTypes.m; path = Sources/AppAuthCore/OIDResponseTypes.m; sourceTree = "<group>"; };
 		925D120D2B70469C1D4A2F1726E14438 /* SqfliteOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SqfliteOperation.m; path = "../../../../../../../../../../.pub-cache/hosted/pub.dev/sqflite_darwin-2.4.2/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteOperation.m"; sourceTree = "<group>"; };
@@ -1678,7 +1683,6 @@
 		934C87367DA3CF3D47521E6934E9E670 /* flutter_secure_storage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = flutter_secure_storage.debug.xcconfig; sourceTree = "<group>"; };
 		939E5B97480D364636BA3574CB6E06F6 /* th.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = th.lproj; path = GoogleSignIn/Sources/Strings/th.lproj; sourceTree = "<group>"; };
 		93C6A45C6E4792269BE9BE0073839BF0 /* shared_preferences_foundation */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = shared_preferences_foundation; path = shared_preferences_foundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		94E1B3BC89187A7C24A7DF02489434B4 /* google_sign_in_ios.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = google_sign_in_ios.podspec; path = "../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/darwin/google_sign_in_ios.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9508F0D4894B41D096B537682FCDD819 /* FLTImagePickerImageUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLTImagePickerImageUtil.m; path = "../../../../../../../../../../.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+2/ios/image_picker_ios/Sources/image_picker_ios/FLTImagePickerImageUtil.m"; sourceTree = "<group>"; };
 		95295FEFDED28B7A728531B88DFBC67C /* GIDCallbackQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GIDCallbackQueue.h; path = GoogleSignIn/Sources/GIDCallbackQueue.h; sourceTree = "<group>"; };
 		95591B756647A1DC8DF4E1DA55C268D2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = GTMAppAuth/Sources/Resources/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -1718,6 +1722,7 @@
 		A1C4A2B087BA371C4A637786AA4BC7ED /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Resources/PrivacyInfo.xcprivacy"; sourceTree = "<group>"; };
 		A1EC053976988BC50D47AF95E84F2D88 /* NSURLSession+GACPromises.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLSession+GACPromises.h"; path = "AppCheckCore/Sources/Core/APIService/NSURLSession+GACPromises.h"; sourceTree = "<group>"; };
 		A1F8F84D88D95E024735B541E24091EA /* FLTImagePickerPhotoAssetUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLTImagePickerPhotoAssetUtil.h; path = "../../../../../../../../../../../../.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+2/ios/image_picker_ios/Sources/image_picker_ios/include/image_picker_ios/FLTImagePickerPhotoAssetUtil.h"; sourceTree = "<group>"; };
+		A211CAD503C55EB1DF8089F01FAB7042 /* messages.g.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = messages.g.h; path = "../../../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/include/google_sign_in_ios/messages.g.h"; sourceTree = "<group>"; };
 		A250C817B95826F2DD629994239982D6 /* OIDAuthStateChangeDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OIDAuthStateChangeDelegate.h; path = Sources/AppAuthCore/OIDAuthStateChangeDelegate.h; sourceTree = "<group>"; };
 		A2928BF04D2361612D8640001B86955A /* FirebaseCoreInternal-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FirebaseCoreInternal-umbrella.h"; sourceTree = "<group>"; };
 		A3E6072092FB0E1C1121598DF3256DC1 /* OIDAuthorizationService.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDAuthorizationService.m; path = Sources/AppAuthCore/OIDAuthorizationService.m; sourceTree = "<group>"; };
@@ -1735,9 +1740,9 @@
 		AA0C5B51A205554F254B57780FC09096 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Sources/AppAuthCore/Resources/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA38709ECAEAD6150F1C0A23B0429C2B /* GULNetworkInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GULNetworkInfo.m; path = GoogleUtilities/Environment/NetworkInfo/GULNetworkInfo.m; sourceTree = "<group>"; };
 		AA7DB21B92489F4661D0FCC1DC649157 /* BTURLCredentialHostApi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BTURLCredentialHostApi.h; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTURLCredentialHostApi.h"; sourceTree = "<group>"; };
-		AAC782B5D0864D905368EF478BC02B49 /* google_sign_in_ios.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = google_sign_in_ios.modulemap; sourceTree = "<group>"; };
 		AB0E94AD46AAE5F7A4A2F80955860019 /* image_picker_ios.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = image_picker_ios.modulemap; sourceTree = "<group>"; };
 		AB7CF90EDEBC97493A1664841A1F17C2 /* package_info_plus.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = package_info_plus.podspec; path = "../../../../../../../.pub-cache/hosted/pub.dev/package_info_plus-8.3.0/ios/package_info_plus.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AC046E14D1EC4C43FEC34082C7812382 /* google_sign_in_ios.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = google_sign_in_ios.podspec; path = "../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/darwin/google_sign_in_ios.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ACA397CC27379A504E08C4CF6408F09D /* GTMAppAuth-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GTMAppAuth-dummy.m"; sourceTree = "<group>"; };
 		ACCBC0D4497DD93A773D82D5FB4BE419 /* OIDAuthorizationService+IOS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "OIDAuthorizationService+IOS.h"; path = "Sources/AppAuth/iOS/OIDAuthorizationService+IOS.h"; sourceTree = "<group>"; };
 		AD18CE429103A565382A915802C11C2A /* OIDErrorUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDErrorUtilities.m; path = Sources/AppAuthCore/OIDErrorUtilities.m; sourceTree = "<group>"; };
@@ -1754,7 +1759,6 @@
 		B0800404C9F9EEBB89A8ACA5B21431CB /* sv.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = sv.lproj; path = GoogleSignIn/Sources/Strings/sv.lproj; sourceTree = "<group>"; };
 		B0B9B9F9A300B05C115A98B19C78F963 /* google_sign_in_ios */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = google_sign_in_ios; path = google_sign_in_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C9A8E2B50C8F6466C0B0F9E83E8217 /* sign_in_with_apple-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "sign_in_with_apple-dummy.m"; sourceTree = "<group>"; };
-		B0CB59119C0867B65D0589B76D246D1D /* google_sign_in_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = google_sign_in_ios.release.xcconfig; sourceTree = "<group>"; };
 		B0F225C89E3C5D8C6CAB3CA889DC3B53 /* FBLPromiseError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBLPromiseError.h; path = Sources/FBLPromises/include/FBLPromiseError.h; sourceTree = "<group>"; };
 		B1061822D30565D1B02B61E3F12EA1A9 /* objectbox_flutter_libs-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "objectbox_flutter_libs-prefix.pch"; sourceTree = "<group>"; };
 		B12E6AC5F19D9454CE13200434C879FB /* SqfliteDarwinDatabaseAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SqfliteDarwinDatabaseAdditions.h; path = "../../../../../../../../../../.pub-cache/hosted/pub.dev/sqflite_darwin-2.4.2/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteDarwinDatabaseAdditions.h"; sourceTree = "<group>"; };
@@ -1769,6 +1773,7 @@
 		B46CC14F5020A277B322D80BA336BC10 /* AppCheckCore */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AppCheckCore; path = AppCheckCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47ECAA2DCBDA0A4AC3EE5D017A09DFD /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = GoogleSignIn/Sources/Strings/de.lproj; sourceTree = "<group>"; };
 		B53854AC1D55C51559FCF4421FDB3C88 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = "../../../../../../../../.pub-cache/hosted/pub.dev/kakao_flutter_sdk_common-1.9.7+3/ios/Resources/PrivacyInfo.xcprivacy"; sourceTree = "<group>"; };
+		B5470E58A6442AE492EC24560194E63A /* google_sign_in_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = google_sign_in_ios.debug.xcconfig; sourceTree = "<group>"; };
 		B59189F52DF4C7578C7BF0C978F983C4 /* GACAppCheckStoredToken+GACAppCheckToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "GACAppCheckStoredToken+GACAppCheckToken.m"; path = "AppCheckCore/Sources/Core/Storage/GACAppCheckStoredToken+GACAppCheckToken.m"; sourceTree = "<group>"; };
 		B64CFFDAD119DBDF0106CEC8115BF4C3 /* ObjectBox.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = ObjectBox.xcframework; sourceTree = "<group>"; };
 		B67BA0B88F2A38BDCA5ED63A8AE3B65F /* hr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = hr.lproj; path = GoogleSignIn/Sources/Strings/hr.lproj; sourceTree = "<group>"; };
@@ -1789,7 +1794,6 @@
 		BA4F0D67C3BC2C2FC9E4BA7777ED0639 /* GIDGoogleUser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GIDGoogleUser.h; path = GoogleSignIn/Sources/Public/GoogleSignIn/GIDGoogleUser.h; sourceTree = "<group>"; };
 		BB42E564EE6DFAB911B327FAFF514CF4 /* OIDScopeUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDScopeUtilities.m; path = Sources/AppAuthCore/OIDScopeUtilities.m; sourceTree = "<group>"; };
 		BB5F148768D436A10134F11D5AE608D0 /* OIDServiceConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OIDServiceConfiguration.h; path = Sources/AppAuthCore/OIDServiceConfiguration.h; sourceTree = "<group>"; };
-		BBAE25EA0820A2BB2FA6D37BA969D18F /* FLTGoogleSignInPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLTGoogleSignInPlugin.h; path = "../../../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/include/google_sign_in_ios/FLTGoogleSignInPlugin.h"; sourceTree = "<group>"; };
 		BBCCCC12F714F0964687624464243B54 /* bootpay_webview_flutter_wkwebview-bootpay_webview_flutter_wkwebview_privacy */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "bootpay_webview_flutter_wkwebview-bootpay_webview_flutter_wkwebview_privacy"; path = bootpay_webview_flutter_wkwebview_privacy.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBF93DAF7DF3C80BC2A6ADA5B38BC529 /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.lproj; path = GoogleSignIn/Sources/Strings/ru.lproj; sourceTree = "<group>"; };
 		BCA1F89DF8EFF6010B52572FE9BC106D /* BTGeneratedWebKitApis.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BTGeneratedWebKitApis.m; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTGeneratedWebKitApis.m"; sourceTree = "<group>"; };
@@ -1813,7 +1817,6 @@
 		C42F9C9F373AC9831634D156770F4BE8 /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pt.lproj; path = GoogleSignIn/Sources/Strings/pt.lproj; sourceTree = "<group>"; };
 		C475D929A8CB8495AFD17FC732CB2346 /* GoogleSignIn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleSignIn.debug.xcconfig; sourceTree = "<group>"; };
 		C4792ABCA43D7FEA0A264411776D29DE /* GoogleUtilities.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleUtilities.debug.xcconfig; sourceTree = "<group>"; };
-		C4CFCFBB4BC136EDA95453112B65ADF9 /* FLTGoogleSignInPlugin_Test.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLTGoogleSignInPlugin_Test.h; path = "../../../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/include/google_sign_in_ios/FLTGoogleSignInPlugin_Test.h"; sourceTree = "<group>"; };
 		C5053B8C10B62C67DD8580A9479E10BB /* GTMSessionFetcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GTMSessionFetcher.debug.xcconfig; sourceTree = "<group>"; };
 		C5F32FB73295737A88FAED5FCF9BD33A /* messages.g.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = messages.g.m; path = "../../../../../../../../../../.pub-cache/hosted/pub.dev/firebase_core-3.14.0/ios/firebase_core/Sources/firebase_core/messages.g.m"; sourceTree = "<group>"; };
 		C665FD9493229CD87A54C3DD4D30F781 /* AppAuth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AppAuth.release.xcconfig; sourceTree = "<group>"; };
@@ -1869,6 +1872,7 @@
 		D94F3E7C11F476993B8FF69EBEBD2583 /* GIDMDMPasscodeState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GIDMDMPasscodeState.m; path = GoogleSignIn/Sources/GIDMDMPasscodeState.m; sourceTree = "<group>"; };
 		D954468467363503AC0AC6A413F1F6CF /* GACAppCheckStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GACAppCheckStorage.m; path = AppCheckCore/Sources/Core/Storage/GACAppCheckStorage.m; sourceTree = "<group>"; };
 		D9A55684DC802811F468AACE8B6CCD47 /* GIDCallbackQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GIDCallbackQueue.m; path = GoogleSignIn/Sources/GIDCallbackQueue.m; sourceTree = "<group>"; };
+		DA08CEA22F31502DF6B43709B0327083 /* messages.g.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = messages.g.m; path = "../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/messages.g.m"; sourceTree = "<group>"; };
 		DA0C8E4A1DAFC158C8B8845D021E6531 /* GTMAppAuth-GTMAppAuth_Privacy */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "GTMAppAuth-GTMAppAuth_Privacy"; path = GTMAppAuth_Privacy.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC84E5984128D6C1ADDED9BB77032CB /* ResourceBundle-FBLPromises_Privacy-PromisesObjC-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-FBLPromises_Privacy-PromisesObjC-Info.plist"; sourceTree = "<group>"; };
 		DB44BC48FC4CD88F10CB969FA6C910E5 /* ResourceBundle-sqflite_darwin_privacy-sqflite_darwin-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-sqflite_darwin_privacy-sqflite_darwin-Info.plist"; sourceTree = "<group>"; };
@@ -1969,22 +1973,18 @@
 		F9BF8B5896EAC81A4D36516CFE42168C /* GACAppCheckAPIService.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GACAppCheckAPIService.m; path = AppCheckCore/Sources/Core/APIService/GACAppCheckAPIService.m; sourceTree = "<group>"; };
 		F9D74507663F1D840BC5C007EDC4B6ED /* FlutterSecureStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FlutterSecureStorage.swift; path = "../../../../../../../../.pub-cache/hosted/pub.dev/flutter_secure_storage-9.2.4/ios/Classes/FlutterSecureStorage.swift"; sourceTree = "<group>"; };
 		FA1FE869311DFAC969E767214477C39F /* fr_CA.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr_CA.lproj; path = GoogleSignIn/Sources/Strings/fr_CA.lproj; sourceTree = "<group>"; };
-		FA2A68BE6420C22895B6016392056081 /* google_sign_in_ios-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "google_sign_in_ios-dummy.m"; sourceTree = "<group>"; };
 		FA2EC40A9BD188ED01B987572A1FC271 /* GIDConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GIDConfiguration.m; path = GoogleSignIn/Sources/GIDConfiguration.m; sourceTree = "<group>"; };
 		FA5C5B2B238EF81DD89AA3F1ABBEB2C2 /* GACAppAttestRejectionError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GACAppAttestRejectionError.m; path = AppCheckCore/Sources/AppAttestProvider/Errors/GACAppAttestRejectionError.m; sourceTree = "<group>"; };
 		FA79BF8CC1E870373ABA0723066308F6 /* SignInWithAppleUnavailablePlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SignInWithAppleUnavailablePlugin.swift; path = "../../../../../../../../.pub-cache/hosted/pub.dev/sign_in_with_apple-7.0.1/ios/Classes/SignInWithAppleUnavailablePlugin.swift"; sourceTree = "<group>"; };
 		FA7A4BCCFC7F2926B1A2F2D20B49751E /* fluttertoast-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "fluttertoast-Info.plist"; sourceTree = "<group>"; };
 		FAA9AB1E284D7924067134E42DA1CA7C /* GIDAuthStateMigration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GIDAuthStateMigration.m; path = GoogleSignIn/Sources/GIDAuthStateMigration.m; sourceTree = "<group>"; };
 		FB1A824070D0587103BA8CA6274CAA4F /* firebase_core.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = firebase_core.debug.xcconfig; sourceTree = "<group>"; };
-		FB821E797D177223F95980C95F9C3BF7 /* messages.g.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = messages.g.m; path = "../../../../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/messages.g.m"; sourceTree = "<group>"; };
 		FB92FFD9CA3E846990F86CCB6B020609 /* Flutter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Flutter.debug.xcconfig; sourceTree = "<group>"; };
 		FC2E721D1C17456380B853CBD476DBE8 /* BTScriptMessageHandlerHostApi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BTScriptMessageHandlerHostApi.h; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTScriptMessageHandlerHostApi.h"; sourceTree = "<group>"; };
 		FC95BD7D99CCF2FE0C96281B7800E38F /* FIRHeartbeatLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRHeartbeatLogger.m; path = FirebaseCore/Sources/FIRHeartbeatLogger.m; sourceTree = "<group>"; };
 		FD3AF1877D9434B8E88F3BBE7A2B49FF /* BTPreferencesHostApi.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BTPreferencesHostApi.m; path = "../../../../../../../../.pub-cache/hosted/pub.dev/bootpay_webview_flutter_wkwebview-3.13.15/ios/Classes/BTPreferencesHostApi.m"; sourceTree = "<group>"; };
 		FD56AB51475BC5F592781EE2692D1412 /* GoogleSignIn */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GoogleSignIn; path = GoogleSignIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD7DA183FB9F800A0835C0ED25164EFB /* OIDExternalUserAgentIOSCustomBrowser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDExternalUserAgentIOSCustomBrowser.m; path = Sources/AppAuth/iOS/OIDExternalUserAgentIOSCustomBrowser.m; sourceTree = "<group>"; };
-		FEAA72329F1CBD1538A93AEE5C56AA4B /* google_sign_in_ios-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "google_sign_in_ios-prefix.pch"; sourceTree = "<group>"; };
-		FEBF0DAFFEF1D760F81BA9837E081054 /* FLTGoogleSignInPlugin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = FLTGoogleSignInPlugin.modulemap; path = "../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/darwin/google_sign_in_ios/Sources/google_sign_in_ios/include/FLTGoogleSignInPlugin.modulemap"; sourceTree = "<group>"; };
 		FF1E00596EF06BFF8DB32AE1820624C7 /* OIDTokenUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDTokenUtilities.m; path = Sources/AppAuthCore/OIDTokenUtilities.m; sourceTree = "<group>"; };
 		FFA1C2427F42A8A3804063E57EDB7586 /* SignInWithAppleError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SignInWithAppleError.swift; path = "../../../../../../../../.pub-cache/hosted/pub.dev/sign_in_with_apple-7.0.1/ios/Classes/SignInWithAppleError.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2360,6 +2360,15 @@
 			path = "../Target Support Files/GoogleSignIn";
 			sourceTree = "<group>";
 		};
+		00A8913B9DAD1D765D3C23C6B915810E /* google_sign_in_ios */ = {
+			isa = PBXGroup;
+			children = (
+				F859272313C052E7B8696B6B539E82C6 /* Sources */,
+			);
+			name = google_sign_in_ios;
+			path = google_sign_in_ios;
+			sourceTree = "<group>";
+		};
 		010202095FBC0C7ADFF9D911562C9BDC /* .. */ = {
 			isa = PBXGroup;
 			children = (
@@ -2367,6 +2376,15 @@
 			);
 			name = ..;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		0114D94CE2D341A20D869FE1A4B24473 /* .symlinks */ = {
+			isa = PBXGroup;
+			children = (
+				28D82F728F6C764187E9E5E9092A87ED /* plugins */,
+			);
+			name = .symlinks;
+			path = .symlinks;
 			sourceTree = "<group>";
 		};
 		01C6CBE2D5B930BF4DF93F45C1D0F451 /* .. */ = {
@@ -2475,6 +2493,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		0717F7E88E0C22C50CA7847762EBCA9C /* sottie-flutter */ = {
+			isa = PBXGroup;
+			children = (
+				2B1B628EFD8AF94D7C6EFEB7E974AC4A /* ios */,
+			);
+			name = "sottie-flutter";
+			path = "sottie-flutter";
+			sourceTree = "<group>";
+		};
 		076D0024BF47EA3A0C70265E16580391 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -2499,15 +2526,6 @@
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		08658325F2982AF443506C93302CEF8F /* plugins */ = {
-			isa = PBXGroup;
-			children = (
-				796C8AD33490E24AC9BDFBCB8DDEC90B /* google_sign_in_ios */,
-			);
-			name = plugins;
-			path = plugins;
-			sourceTree = "<group>";
-		};
 		096481E801CE9A198E36A9BB1B5D6D94 /* fluttertoast */ = {
 			isa = PBXGroup;
 			children = (
@@ -2517,15 +2535,6 @@
 			);
 			name = fluttertoast;
 			path = ../.symlinks/plugins/fluttertoast/ios;
-			sourceTree = "<group>";
-		};
-		09B0AE9AB9D3F5EB253DCA7632206064 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				85C84E78A08A63CC4AC68C1E5738AEBD /* google_sign_in_ios */,
-			);
-			name = Sources;
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		0B75D8E51B2CF4338B4C5E59AFDA946C /* Support Files */ = {
@@ -2546,6 +2555,16 @@
 			);
 			name = Sources;
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		0C2160C9F65C869233458341350865F4 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				7A9ED3F035C83DB39C6BE64AD63B2189 /* FLTGoogleSignInPlugin.modulemap */,
+				AC046E14D1EC4C43FEC34082C7812382 /* google_sign_in_ios.podspec */,
+				3484920123FD3E473DE87E3302D82A9B /* LICENSE */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		0C2FCDC04CCC07AA62F33FF2D5B1D289 /* sqflite_darwin */ = {
@@ -2575,15 +2594,6 @@
 			);
 			name = sqflite_darwin;
 			path = ../.symlinks/plugins/sqflite_darwin/darwin;
-			sourceTree = "<group>";
-		};
-		0E0385D978CFCD856C69C5150BFE09E2 /* sottie-flutter */ = {
-			isa = PBXGroup;
-			children = (
-				4F55FF916AFAB5481541B94C3DCC717E /* ios */,
-			);
-			name = "sottie-flutter";
-			path = "sottie-flutter";
 			sourceTree = "<group>";
 		};
 		0E9B87F42656D2B7C6EBBDFB7220B508 /* .. */ = {
@@ -2658,16 +2668,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		1113E26D7A1B950DA556F6F5CA73D47B /* include */ = {
-			isa = PBXGroup;
-			children = (
-				4E49C3F4C534692652A71DFB760BBF2D /* google_sign_in_ios-umbrella.h */,
-				9D599D74F05EFDC68C0988DF23A78E32 /* google_sign_in_ios */,
-			);
-			name = include;
-			path = include;
-			sourceTree = "<group>";
-		};
 		11A861FF2F148956BEA14118603E9273 /* GTMSessionFetcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -2726,6 +2726,15 @@
 			);
 			name = "Support Files";
 			path = "../../../../Pods/Target Support Files/bootpay_webview_flutter_wkwebview";
+			sourceTree = "<group>";
+		};
+		1535CF9AC60FD42FB57ED370F157A0E9 /* FlutterProjects */ = {
+			isa = PBXGroup;
+			children = (
+				0717F7E88E0C22C50CA7847762EBCA9C /* sottie-flutter */,
+			);
+			name = FlutterProjects;
+			path = FlutterProjects;
 			sourceTree = "<group>";
 		};
 		15E334B5E0E3636397011C04ADF40D10 /* Support Files */ = {
@@ -2870,15 +2879,6 @@
 			path = FlutterProjects;
 			sourceTree = "<group>";
 		};
-		1E0A07B0AD79E479F754B721FC673AD9 /* darwin */ = {
-			isa = PBXGroup;
-			children = (
-				A3E3EC692D0F0E871237F4C109FB7BBF /* google_sign_in_ios */,
-			);
-			name = darwin;
-			path = darwin;
-			sourceTree = "<group>";
-		};
 		1E0FA20FAF29B0A399CBE8FEC9324CB1 /* image_picker_ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -2941,6 +2941,15 @@
 			);
 			name = ..;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		23B6A533D0E10BBB80F51AE98710E9CA /* google_sign_in_ios */ = {
+			isa = PBXGroup;
+			children = (
+				B028EA2E4B25CE860EF545FDC8AB38DE /* darwin */,
+			);
+			name = google_sign_in_ios;
+			path = google_sign_in_ios;
 			sourceTree = "<group>";
 		};
 		25AC6252E6EA35661638213398B4D77D /* sottie-flutter */ = {
@@ -3097,13 +3106,13 @@
 			path = "../Target Support Files/PromisesObjC";
 			sourceTree = "<group>";
 		};
-		2825ACE20A24BA828D63F066FCE497B3 /* Sources */ = {
+		28D82F728F6C764187E9E5E9092A87ED /* plugins */ = {
 			isa = PBXGroup;
 			children = (
-				5F18D6833000E8C9FF1F4CBE0820305D /* google_sign_in_ios */,
+				23B6A533D0E10BBB80F51AE98710E9CA /* google_sign_in_ios */,
 			);
-			name = Sources;
-			path = Sources;
+			name = plugins;
+			path = plugins;
 			sourceTree = "<group>";
 		};
 		294CAD732497829B0AFDE4D7AFBB2428 /* .. */ = {
@@ -3131,6 +3140,24 @@
 			);
 			name = ..;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		2AB195C7471C81727CC67735241BAE5E /* sottie-flutter */ = {
+			isa = PBXGroup;
+			children = (
+				73EB8FE40D50F860F7CFD76AEEE094F9 /* ios */,
+			);
+			name = "sottie-flutter";
+			path = "sottie-flutter";
+			sourceTree = "<group>";
+		};
+		2B1B628EFD8AF94D7C6EFEB7E974AC4A /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				E15C3412ECE9DBFD1F1EEF4036472706 /* .symlinks */,
+			);
+			name = ios;
+			path = ios;
 			sourceTree = "<group>";
 		};
 		2B264E396E8262419EC840BFBF272F8B /* path_provider_foundation */ = {
@@ -3253,6 +3280,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		311030762F48543239F5E9A1426BC962 /* google_sign_in_ios */ = {
+			isa = PBXGroup;
+			children = (
+				63FAB60392546680360C0A2B9F5F94F1 /* FLTGoogleSignInPlugin.h */,
+				50072FA2EEC0F82960485CC15D1E1D70 /* FLTGoogleSignInPlugin_Test.h */,
+				A211CAD503C55EB1DF8089F01FAB7042 /* messages.g.h */,
+			);
+			name = google_sign_in_ios;
+			path = google_sign_in_ios;
+			sourceTree = "<group>";
+		};
 		32C9DC6F213182515348E85630E330E2 /* .. */ = {
 			isa = PBXGroup;
 			children = (
@@ -3315,13 +3353,13 @@
 			path = "../../../../../../../.pub-cache/hosted/pub.dev/package_info_plus-8.3.0/ios/package_info_plus/Sources";
 			sourceTree = "<group>";
 		};
-		3685901A5A1E8DE255A122D3A33ED458 /* google_sign_in_ios */ = {
+		3689CDA83EE410CDB8D375CFBF8A5C1A /* .. */ = {
 			isa = PBXGroup;
 			children = (
-				09B0AE9AB9D3F5EB253DCA7632206064 /* Sources */,
+				E0E4742C26DFF13F4E9A4E36D3F49449 /* .. */,
 			);
-			name = google_sign_in_ios;
-			path = google_sign_in_ios;
+			name = ..;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		372AFFF9450CB97F2C69D6344D22A263 /* .symlinks */ = {
@@ -3393,15 +3431,6 @@
 			path = .symlinks;
 			sourceTree = "<group>";
 		};
-		3AE73C42EA5D4DFDE0637C0173DE7BA5 /* plugins */ = {
-			isa = PBXGroup;
-			children = (
-				6650EA1A946950D3C70A3DD1F438E06A /* google_sign_in_ios */,
-			);
-			name = plugins;
-			path = plugins;
-			sourceTree = "<group>";
-		};
 		3BF7D4696C22B9FAF68EDFF2E42EDA93 /* image_picker_ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -3447,10 +3476,10 @@
 			path = ios;
 			sourceTree = "<group>";
 		};
-		3ED57BAC7E40A1B5A51BABB2AA019713 /* .. */ = {
+		3EDCF59255F33ED79DDA3864945173CC /* .. */ = {
 			isa = PBXGroup;
 			children = (
-				C9115490FDBADCC022F8ED98584D8FAE /* .. */,
+				812EE4DF21A6E28251FA22B04771E2A9 /* .. */,
 			);
 			name = ..;
 			path = ..;
@@ -3478,15 +3507,6 @@
 			isa = PBXGroup;
 			children = (
 				51B99282954B808CF8F5C5274CB7F144 /* .symlinks */,
-			);
-			name = ios;
-			path = ios;
-			sourceTree = "<group>";
-		};
-		40D21076E4F6532D8EEBE8039ABB6A03 /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				B85D78325F2A44BD94F00AE980ADD829 /* .symlinks */,
 			);
 			name = ios;
 			path = ios;
@@ -3529,15 +3549,6 @@
 			);
 			name = shared_preferences_foundation;
 			path = ../.symlinks/plugins/shared_preferences_foundation/darwin;
-			sourceTree = "<group>";
-		};
-		4283AD4F3B05134E67E98536810BFFBA /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				494AC524F52F88A520063189C7788656 /* .. */,
-			);
-			name = ..;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		428F98803C3370A634F6BB6E9C167849 /* Full */ = {
@@ -3688,16 +3699,6 @@
 			path = shared_preferences_foundation;
 			sourceTree = "<group>";
 		};
-		494AC524F52F88A520063189C7788656 /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				EE1D84EBE4BBE5D4E147E89079711245 /* .. */,
-				C334EE74826A13B28BBF7E5901DC4B1C /* FlutterProjects */,
-			);
-			name = ..;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		4976CD98352427AE8E152C04FC3C87D6 /* GoogleSignIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -3782,15 +3783,6 @@
 			path = darwin;
 			sourceTree = "<group>";
 		};
-		4A7274F9B126EC721C01F2D248C6D690 /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				3ED57BAC7E40A1B5A51BABB2AA019713 /* .. */,
-			);
-			name = ..;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		4B09F8BB9B513CFAC86A913332477704 /* ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -3845,15 +3837,6 @@
 			);
 			name = ..;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		4F55FF916AFAB5481541B94C3DCC717E /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				7430D03D9EFA48077C4EB96BDFC0122C /* .symlinks */,
-			);
-			name = ios;
-			path = ios;
 			sourceTree = "<group>";
 		};
 		4F7D66358B3A600E5548ECD083CD1948 /* flutter_secure_storage */ = {
@@ -4111,17 +4094,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		5F18D6833000E8C9FF1F4CBE0820305D /* google_sign_in_ios */ = {
-			isa = PBXGroup;
-			children = (
-				704F111375F45960B8572356784DA7E6 /* FLTGoogleSignInPlugin.m */,
-				FB821E797D177223F95980C95F9C3BF7 /* messages.g.m */,
-				1113E26D7A1B950DA556F6F5CA73D47B /* include */,
-			);
-			name = google_sign_in_ios;
-			path = google_sign_in_ios;
-			sourceTree = "<group>";
-		};
 		5F2AEDF7921F177AA01CA7BA6B25BAE5 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -4131,7 +4103,7 @@
 				F903FA054E68172F4222EDEBF7407B61 /* Flutter */,
 				4F7D66358B3A600E5548ECD083CD1948 /* flutter_secure_storage */,
 				096481E801CE9A198E36A9BB1B5D6D94 /* fluttertoast */,
-				CCAFD300F66DDB5C780B10C1E4787DB2 /* google_sign_in_ios */,
+				F0732AC083A246F7C92C6F92AB788F0C /* google_sign_in_ios */,
 				1E0FA20FAF29B0A399CBE8FEC9324CB1 /* image_picker_ios */,
 				609FEEEF8CCBE3A70EF8C981FD060C71 /* kakao_flutter_sdk_common */,
 				5A4E55869D3B573EC6445F30F14D30CD /* objectbox_flutter_libs */,
@@ -4224,10 +4196,10 @@
 			path = GoogleUtilities;
 			sourceTree = "<group>";
 		};
-		6650EA1A946950D3C70A3DD1F438E06A /* google_sign_in_ios */ = {
+		664FE1A5FD17DCE4861C617783148E04 /* google_sign_in_ios */ = {
 			isa = PBXGroup;
 			children = (
-				1E0A07B0AD79E479F754B721FC673AD9 /* darwin */,
+				ACE72DB6A81DA4F13871A9B775FC2ADC /* Resources */,
 			);
 			name = google_sign_in_ios;
 			path = google_sign_in_ios;
@@ -4240,6 +4212,17 @@
 			);
 			name = Sources;
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		679F4F3FFAA4FC8E5E5996C759007BDA /* google_sign_in_ios */ = {
+			isa = PBXGroup;
+			children = (
+				64D3D799CBC02D820E7815054A5F3E99 /* FLTGoogleSignInPlugin.m */,
+				DA08CEA22F31502DF6B43709B0327083 /* messages.g.m */,
+				F4C5CCE76170D7411D5253A90E62FD81 /* include */,
+			);
+			name = google_sign_in_ios;
+			path = google_sign_in_ios;
 			sourceTree = "<group>";
 		};
 		67B26DEE8B11A550BAD554EE9DACF1F6 /* Support Files */ = {
@@ -4395,13 +4378,13 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		7430D03D9EFA48077C4EB96BDFC0122C /* .symlinks */ = {
+		73EB8FE40D50F860F7CFD76AEEE094F9 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				08658325F2982AF443506C93302CEF8F /* plugins */,
+				0114D94CE2D341A20D869FE1A4B24473 /* .symlinks */,
 			);
-			name = .symlinks;
-			path = .symlinks;
+			name = ios;
+			path = ios;
 			sourceTree = "<group>";
 		};
 		746A423EEA294CEDEB4D791EF2074C45 /* .. */ = {
@@ -4420,15 +4403,6 @@
 			);
 			name = ..;
 			path = "../../../../../../../.pub-cache/hosted/pub.dev/sign_in_with_apple-7.0.1/ios";
-			sourceTree = "<group>";
-		};
-		771FA5DFE6CE80C86E0A7B0E361540FD /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				9127AA9D2032FD9BED982836803FC77D /* .. */,
-			);
-			name = ..;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		774159410976FA700165559E735B0B89 /* Classes */ = {
@@ -4478,15 +4452,6 @@
 			);
 			name = Classes;
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		796C8AD33490E24AC9BDFBCB8DDEC90B /* google_sign_in_ios */ = {
-			isa = PBXGroup;
-			children = (
-				E36B506A958823532C4EEA68222DA165 /* darwin */,
-			);
-			name = google_sign_in_ios;
-			path = google_sign_in_ios;
 			sourceTree = "<group>";
 		};
 		7B4067F34B4BB0118375F12E1F0F22A5 /* .. */ = {
@@ -4587,6 +4552,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		812EE4DF21A6E28251FA22B04771E2A9 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				E3FF309BAA87D05DFB8645492E20429D /* .. */,
+			);
+			name = ..;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		8275CCB4E8732497B1021FCBC240F3C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -4611,16 +4585,6 @@
 			);
 			name = plugins;
 			path = plugins;
-			sourceTree = "<group>";
-		};
-		830EC93E18FC92A86D81E6DD61725BEA /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				FEBF0DAFFEF1D760F81BA9837E081054 /* FLTGoogleSignInPlugin.modulemap */,
-				94E1B3BC89187A7C24A7DF02489434B4 /* google_sign_in_ios.podspec */,
-				799E44F48A87AB611EB27CB7DE31E2E8 /* LICENSE */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 		842D3257FEB69A19E4D719EB79F9DE1E /* Sources */ = {
@@ -4667,15 +4631,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		85C84E78A08A63CC4AC68C1E5738AEBD /* google_sign_in_ios */ = {
-			isa = PBXGroup;
-			children = (
-				EFB12E13B4094A2AB2117255F75B177F /* Resources */,
-			);
-			name = google_sign_in_ios;
-			path = google_sign_in_ios;
-			sourceTree = "<group>";
-		};
 		86A154BB0A773D0C6A7B5E5EEF3991F5 /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -4684,6 +4639,15 @@
 			);
 			name = include;
 			path = include;
+			sourceTree = "<group>";
+		};
+		87E65AD5DAF2254BF692CFD8963A64A0 /* google_sign_in_ios */ = {
+			isa = PBXGroup;
+			children = (
+				91F9B8D92B7C9A1164C64B29C553D8A4 /* darwin */,
+			);
+			name = google_sign_in_ios;
+			path = google_sign_in_ios;
 			sourceTree = "<group>";
 		};
 		88AB5DD03F2CBD4B81ED308FC54CBC45 /* .. */ = {
@@ -4765,15 +4729,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		8DC9AFAD674E8004F2F937DCB42CDC25 /* FlutterProjects */ = {
-			isa = PBXGroup;
-			children = (
-				0E0385D978CFCD856C69C5150BFE09E2 /* sottie-flutter */,
-			);
-			name = FlutterProjects;
-			path = FlutterProjects;
-			sourceTree = "<group>";
-		};
 		8DCDDE6F61CC1A71B58693720280E03B /* .. */ = {
 			isa = PBXGroup;
 			children = (
@@ -4801,22 +4756,13 @@
 			path = kakao_flutter_sdk_common;
 			sourceTree = "<group>";
 		};
-		908D04027D0A4D57E2101B4E643145B9 /* sottie-flutter */ = {
+		91F9B8D92B7C9A1164C64B29C553D8A4 /* darwin */ = {
 			isa = PBXGroup;
 			children = (
-				40D21076E4F6532D8EEBE8039ABB6A03 /* ios */,
+				A06E4A78050B6796AE5AFB2473E42222 /* google_sign_in_ios */,
 			);
-			name = "sottie-flutter";
-			path = "sottie-flutter";
-			sourceTree = "<group>";
-		};
-		9127AA9D2032FD9BED982836803FC77D /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				4283AD4F3B05134E67E98536810BFFBA /* .. */,
-			);
-			name = ..;
-			path = ..;
+			name = darwin;
+			path = darwin;
 			sourceTree = "<group>";
 		};
 		9207FCA5021F8C89C23D786BDCECE335 /* ios */ = {
@@ -4852,6 +4798,15 @@
 				C273D08F428F2EFFD05F29F42056DB21 /* PrivacyInfo.xcprivacy */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		974FD8329417BDC43037142068E40F92 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				3EDCF59255F33ED79DDA3864945173CC /* .. */,
+			);
+			name = ..;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		98A0643F789DB692A795E3A3D0EABC39 /* Resources */ = {
@@ -4932,17 +4887,6 @@
 			path = .symlinks;
 			sourceTree = "<group>";
 		};
-		9D599D74F05EFDC68C0988DF23A78E32 /* google_sign_in_ios */ = {
-			isa = PBXGroup;
-			children = (
-				BBAE25EA0820A2BB2FA6D37BA969D18F /* FLTGoogleSignInPlugin.h */,
-				C4CFCFBB4BC136EDA95453112B65ADF9 /* FLTGoogleSignInPlugin_Test.h */,
-				14DB6C2C4225C5576A2AE45BF852DBF1 /* messages.g.h */,
-			);
-			name = google_sign_in_ios;
-			path = google_sign_in_ios;
-			sourceTree = "<group>";
-		};
 		9DA37AA649507C08024585CEE765AD0E /* image_picker_ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -4965,6 +4909,15 @@
 			);
 			name = plugins;
 			path = plugins;
+			sourceTree = "<group>";
+		};
+		A06E4A78050B6796AE5AFB2473E42222 /* google_sign_in_ios */ = {
+			isa = PBXGroup;
+			children = (
+				E06D7CAF71D765009A8D05058C84E95F /* Sources */,
+			);
+			name = google_sign_in_ios;
+			path = google_sign_in_ios;
 			sourceTree = "<group>";
 		};
 		A16F93FFB96ECB3DC3A5BEF00F788A0A /* package_info_plus */ = {
@@ -5000,15 +4953,6 @@
 			);
 			name = ..;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		A3E3EC692D0F0E871237F4C109FB7BBF /* google_sign_in_ios */ = {
-			isa = PBXGroup;
-			children = (
-				2825ACE20A24BA828D63F066FCE497B3 /* Sources */,
-			);
-			name = google_sign_in_ios;
-			path = google_sign_in_ios;
 			sourceTree = "<group>";
 		};
 		A4566B993063ECAC08FD02727BF4B58C /* .. */ = {
@@ -5130,6 +5074,25 @@
 			path = GTMAppAuth;
 			sourceTree = "<group>";
 		};
+		AB525414B0F048646BBE6E9382F24185 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				B28A6AB9D84483527F2C207054F24EBC /* .. */,
+				1535CF9AC60FD42FB57ED370F157A0E9 /* FlutterProjects */,
+			);
+			name = ..;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		ACE72DB6A81DA4F13871A9B775FC2ADC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8C22A88E5921E2841F73BACB060452DC /* PrivacyInfo.xcprivacy */,
+			);
+			name = Resources;
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		ADD4BD0A6833847C780574FF87CEA548 /* .. */ = {
 			isa = PBXGroup;
 			children = (
@@ -5148,6 +5111,15 @@
 			path = plugins;
 			sourceTree = "<group>";
 		};
+		B028EA2E4B25CE860EF545FDC8AB38DE /* darwin */ = {
+			isa = PBXGroup;
+			children = (
+				00A8913B9DAD1D765D3C23C6B915810E /* google_sign_in_ios */,
+			);
+			name = darwin;
+			path = darwin;
+			sourceTree = "<group>";
+		};
 		B06CFF1FF58BE612503029306A2FDE36 /* plugins */ = {
 			isa = PBXGroup;
 			children = (
@@ -5157,6 +5129,15 @@
 			path = plugins;
 			sourceTree = "<group>";
 		};
+		B17304996F869349282966F915F0A59E /* FlutterProjects */ = {
+			isa = PBXGroup;
+			children = (
+				2AB195C7471C81727CC67735241BAE5E /* sottie-flutter */,
+			);
+			name = FlutterProjects;
+			path = FlutterProjects;
+			sourceTree = "<group>";
+		};
 		B27CE358333A1E1B51D3E72EA23AF763 /* sottie-flutter */ = {
 			isa = PBXGroup;
 			children = (
@@ -5164,6 +5145,15 @@
 			);
 			name = "sottie-flutter";
 			path = "sottie-flutter";
+			sourceTree = "<group>";
+		};
+		B28A6AB9D84483527F2C207054F24EBC /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				B17304996F869349282966F915F0A59E /* FlutterProjects */,
+			);
+			name = ..;
+			path = .;
 			sourceTree = "<group>";
 		};
 		B2D6E972E1651D8A4B0C7D1E172464DB /* darwin */ = {
@@ -5263,15 +5253,6 @@
 				FD7DA183FB9F800A0835C0ED25164EFB /* OIDExternalUserAgentIOSCustomBrowser.m */,
 			);
 			name = ExternalUserAgent;
-			sourceTree = "<group>";
-		};
-		B85D78325F2A44BD94F00AE980ADD829 /* .symlinks */ = {
-			isa = PBXGroup;
-			children = (
-				3AE73C42EA5D4DFDE0637C0173DE7BA5 /* plugins */,
-			);
-			name = .symlinks;
-			path = .symlinks;
 			sourceTree = "<group>";
 		};
 		B9671B64BD83A9711C06CF38D86E287F /* ios */ = {
@@ -5382,6 +5363,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		C05610D2D734E6583BCA5E111038A58C /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				3689CDA83EE410CDB8D375CFBF8A5C1A /* .. */,
+			);
+			name = ..;
+			path = "../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-6.0.0/darwin/google_sign_in_ios/Sources";
+			sourceTree = "<group>";
+		};
 		C15F283072BD51FEC999ECDE7455A3C6 /* sqflite_darwin */ = {
 			isa = PBXGroup;
 			children = (
@@ -5428,13 +5418,13 @@
 			path = "sottie-flutter";
 			sourceTree = "<group>";
 		};
-		C334EE74826A13B28BBF7E5901DC4B1C /* FlutterProjects */ = {
+		C361241888ECD5E617CE8DDA2A5DC568 /* plugins */ = {
 			isa = PBXGroup;
 			children = (
-				908D04027D0A4D57E2101B4E643145B9 /* sottie-flutter */,
+				87E65AD5DAF2254BF692CFD8963A64A0 /* google_sign_in_ios */,
 			);
-			name = FlutterProjects;
-			path = FlutterProjects;
+			name = plugins;
+			path = plugins;
 			sourceTree = "<group>";
 		};
 		C40372474ED7487058791FEDFEFE8280 /* .. */ = {
@@ -5464,21 +5454,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		C7EF9639E32C98C5003641E463748ECC /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				AAC782B5D0864D905368EF478BC02B49 /* google_sign_in_ios.modulemap */,
-				FA2A68BE6420C22895B6016392056081 /* google_sign_in_ios-dummy.m */,
-				40857A2022ACED006930A85E8FF03DF8 /* google_sign_in_ios-Info.plist */,
-				FEAA72329F1CBD1538A93AEE5C56AA4B /* google_sign_in_ios-prefix.pch */,
-				7173E34BBB01CD80BA31996908E35819 /* google_sign_in_ios.debug.xcconfig */,
-				B0CB59119C0867B65D0589B76D246D1D /* google_sign_in_ios.release.xcconfig */,
-				7287D000FD8BB16FD77606C3AD4F11DA /* ResourceBundle-google_sign_in_ios_privacy-google_sign_in_ios-Info.plist */,
-			);
-			name = "Support Files";
-			path = "../../../../Pods/Target Support Files/google_sign_in_ios";
-			sourceTree = "<group>";
-		};
 		C85AA803562B36A28F627D47CA3A14CD /* .. */ = {
 			isa = PBXGroup;
 			children = (
@@ -5494,15 +5469,6 @@
 				DE33038A95CF7BDD31B2BD60DB63C930 /* objectbox_flutter_libs.podspec */,
 			);
 			name = Pod;
-			sourceTree = "<group>";
-		};
-		C9115490FDBADCC022F8ED98584D8FAE /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				771FA5DFE6CE80C86E0A7B0E361540FD /* .. */,
-			);
-			name = ..;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		CA3A570EE5E9BBF5872F71D693A30C46 /* Support Files */ = {
@@ -5661,17 +5627,6 @@
 				58285CBE91BE4190B6F96ECA5F541AF1 /* Resources */,
 			);
 			name = Core;
-			sourceTree = "<group>";
-		};
-		CCAFD300F66DDB5C780B10C1E4787DB2 /* google_sign_in_ios */ = {
-			isa = PBXGroup;
-			children = (
-				E9F8F2583D51999FD0E9FB60C9A7DECC /* .. */,
-				830EC93E18FC92A86D81E6DD61725BEA /* Pod */,
-				C7EF9639E32C98C5003641E463748ECC /* Support Files */,
-			);
-			name = google_sign_in_ios;
-			path = ../.symlinks/plugins/google_sign_in_ios/darwin;
 			sourceTree = "<group>";
 		};
 		CCD7089D01B6B67B2107920572F01BC0 /* FlutterProjects */ = {
@@ -6094,6 +6049,21 @@
 			path = FlutterProjects;
 			sourceTree = "<group>";
 		};
+		DDB6E9136849A92D13467781EFDF32B0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				37BE3EF335EB9B7204185997782FBA8A /* google_sign_in_ios.modulemap */,
+				73F19D607BF2DEF259820AEAAF764477 /* google_sign_in_ios-dummy.m */,
+				0B22C90C6DB050E670FE273911449004 /* google_sign_in_ios-Info.plist */,
+				6E29EA8E104E7CB1AA451E482BB1D9CB /* google_sign_in_ios-prefix.pch */,
+				B5470E58A6442AE492EC24560194E63A /* google_sign_in_ios.debug.xcconfig */,
+				913661B81292D0676AAA26D56030205C /* google_sign_in_ios.release.xcconfig */,
+				5329B6BBA170B7AE16A29026BA1F79D4 /* ResourceBundle-google_sign_in_ios_privacy-google_sign_in_ios-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../../../../Pods/Target Support Files/google_sign_in_ios";
+			sourceTree = "<group>";
+		};
 		DDB90BD2E1869B214A63AF62741743C5 /* flutter_secure_storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -6147,6 +6117,24 @@
 			path = plugins;
 			sourceTree = "<group>";
 		};
+		E06D7CAF71D765009A8D05058C84E95F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				679F4F3FFAA4FC8E5E5996C759007BDA /* google_sign_in_ios */,
+			);
+			name = Sources;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		E0E4742C26DFF13F4E9A4E36D3F49449 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				974FD8329417BDC43037142068E40F92 /* .. */,
+			);
+			name = ..;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		E10BD7D5C18CA028A18F283DDCBF5805 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -6161,6 +6149,15 @@
 			path = "../Target Support Files/AppCheckCore";
 			sourceTree = "<group>";
 		};
+		E15C3412ECE9DBFD1F1EEF4036472706 /* .symlinks */ = {
+			isa = PBXGroup;
+			children = (
+				C361241888ECD5E617CE8DDA2A5DC568 /* plugins */,
+			);
+			name = .symlinks;
+			path = .symlinks;
+			sourceTree = "<group>";
+		};
 		E2B044F1D852EC33EE5F1B28481D8053 /* firebase_core */ = {
 			isa = PBXGroup;
 			children = (
@@ -6170,15 +6167,6 @@
 			path = firebase_core;
 			sourceTree = "<group>";
 		};
-		E36B506A958823532C4EEA68222DA165 /* darwin */ = {
-			isa = PBXGroup;
-			children = (
-				3685901A5A1E8DE255A122D3A33ED458 /* google_sign_in_ios */,
-			);
-			name = darwin;
-			path = darwin;
-			sourceTree = "<group>";
-		};
 		E37D6E568C832A3DFFD1FCC1D589C9AA /* sqflite_darwin */ = {
 			isa = PBXGroup;
 			children = (
@@ -6186,6 +6174,15 @@
 			);
 			name = sqflite_darwin;
 			path = sqflite_darwin;
+			sourceTree = "<group>";
+		};
+		E3FF309BAA87D05DFB8645492E20429D /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				AB525414B0F048646BBE6E9382F24185 /* .. */,
+			);
+			name = ..;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E43A1CEDCC6C9FAF572067A7C067C019 /* Classes */ = {
@@ -6296,15 +6293,6 @@
 			path = "../../../../../../../.pub-cache/hosted/pub.dev/fluttertoast-8.2.12/ios";
 			sourceTree = "<group>";
 		};
-		E9F8F2583D51999FD0E9FB60C9A7DECC /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				4A7274F9B126EC721C01F2D248C6D690 /* .. */,
-			);
-			name = ..;
-			path = "../../../../../../../.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0/darwin/google_sign_in_ios/Sources";
-			sourceTree = "<group>";
-		};
 		EA4B409B6FED9491EEE340BB6D44D83D /* .symlinks */ = {
 			isa = PBXGroup;
 			children = (
@@ -6378,15 +6366,6 @@
 			path = sign_in_with_apple;
 			sourceTree = "<group>";
 		};
-		EE1D84EBE4BBE5D4E147E89079711245 /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				8DC9AFAD674E8004F2F937DCB42CDC25 /* FlutterProjects */,
-			);
-			name = ..;
-			path = .;
-			sourceTree = "<group>";
-		};
 		EE44B130DAF7E8CD799F2A25840E0778 /* image_picker_ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -6412,13 +6391,15 @@
 			path = ios;
 			sourceTree = "<group>";
 		};
-		EFB12E13B4094A2AB2117255F75B177F /* Resources */ = {
+		F0732AC083A246F7C92C6F92AB788F0C /* google_sign_in_ios */ = {
 			isa = PBXGroup;
 			children = (
-				635C38E4A4A64C3E416D5F79A512CAD6 /* PrivacyInfo.xcprivacy */,
+				C05610D2D734E6583BCA5E111038A58C /* .. */,
+				0C2160C9F65C869233458341350865F4 /* Pod */,
+				DDB6E9136849A92D13467781EFDF32B0 /* Support Files */,
 			);
-			name = Resources;
-			path = Resources;
+			name = google_sign_in_ios;
+			path = ../.symlinks/plugins/google_sign_in_ios/darwin;
 			sourceTree = "<group>";
 		};
 		F0891BB626CBA6953C60B14084B90B9C /* .. */ = {
@@ -6475,6 +6456,16 @@
 			path = ios;
 			sourceTree = "<group>";
 		};
+		F4C5CCE76170D7411D5253A90E62FD81 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				8AA2F9DB0A6910D6E69A00FB12961313 /* google_sign_in_ios-umbrella.h */,
+				311030762F48543239F5E9A1426BC962 /* google_sign_in_ios */,
+			);
+			name = include;
+			path = include;
+			sourceTree = "<group>";
+		};
 		F5B36747B79639A33469B59A0964ABEC /* .. */ = {
 			isa = PBXGroup;
 			children = (
@@ -6510,6 +6501,15 @@
 			);
 			name = ..;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		F859272313C052E7B8696B6B539E82C6 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				664FE1A5FD17DCE4861C617783148E04 /* google_sign_in_ios */,
+			);
+			name = Sources;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		F8F0B7F34DD24557A00EC48CCB9E1B62 /* FirebaseCoreInternal */ = {
@@ -6980,10 +6980,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FED5901AD78174866E6902CC2B811BE /* FLTGoogleSignInPlugin.h in Headers */,
-				3557BF9EB0B449AC9273C31D47104ACA /* FLTGoogleSignInPlugin_Test.h in Headers */,
-				F120C624C3513F9A44F3A811055D736F /* google_sign_in_ios-umbrella.h in Headers */,
-				1323B7F3DB228C6410180F85B7889AF5 /* messages.g.h in Headers */,
+				2AE17D48C1A77A8403D22FDAE041525B /* FLTGoogleSignInPlugin.h in Headers */,
+				0E591CE6435169B70BD9172F40D8EC3A /* FLTGoogleSignInPlugin_Test.h in Headers */,
+				B8A917502F7EAE6C5E40D7C20682A5DF /* google_sign_in_ios-umbrella.h in Headers */,
+				1F02858047A4A98E36785B74B28BD224 /* messages.g.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8235,7 +8235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FA5F4A5CB202BAAB6E138C8C2396482 /* PrivacyInfo.xcprivacy in Resources */,
+				AC6E7DB6CA29A2032E41B2D08C8F80A9 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8699,9 +8699,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				521005D128E13857685322278B9D1717 /* FLTGoogleSignInPlugin.m in Sources */,
+				1EB2A22D6D03BA0BA276063BA43D00D4 /* FLTGoogleSignInPlugin.m in Sources */,
 				BC1B5D298E6A95312775E255ABB531DF /* google_sign_in_ios-dummy.m in Sources */,
-				BFEC1713BB167A2B03FFCD1220B04362 /* messages.g.m in Sources */,
+				A97293757412D896B75EF01B91AE2B0C /* messages.g.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9511,7 +9511,7 @@
 		};
 		03CC085CA0D6A8ABE52E0DB2728743AC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7173E34BBB01CD80BA31996908E35819 /* google_sign_in_ios.debug.xcconfig */;
+			baseConfigurationReference = B5470E58A6442AE492EC24560194E63A /* google_sign_in_ios.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
@@ -10535,7 +10535,7 @@
 		};
 		34314E017141FCB5BB1E6B0B99C12712 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0CB59119C0867B65D0589B76D246D1D /* google_sign_in_ios.release.xcconfig */;
+			baseConfigurationReference = 913661B81292D0676AAA26D56030205C /* google_sign_in_ios.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
@@ -10970,7 +10970,7 @@
 		};
 		43627D64126D57E87D4FD8E2E0AAF05A /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0CB59119C0867B65D0589B76D246D1D /* google_sign_in_ios.release.xcconfig */;
+			baseConfigurationReference = 913661B81292D0676AAA26D56030205C /* google_sign_in_ios.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
@@ -11070,7 +11070,7 @@
 		};
 		44D5DEF69EE9E508C93BDB6ED21CBE31 /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0CB59119C0867B65D0589B76D246D1D /* google_sign_in_ios.release.xcconfig */;
+			baseConfigurationReference = 913661B81292D0676AAA26D56030205C /* google_sign_in_ios.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
@@ -11979,7 +11979,7 @@
 		};
 		7A9C0561BC86D11E423823EC74D7809B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7173E34BBB01CD80BA31996908E35819 /* google_sign_in_ios.debug.xcconfig */;
+			baseConfigurationReference = B5470E58A6442AE492EC24560194E63A /* google_sign_in_ios.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGNING_IDENTITY = "-";
@@ -14571,7 +14571,7 @@
 		};
 		F74B141E8C90380753E14545744100A5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0CB59119C0867B65D0589B76D246D1D /* google_sign_in_ios.release.xcconfig */;
+			baseConfigurationReference = 913661B81292D0676AAA26D56030205C /* google_sign_in_ios.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGNING_IDENTITY = "-";

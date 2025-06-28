@@ -25,10 +25,7 @@ import 'package:sottie_flutter/ui/post/screen/post_detail_screen.dart';
 import 'package:sottie_flutter/ui/user/screen/user_detail_screen.dart';
 
 sealed class CustomRouter {
-  static final router = GoRouter(
-    initialLocation: '/auth/certification',
-    routes: _routes,
-  );
+  static final router = GoRouter(initialLocation: '/auth', routes: _routes);
 
   /// Auth Screens
   static const authPath = "/auth";
