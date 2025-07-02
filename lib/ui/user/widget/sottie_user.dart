@@ -48,9 +48,7 @@ class SottieUser extends StatelessWidget {
               child: UserProfile(
                 profileUrl: model.profileUrl,
                 myProfileXFilePath:
-                    isMyFriend == null
-                        ? MyInfoController.myInfoModel.myProfilePath
-                        : null,
+                    isMyFriend == null ? MyInfoController.myProfilePath : null,
               ),
             ),
             SizedBox(width: 15 * ScreenSize.wu),

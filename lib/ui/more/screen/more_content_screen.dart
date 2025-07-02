@@ -26,10 +26,10 @@ class _MoreContentScreenState extends State<MoreContentScreen> {
           ),
           child: SottieUser(
             model: UserModel(
-              id: MyInfoController.myInfoModel.id,
-              nickname: MyInfoController.myInfoModel.nickName,
-              stateMsg: MyInfoController.myInfoModel.stateMessage,
-              profileUrl: MyInfoController.myInfoModel.profileUrl,
+              id: MyInfoController.id,
+              nickname: MyInfoController.nickName,
+              stateMsg: MyInfoController.stateMessage,
+              profileUrl: MyInfoController.profileUrl,
               mannerTemperature: 42.1,
             ),
             heroTag: 'me',

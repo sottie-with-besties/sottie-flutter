@@ -80,7 +80,7 @@ final _myGold = Padding(
         Row(
           children: [
             Text(
-              "${MyInfoController.myInfoModel.gold}",
+              "${MyInfoController.gold}",
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             const SizedBox(width: 10),

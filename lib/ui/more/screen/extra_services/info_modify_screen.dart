@@ -30,8 +30,8 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
   @override
   void initState() {
     super.initState();
-    _nicknameController.text = MyInfoController.myInfoModel.nickName;
-    _stateMessageController.text = MyInfoController.myInfoModel.stateMessage;
+    _nicknameController.text = MyInfoController.nickName;
+    _stateMessageController.text = MyInfoController.stateMessage;
   }
 
   @override
@@ -47,9 +47,10 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        MyInfoController.myInfoModel.nickName = _nicknameController.text;
-        MyInfoController.myInfoModel.stateMessage =
-            _stateMessageController.text;
+        MyInfoController.changeNickname(nickName: _nicknameController.text);
+        MyInfoController.changeStateMessage(
+          stateMessage: _stateMessageController.text,
+        );
         _nicknameFocusNode.unfocus();
         _stateMessageFocusNode.unfocus();
         // Todo: 디바운스 -> 서버로 수정한 정보 보내기
@@ -70,12 +71,11 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   },
                   child: Center(
                     child: Hero(
-                      tag: '${MyInfoController.myInfoModel.id}/me',
+                      tag: '${MyInfoController.id}/me',
                       child: UserProfile(
-                        profileUrl: MyInfoController.myInfoModel.profileUrl,
+                        profileUrl: MyInfoController.profileUrl,
                         profileSize: 50,
-                        myProfileXFilePath:
-                            MyInfoController.myInfoModel.myProfilePath,
+                        myProfileXFilePath: MyInfoController.myProfilePath,
                       ),
                     ),
                   ),
@@ -83,8 +83,8 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      MyInfoController.myInfoModel.profileUrl = null;
-                      MyInfoController.myInfoModel.myProfilePath = null;
+                      MyInfoController.changeProfileUrl(url: null);
+                      MyInfoController.changeProfilePath(path: null);
                       setState(() {});
                     },
                     child: const Text("프로필 사진 초기화"),
@@ -93,7 +93,7 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                 SizedBox(height: 5 * ScreenSize.hu),
                 Center(
                   child: Text(
-                    "${MyInfoController.myInfoModel.birthYear}  |  ${MyInfoController.myInfoModel.gender == "MAIL" ? "남성" : "여성"}  |  ${MyInfoController.myInfoModel.name}",
+                    "${MyInfoController.birthYear}  |  ${MyInfoController.gender == "MAIL" ? "남성" : "여성"}  |  ${MyInfoController.name}",
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -104,10 +104,10 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   controller: _nicknameController,
                   focusNode: _nicknameFocusNode,
                   prefixIcon: false,
-                  hint: MyInfoController.myInfoModel.nickName,
+                  hint: MyInfoController.nickName,
                   maxLength: 10,
                   onFieldSubmitted: (value) {
-                    MyInfoController.myInfoModel.nickName = value;
+                    MyInfoController.changeNickname(nickName: value);
                   },
                 ),
                 _renderSubTitle("상태 메세지"),
@@ -116,10 +116,10 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
                   controller: _stateMessageController,
                   focusNode: _stateMessageFocusNode,
                   prefixIcon: false,
-                  hint: MyInfoController.myInfoModel.stateMessage,
+                  hint: MyInfoController.stateMessage,
                   maxLength: 30,
                   onFieldSubmitted: (value) {
-                    MyInfoController.myInfoModel.stateMessage = value;
+                    MyInfoController.changeStateMessage(stateMessage: value);
                   },
                 ),
                 Column(

@@ -28,7 +28,7 @@ class MoreScreen extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    MyInfoController.myInfoModel.gold.toString(),
+                    MyInfoController.gold.toString(),
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 10),

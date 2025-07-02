@@ -10,7 +10,9 @@ Future<void> modifyImage(BuildContext context) async {
   try {
     /// 프로필 사진 선택
     final image = await _picker.pickImage(source: ImageSource.gallery);
-    MyInfoController.myInfoModel.myProfilePath = image?.path;
+    if (image != null) {
+      MyInfoController.changeProfilePath(path: image.path);
+    }
   } on PlatformException catch (e) {
     if (e.code == 'photo_access_denied') {
       if (context.mounted) {
