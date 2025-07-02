@@ -4,13 +4,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
-final class InChatSocketUseCase {
-  static final InChatSocketUseCase _instance = InChatSocketUseCase._();
-
-  factory InChatSocketUseCase() => _instance;
-
-  InChatSocketUseCase._();
-
+final class InChatSocketRepoImpl {
   StompClient? _stompClient;
 
   /// 소켓 구독 취소
@@ -18,7 +12,11 @@ final class InChatSocketUseCase {
   Function? unSubscribeFn;
 
   /// 소켓 초기화
-  void initStompClientSocket({required String roomId, required String userId}) {
+  void initStompClientSocket({
+    required String roomId,
+    required String userId,
+    required StompFrameCallback Function(StompFrame frame) callback,
+  }) {
     try {
       _stompClient = StompClient(
         config: StompConfig(
@@ -33,11 +31,8 @@ final class InChatSocketUseCase {
 
               unSubscribeFn = _stompClient!.subscribe(
                 destination: '/exchange/sottie.chat.exchange/*.room.$roomId',
-                callback: (StompFrame frame) {
-                  // 여기서 데이터를 listen 한다.
-                  // Todo: 데이터 분기처리 로직
-                },
                 headers: <String, String>{},
+                callback: callback,
               );
             } catch (e) {
               log(e.toString());
@@ -92,7 +87,5 @@ final class InChatSocketUseCase {
   }
 
   /// 소켓이 잘 연결되어있는지 확인
-  bool _canSendData() {
-    return _stompClient!.isActive && _stompClient!.connected;
-  }
+  bool _canSendData() => _stompClient != null && _stompClient!.isActive;
 }
