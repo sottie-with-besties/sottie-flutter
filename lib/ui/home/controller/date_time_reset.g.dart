@@ -12,14 +12,15 @@ String _$dateTimeResetHash() => r'38a546c15a2fda2daefe9148624ed88831a91760';
 @ProviderFor(DateTimeReset)
 final dateTimeResetProvider =
     AutoDisposeNotifierProvider<DateTimeReset, bool>.internal(
-  DateTimeReset.new,
-  name: r'dateTimeResetProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$dateTimeResetHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      DateTimeReset.new,
+      name: r'dateTimeResetProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$dateTimeResetHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$DateTimeReset = AutoDisposeNotifier<bool>;
 // ignore_for_file: type=lint

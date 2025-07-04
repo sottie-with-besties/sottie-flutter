@@ -6,6 +6,9 @@ import 'package:sottie_flutter/provider/home/home_search_post_provider.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_expansion_tile.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/home/controller/home_state_controller.dart';
+import 'package:sottie_flutter/ui/home/widget/date_range_option.dart';
+import 'package:sottie_flutter/ui/home/widget/date_time_reset_button.dart';
+import 'package:sottie_flutter/ui/home/widget/time_range_option.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 import 'package:sottie_flutter/ui/post/widget/option/age_range_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/category_option.dart';
@@ -13,9 +16,6 @@ import 'package:sottie_flutter/ui/post/widget/option/gender_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/location_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/manner_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/num_of_member_option.dart';
-import 'package:sottie_flutter/ui/search/widget/date_range_option.dart';
-import 'package:sottie_flutter/ui/search/widget/date_time_reset_button.dart';
-import 'package:sottie_flutter/ui/search/widget/time_range_option.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});

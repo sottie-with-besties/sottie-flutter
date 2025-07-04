@@ -7,8 +7,8 @@ import 'package:sottie_flutter/ui/alarm/screen/alarm_screen.dart';
 import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/common/screen/default_layout.dart';
 import 'package:sottie_flutter/ui/home/screen/home_content_screen.dart';
+import 'package:sottie_flutter/ui/home/screen/search_screen.dart';
 import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
-import 'package:sottie_flutter/ui/search/screen/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

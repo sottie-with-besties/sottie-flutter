@@ -15,7 +15,7 @@ sealed class ModalController {
       builder: (context) {
         return Container(
           width: ScreenSize.screenWidth,
-          height: ScreenSize.screenHeight * 0.5,
+          height: ScreenSize.screenHeight * 0.8,
           decoration: const BoxDecoration(color: AppColors.whiteSilverColor),
           child: screen,
         );
