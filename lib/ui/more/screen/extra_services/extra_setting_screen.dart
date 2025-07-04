@@ -18,12 +18,12 @@ class ExtraSettingScreen extends StatelessWidget {
           child: Column(
             children: [
               const _SettingSwitch(
-                title: "이벤트 수신",
-                explanation: "이벤트 발생에 대하여 사용자에게 알립니다.",
+                title: "광고 마케팅",
+                explanation: "광고 마케팅 수신을 동의합니다.",
               ),
               const _SettingSwitch(
                 title: "채팅 생성 알림",
-                explanation: "동시 채팅 시작이 설정되어 있는 채팅방의 인원이 모두 모일 경우 사용자에게 알립니다.",
+                explanation: "채팅방의 인원이 모두 모일 경우 사용자에게 알립니다.",
               ),
               const _SettingSwitch(
                 title: "채팅 알림",
