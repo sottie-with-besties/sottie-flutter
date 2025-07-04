@@ -10,9 +10,29 @@ import 'package:sottie_flutter/core/constant/native_key.dart';
 import 'package:sottie_flutter/core/local_database/object_box_store.dart';
 import 'package:sottie_flutter/core/router/router.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
+import 'package:sottie_flutter/ui/user/controller/my_info_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // 임시 초기화
+  MyInfoController.initMyInfo(
+    json: {
+      'id': 12345,
+      'name': '홍길동',
+      'email': 'example@sottie.com',
+      'phoneNumber': '010-1234-5678',
+      'gender': 'MALE',
+      'identifier': 'ABC123XYZ',
+      'birthYear': '1990',
+      'phoneAuthenticated': true,
+      'nickName': '소티닉네임',
+      'gold': 1000,
+      'mannerPoint': 42.5,
+      'authType': 'google',
+      'stateMessage': '안녕하세요!',
+    },
+  );
 
   await _initApp();
 
@@ -24,7 +44,7 @@ class Sottie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// 단위 길이 초기화
+    // 단위 길이 초기화
     ScreenSize.initScreenSize(context);
 
     return ProviderScope(

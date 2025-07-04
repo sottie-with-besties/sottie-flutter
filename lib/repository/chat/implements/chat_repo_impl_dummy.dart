@@ -204,6 +204,12 @@ final class ChatRepoImplDummy implements ChatRepository {
       ),
     ];
   }
+
+  @override
+  Future<bool> exitChatRoom({required String chatRoomId}) {
+    // TODO: implement exitChatRoom
+    throw UnimplementedError();
+  }
 }
 
 DateTime _renderDeletingDate() =>

@@ -24,42 +24,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FirebaseAppCheckInterop.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseAuth-FirebaseAuth_Privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseAuth.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseAuthInterop.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FirebaseCore-FirebaseCore_Privacy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>FirebaseCore.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseCoreExtension-FirebaseCoreExtension_Privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseCoreExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -149,27 +119,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>app_links-app_links_macos_privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>app_links.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>file_selector_macos-file_selector_macos_privacy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>file_selector_macos.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>firebase_auth.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -200,6 +155,16 @@
 			<false/>
 		</dict>
 		<key>objectbox_flutter_libs.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>package_info_plus-package_info_plus_privacy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>package_info_plus.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -235,16 +200,6 @@
 			<false/>
 		</dict>
 		<key>sqflite_darwin.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>url_launcher_macos-url_launcher_macos_privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>url_launcher_macos.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

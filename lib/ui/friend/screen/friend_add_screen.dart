@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
 import 'package:sottie_flutter/model/user/user_model.dart';
-import 'package:sottie_flutter/repository/user/implements/user_search_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
 import 'package:sottie_flutter/use_case/friend/friend_use_case.dart';
+import 'package:sottie_flutter/use_case/user/user_use_case.dart';
 
 class FriendAddScreen extends StatefulWidget {
   const FriendAddScreen({super.key, required this.focusNode});
@@ -30,7 +30,7 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
   Future<void> _searchUser(String searchString) async {
     userSearching = true;
     setState(() {});
-    userFound = await getUserSearchDummy();
+    userFound = await UserUseCase.searchUser(userSearchText);
     userFound == null ? userSearchText = '유저가 존재하지 않습니다.' : null;
     userSearching = false;
     setState(() {});

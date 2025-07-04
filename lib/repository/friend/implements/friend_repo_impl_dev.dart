@@ -15,4 +15,22 @@ final class FriendRepoImplDev implements FriendRepository {
     await Future.delayed(const Duration(seconds: 1), null);
     return [];
   }
+
+  @override
+  Future<bool> acceptFriendRequest(String userId) {
+    // TODO: implement acceptFriendRequest
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> deleteFriend(String userId) {
+    // TODO: implement deleteFriend
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> rejectFriendRequest(String userId) {
+    // TODO: implement rejectFriendRequest
+    throw UnimplementedError();
+  }
 }

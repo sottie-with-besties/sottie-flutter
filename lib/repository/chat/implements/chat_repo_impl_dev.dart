@@ -24,4 +24,10 @@ final class ChatRepoImplDev implements ChatRepository {
     await Future.delayed(const Duration(seconds: 1), null);
     return [];
   }
+
+  @override
+  Future<bool> exitChatRoom({required String chatRoomId}) {
+    // TODO: implement exitChatRoom
+    throw UnimplementedError();
+  }
 }

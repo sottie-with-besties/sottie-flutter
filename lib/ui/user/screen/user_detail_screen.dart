@@ -54,10 +54,10 @@ class UserDetailScreen extends StatelessWidget {
                         FriendUseCase.friendAdd(context);
                       }),
                   _utilButton(FontAwesomeIcons.ban, '차단', () {
-                    UserUseCase.userBlock(context);
+                    UserUseCase.userBlock(model.id.toString());
                   }),
                   _utilButton(FontAwesomeIcons.circleExclamation, '신고', () {
-                    UserUseCase.userReport(context);
+                    UserUseCase.userReport(model.id.toString());
                   }),
                 ],
               ),

@@ -82,7 +82,7 @@ class _FriendState extends State<Friend> {
           OnLongPressOption(
             color: Colors.blueAccent,
             onTap: () {
-              UserUseCase.userReport(context);
+              UserUseCase.userReport(widget.model.id.toString());
             },
             icon: Icons.report_gmailerrorred_outlined,
             optionTitle: "신고",
@@ -109,7 +109,8 @@ class _FriendState extends State<Friend> {
           padding: const EdgeInsets.symmetric(horizontal: 1),
         ),
         SlidableAction(
-          onPressed: (context) => UserUseCase.userReport(context),
+          onPressed:
+              (context) => UserUseCase.userReport(widget.model.id.toString()),
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
           autoClose: true,

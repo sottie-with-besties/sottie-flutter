@@ -174,6 +174,7 @@ final _routes = [
           GoRoute(
             path: CustomRouter.morePath,
             builder: (context, state) => const MoreScreen(),
+
             routes: <GoRoute>[
               GoRoute(
                 path: CustomRouter.infoModifyPath,

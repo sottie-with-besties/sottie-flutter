@@ -17,4 +17,13 @@ abstract interface class FriendRepository {
 
   /// 친구 요청 데이터 불러오기
   Future<List<UserModel>> getFriendRequests();
+
+  /// 친구 삭제
+  Future<bool> deleteFriend(String userId);
+
+  /// 친구 요청 수락
+  Future<bool> acceptFriendRequest(String userId);
+
+  /// 친구 요청 거절
+  Future<bool> rejectFriendRequest(String userId);
 }

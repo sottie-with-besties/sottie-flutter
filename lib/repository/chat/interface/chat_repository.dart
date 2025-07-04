@@ -20,6 +20,9 @@ abstract interface class ChatRepository {
   /// 채팅 대기방 불러오기
   Future<List<PostModel>> getChatRoomWaitingList();
 
-  /// 채팅방 불러오기
+  /// DM 불러오기
   Future<List<DmModel>> getDmList();
+
+  /// 채팅방 나가기
+  Future<bool> exitChatRoom({required String chatRoomId});
 }

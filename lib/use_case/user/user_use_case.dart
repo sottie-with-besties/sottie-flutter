@@ -1,30 +1,102 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
+import 'package:sottie_flutter/model/user/my_info_model.dart';
+import 'package:sottie_flutter/model/user/user_model.dart';
+import 'package:sottie_flutter/repository/user/interface/user_repository.dart';
 
 sealed class UserUseCase {
-  static void userBlock(BuildContext context) {
-    log("userBlock");
+  static final _repo = UserRepository();
+
+  /// 내 정보 가져오기
+  static Future<MyInfoModel?> getMyInfo() async {
+    try {
+      final myInfo = await _repo.getMyInfo();
+      return myInfo;
+    } catch (e) {
+      log("Error fetching my info: $e");
+      return null;
+    }
   }
 
-  static void userUnblock(BuildContext context) {
-    log("userUnblock");
+  /// 내 정보 업데이트하기
+  static Future<bool> updateMyInfo(MyInfoModel myInfo) async {
+    try {
+      final result = await _repo.updateMyInfo(myInfo: myInfo);
+      log("My info updated, result: $result");
+      return result;
+    } catch (e) {
+      log("Error updating my info: $e");
+      return false;
+    }
   }
 
-  static void userReport(BuildContext context) {
-    log("userReport");
+  /// 사용자 검색하기
+  static Future<UserModel?> searchUser(String searchText) async {
+    try {
+      final user = await _repo.searchUser(searchText: searchText);
+      return user;
+    } catch (e) {
+      log("Error searching user: $e");
+      return null;
+    }
   }
 
-  static void getMyInfo() {
-    // Todo: 내 정보 받아오는 코드
-
-    // if (이자르 데이터베이스에 내 정보가 있으면) => myInfoEntity에 받아오기
-    // else => 서버로부터 내 정보 받아오기
+  /// 친구 추가하기
+  static Future<bool> addFriend(String userId) async {
+    try {
+      final result = await _repo.addFriend(userId: userId);
+      log("Friend added: $userId, result: $result");
+      return result;
+    } catch (e) {
+      log("Error adding friend: $e");
+      return false;
+    }
   }
 
-  static void pushMyInfo() {
-    // Todo: 내 정보 백엔드로 보내는 코드
+  /// 차단한 사용자 목록 가져오기
+  static Future<List<UserModel>> getBlockedUsers() async {
+    try {
+      final blockedUsers = await _repo.getBlockedUsers();
+      return blockedUsers;
+    } catch (e) {
+      log("Error getting blocked users: $e");
+      return [];
+    }
+  }
 
-    // 내 정보 변경 시 서버에 보내기
+  /// 사용자 차단하기
+  static Future<bool> userBlock(String userId) async {
+    try {
+      final result = await _repo.blockUser(userId: userId);
+      log("User blocked: $userId, result: $result");
+      return result;
+    } catch (e) {
+      log("Error blocking user: $e");
+      return false;
+    }
+  }
+
+  /// 사용자 차단 해제하기
+  static Future<bool> userUnblock(String userId) async {
+    try {
+      final result = await _repo.unblockUser(userId: userId);
+      log("User unblocked: $userId, result: $result");
+      return result;
+    } catch (e) {
+      log("Error unblocking user: $e");
+      return false;
+    }
+  }
+
+  /// 사용자 신고하기
+  static Future<bool> userReport(String userId) async {
+    try {
+      final result = await _repo.reportUser(userId: userId);
+      log("User reported: $userId, result: $result");
+      return result;
+    } catch (e) {
+      log("Error reporting user: $e");
+      return false;
+    }
   }
 }

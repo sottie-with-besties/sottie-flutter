@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sottie_flutter/model/user/user_model.dart';
-import 'package:sottie_flutter/repository/user/implements/user_unblock_dummy.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/custom_future_builder.dart';
 import 'package:sottie_flutter/ui/user/widget/sottie_user.dart';
@@ -24,7 +23,7 @@ class _UserBlockScreenState extends State<UserBlockScreen>
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16 * ScreenSize.wu),
       child: CustomFutureBuilder(
-        futureFunction: getUserBlockDummy,
+        futureFunction: UserUseCase.getBlockedUsers,
         callBack: (futureData) {
           final userBlockList = futureData as List<UserModel>;
 
@@ -43,12 +42,15 @@ class _UserBlockScreenState extends State<UserBlockScreen>
                               SottieUser(
                                 model: userBlock,
                                 heroTag: 'userBlock',
-                                isMyFriend: false, // Todo: 친구인지 아닌지 확인하는 로직 필요
+                                isMyFriend:
+                                    false, // Todo: 친구인지 아닌지 확인하는 로직 필요(?)
                                 textWidth: 100,
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  UserUseCase.userUnblock(context);
+                                  UserUseCase.userUnblock(
+                                    userBlock.id.toString(),
+                                  );
                                 },
                                 child: const Text("차단 해제"),
                               ),

@@ -24,9 +24,9 @@ abstract interface class PostRepository {
   /// 포스트 만들기
   Future<bool> makePost({required Map<String, dynamic> postSetting});
 
-  /// 포스트 모집 참가
+  /// 포스트 참여
   Future<bool> postJoin({required Map<String, dynamic> postJoinInfo});
 
-  /// 포스트 모집 나가기
+  /// 포스트 참여 취소
   Future<bool> postExit();
 }
