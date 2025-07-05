@@ -8,18 +8,19 @@ part of 'chat_room_provider.dart';
 
 String _$chatRoomStateHash() => r'09fc681792af4888232ed871bf85d1c22c4b48a1';
 
-/// See also [ChatRoomState].
+// See also [ChatRoomState].
 @ProviderFor(ChatRoomState)
 final chatRoomStateProvider =
     AsyncNotifierProvider<ChatRoomState, List<ChatRoomModel>>.internal(
-  ChatRoomState.new,
-  name: r'chatRoomStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$chatRoomStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      ChatRoomState.new,
+      name: r'chatRoomStateProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$chatRoomStateHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$ChatRoomState = AsyncNotifier<List<ChatRoomModel>>;
 // ignore_for_file: type=lint

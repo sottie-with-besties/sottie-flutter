@@ -6,7 +6,7 @@ import 'package:sottie_flutter/repository/friend/interface/friend_repository.dar
 sealed class FriendUseCase {
   static final _repo = FriendRepository();
 
-  /// 친구 데이터 불러오기
+  // 친구 데이터 불러오기
   static Future<List<UserModel>> getFriendsList() async {
     try {
       final friendList = await _repo.getFriends();
@@ -17,7 +17,7 @@ sealed class FriendUseCase {
     }
   }
 
-  /// 친구 요청 데이터 불러오기
+  // 친구 요청 데이터 불러오기
   static Future<List<UserModel>> getFriendRequestsList() async {
     try {
       final friendRequestList = await _repo.getFriendRequests();
@@ -28,7 +28,7 @@ sealed class FriendUseCase {
     }
   }
 
-  /// 친구 삭제
+  // 친구 삭제
   static Future<bool> deleteFriend(String userId) async {
     try {
       await _repo.deleteFriend(userId);
@@ -40,7 +40,7 @@ sealed class FriendUseCase {
     }
   }
 
-  /// 친구 요청 수락
+  // 친구 요청 수락
   static Future<bool> acceptFriendRequest(String userId) async {
     try {
       await _repo.acceptFriendRequest(userId);
@@ -52,7 +52,7 @@ sealed class FriendUseCase {
     }
   }
 
-  /// 친구 요청 거절
+  // 친구 요청 거절
   static Future<bool> rejectFriendRequest(String userId) async {
     try {
       await _repo.rejectFriendRequest(userId);

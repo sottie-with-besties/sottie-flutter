@@ -8,18 +8,19 @@ part of 'home_latest_post_provider.dart';
 
 String _$homeLatestPostHash() => r'f786616073056edf98cb9dfd4f4b69d5aa848d90';
 
-/// See also [HomeLatestPost].
+// See also [HomeLatestPost].
 @ProviderFor(HomeLatestPost)
 final homeLatestPostProvider =
     NotifierProvider<HomeLatestPost, PostPaginationModel>.internal(
-  HomeLatestPost.new,
-  name: r'homeLatestPostProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$homeLatestPostHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      HomeLatestPost.new,
+      name: r'homeLatestPostProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$homeLatestPostHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$HomeLatestPost = Notifier<PostPaginationModel>;
 // ignore_for_file: type=lint

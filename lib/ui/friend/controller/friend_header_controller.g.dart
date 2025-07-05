@@ -9,18 +9,19 @@ part of 'friend_header_controller.dart';
 String _$friendHeaderControllerHash() =>
     r'cc0e37fe7715836b1b76affb1849129d532f48f3';
 
-/// See also [FriendHeaderController].
+// See also [FriendHeaderController].
 @ProviderFor(FriendHeaderController)
 final friendHeaderControllerProvider =
     AutoDisposeNotifierProvider<FriendHeaderController, String>.internal(
-  FriendHeaderController.new,
-  name: r'friendHeaderControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$friendHeaderControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      FriendHeaderController.new,
+      name: r'friendHeaderControllerProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$friendHeaderControllerHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$FriendHeaderController = AutoDisposeNotifier<String>;
 // ignore_for_file: type=lint

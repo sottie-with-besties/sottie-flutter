@@ -12,18 +12,18 @@ abstract interface class FriendRepository {
     };
   }
 
-  /// 친구 데이터 불러오기
+  // 친구 데이터 불러오기
   Future<List<UserModel>> getFriends();
 
-  /// 친구 요청 데이터 불러오기
+  // 친구 요청 데이터 불러오기
   Future<List<UserModel>> getFriendRequests();
 
-  /// 친구 삭제
+  // 친구 삭제
   Future<void> deleteFriend(String userId);
 
-  /// 친구 요청 수락
+  // 친구 요청 수락
   Future<void> acceptFriendRequest(String userId);
 
-  /// 친구 요청 거절
+  // 친구 요청 거절
   Future<void> rejectFriendRequest(String userId);
 }

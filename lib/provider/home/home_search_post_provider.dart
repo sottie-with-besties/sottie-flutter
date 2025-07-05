@@ -15,7 +15,7 @@ final class HomeSearchPost extends _$HomeSearchPost {
     );
   }
 
-  /// 검색 => 검색 조건에 부합하는 모집글 가져오기
+  // 검색 => 검색 조건에 부합하는 모집글 가져오기
   Future<void> searchPagination({bool firstFetch = false}) async {
     try {
       if (!firstFetch) {

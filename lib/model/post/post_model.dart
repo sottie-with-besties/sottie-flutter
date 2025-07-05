@@ -1,26 +1,26 @@
 import 'package:sottie_flutter/model/post/post_enum.dart';
 
 final class PostModel {
-  /// 포스트 ID
+  // 포스트 ID
   final int id;
 
-  /// 모임 카테고리
+  // 모임 카테고리
   final PostCategory postCategory;
 
-  /// 포스트 제목
+  // 포스트 제목
   final String title;
 
-  /// 모임 장소
+  // 모임 장소
   final PostLocation postLocation;
 
-  /// 모임 날짜
+  // 모임 날짜
   final DateTime postDate;
 
-  /// 포스트를 설명하는 구체적 내용
+  // 포스트를 설명하는 구체적 내용
   final String contents;
 
-  /// 성비 제한이 없을 경우 currentPeopleNum, peopleNum
-  /// 성비 제한이 있을 경우 currentMaleNum, maleNum, currentFemaleNum, femaleNum
+  // 성비 제한이 없을 경우 currentPeopleNum, peopleNum
+  // 성비 제한이 있을 경우 currentMaleNum, maleNum, currentFemaleNum, femaleNum
   final int numOfCurrentPeople;
   final int numOfPeople;
   final int numOfCurrentMale;
@@ -28,19 +28,19 @@ final class PostModel {
   final int numOfCurrentFemale;
   final int numOfFemale;
 
-  /// 최소 나이대
+  // 최소 나이대
   final int ageFrom;
 
-  /// 최대 나이대
+  // 최대 나이대
   final int ageTo;
 
-  /// 성비 제한
+  // 성비 제한
   final PostGenderRestriction genderRestriction;
 
-  /// 매너 온도 일정 기준 이상
+  // 매너 온도 일정 기준 이상
   final bool mannerRestriction;
 
-  /// 나이 제한
+  // 나이 제한
   final bool ageRestriction;
 
   PostModel({
@@ -63,7 +63,7 @@ final class PostModel {
     required this.ageRestriction,
   });
 
-  /// JSON에서 PostModel 생성
+  // JSON에서 PostModel 생성
   factory PostModel.fromJson(Map<String, dynamic> json) {
     return PostModel(
       id: json['id'] as int,
@@ -95,7 +95,7 @@ final class PostModel {
     );
   }
 
-  /// PostModel을 JSON으로 변환
+  // PostModel을 JSON으로 변환
   Map<String, dynamic> toJson() {
     return {
       'id': id,

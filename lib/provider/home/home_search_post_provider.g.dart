@@ -8,18 +8,19 @@ part of 'home_search_post_provider.dart';
 
 String _$homeSearchPostHash() => r'b6599e4588a5b5096d0341b50228b6cdbb629666';
 
-/// See also [HomeSearchPost].
+// See also [HomeSearchPost].
 @ProviderFor(HomeSearchPost)
 final homeSearchPostProvider =
     NotifierProvider<HomeSearchPost, PostPaginationModel>.internal(
-  HomeSearchPost.new,
-  name: r'homeSearchPostProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$homeSearchPostHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      HomeSearchPost.new,
+      name: r'homeSearchPostProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$homeSearchPostHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$HomeSearchPost = Notifier<PostPaginationModel>;
 // ignore_for_file: type=lint

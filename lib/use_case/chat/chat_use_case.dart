@@ -8,7 +8,7 @@ import 'package:sottie_flutter/repository/chat/interface/chat_repository.dart';
 sealed class ChatUseCase {
   static final _repo = ChatRepository();
 
-  /// 채팅방 가져오기
+  // 채팅방 가져오기
   static Future<List<ChatRoomModel>> getChatRoomList() async {
     try {
       final chatRoomModelList = await _repo.getChatRoomList();
@@ -19,7 +19,7 @@ sealed class ChatUseCase {
     }
   }
 
-  /// 채팅 대기방 가져오기
+  // 채팅 대기방 가져오기
   static Future<List<PostModel>> getChatRoomWaitingList() async {
     try {
       final chatRoomWaitingList = await _repo.getChatRoomWaitingList();
@@ -30,7 +30,7 @@ sealed class ChatUseCase {
     }
   }
 
-  /// Dm 가져오기
+  // Dm 가져오기
   static Future<List<DmModel>> getDmList() async {
     try {
       final dmModelList = await _repo.getDmList();
@@ -41,7 +41,7 @@ sealed class ChatUseCase {
     }
   }
 
-  /// 채팅방 나가기
+  // 채팅방 나가기
   static Future<bool> exitChatRoom(String chatRoomId) async {
     try {
       await _repo.exitChatRoom(chatRoomId: chatRoomId);

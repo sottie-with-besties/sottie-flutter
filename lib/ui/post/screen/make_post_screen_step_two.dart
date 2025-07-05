@@ -23,10 +23,10 @@ class MakePostScreenStepTwo extends StatefulWidget {
 class _MakePostScreenStepTwoState extends State<MakePostScreenStepTwo> {
   final FocusNode focusNode = FocusNode();
 
-  /// 에러 내용을 String으로 담아두어 다음 페이지로 넘어 갈 수 없는 이유 설명
+  // 에러 내용을 String으로 담아두어 다음 페이지로 넘어 갈 수 없는 이유 설명
   List<String> checkList = <String>[];
 
-  /// 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
+  // 세팅에 문제가 있으면 에러 내용을 checkList에 담고 다이얼로그 띄우기.
   void checkIfSettingHasError() {
     if (postOptionsSetting.gatheringDate == null) {
       checkList.add("날짜 및 시간을 선택해주세요.");

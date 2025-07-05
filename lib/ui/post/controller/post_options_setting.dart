@@ -2,52 +2,52 @@ import 'package:flutter/material.dart';
 import 'package:sottie_flutter/model/post/post_enum.dart';
 
 final class PostOptionsSetting {
-  /// 포스트 제목
+  // 포스트 제목
   String title;
 
-  /// 포스트 내용
+  // 포스트 내용
   String contents;
 
-  /// 포스트 카테고리(번개, 친목, 게임 등)
+  // 포스트 카테고리(번개, 친목, 게임 등)
   PostCategory gatheringCategory;
 
-  /// 시간도 포함, non-null 타입으로 안됨
+  // 시간도 포함, non-null 타입으로 안됨
   DateTime? gatheringDate;
 
-  /// 검색 스크린 전용, 검색할 날짜 범위
+  // 검색 스크린 전용, 검색할 날짜 범위
   DateTimeRange? dateTimeRange;
 
-  /// 검색 스크린 전용, 검색할 시간 범위의 시작
+  // 검색 스크린 전용, 검색할 시간 범위의 시작
   TimeOfDay? timeStart;
 
-  /// 검색 스크린 전용, 검색할 시간 범위의 끝
+  // 검색 스크린 전용, 검색할 시간 범위의 끝
   TimeOfDay? timeEnd;
 
-  /// 지역
+  // 지역
   int locationId;
 
-  /// 참여자 수 2 ~ 10 명
+  // 참여자 수 2 ~ 10 명
   int peopleNum;
 
-  /// 성비 제한 여부
+  // 성비 제한 여부
   PostGenderRestriction genderRestriction;
 
-  /// 성비 제한이 있을 경우의 남자 수
+  // 성비 제한이 있을 경우의 남자 수
   int maleNum;
 
-  /// 성비 제한이 있을 경우의 여자 수
+  // 성비 제한이 있을 경우의 여자 수
   int femaleNum;
 
-  /// 최소 나이대
+  // 최소 나이대
   int ageFrom;
 
-  /// 최대 나이대
+  // 최대 나이대
   int ageTo;
 
-  /// 나이 제한 여부
+  // 나이 제한 여부
   bool ageRestriction;
 
-  /// 사용자의 매너 온도 제한
+  // 사용자의 매너 온도 제한
   bool mannerRestriction;
 
   PostOptionsSetting({

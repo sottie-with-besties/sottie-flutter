@@ -30,7 +30,7 @@ class _AgeOptionState extends State<AgeOption> {
               onChanged: (val) {
                 postOptionsSetting.ageRestriction = val;
 
-                /// 나이 제한 off 일 때
+                // 나이 제한 off 일 때
                 if (val == true) {
                   postOptionsSetting.ageFrom = 1;
                   postOptionsSetting.ageTo = 1;
@@ -74,7 +74,7 @@ class _AgeRangeState extends State<_AgeRange> {
   void initState() {
     super.initState();
 
-    /// 검색 스크린에서 필터링 시 데이터 유지
+    // 검색 스크린에서 필터링 시 데이터 유지
     if (widget.isSelected == true) {
       for (
         int i = postOptionsSetting.ageFrom;
@@ -118,13 +118,13 @@ class _AgeRangeState extends State<_AgeRange> {
                         label: Text(age.name),
                         selected: selectedList[age.index],
                         onSelected: (onSelected) {
-                          /// 칩을 눌렀을 때 최소와 최대 사이의 칩이 모두 선택되어야 한다.
-                          /// ex) 10대, 40대 선택 -> 10대, 20대, 30대, 40대
+                          // 칩을 눌렀을 때 최소와 최대 사이의 칩이 모두 선택되어야 한다.
+                          // ex) 10대, 40대 선택 -> 10대, 20대, 30대, 40대
 
                           if (onSelected) {
-                            /// 칩을 on 했을 때
-                            /// index + 1이 ageFrom보다 작다면 ageFrom = index + 1
-                            /// index + 1이 ageTo보다 크다면 ageTo = index + 1
+                            // 칩을 on 했을 때
+                            // index + 1이 ageFrom보다 작다면 ageFrom = index + 1
+                            // index + 1이 ageTo보다 크다면 ageTo = index + 1
 
                             if (age.index + 1 < postOptionsSetting.ageFrom) {
                               postOptionsSetting.ageFrom = age.index + 1;
@@ -133,11 +133,11 @@ class _AgeRangeState extends State<_AgeRange> {
                               postOptionsSetting.ageTo = age.index + 1;
                             }
                           } else {
-                            /// 칩을 off 했을 때
-                            /// index + 1이 ageFrom과 ageTo 사이에 있다면 동작하지 않는다.
-                            /// ageTo와 ageFrom이 같다면 동작하지 않는다.(하나는 선택되게)
-                            /// index + 1이 ageFrom라면 ageFrom++
-                            /// index + 1이 ageTo라면 ageTo--
+                            // 칩을 off 했을 때
+                            // index + 1이 ageFrom과 ageTo 사이에 있다면 동작하지 않는다.
+                            // ageTo와 ageFrom이 같다면 동작하지 않는다.(하나는 선택되게)
+                            // index + 1이 ageFrom라면 ageFrom++
+                            // index + 1이 ageTo라면 ageTo--
 
                             if (age.index + 1 > postOptionsSetting.ageFrom &&
                                     age.index + 1 < postOptionsSetting.ageTo ||

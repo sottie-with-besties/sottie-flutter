@@ -53,8 +53,8 @@ sealed class VerificationUseCase {
   static Payload _getPayload() {
     final payload = Payload();
 
-    /// 부트페이 콘솔에 프로젝트 생성하여 해당 아이디를 넣어야함
-    /// 본인인증은 그냥 id 넣지 않아도 동작은 되는듯?
+    // 부트페이 콘솔에 프로젝트 생성하여 해당 아이디를 넣어야함
+    // 본인인증은 그냥 id 넣지 않아도 동작은 되는듯?
     payload.webApplicationId =
         NativeKey.bootpayWebApplicationId; // web application id
     payload.androidApplicationId =

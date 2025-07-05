@@ -7,7 +7,7 @@ import 'package:sottie_flutter/repository/more/interface/more_repository.dart';
 sealed class MoreUseCase {
   static final _repo = MoreRepository();
 
-  /// 공지사항 불러오기
+  // 공지사항 불러오기
   static Future<List<MoreNoticeModel>> getNoticeList() async {
     try {
       final noticeList = await _repo.getNoticeList();
@@ -18,7 +18,7 @@ sealed class MoreUseCase {
     }
   }
 
-  /// 이벤트 불러오기
+  // 이벤트 불러오기
   static Future<List<MoreEventModel>> getEventList() async {
     try {
       final eventList = await _repo.getEventList();
@@ -29,7 +29,7 @@ sealed class MoreUseCase {
     }
   }
 
-  /// 고객 센터 문의
+  // 고객 센터 문의
   static Future<bool> sendCustomerCenterInquiry(String text) async {
     try {
       await _repo.sendCustomerCenterInquiry(text: text);
@@ -41,7 +41,7 @@ sealed class MoreUseCase {
     }
   }
 
-  /// 광고 마케팅 알림 설정 변경
+  // 광고 마케팅 알림 설정 변경
   static Future<bool> switchAdMarketingAlarm(bool value) async {
     try {
       await _repo.switchAdMarketingAlarm(value: value);
@@ -53,7 +53,7 @@ sealed class MoreUseCase {
     }
   }
 
-  /// 채팅 생성 알림 설정 변경
+  // 채팅 생성 알림 설정 변경
   static Future<bool> switchChatCreateAlarm(bool value) async {
     try {
       await _repo.switchChatCreateAlarm(value: value);
@@ -65,7 +65,7 @@ sealed class MoreUseCase {
     }
   }
 
-  /// 채팅 알림 설정 변경
+  // 채팅 알림 설정 변경
   static Future<bool> switchChatAlarm(bool value) async {
     try {
       await _repo.switchChatAlarm(value: value);
@@ -77,7 +77,7 @@ sealed class MoreUseCase {
     }
   }
 
-  /// DM 알림 설정 변경
+  // DM 알림 설정 변경
   static Future<bool> switchDmAlarm(bool value) async {
     try {
       await _repo.switchDmAlarm(value: value);
@@ -89,7 +89,7 @@ sealed class MoreUseCase {
     }
   }
 
-  /// 친구 추가 거부 설정 변경
+  // 친구 추가 거부 설정 변경
   static Future<bool> switchFriendAddReject(bool value) async {
     try {
       await _repo.switchFriendAddReject(value: value);

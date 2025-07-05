@@ -5,7 +5,7 @@ import 'package:sottie_flutter/ui/post/controller/post_options_setting.dart';
 sealed class PostUseCase {
   static final _repo = PostRepository();
 
-  /// 최신 모집글 불러오기
+  // 최신 모집글 불러오기
   static Future<List<PostModel>> getLatestPostModelList({
     required int lastPostId,
   }) async {
@@ -16,7 +16,7 @@ sealed class PostUseCase {
     return postModelList;
   }
 
-  /// 검색 모집글 불러오기
+  // 검색 모집글 불러오기
   static Future<List<PostModel>> getSearchPostModelList({
     required Map<String, dynamic> searchSetting,
     required int lastPostId,
@@ -29,7 +29,7 @@ sealed class PostUseCase {
     return postModelList;
   }
 
-  /// 포스트 만들기
+  // 포스트 만들기
   static Future<bool> makePost() async {
     try {
       await _repo.makePost(
@@ -42,7 +42,7 @@ sealed class PostUseCase {
     }
   }
 
-  /// 포스트 모집 참가
+  // 포스트 모집 참가
   static Future<bool> postJoin({
     required Map<String, dynamic> postJoinInfo,
   }) async {
@@ -55,7 +55,7 @@ sealed class PostUseCase {
     }
   }
 
-  /// 포스트 모집 나가기
+  // 포스트 모집 나가기
   static Future<bool> postExit() async {
     try {
       await _repo.postExit();

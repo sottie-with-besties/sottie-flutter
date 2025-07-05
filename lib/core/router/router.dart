@@ -27,26 +27,26 @@ import 'package:sottie_flutter/ui/user/screen/user_detail_screen.dart';
 sealed class CustomRouter {
   static final router = GoRouter(initialLocation: '/auth', routes: _routes);
 
-  /// Auth Screens
+  // Auth Screens
   static const authPath = "/auth";
   static const certificationPath = "certification";
   static const verificationCompletePath = "verificationComplete";
 
-  /// Main Layout Screens
+  // Main Layout Screens
 
-  /// Home
+  // Home
   static const homePath = "/home";
 
-  /// Chat
+  // Chat
   static const chatPath = "/chat";
   static const inChatPath = "inChat";
   static const inChatInfoPath = "inChatInfo";
 
-  /// Friend
+  // Friend
   static const friendPath = "/friend";
   static const friendUtilPath = "friendUtil";
 
-  /// More
+  // More
   static const morePath = "/more";
 
   static const infoModifyPath = "modify";
@@ -61,23 +61,23 @@ sealed class CustomRouter {
 
   static const settingPath = "setting";
 
-  /// Make Post Screen
+  // Make Post Screen
   static const makePostStepOnePath = "/makePostStepOne";
   static const makePostStepTwoPath = "makePostStepTwo";
   static const makePostStepThreePath = "makePostStepThree";
 
-  /// Post Detail Screen
+  // Post Detail Screen
   static const postDetailPath = "/postDetail";
 
-  /// User Detail Screen
+  // User Detail Screen
   static const userDetailPath = "/userDetail";
 
-  /// Photo Magnification Screen
+  // Photo Magnification Screen
   static const photoMagnificationPath = "/photoMagnification";
 }
 
 final _routes = [
-  /// Authentication: 로그인, 회원가입
+  // Authentication: 로그인, 회원가입
   GoRoute(
     path: CustomRouter.authPath,
     builder: (_, __) => const AuthScreen(),
@@ -93,7 +93,7 @@ final _routes = [
     ],
   ),
 
-  /// Main Layout: 바텀 네비게이션 + 첫 화면
+  // Main Layout: 바텀 네비게이션 + 첫 화면
   StatefulShellRoute.indexedStack(
     builder: (context, state, shell) => NavigationScreen(shell: shell),
     branches: <StatefulShellBranch>[
@@ -107,7 +107,7 @@ final _routes = [
         ],
       ),
 
-      /// 채팅 스크린: 모임 채팅방 + 1:1 DM 채팅방
+      // 채팅 스크린: 모임 채팅방 + 1:1 DM 채팅방
       StatefulShellBranch(
         routes: <GoRoute>[
           GoRoute(
@@ -152,7 +152,7 @@ final _routes = [
         ],
       ),
 
-      /// 친구 목록 스크린: 친구, 친구 디테일 스크린
+      // 친구 목록 스크린: 친구, 친구 디테일 스크린
       StatefulShellBranch(
         routes: <GoRoute>[
           GoRoute(
@@ -168,7 +168,7 @@ final _routes = [
         ],
       ),
 
-      /// 더 보기 스크린: 내 정보 수정, 로그 아웃, 공지 사항, 이벤트 등 기타 유틸리티
+      // 더 보기 스크린: 내 정보 수정, 로그 아웃, 공지 사항, 이벤트 등 기타 유틸리티
       StatefulShellBranch(
         routes: <GoRoute>[
           GoRoute(
@@ -213,11 +213,11 @@ final _routes = [
     ],
   ),
 
-  /// 모집글 생성 스크린
+  // 모집글 생성 스크린
   GoRoute(
     path: CustomRouter.makePostStepOnePath,
     onExit: (_, __) {
-      /// 첫번째 모집글 생성 화면에서 뒤로가기 또는 모집글 생성 완료 시(pop, go) postSetting 초기화하여 검색에 영향 X
+      // 첫번째 모집글 생성 화면에서 뒤로가기 또는 모집글 생성 완료 시(pop, go) postSetting 초기화하여 검색에 영향 X
       postOptionsSetting = PostOptionsSetting();
       return true;
     },
@@ -236,7 +236,7 @@ final _routes = [
     ],
   ),
 
-  /// 모집글 상세 화면 스크린
+  // 모집글 상세 화면 스크린
   GoRoute(
     path: CustomRouter.postDetailPath,
     pageBuilder: (_, state) {
@@ -255,7 +255,7 @@ final _routes = [
     },
   ),
 
-  /// 유저 디테일 스크린
+  // 유저 디테일 스크린
   GoRoute(
     path: CustomRouter.userDetailPath,
     pageBuilder: (_, state) {
@@ -274,7 +274,7 @@ final _routes = [
     },
   ),
 
-  /// 프로필 사진 눌렀을 때 사진 확대하여 보여주는 스크린
+  // 프로필 사진 눌렀을 때 사진 확대하여 보여주는 스크린
   GoRoute(
     path: CustomRouter.photoMagnificationPath,
     builder: (_, state) {

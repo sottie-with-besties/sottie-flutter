@@ -5,7 +5,7 @@ import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/controller/ui_util.dart';
 import 'package:sottie_flutter/ui/common/widget/chat_room_destroying_timer.dart';
 
-/// 채팅방 시스템 메세지 위젯 (채팅이 시작되었습니다, ~가 입장하였습니다 등)
+// 채팅방 시스템 메세지 위젯 (채팅이 시작되었습니다, ~가 입장하였습니다 등)
 class InChatUserAccessMessage extends StatelessWidget {
   const InChatUserAccessMessage({
     super.key,
@@ -13,10 +13,10 @@ class InChatUserAccessMessage extends StatelessWidget {
     required this.nickname,
   });
 
-  /// 시스템 메시지를 표시할 이벤트
+  // 시스템 메시지를 표시할 이벤트
   final InChatEventType eventType;
 
-  /// 이벤트를 발생시킨 사용자의 닉네임
+  // 이벤트를 발생시킨 사용자의 닉네임
   final String nickname;
 
   @override
@@ -44,7 +44,7 @@ class InChatUserAccessMessage extends StatelessWidget {
     );
   }
 
-  /// 이벤트 타입에 따라 시스템 메시지 생성
+  // 이벤트 타입에 따라 시스템 메시지 생성
   String _buildMessage() {
     switch (eventType) {
       case InChatEventType.ENTRANCE:
@@ -57,7 +57,7 @@ class InChatUserAccessMessage extends StatelessWidget {
   }
 }
 
-/// 채팅 시작 메세지 위젯
+// 채팅 시작 메세지 위젯
 class InChatStartMessage extends StatelessWidget {
   const InChatStartMessage({
     super.key,
@@ -92,7 +92,7 @@ class InChatStartMessage extends StatelessWidget {
   }
 }
 
-/// 채팅 종료 메시지 위젯
+// 채팅 종료 메시지 위젯
 class InChatEndMessage extends StatelessWidget {
   const InChatEndMessage({super.key, required this.date});
 
@@ -128,7 +128,7 @@ class InChatEndMessage extends StatelessWidget {
   }
 }
 
-/// 날짜 구분선 위젯
+// 날짜 구분선 위젯
 class InChatDateDivider extends StatelessWidget {
   const InChatDateDivider({super.key, required this.date});
 

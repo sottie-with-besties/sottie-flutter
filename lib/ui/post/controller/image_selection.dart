@@ -7,7 +7,7 @@ final _picker = ImagePicker();
 
 Future<List<XFile>?> imageSelection(BuildContext context) async {
   try {
-    /// 여러 이미지와 동영상 선택 및 채팅방에 전송
+    // 여러 이미지와 동영상 선택 및 채팅방에 전송
     final images = await _picker.pickMultipleMedia();
     return images;
   } on PlatformException catch (e) {

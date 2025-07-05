@@ -20,7 +20,7 @@ class UserProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasProfileUrl = profileUrl != null;
 
-    /// 유저가 내 이미지를 변경하였을 때 바로 변화할 수 있도록
+    // 유저가 내 이미지를 변경하였을 때 바로 변화할 수 있도록
     return myProfileXFilePath != null
         ? _defaultProfile(profileSize, myProfileXFilePath)
         : hasProfileUrl
@@ -29,7 +29,7 @@ class UserProfile extends StatelessWidget {
   }
 }
 
-/// 기본 프로필
+// 기본 프로필
 ClipRRect _defaultProfile(
   double size,
   String? assetPath, [
@@ -63,7 +63,7 @@ ClipRRect _defaultProfile(
   );
 }
 
-/// 프로필 설정한 경우
+// 프로필 설정한 경우
 SizedBox _hasProfile(String imageUrl, double size) {
   return SizedBox(
     width: size * ScreenSize.hu,

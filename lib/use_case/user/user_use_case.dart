@@ -7,7 +7,7 @@ import 'package:sottie_flutter/repository/user/interface/user_repository.dart';
 sealed class UserUseCase {
   static final _repo = UserRepository();
 
-  /// 내 정보 가져오기
+  // 내 정보 가져오기
   static Future<MyInfoModel?> getMyInfo() async {
     try {
       final myInfo = await _repo.getMyInfo();
@@ -18,7 +18,7 @@ sealed class UserUseCase {
     }
   }
 
-  /// 내 정보 업데이트하기
+  // 내 정보 업데이트하기
   static Future<bool> updateMyInfo(MyInfoModel myInfo) async {
     try {
       await _repo.updateMyInfo(myInfo: myInfo);
@@ -30,7 +30,7 @@ sealed class UserUseCase {
     }
   }
 
-  /// 사용자 검색하기
+  // 사용자 검색하기
   static Future<UserModel?> searchUser(String searchText) async {
     try {
       final user = await _repo.searchUser(searchText: searchText);
@@ -41,7 +41,7 @@ sealed class UserUseCase {
     }
   }
 
-  /// 친구 추가하기
+  // 친구 추가하기
   static Future<bool> addFriend(String userId) async {
     try {
       await _repo.addFriend(userId: userId);
@@ -53,7 +53,7 @@ sealed class UserUseCase {
     }
   }
 
-  /// 차단한 사용자 목록 가져오기
+  // 차단한 사용자 목록 가져오기
   static Future<List<UserModel>> getBlockedUsers() async {
     try {
       final blockedUsers = await _repo.getBlockedUsers();
@@ -64,7 +64,7 @@ sealed class UserUseCase {
     }
   }
 
-  /// 사용자 차단하기
+  // 사용자 차단하기
   static Future<bool> userBlock(String userId) async {
     try {
       await _repo.blockUser(userId: userId);
@@ -76,7 +76,7 @@ sealed class UserUseCase {
     }
   }
 
-  /// 사용자 차단 해제하기
+  // 사용자 차단 해제하기
   static Future<bool> userUnblock(String userId) async {
     try {
       await _repo.unblockUser(userId: userId);
@@ -88,7 +88,7 @@ sealed class UserUseCase {
     }
   }
 
-  /// 사용자 신고하기
+  // 사용자 신고하기
   static Future<bool> userReport(String userId) async {
     try {
       await _repo.reportUser(userId: userId);

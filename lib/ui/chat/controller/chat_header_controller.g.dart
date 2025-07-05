@@ -9,18 +9,19 @@ part of 'chat_header_controller.dart';
 String _$chatHeaderControllerHash() =>
     r'14575d8dee5dcdd67eb5801bdd0cd772e87e00e8';
 
-/// See also [ChatHeaderController].
+// See also [ChatHeaderController].
 @ProviderFor(ChatHeaderController)
 final chatHeaderControllerProvider =
     AutoDisposeNotifierProvider<ChatHeaderController, String>.internal(
-  ChatHeaderController.new,
-  name: r'chatHeaderControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$chatHeaderControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      ChatHeaderController.new,
+      name: r'chatHeaderControllerProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$chatHeaderControllerHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$ChatHeaderController = AutoDisposeNotifier<String>;
 // ignore_for_file: type=lint

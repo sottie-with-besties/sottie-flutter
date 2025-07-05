@@ -8,7 +8,7 @@ part of 'dm_provider.dart';
 
 String _$dmStateHash() => r'a78e8a75965d7972f5dc45ac9ed62ea9f6918085';
 
-/// See also [DmState].
+// See also [DmState].
 @ProviderFor(DmState)
 final dmStateProvider = AsyncNotifierProvider<DmState, List<DmModel>>.internal(
   DmState.new,

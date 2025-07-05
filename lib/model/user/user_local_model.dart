@@ -6,19 +6,19 @@ final class UserLocalModel {
   @Id()
   int id = 0;
 
-  /// 유저 ID
+  // 유저 ID
   final int userId;
 
-  /// 유저 닉네임
+  // 유저 닉네임
   final String nickname;
 
-  /// 유저 상태 메세지
+  // 유저 상태 메세지
   final String? stateMsg;
 
-  /// 유저 프로필 URL
+  // 유저 프로필 URL
   final String? profileUrl;
 
-  /// 매너온도
+  // 매너온도
   final double mannerTemperature;
 
   UserLocalModel({

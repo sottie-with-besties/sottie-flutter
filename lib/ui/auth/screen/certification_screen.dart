@@ -77,8 +77,8 @@ class CertificationScreen extends StatelessWidget {
 }
 
 Payload getPayload() {
-  /// 부트페이 콘솔에 프로젝트 생성하여 해당 아이디를 넣어야함
-  /// 본인인증은 그냥 id 넣지 않아도 동작은 되는듯?
+  // 부트페이 콘솔에 프로젝트 생성하여 해당 아이디를 넣어야함
+  // 본인인증은 그냥 id 넣지 않아도 동작은 되는듯?
   const webApplicationId = '5b8f6a4d396fa665fdc2b5e7';
   const androidApplicationId = '5b8f6a4d396fa665fdc2b5e8';
   const iosApplicationId = '5b8f6a4d396fa665fdc2b5e9';

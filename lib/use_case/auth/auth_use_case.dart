@@ -10,7 +10,9 @@ import 'package:sottie_flutter/repository/auth/interface/auth_repository.dart';
 import '../../core/local_database/token_storage.dart';
 
 part 'auth_part/oauth_apple.dart';
+
 part 'auth_part/oauth_google.dart';
+
 part 'auth_part/oauth_kakao.dart';
 
 sealed class AuthUseCase {
@@ -51,7 +53,7 @@ sealed class AuthUseCase {
     }
   }
 
-  /// OAuth로 로그인하기 (카카오, 구글, 애플)
+  // OAuth로 로그인하기 (카카오, 구글, 애플)
   static Future<bool> _oauthLogin({
     required String idToken,
     required String accessToken,
@@ -59,13 +61,13 @@ sealed class AuthUseCase {
     try {
       log('백엔드로 토큰 전송');
 
-      /// 백엔드로 ID 토큰과 액세스 토큰 전송
+      // 백엔드로 ID 토큰과 액세스 토큰 전송
       final tokenModel = await AuthRepository().socialLogin(
         idToken: idToken,
         accessToken: accessToken,
       );
 
-      /// 시큐어 스토리지에 토큰 저장
+      // 시큐어 스토리지에 토큰 저장
       await _tokenStorage.writeRefreshToken(
         newRefreshToken: tokenModel.refreshToken,
       );
@@ -73,7 +75,7 @@ sealed class AuthUseCase {
         newAccessToken: tokenModel.accessToken,
       );
 
-      /// 액세스 토큰 체인지
+      // 액세스 토큰 체인지
       _tokenStorage.changeAccessToken(newAcessToken: tokenModel.accessToken);
 
       return true;
@@ -82,7 +84,7 @@ sealed class AuthUseCase {
     }
   }
 
-  /// 로그아웃
+  // 로그아웃
   static Future<bool> signOut({required AuthType authType}) async {
     bool signOutSuccess;
 

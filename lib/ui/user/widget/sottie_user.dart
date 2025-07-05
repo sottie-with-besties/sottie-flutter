@@ -68,8 +68,8 @@ class SottieUser extends StatelessWidget {
                   ),
                   SizedBox(height: 5 * ScreenSize.hu),
 
-                  /// Todo: stateMsg가 아닌 그냥 message로 바꾸기(?)
-                  /// Todo: DM 아래에는 최근 메세지가 오는 게 좋겠음
+                  // Todo: stateMsg가 아닌 그냥 message로 바꾸기(?)
+                  // Todo: DM 아래에는 최근 메세지가 오는 게 좋겠음
                   Text(
                     overflow: TextOverflow.ellipsis,
                     model.stateMsg ?? '',

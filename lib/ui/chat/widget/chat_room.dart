@@ -25,12 +25,12 @@ class ChatRoom extends StatelessWidget {
     bool isChattingOver = false;
     Duration chatRoomDisappearingTime = const Duration(hours: 23);
 
-    /// 채팅 모임 날짜 기준 24시간 경과 후 채팅방이 사라지기 시작함. 24시간 후 완전히 사라짐.
-    /// 모임 날짜 + 24시간 까지 채팅 가능, 그 이후 24시간 채팅방 삭제 대기
+    // 채팅 모임 날짜 기준 24시간 경과 후 채팅방이 사라지기 시작함. 24시간 후 완전히 사라짐.
+    // 모임 날짜 + 24시간 까지 채팅 가능, 그 이후 24시간 채팅방 삭제 대기
     final now = DateTime.now().toLocal();
     final du = now.difference(model.gatheringDate);
 
-    /// inDays == 1은 시간 차이가 24시간 이상 48시간 미만을 의미
+    // inDays == 1은 시간 차이가 24시간 이상 48시간 미만을 의미
     if (du.inDays >= 1) {
       isChattingOver = true;
       chatRoomDisappearingTime = du;

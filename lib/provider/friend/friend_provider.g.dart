@@ -8,17 +8,19 @@ part of 'friend_provider.dart';
 
 String _$friendStateHash() => r'0a87f2b9d6fddd0706b830f8db8b900e847a2045';
 
-/// See also [FriendState].
+// See also [FriendState].
 @ProviderFor(FriendState)
 final friendStateProvider =
     AsyncNotifierProvider<FriendState, List<UserModel>>.internal(
-  FriendState.new,
-  name: r'friendStateProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$friendStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      FriendState.new,
+      name: r'friendStateProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$friendStateHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$FriendState = AsyncNotifier<List<UserModel>>;
 // ignore_for_file: type=lint

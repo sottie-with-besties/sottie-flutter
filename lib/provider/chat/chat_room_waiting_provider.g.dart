@@ -9,18 +9,19 @@ part of 'chat_room_waiting_provider.dart';
 String _$chatRoomWaitingStateHash() =>
     r'21275a0821633e8355efeea1d4c60416770c99cb';
 
-/// See also [ChatRoomWaitingState].
+// See also [ChatRoomWaitingState].
 @ProviderFor(ChatRoomWaitingState)
 final chatRoomWaitingStateProvider =
     AsyncNotifierProvider<ChatRoomWaitingState, List<PostModel>>.internal(
-  ChatRoomWaitingState.new,
-  name: r'chatRoomWaitingStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$chatRoomWaitingStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      ChatRoomWaitingState.new,
+      name: r'chatRoomWaitingStateProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$chatRoomWaitingStateHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$ChatRoomWaitingState = AsyncNotifier<List<PostModel>>;
 // ignore_for_file: type=lint

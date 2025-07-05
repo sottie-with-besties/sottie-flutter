@@ -54,7 +54,7 @@ class AuthScreen extends StatelessWidget {
 
               Column(
                 children: [
-                  /// 카카오 로그인
+                  // 카카오 로그인
                   OAuthButton(
                     imgPath: AssetPath.kakaoLogin,
                     onPressed: () async {
@@ -62,7 +62,7 @@ class AuthScreen extends StatelessWidget {
                     },
                   ),
 
-                  /// 구글 로그인
+                  // 구글 로그인
                   AuthButton(
                     onPressed: (_) async {
                       await _socialLogin(context, AuthType.google);
@@ -75,12 +75,12 @@ class AuthScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
 
-                  /// 애플 로그인
+                  // 애플 로그인
                   AuthButton(
                     onPressed: (_) async {
                       context.go(CustomRouter.homePath);
 
-                      /// 애플 로그인 코드
+                      // 애플 로그인 코드
                       // await _socialLogin(context, AuthType.apple);
                     },
                     brand: Method.apple,

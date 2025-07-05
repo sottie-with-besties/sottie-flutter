@@ -59,19 +59,19 @@ class Sottie extends StatelessWidget {
 }
 
 Future<void> _initApp() async {
-  /// 파이어베이스
+  // 파이어베이스
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  /// 카카오
+  // 카카오
   KakaoSdk.init(
     nativeAppKey: NativeKey.nativeAppKey,
     javaScriptAppKey: NativeKey.javaScriptKey,
   );
 
-  /// 화면 세로 고정
+  // 화면 세로 고정
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  /// local db 초기화
+  // local db 초기화
   await ObjectBoxStore().initObjectBox();
 }
 

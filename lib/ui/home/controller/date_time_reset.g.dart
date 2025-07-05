@@ -8,7 +8,7 @@ part of 'date_time_reset.dart';
 
 String _$dateTimeResetHash() => r'38a546c15a2fda2daefe9148624ed88831a91760';
 
-/// See also [DateTimeReset].
+// See also [DateTimeReset].
 @ProviderFor(DateTimeReset)
 final dateTimeResetProvider =
     AutoDisposeNotifierProvider<DateTimeReset, bool>.internal(

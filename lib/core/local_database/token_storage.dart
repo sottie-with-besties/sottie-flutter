@@ -3,9 +3,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 final class TokenStorage {
   static final TokenStorage _instance = TokenStorage._();
 
-  /// 싱글톤으로 관리하여 액세스 토큰 값 유지
+  // 싱글톤으로 관리하여 액세스 토큰 값 유지
   factory TokenStorage() => _instance;
-  
+
   TokenStorage._();
 
   final _tokenStorage = const FlutterSecureStorage();

@@ -9,18 +9,19 @@ part of 'home_state_controller.dart';
 String _$homeStateControllerHash() =>
     r'4203ace0b3fc80a3ad16779c66fe84a5723543b2';
 
-/// See also [HomeStateController].
+// See also [HomeStateController].
 @ProviderFor(HomeStateController)
 final homeStateControllerProvider =
     NotifierProvider<HomeStateController, HomePostState>.internal(
-  HomeStateController.new,
-  name: r'homeStateControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$homeStateControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      HomeStateController.new,
+      name: r'homeStateControllerProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$homeStateControllerHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$HomeStateController = Notifier<HomePostState>;
 // ignore_for_file: type=lint

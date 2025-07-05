@@ -42,7 +42,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
 
         if (postOptionsSetting.genderRestriction !=
             PostGenderRestriction.NONE) {
-          /// 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
+          // 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
           postOptionsSetting.maleNum = (peopleNum / 2).floorToDouble().toInt();
           postOptionsSetting.femaleNum = peopleNum - postOptionsSetting.maleNum;
         }
@@ -71,7 +71,7 @@ class _GenderClassState extends ConsumerState<GenderOption> {
                     postOptionsSetting.genderRestriction =
                         PostGenderRestriction.MIX;
 
-                    /// 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
+                    // 유저가 numOfMember를 10에서 5로 골랐을 때(큰 수에서 작은 수) Slider의 Value에러 방지
                     postOptionsSetting.maleNum =
                         (postOptionsSetting.peopleNum / 2)
                             .floorToDouble()

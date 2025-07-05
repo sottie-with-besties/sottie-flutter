@@ -13,27 +13,27 @@ abstract interface class MoreRepository {
     };
   }
 
-  /// 공지사항 불러오기
+  // 공지사항 불러오기
   Future<List<MoreNoticeModel>> getNoticeList();
 
-  /// 이벤트 불러오기
+  // 이벤트 불러오기
   Future<List<MoreEventModel>> getEventList();
 
-  /// 고객 센터 문의
+  // 고객 센터 문의
   Future<void> sendCustomerCenterInquiry({required String text});
 
-  /// 광고 마케팅 알림
+  // 광고 마케팅 알림
   Future<void> switchAdMarketingAlarm({required bool value});
 
-  /// 채팅 생성 알림
+  // 채팅 생성 알림
   Future<void> switchChatCreateAlarm({required bool value});
 
-  /// 채팅 알림
+  // 채팅 알림
   Future<void> switchChatAlarm({required bool value});
 
-  /// DM 알림
+  // DM 알림
   Future<void> switchDmAlarm({required bool value});
 
-  /// 친구 추가 거부
+  // 친구 추가 거부
   Future<void> switchFriendAddReject({required bool value});
 }

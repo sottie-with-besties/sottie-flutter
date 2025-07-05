@@ -7,11 +7,11 @@ import 'package:stomp_dart_client/stomp_dart_client.dart';
 final class InChatSocketRepoImpl {
   StompClient? _stompClient;
 
-  /// 소켓 구독 취소
-  /// subscribe 함수를 호출 시 unSubscribe 함수를 반환한다.
+  // 소켓 구독 취소
+  // subscribe 함수를 호출 시 unSubscribe 함수를 반환한다.
   Function? unSubscribeFn;
 
-  /// 소켓 초기화
+  // 소켓 초기화
   void initStompClientSocket({
     required String roomId,
     required String userId,
@@ -58,7 +58,7 @@ final class InChatSocketRepoImpl {
     }
   }
 
-  /// 소켓 비활성화
+  // 소켓 비활성화
   void deactivateSocket() {
     if (_stompClient!.isActive) {
       _stompClient!.deactivate();
@@ -86,6 +86,6 @@ final class InChatSocketRepoImpl {
     }
   }
 
-  /// 소켓이 잘 연결되어있는지 확인
+  // 소켓이 잘 연결되어있는지 확인
   bool _canSendData() => _stompClient != null && _stompClient!.isActive;
 }

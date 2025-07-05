@@ -8,15 +8,18 @@ part of 'in_chat_event_list_provider.dart';
 
 String _$inChatEventListHash() => r'db4cf74440e892118b8e65467529d7f54c17ff79';
 
-/// See also [InChatEventList].
+// See also [InChatEventList].
 @ProviderFor(InChatEventList)
-final inChatEventListProvider = AutoDisposeNotifierProvider<InChatEventList,
-    InChatEventListModel?>.internal(
+final inChatEventListProvider = AutoDisposeNotifierProvider<
+  InChatEventList,
+  InChatEventListModel?
+>.internal(
   InChatEventList.new,
   name: r'inChatEventListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$inChatEventListHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$inChatEventListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

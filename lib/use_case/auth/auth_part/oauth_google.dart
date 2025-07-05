@@ -3,22 +3,22 @@ part of '../auth_use_case.dart';
 sealed class _GoogleAuth {
   static final _googleSignIn = GoogleSignIn.instance;
 
-  /// 구글 로그인
+  // 구글 로그인
   static Future<List<dynamic>> signInWithGoogle() async {
     try {
-      /// 초기화 및 Id토큰 가져오기
+      // 초기화 및 Id토큰 가져오기
       await _googleSignIn.initialize(serverClientId: NativeKey.webClientId);
 
       final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
 
       final String? idToken = googleUser.authentication.idToken;
 
-      /// 액세스 토큰 가져오기
+      // 액세스 토큰 가져오기
       const scopes = <String>[
         'https://www.googleapis.com/auth/contacts.readonly',
       ];
 
-      /// 먼저 기존 권한 있는지 확인
+      // 먼저 기존 권한 있는지 확인
       final authResult = await _googleSignIn.authorizationClient
           .authorizationForScopes(scopes);
 

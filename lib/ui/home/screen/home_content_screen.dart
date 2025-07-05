@@ -32,7 +32,7 @@ class HomeContentScreen extends ConsumerWidget {
   }
 }
 
-/// 포스트 페이지네이션 리스트뷰
+// 포스트 페이지네이션 리스트뷰
 class _PostPaginationListView extends ConsumerStatefulWidget {
   const _PostPaginationListView({required this.postProvider});
 
@@ -53,7 +53,7 @@ class _PostPaginationListViewState
 
   bool _canPagination = true;
 
-  /// 스크롤을 내려서 자동으로 페이지네이션
+  // 스크롤을 내려서 자동으로 페이지네이션
   void _cursorPagination() {
     if (_paginationController.offset >
             _paginationController.position.maxScrollExtent - 200 &&
@@ -78,7 +78,7 @@ class _PostPaginationListViewState
   void initState() {
     super.initState();
 
-    /// 홈 화면 들어가자 마자 최신 모집글 불러오기
+    // 홈 화면 들어가자 마자 최신 모집글 불러오기
     if (widget.postProvider.runtimeType ==
         NotifierProvider<HomeLatestPost, PostPaginationModel>) {
       final provider =
@@ -119,12 +119,12 @@ class _PostPaginationListViewState
             } else if (paginationState == PostPaginationState.fetch) {
               return Container();
             } else {
-              /// 데이터가 더 이상 없을 때
+              // 데이터가 더 이상 없을 때
               if (postPaginationModel.errorCode == "데이터가 더 이상 존재하지 않습니다") {
                 _canPagination = false;
                 return const Center(child: Text("데이터가 더 이상 존재하지 않습니다"));
               } else {
-                /// 그 외 다른 오류
+                // 그 외 다른 오류
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

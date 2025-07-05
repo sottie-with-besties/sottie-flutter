@@ -6,7 +6,7 @@ import 'package:sottie_flutter/model/in_chat/in_chat_enum.dart';
 import 'package:sottie_flutter/model/in_chat/in_chat_event_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 
-/// 채팅방 컨텐츠 위젯 (텍스트, 이미지, 동영상 등)
+// 채팅방 컨텐츠 위젯 (텍스트, 이미지, 동영상 등)
 class InChatContents extends StatelessWidget {
   const InChatContents({
     super.key,
@@ -65,7 +65,7 @@ class InChatContents extends StatelessWidget {
           ),
         );
 
-      /// Todo: 이미지를 url로 받아서 페이지뷰로 처리?
+      // Todo: 이미지를 url로 받아서 페이지뷰로 처리?
       case InChatDataType.IMAGE:
         return ClipRRect(
           borderRadius: BorderRadius.circular(6),

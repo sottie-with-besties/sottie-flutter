@@ -29,7 +29,7 @@ class _ChatRoomDestroyingTimerState extends State<ChatRoomDestroyingTimer> {
     super.initState();
     timeLeftNow = widget.timeLeft;
 
-    /// 채팅 종료 24시간 후 ~ 48시간 후 까지 이므로 48시간(172800초)에서 (현재 날짜 - 모임 날짜)(timeLeft)를 빼야 한다.
+    // 채팅 종료 24시간 후 ~ 48시간 후 까지 이므로 48시간(172800초)에서 (현재 날짜 - 모임 날짜)(timeLeft)를 빼야 한다.
     int seconds = 172800 - timeLeftNow.inSeconds;
     timeLeftNow = Duration(seconds: seconds);
     setState(() {});

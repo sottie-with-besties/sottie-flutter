@@ -6,7 +6,7 @@ sealed class _AppleAuth {
   }
 
   static Future<bool> signOutApple() async {
-    /// Todo: 애플 로그인 로그아웃 하는 코드
+    // Todo: 애플 로그인 로그아웃 하는 코드
 
     try {
       return true;

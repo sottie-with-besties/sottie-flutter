@@ -1,6 +1,6 @@
-// /// 올해 이전의 시간은 연 + 월 + 일
-// /// 오늘이 아닌 시간은 월 + 일
-// /// 오늘의 시간은 오전/오후 + 시 : 분(0~9분 => 00분, 01분, 02분...)
+// 올해 이전의 시간은 연 + 월 + 일
+// 오늘이 아닌 시간은 월 + 일
+// 오늘의 시간은 오전/오후 + 시 : 분(0~9분 => 00분, 01분, 02분...)
 // String renderCustomStringTime(
 //   DateTime utcTimeString,
 //   DateTime compareDateUtcTimeString,
@@ -28,7 +28,7 @@
 //   return customTime;
 // }
 
-/// int weekday => String 요일
+// int weekday => String 요일
 String convertIntToWeekday(int weekday) {
   switch (weekday) {
     case 1:
@@ -50,7 +50,7 @@ String convertIntToWeekday(int weekday) {
   }
 }
 
-/// 날짜 문자열로 바꾸기
+// 날짜 문자열로 바꾸기
 String convertDateTimeIntoString(DateTime datetime) {
   final dayString = datetime.hour < 12 ? '오전' : '오후';
   final hour =

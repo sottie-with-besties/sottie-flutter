@@ -9,7 +9,7 @@ part of 'in_chat_event_state_controller.dart';
 String _$inChatEventStateControllerHash() =>
     r'c743a0a0779ee088f4dd5d0de6a18dd360f0df08';
 
-/// See also [InChatEventStateController].
+// See also [InChatEventStateController].
 @ProviderFor(InChatEventStateController)
 final inChatEventStateControllerProvider = AutoDisposeNotifierProvider<
   InChatEventStateController,

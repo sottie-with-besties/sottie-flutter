@@ -3,12 +3,12 @@ import 'package:sottie_flutter/model/user/user_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
-/// 채팅방 읽음처리 위젯
-/// 인스타그램 DM 스타일로 메시지를 읽은 사용자의 작은 프로필 이미지 표시
+// 채팅방 읽음처리 위젯
+// 인스타그램 DM 스타일로 메시지를 읽은 사용자의 작은 프로필 이미지 표시
 class InChatReadReceipts extends StatelessWidget {
   const InChatReadReceipts({super.key, required this.userList});
 
-  /// 채팅방 사용자 목록
+  // 채팅방 사용자 목록
   final List<UserModel> userList;
 
   @override

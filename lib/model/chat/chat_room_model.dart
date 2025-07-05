@@ -3,35 +3,35 @@ import 'package:sottie_flutter/model/post/post_enum.dart';
 final class ChatRoomModel {
   final int id;
 
-  /// 채팅의 카테고리(친목, 번개, 구인/구직 등)
+  // 채팅의 카테고리(친목, 번개, 구인/구직 등)
   final PostCategory sottieCategory;
 
-  /// 모임 날짜
+  // 모임 날짜
   final DateTime gatheringDate;
 
-  /// 모임 장소
+  // 모임 장소
   final PostLocation location;
 
-  /// 채팅 제목
+  // 채팅 제목
   final String title;
 
-  /// 최대 4개까지만
+  // 최대 4개까지만
   final List<String> profileThumbnailsUrl;
 
-  /// 가장 최근의 메세지
+  // 가장 최근의 메세지
   final String latestMsg;
 
-  /// 최근 전송 받은 메세지의 시각
+  // 최근 전송 받은 메세지의 시각
   final DateTime latestTime;
 
-  /// 읽지 않은 메세지 수
+  // 읽지 않은 메세지 수
   final int notReadMsg;
 
-  /// 채팅방을 설명하는 구체적 내용
+  // 채팅방을 설명하는 구체적 내용
   final String contents;
 
-  /// 성비 제한이 없을 경우 currentPeopleNum, peopleNum
-  /// 성비 제한이 있을 경우 currentMaleNum, maleNum, currentFemaleNum, femaleNum
+  // 성비 제한이 없을 경우 currentPeopleNum, peopleNum
+  // 성비 제한이 있을 경우 currentMaleNum, maleNum, currentFemaleNum, femaleNum
   final int currentPeopleNum;
   final int peopleNum;
   final int currentMaleNum;
@@ -39,19 +39,19 @@ final class ChatRoomModel {
   final int currentFemaleNum;
   final int femaleNum;
 
-  /// 최소 나이대
+  // 최소 나이대
   final int ageFrom;
 
-  /// 최대 나이대
+  // 최대 나이대
   final int ageTo;
 
-  /// 성비 제한
+  // 성비 제한
   final PostGenderRestriction genderRestriction;
 
-  /// 매너 제한
+  // 매너 제한
   final bool mannerRestriction;
 
-  /// 나이 제한
+  // 나이 제한
   final bool ageRestriction;
 
   ChatRoomModel({

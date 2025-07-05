@@ -14,15 +14,15 @@ abstract interface class ChatRepository {
     };
   }
 
-  /// 채팅방 불러오기
+  // 채팅방 불러오기
   Future<List<ChatRoomModel>> getChatRoomList();
 
-  /// 채팅 대기방 불러오기
+  // 채팅 대기방 불러오기
   Future<List<PostModel>> getChatRoomWaitingList();
 
-  /// DM 불러오기
+  // DM 불러오기
   Future<List<DmModel>> getDmList();
 
-  /// 채팅방 나가기
+  // 채팅방 나가기
   Future<void> exitChatRoom({required String chatRoomId});
 }
