@@ -37,7 +37,7 @@ class _FriendState extends State<Friend> {
           Navigator.of(context, rootNavigator: true).pop();
           withSlide ? null : Navigator.of(context, rootNavigator: true).pop();
 
-          FriendUseCase.friendDelete(context);
+          FriendUseCase.deleteFriend(widget.model.id.toString());
         },
         child: const Text("삭제"),
       ),
@@ -64,7 +64,7 @@ class _FriendState extends State<Friend> {
           OnLongPressOption(
             color: Colors.green,
             onTap: () {
-              FriendUseCase.friendSendDm(context);
+              // Todo: DM 스크린 이동
             },
             icon: Icons.messenger_outline,
             optionTitle: "DM 보내기",
@@ -91,7 +91,9 @@ class _FriendState extends State<Friend> {
       ),
       slideActions: [
         SlidableAction(
-          onPressed: (context) => FriendUseCase.friendSendDm(context),
+          onPressed: (context) {
+            // Todo: DM 스크린 이동
+          },
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           autoClose: true,

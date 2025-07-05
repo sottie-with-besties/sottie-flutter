@@ -20,20 +20,20 @@ abstract interface class MoreRepository {
   Future<List<MoreEventModel>> getEventList();
 
   /// 고객 센터 문의
-  Future<bool> sendCustomerCenterInquiry({required String text});
+  Future<void> sendCustomerCenterInquiry({required String text});
 
   /// 광고 마케팅 알림
-  Future<bool> switchAdMarketingAlarm({required bool value});
+  Future<void> switchAdMarketingAlarm({required bool value});
 
   /// 채팅 생성 알림
-  Future<bool> switchChatCreateAlarm({required bool value});
+  Future<void> switchChatCreateAlarm({required bool value});
 
   /// 채팅 알림
-  Future<bool> switchChatAlarm({required bool value});
+  Future<void> switchChatAlarm({required bool value});
 
   /// DM 알림
-  Future<bool> switchDmAlarm({required bool value});
+  Future<void> switchDmAlarm({required bool value});
 
   /// 친구 추가 거부
-  Future<bool> switchFriendAddReject({required bool value});
+  Future<void> switchFriendAddReject({required bool value});
 }

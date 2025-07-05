@@ -13,7 +13,7 @@ final class UserRepoImplDev implements UserRepository {
   }
 
   @override
-  Future<bool> updateMyInfo({required MyInfoModel myInfo}) {
+  Future<void> updateMyInfo({required MyInfoModel myInfo}) {
     // TODO: implement updateMyInfo
     throw UnimplementedError();
   }
@@ -36,7 +36,7 @@ final class UserRepoImplDev implements UserRepository {
   }
 
   @override
-  Future<bool> addFriend({required String userId}) async {
+  Future<void> addFriend({required String userId}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -51,8 +51,6 @@ final class UserRepoImplDev implements UserRepository {
       headers: headers,
       body: jsonEncode({'userId': userId}),
     );
-
-    return true;
   }
 
   @override
@@ -62,7 +60,7 @@ final class UserRepoImplDev implements UserRepository {
   }
 
   @override
-  Future<bool> blockUser({required String userId}) async {
+  Future<void> blockUser({required String userId}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -77,12 +75,10 @@ final class UserRepoImplDev implements UserRepository {
       headers: headers,
       body: jsonEncode({'userId': userId}),
     );
-
-    return true;
   }
 
   @override
-  Future<bool> unblockUser({required String userId}) async {
+  Future<void> unblockUser({required String userId}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -97,12 +93,10 @@ final class UserRepoImplDev implements UserRepository {
       headers: headers,
       body: jsonEncode({'userId': userId}),
     );
-
-    return true;
   }
 
   @override
-  Future<bool> reportUser({required String userId}) async {
+  Future<void> reportUser({required String userId}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -117,7 +111,5 @@ final class UserRepoImplDev implements UserRepository {
       headers: headers,
       body: jsonEncode({'userId': userId}),
     );
-
-    return true;
   }
 }

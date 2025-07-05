@@ -21,9 +21,9 @@ sealed class UserUseCase {
   /// 내 정보 업데이트하기
   static Future<bool> updateMyInfo(MyInfoModel myInfo) async {
     try {
-      final result = await _repo.updateMyInfo(myInfo: myInfo);
-      log("My info updated, result: $result");
-      return result;
+      await _repo.updateMyInfo(myInfo: myInfo);
+      log("My info updated");
+      return true;
     } catch (e) {
       log("Error updating my info: $e");
       return false;
@@ -44,9 +44,9 @@ sealed class UserUseCase {
   /// 친구 추가하기
   static Future<bool> addFriend(String userId) async {
     try {
-      final result = await _repo.addFriend(userId: userId);
-      log("Friend added: $userId, result: $result");
-      return result;
+      await _repo.addFriend(userId: userId);
+      log("Friend added: $userId");
+      return true;
     } catch (e) {
       log("Error adding friend: $e");
       return false;
@@ -67,9 +67,9 @@ sealed class UserUseCase {
   /// 사용자 차단하기
   static Future<bool> userBlock(String userId) async {
     try {
-      final result = await _repo.blockUser(userId: userId);
-      log("User blocked: $userId, result: $result");
-      return result;
+      await _repo.blockUser(userId: userId);
+      log("User blocked: $userId");
+      return true;
     } catch (e) {
       log("Error blocking user: $e");
       return false;
@@ -79,9 +79,9 @@ sealed class UserUseCase {
   /// 사용자 차단 해제하기
   static Future<bool> userUnblock(String userId) async {
     try {
-      final result = await _repo.unblockUser(userId: userId);
-      log("User unblocked: $userId, result: $result");
-      return result;
+      await _repo.unblockUser(userId: userId);
+      log("User unblocked: $userId");
+      return true;
     } catch (e) {
       log("Error unblocking user: $e");
       return false;
@@ -91,9 +91,9 @@ sealed class UserUseCase {
   /// 사용자 신고하기
   static Future<bool> userReport(String userId) async {
     try {
-      final result = await _repo.reportUser(userId: userId);
-      log("User reported: $userId, result: $result");
-      return result;
+      await _repo.reportUser(userId: userId);
+      log("User reported: $userId");
+      return true;
     } catch (e) {
       log("Error reporting user: $e");
       return false;

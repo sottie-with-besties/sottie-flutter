@@ -19,11 +19,11 @@ abstract interface class FriendRepository {
   Future<List<UserModel>> getFriendRequests();
 
   /// 친구 삭제
-  Future<bool> deleteFriend(String userId);
+  Future<void> deleteFriend(String userId);
 
   /// 친구 요청 수락
-  Future<bool> acceptFriendRequest(String userId);
+  Future<void> acceptFriendRequest(String userId);
 
   /// 친구 요청 거절
-  Future<bool> rejectFriendRequest(String userId);
+  Future<void> rejectFriendRequest(String userId);
 }

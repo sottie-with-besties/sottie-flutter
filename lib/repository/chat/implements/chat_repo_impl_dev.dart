@@ -26,7 +26,7 @@ final class ChatRepoImplDev implements ChatRepository {
   }
 
   @override
-  Future<bool> exitChatRoom({required String chatRoomId}) {
+  Future<void> exitChatRoom({required String chatRoomId}) {
     // TODO: implement exitChatRoom
     throw UnimplementedError();
   }

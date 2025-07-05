@@ -22,11 +22,11 @@ abstract interface class PostRepository {
   });
 
   /// 포스트 만들기
-  Future<bool> makePost({required Map<String, dynamic> postSetting});
+  Future<void> makePost({required Map<String, dynamic> postSetting});
 
   /// 포스트 참여
-  Future<bool> postJoin({required Map<String, dynamic> postJoinInfo});
+  Future<void> postJoin({required Map<String, dynamic> postJoinInfo});
 
   /// 포스트 참여 취소
-  Future<bool> postExit();
+  Future<void> postExit();
 }

@@ -43,7 +43,7 @@ final class MoreRepoImplDev implements MoreRepository {
   }
 
   @override
-  Future<bool> sendCustomerCenterInquiry({required String text}) async {
+  Future<void> sendCustomerCenterInquiry({required String text}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -53,17 +53,15 @@ final class MoreRepoImplDev implements MoreRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode({'text': text}),
     );
-
-    return true;
   }
 
   @override
-  Future<bool> switchAdMarketingAlarm({required bool value}) async {
+  Future<void> switchAdMarketingAlarm({required bool value}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -73,17 +71,15 @@ final class MoreRepoImplDev implements MoreRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode({'value': value}),
     );
-
-    return true;
   }
 
   @override
-  Future<bool> switchChatAlarm({required bool value}) async {
+  Future<void> switchChatAlarm({required bool value}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -93,17 +89,15 @@ final class MoreRepoImplDev implements MoreRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode({'value': value}),
     );
-
-    return true;
   }
 
   @override
-  Future<bool> switchChatCreateAlarm({required bool value}) async {
+  Future<void> switchChatCreateAlarm({required bool value}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -113,17 +107,15 @@ final class MoreRepoImplDev implements MoreRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode({'value': value}),
     );
-
-    return true;
   }
 
   @override
-  Future<bool> switchDmAlarm({required bool value}) async {
+  Future<void> switchDmAlarm({required bool value}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -133,17 +125,15 @@ final class MoreRepoImplDev implements MoreRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode({'value': value}),
     );
-
-    return true;
   }
 
   @override
-  Future<bool> switchFriendAddReject({required bool value}) async {
+  Future<void> switchFriendAddReject({required bool value}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -153,12 +143,10 @@ final class MoreRepoImplDev implements MoreRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode({'value': value}),
     );
-
-    return true;
   }
 }

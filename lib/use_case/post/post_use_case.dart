@@ -32,7 +32,7 @@ sealed class PostUseCase {
   /// 포스트 만들기
   static Future<bool> makePost() async {
     try {
-      final resp = await _repo.makePost(
+      await _repo.makePost(
         postSetting: postOptionsSetting.toJsonForMakePostSend(),
       );
       return true;
@@ -47,7 +47,7 @@ sealed class PostUseCase {
     required Map<String, dynamic> postJoinInfo,
   }) async {
     try {
-      final resp = await _repo.postJoin(postJoinInfo: postJoinInfo);
+      await _repo.postJoin(postJoinInfo: postJoinInfo);
       return true;
     } catch (e) {
       // Todo: resp status code에 따른 예외처리
@@ -58,7 +58,7 @@ sealed class PostUseCase {
   /// 포스트 모집 나가기
   static Future<bool> postExit() async {
     try {
-      final resp = await _repo.postExit();
+      await _repo.postExit();
       return true;
     } catch (e) {
       // Todo: resp status code에 따른 예외처리

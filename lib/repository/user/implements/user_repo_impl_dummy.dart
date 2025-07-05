@@ -27,9 +27,8 @@ final class UserRepoImplDummy implements UserRepository {
   }
 
   @override
-  Future<bool> addFriend({required String userId}) async {
+  Future<void> addFriend({required String userId}) async {
     await Future.delayed(const Duration(milliseconds: 500), null);
-    return true;
   }
 
   @override
@@ -39,21 +38,18 @@ final class UserRepoImplDummy implements UserRepository {
   }
 
   @override
-  Future<bool> blockUser({required String userId}) async {
+  Future<void> blockUser({required String userId}) async {
     await Future.delayed(const Duration(milliseconds: 500), null);
-    return true;
   }
 
   @override
-  Future<bool> unblockUser({required String userId}) async {
+  Future<void> unblockUser({required String userId}) async {
     // Just to simulate fetching block list
     await Future.delayed(const Duration(milliseconds: 500), null);
-    return true;
   }
 
   @override
-  Future<bool> reportUser({required String userId}) async {
+  Future<void> reportUser({required String userId}) async {
     await Future.delayed(const Duration(milliseconds: 500), null);
-    return true;
   }
 }

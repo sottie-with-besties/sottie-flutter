@@ -15,25 +15,25 @@ abstract interface class UserRepository {
 
   /// 내 정보 받아오기
   Future<MyInfoModel> getMyInfo();
-  
+
   /// 내 정보 서버로 전송
-  Future<bool> updateMyInfo({required MyInfoModel myInfo});
+  Future<void> updateMyInfo({required MyInfoModel myInfo});
 
   /// 유저 검색
   Future<UserModel> searchUser({required String searchText});
 
   /// 유저 친구 추가
-  Future<bool> addFriend({required String userId});
+  Future<void> addFriend({required String userId});
 
   /// 유저 차단 목록
   Future<List<UserModel>> getBlockedUsers();
 
   /// 유저 차단
-  Future<bool> blockUser({required String userId});
+  Future<void> blockUser({required String userId});
 
   /// 유저 차단 취소
-  Future<bool> unblockUser({required String userId});
+  Future<void> unblockUser({required String userId});
 
   /// 유저 신고
-  Future<bool> reportUser({required String userId});
+  Future<void> reportUser({required String userId});
 }

@@ -93,7 +93,9 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                               AppColors.blueColor,
                               FontAwesomeIcons.userPlus,
                               () {
-                                FriendUseCase.friendAdd(context);
+                                FriendUseCase.acceptFriendRequest(
+                                  userFound!.id.toString(),
+                                );
                               },
                             ),
                           ],
@@ -148,7 +150,9 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                                         AppColors.blueColor,
                                         FontAwesomeIcons.userPlus,
                                         () {
-                                          FriendUseCase.friendAdd(context);
+                                          FriendUseCase.acceptFriendRequest(
+                                            futureData[index].id.toString(),
+                                          );
                                         },
                                       ),
                                     ],

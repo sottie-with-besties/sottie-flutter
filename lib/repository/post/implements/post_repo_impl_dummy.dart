@@ -163,20 +163,17 @@ final class PostRepoImplDummy implements PostRepository {
   }
 
   @override
-  Future<bool> makePost({required Map<String, dynamic> postSetting}) async {
+  Future<void> makePost({required Map<String, dynamic> postSetting}) async {
     await Future.delayed(const Duration(milliseconds: 700), null);
-    return true;
   }
 
   @override
-  Future<bool> postJoin({required Map<String, dynamic> postJoinInfo}) async {
+  Future<void> postJoin({required Map<String, dynamic> postJoinInfo}) async {
     await Future.delayed(const Duration(milliseconds: 500), null);
-    return true;
   }
 
   @override
-  Future<bool> postExit() async {
+  Future<void> postExit() async {
     await Future.delayed(const Duration(milliseconds: 500), null);
-    return true;
   }
 }

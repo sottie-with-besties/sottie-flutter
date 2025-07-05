@@ -75,38 +75,32 @@ final class MoreRepoImplDummy implements MoreRepository {
   }
 
   @override
-  Future<bool> sendCustomerCenterInquiry({required String text}) async {
+  Future<void> sendCustomerCenterInquiry({required String text}) async {
     await Future.delayed(const Duration(milliseconds: 700), null);
-    return true;
   }
 
   @override
-  Future<bool> switchAdMarketingAlarm({required bool value}) async {
+  Future<void> switchAdMarketingAlarm({required bool value}) async {
     await Future.delayed(const Duration(milliseconds: 300), null);
-    return true;
   }
 
   @override
-  Future<bool> switchChatAlarm({required bool value}) async {
+  Future<void> switchChatAlarm({required bool value}) async {
     await Future.delayed(const Duration(milliseconds: 300), null);
-    return true;
   }
 
   @override
-  Future<bool> switchChatCreateAlarm({required bool value}) async {
+  Future<void> switchChatCreateAlarm({required bool value}) async {
     await Future.delayed(const Duration(milliseconds: 300), null);
-    return true;
   }
 
   @override
-  Future<bool> switchDmAlarm({required bool value}) async {
+  Future<void> switchDmAlarm({required bool value}) async {
     await Future.delayed(const Duration(milliseconds: 300), null);
-    return true;
   }
 
   @override
-  Future<bool> switchFriendAddReject({required bool value}) async {
+  Future<void> switchFriendAddReject({required bool value}) async {
     await Future.delayed(const Duration(milliseconds: 300), null);
-    return true;
   }
 }

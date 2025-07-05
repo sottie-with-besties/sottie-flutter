@@ -54,7 +54,7 @@ final class PostRepoImplDev implements PostRepository {
   }
 
   @override
-  Future<bool> makePost({required Map<String, dynamic> postSetting}) async {
+  Future<void> makePost({required Map<String, dynamic> postSetting}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -64,17 +64,15 @@ final class PostRepoImplDev implements PostRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode(postSetting),
     );
-
-    return true;
   }
 
   @override
-  Future<bool> postJoin({required Map<String, dynamic> postJoinInfo}) async {
+  Future<void> postJoin({required Map<String, dynamic> postJoinInfo}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -84,17 +82,15 @@ final class PostRepoImplDev implements PostRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode(postJoinInfo),
     );
-
-    return true;
   }
 
   @override
-  Future<bool> postExit() async {
+  Future<void> postExit() async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -104,8 +100,6 @@ final class PostRepoImplDev implements PostRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(uri, headers: headers);
-
-    return true;
+    await ApiEnv().cleanClient.post(uri, headers: headers);
   }
 }

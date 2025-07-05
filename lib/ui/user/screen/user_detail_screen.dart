@@ -48,10 +48,10 @@ class UserDetailScreen extends StatelessWidget {
                 children: [
                   isMyFriend!
                       ? _utilButton(FontAwesomeIcons.message, 'DM', () {
-                        FriendUseCase.friendSendDm(context);
+                        // Todo: DM 스크린 이동
                       })
                       : _utilButton(FontAwesomeIcons.userPlus, '추가', () {
-                        FriendUseCase.friendAdd(context);
+                        FriendUseCase.acceptFriendRequest(model.id.toString());
                       }),
                   _utilButton(FontAwesomeIcons.ban, '차단', () {
                     UserUseCase.userBlock(model.id.toString());

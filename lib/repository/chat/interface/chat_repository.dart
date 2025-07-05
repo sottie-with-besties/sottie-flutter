@@ -24,5 +24,5 @@ abstract interface class ChatRepository {
   Future<List<DmModel>> getDmList();
 
   /// 채팅방 나가기
-  Future<bool> exitChatRoom({required String chatRoomId});
+  Future<void> exitChatRoom({required String chatRoomId});
 }

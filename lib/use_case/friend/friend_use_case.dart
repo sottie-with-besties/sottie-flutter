@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:sottie_flutter/model/user/user_model.dart';
 import 'package:sottie_flutter/repository/friend/interface/friend_repository.dart';
 
@@ -9,30 +8,59 @@ sealed class FriendUseCase {
 
   /// 친구 데이터 불러오기
   static Future<List<UserModel>> getFriendsList() async {
-    final friendList = await _repo.getFriends();
-
-    return friendList;
+    try {
+      final friendList = await _repo.getFriends();
+      return friendList;
+    } catch (e) {
+      log("Error fetching friend list: $e");
+      return [];
+    }
   }
 
   /// 친구 요청 데이터 불러오기
   static Future<List<UserModel>> getFriendRequestsList() async {
-    final friendRequestList = await _repo.getFriendRequests();
-
-    return friendRequestList;
-  }
-
-  /// 친구 추가
-  static void friendAdd(BuildContext context) {
-    log("friendAdd");
+    try {
+      final friendRequestList = await _repo.getFriendRequests();
+      return friendRequestList;
+    } catch (e) {
+      log("Error fetching friend requests list: $e");
+      return [];
+    }
   }
 
   /// 친구 삭제
-  static void friendDelete(BuildContext context) {
-    log("friendDelete");
+  static Future<bool> deleteFriend(String userId) async {
+    try {
+      await _repo.deleteFriend(userId);
+      log("Friend deleted: $userId");
+      return true;
+    } catch (e) {
+      log("Error deleting friend: $e");
+      return false;
+    }
   }
 
-  /// 친구 DM 전송
-  static void friendSendDm(BuildContext context) {
-    log("friendSendDm");
+  /// 친구 요청 수락
+  static Future<bool> acceptFriendRequest(String userId) async {
+    try {
+      await _repo.acceptFriendRequest(userId);
+      log("Friend request accepted: $userId");
+      return true;
+    } catch (e) {
+      log("Error accepting friend request: $e");
+      return false;
+    }
+  }
+
+  /// 친구 요청 거절
+  static Future<bool> rejectFriendRequest(String userId) async {
+    try {
+      await _repo.rejectFriendRequest(userId);
+      log("Friend request rejected: $userId");
+      return true;
+    } catch (e) {
+      log("Error rejecting friend request: $e");
+      return false;
+    }
   }
 }

@@ -17,19 +17,19 @@ final class FriendRepoImplDev implements FriendRepository {
   }
 
   @override
-  Future<bool> acceptFriendRequest(String userId) {
+  Future<void> acceptFriendRequest(String userId) async {
     // TODO: implement acceptFriendRequest
     throw UnimplementedError();
   }
 
   @override
-  Future<bool> deleteFriend(String userId) {
+  Future<void> deleteFriend(String userId) async {
     // TODO: implement deleteFriend
     throw UnimplementedError();
   }
 
   @override
-  Future<bool> rejectFriendRequest(String userId) {
+  Future<void> rejectFriendRequest(String userId) async {
     // TODO: implement rejectFriendRequest
     throw UnimplementedError();
   }
