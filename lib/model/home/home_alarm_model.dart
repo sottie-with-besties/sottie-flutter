@@ -1,13 +1,13 @@
-import 'package:sottie_flutter/model/alarm/alarm_enum.dart';
+import 'package:sottie_flutter/model/home/home_alarm_enum.dart';
 
-class AlarmModel {
+class HomeAlarmModel {
   final String id;
-  final AlarmType alarmType;
+  final HomeAlarmType alarmType;
   final String title;
   final String content;
   final String date;
 
-  AlarmModel({
+  HomeAlarmModel({
     required this.id,
     required this.alarmType,
     required this.title,
@@ -15,10 +15,10 @@ class AlarmModel {
     required this.date,
   });
 
-  factory AlarmModel.fromJson(Map<String, dynamic> json) {
-    return AlarmModel(
+  factory HomeAlarmModel.fromJson(Map<String, dynamic> json) {
+    return HomeAlarmModel(
       id: json['id'],
-      alarmType: AlarmType.values.firstWhere(
+      alarmType: HomeAlarmType.values.firstWhere(
         (e) => e.name == json['alarmType'],
       ),
       title: json['title'],

@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sottie_flutter/core/constant/custom_colors.dart';
-import 'package:sottie_flutter/model/alarm/alarm_enum.dart';
-import 'package:sottie_flutter/model/alarm/alarm_model.dart';
-import 'package:sottie_flutter/repository/alarm/interface/alarm_repository.dart';
+import 'package:sottie_flutter/model/home/home_alarm_enum.dart';
+import 'package:sottie_flutter/model/home/home_alarm_model.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/loading_skeleton.dart';
+import 'package:sottie_flutter/use_case/home/home_use_case.dart';
 
-class AlarmScreen extends StatefulWidget {
-  const AlarmScreen({super.key});
+class HomeAlarmScreen extends StatefulWidget {
+  const HomeAlarmScreen({super.key});
 
   @override
-  State<AlarmScreen> createState() => _AlarmScreenState();
+  State<HomeAlarmScreen> createState() => _HomeAlarmScreenState();
 }
 
-class _AlarmScreenState extends State<AlarmScreen> {
-  late Future<List<AlarmModel>> alarmData;
+class _HomeAlarmScreenState extends State<HomeAlarmScreen> {
+  late Future<List<HomeAlarmModel>> alarmData;
 
   @override
   void initState() {
     super.initState();
-    alarmData = AlarmRepository().getAlarmList();
+    alarmData = HomeUseCase.getAlarmList();
   }
 
   @override
@@ -50,15 +50,15 @@ class _AlarmScreenState extends State<AlarmScreen> {
 class _AlarmBox extends StatelessWidget {
   const _AlarmBox({required this.model});
 
-  final AlarmModel model;
+  final HomeAlarmModel model;
 
   @override
   Widget build(BuildContext context) {
     late IconData alarmIcon;
 
-    if (model.alarmType == AlarmType.event) {
+    if (model.alarmType == HomeAlarmType.event) {
       alarmIcon = FontAwesomeIcons.gift;
-    } else if (model.alarmType == AlarmType.chat) {
+    } else if (model.alarmType == HomeAlarmType.chat) {
       alarmIcon = FontAwesomeIcons.comment;
     } else {
       alarmIcon = FontAwesomeIcons.message;

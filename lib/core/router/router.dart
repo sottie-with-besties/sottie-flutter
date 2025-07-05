@@ -7,7 +7,7 @@ import 'package:sottie_flutter/ui/common/screen/navigation_screen.dart';
 import 'package:sottie_flutter/ui/common/screen/photo_magnification_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_screen.dart';
 import 'package:sottie_flutter/ui/friend/screen/friend_util_screen.dart';
-import 'package:sottie_flutter/ui/home/screen/home_screen.dart';
+import 'package:sottie_flutter/ui/home/screen/home_layout_screen.dart';
 import 'package:sottie_flutter/ui/in_chat/screen/in_chat_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/contact_screen.dart';
 import 'package:sottie_flutter/ui/more/screen/extra_services/extra_customer_service_screen.dart';
@@ -102,7 +102,7 @@ final _routes = [
         routes: <GoRoute>[
           GoRoute(
             path: CustomRouter.homePath,
-            builder: (_, __) => const HomeScreen(),
+            builder: (_, __) => const HomeLayoutScreen(),
           ),
         ],
       ),

@@ -17,14 +17,14 @@ import 'package:sottie_flutter/ui/post/widget/option/location_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/manner_option.dart';
 import 'package:sottie_flutter/ui/post/widget/option/num_of_member_option.dart';
 
-class SearchScreen extends ConsumerStatefulWidget {
-  const SearchScreen({super.key});
+class HomeSearchOptionsScreen extends ConsumerStatefulWidget {
+  const HomeSearchOptionsScreen({super.key});
 
   @override
-  ConsumerState<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<HomeSearchOptionsScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends ConsumerState<SearchScreen> {
+class _SearchScreenState extends ConsumerState<HomeSearchOptionsScreen> {
   final searchFocusNode = FocusNode();
   final settingFocusNode = FocusNode();
   final searchController = TextEditingController();
