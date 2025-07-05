@@ -96,8 +96,8 @@ final class PostRepoImplDummy implements PostRepository {
     await Future.delayed(const Duration(milliseconds: 500), null);
 
     // 검색 설정에 따라 필터링하는 것처럼 보이게 하기
-    final category = searchSetting['category'];
-    final location = searchSetting['location'];
+    // final category = searchSetting['category'];
+    // final location = searchSetting['location'];
 
     List<PostModel> results = [
       PostModel(

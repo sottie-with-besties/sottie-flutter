@@ -46,7 +46,7 @@ final class UserRepoImplDev implements UserRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode({'userId': userId}),
@@ -70,7 +70,7 @@ final class UserRepoImplDev implements UserRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode({'userId': userId}),
@@ -88,7 +88,7 @@ final class UserRepoImplDev implements UserRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode({'userId': userId}),
@@ -106,7 +106,7 @@ final class UserRepoImplDev implements UserRepository {
 
     final headers = {'Content-Type': 'application/json'};
 
-    final response = await ApiEnv().cleanClient.post(
+    await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
       body: jsonEncode({'userId': userId}),
