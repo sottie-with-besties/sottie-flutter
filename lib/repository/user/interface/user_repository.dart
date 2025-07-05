@@ -20,7 +20,7 @@ abstract interface class UserRepository {
   Future<void> updateMyInfo({required MyInfoModel myInfo});
 
   // 유저 검색
-  Future<UserModel> searchUser({required String searchText});
+  Future<List<UserModel>> searchUser({required String searchText});
 
   // 유저 친구 추가
   Future<void> addFriend({required String userId});

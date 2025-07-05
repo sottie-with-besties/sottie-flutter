@@ -168,12 +168,12 @@ final class PostRepoImplDummy implements PostRepository {
   }
 
   @override
-  Future<void> postJoin({required Map<String, dynamic> postJoinInfo}) async {
+  Future<void> postJoin({required String roomId}) async {
     await Future.delayed(const Duration(milliseconds: 500), null);
   }
 
   @override
-  Future<void> postExit() async {
+  Future<void> postExit({required String roomId}) async {
     await Future.delayed(const Duration(milliseconds: 500), null);
   }
 }

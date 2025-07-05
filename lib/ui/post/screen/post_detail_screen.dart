@@ -144,7 +144,9 @@ class PostDetailScreen extends StatelessWidget {
                                 if (isWaiting) {
                                   log("참여취소");
 
-                                  final result = await PostUseCase.postExit();
+                                  final result = await PostUseCase.postExit(
+                                    roomId: postModel.id.toString(),
+                                  );
 
                                   if (context.mounted) {
                                     if (result) {
@@ -159,10 +161,7 @@ class PostDetailScreen extends StatelessWidget {
                                   log("참여하기");
 
                                   final result = await PostUseCase.postJoin(
-                                    postJoinInfo: {
-                                      'gatheringId': 18,
-                                      'userId': 7,
-                                    },
+                                    roomId: postModel.id.toString(),
                                   );
 
                                   if (context.mounted) {

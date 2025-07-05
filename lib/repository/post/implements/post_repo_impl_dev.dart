@@ -72,7 +72,7 @@ final class PostRepoImplDev implements PostRepository {
   }
 
   @override
-  Future<void> postJoin({required Map<String, dynamic> postJoinInfo}) async {
+  Future<void> postJoin({required String roomId}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -85,12 +85,12 @@ final class PostRepoImplDev implements PostRepository {
     await ApiEnv().cleanClient.post(
       uri,
       headers: headers,
-      body: jsonEncode(postJoinInfo),
+      body: jsonEncode({"roomId": roomId}),
     );
   }
 
   @override
-  Future<void> postExit() async {
+  Future<void> postExit({required String roomId}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,

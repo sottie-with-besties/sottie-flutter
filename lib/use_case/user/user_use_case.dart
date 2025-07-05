@@ -31,13 +31,13 @@ sealed class UserUseCase {
   }
 
   // 사용자 검색하기
-  static Future<UserModel?> searchUser(String searchText) async {
+  static Future<List<UserModel>> searchUser(String searchText) async {
     try {
-      final user = await _repo.searchUser(searchText: searchText);
-      return user;
+      final users = await _repo.searchUser(searchText: searchText);
+      return users;
     } catch (e) {
       log("Error searching user: $e");
-      return null;
+      return [];
     }
   }
 

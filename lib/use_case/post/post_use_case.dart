@@ -43,11 +43,9 @@ sealed class PostUseCase {
   }
 
   // 포스트 모집 참가
-  static Future<bool> postJoin({
-    required Map<String, dynamic> postJoinInfo,
-  }) async {
+  static Future<bool> postJoin({required String roomId}) async {
     try {
-      await _repo.postJoin(postJoinInfo: postJoinInfo);
+      await _repo.postJoin(roomId: roomId);
       return true;
     } catch (e) {
       // Todo: resp status code에 따른 예외처리
@@ -56,9 +54,9 @@ sealed class PostUseCase {
   }
 
   // 포스트 모집 나가기
-  static Future<bool> postExit() async {
+  static Future<bool> postExit({required String roomId}) async {
     try {
-      await _repo.postExit();
+      await _repo.postExit(roomId: roomId);
       return true;
     } catch (e) {
       // Todo: resp status code에 따른 예외처리

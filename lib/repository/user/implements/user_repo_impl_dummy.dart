@@ -16,14 +16,45 @@ final class UserRepoImplDummy implements UserRepository {
   }
 
   @override
-  Future<UserModel> searchUser({required String searchText}) async {
-    return UserModel(
-      id: 0,
-      nickname: 'Not Found',
-      stateMsg: '사용자를 찾을 수 없습니다.',
-      profileUrl: null,
-      mannerTemperature: 0.0,
-    );
+  Future<List<UserModel>> searchUser({required String searchText}) async {
+    await Future.delayed(const Duration(milliseconds: 500), null);
+    return [
+      UserModel(
+        id: 0,
+        nickname: 'Not Found',
+        stateMsg: '사용자를 찾을 수 없습니다.',
+        profileUrl: null,
+        mannerTemperature: 0.0,
+      ),
+      UserModel(
+        id: 1,
+        nickname: "searchText",
+        stateMsg: '검색된 사용자입니다.',
+        profileUrl: null,
+        mannerTemperature: 36.5,
+      ),
+      UserModel(
+        id: 1,
+        nickname: "searchText",
+        stateMsg: '검색된 사용자입니다.',
+        profileUrl: null,
+        mannerTemperature: 36.5,
+      ),
+      UserModel(
+        id: 1,
+        nickname: "searchText",
+        stateMsg: '검색된 사용자입니다.',
+        profileUrl: null,
+        mannerTemperature: 36.5,
+      ),
+      UserModel(
+        id: 1,
+        nickname: "searchText",
+        stateMsg: '검색된 사용자입니다.',
+        profileUrl: null,
+        mannerTemperature: 36.5,
+      ),
+    ];
   }
 
   @override

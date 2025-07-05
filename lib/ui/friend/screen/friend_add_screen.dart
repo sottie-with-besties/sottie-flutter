@@ -22,7 +22,7 @@ class FriendAddScreen extends StatefulWidget {
 
 class _FriendAddScreenState extends State<FriendAddScreen> {
   bool userSearching = false;
-  UserModel? userFound;
+  List<UserModel> searchResults = [];
   String userSearchText = '';
 
   final _textController = TextEditingController();
@@ -30,8 +30,8 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
   Future<void> _searchUser(String searchString) async {
     userSearching = true;
     setState(() {});
-    userFound = await UserUseCase.searchUser(userSearchText);
-    userFound == null ? userSearchText = '유저가 존재하지 않습니다.' : null;
+    searchResults = await UserUseCase.searchUser(userSearchText);
+    searchResults.isEmpty ? userSearchText = '유저가 존재하지 않습니다.' : null;
     userSearching = false;
     setState(() {});
   }
@@ -79,26 +79,40 @@ class _FriendAddScreenState extends State<FriendAddScreen> {
                         ? const CircularProgressIndicator(
                           color: AppColors.blackColor,
                         )
-                        : userFound != null
-                        ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SottieUser(
-                              model: userFound!,
-                              heroTag: 'friendAddSearch',
-                              isMyFriend: false,
-                              textWidth: 100,
-                            ),
-                            _renderFriendManageButton(
-                              AppColors.blueColor,
-                              FontAwesomeIcons.userPlus,
-                              () {
-                                FriendUseCase.acceptFriendRequest(
-                                  userFound!.id.toString(),
-                                );
-                              },
-                            ),
-                          ],
+                        : searchResults.isNotEmpty
+                        ? SizedBox(
+                          height: 150 * ScreenSize.hu,
+                          child: ListView.builder(
+                            itemCount: searchResults.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 10 * ScreenSize.hu,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SottieUser(
+                                      model: searchResults[index],
+                                      heroTag: 'friendAddSearch_$index',
+                                      isMyFriend: false,
+                                      textWidth: 100,
+                                    ),
+                                    _renderFriendManageButton(
+                                      AppColors.blueColor,
+                                      FontAwesomeIcons.userPlus,
+                                      () {
+                                        FriendUseCase.acceptFriendRequest(
+                                          searchResults[index].id.toString(),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
                         )
                         : Text(userSearchText),
               ),

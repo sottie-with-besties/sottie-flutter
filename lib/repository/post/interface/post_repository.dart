@@ -25,8 +25,8 @@ abstract interface class PostRepository {
   Future<void> makePost({required Map<String, dynamic> postSetting});
 
   // 포스트 참여
-  Future<void> postJoin({required Map<String, dynamic> postJoinInfo});
+  Future<void> postJoin({required String roomId});
 
   // 포스트 참여 취소
-  Future<void> postExit();
+  Future<void> postExit({required String roomId});
 }

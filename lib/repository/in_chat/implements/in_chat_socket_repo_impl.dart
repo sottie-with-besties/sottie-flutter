@@ -20,11 +20,11 @@ final class InChatSocketRepoImpl {
     try {
       _stompClient = StompClient(
         config: StompConfig(
-          url: 'ws://43.203.8.220:8080/chat',
-          // todo: url 점검
           // 웹소켓 접속 URL
-          stompConnectHeaders: <String, String>{'userId': userId},
+          url: 'ws://43.203.8.220:8080/chat',
           // 접속 시 헤더 설정
+          stompConnectHeaders: <String, String>{'userId': userId},
+          // 접속 되었을 때 콜백
           onConnect: (StompFrame frame) {
             try {
               log("onConnect");
@@ -38,16 +38,14 @@ final class InChatSocketRepoImpl {
               log(e.toString());
             }
           },
-          // 접속 되었을 때 콜백
-          onStompError: (StompFrame frame) {},
           // Stomp 통신 중 에러가 났을 때 콜백
-          onDisconnect: (StompFrame frame) {},
+          onStompError: (StompFrame frame) {},
           // 접속이 종료되었을 때 콜백
-          heartbeatIncoming: const Duration(seconds: 30),
+          onDisconnect: (StompFrame frame) {},
           // heart-beat가 들어오는 주기 설정
-          heartbeatOutgoing: const Duration(
-            seconds: 30,
-          ), // heart-beat가 나가는 주기 설정
+          heartbeatIncoming: const Duration(seconds: 30),
+          // heart-beat가 나가는 주기 설정
+          heartbeatOutgoing: const Duration(seconds: 30),
         ),
       )..activate();
 

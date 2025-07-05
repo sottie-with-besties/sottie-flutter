@@ -19,7 +19,7 @@ final class UserRepoImplDev implements UserRepository {
   }
 
   @override
-  Future<UserModel> searchUser({required String searchText}) async {
+  Future<List<UserModel>> searchUser({required String searchText}) async {
     final uri = Uri(
       scheme: ApiEnv.scheme,
       host: ApiEnv.devHost,
@@ -30,9 +30,8 @@ final class UserRepoImplDev implements UserRepository {
 
     final response = await ApiEnv().cleanClient.get(uri);
 
-    final json = jsonDecode(response.body) as Map<String, dynamic>;
-
-    return UserModel.fromJson(json);
+    final jsonList = jsonDecode(response.body) as List;
+    return jsonList.map((json) => UserModel.fromJson(json)).toList();
   }
 
   @override
