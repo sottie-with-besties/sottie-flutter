@@ -10,9 +10,7 @@ import 'package:sottie_flutter/repository/auth/interface/auth_repository.dart';
 import '../../core/local_database/token_storage.dart';
 
 part 'auth_part/oauth_apple.dart';
-
 part 'auth_part/oauth_google.dart';
-
 part 'auth_part/oauth_kakao.dart';
 
 sealed class AuthUseCase {
@@ -47,6 +45,8 @@ sealed class AuthUseCase {
         accessToken: accessToken,
       );
 
+      // Todo: 본인인증 여부 확인 로직 작성
+
       return oauthSuccess;
     } else {
       return false;
@@ -66,6 +66,8 @@ sealed class AuthUseCase {
         idToken: idToken,
         accessToken: accessToken,
       );
+
+      // Todo: 본인인증 여부 확인 로직 작성
 
       // 시큐어 스토리지에 토큰 저장
       await _tokenStorage.writeRefreshToken(

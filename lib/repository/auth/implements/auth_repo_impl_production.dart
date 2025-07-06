@@ -3,15 +3,6 @@ import 'package:sottie_flutter/repository/auth/interface/auth_repository.dart';
 
 final class AuthRepoImplProduction implements AuthRepository {
   @override
-  Future<TokenModel> emailLogin({
-    required String email,
-    required String password,
-  }) {
-    // TODO: implement emailLogin
-    throw UnimplementedError();
-  }
-
-  @override
   Future<String> refreshAccessToken({required String refreshToken}) {
     // TODO: implement refreshAccessToken
     throw UnimplementedError();
