@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sottie_flutter/core/router/router.dart';
+import 'package:sottie_flutter/ui/common/controller/image_controller.dart';
+import 'package:sottie_flutter/ui/common/controller/modal_controller.dart';
 import 'package:sottie_flutter/ui/common/controller/screen_size.dart';
 import 'package:sottie_flutter/ui/common/widget/local_text_field.dart';
-import 'package:sottie_flutter/ui/more/controller/modify_image.dart';
 import 'package:sottie_flutter/ui/user/controller/my_info_controller.dart';
 import 'package:sottie_flutter/ui/user/widget/user_profile.dart';
 
@@ -65,9 +66,19 @@ class _InfoModifyScreenState extends State<InfoModifyScreen> {
               children: [
                 GestureDetector(
                   onTap: () async {
-                    await modifyImage(context);
-                    setState(() {});
-                    // Todo: 디바운스 -> 서버로 수정한 정보 보내기
+                    final [bool success, String filePathOrError] =
+                        await ImageController.selectImage();
+
+                    if (success) {
+                      MyInfoController.changeProfilePath(path: filePathOrError);
+                      setState(() {});
+                      // Todo: 디바운스 -> 서버로 수정한 정보 보내기
+                    } else {
+                      ModalController.showCustomSnackBar(
+                        context,
+                        filePathOrError,
+                      );
+                    }
                   },
                   child: Center(
                     child: Hero(

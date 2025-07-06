@@ -20,4 +20,10 @@ abstract interface class InChatRepository {
     required String roomId,
     required String lastEventId,
   });
+
+  // 채팅방에 이미지 전송하기
+  Future<void> sendImage({
+    required String roomId,
+    required List<String> imagePaths,
+  });
 }

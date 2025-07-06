@@ -363,4 +363,12 @@ final class InChatRepoImplDummy implements InChatRepository {
     // TODO: implement getInChatEventListBefore
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> sendImage({
+    required String roomId,
+    required List<String> imagePaths,
+  }) async {
+    await Future.delayed(const Duration(seconds: 1));
+  }
 }
