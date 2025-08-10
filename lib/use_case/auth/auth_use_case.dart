@@ -16,6 +16,7 @@ part 'auth_part/oauth_kakao.dart';
 sealed class AuthUseCase {
   static final _tokenStorage = TokenStorage();
 
+  // 로그인
   static Future<bool> signIn({
     required AuthType authType,
     String? email,

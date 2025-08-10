@@ -12,11 +12,7 @@ final class InChatSocketRepoImpl {
   Function? unSubscribeFn;
 
   // 소켓 초기화
-  void initStompClientSocket({
-    required String roomId,
-    required String userId,
-    required StompFrameCallback Function(StompFrame frame) callback,
-  }) {
+  void initStompClientSocket({required String roomId, required String userId}) {
     try {
       _stompClient = StompClient(
         config: StompConfig(
@@ -32,7 +28,7 @@ final class InChatSocketRepoImpl {
               unSubscribeFn = _stompClient!.subscribe(
                 destination: '/exchange/sottie.chat.exchange/*.room.$roomId',
                 headers: <String, String>{},
-                callback: callback,
+                callback: _socketDataCallback,
               );
             } catch (e) {
               log(e.toString());
@@ -86,4 +82,8 @@ final class InChatSocketRepoImpl {
 
   // 소켓이 잘 연결되어있는지 확인
   bool _canSendData() => _stompClient != null && _stompClient!.isActive;
+
+  void _socketDataCallback(StompFrame frame) {
+    // Todo: 소켓에서 오는 데이터 콜백 작성
+  }
 }

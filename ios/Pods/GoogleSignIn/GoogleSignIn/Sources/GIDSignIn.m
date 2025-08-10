@@ -21,6 +21,7 @@
 #import "GoogleSignIn/Sources/Public/GoogleSignIn/GIDProfileData.h"
 #import "GoogleSignIn/Sources/Public/GoogleSignIn/GIDSignInResult.h"
 
+#import "GoogleSignIn/Sources/GIDAuthStateMigration/GIDAuthStateMigration.h"
 #import "GoogleSignIn/Sources/GIDEMMSupport.h"
 #import "GoogleSignIn/Sources/GIDSignInInternalOptions.h"
 #import "GoogleSignIn/Sources/GIDSignInPreferences.h"
@@ -31,7 +32,6 @@
 #import <AppCheckCore/GACAppCheckToken.h>
 #import "GoogleSignIn/Sources/GIDAppCheck/Implementations/GIDAppCheck.h"
 #import "GoogleSignIn/Sources/GIDAppCheck/UI/GIDActivityIndicatorViewController.h"
-#import "GoogleSignIn/Sources/GIDAuthStateMigration.h"
 #import "GoogleSignIn/Sources/GIDEMMErrorHandler.h"
 #import "GoogleSignIn/Sources/GIDTimedLoader/GIDTimedLoader.h"
 #endif // TARGET_OS_IOS && !TARGET_OS_MACCATALYST
@@ -272,12 +272,25 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
                                       hint:(nullable NSString *)hint
                           additionalScopes:(nullable NSArray<NSString *> *)additionalScopes
                                 completion:(nullable GIDSignInCompletion)completion {
+  [self signInWithPresentingViewController:presentingViewController 
+                                      hint:hint
+                          additionalScopes:additionalScopes
+                                     nonce:nil
+                                completion:completion];
+}
+
+- (void)signInWithPresentingViewController:(UIViewController *)presentingViewController
+                                      hint:(nullable NSString *)hint
+                          additionalScopes:(nullable NSArray<NSString *> *)additionalScopes
+                                     nonce:(nullable NSString *)nonce
+                                completion:(nullable GIDSignInCompletion)completion {
   GIDSignInInternalOptions *options =
     [GIDSignInInternalOptions defaultOptionsWithConfiguration:_configuration
                                      presentingViewController:presentingViewController
                                                     loginHint:hint
                                                 addScopesFlow:NO
                                                        scopes:additionalScopes
+                                                        nonce:nonce
                                                    completion:completion];
   [self signInWithOptions:options];
 }
@@ -350,12 +363,25 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
                               hint:(nullable NSString *)hint
                   additionalScopes:(nullable NSArray<NSString *> *)additionalScopes
                         completion:(nullable GIDSignInCompletion)completion {
+  [self signInWithPresentingWindow:presentingWindow
+                              hint:hint
+                  additionalScopes:additionalScopes
+                             nonce:nil
+                        completion:completion];
+}
+
+- (void)signInWithPresentingWindow:(NSWindow *)presentingWindow
+                              hint:(nullable NSString *)hint
+                  additionalScopes:(nullable NSArray<NSString *> *)additionalScopes
+                             nonce:(nullable NSString *)nonce
+                        completion:(nullable GIDSignInCompletion)completion {
   GIDSignInInternalOptions *options =
     [GIDSignInInternalOptions defaultOptionsWithConfiguration:_configuration
                                              presentingWindow:presentingWindow
                                                     loginHint:hint
                                                 addScopesFlow:NO
                                                        scopes:additionalScopes
+                                                        nonce:nonce
                                                    completion:completion];
   [self signInWithOptions:options];
 }
@@ -464,15 +490,19 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
   dispatch_once(&once, ^{
     GTMKeychainStore *keychainStore =
         [[GTMKeychainStore alloc] initWithItemName:kGTMAppAuthKeychainName];
+    GIDAuthStateMigration *authStateMigrationService =
+        [[GIDAuthStateMigration alloc] initWithKeychainStore:keychainStore];
 #if TARGET_OS_IOS && !TARGET_OS_MACCATALYST
     if (@available(iOS 14.0, *)) {
       GIDAppCheck *appCheck = [GIDAppCheck appCheckUsingAppAttestProvider];
       sharedInstance = [[self alloc] initWithKeychainStore:keychainStore
+                                 authStateMigrationService:authStateMigrationService
                                                   appCheck:appCheck];
     }
 #endif // TARGET_OS_IOS && !TARGET_OS_MACCATALYST
     if (!sharedInstance) {
-      sharedInstance = [[self alloc] initWithKeychainStore:keychainStore];
+      sharedInstance = [[self alloc] initWithKeychainStore:keychainStore
+                                 authStateMigrationService:authStateMigrationService];
     }
   });
   return sharedInstance;
@@ -507,7 +537,8 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
 
 #pragma mark - Private methods
 
-- (instancetype)initWithKeychainStore:(GTMKeychainStore *)keychainStore {
+- (instancetype)initWithKeychainStore:(GTMKeychainStore *)keychainStore
+            authStateMigrationService:(GIDAuthStateMigration *)authStateMigrationService {
   self = [super init];
   if (self) {
     // Get the bundle of the current executable.
@@ -534,23 +565,20 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
                              initWithAuthorizationEndpoint:[NSURL URLWithString:authorizationEnpointURL]
                              tokenEndpoint:[NSURL URLWithString:tokenEndpointURL]];
     _keychainStore = keychainStore;
-#if TARGET_OS_IOS && !TARGET_OS_MACCATALYST
-    // Perform migration of auth state from old (before 5.0) versions of the SDK if needed.
-    GIDAuthStateMigration *migration =
-        [[GIDAuthStateMigration alloc] initWithKeychainStore:_keychainStore];
-    [migration migrateIfNeededWithTokenURL:_appAuthConfiguration.tokenEndpoint
-                              callbackPath:kBrowserCallbackPath
-                              keychainName:kGTMAppAuthKeychainName
-                            isFreshInstall:isFreshInstall];
-#endif // TARGET_OS_IOS && !TARGET_OS_MACCATALYST
+    // Perform migration of auth state from old versions of the SDK if needed.
+    [authStateMigrationService migrateIfNeededWithTokenURL:_appAuthConfiguration.tokenEndpoint
+                                              callbackPath:kBrowserCallbackPath
+                                            isFreshInstall:isFreshInstall];
   }
   return self;
 }
 
 #if TARGET_OS_IOS && !TARGET_OS_MACCATALYST
 - (instancetype)initWithKeychainStore:(GTMKeychainStore *)keychainStore
+            authStateMigrationService:(GIDAuthStateMigration *)authStateMigrationService
                              appCheck:(GIDAppCheck *)appCheck {
-  self = [self initWithKeychainStore:keychainStore];
+  self = [self initWithKeychainStore:keychainStore
+           authStateMigrationService:authStateMigrationService];
   if (self) {
     _appCheck = appCheck;
     _configureAppCheckCalled = NO;
@@ -573,7 +601,7 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
     if (!_configuration) {
       // NOLINTNEXTLINE(google-objc-avoid-throwing-exception)
       [NSException raise:NSInvalidArgumentException
-                  format:@"No active configuration.  Make sure GIDClientID is set in Info.plist."];
+                  format:@"No active configuration. Make sure GIDClientID is set in Info.plist."];
       return;
     }
 
@@ -667,7 +695,6 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
       [_timedLoader startTiming];
       [self->_appCheck getLimitedUseTokenWithCompletion:^(GACAppCheckToken * _Nullable token,
                                                           NSError * _Nullable error) {
-        OIDAuthorizationRequest *request = nil;
         if (token) {
           additionalParameters[kClientAssertionTypeParameter] = kClientAssertionTypeParameterValue;
           additionalParameters[kClientAssertionParameter] = token.token;
@@ -677,7 +704,7 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
           NSLog(@"[Google Sign-In iOS]: Error retrieving App Check limited use token: %@", error);
         }
         #endif
-        request = [self authorizationRequestWithOptions:options
+        OIDAuthorizationRequest *request = [self authorizationRequestWithOptions:options
                                    additionalParameters:additionalParameters];
         if (self->_timedLoader.animationStatus == GIDTimedLoaderAnimationStatusAnimating) {
           [self->_timedLoader stopTimingWithCompletion:^{
@@ -701,13 +728,23 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
 - (OIDAuthorizationRequest *)
     authorizationRequestWithOptions:(GIDSignInInternalOptions *)options
                additionalParameters:(NSDictionary<NSString *, NSString *> *)additionalParameters {
-  OIDAuthorizationRequest *request =
-      [[OIDAuthorizationRequest alloc] initWithConfiguration:_appAuthConfiguration
-                                                    clientId:options.configuration.clientID
-                                                      scopes:options.scopes
-                                                 redirectURL:[self redirectURLWithOptions:options]
-                                                responseType:OIDResponseTypeCode
-                                        additionalParameters:additionalParameters];
+  OIDAuthorizationRequest *request;
+  if (options.nonce) {
+    request = [[OIDAuthorizationRequest alloc] initWithConfiguration:_appAuthConfiguration
+                                                            clientId:options.configuration.clientID
+                                                              scopes:options.scopes
+                                                         redirectURL:[self redirectURLWithOptions:options]
+                                                        responseType:OIDResponseTypeCode
+                                                               nonce:options.nonce
+                                                additionalParameters:additionalParameters];
+  } else {
+    request = [[OIDAuthorizationRequest alloc] initWithConfiguration:_appAuthConfiguration
+                                                            clientId:options.configuration.clientID
+                                                              scopes:options.scopes
+                                                         redirectURL:[self redirectURLWithOptions:options]
+                                                        responseType:OIDResponseTypeCode
+                                                additionalParameters:additionalParameters];
+  }
   return request;
 }
 
@@ -758,7 +795,7 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
 
 - (void)processAuthorizationResponse:(OIDAuthorizationResponse *)authorizationResponse
                                error:(NSError *)error
-                          emmSupport:(NSString *)emmSupport{
+                          emmSupport:(NSString *)emmSupport {
   if (_restarting) {
     // The auth flow is restarting, so the work here would be performed in the next round.
     _restarting = NO;
@@ -803,7 +840,8 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
   } else {
     NSString *errorString = [error localizedDescription];
     GIDSignInErrorCode errorCode = kGIDSignInErrorCodeUnknown;
-    if (error.code == OIDErrorCodeUserCanceledAuthorizationFlow) {
+    if (error.code == OIDErrorCodeUserCanceledAuthorizationFlow ||
+        error.code == OIDErrorCodeProgramCanceledAuthorizationFlow) {
       // The user has canceled the flow at the iOS modal dialog.
       errorString = kUserCanceledError;
       errorCode = kGIDSignInErrorCodeCanceled;
@@ -891,10 +929,10 @@ static NSString *const kConfigOpenIDRealmKey = @"GIDOpenIDRealm";
   }
 
   [authFlow wait];
-  [OIDAuthorizationService
-      performTokenRequest:tokenRequest
-                 callback:^(OIDTokenResponse *_Nullable tokenResponse,
-                            NSError *_Nullable error) {
+  [OIDAuthorizationService performTokenRequest:tokenRequest
+                 originalAuthorizationResponse:authFlow.authState.lastAuthorizationResponse
+                                      callback:^(OIDTokenResponse *_Nullable tokenResponse,
+                                                 NSError *_Nullable error) {
     [authState updateWithTokenResponse:tokenResponse error:error];
     authFlow.error = error;
 

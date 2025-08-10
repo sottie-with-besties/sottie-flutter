@@ -18,14 +18,11 @@
   "public_header_files": "google_sign_in_ios/Sources/google_sign_in_ios/include/**/*.h",
   "module_map": "google_sign_in_ios/Sources/google_sign_in_ios/include/FLTGoogleSignInPlugin.modulemap",
   "dependencies": {
-    "AppAuth": [
-      ">= 1.7.4"
-    ],
     "GTMSessionFetcher": [
       ">= 3.4.0"
     ],
     "GoogleSignIn": [
-      "~> 8.0"
+      "~> 9.0"
     ]
   },
   "static_framework": true,
