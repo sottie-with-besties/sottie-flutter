@@ -35,7 +35,7 @@ final class HomeSearchPost extends _$HomeSearchPost {
       //   lastPostId: firstFetch ? 0 : state.postEntityList.last.id,
       // );
 
-      if (postList.isEmpty) {
+      if (postList!.isEmpty) {
         state = PostPaginationModel(
           postModelList: postList,
           postPaginationState: PostPaginationState.error,

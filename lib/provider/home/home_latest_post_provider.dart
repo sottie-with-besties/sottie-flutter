@@ -31,7 +31,7 @@ final class HomeLatestPost extends _$HomeLatestPost {
 
       // final postList = await getLatestPostDummy("123");
 
-      if (entityList.isEmpty) {
+      if (entityList!.isEmpty) {
         state = PostPaginationModel(
           postModelList: entityList,
           postPaginationState: PostPaginationState.error,

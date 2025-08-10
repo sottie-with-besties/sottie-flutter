@@ -8,27 +8,18 @@ sealed class InChatUseCase {
   static final _socketRepo = InChatSocketRepoImpl();
 
   // 채팅 리스트 가져오기
-  static Future<InChatEventListModel> getInChatEventList() async {
-    final inChatEventListModel = await _repo.getInChatEventList(
-      roomId: "1231331",
-    );
-
-    return inChatEventListModel;
-  }
+  static Future<InChatEventListModel> getInChatEventList() async =>
+      await _repo.getInChatEventList(roomId: "1231331");
 
   // 소켓 초기화
   static void initSocket({
     required String roomId,
     required String userId,
     required StompFrameCallback Function(StompFrame frame) callback,
-  }) {
-    _socketRepo.initStompClientSocket(roomId: roomId, userId: userId);
-  }
+  }) => _socketRepo.initStompClientSocket(roomId: roomId, userId: userId);
 
   // 소켓 비활성화
-  static void deactivateSocket() {
-    _socketRepo.deactivateSocket();
-  }
+  static void deactivateSocket() => _socketRepo.deactivateSocket();
 
   // 소켓을 통해 데이터 보내기 -> 채팅방 채팅 입력
   static void sendData({
@@ -36,14 +27,12 @@ sealed class InChatUseCase {
     required String contents,
     required String messageType,
     required String eventType,
-  }) {
-    _socketRepo.sendData(
-      userId: userId,
-      contents: contents,
-      messageType: messageType,
-      eventType: eventType,
-    );
-  }
+  }) => _socketRepo.sendData(
+    userId: userId,
+    contents: contents,
+    messageType: messageType,
+    eventType: eventType,
+  );
 
   // // 이미지 보내기 -> 아직 프로젝트에서 사용하지 않음. (보류)
   // static Future<bool> sendImages({
